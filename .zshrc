@@ -41,7 +41,6 @@ compinit
     export SUDO_ASKPASS=/usr/bin/qt4-ssh-askpass
     export CDPATH=$HOME:$HOME/curricula/2021-autumn:$HOME/software:$HOME/projects
     export TERMINAL="st"
-    export EDITOR="nvim"
     export PDFVIEWER="zathura"
     export BROWSER="brave"
 
