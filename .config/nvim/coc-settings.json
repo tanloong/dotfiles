@@ -1,0 +1,54 @@
+{
+    "suggest.noselect": true,
+    "suggest.enablePreselect": false,
+    "coc.preferences.extensionUpdateCheck": "weekly",
+    "coc.preferences.formatOnSaveFiletypes": [
+        "json"
+    ],
+    "snippets.ultisnips.directories": [
+        "$HOME/.config/nvim/ultisnips"
+    ],
+    "texlab.build.executable": "xelatex",
+    "texlab.path": "texlab",
+    "texlab.build.onSave": true,
+    "texlab.chktex.onEdit": false,
+    "texlab.chktex.onOpenAndSave": false,
+    "texlab.latexFormatter": "latexindent",
+    "texlab.forwardSearch.executable": "zathura",
+    "translator.toLang": "zh_CN",
+    "translator.engines": [
+        "bing"
+    ],
+    "diagnostic.errorSign": "×",
+    "diagnostic.warningSign": "»",
+    "diagnostic.infoSign": "ღ",
+    "diagnostic.hintSign": "ஐ",
+    "diagnostic.displayByAle": false,
+    "diagnostic.refreshOnInsertMode": false,
+    "diagnostic.checkCurrentLine": true,
+    "diagnostic.virtualText": true,
+    "diagnostic.virtualTextPrefix": " ❯❯❯ ",
+    "diagnostic.enableMessage": "never",
+    "diagnostic.messageTarget": "float",
+    "languageserver": {
+        "golang": {
+            "command": "gopls",
+            "rootPatterns": [
+                "go.mod"
+            ],
+            "filetypes": [
+                "go"
+            ]
+        },
+        "bash": {
+            "command": "bash-language-server",
+            "args": [
+                "start"
+            ],
+            "filetypes": [
+                "sh"
+            ],
+            "ignoredRootPaths": []
+        }
+    }
+}

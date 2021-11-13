@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+set -euo pipefail
+IFS=$'\n\t'
+
+# /usr/bin/amixer set Master toggle
+# amixer -D pulse set Master 1+ toggle
+pamixer -t
+
+# update statusbar
+status=$(slstatus -1)
+xsetroot -name "$status"

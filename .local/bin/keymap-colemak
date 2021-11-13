@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+set -euo pipefail
+IFS=$'\n\t'
+
+
+# notify_normal() {
+# twmnc -c "Keys Mapped" --fs 20 --fg white --bg black -d 600
+# }
+
+# notify_critical() {
+# twmnc -c "Mapkey Crashed!" --fs 20 --fg white --bg yellow -d 1500
+# }
+
+# xmodmap /home/tan/.xmodmap_lenovo && notify_normal || notify_critical
+xmodmap /home/tan/.xmodmap-colemak
+# cp -f /home/tan/.config/ranger/rc.conf-colemak /home/tan/.config/ranger/rc.conf
+# cp -f /home/tan/.config/nvim/init-colemak.vim /home/tan/.config/nvim/init.vim
+# cp -f /home/tan/.config/zathura/zathurarc-colemak /home/tan/.config/zathura/zathurarc
+# cp -f /home/tan/software/dwm-6.2/config-colemak.h /home/tan/software/dwm-6.2/config.h
+# cd /home/tan/software/dwm-6.2/ && sudo make clean install > /dev/null 2>&1
+# cp -f /home/tan/software/st/config-colemak.h /home/tan/software/st/config.h
+# cd /home/tan/software/st/ && sudo make clean install > /dev/null 2>&1

@@ -1,0 +1,69 @@
+#!/usr/bin/env bash
+set -euo pipefail
+IFS=$'\n\t'
+
+number=$(sudo dmidecode -s system-serial-number) # 电脑序列号
+mouse="Mouse"
+touchpad="Synaptics"
+trackpoint="TrackPoint"
+
+function set_mouse() {
+    mouse_id=$(xinput list | grep "$mouse" | cut -d'=' -f2 | cut -f1) || :
+    # 给鼠标的指针加速
+    if [[ ! "$mouse_id" == "" ]]; then
+        accel_speed_id=`xinput list-props $mouse_id | \
+                              grep "Accel Speed (" \
+                              | cut -d'(' -f2 | cut -d')' -f1`
+        xinput --set-prop $mouse_id $accel_speed_id 0.7
+    fi
+}
+
+function disable_touchpad() {
+    touchpad_id=$(xinput list | grep "$touchpad" | cut -d'=' -f2 | cut -f1) || :
+    if [[ ! "$touchpad_id" == "" ]]; then
+        enable_id=$(xinput list-props "$touchpad_id" |\
+                    grep "Device Enabled ("|\
+                    cut -d'(' -f2 | cut -d')' -f1)
+        xinput --set-prop "$touchpad_id" "$enable_id" 0
+    fi
+}
+
+function set_touchpad(){
+    touchpad_id=$(xinput list | grep "$touchpad" | cut -d'=' -f2 | cut -f1) || :
+    if [[ ! "$touchpad_id" == "" ]]; then
+        enable_id=$(xinput list-props "$touchpad_id" |\
+                    grep "Device Enabled ("|\
+                    cut -d'(' -f2 | cut -d')' -f1)
+        xinput --set-prop "$touchpad_id" "$enable_id" 1
+        natural_scrolling_id=`xinput list-props "$touchpad_id" | \
+                              grep "Natural Scrolling Enabled (" \
+                              | cut -d'(' -f2 | cut -d')' -f1`
+        tap_to_click_id=`xinput list-props "$touchpad_id" | \
+                              grep "Tapping Enabled (" \
+                              | cut -d'(' -f2 | cut -d')' -f1`
+        accel_speed_id=`xinput list-props "$touchpad_id" | \
+                              grep "Accel Speed (" \
+                              | cut -d'(' -f2 | cut -d')' -f1`
+        xinput --set-prop "$touchpad_id" $natural_scrolling_id 1
+        xinput --set-prop "$touchpad_id" $tap_to_click_id 1
+        xinput --set-prop "$touchpad_id" $accel_speed_id 0.7
+    fi
+}
+
+function set_trackpoint(){
+    trackpoint_id=$(xinput list | grep "$trackpoint" | cut -d'=' -f2 | cut -f1) || :
+    if [[ ! "$trackpoint_id" == "" ]]; then
+        accel_speed_id=`xinput list-props "$trackpoint_id" | \
+                              grep "Accel Speed (" \
+                              | cut -d'(' -f2 | cut -d')' -f1`
+        xinput --set-prop "$trackpoint_id" $accel_speed_id 0.3
+    fi
+}
+
+set_mouse
+if [[ "$number" == "PF18JLMH" ]]; then
+    set_touchpad
+elif [[ "$number" == "R9MZR03" ]]; then
+    disable_touchpad
+    set_trackpoint
+fi

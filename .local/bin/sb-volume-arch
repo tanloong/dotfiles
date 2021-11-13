@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+# print volume state
+
+status="$(pamixer --get-mute)"
+
+if [ "$status" = 'true' ]; then
+    printf "no"
+else
+    volume="$(pamixer --get-volume)"
+    printf "%s" "${volume}"
+fi

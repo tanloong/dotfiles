@@ -1,0 +1,100 @@
+# i3status configuration file.
+# see "man i3status" for documentation.
+
+# It is important that this file is edited as UTF-8.
+# The following line should contain a sharp s:
+# ß
+# If the above line is not correctly displayed, fix your editor first!
+
+general {
+        output_format = "i3bar"
+        colors = true
+        interval = 5
+		separator = "|"
+}
+
+#order += "ipv6"
+order += "wireless _first_"
+#order += "ethernet _first_"
+order += "battery all"
+order += "volume master"
+order += "memory"
+order += "disk /"
+order += "cpu_usage"
+#order += "load"
+order += "tztime local"
+
+wireless _first_ {
+        #format_up = "W: (%quality at %essid) %ip"
+        format_up = "%ip"
+        format_down = "W: down"
+		align = "center"
+		separator_block_width = 20
+}
+
+ethernet _first_ {
+        format_up = "E: %ip (%speed)"
+        format_down = "E: down"
+		align = "center"
+		separator_block_width = 20
+}
+
+battery all {
+        format = "⚡ %status %percentage"
+        # format = "Battery %status %percentage"
+        # format = "Battery %percentage"
+        status_unk = ""
+		low_threshold = 20
+		threshold_type = "percentage"
+		align = "center"
+		separator_block_width = 20
+}
+
+disk "/" {
+        format = "💿 %avail"
+		align = "center"
+		separator_block_width = 20
+}
+
+load {
+        format = "%1min"
+		align = "center"
+		separator_block_width = 20
+}
+
+memory {
+        format = "📙 %available"
+        # format = "Memory %available"
+        threshold_degraded = 20%
+        threshold_critical = 10%
+        format_degraded = "Memory %available"
+        align = "center"
+        separator_block_width = 20
+}
+
+tztime local {
+        #format = "%Y-%m-%d %H:%M:%S"
+        format = "📅 %m月%d日%A %H:%M:%S |"
+		align = "center"
+		separator_block_width = 20
+}
+
+cpu_usage {
+           # format = "🚀 CPU %usage"
+           format = "🚀 %usage"
+		   max_threshold = 85
+		   degraded_threshold = 70
+		   format_above_threshold = "CPU %usage"
+		   format_above_degraded_threshold = "CPU %usage"
+		   align = "center"
+		   separator_block_width = 20
+}
+volume master {
+    format = "🎵 %volume"
+    # format = "Volume %volume"
+    format_muted = "🎵 (%volume)"
+    # format_muted = "Volume muted (%volume)"
+    device = "default"
+    align = "center"
+    separator_block_width = 20
+}

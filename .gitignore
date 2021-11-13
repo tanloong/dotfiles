@@ -1,0 +1,15 @@
+README.md
+larbs.sh
+larbs.sh_
+*ttf
+*pyc
+.config/nvim/plugged/
+.local/share/lf/history
+.local/share/lf/marks
+.local/share/fonts/
+.local/share/wallpapers/
+cnc*
+
+larbs1.sh
+blank.sh
+temp

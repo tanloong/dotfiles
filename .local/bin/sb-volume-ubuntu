@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+# print volume state
+print_volume() {
+    status="$(amixer get Master | tail -n1 | cut -d[ -f4 | cut -d] -f1)"
+	if test "$status" == "off"
+    then
+        printf 'Mute'
+	else
+        volume="$(amixer get Master | tail -n1 | sed -r 's/.*\[(.*)%\].*/\1/')"
+		printf "%s" "${volume}"
+	fi
+}
+
+print_volume
+exit 0

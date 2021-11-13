@@ -1,0 +1,218 @@
+# basic vars
+set icons true
+set shell bash
+set shellopts '-eu'
+set ifs "\n"
+set info size # show size info
+set hiddenfiles '.*:*.aux:*.nav:*.toc:*.out:*.bbl:*.blg:*.snm:*.log:*.synctex.gz:*(busy):__pycache__'
+$lf -remote "send $id set previewer ${XDG_CONFIG_HOME:-$HOME/.config}/lf/previewer.sh"
+
+# bindings
+# unmap default y
+map y
+map d
+map c
+map K push 5k
+map J push 5j
+map dd cut
+# map dD delete
+map dD trash
+map du !clear;tput cup $(($(tput lines)/3));tput bold;du --max-depth=1 -h --apparent-size
+map dU !clear;tput cup $(($(tput lines)/3));tput bold;du --max-depth=1 -h --apparent-size | sort -rh
+map ` mark-load
+map s shell-wait
+map x $$f # 运行完并自动返回 lf
+map X !$f # 运行完在终端驻留
+map A rename # at the very end
+map a push A<a-b><a-b><a-f> # before extention
+map i push A<c-a> # at the very beginning
+map cw push A<c-u> # new rename
+map B bulkrename
+map cx $sudo chmod +x $fx
+map cX $sudo chmod -x $fx
+map gcc cd ~/.config
+map gcr cd ~/.config/ranger
+map gcl cd ~/.config/lf
+map gcv cd ~/.config/nvim
+map gcz cd ~/.config/zathura
+map gd cd ~/dotfiles
+map gsd cd ~/software/dwm/
+map gss cd ~/software
+map gst cd ~/software/st/
+map gsl cd ~/software/slstatus/
+map glb cd ~/.local/bin
+map gls cd ~/.local/share
+map ga $lazygit
+map gib :git_branch
+map gis ${{clear; git status; read -p "press any key to continue" -n 1}}
+map gil ${{clear; git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit}}
+map gp ${{clear; git pull --rebase || true; echo "press ENTER"; read ENTER}}
+map gp cd ~/projects/
+map yy copy
+map yb yank-basename
+map yd yank-dirname
+map yp yank-path
+map y. yank-basename-without-extension
+map <c-r> push :open-with<space>
+map r reload
+map tz zip
+map te extract
+map tt tar
+map tb tarbz2
+map tg targz
+map on :set sortby natural; set info
+map os :set sortby size; set info size
+map ot :set sortby time; set info time
+map oa :set sortby atime; set info atime
+map oc :set sortby ctime; set info ctime
+map oe :set sortby ext; set info
+map u :unselect; clear
+map W openterminal
+map f :fzf_jump
+# put lf into background, `fg` to restore
+map <c-z> $ kill -STOP $PPID
+# New folder with selected items
+map <c-n> newfold
+
+
+# cmds/functions
+cmd on-cd &{{
+    # display git repository status in your prompt
+    source /usr/share/git/completion/git-prompt.sh
+    GIT_PS1_SHOWDIRTYSTATE=auto
+    GIT_PS1_SHOWSTASHSTATE=auto
+    GIT_PS1_SHOWUNTRACKEDFILES=auto
+    GIT_PS1_SHOWUPSTREAM=auto
+    git=$(__git_ps1 " (%s)") || true
+    # fmt="\033[32;1m%u@%h\033[0m:\033[34;1m%d\033[0m\033[1m%f$git\033[0m"
+    fmt="\033[34;1m%d\033[0m\033[1m%f$git\033[0m"
+    lf -remote "send $id set promptfmt \"$fmt\""
+    # '&' commands run silently in background (which is what we want here),
+    # but are not connected to stdout.
+    # To make sure our escape sequence still reaches stdout we pipe it to /dev/tty
+    # printf "\033]0; lf   $(pwd | sed "s|$HOME|~|")\007" > /dev/tty
+    printf "\033]0; lf\007" > /dev/tty
+}}
+on-cd
+
+cmd open-with %"$@" $fx
+cmd open ${{
+    test -L "$f" && f=$(readlink -f "$f")
+    case $(file --mime-type "$f" -b) in
+        text/*|application/json|application/x-dosexec|application/csv|inode/x-empty) $EDITOR "$fx";;
+        image/x-xcf) setsid -f gimp "$fx" >/dev/null 2>&1 ;;
+        image/svg+xml) setsid -f display -- "$fx" ;;
+        # image/*) feh --scale-down -g 1344x717 "$fx" ;;
+        image/*) setsid -f sxiv "${fx%/*}" ;;
+
+        audio/*) mpv --audio-display=no "$fx" ;;
+        application/octet-stream) mpv --audio-display=no "$fx" ;;
+        video/*) setsid -f mpv "$fx" -quiet >/dev/null 2>&1 ;;
+
+        application/pdf|image/vnd.djvu) setsid -f "$PDFVIEWER" "$fx" >/dev/null 2>&1 ;;
+        application/*presentation|application/*ms-powerpoint) setsid -f wpp "$fx";;
+        application/*document|application/msword) setsid -f wps "$fx";;
+        application/*sheet|application/vnd.ms-excel) setsid -f et "$fx";;
+        message/rfc822) setsid -f "$BROWSER" "$fx";;
+        *) for f in "$fx"; do setsid -f $OPENER $f >/dev/null 2>&1; done;;
+    esac
+}}
+
+cmd delete ${{
+    clear; tput cup $(($(tput lines)/3)); tput bold
+    for filename in $fx; do printf "%s\n" $filename;done
+    read -n1 -p "delete?[y/N]" ans
+    case "$ans" in
+        y | Y | " " | "") rm -rf -- $fx ;;
+        *) ;;
+    esac
+    clear
+}}
+
+cmd bulkrename ${{
+    index=$(mktemp /tmp/lf-bulk-rename-index.XXXXXXXXXX)
+    if [ -n "${fs}" ]; then
+        echo "$fs" > $index
+    else
+        echo "$(ls "$(dirname $f)" | tr ' ' "\n")" > $index
+    fi
+    index_edit=$(mktemp /tmp/lf-bulk-rename.XXXXXXXXXX)
+    cat $index > $index_edit
+    $EDITOR $index_edit
+    if [ $(cat $index | wc -l) -eq $(cat $index_edit | wc -l) ]; then
+        max=$(($(cat $index | wc -l)+1))
+        counter=1
+        while [ $counter -le $max ]; do
+            a="$(cat $index | sed "${counter}q;d")"
+            b="$(cat $index_edit | sed "${counter}q;d")"
+            counter=$(($counter+1))
+
+            [ "$a" = "$b" ] && continue
+            [ -e "$b" ] && echo "File exists: $b" && continue
+            mv "$a" "$b"
+        done
+    else
+        echo "Number of lines must stay the same"
+    fi
+    rm $index $index_edit
+}}
+
+cmd yank-dirname $dirname -- "$f" | head -c-1 | xclip -i -selection clipboard
+cmd yank-path $printf '%s' "$fx" | xclip -i -selection clipboard
+cmd yank-basename $basename -a -- $fx | head -c-1 | xclip -i -selection clipboard
+cmd yank-basename-without-extension ${{
+    echo "$fx" |
+      xargs -r -d '\n' basename -a |
+      awk -e '{
+        for (i=length($0); i > 0; i--) {
+          if (substr($0, i, 1) == ".") {
+            if (i == 1) print $0
+            else print substr($0, 0, i-1)
+
+            break
+          }
+        }
+
+        if (i == 0)
+          print $0
+      }' |
+      if [ -n "$fs" ]; then cat; else tr -d '\n'; fi |
+      xclip -i -selection clipboard
+}}
+
+# extract the current file with the right command
+cmd extract ${{
+    set -f
+    aunpack $f
+}}
+
+
+cmd zip %atool --add "$f.zip" "$fx"
+cmd tar %atool --add "$f.tar" "$fx"
+cmd targz %atool --add "$f.tar.gz" "$fx"
+cmd tarbz2 %atool --add "$f.tar.bz2" "$fx"
+cmd openterminal ${{ setsid -f $TERMINAL > /dev/null & }}
+cmd trash %trash-put $fx
+cmd fzf_jump ${{
+    # res="$(find . -maxdepth 1 | fzf --reverse --header='Jump to location' | sed 's/\\/\\\\/g;s/"/\\"/g')"
+    res="$(fzf --reverse --header='Jump to location' | sed 's/\\/\\\\/g;s/"/\\"/g')"
+    if [ -d "$res" ]; then
+        cmd="cd"
+    else
+        cmd="select"
+    fi
+    lf -remote "send $id $cmd \"$res\""
+}}
+cmd git_branch ${{
+    git branch | fzf | xargs git checkout
+    pwd_shell=$(pwd)
+    lf -remote "send $id updir"
+    lf -remote "send $id cd \"$pwd_shell\""
+}}
+cmd newfold ${{
+    set -f
+    read newd
+    mkdir -- "$newd"
+    mv -- $fx "$newd"
+}}
+cmd snd ${{ bluetooth-sendto $fx }}

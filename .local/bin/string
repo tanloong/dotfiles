@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+set -euo pipefail
+IFS=$'\n\t '
+
+trim_string() {
+    # Usage: trim_string "   example   string    "
+    : "${1#"${1%%[![:space:]]*}"}"
+    : "${_%"${_##*[![:space:]]}"}"
+    printf '%s' "$_"
+}
+
+trim_all() {
+    local _tmp
+    _tmp="$(echo $1)"
+    printf "%s" "$_tmp"
+}

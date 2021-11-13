@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+set -euo pipefail
+IFS=$'\n\t'
+
+killall screenkey 2> /dev/null || {
+    screenkey -s small --persist --opacity 1
+}
+
+exit 0

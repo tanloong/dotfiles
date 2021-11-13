@@ -1,0 +1,93 @@
+#!/usr/bin/env bash
+
+function fzf_open_with {
+    file="$(fzf --reverse)"
+    dir="${file%/*}"
+    if [ -n "$file" ]; then
+        "$1" "$file" 2>/dev/null || "$1" "$dir";
+    fi
+}
+
+# Colorize commands when possible.
+alias \
+	ls="ls -hN --color=auto --group-directories-first" \
+	grep="grep --color=auto" \
+	diff="diff --color=auto" \
+
+# Use neovim for vim if present.
+[ -x "$(command -v nvim)" ] && \
+    alias vim="nvim" v="nvim" vimdiff="nvim -d" || \
+    alias v="vim"
+
+# sudo not required for some system commands
+for command in ln mount umount pacman make systemctl ; do
+	alias $command="sudo $command"
+done; unset command
+
+# These common commands are just too long! Abbreviate them.
+alias \
+    rm="trash -v" \
+    c="clear" \
+    cc="crow -b" \
+	e="chmod u+x" \
+	g="git" \
+	p="sudo pacman" \
+    t="tldr find" \
+    q="exit" \
+    r="lf" \
+    n="newsboat" \
+    L="less" \
+    ..="cd .." \
+    ....="cd ../.." \
+    lt="du -sh * | sort -h" \
+    gh="history|grep" \
+	ka="killall" \
+    cd-="cd -" \
+    sc="shellcheck" \
+    vv="nvim ~/.config/nvim/init.vim" \
+    va="nvim ~/.config/aliasrc" \
+    vb="nvim ~/.bashrc" \
+    vc="nvim ~/curricula/2021-autumn/linguistics/literature-review/uni.bib" \
+    ga="lazygit" \
+    mm="nvim -X $HOME/document/memorandum/Linux.md" \
+    jr="nvim $HOME/document/memorandum/journal.md" \
+    wr="cd ~/workspace/writing" \
+    cman="man -M /usr/share/man/zh_CN/" \
+    sshs="ssh root@124.70.3.11" \
+    sftps="sftp root@124.70.3.11" \
+    fv='fzf_open_with $EDITOR' \
+    fz='fzf_open_with $PDFVIEWER' \
+    fr="fzf_open_with cd; lf" \
+    fs="fzf_open_with bluetooth-sendto" \
+    fcd="fzf_open_with cd" \
+    neofetch="neofetch --config $HOME/.config/neofetch.conf" \
+
+# aliases that precedes with "setsid -f"
+alias \
+    deskreen="setsid -f deskreen" \
+	z="setsid -f zathura" \
+	zathura="setsid -f zathura" \
+    gedit="setsid -f gedit" \
+    rstudio="setsid -f rstudio-bin" \
+    spyder="setsid -f spyder" \
+    wechat="setsid -f wechat-uos" \
+    qq="setsid -f icalingua" \
+    et="setsid -f et" \
+    wps="setsid -f wps" \
+    wpp="setsid -f wpp" \
+    snd="setsid -f bluetooth-sendto" \
+    libreoffice="setsid -f libreoffice" \
+    texdoc="setsid -f texdoc" \
+    sxiv="setsid -f sxiv" \
+    s="setsid -f sxiv" \
+    brave="setsid -f brave" \
+    gimp="setsid -f gimp" \
+    xournalpp="setsid -f xournalpp" \
+    xl="setsid -f xournalpp" \
+
+# Verbosity and settings that you pretty much just always are going to want.
+alias \
+	cp="cp -iv" \
+	mv="mv -iv" \
+	mkd="mkdir -pv" \
+	# rm="rm -vI" \

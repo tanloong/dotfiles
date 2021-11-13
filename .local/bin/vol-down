@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+set -euo pipefail
+IFS=$'\n\t'
+
+# /usr/bin/amixer -qM set Master 5%- umute
+# bash ~/.dwm/dwm-status-refresh.sh
+pamixer -d 5
+
+# update statusbar
+status=$(slstatus -1)
+xsetroot -name "$status"

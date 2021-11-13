@@ -1,0 +1,37 @@
+#!/usr/bin/env python3
+# -*- coding=utf-8 -*-
+
+import sys
+from PIL import Image
+
+"""
+输入图片的路径，输出 RGB 以及 16 进制数值
+"""
+
+def RGB(path):
+    """get the RGB of img
+
+    :path: path of img
+    :returns: "42,56,13"
+
+    """
+    im = Image.open(path)
+    rgb_im = im.convert('RGB')
+    r, g, b = rgb_im.getpixel((1, 1))
+    return ','.join([str(r), str(g), str(b)])
+
+def RGB_to_Hex(tmp):
+    rgb = tmp.split(',')#将RGB格式划分开来
+    strs = '#'
+    for i in rgb:
+        num = int(i)#将str转int
+        #将R、G、B分别转化为16进制拼接转换并大写
+        strs += str(hex(num))[-2:].replace('x','0').upper()
+
+    return strs
+if __name__ == "__main__":
+    path_input = sys.argv[1]
+    rgb = RGB(path_input)
+    hex_ = RGB_to_Hex(rgb)
+    print(rgb)
+    print(hex_)

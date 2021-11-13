@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+set -euo pipefail
+IFS=$'\n\t'
+
+wallpaper_path=~/.local/share/wallpapers/*
+dmenufont='Cousine Nerd Font Mono:pixelsize=20:antialias=true:autohint=true'
+ls $wallpaper_path | dmenu -i -l 5 -fn $dmenufont | xargs -I {} feh --bg-scale {}

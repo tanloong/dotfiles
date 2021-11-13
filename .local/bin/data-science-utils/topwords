@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+# 打印词频
+
+NUM_WORDS="${1:-10}"  # NUM_WORDS 为第 1 个位置参数，若不给定，默认为 10
+
+tr [:upper:] [:lower:]|
+grep -oE "[a-z\'-]{2,}"|
+sort|
+grep -Fvwf ~/.local/bin/data-science-utils/stopwords|
+uniq -c|
+sort -nr|
+head -n ${NUM_WORDS}

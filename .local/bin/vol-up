@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+set -euo pipefail
+IFS=$'\n\t'
+
+pamixer -i 5
+
+# update statusbar
+status=$(slstatus -1)
+xsetroot -name "$status"
