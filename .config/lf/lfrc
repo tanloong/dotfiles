@@ -1,6 +1,6 @@
 # basic vars
 set icons true
-set shell bash
+set shell zsh
 set shellopts '-eu'
 set ifs "\n"
 set info size # show size info
