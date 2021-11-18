@@ -69,6 +69,7 @@
 ,bash-completion,"Programmable completion for the bash shell"
 ,zsh,
 ,zsh-syntax-highlighting,
+,android-file-transfer,"Android MTP client with minimalistic UI"
 A,wps-office,"wps"
 A,ttf-wps-fonts,"fonts used by WPS"
 A,twmn-git,"notification server"
