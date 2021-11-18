@@ -1,6 +1,8 @@
 #TAG,NAME IN REPO (or git url),PURPOSE (should be a verb phrase to sound right while installing)
 ,xorg-server,"is the graphical server."
 ,xorg-xinit,"starts the graphical server."
+,nodejs,"needed by coc.nvim"
+,npm,"needed by coc.nvim"
 ,dosfstools,"allows your computer to access dos-like filesystems."
 ,ntsf-3g,"NTFS filesystem driver and utilities"
 ,lf,"list files, inspired by ranger and written in Go"
