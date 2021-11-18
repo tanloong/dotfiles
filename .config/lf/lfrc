@@ -187,10 +187,10 @@ cmd extract ${{
 }}
 
 
-cmd zip %atool --add "$f.zip" "$fx"
-cmd tar %atool --add "$f.tar" "$fx"
-cmd targz %atool --add "$f.tar.gz" "$fx"
-cmd tarbz2 %atool --add "$f.tar.bz2" "$fx"
+cmd zip %atool --add "$f.zip" "${f##*/}"
+cmd tar %atool --add "$f.tar" "${f##*/}"
+cmd targz %atool --add "$f.tar.gz" "${f##*/}"
+cmd tarbz2 %atool --add "$f.tar.bz2" "${f##*/}"
 cmd openterminal ${{ setsid -f $TERMINAL > /dev/null & }}
 cmd trash %trash-put $fx
 cmd fzf_jump ${{
