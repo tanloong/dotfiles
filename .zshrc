@@ -92,3 +92,14 @@ zle -N zle-keymap-select
 # Use beam shape cursor on startup.
 _fix_cursor() { echo -ne '\e[5 q' }
 precmd_functions+=(_fix_cursor)
+# Ctrl-w - delete a full WORD (including colon, dot, comma, quotes...)
+my-backward-kill-word () {
+    # Add colon, comma, single/double quotes to word chars
+    local WORDCHARS='*?_-.[]~=&;!#$%^(){}<>:,"'"'"
+    zle -f kill # Append to the kill ring on subsequent kills.
+    zle backward-kill-word
+}
+zle -N my-backward-kill-word
+bindkey '^w' my-backward-kill-word
+bindkey '^u' backward-kill-line
+bindkey '^?' backward-delete-char
