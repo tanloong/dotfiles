@@ -15,10 +15,11 @@ alias \
 	diff="diff --color=auto" \
 
 # Use neovim for vim if present.
-[ -x "$(command -v nvim)" ] && \
-    (alias vim="nvim" v="nvim" vimdiff="nvim -d" vv="nvim $HOME/.config/nvim/init.vim" && \
-    export EDITOR="nvim") || \
-    (alias v="vim" vv="vim $HOME/.vim/vimrc" && export EDITOR="vim")
+if [ -x "$(command -v nvim)" ]; then
+    export EDITOR="nvim"; alias vv="nvim $HOME/.config/nvim/init.vim" vimdiff="nvim -d"
+else
+    export EDITOR="vim"; alias vv="vim $HOME/.vim/vimrc"
+fi
 
 # sudo not required for some system commands
 for command in ln mount umount pacman make systemctl ; do
@@ -45,6 +46,8 @@ alias \
 	ka="killall" \
     cd-="cd -" \
     sc="shellcheck" \
+    v="$EDITOR" \
+    vim="$EDITOR" \
     va="$EDITOR $HOME/.config/aliasrc" \
     vb="$EDITOR $HOME/.${SHELL##*/}rc" \
     vc="$EDITOR $HOME/curricula/2021-autumn/linguistics/literature-review/uni.bib" \
@@ -84,6 +87,7 @@ alias \
     gimp="setsid -f gimp" \
     xournalpp="setsid -f xournalpp" \
     xl="setsid -f xournalpp" \
+    virtualbox="setsid -f virtualbox" \
 
 # Verbosity and settings that you pretty much just always are going to want.
 alias \
