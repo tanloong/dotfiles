@@ -63,7 +63,7 @@
 ,golps,"Language server for Go programming language"
 ,js-beautify,"Beautify JavaScript/JSON (jsbeautifier.org)"
 ,bash-language-server,"Bash language server implementation based on Tree Sitter and its grammar for Bash"
-,dmidecode,"Desktop Management Interface table related utilities"
+,dmidecode,"get serial number of the computer"
 ,exa,"A modern replacement for ls"
 ,gcc-fortran,"dependency for compiling some R packages"
 ,bash-completion,"Programmable completion for the bash shell"
