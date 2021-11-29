@@ -1,7 +1,8 @@
 # basic vars
 set icons true
 set shell zsh
-set shellopts '-eu'
+set shellopts '-euy' # 'y' for zsh's shwordsplit option
+set filesep "\n"
 set ifs "\n"
 set info size # show size info
 set hiddenfiles '.*:*.aux:*.nav:*.toc:*.out:*.bbl:*.blg:*.snm:*.log:*.synctex.gz:*(busy):__pycache__'
