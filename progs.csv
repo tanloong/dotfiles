@@ -73,6 +73,7 @@
 ,zsh,
 ,zsh-syntax-highlighting,
 ,android-file-transfer,"Android MTP client with minimalistic UI"
+,gnome-bluetooth,"provide `bluetooth-sendto` in CLI"
 ,python-jedi,"richer tab completion in Python shell"
 ,ruby-mdless," A pager like less, but for Markdown files"
 A,wps-office,"wps"
