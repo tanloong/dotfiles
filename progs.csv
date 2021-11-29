@@ -50,7 +50,7 @@
 ,brave-bin,"is an elegant browser with built-in adblocking, tor and other features."
 ,pamixer,"is a command-line audio interface."
 ,unrar,"extracts rar's."
-,unzip,"unzips zips."
+,unzip-iconv,"unzips zips."
 ,xclip,"allows for copying and pasting from the command line."
 ,fzf,"is a fuzzy finder tool."
 ,python-pip,"The PyPA recommended tool for installing Python packages"
