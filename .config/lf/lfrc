@@ -80,6 +80,7 @@ map f :fzf_jump
 map <c-z> $ kill -STOP $PPID
 # New folder with selected items
 map <c-n> newfold
+map <enter> open
 
 
 # cmds/functions
