@@ -290,7 +290,7 @@ call plug#end()
 " ===
 let g:NERDCreateDefaultMappings = 0
 let g:NERDSpaceDelims = 1       " Add spaces after comment delimiters by default
-map <SPACE>c <plug>NERDCommenterInvert
+map <SPACE>c <plug>NERDCommenterToggle
 
 " ===
 " === vim-table-mode配置
