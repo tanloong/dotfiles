@@ -81,6 +81,7 @@ map <c-z> $ kill -STOP $PPID
 # New folder with selected items
 map <c-n> newfold
 map <enter> open
+map za set hidden!
 
 
 # cmds/functions
