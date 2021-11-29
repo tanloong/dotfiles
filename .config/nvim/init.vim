@@ -69,7 +69,7 @@ nnoremap <left> :vertical resize-5<CR>
 nnoremap <right> :vertical resize+5<CR>
 nnoremap <SPACE>a ggVG
 nnoremap <SPACE>s :w<CR>
-nnoremap <SPACE>w :wq<CR>
+nnoremap <SPACE>w :x<CR>
 nnoremap <SPACE>q :q!<CR>
 nnoremap <SPACE>e :set spell!<CR>
 nnoremap <SPACE><CR> :nohlsearch<CR>
