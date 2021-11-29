@@ -6,6 +6,8 @@
 ,dosfstools,"allows your computer to access dos-like filesystems."
 ,ntsf-3g,"NTFS filesystem driver and utilities"
 ,lf,"list files, inspired by ranger and written in Go"
+,catdoc,"preview MS-Word in lf"
+,docx2txt,"preview *docx files in lf"
 ,bat,"A cat clones"
 ,filezilla,"Fast and reliable FTP, FTPS and SFTP client"
 ,pwgen,"a password generator"
