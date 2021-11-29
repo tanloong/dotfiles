@@ -100,10 +100,10 @@ inoremap ,f =
 inoremap ,z ,
 "inoremap < <><ESC>i
 "inoremap ( ()<ESC>i
-inoremap () ()<Esc>i
-inoremap [ []<ESC>i
-inoremap {} {}<Esc>i
-inoremap {{ {{{<CR>}}}<Esc>O
+" inoremap () ()<Esc>i
+" inoremap [ []<ESC>i
+" inoremap {} {}<Esc>i
+" inoremap {{ {{{<CR>}}}<Esc>O
 
 vnoremap <c-p> :s///g<Left><Left><Left>
 " unmap function keys in selected mode
@@ -272,6 +272,8 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'https://gitee.com/bidaya0/vim-maktaba.git'
     Plug 'https://gitee.com/bidaya0/vim-codefmt.git'
     Plug 'https://gitee.com/bidaya0/vim-glaive.git'
+    " auto pair
+    Plug 'https://gitee.com/yaozhijin/auto-pairs.git'
 call plug#end()
 
 " ===
