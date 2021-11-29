@@ -15,6 +15,7 @@ set scrolloff=5                            "光标垂直移动时保持顶端/�
 set ignorecase
 set smartcase                              "当搜索的字符含大写字母，暂时保持case sensitive"
 set wrap                                   "内容超出一行时自动换行"
+set wrapscan                               "环形搜索，nowrapscan"
 set linebreak                              "换行时不要从单词中间换行"
 set noswapfile                             "不要产生交换文件"
 set laststatus=2                           "show filename below"
