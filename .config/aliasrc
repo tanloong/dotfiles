@@ -55,7 +55,6 @@ alias \
     mm="$EDITOR -X $HOME/document/memorandum/Linux.md" \
     jr="$EDITOR $HOME/document/memorandum/journal.md" \
     wr="cd $HOME/workspace/writing" \
-    cman="man -M /usr/share/man/zh_CN/" \
     sshs="ssh root@124.70.3.11" \
     sftps="sftp root@124.70.3.11" \
     fv='fzf_open_with $EDITOR' \
