@@ -63,7 +63,7 @@ LS_COLORS='rs=0:di=01;38;5;12:ln=01;38;5;14:mh=00:pi=40;33:so=01;35:do=01;35:bd=
 export LS_COLORS
 
 # display the last folder of the current working directory, but shorten the homedir to ~
-PS1='%F{green}%n%f:%F{033}%1~%f$ '
+PS1='%F{green}%n%f:%B%F{#005fff}%1~%f%b$ '
 
 # Warn about nested lf instances
 [ -n "$LF_LEVEL" ] && PS1="${PS1%' '}""($LF_LEVEL) "
