@@ -106,6 +106,7 @@ inoremap [ []<ESC>i
 inoremap {} {}<Esc>i
 inoremap {{ {{{<CR>}}}<Esc>O
 
+vnoremap <c-p> :s///g<Left><Left><Left>
 " unmap function keys in selected mode
     sunmap L
     sunmap H
