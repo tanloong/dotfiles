@@ -143,6 +143,7 @@ autocmd Filetype tex inoremap ,ipa \textipa{[<<>>]}<SPACE><<>><Esc>7hv3h<c-g>
 autocmd Filetype tex inoremap ,, \{<<>>}<Esc>5hi
 autocmd Filetype tex inoremap ,a \textbf{}<Esc>i
 autocmd Filetype tex inoremap ,bx <CR>\mbox{}<CR>
+autocmd Filetype tex inoremap ,bc \begin{cases}<CR>\end{cases}<Esc>O
 autocmd Filetype tex inoremap ,ii \textit{}<Esc>i
 autocmd Filetype tex inoremap ,u \uline{}<Esc>i
 autocmd Filetype tex inoremap ,n \emph{}<Esc>i
