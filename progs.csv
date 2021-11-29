@@ -73,6 +73,7 @@
 ,zsh,
 ,zsh-syntax-highlighting,
 ,android-file-transfer,"Android MTP client with minimalistic UI"
+,python-jedi,"richer tab completion in Python shell"
 A,wps-office,"wps"
 A,ttf-wps-fonts,"fonts used by WPS"
 A,twmn-git,"notification server"
