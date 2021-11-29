@@ -133,6 +133,7 @@ autocmd FileType markdown,rmd nnoremap # /###<SPACE>
 
 " set filetype to 'tex' in empty latex file
     let g:tex_flavor='latex'
+autocmd Filetype tex inoremap ,l \begin{lstlisting}<CR><CR>\end{lstlisting}<Up>
 autocmd Filetype tex inoremap ,bf \begin{frame}<CR>\end{frame}<Esc>O
 autocmd Filetype tex inoremap ,bd \begin{compactdesc}<CR>\item[<<>>]<SPACE><<>><Esc>yy4p3jo\end{compactdesc}<Esc>5k0f<v3l<c-g>
 autocmd Filetype tex inoremap ,bi \begin{compactitem}<CR>\item<SPACE><<>><Esc>yy4p3jo\end{compactitem}<Esc>5k0f<v3l<c-g>
