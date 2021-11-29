@@ -20,6 +20,7 @@
 ,fcitx5-qt,
 ,fcitx5-chinese-addons,
 ,fcitx5-material-color,
+,vim-fcitx,"Keep and restore fcitx state for each buffer separately when leaving/re-entering insert mode"
 ,neofetch,"show system info in a fancy way"
 ,shellcheck,"shell scripts analysis tool"
 ,newsboat,"RSS feed reader"
