@@ -43,6 +43,7 @@ compinit
     export TERMINAL="st"
     export PDFVIEWER="zathura"
     export BROWSER="brave"
+    export FILE_MANAGER="lf"
 
 # source icons for lf
     [ -f ~/.local/share/icons ] && source ~/.local/share/icons

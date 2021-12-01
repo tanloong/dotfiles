@@ -36,7 +36,7 @@ alias \
 	p="sudo pacman" \
     t="tldr find" \
     q="exit" \
-    r="lf" \
+    r="$FILE_MANAGER" \
     n="newsboat" \
     L="less" \
     ..="cd .." \
@@ -59,7 +59,7 @@ alias \
     sftps="sftp root@124.70.3.11" \
     fv='fzf_open_with $EDITOR' \
     fz='fzf_open_with $PDFVIEWER' \
-    fr="fzf_open_with cd; lf" \
+    fr="fzf_open_with cd; $FILE_MANAGER" \
     fs="fzf_open_with bluetooth-sendto" \
     fcd="fzf_open_with cd" \
     neofetch="neofetch --config $HOME/.config/neofetch.conf" \
