@@ -78,6 +78,7 @@
 ,python-jedi,"richer tab completion in Python shell"
 ,ruby-mdless," A pager like less, but for Markdown files"
 ,crow-translate,"terminal translator"
+,lazygit,"simple terminal UI for git commands"
 A,wps-office,"wps"
 A,ttf-wps-fonts,"fonts used by WPS"
 A,twmn-git,"notification server"
