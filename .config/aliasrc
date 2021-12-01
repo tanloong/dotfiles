@@ -3,7 +3,7 @@
 function fzf_open_with {
     file="$(fzf --reverse)"
     dir="${file%/*}"
-    if [ -n "$file" ]; then
+    if [ -n "$file" ]; then # in case you press <Esc> and fzf returns zero length of string
         "$1" "$file" 2>/dev/null || "$1" "$dir";
     fi
 }
