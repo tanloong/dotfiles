@@ -6,9 +6,10 @@
 """
 
 import sys
+import os
 
-flag = float(sys.argv[1])
-coefficient = 0.1 * flag
+flag = float(sys.argv[1])  # flag 为 1 或 -1
+coefficient = 0.1 * flag  # 每次增减最大亮度的 10%
 
 brightness_path = "/sys/class/backlight/intel_backlight/brightness"
 max_brighness_path = "/sys/class/backlight/intel_backlight/max_brightness"
@@ -17,5 +18,5 @@ maximum = int(open(max_brighness_path, 'r').read().strip())
 
 new = current + int(coefficient * maximum)
 if new >= 1 and new <= maximum:
-    with open(brightness_path, 'w', encoding="utf-8") as f:
-        f.write(str(new))
+    new = str(new)
+    os.system(f"echo {new} | sudo tee {brightness_path}")
