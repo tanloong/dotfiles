@@ -24,6 +24,8 @@ compinit
 # aliases
     source $HOME/.config/aliasrc
 
+# functions
+    source $HOME/.local/share/zsh/functions.sh
 # fzf
     export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git --ignore Trash --ignore software --ignore .cache -g "" "$HOME/"'
     export FZF_DEFAULT_OPTS='--reverse --height=60%'
