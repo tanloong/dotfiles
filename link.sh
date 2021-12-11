@@ -22,7 +22,7 @@ link() {
 # 跳过 .git 文件夹，.gitignore，$cur_path/ 下非点号开头的文件
 files=$(find "$cur_path" -type f | grep -vE "(\.git\/|\.gitignore|$cur_path/[^\.])")
 for filename in $files; do
-    target=$(echo "$filename" | sed 's|/dotfiles||')
+    target="$HOME/"${filename/#*dotfiles\/}
     mkdir -p ${target%/*} || :
     link "$filename" "$target"
 done
