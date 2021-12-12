@@ -84,8 +84,6 @@ nnoremap <LEADER>l :CocList<SPACE>
     nnoremap <SPACE>o :!opout <c-r>%<CR><CR>
 " Save file as sudo on files that require root permission
 	cnoremap w!! execute 'silent! write !sudo tee % >/dev/null' <bar> edit!
-" Open selceted url
-    vnoremap F y:! brave -e <c-r>0<CR>
 " Perform dot commands over visual blocks:
     vnoremap . :normal .<CR>
 " 补全路径
@@ -111,7 +109,6 @@ vnoremap <c-p> :s///g<Left><Left><Left>
 " unmap function keys in selected mode
     sunmap L
     sunmap H
-    sunmap F
     sunmap J
     sunmap K
 
