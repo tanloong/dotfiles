@@ -239,6 +239,8 @@ elseif &filetype == 'c'
     call append(0, "#include <stdio.h>")
 elseif &filetype == 'r'
     call append(0, "#!/usr/bin/env Rscript")
+elseif &filetype == 'perl'
+    call append(0, "#!/usr/bin/env perl")
 endif
 endfunction
 
