@@ -19,7 +19,8 @@ flameshot & > /dev/null 2>&1
 
 [ -z $(ps -ef | grep -w goldendict | grep -v grep) ] && goldendict &
 
-xmodmap /home/tan/.xmodmap_thinkpadx220i
+# /etc/X11/xinit/xinitrc 会加载 $HOME/.Xmodmap 文件
+[[ -f ~/.xmodmap_thinkpadx220i ]] && ln --symbolic --force ~/.xmodmap_thinkpadx220i ~/.Xmodmap
 fcitx5 & > /dev/null 2>&1
 
 killall st > /dev/null 2>&1 || :
