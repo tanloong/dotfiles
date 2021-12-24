@@ -16,11 +16,10 @@ case "$1" in
     *odt|*.ods|*.odp|*.sxw) odt2txt "$1";;
     *.doc) catdoc "$1" ;;
     *.docx) docx2txt "$1" - ;;
-    *.csv) cat "$1" | sed s/,/\\n/g ;;
+    # *.csv) cat "$1" | sed s/,/\\n/g ;;
     *.pdf) pdftotext -l 10 -nopgbrk -q "$1" -;;
     *.wav|*.mp3|*.flac|*.m4a|*.wma|*.ape|*.ac3|*.og[agx]|*.spx|*.opus|*.as[fx]|*.flac) exiftool "$1";;
     *.jpg|*.jpeg|*.png|*.mp4) mediainfo "$1";;
-    *.json) jq --color-output . "$1";;
-    # *) highlight --out-format ansi "$1" || cat "$1";;
-    *) bat --color=always --style=numbers,changes --theme=base16-256 --line-range=:"$3" "$1" || highlight -O truecolor -s molokai --force -l --line-range=1-"$3" "$1" || cat "$1";;
+    # *.json) jq --color-output . "$1";;
+    *) bat --color=always --style=numbers,changes --theme=base16 --line-range=:"$3" "$1" || highlight -O truecolor -s molokai --force -l --line-range=1-"$3" "$1" || cat "$1";;
 esac
