@@ -110,14 +110,14 @@ cmd open ${{
     test -L "$f" && f=$(readlink -f "$f")
     case $(file --mime-type "$f" -b) in
         text/*|application/json|application/x-dosexec|application/csv|inode/x-empty) $EDITOR "$fx";;
+        audio/*) mpv --audio-display=no "$fx" ;;
+        video/*|image/gif) setsid -f mpv "$fx" -quiet >/dev/null 2>&1 ;;
         image/x-xcf) setsid -f gimp "$fx" >/dev/null 2>&1 ;;
         image/svg+xml) setsid -f display -- "$fx" ;;
         # image/*) feh --scale-down -g 1344x717 "$fx" ;;
         image/*) setsid -f sxiv "${fx%/*}" ;;
 
-        audio/*) mpv --audio-display=no "$fx" ;;
         application/octet-stream) mpv --audio-display=no "$fx" ;;
-        video/*) setsid -f mpv "$fx" -quiet >/dev/null 2>&1 ;;
 
         application/pdf|image/vnd.djvu) setsid -f "$PDFVIEWER" "$fx" >/dev/null 2>&1 ;;
         application/*presentation|application/*ms-powerpoint) setsid -f wpp "$fx";;
