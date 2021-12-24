@@ -42,8 +42,8 @@ alias \
     ..="cd .." \
     ....="cd ../.." \
     lt="du -sh * | sort -h" \
-    gh="history|grep" \
 	ka="killall" \
+    gh="history 0 | grep" \
     cd-="cd -" \
     sc="shellcheck" \
     v="$EDITOR" \
