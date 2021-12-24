@@ -83,7 +83,7 @@ nnoremap <LEADER>l :CocList<SPACE>
 " Open corresponding .pdf/.html or preview
     nnoremap <SPACE>o :!opout <c-r>%<CR><CR>
 " Save file as sudo on files that require root permission
-	cnoremap w!! execute 'silent! write !sudo tee % >/dev/null' <bar> edit!
+    cnoremap w!! execute 'silent! write !sudo tee % >/dev/null' <bar> edit!
 " Perform dot commands over visual blocks:
     vnoremap . :normal .<CR>
 " 补全路径
@@ -195,10 +195,10 @@ autocmd Filetype go inoremap } {<CR>}<Esc>O
 autocmd Filetype awk inoremap ,4 $
 
 " Runs a script that cleans out tex build files whenever I close out of a .tex file.
-    " autocmd VimLeave *.tex !texclear %
+    autocmd VimLeave *.tex !texclear %
 " Automatically deletes all trailing whitespace and newlines at end of file on save.
-	autocmd BufWritePre * %s/\s\+$//e
-	autocmd BufWritePre * %s/\n\+\%$//e
+    autocmd BufWritePre * %s/\s\+$//e
+    autocmd BufWritePre * %s/\n\+\%$//e
 
 nnoremap <c-h> :call AddHead()<CR>
 function! AddHead()

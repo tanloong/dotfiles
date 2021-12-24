@@ -31,9 +31,9 @@ alias \
     rm="trash -v" \
     c="clear" \
     cc="crow -b" \
-	e="chmod u+x" \
-	g="git" \
-	p="sudo pacman" \
+    e="chmod u+x" \
+    g="git" \
+    p="sudo pacman" \
     t="tldr find" \
     q="exit" \
     r="$FILE_MANAGER" \
@@ -42,7 +42,7 @@ alias \
     ..="cd .." \
     ....="cd ../.." \
     lt="du -sh * | sort -h" \
-	ka="killall" \
+    ka="killall" \
     gh="history 0 | grep" \
     cd-="cd -" \
     sc="shellcheck" \
