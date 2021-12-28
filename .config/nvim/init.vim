@@ -261,8 +261,9 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'https://gitee.com/linuor/coc.nvim.git', {'branch': 'release'}
     Plug 'https://gitee.com/linuor/vim-surround.git'
     Plug 'https://gitee.com/yanzhongqian/nerdcommenter.git'
+    " markdown
     Plug 'https://gitee.com/yaozhijin/markdown-preview.nvim.git', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
-    Plug 'https://gitee.com/yaozhijin/vim-snippets.git'
+    Plug 'https://gitee.com/lovealone72/vim-markdown-toc.git', {'for': ['markdown']}
     Plug 'https://gitee.com/yaozhijin/vim-table-mode.git', { 'for': ['markdown']}
     Plug 'https://gitee.com/zerosharp/indentLine.git'
     Plug 'https://gitee.com/zgpio/wildfire.vim.git'
@@ -426,3 +427,9 @@ augroup autoformat_settings
   autocmd FileType rust AutoFormatBuffer rustfmt
   autocmd FileType vue AutoFormatBuffer prettier
 augroup END
+
+" ===
+" === vim-markdown-toc
+" ===
+let g:vmt_auto_update_on_save = 1
+let g:vmt_dont_insert_fence = 0
