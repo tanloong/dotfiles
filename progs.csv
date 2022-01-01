@@ -98,3 +98,4 @@ G,st,https:/gitee.com/tanloong/st.git
 G,slstatus,https://gitee.com/tanloong/slstatus.git
 G,sxiv,https://gitee.com/tanloong/sxiv.git
 G,vimium,https://gitee.com/tanloong/vimium.git
+P,autopep8,"Python code formatter"
