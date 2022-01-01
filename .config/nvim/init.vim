@@ -291,8 +291,15 @@ call plug#end()
 " ===
 " === nerdcommenter配置
 " ===
+" 关闭默认键位
 let g:NERDCreateDefaultMappings = 0
-let g:NERDSpaceDelims = 1       " Add spaces after comment delimiters by default
+" Add spaces after comment delimiters by default
+let g:NERDSpaceDelims = 1
+" Align line-wise comment delimiters flush left instead of following code indentation
+" 注释符紧跟缩进的话， autopep8 会把注释行对齐成一行，取消注释时导致缩进错误
+let g:NERDDefaultAlign = 'left'
+" Use compact syntax for prettified multi-line comments
+let g:NERDCompactSexyComs = 1
 map <SPACE>c <plug>NERDCommenterToggle
 
 " ===
