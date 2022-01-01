@@ -50,5 +50,13 @@
             ],
             "ignoredRootPaths": []
         }
-    }
+    },
+    "git.enableGutters": true,
+    "git.changedSign.hlGroup": "None",
+    "git.removedSign.hlGroup": "None",
+    "git.addedSign.hlGroup": "None",
+    "git.topRemovedSign.hlGroup": "None",
+    "git.changeRemovedSign.hlGroup": "None",
+    "git.conflict.incoming.hlGroup": "None",
+    "git.conflict.current.hlGroup": "None"
 }
