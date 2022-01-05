@@ -23,7 +23,7 @@ snippet p "print something"
 print(${1})
 endsnippet
 
-snippet frc "read file as whole"
+snippet frs "read file as string"
 with open(${1:filename}, 'r', encoding="utf-8") as f:
     ${2:content} = f.read()
 endsnippet
