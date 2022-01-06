@@ -83,6 +83,8 @@
 ,adobe-source-han-sans-cn-fonts,"Simplified Chinese OpenType/CFF Sans fonts"
 ,csvkit,"A suite of utilities for converting to and working with CSV"
 ,shotcut,"Qt based Video Editor"
+,python-nltk,"Natural language processing in Python"
+,nltk-data,"Corpora, grammars and other linguistic data for NLTK"
 A,ttf-wps-fonts,"fonts used by WPS"
 A,ttf-ms-win10,"windows10 simple Chinese fonts."
 A,wps-office,"wps"
