@@ -85,6 +85,7 @@
 ,shotcut,"Qt based Video Editor"
 ,python-nltk,"Natural language processing in Python"
 ,nltk-data,"Corpora, grammars and other linguistic data for NLTK"
+,gnome-shell-pomodoro,"A time management utility for GNOME based on the pomodoro technique"
 A,ttf-wps-fonts,"fonts used by WPS"
 A,ttf-ms-win10,"windows10 simple Chinese fonts."
 A,wps-office,"wps"
