@@ -85,6 +85,7 @@
 ,shotcut,"Qt based Video Editor"
 ,python-nltk,"Natural language processing in Python"
 ,nltk-data,"Corpora, grammars and other linguistic data for NLTK"
+,ipython,"An enhanced Interactive Python shell"
 ,gnome-shell-pomodoro,"A time management utility for GNOME based on the pomodoro technique"
 ,python-black,"Uncompromising Python code fommatter"
 A,ttf-wps-fonts,"fonts used by WPS"
