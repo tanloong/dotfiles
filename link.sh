@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -euo pipefail
+# set -euo pipefail
 IFS=$'\n\t '
 
 # This script makes symbolic links between cofigure files and their
