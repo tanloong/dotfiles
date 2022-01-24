@@ -47,7 +47,8 @@ nnoremap gk k
 nnoremap gj j
 nnoremap s :<nop>
 nnoremap S :<nop>
-nnoremap R :bufdo e<CR>
+nnoremap R :write<CR>:edit!<CR>
+" 保存修改，并重新从硬盘读取此文件
 nnoremap M J
 nnoremap sl :set splitright<CR>:vsplit<CR>
 nnoremap sh :set nosplitright<CR>:vsplit<CR>
