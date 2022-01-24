@@ -1,7 +1,8 @@
 clear lock
 clear shift
+clear control
 keycode   8 =
-keycode   9 = Escape NoSymbol Escape 
+keycode   9 = Escape NoSymbol Escape
 keycode  10 = 1 exclam 1 exclam
 keycode  11 = 2 at 2 at
 keycode  12 = 3 numbersign 3 numbersign
@@ -100,7 +101,7 @@ keycode 101 = Hiragana_Katakana NoSymbol Hiragana_Katakana
 keycode 102 = Muhenkan NoSymbol Muhenkan
 keycode 103 =
 keycode 104 = KP_Enter NoSymbol KP_Enter
-keycode 105 = Control_R NoSymbol Control_R
+keycode 105 = Control_R Control_R Control_R Control_R
 keycode 106 = KP_Divide KP_Divide KP_Divide KP_Divide KP_Divide KP_Divide XF86Ungrab
 keycode 107 = Print Sys_Req Print Sys_Req
 keycode 108 = Alt_R Meta_R Alt_R Meta_R
@@ -115,7 +116,7 @@ keycode 116 = Down NoSymbol Down
 keycode 117 = Next NoSymbol Next
 keycode 118 = Insert NoSymbol Insert
 keycode 119 = Delete NoSymbol Delete
-keycode 120 = 
+keycode 120 =
 keycode 121 = XF86AudioMute NoSymbol XF86AudioMute
 keycode 122 = XF86AudioLowerVolume NoSymbol XF86AudioLowerVolume
 keycode 123 = XF86AudioRaiseVolume NoSymbol XF86AudioRaiseVolume
@@ -252,3 +253,4 @@ keycode 253 =
 keycode 254 = XF86WWAN NoSymbol XF86WWAN
 keycode 255 = XF86RFKill NoSymbol XF86RFKill
 add shift = Shift_L
+add Control = Control_L Control_R
