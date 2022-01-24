@@ -2,7 +2,7 @@
 set -euo pipefail
 IFS=$'\n\t'
 
-number=$(sudo dmidecode -s system-serial-number) # 电脑序列号
+number=$(hostnamectl --static) # 主机名
 mouse="Mouse"
 touchpad="Synaptics"
 trackpoint="TrackPoint"
@@ -61,9 +61,9 @@ function set_trackpoint(){
 }
 
 set_mouse
-if [[ "$number" == "PF18JLMH" ]]; then
+if [[ "$number" == "ArchLinux-TanLong" ]]; then
     set_touchpad
-elif [[ "$number" == "R9MZR03" ]]; then
+elif [[ "$number" == "bike" ]]; then
     disable_touchpad
     set_trackpoint
 fi
