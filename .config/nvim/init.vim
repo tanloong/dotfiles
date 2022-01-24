@@ -112,6 +112,7 @@ vnoremap <c-p> :s///g<Left><Left><Left>
     sunmap H
     sunmap J
     sunmap K
+    sunmap 9
 
 autocmd FileType markdown,rmd inoremap ,a **** <<>><Esc>6hi
 autocmd FileType markdown,rmd inoremap ,c ``<SPACE><<>><Esc>F`i
