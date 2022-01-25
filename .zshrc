@@ -17,21 +17,6 @@ zstyle :compinstall filename '/home/tan/.zshrc'
 autoload -Uz compinit
 compinit
 
-
-# colored GCC warnings and errors
-    export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
-
-# aliases
-    source $HOME/.config/aliasrc
-
-# functions
-    source $HOME/.local/share/zsh/functions.sh
-# fzf
-    export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git --ignore projects --ignore Trash --ignore software --ignore .cache -g "" "$HOME/"'
-    export FZF_DEFAULT_OPTS='--reverse --height=60%'
-    # source /usr/share/fzf/key-bindings.bash
-    # source /usr/share/fzf/completion.bash
-
 # environment variables
     export CLASSPATH=$CLASSPATH:$HOME/software/stanford-corenlp-4.2.0/*
     export PATH=$PATH:$HOME/.local/bin
@@ -46,6 +31,20 @@ compinit
     export PDFVIEWER="zathura"
     export BROWSER="brave"
     export FILE_MANAGER="lf"
+
+# colored GCC warnings and errors
+    export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
+
+# aliases
+    source $HOME/.config/aliasrc
+
+# functions
+    source $HOME/.local/share/zsh/functions.sh
+# fzf
+    export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git --ignore projects --ignore Trash --ignore software --ignore .cache -g "" "$HOME/"'
+    export FZF_DEFAULT_OPTS='--reverse --height=60%'
+    # source /usr/share/fzf/key-bindings.bash
+    # source /usr/share/fzf/completion.bash
 
 # source icons for lf
     [ -f ~/.local/share/icons ] && source ~/.local/share/icons
