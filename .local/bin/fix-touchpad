@@ -61,7 +61,7 @@ function set_trackpoint(){
 }
 
 set_mouse
-if [[ "$number" == "ArchLinux-TanLong" ]]; then
+if [[ "$number" == "ideapad320" ]]; then
     set_touchpad
 elif [[ "$number" == "bike" ]]; then
     disable_touchpad
