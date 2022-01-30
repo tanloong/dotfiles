@@ -104,3 +104,4 @@ zle -N my-backward-kill-word
 bindkey '^w' my-backward-kill-word
 bindkey '^u' backward-kill-line
 bindkey '^?' backward-delete-char
+stty -ixon
