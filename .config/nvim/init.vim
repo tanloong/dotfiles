@@ -426,18 +426,22 @@ let g:indentLine_concealcursor=''
 " ===
 " === vim-codefmt
 " ===
-augroup autoformat_settings
-  autocmd FileType bzl AutoFormatBuffer buildifier
-  autocmd FileType c,cpp,proto,javascript,arduino AutoFormatBuffer clang-format
-  autocmd FileType dart AutoFormatBuffer dartfmt
-  autocmd FileType go AutoFormatBuffer gofmt
-  autocmd FileType gn AutoFormatBuffer gn
-  autocmd FileType html,css,sass,scss,less,json AutoFormatBuffer js-beautify
-  autocmd FileType java AutoFormatBuffer google-java-format
+" augroup autoformat_settings
+"   autocmd FileType bzl AutoFormatBuffer buildifier
+"   autocmd FileType c,cpp,proto,javascript,arduino AutoFormatBuffer clang-format
+"   autocmd FileType dart AutoFormatBuffer dartfmt
+"   autocmd FileType go AutoFormatBuffer gofmt
+"   autocmd FileType gn AutoFormatBuffer gn
+"   autocmd FileType html,css,sass,scss,less,json AutoFormatBuffer js-beautify
+"   autocmd FileType java AutoFormatBuffer google-java-format
   " Alternative: autocmd FileType python AutoFormatBuffer yapf
-  autocmd FileType python AutoFormatBuffer black
-  autocmd FileType rust AutoFormatBuffer rustfmt
-  autocmd FileType vue AutoFormatBuffer prettier
+"   autocmd FileType python AutoFormatBuffer black
+"   autocmd FileType rust AutoFormatBuffer rustfmt
+"   autocmd FileType vue AutoFormatBuffer prettier
+" augroup END
+augroup autoformat_settings
+    autocmd FileType python nnoremap <LEADER>b :FormatCode<Space>black<CR>:w<CR>
+    autocmd FileType python nnoremap <LEADER>l :FormatLine<Space>black<CR>:w<CR>
 augroup END
 
 " ===
