@@ -92,6 +92,8 @@ nnoremap <LEADER>l :CocList<SPACE>
 " 在补全建议之间移动
     inoremap <c-j> <c-n>
     inoremap <c-k> <c-p>
+    cnoremap <c-j> <c-n>
+    cnoremap <c-k> <c-p>
 
 inoremap ,e <Esc>la
 nnoremap <SPACE><SPACE> <Esc>/<<>><CR>:set nohlsearch<CR>v3l<c-g>
