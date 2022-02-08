@@ -281,6 +281,7 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'https://gitee.com/bidaya0/vim-glaive.git'
     " auto pair
     Plug 'https://gitee.com/yaozhijin/auto-pairs.git'
+    Plug 'https://gitee.com/oy456xd/vim-visual-multi.git'
 call plug#end()
 
 " ===
