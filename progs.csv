@@ -88,6 +88,7 @@
 ,ipython,"An enhanced Interactive Python shell"
 ,gnome-shell-pomodoro,"A time management utility for GNOME based on the pomodoro technique"
 ,python-black,"Uncompromising Python code fommatter"
+,python-pipreqs,"Pip requirements.txt generator"
 A,ttf-wps-fonts,"fonts used by WPS"
 A,ttf-ms-win10,"windows10 simple Chinese fonts."
 A,wps-office,"wps"
