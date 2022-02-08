@@ -41,7 +41,7 @@ compinit
 # functions
     source $HOME/.local/share/zsh/functions.sh
 # fzf
-    export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git --ignore projects --ignore Trash --ignore software --ignore .cache -g "" "$HOME/"'
+    export FZF_DEFAULT_COMMAND='ag --path-to-ignore "$HOME/.agignore" --hidden -g "" "$HOME/"'
     export FZF_DEFAULT_OPTS='--reverse --height=60%'
     # source /usr/share/fzf/key-bindings.bash
     # source /usr/share/fzf/completion.bash
