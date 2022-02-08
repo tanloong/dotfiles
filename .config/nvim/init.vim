@@ -85,6 +85,8 @@ nnoremap <LEADER>l :CocList<SPACE>
     nnoremap <SPACE>o :!opout <c-r>%<CR><CR>
 " Save file as sudo on files that require root permission
     cnoremap w!! execute 'silent! write !sudo tee % >/dev/null' <bar> edit!
+" 展开活动缓冲区所在目录
+    cnoremap <expr> %% getcmdtype()==':'? expand('%:h').'/' : '%%'
 " Perform dot commands over visual blocks:
     vnoremap . :normal .<CR>
 " 补全路径
