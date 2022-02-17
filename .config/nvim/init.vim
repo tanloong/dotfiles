@@ -252,6 +252,8 @@ call plug#begin('~/.config/nvim/plugged')
     " auto pair
     Plug 'https://gitee.com/yaozhijin/auto-pairs.git'
     Plug 'https://gitee.com/oy456xd/vim-visual-multi.git'
+    " vim-slime
+    Plug 'https://gitee.com/mirrors_jpalardy/vim-slime.git'
 call plug#end()
 
 " ===
@@ -424,3 +426,14 @@ augroup END
 " ===
 let g:vmt_auto_update_on_save = 1
 let g:vmt_dont_insert_fence = 0
+
+" ===
+" === vim-slime
+" ===
+let g:slime_target = "neovim"
+let g:slime_python_ipython = 1
+let g:slime_no_mappings = 1
+xmap <F5> <Plug>SlimeRegionSend
+nmap <F5> :SlimeSendCurrentLine<CR>
+nmap s<F5> <Plug>SlimeParagraphSend
+nmap <c-c>v <Plug>SlimeConfig
