@@ -9,17 +9,17 @@ set shiftwidth=4
 set updatetime=100
 set signcolumn=number
 set fdm=marker
-set mouse=a                                "允许用鼠标操作"
-set nrformats=                             "把所有数字当成 10 进制，不管是不是以 0 开头"
-set scrolloff=5                            "光标垂直移动时保持顶端/底端显示5行"
+set mouse=a | "允许用鼠标操作
+set nrformats= | "把所有数字当成 10 进制，不管是不是以 0 开头
+set scrolloff=5 | "光标垂直移动时保持顶端/底端显示5行
 set ignorecase
-set smartcase                              "当搜索的字符含大写字母，暂时保持case sensitive"
-set wrap                                   "内容超出一行时自动换行"
-set wrapscan                               "环形搜索，nowrapscan"
-set linebreak                              "换行时不要从单词中间换行"
-set noswapfile                             "不要产生交换文件"
-set laststatus=2                           "show filename below"
-set clipboard^=unnamed,unnamedplus"        "复制到系统寄存器(*, +)"
+set smartcase | "当搜索的字符含大写字母，暂时保持case sensitive
+set wrap | "内容超出一行时自动换行
+set wrapscan | "环形搜索，nowrapscan
+set linebreak | "不要从单词中间换行
+set noswapfile | "不要产生交换文件
+set laststatus=2 | "show filename below
+set clipboard^=unnamed,unnamedplus" | "复制到系统寄存器(*, +)
 set dictionary+=$HOME/projects/linguistics-notes/dict
 set wildignore+=*aux,*toc,*out
 set matchpairs=<:>,(:),{:},[:]
