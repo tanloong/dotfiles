@@ -208,49 +208,18 @@ autocmd Filetype awk inoremap ,4 $
     autocmd BufWritePre * %s/\s\+$//e
     autocmd BufWritePre * %s/\n\+\%$//e
 
-nnoremap <c-h> :call AddHead()<CR>
-function! AddHead()
-if &filetype == 'python'
-    call append(0, "#!/usr/bin/env python3")
-    call append(1, "# -*- coding=utf-8 -*-")
-elseif &filetype == 'sh'
-    call append(0, "#!/usr/bin/env bash")
-    call append(1, "set -euo pipefail")
-    call append(2, "IFS=$'\\n\\t'")
-elseif &filetype == 'tex'
-    call append(0, '\documentclass[a4paper]{<<>>}')
-    call append(1, '\usepackage{xeCJK}')
-    call append(2, '\usepackage{fontspec,indentfirst}')
-    call append(3, '\usepackage{subfigure}')
-    call append(4, '\usepackage{paralist} % 压缩项目列表')
-    call append(5, '\usepackage[normalem]{ulem} % 优化 \emph 命令')
-    call append(6, '\usepackage[left=3.18cm,right=3.18cm,top=2.54cm,bottom=2.54cm]{geometry}')
-    call append(7, '\usepackage[tone]{tipa} % 输入 IPA 音标')
-    call append(8, '\setCJKmainfont{Source Han Serif CN Medium}')
-    call append(9, '\setmainfont{Times New Roman}')
-    call append(10, '\linespread{1.2}')
-    call append(11, '\begin{document}')
-    call append(12, '<<>>')
-    call append(13, '\end{document}')
-elseif &filetype == 'go'
-    call append(0, 'package <<>>')
-    call append(1, 'import "fmt"')
-elseif &filetype == 'rmd'
-    call append(0, "---")
-    call append(1, "output: pdf_document")
-    call append(2, "---")
-elseif &filetype == 'awk'
-    call append(0, "#!/usr/bin/env awk -f")
-elseif &filetype == 'sed'
-    call append(0, "#!/usr/bin/env sed -f")
-elseif &filetype == 'c'
-    call append(0, "#include <stdio.h>")
-elseif &filetype == 'r'
-    call append(0, "#!/usr/bin/env Rscript")
-elseif &filetype == 'perl'
-    call append(0, "#!/usr/bin/env perl")
-endif
 endfunction
+
+autocmd BufNewFile *.c   0r ~/.config/nvim/skeleton/skeleton.c      | :normal G
+autocmd BufNewFile *.py	 0r ~/.config/nvim/skeleton/skeleton.python | :normal G
+autocmd BufNewFile *.sh	 0r ~/.config/nvim/skeleton/skeleton.sh     | :normal G
+autocmd BufNewFile *.tex 0r ~/.config/nvim/skeleton/skeleton.tex    | :normal G
+autocmd BufNewFile *.awk 0r ~/.config/nvim/skeleton/skeleton.awk    | :normal G
+autocmd BufNewFile *.r   0r ~/.config/nvim/skeleton/skeleton.r      | :normal G
+autocmd BufNewFile *.rmd 0r ~/.config/nvim/skeleton/skeleton.rmd    | :normal G
+autocmd BufNewFile *.sed 0r ~/.config/nvim/skeleton/skeleton.sed    | :normal G
+autocmd BufNewFile *.go  0r ~/.config/nvim/skeleton/skeleton.go     | :normal G
+autocmd BufNewFile *.pl  0r ~/.config/nvim/skeleton/skeleton.perl   | :normal G
 
 " ===
 " === vim-plug
