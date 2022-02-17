@@ -81,7 +81,7 @@ nnoremap <LEADER>l :CocList<SPACE>
 " To Turn One Line Into Title Caps, Make Every First Letter Of A Word Uppercase:
     nnoremap gug :s/\v<(.)(\w*)/\u\1\L\2/g<CR>:nohlsearch<CR>
 " Compile document, be it groff/LaTeX/markdown/etc.
-    nnoremap <F5> :w! \| !compiler "<c-r>%"<CR>
+    nnoremap <LEADER><F5> :w! \| !compiler "<c-r>%"<CR>
 " Open corresponding .pdf/.html or preview
     nnoremap <SPACE>o :!opout <c-r>%<CR><CR>
 " Save file as sudo on files that require root permission
