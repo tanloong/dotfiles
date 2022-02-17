@@ -55,6 +55,8 @@ nnoremap sl :set splitright<CR>:vsplit<CR>
 nnoremap sh :set nosplitright<CR>:vsplit<CR>
 nnoremap g9 g$
 nnoremap ga :tabe<CR>:term lazygit<CR>i
+nnoremap sp :call ToggleIPython()<CR>
+nnoremap st :call ToggleTerminal()<CR>
 nnoremap > >>
 nnoremap < <<
 nnoremap @@ @q
@@ -119,6 +121,7 @@ vnoremap <c-p> :s///g<Left><Left><Left>
     sunmap K
     sunmap 9
 
+autocmd TermClose * let g:term_buf_nr = -1
 autocmd FileType markdown,rmd inoremap ,a **** <<>><Esc>6hi
 autocmd FileType markdown,rmd inoremap ,c ``<SPACE><<>><Esc>F`i
 autocmd FileType markdown,rmd inoremap ,i ** <<>><Esc>F*i
@@ -208,6 +211,32 @@ autocmd Filetype awk inoremap ,4 $
     autocmd BufWritePre * %s/\s\+$//e
     autocmd BufWritePre * %s/\n\+\%$//e
 
+let g:term_buf_nr = -1
+function! ToggleIPython()
+    " needs autocmd TermClose * let g:term_buf_nr = -1
+    if g:term_buf_nr == -1
+        " set nosplitright | vsplit | term ipython
+        set splitbelow | split | term ipython
+        let g:term_buf_nr = bufnr("$") | " Terminal buff name
+        let g:slime_last_channel = &channel
+        :normal G | " Output is followed if cursor is on the last line.
+        wincmd p | "go back to previous windows
+        let b:slime_config = {'jobid': g:slime_last_channel}
+        resize 20 | " Small terminal height
+    else
+        execute "bd! " . g:term_buf_nr | " buffer delete
+    endif
+endfunction
+function! ToggleTerminal()
+    " needs autocmd TermClose * let g:term_buf_nr = -1
+    if g:term_buf_nr == -1
+        " set nosplitright | vsplit | term
+        set splitbelow | split | term
+        let g:term_buf_nr = bufnr("$") | " Terminal buff name
+        resize 5 | " Small terminal height
+    else
+        execute "bd! " . g:term_buf_nr
+    endif
 endfunction
 
 autocmd BufNewFile *.c   0r ~/.config/nvim/skeleton/skeleton.c      | :normal G
