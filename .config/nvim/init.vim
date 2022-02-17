@@ -121,6 +121,9 @@ vnoremap <c-p> :s///g<Left><Left><Left>
     sunmap K
     sunmap 9
 
+packadd! matchit
+let b:batch_words='begin:end'
+
 autocmd TermClose * let g:term_buf_nr = -1
 autocmd FileType markdown,rmd inoremap ,a **** <<>><Esc>6hi
 autocmd FileType markdown,rmd inoremap ,c ``<SPACE><<>><Esc>F`i
