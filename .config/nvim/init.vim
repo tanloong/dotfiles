@@ -51,8 +51,6 @@ nnoremap S :<nop>
 nnoremap R :write<CR>:edit!<CR>
 " 保存修改，并重新从硬盘读取此文件
 nnoremap M J
-nnoremap sl :set splitright<CR>:vsplit<CR>
-nnoremap sh :set nosplitright<CR>:vsplit<CR>
 nnoremap g9 g$
 nnoremap ga :tabe<CR>:term lazygit<CR>i
 nnoremap sp :call ToggleIPython()<CR>
@@ -79,6 +77,8 @@ nnoremap <SPACE>e :set spell!<CR>
 nnoremap <SPACE><CR> :nohlsearch<CR>
 nnoremap <LEADER>c :CocCommand<SPACE>
 nnoremap <LEADER>l :CocList<SPACE>
+nnoremap sl :set splitright<CR>:vsplit<CR>
+nnoremap sh :set nosplitright<CR>:vsplit<CR>
 
 " To Turn One Line Into Title Caps, Make Every First Letter Of A Word Uppercase:
     nnoremap gug :s/\v<(.)(\w*)/\u\1\L\2/g<CR>:nohlsearch<CR>
