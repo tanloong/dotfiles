@@ -69,6 +69,7 @@ nnoremap <SPACE>e :set spell!<CR>
 nnoremap <SPACE><CR> :nohlsearch<CR>
 nnoremap <LEADER>c :CocCommand<SPACE>
 nnoremap <LEADER>l :CocList<SPACE>
+
 nnoremap sl :set splitright<CR>:vsplit<CR>
 nnoremap sh :set nosplitright<CR>:vsplit<CR>
 nnoremap sj :set splitbelow<CR>:split<CR>
@@ -89,6 +90,7 @@ nnoremap <c-h> <c-w>h
 nnoremap <c-l> <c-w>l
 nnoremap <c-j> <c-w>j
 nnoremap <c-k> <c-w>k
+tnoremap <Esc> <C-\><C-n>
 
 " To Turn One Line Into Title Caps, Make Every First Letter Of A Word Uppercase:
     nnoremap gug :s/\v<(.)(\w*)/\u\1\L\2/g<CR>:nohlsearch<CR>
