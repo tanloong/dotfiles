@@ -58,8 +58,6 @@ nnoremap st :call ToggleTerminal()<CR>
 nnoremap > >>
 nnoremap < <<
 nnoremap @@ @q
-nnoremap <c-j> 5<c-e>
-nnoremap <c-k> 5<c-y>
 nnoremap <c-y> :res +5<CR>
 nnoremap <c-e> :res -5<CR>
 nnoremap <c-c> :e $HOME/.config/nvim/init.vim<CR>
@@ -81,6 +79,18 @@ nnoremap sl :set splitright<CR>:vsplit<CR>
 nnoremap sh :set nosplitright<CR>:vsplit<CR>
 nnoremap sj :set splitbelow<CR>:split<CR>
 nnoremap sk :set nosplitbelow<CR>:split<CR>
+tnoremap <c-h> <c-\><c-N><c-w>h
+tnoremap <c-l> <c-\><c-N><c-w>l
+tnoremap <c-j> <c-\><c-N><c-w>j
+tnoremap <c-k> <c-\><c-N><c-w>k
+inoremap <c-h> <c-\><c-N><c-w>h
+inoremap <c-j> <c-\><c-N><c-w>j
+inoremap <c-k> <c-\><c-N><c-w>k
+inoremap <c-l> <c-\><c-N><c-w>l
+nnoremap <c-h> <c-w>h
+nnoremap <c-l> <c-w>l
+nnoremap <c-j> <c-w>j
+nnoremap <c-k> <c-w>k
 
 " To Turn One Line Into Title Caps, Make Every First Letter Of A Word Uppercase:
     nnoremap gug :s/\v<(.)(\w*)/\u\1\L\2/g<CR>:nohlsearch<CR>
