@@ -58,15 +58,9 @@ nnoremap st :call ToggleTerminal()<CR>
 nnoremap > >>
 nnoremap < <<
 nnoremap @@ @q
-nnoremap <c-y> :res +5<CR>
-nnoremap <c-e> :res -5<CR>
 nnoremap <c-c> :e $HOME/.config/nvim/init.vim<CR>
 nnoremap <c-m> :e $HOME/document/memorandum/Linux.md<CR>
 nnoremap <c-p> :%s///g<Left><Left><Left>
-nnoremap <up> <c-y>
-nnoremap <down> <c-e>
-nnoremap <left> :vertical resize-5<CR>
-nnoremap <right> :vertical resize+5<CR>
 nnoremap <SPACE>a ggVG
 nnoremap <SPACE>s :w<CR>
 nnoremap <SPACE>w :x<CR>
@@ -79,6 +73,10 @@ nnoremap sl :set splitright<CR>:vsplit<CR>
 nnoremap sh :set nosplitright<CR>:vsplit<CR>
 nnoremap sj :set splitbelow<CR>:split<CR>
 nnoremap sk :set nosplitbelow<CR>:split<CR>
+nnoremap <up> :res +5<CR>
+nnoremap <down> :res -5<CR>
+nnoremap <left> :vertical resize-5<CR>
+nnoremap <right> :vertical resize+5<CR>
 tnoremap <c-h> <c-\><c-N><c-w>h
 tnoremap <c-l> <c-\><c-N><c-w>l
 tnoremap <c-j> <c-\><c-N><c-w>j
