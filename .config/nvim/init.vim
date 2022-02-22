@@ -137,6 +137,9 @@ packadd! matchit
 let b:batch_words='begin:end'
 
 autocmd TermClose * let g:term_buf_nr = -1
+autocmd BufEnter term://* startinsert | call Maximize()
+autocmd BufLeave term://* stopinsert | call Restore()
+
 autocmd FileType markdown,rmd inoremap ,a **** <<>><Esc>6hi
 autocmd FileType markdown,rmd inoremap ,c ``<SPACE><<>><Esc>F`i
 autocmd FileType markdown,rmd inoremap ,i ** <<>><Esc>F*i
@@ -226,6 +229,20 @@ autocmd Filetype awk inoremap ,4 $
     autocmd BufWritePre * %s/\s\+$//e
     autocmd BufWritePre * %s/\n\+\%$//e
 
+function! Maximize()
+    let t:maximizer_sizes = { 'before': winrestcmd() }
+    vert resize | resize
+    let t:maximizer_sizes.after = winrestcmd()
+endfunction
+function! Restore()
+    if exists('t:maximizer_sizes')
+        silent! exe t:maximizer_sizes.before
+        if t:maximizer_sizes.before != winrestcmd()
+            wincmd =
+        endif
+        unlet t:maximizer_sizes
+    end
+endfunction
 let g:term_buf_nr = -1
 function! ToggleIPython()
     " needs autocmd TermClose * let g:term_buf_nr = -1
@@ -249,6 +266,7 @@ function! ToggleTerminal()
         set splitbelow | split | term
         let g:term_buf_nr = bufnr("$") | " Terminal buff name
         resize 5 | " Small terminal height
+        startinsert
     else
         execute "bd! " . g:term_buf_nr
     endif
