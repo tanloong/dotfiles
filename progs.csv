@@ -91,6 +91,7 @@
 ,python-dill,"Serialize all of python"
 ,python-pipreqs,"Pip requirements.txt generator"
 ,bilili,"bilibili video downloader"
+A,radian,"A 21 century R console"
 A,ttf-wps-fonts,"fonts used by WPS"
 A,ttf-ms-win10,"windows10 simple Chinese fonts."
 A,wps-office,"wps"
