@@ -253,6 +253,7 @@ function! ToggleIPython()
         let g:term_buf_nr = bufnr("$") | " Terminal buff name
         let g:slime_last_channel = &channel
         :normal G | " Output is followed if cursor is on the last line.
+        setlocal statusline=channel:\ %{&channel}
         wincmd p | "go back to previous windows
         let b:slime_config = {'jobid': g:slime_last_channel}
         resize 20 | " Small terminal height
@@ -267,6 +268,7 @@ function! ToggleTerminal()
         set splitbelow | split | term
         let g:term_buf_nr = bufnr("$") | " Terminal buff name
         resize 5 | " Small terminal height
+        setlocal statusline=channel:\ %{&channel}
         startinsert
     else
         execute "bd! " . g:term_buf_nr
