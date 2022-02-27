@@ -118,6 +118,7 @@ inoremap ,s ''<Esc>i
 inoremap ,d ""<Esc>i
 inoremap ,f =
 inoremap ,z ,
+inoremap ,. ,
 "inoremap < <><ESC>i
 "inoremap ( ()<ESC>i
 " inoremap () ()<Esc>i
