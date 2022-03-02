@@ -31,7 +31,7 @@
 ,openssh-askpass,"askpass helper for sudo"
 ,trash-cli,"put files in trash"
 ,the_silver_searcher,"code searching tool"
-,atool,"A script for managing file archives of various type"
+A,atool,"A script for managing file archives of various type"
 ,thermald,"control cpu termperature"
 ,profile-cleaner,"profile-cleaner"
 ,ctag,"generates an index file for language objects in source file"
