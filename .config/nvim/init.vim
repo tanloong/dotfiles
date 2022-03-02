@@ -53,7 +53,7 @@ nnoremap R :write<CR>:edit!<CR>
 nnoremap M J
 nnoremap g9 g$
 nnoremap ga :tabe<CR>:term lazygit<CR>i
-nnoremap sp :call ToggleIPython()<CR>
+nnoremap sp :call ToggleConsole()<CR>
 nnoremap st :call ToggleTerminal()<CR>
 nnoremap > >>
 nnoremap < <<
@@ -245,14 +245,20 @@ function! Restore()
     end
 endfunction
 let g:term_buf_nr = -1
-function! ToggleIPython()
+let g:my_cnsl_names = {
+            \ 'python':'ipython',
+            \ 'r':'radian'
+            \ }
+function! ToggleConsole()
     " needs autocmd TermClose * let g:term_buf_nr = -1
+    " autocmd BufEnter term://* startinsert | call Maximize()
+    " autocmd BufLeave term://* stopinsert | call Restore() | :normal G
     if g:term_buf_nr == -1
-        " set nosplitright | vsplit | term ipython
-        set splitbelow | split | term ipython
+        let l:cnsl_name = g:my_cnsl_names[&filetype]
+        let l:command = 'terminal' . printf(' %s', l:cnsl_name)
+        set splitbelow | split | execute l:command
         let g:term_buf_nr = bufnr("$") | " Terminal buff name
         let g:slime_last_channel = &channel
-        :normal G | " Output is followed if cursor is on the last line.
         setlocal statusline=channel:\ %{&channel}
         wincmd p | "go back to previous windows
         let b:slime_config = {'jobid': g:slime_last_channel}
