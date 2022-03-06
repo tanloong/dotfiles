@@ -8,7 +8,7 @@ touchpad="Synaptics"
 trackpoint="TrackPoint"
 
 function set_mouse() {
-    mouse_id=$(xinput list | grep "$mouse" | cut -d'=' -f2 | cut -f1) || :
+    mouse_id=$(xinput list | grep -m 1 "$mouse" | cut -d'=' -f2 | cut -f1) || :
     # 给鼠标的指针加速
     if [[ ! "$mouse_id" == "" ]]; then
         accel_speed_id=`xinput list-props $mouse_id | \
@@ -61,9 +61,11 @@ function set_trackpoint(){
 }
 
 set_mouse
-if [[ "$number" == "ideapad320" ]]; then
-    set_touchpad
-elif [[ "$number" == "bike" ]]; then
+if [[ "$number" == "bike" ]]; then
     disable_touchpad
     set_trackpoint
+elif [[ "$number" == "ideapad320" ]]; then
+    set_touchpad
+elif [[ "$number" == "cup" ]]; then
+    set_touchpad
 fi
