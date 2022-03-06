@@ -20,10 +20,12 @@ flameshot & > /dev/null 2>&1
 [ -z $(ps -ef | grep -w goldendict | grep -v grep) ] && goldendict &
 
 # /etc/X11/xinit/xinitrc 会加载 $HOME/.Xmodmap 文件
-if [[ `hostnamectl --static` == "ideapad320" ]]; then
-    [[ -f ~/.xmodmap_lenovo ]] && ln --symbolic --force ~/.xmodmap_lenovo ~/.Xmodmap
-elif [[ `hostnamectl --static` == "bike" ]]; then
+if [[ `hostnamectl --static` == "bike" ]]; then
     [[ -f ~/.xmodmap_thinkpadx220i ]] && ln --symbolic --force ~/.xmodmap_thinkpadx220i ~/.Xmodmap
+elif [[ `hostnamectl --static` == "ideapad320" ]]; then
+    [[ -f ~/.xmodmap_lenovo ]] && ln --symbolic --force ~/.xmodmap_lenovo ~/.Xmodmap
+elif [[ `hostnamectl --static` == "cup" ]]; then
+    [[ -f ~/.xmodmap_dell ]] && ln --symbolic --force ~/.xmodmap_dell ~/.Xmodmap
 fi
 fcitx5 & > /dev/null 2>&1
 
