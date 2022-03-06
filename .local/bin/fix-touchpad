@@ -4,7 +4,8 @@ IFS=$'\n\t'
 
 number=$(hostnamectl --static) # 主机名
 mouse="Mouse"
-touchpad="Synaptics"
+touchpad_lenovo="Synaptics"
+touchpad_dell="Touchpad"
 trackpoint="TrackPoint"
 
 function set_mouse() {
@@ -29,7 +30,7 @@ function disable_touchpad() {
 }
 
 function set_touchpad(){
-    touchpad_id=$(xinput list | grep "$touchpad" | cut -d'=' -f2 | cut -f1) || :
+    touchpad_id=$(xinput list | grep "$1" | cut -d'=' -f2 | cut -f1) || :
     if [[ ! "$touchpad_id" == "" ]]; then
         enable_id=$(xinput list-props "$touchpad_id" |\
                     grep "Device Enabled ("|\
@@ -65,7 +66,7 @@ if [[ "$number" == "bike" ]]; then
     disable_touchpad
     set_trackpoint
 elif [[ "$number" == "ideapad320" ]]; then
-    set_touchpad
+    set_touchpad "$touchpad_lenovo"
 elif [[ "$number" == "cup" ]]; then
-    set_touchpad
+    set_touchpad "$touchpad_dell"
 fi
