@@ -15,6 +15,7 @@ bindkey -v
 zstyle :compinstall filename '/home/tan/.zshrc'
 
 autoload -U mcd
+autoload -U zmv
 autoload -Uz compinit
 compinit
 
