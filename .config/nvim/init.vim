@@ -305,7 +305,7 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'https://gitee.com/linuor/vim-surround.git'
     Plug 'https://gitee.com/yanzhongqian/nerdcommenter.git'
     " markdown
-    Plug 'https://gitee.com/yaozhijin/markdown-preview.nvim.git', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+    Plug 'https://gitee.com/yaozhijin/markdown-preview.nvim.git', { 'do': 'cd app && yarn install'  }
     Plug 'https://gitee.com/lovealone72/vim-markdown-toc.git', {'for': ['markdown']}
     Plug 'https://gitee.com/yaozhijin/vim-table-mode.git', { 'for': ['markdown']}
     Plug 'https://gitee.com/zerosharp/indentLine.git'
