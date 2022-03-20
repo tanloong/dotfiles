@@ -44,7 +44,7 @@ keycode  47 = semicolon colon semicolon colon
 keycode  48 = apostrophe quotedbl apostrophe quotedbl
 keycode  49 = asciitilde grave asciitilde grave
 keycode  50 = Shift_L NoSymbol Shift_L
-keycode  51 = bar backslash bar backslash 
+keycode  51 = bar backslash bar backslash
 keycode  52 = z Z z Z
 keycode  53 = x X x X
 keycode  54 = c C c C
@@ -55,12 +55,12 @@ keycode  58 = m M m M
 keycode  59 = comma less comma less
 keycode  60 = period greater period greater
 keycode  61 = slash question slash question
-keycode  62 = backslash backslash backslash 
+keycode  62 = backslash backslash backslash
 keycode  63 = KP_Multiply KP_Multiply KP_Multiply KP_Multiply KP_Multiply KP_Multiply XF86ClearGrab
 keycode  64 = Alt_L Meta_L Alt_L Meta_L
 keycode  65 = space NoSymbol space
 ! keycode  66 = Caps_Lock NoSymbol Caps_Lock
-keycode  66 = grave grave grave 
+keycode  66 = grave grave grave
 ! keycode  67 = F1 F1 F1 F1 F1 F1 XF86AudioMute
 ! keycode  68 = F2 F2 F2 F2 F2 F2 XF86AudioLowerVolume
 ! keycode  69 = F3 F3 F3 F3 F3 F3 XF86AudioRaiseVolume
@@ -258,7 +258,3 @@ keycode 254 = XF86WWAN NoSymbol XF86WWAN
 keycode 255 = XF86RFKill NoSymbol XF86RFKill
 add shift = Shift_L
 add Control = Control_L Control_R
-
-
-
-

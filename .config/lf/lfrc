@@ -34,6 +34,7 @@ map X !$f # 运行完在终端驻留
 map A rename # at the very end
 map a push A<a-b><a-b><a-f> # before extention
 map i push A<c-a> # at the very beginning
+map I push A<c-a> # at the very beginning
 map cw push A<c-u> # new rename
 map B bulkrename
 map cx $sudo chmod +x $fx

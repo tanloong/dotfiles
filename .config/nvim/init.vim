@@ -132,7 +132,7 @@ let b:batch_words='begin:end'
 
 autocmd TermClose * let g:term_buf_nr = -1
 autocmd BufEnter term://* startinsert | call Maximize()
-autocmd BufLeave term://* stopinsert | call Restore()
+autocmd BufLeave term://* stopinsert | call Restore() | :normal G | " Output is followed if cursor is on the last line.
 
 autocmd FileType markdown,rmd inoremap ,a **** <<>><Esc>6hi
 autocmd FileType markdown,rmd inoremap ,c ``<SPACE><<>><Esc>F`i
@@ -262,6 +262,8 @@ function! ToggleConsole()
 endfunction
 function! ToggleTerminal()
     " needs autocmd TermClose * let g:term_buf_nr = -1
+    " autocmd BufEnter term://* startinsert | call Maximize()
+    " autocmd BufLeave term://* stopinsert | call Restore() | :normal G
     if g:term_buf_nr == -1
         " set nosplitright | vsplit | term
         set splitbelow | split | term

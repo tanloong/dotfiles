@@ -14,6 +14,8 @@ bindkey -v
 #############
 zstyle :compinstall filename '/home/tan/.zshrc'
 
+autoload -U mcd
+autoload -U zmv
 autoload -Uz compinit
 compinit
 
@@ -41,7 +43,7 @@ compinit
     source $HOME/.config/aliasrc
 
 # functions
-    source $HOME/.local/share/zsh/functions.sh
+    fpath=($HOME/.local/share/zsh_functions/ $fpath)
 # fzf
     export FZF_DEFAULT_COMMAND='ag --path-to-ignore "$HOME/.agignore" --hidden -g "" "$HOME/"'
     export FZF_DEFAULT_OPTS='--reverse --height=60%'
