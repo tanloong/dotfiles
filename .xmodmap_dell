@@ -1,3 +1,4 @@
+clear lock
 clear shift
 keycode   8 =
 keycode   9 = Escape NoSymbol Escape NoSymbol Escape
