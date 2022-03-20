@@ -1,0 +1,35 @@
+#!/usr/bin/env python3
+# -*- coding=utf-8 -*-
+
+import stanza
+import click
+
+
+def constituency_parse(nlp, text):
+    trees = ""
+    doc = nlp(text)
+    for sent in doc.sentences:
+        trees += str(sent.constituency) + "\n"
+    return trees.rstrip()
+
+
+@click.command()
+@click.argument("text", type=str) # 必选
+@click.option(
+    "--resources", "-r", type=str, default="/home/tan/software/stanza_resources"
+)
+@click.option("--language", "-l", type=str, default="en")
+#  def run(text, resources, language):
+def run(text, resources, language):
+    custom_processors = "tokenize,pos,lemma,constituency"
+    nlp = stanza.Pipeline(
+        lang=language,
+        dir=resources,
+        processors=custom_processors,
+    )
+    tree = constituency_parse(nlp, text)
+    print(tree)
+
+
+if __name__ == "__main__":
+    run()
