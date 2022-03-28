@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+IFS=$'\n' read -d "" -ra arr <<< "${1//$2/$'\n'}"
+printf "%s\n" "${arr[@]}"
