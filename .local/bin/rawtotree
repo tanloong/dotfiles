@@ -1,0 +1,72 @@
+#!/usr/bin/env python3
+# -*- coding=utf-8 -*-
+
+import logging
+from pathlib import Path
+import sys
+
+import click
+import stanza
+
+
+def constituency_parse(nlp, text):
+    trees = ""
+    doc = nlp(text)
+    for sent in doc.sentences:
+        trees += str(sent.constituency) + "\n"
+        logging.info(f"{str(sent.constituency)}")
+    return trees.rstrip()
+
+
+@click.command()
+@click.argument("theinput", type=str)
+@click.option("--output", '-o', default="./", type=str)
+def main(theinput, output):
+    logging.basicConfig(
+        level=logging.WARN,
+        format="%(asctime)s: %(message)s",
+        datefmt="%Y-%m-%d %H:%M:%S",
+    )
+    path_input = Path(theinput)
+    dir_output = Path(output)
+    dir_output.mkdir(exist_ok=True)
+    suffix = "_tree"
+    nlp = stanza.Pipeline(
+        "en",
+        dir="/home/tan/software/stanza_resources",
+        processors="tokenize,pos,constituency",
+        tokenize_pretokenized=False,
+        use_gpu=True,
+        pos_batch_size=4000,
+        lemma_batch_size=4000,
+        logging_level="WARN",
+    )
+
+    corpus_paths = []
+    text = ""
+    if path_input.is_dir():
+        logging.info("Input is a directory.")
+        corpus_paths = [corpus_path for corpus_path in path_input.glob("*.txt")]
+    elif path_input.is_file():
+        logging.info("Input is a file.")
+        corpus_paths.append(path_input)
+    else:
+        text = str(path_input)
+        logging.info(f"Input is sentences.")
+
+    if not text:
+        for corpus_path in corpus_paths:
+            #  path_output = dir_output / (corpus_path.stem + suffix + ".txt")
+            logging.info(f"Processing {corpus_path}...")
+            text = open(corpus_path, "r").read()
+            trees = constituency_parse(nlp, text)
+            print(trees)
+            #  with open(path_output, "w", encoding="utf-8") as f:
+            #      f.write(trees)
+    else:
+        trees = constituency_parse(nlp, text)
+        print(trees)
+
+
+if __name__ == "__main__":
+    main()
