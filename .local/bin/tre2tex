@@ -3,12 +3,19 @@ set -euo pipefail
 IFS=$'\n\t'
 
 input="${1}"
-output="${1%.*}".tex
-tree=$(sed -E -e 's/\(\W[^)]*\)//g; s/\(([A-Z]+)/[\.\1/g; s/\)/ ]/g; s/^/\\Tree /; s/\$/\\\$/g; s/%/\\%/g; s/&/\\&/g' "$input" | tr -s ' ')
-# delete punctuation marks,
-# convert parentheses into sqaure brackets,
-# add '\Tree' at the beginning of the line,
-# escape dolloar sign
+# output="${1%.*}".tex
+trees=$(< "$input" sed -E 's/\(\W[^)]*\)//g'|\
+    # delete punctuation marks,
+    sed -E 's/\(([A-Z]+)/[\.\1/g'|\
+    sed -E 's/\)/ ]/g'|\
+    # convert parentheses into sqaure brackets,
+    sed -E 's/^/\\Tree /'|\
+    # add '\Tree' at the beginning of the line,
+    sed -E 's/\$/\\\$/g'|\
+    # escape dolloar sign
+    sed -E 's/%/\\%/g'|\
+    sed -E 's/&/\\&/g'|\
+    tr -s ' ')
 
 preamble='\documentclass[a4paper]{article}
 \usepackage{qtree}
@@ -18,13 +25,16 @@ adjustbox_begin='\begin{adjustbox}{width={\textwidth},totalheight={\textheight},
 adjustbox_end='\end{adjustbox}'
 last='\end{document}'
 
-echo "$preamble" > "$output"
-for line in $tree; do
-    echo "$adjustbox_begin" >> "$output"
-    echo "$line" >> "$output"
-    echo "$adjustbox_end" >> "$output"
+# echo "$preamble" > "$output"
+# for line in $tree; do
+    # printf "%s\n%s\n%s\n%s\n" "$adjustbox_begin" "$line" "$adjustbox_end" '\newline' >> "$output"
+# done
+# echo "$last" >> "$output"
+echo "$preamble"
+for tree in $trees; do
+    printf "%s\n%s\n%s\n%s\n" "$adjustbox_begin" "$tree" "$adjustbox_end" '\newline'
 done
-echo "$last" >> "$output"
+echo "$last"
 
-xelatex "$output"
-zathura "${output%.*}".pdf
+# xelatex "$output"
+# zathura "${output%.*}".pdf
