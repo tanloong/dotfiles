@@ -23,6 +23,7 @@ set clipboard^=unnamed,unnamedplus" | "复制到系统寄存器(*, +)
 set dictionary+=$HOME/projects/linguistics-notes/dict
 set wildignore+=*aux,*toc,*out
 set matchpairs=<:>,(:),{:},[:]
+set path+=**
 " colorscheme solarized
 exec "nohlsearch"
 
