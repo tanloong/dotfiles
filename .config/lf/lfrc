@@ -20,6 +20,7 @@ set info size:time
 map y
 map d
 map c
+map t
 map K push 5k
 map J push 5j
 map dd cut
