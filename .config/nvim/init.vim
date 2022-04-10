@@ -254,7 +254,7 @@ function! ToggleConsole()
         setlocal statusline=channel:\ %{&channel}
         wincmd p | "go back to previous windows
         let b:slime_config = {'jobid': g:slime_last_channel}
-        resize 20 | " Small terminal height
+        resize 95% | " Small terminal height
     else
         execute "bd! " . g:term_buf_nr | " buffer delete
     endif
@@ -267,7 +267,7 @@ function! ToggleTerminal()
         " set nosplitright | vsplit | term
         set splitbelow | split | term
         let g:term_buf_nr = bufnr("$") | " Terminal buff name
-        resize 5 | " Small terminal height
+        resize 5% | " Small terminal height
         setlocal statusline=channel:\ %{&channel}
         startinsert
     else
