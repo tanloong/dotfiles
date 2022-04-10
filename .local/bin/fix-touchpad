@@ -2,7 +2,6 @@
 set -euo pipefail
 IFS=$'\n\t'
 
-number=$(hostnamectl --static) # 主机名
 mouse="Mouse"
 touchpad_lenovo="Synaptics"
 touchpad_dell="Touchpad"
@@ -62,11 +61,12 @@ function set_trackpoint(){
 }
 
 set_mouse
-if [[ "$number" == "bike" ]]; then
-    disable_touchpad
-    set_trackpoint
-elif [[ "$number" == "ideapad320" ]]; then
-    set_touchpad "$touchpad_lenovo"
-elif [[ "$number" == "cup" ]]; then
-    set_touchpad "$touchpad_dell"
-fi
+case $(hostnamectl hostname) in
+    bike)
+        disable_touchpad
+        set_trackpoint;;
+    ideapad320)
+        set_touchpad "$touchpad_lenovo";;
+    cup)
+        set_touchpad "$touchpad_dell";;
+esac
