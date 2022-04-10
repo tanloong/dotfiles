@@ -19,14 +19,20 @@ flameshot & > /dev/null 2>&1
 
 [ -z $(ps -ef | grep -w goldendict | grep -v grep) ] && goldendict &
 
-# /etc/X11/xinit/xinitrc 会加载 $HOME/.Xmodmap 文件
-if [[ `hostnamectl --static` == "bike" ]]; then
-    [[ -f ~/.xmodmap_thinkpadx220i ]] && ln --symbolic --force ~/.xmodmap_thinkpadx220i ~/.Xmodmap
-elif [[ `hostnamectl --static` == "ideapad320" ]]; then
-    [[ -f ~/.xmodmap_lenovo ]] && ln --symbolic --force ~/.xmodmap_lenovo ~/.Xmodmap
-elif [[ `hostnamectl --static` == "cup" ]]; then
-    [[ -f ~/.xmodmap_dell ]] && ln --symbolic --force ~/.xmodmap_dell ~/.Xmodmap
-fi
+# Host-specific configuration
+case $(hostnamectl hostname) in
+    bike)
+        ln --symbolic --force ~/.xmodmap_thinkpadx220i ~/.Xmodmap # /etc/X11/xinit/xinitrc 会加载 $HOME/.Xmodmap 文件
+        ln --symbolic --force ~/.Xresources_thinkpad220i ~/.Xresources;;
+    ideapad320)
+        ln --symbolic --force ~/.xmodmap_lenovo ~/.Xmodmap
+        ln --symbolic --force ~/.Xresources_ideapad320 ~/.Xresources;;
+    cup)
+        ln --symbolic --force ~/.xmodmap_dell ~/.Xmodmap
+        ln --symbolic --force ~/.Xresources_dell ~/.Xresources;;
+esac
+
+[[ -f ~/.Xresources ]] && xrdb -merge -I$HOME ~/.Xresources
 fcitx5 & > /dev/null 2>&1
 
 killall st > /dev/null 2>&1 || :
