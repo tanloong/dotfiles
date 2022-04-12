@@ -94,7 +94,6 @@ A,texlive-tlpdb,"The texlive package database (texlive.tlpdb)"
 ,nltk-data,"Corpora, grammars and other linguistic data for NLTK"
 ,ipython,"An enhanced Interactive Python shell"
 ,gnome-shell-pomodoro,"A time management utility for GNOME based on the pomodoro technique"
-,python-black,"Uncompromising Python code fommatter"
 ,python-dill,"Serialize all of python"
 ,python-pipreqs,"Pip requirements.txt generator"
 ,bilili,"bilibili video downloader"
@@ -125,3 +124,4 @@ G,slstatus,https://gitee.com/tanloong/slstatus.git
 G,sxiv,https://gitee.com/tanloong/sxiv.git
 G,vimium,https://gitee.com/tanloong/vimium.git
 P,autopep8,"Python code formatter"
+P,black,"Uncompromising Python code fommatter"
