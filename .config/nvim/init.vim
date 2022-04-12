@@ -403,7 +403,6 @@ let g:coc_global_extensions = [
             \ 'coc-snippets',
             \ 'coc-git',
             \ 'coc-sh',
-            \ 'coc-translator',
             \ 'coc-texlab',
             \ 'coc-dictionary']
 
@@ -439,19 +438,6 @@ function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
-
-" ===
-" === coc-translator
-" ===
-" popup
-nmap <LEADER>t <Plug>(coc-translator-p)
-vmap <LEADER>t <Plug>(coc-translator-pv)
-" echo
-nmap tt <Plug>(coc-translator-e)
-vmap tt <Plug>(coc-translator-ev)
-" replace
-nmap <Leader>r <Plug>(coc-translator-r)
-vmap <Leader>r <Plug>(coc-translator-rv)
 
 " ===
 " === indentLine
