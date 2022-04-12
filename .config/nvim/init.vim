@@ -78,10 +78,10 @@ nnoremap sl :set splitright<CR>:vsplit<CR>
 nnoremap sh :set nosplitright<CR>:vsplit<CR>
 nnoremap sj :set splitbelow<CR>:split<CR>
 nnoremap sk :set nosplitbelow<CR>:split<CR>
-nnoremap <up> :res +5<CR>
-nnoremap <down> :res -5<CR>
-nnoremap <left> :vertical resize-5<CR>
-nnoremap <right> :vertical resize+5<CR>
+nnoremap <up> :res +2<CR>
+nnoremap <down> :res -2<CR>
+nnoremap <left> :vertical resize-2<CR>
+nnoremap <right> :vertical resize+2<CR>
 tnoremap <c-h> <c-\><c-N><c-w>h
 tnoremap <c-l> <c-\><c-N><c-w>l
 tnoremap <c-j> <c-\><c-N><c-w>j
