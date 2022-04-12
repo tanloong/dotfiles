@@ -27,6 +27,11 @@ set path+=**
 " colorscheme solarized
 exec "nohlsearch"
 
+
+let g:netrw_winsize = 30 | " Change the size of the Netrw window when it creates a split.
+let g:netrw_banner = 0   | " Hide the banner. To show it temporarily use I inside Netrw.
+" check |netrw-browse-maps| for more mappings
+
 if &term =~ '256color'
     " disable Background Color Erase (BCE) so that color schemes
     " render properly when inside 256-color tmux and GNU screen.
