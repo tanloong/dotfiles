@@ -305,7 +305,7 @@ call plug#begin('~/.config/nvim/plugged')
     " Plug 'https://gitee.com/yaowenqiang/ultisnips.git'
     " Plug 'lervag/vimtex', {'for': ['tex']}
     Plug 'https://gitee.com/yaozhijin/vim-snippets.git'
-    Plug 'https://gitee.com/linuor/coc.nvim.git', {'branch': 'release'}
+    Plug 'https://gitee.com/zgpio/coc.nvim.git', {'branch':'release'}
     Plug 'https://gitee.com/linuor/vim-surround.git'
     Plug 'https://gitee.com/yanzhongqian/nerdcommenter.git'
     " markdown
