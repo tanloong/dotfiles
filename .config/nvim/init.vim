@@ -316,9 +316,9 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'https://gitee.com/zgpio/wildfire.vim.git'
     Plug 'https://gitee.com/zgpio/vim-fugitive.git'
     " auto format
-    Plug 'https://gitee.com/bidaya0/vim-maktaba.git'
-    Plug 'https://gitee.com/bidaya0/vim-codefmt.git'
-    Plug 'https://gitee.com/bidaya0/vim-glaive.git'
+    " Plug 'https://gitee.com/bidaya0/vim-maktaba.git'
+    " Plug 'https://gitee.com/bidaya0/vim-codefmt.git'
+    " Plug 'https://gitee.com/bidaya0/vim-glaive.git'
     " auto pair
     Plug 'https://gitee.com/yaozhijin/auto-pairs.git'
     Plug 'https://gitee.com/oy456xd/vim-visual-multi.git'
@@ -390,8 +390,11 @@ xmap s <Plug>VSurround
     nmap <silent> gr <Plug>(coc-references)
 " Symbol renaming.
     nmap <leader>rn <Plug>(coc-rename)
-    " xmap <leader>f  <Plug>(coc-format-selected)
-    " nmap <leader>f  <Plug>(coc-format-selected)
+" Format selected lines
+    xmap <leader>f  <Plug>(coc-format-selected)
+    nmap <leader>f  <Plug>(coc-format-selected)
+" Format current buffer
+    nmap <leader>b  <Plug>(coc-format)
 " Applying codeAction to the selected region.
 " Example: `<leader>aap` for current paragraph
     xmap <leader>a  <Plug>(coc-codeaction-selected)
@@ -472,10 +475,10 @@ let g:indentLine_concealcursor=''
 "   autocmd FileType rust AutoFormatBuffer rustfmt
 "   autocmd FileType vue AutoFormatBuffer prettier
 " augroup END
-augroup autoformat_settings
-    autocmd FileType python nnoremap <LEADER>b :FormatCode<Space>black<CR>:w<CR>
-    autocmd FileType python nnoremap <LEADER>l :FormatLine<Space>black<CR>:w<CR>
-augroup END
+" augroup autoformat_settings
+"     autocmd FileType python nnoremap <LEADER>b :FormatCode<Space>black<CR>:w<CR>
+"     autocmd FileType python nnoremap <LEADER>l :FormatLine<Space>black<CR>:w<CR>
+" augroup END
 
 " ===
 " === vim-markdown-toc

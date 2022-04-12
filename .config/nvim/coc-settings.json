@@ -58,5 +58,6 @@
     "git.topRemovedSign.hlGroup": "None",
     "git.changeRemovedSign.hlGroup": "None",
     "git.conflict.incoming.hlGroup": "None",
-    "git.conflict.current.hlGroup": "None"
+    "git.conflict.current.hlGroup": "None",
+    "python.formatting.provider": "black"
 }
