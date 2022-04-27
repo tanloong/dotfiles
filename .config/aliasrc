@@ -73,7 +73,7 @@ alias \
     rstudio="setsid -f rstudio-bin" \
     spyder="setsid -f spyder" \
     wechat="setsid -f wechat-uos" \
-    qq="setsid -f icalingua" \
+    QQ="setsid -f icalingua" \
     et="setsid -f et" \
     wps="setsid -f wps" \
     wpp="setsid -f wpp" \
