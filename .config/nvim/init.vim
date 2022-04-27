@@ -152,8 +152,11 @@ autocmd FileType markdown,rmd inoremap ,3 ###<SPACE>
 autocmd FileType markdown,rmd inoremap ,4 ####<SPACE>
 autocmd FileType markdown,rmd inoremap ,5 #####<SPACE>
 autocmd FileType markdown,rmd inoremap ,6 ######<SPACE>
-autocmd FileType markdown,rmd inoremap ,` ```<CR><<>><CR>```<CR><CR><<>><Esc>4ka
+autocmd FileType markdown inoremap ,` ```<CR><<>><CR>```<CR><CR><<>><Esc>4ka
 autocmd FileType markdown,rmd nnoremap # /###<SPACE>
+
+autocmd FileType rmd inoremap ,` ```{}<CR><<>><CR>```<CR><CR><<>><Esc>4ka
+autocmd FileType rmd inoremap ,f <-
 
 " set filetype to 'tex' in empty latex file
     let g:tex_flavor='latex'
