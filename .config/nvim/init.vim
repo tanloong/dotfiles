@@ -199,6 +199,7 @@ autocmd Filetype c inoremap `p printf("");<ESC>0f"a
 
 autocmd Filetype r iunmap ,f
 autocmd Filetype r inoremap ,f <-
+autocmd Filetype r inoremap ,4 $
 
 autocmd Filetype sh inoremap ,c ``<Esc>i
 autocmd Filetype sh inoremap ,1 !
