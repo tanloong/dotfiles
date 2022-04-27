@@ -30,8 +30,10 @@ map du !clear;tput cup $(($(tput lines)/3));tput bold;du --max-depth=1 -h --appa
 map dU !clear;tput cup $(($(tput lines)/3));tput bold;du --max-depth=1 -h --apparent-size | sort -rh
 map ` mark-load
 map s shell-wait
-map x $$f # 运行完并自动返回 lf
-map X !$f # 运行完在终端驻留
+# map x $$f # 运行完并自动返回 lf
+# map X !$f # 运行完在终端驻留
+map x $compiler $f # 运行完并自动返回 lf
+map X !compiler $f # 运行完在终端驻留
 map A rename # at the very end
 map a push A<a-b><a-b><a-f> # before extention
 map i push A<c-a> # at the very beginning
