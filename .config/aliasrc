@@ -87,6 +87,7 @@ alias \
     xournalpp="setsid -f xournalpp" \
     xl="setsid -f xournalpp" \
     virtualbox="setsid -f virtualbox" \
+    mpv="mpv --no-terminal" \
 
 # Verbosity and settings that you pretty much just always are going to want.
 alias \
