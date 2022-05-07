@@ -333,6 +333,9 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'https://gitee.com/oy456xd/vim-visual-multi.git'
     " vim-slime
     Plug 'https://gitee.com/mirrors_jpalardy/vim-slime.git'
+    " :help AutoSave.nvim, automatically saving your work whenever you make changes to it
+    " :ASToggle, :ASOn, :ASOff
+    Plug 'Pocco81/AutoSave.nvim'
 call plug#end()
 
 " ===
@@ -505,3 +508,30 @@ xmap <F5> <Plug>SlimeRegionSend
 nmap <F5> :SlimeSendCurrentLine<CR>
 nmap s<F5> <Plug>SlimeParagraphSend
 nmap <c-c>v <Plug>SlimeConfig
+
+" ===
+" === AutoSave
+" ===
+lua << EOF
+local autosave = require("autosave")
+
+autosave.setup(
+    {
+        enabled = true,
+        -- execution_message = "AutoSave: saved",
+        execution_message = function ()
+          return "AutoSave: saved at " .. vim.fn.strftime("%H:%M:%S") end,
+        events = {"InsertLeave", "TextChanged"},
+        conditions = {
+            exists = true,
+            filename_is_not = {},
+            filetype_is_not = {},
+            modifiable = true
+        },
+        write_all_buffers = false,
+        on_off_commands = true,
+        clean_command_line_interval = 0,
+        debounce_delay = 135
+    }
+)
+EOF
