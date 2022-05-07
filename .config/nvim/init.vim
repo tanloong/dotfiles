@@ -221,6 +221,9 @@ autocmd Filetype java inoremap `p System.out.printf("");<ESC>0f"a
 autocmd Filetype java inoremap `read System.in.read();
 autocmd Filetype java inoremap } {<CR>}<Esc>O
 
+autocmd Filetype perl inoremap ,2 @
+autocmd Filetype perl inoremap ,4 $
+
 autocmd Filetype go inoremap } {<CR>}<Esc>O
 
 autocmd Filetype awk inoremap ,4 $
