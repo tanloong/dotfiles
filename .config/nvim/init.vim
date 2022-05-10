@@ -72,8 +72,8 @@ nnoremap <SPACE>w :x<CR>
 nnoremap <SPACE>q :q!<CR>
 nnoremap <SPACE>e :set spell!<CR>
 nnoremap <SPACE><CR> :nohlsearch<CR>
-nnoremap <LEADER>c :CocCommand<SPACE>
-nnoremap <LEADER>l :CocList<SPACE>
+" nnoremap <LEADER>c :CocCommand<SPACE>
+" nnoremap <LEADER>l :CocList<SPACE>
 
 nnoremap sl :set splitright<CR>:vsplit<CR>
 nnoremap sh :set nosplitright<CR>:vsplit<CR>
