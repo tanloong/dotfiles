@@ -118,6 +118,7 @@ A,icalingua,"A third-party QQ client"
 A,wechat-uos,"UOS专业版微信 (迫真魔改版)"
 A,nodejs-xml2json," Converts XML to JSON"
 A,libxft-bgra-git,"enable color emoji in suckless software without crashes"
+A,polybar-dwm-module,""
 G,dmenu,https://gitee.com/tanloong/dmenu.git
 G,dwm,https://gitee.com/tanloong/dwm.git
 G,st,https:/gitee.com/tanloong/st.git
