@@ -13,7 +13,7 @@ twmnd &
 blueman-applet &
 nm-applet &
 feh --bg-scale /home/tan/.local/share/wallpapers/brad-huchteman-stone-mountain.resized.jpg
-picom -c > /dev/null 2>&1 &
+# picom -c > /dev/null 2>&1 &
 flameshot & > /dev/null 2>&1
 # redshift & > /dev/null 2>&1
 
