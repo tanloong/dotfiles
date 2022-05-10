@@ -8,13 +8,6 @@
     "snippets.ultisnips.directories": [
         "$HOME/.config/nvim/ultisnips"
     ],
-    "texlab.build.executable": "xelatex",
-    "texlab.path": "texlab",
-    "texlab.build.onSave": true,
-    "texlab.chktex.onEdit": false,
-    "texlab.chktex.onOpenAndSave": false,
-    "texlab.latexFormatter": "latexindent",
-    "texlab.forwardSearch.executable": "zathura",
     "translator.toLang": "zh_CN",
     "translator.engines": [
         "bing"
