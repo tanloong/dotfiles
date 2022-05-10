@@ -444,11 +444,11 @@ let g:coc_global_extensions = [
 " === coc-snippets
 " ===
 " Use <C-o> for trigger snippet expand.
-imap <c-o> <Plug>(coc-snippets-expand)
+" imap <c-o> <Plug>(coc-snippets-expand)
 " Use <C-j> for jump to next placeholder, it's default of coc.nvim
-let g:coc_snippet_next = '<c-j>'
+" let g:coc_snippet_next = '<c-j>'
 " Use <C-k> for jump to previous placeholder, it's default of coc.nvim
-let g:coc_snippet_prev = '<c-k>'
+" let g:coc_snippet_prev = '<c-k>'
 
 
 " ===
