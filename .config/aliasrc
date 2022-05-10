@@ -11,7 +11,7 @@ function fzf_open_with {
 # Colorize commands when possible.
 alias \
 	ls="ls -hN --color=auto --group-directories-first" \
-	grep="grep --color=auto" \
+	grep="grep --color=always" \
 	diff="diff --color=auto" \
 
 # Use neovim for vim if present.
