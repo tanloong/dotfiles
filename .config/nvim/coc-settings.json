@@ -8,10 +8,6 @@
     "snippets.ultisnips.directories": [
         "$HOME/.config/nvim/ultisnips"
     ],
-    "translator.toLang": "zh_CN",
-    "translator.engines": [
-        "bing"
-    ],
     "diagnostic.enable": false,
     "diagnostic.errorSign": "×",
     "diagnostic.warningSign": "»",
