@@ -9,7 +9,7 @@ slstatus &
 imwheel > /dev/null 2>&1 &
 /home/tan/.local/bin/fix-touchpad &
 
-twmnd &
+dunst &
 blueman-applet &
 nm-applet &
 feh --bg-scale /home/tan/.local/share/wallpapers/brad-huchteman-stone-mountain.resized.jpg
