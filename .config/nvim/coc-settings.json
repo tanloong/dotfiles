@@ -19,6 +19,7 @@
     "translator.engines": [
         "bing"
     ],
+    "diagnostic.enable": false,
     "diagnostic.errorSign": "×",
     "diagnostic.warningSign": "»",
     "diagnostic.infoSign": "ღ",
