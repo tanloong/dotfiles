@@ -161,6 +161,7 @@ autocmd FileType rmd inoremap ,f <-
 
 " set filetype to 'tex' in empty latex file
     let g:tex_flavor='latex'
+autocmd Filetype tex nnoremap <LEADER><F5> <Plug>(vimtex-compile)
 autocmd Filetype tex inoremap ,` \begin{lstlisting}<CR><CR>\end{lstlisting}<Up>
 autocmd Filetype tex inoremap ,l \href{}{<<>>}<<>><Esc>Ffla
 autocmd Filetype tex inoremap ,bf \begin{frame}<CR>\end{frame}<Esc>O
@@ -312,7 +313,6 @@ call plug#begin('~/.config/nvim/plugged')
     " Plug 'https://gitee.com/mirrors_mattn/asyncomplete-lsp.vim.git'
     " Plug 'https://gitee.com/mirrors_mattn/asyncomplete.vim.git'
     " Plug 'https://gitee.com/tanloong/async.vim.git'
-    " Plug 'lervag/vimtex', {'for': ['tex']}
     Plug 'https://gitee.com/yaowenqiang/ultisnips.git'
     " Plug 'https://gitee.com/yaozhijin/vim-snippets.git'
     Plug 'https://gitee.com/zgpio/coc.nvim.git', {'branch':'release'}
@@ -337,6 +337,8 @@ call plug#begin('~/.config/nvim/plugged')
     " :help AutoSave.nvim, automatically saving your work whenever you make changes to it
     " :ASToggle, :ASOn, :ASOff
     Plug 'Pocco81/AutoSave.nvim'
+    " VimTex
+    Plug 'https://gitee.com/mirrors/vimtex.git'
 call plug#end()
 
 " ===
@@ -536,6 +538,34 @@ autosave.setup(
     }
 )
 EOF
+
+" ===
+" === VimTeX
+" ===
+" 0. 快捷键！！！:help vimtex-default-mappings
+" 1. :help vimtex
+" 2. [Blog] https://ejmastnak.github.io/tutorials/vim-latex/vimtex.html
+" 3. 在 ~/.latexmkrc 中设置 $pdflatex='xelatex -shell-escape -synctex=1';
+" 后，可以在 zathura 中用 Ctrl+左键 跳转到 vim 对应位置，
+" 也可以在 vim 中用 \lv 跳转到 zathura 对应位置
+" 4. 写入模式 `]]` 自动补全 `}` 或 `\end{<env>}`
+let g:vimtex_view_method = 'zathura'
+let g:vimtex_quickfix_mode = 0
+let g:vimtex_quickfix_open_on_warning = 0
+let g:vimtex_matchparen_enabled = 0
+let g:vimtex_compiler_latexmk = {
+    \ 'build_dir' : '',
+    \ 'callback' : 1,
+    \ 'continuous' : 1,
+    \ 'executable' : 'latexmk',
+    \ 'hooks' : [],
+    \ 'options' : [
+    \   '-verbose',
+    \   '-file-line-error',
+    \   '-synctex=1',
+    \   '-interaction=nonstopmode',
+    \ ],
+    \}
 " ===
 " === ultisnips
 " ===
