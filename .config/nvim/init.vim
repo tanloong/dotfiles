@@ -25,6 +25,7 @@ set wildignore+=*aux,*toc,*out
 set matchpairs=<:>,(:),{:},[:]
 set path+=**
 " colorscheme solarized
+set spelllang=en,cjk
 exec "nohlsearch"
 
 
