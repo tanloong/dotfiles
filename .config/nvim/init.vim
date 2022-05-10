@@ -422,12 +422,13 @@ let g:coc_global_extensions = [
             \ 'coc-pyright',
             \ 'coc-json',
             \ 'coc-actions',
-            \ 'coc-clangd',
-            \ 'coc-snippets',
             \ 'coc-git',
-            \ 'coc-sh',
-            \ 'coc-texlab',
             \ 'coc-dictionary']
+            " \ 'coc-sh',
+            " \ 'coc-r-lsp',
+            " \ 'coc-texlab',
+            " \ 'coc-clangd',
+            " \ 'coc-snippets',
 
 " ===
 " === coc-texlab
