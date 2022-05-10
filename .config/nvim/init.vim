@@ -312,9 +312,9 @@ call plug#begin('~/.config/nvim/plugged')
     " Plug 'https://gitee.com/mirrors_mattn/asyncomplete-lsp.vim.git'
     " Plug 'https://gitee.com/mirrors_mattn/asyncomplete.vim.git'
     " Plug 'https://gitee.com/tanloong/async.vim.git'
-    " Plug 'https://gitee.com/yaowenqiang/ultisnips.git'
     " Plug 'lervag/vimtex', {'for': ['tex']}
-    Plug 'https://gitee.com/yaozhijin/vim-snippets.git'
+    Plug 'https://gitee.com/yaowenqiang/ultisnips.git'
+    " Plug 'https://gitee.com/yaozhijin/vim-snippets.git'
     Plug 'https://gitee.com/zgpio/coc.nvim.git', {'branch':'release'}
     Plug 'https://gitee.com/linuor/vim-surround.git'
     Plug 'https://gitee.com/yanzhongqian/nerdcommenter.git'
@@ -536,3 +536,15 @@ autosave.setup(
     }
 )
 EOF
+" ===
+" === ultisnips
+" ===
+" Trigger configuration. You need to change this to something other than <tab> if you use one of the following:
+" - https://github.com/Valloric/YouCompleteMe
+" - https://github.com/nvim-lua/completion-nvim
+let g:UltiSnipsExpandTrigger="<c-o>"
+let g:UltiSnipsJumpForwardTrigger="<c-j>"
+let g:UltiSnipsJumpBackwardTrigger="<c-k>"
+let g:UltiSnipsSnippetDirectories=["ultisnips"]
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
