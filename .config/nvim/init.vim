@@ -112,6 +112,8 @@ tnoremap <Esc> <C-\><C-n>
 " Perform dot commands over visual blocks:
     vnoremap . :normal .<CR>
 
+" Spell checking on the fly
+inoremap <c-l> <c-g>u<Esc>[s1z=`]a<c-g>u
 inoremap ,e <Esc>la
 nnoremap <SPACE><SPACE> <Esc>/<<>><CR>:set nohlsearch<CR>v3l<c-g>
 inoremap ,s ''<Esc>i
