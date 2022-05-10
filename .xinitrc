@@ -4,7 +4,7 @@ export LANG=zh_CN.UTF-8
 export LANGUAGE=zh_CN:en_US
 [[ -f ~/.Xresources ]] && xrdb -merge -I$HOME ~/.Xresources
 
-slstatus &
+# slstatus &
 
 imwheel > /dev/null 2>&1 &
 /home/tan/.local/bin/fix-touchpad &
