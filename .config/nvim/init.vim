@@ -103,7 +103,7 @@ tnoremap <Esc> <C-\><C-n>
 " To Turn One Line Into Title Caps, Make Every First Letter Of A Word Uppercase:
     nnoremap gug :s/\v<(.)(\w*)/\u\1\L\2/g<CR>:nohlsearch<CR>
 " Compile document, be it groff/LaTeX/markdown/etc.
-    nnoremap <LEADER><F5> :w! \| !compiler "<c-r>%"<CR>
+    nnoremap <F5> :w! \| !compiler "<c-r>%"<CR>
 " Open corresponding .pdf/.html or preview
     nnoremap <SPACE>o :!opout <c-r>%<CR><CR>
 " Save file as sudo on files that require root permission
@@ -166,7 +166,7 @@ autocmd FileType rmd inoremap ,f <-
 
 " set filetype to 'tex' in empty latex file
     let g:tex_flavor='latex'
-autocmd Filetype tex nnoremap <LEADER><F5> <Plug>(vimtex-compile)
+autocmd Filetype tex nnoremap <F5> <Plug>(vimtex-compile)
 autocmd Filetype tex inoremap ,` \begin{lstlisting}<CR><CR>\end{lstlisting}<Up>
 autocmd Filetype tex inoremap ,l \href{}{<<>>}<<>><Esc>Ffla
 autocmd Filetype tex inoremap ,bf \begin{frame}<CR>\end{frame}<Esc>O
@@ -510,13 +510,13 @@ let g:vmt_dont_insert_fence = 0
 " ===
 " === vim-slime
 " ===
-let g:slime_target = "neovim"
-let g:slime_python_ipython = 1
-let g:slime_no_mappings = 1
-xmap <F5> <Plug>SlimeRegionSend
-nmap <F5> :SlimeSendCurrentLine<CR>
-nmap s<F5> <Plug>SlimeParagraphSend
-nmap <c-c>v <Plug>SlimeConfig
+" let g:slime_target = "neovim"
+" let g:slime_python_ipython = 1
+" let g:slime_no_mappings = 1
+" xmap <F5> <Plug>SlimeRegionSend
+" nmap <F5> :SlimeSendCurrentLine<CR>
+" nmap s<F5> <Plug>SlimeParagraphSend
+" nmap <c-c>v <Plug>SlimeConfig
 
 " ===
 " === AutoSave
