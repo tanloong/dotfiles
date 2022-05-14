@@ -414,7 +414,7 @@ xmap s <Plug>VSurround
     xmap <leader>f  <Plug>(coc-format-selected)
     nmap <leader>f  <Plug>(coc-format-selected)
 " Format current buffer
-    nmap <leader>b  <Plug>(coc-format)
+    nmap <F9>  <Plug>(coc-format)
 " Applying codeAction to the selected region.
 " Example: `<leader>aap` for current paragraph
     xmap <leader>a  <Plug>(coc-codeaction-selected)
