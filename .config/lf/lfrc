@@ -4,7 +4,7 @@ set shell zsh
 set shellopts '-euy' # 'y' for zsh's shwordsplit option
 set filesep "\n"
 set ifs "\n"
-set info size # show size info
+set info size:time
 set hiddenfiles '.*:*.aux:*.nav:*.toc:*.out:*.bbl:*.blg:*.snm:*.log:*.synctex.gz:*(busy):__pycache__'
 $lf -remote "send $id set previewer ${XDG_CONFIG_HOME:-$HOME/.config}/lf/previewer.sh"
 set incfilter true # filter 时跟随按键来动态显示
@@ -13,7 +13,6 @@ set incfilter true # filter 时跟随按键来动态显示
 ###############
 set nopreview
 set ratios 1
-set info size:time
 
 # bindings
 # unmap default y
