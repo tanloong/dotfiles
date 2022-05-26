@@ -4,41 +4,6 @@ priority -50
 #                            TEXTMATE SNIPPETS                            #
 ###########################################################################
 
-# 自定义代码段开始
-snippet spider "boilerplate for spider"
-import requests
-from bs4 import BeautifulSoup
-
-url = "${1}"
-response = requests.get(url)
-print(response.status_code)
-# soup = BeautifulSoup(response.text, "html.parser")
-endsnippet
-
-snippet join "join a list of strings"
-'${1}'.join([${2}])
-endsnippet
-
-snippet p "print something"
-print(${1})
-endsnippet
-
-snippet frs "read file as string"
-with open(${1:filename}, 'r', encoding="utf-8") as f:
-    ${2:content} = f.read()
-endsnippet
-
-snippet frl "read file as list"
-with open(${1:filename}, 'r', encoding="utf-8") as f:
-    ${2:lines} = ${3:[}line.strip() for line in f.readlines() if line.strip()${4:]}
-endsnippet
-
-snippet fw "override file"
-with open(${1:filename}, '${2:w}', encoding="utf-8") as f:
-    f.write(${3:content})
-endsnippet
-# 自定义代码段结束
-
 #! header
 snippet #! "#!/usr/bin/env python" b
 #!/usr/bin/env python
@@ -756,3 +721,46 @@ $0
 endsnippet
 
 # vim:ft=snippets:
+
+# =====================
+# Custom snippets start
+# =====================
+snippet spider "boilerplate for spider"
+import requests
+from bs4 import BeautifulSoup
+
+url = "${1}"
+response = requests.get(url)
+print(response.status_code)
+# soup = BeautifulSoup(response.text, "html.parser")
+endsnippet
+
+snippet join "join a list of strings"
+'${1}'.join([${2}])
+endsnippet
+
+snippet p "print something"
+print(${1:${VISUAL}})
+endsnippet
+
+snippet frs "read file as string"
+with open(${1:filename}, 'r', encoding="utf-8") as f:
+	${2:content} = f.read()
+endsnippet
+
+snippet frl "read file as list"
+with open(${1:filename}, 'r', encoding="utf-8") as f:
+	${2:lines} = ${3:[}line.strip() for line in f.readlines() if line.strip()${4:]}
+endsnippet
+
+snippet fw "override file"
+with open(${1:filename}, '${2:w}', encoding="utf-8") as f:
+	f.write(${3:content})
+endsnippet
+
+snippet ,f "=" wA
+= $1
+endsnippet
+# ===================
+# Custom snippets end
+# ===================
