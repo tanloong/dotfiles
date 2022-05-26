@@ -102,7 +102,7 @@ interval = 25
 
 mount-0 = /home/tan
 
-label-mounted = %{F#F0C674}$HOME%{F-} %percentage_used%%
+label-mounted = %{F#F0C674}~%{F-} %percentage_used%%
 
 label-unmounted = %mountpoint% not mounted
 label-unmounted-foreground = ${colors.disabled}
