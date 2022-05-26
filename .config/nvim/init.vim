@@ -346,9 +346,7 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'https://gitee.com/mirrors/vimtex.git'
 call plug#end()
 
-" ===
-" === markdown-preview配置
-" ===
+" === markdown-preview begin
 " specify browser to open preview page
 " let g:mkdp_browser = '/usr/bin/chromium'
 " let g:mkdp_auto_start = 0
@@ -357,10 +355,9 @@ call plug#end()
 " let g:mkdp_open_to_the_world = 1
 " let g:mkdp_port = 8080
 " let g:mkdp_echo_preview_url = 1
+" === markdown-preview end
 
-" ===
-" === nerdcommenter配置
-" ===
+" === nerdcommenter begin
 " 关闭默认键位
 let g:NERDCreateDefaultMappings = 0
 " Add spaces after comment delimiters by default
@@ -371,34 +368,29 @@ let g:NERDDefaultAlign = 'left'
 " Use compact syntax for prettified multi-line comments
 let g:NERDCompactSexyComs = 1
 map <SPACE>c <plug>NERDCommenterToggle
+" === nerdcommenter end
 
-" ===
-" === vim-table-mode配置
-" ===
+" === vim-table-mode begin
 " 设置table mode先导键为<SPACE>t
 let g:table_mode_map_prefix = '<SPACE>t'
 " 进入或退出 table 模式时给出提示
 let g:table_mode_verbose = 1
 let g:table_mode_corner = '|'
+" === vim-table-mode end
 
-
-" ===
-" === wildfire
-" ===
+" === wildfire begin
 "Selects the next closest text object.
     map = <Plug>(wildfire-fuel)
 "Selects the previous closest text object.
     vmap - <Plug>(wildfire-water)
     let g:wildfire_objects = ["i'", 'i"', "i)", "i]", "i}", "ip", "it", "iW", "i`"]
+" === wildfire end
 
-" ===
-" === vim-surround
-" ===
+" === vim-surround begin
 xmap s <Plug>VSurround
+" === vim-surround end
 
-" ===
-" === coc.nvim
-" ===
+" === coc.nvim begin
 " Use `[g` and `]g` to navigate diagnostics
 " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
     nmap <silent> [g <Plug>(coc-diagnostic-prev)
@@ -441,9 +433,7 @@ let g:coc_global_extensions = [
 " autocmd FileType tex nnoremap <LEADER>b :CocCommand latex.Build<CR>
 " autocmd BufWritePost *tex :CocCommand latex.Build
 
-" ===
-" === coc-snippets
-" ===
+" === coc-snippets begin
 " Use <C-o> for trigger snippet expand.
 " imap <c-o> <Plug>(coc-snippets-expand)
 " Use <C-j> for jump to next placeholder, it's default of coc.nvim
@@ -451,10 +441,6 @@ let g:coc_global_extensions = [
 " Use <C-k> for jump to previous placeholder, it's default of coc.nvim
 " let g:coc_snippet_prev = '<c-k>'
 
-
-" ===
-" === coc-snippets
-" ===
 " Use tab for trigger completion with characters ahead and navigate.
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
 " other plugin before putting this into your config.
@@ -467,10 +453,9 @@ function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
+" === coc-snippets end
 
-" ===
-" === indentLine
-" ===
+" === indentLine begin
 " indentLine will overwrite 'conceal' color with grey by default.
 let g:indentLine_setColors = 1
 let g:indentLine_char = '¦'
@@ -478,11 +463,9 @@ let g:indentLine_char = '¦'
 ":IndentLinesToggle toggles lines on and off.
 " let g:indentLine_conceallevel=0
 let g:indentLine_concealcursor=''
+" === indentLine begin
 
-
-" ===
-" === vim-codefmt
-" ===
+" === vim-codefmt begin
 " augroup autoformat_settings
 "   autocmd FileType bzl AutoFormatBuffer buildifier
 "   autocmd FileType c,cpp,proto,javascript,arduino AutoFormatBuffer clang-format
@@ -500,16 +483,14 @@ let g:indentLine_concealcursor=''
 "     autocmd FileType python nnoremap <LEADER>b :FormatCode<Space>black<CR>:w<CR>
 "     autocmd FileType python nnoremap <LEADER>l :FormatLine<Space>black<CR>:w<CR>
 " augroup END
+" === vim-codefmt end
 
-" ===
-" === vim-markdown-toc
-" ===
+" === vim-markdown-toc begin
 let g:vmt_auto_update_on_save = 1
 let g:vmt_dont_insert_fence = 0
+" === vim-markdown-toc end
 
-" ===
-" === vim-slime
-" ===
+" === vim-slime begin
 " let g:slime_target = "neovim"
 " let g:slime_python_ipython = 1
 " let g:slime_no_mappings = 1
@@ -517,10 +498,9 @@ let g:vmt_dont_insert_fence = 0
 " nmap <F5> :SlimeSendCurrentLine<CR>
 " nmap s<F5> <Plug>SlimeParagraphSend
 " nmap <c-c>v <Plug>SlimeConfig
+" === vim-slime end
 
-" ===
-" === AutoSave
-" ===
+" === AutoSave begin
 lua << EOF
 local autosave = require("autosave")
 
@@ -544,10 +524,9 @@ autosave.setup(
     }
 )
 EOF
+" === AutoSave end
 
-" ===
-" === VimTeX
-" ===
+" === VimTeX begin
 " 0. 快捷键！！！:help vimtex-default-mappings
 " 1. :help vimtex
 " 2. [Blog] https://ejmastnak.github.io/tutorials/vim-latex/vimtex.html
