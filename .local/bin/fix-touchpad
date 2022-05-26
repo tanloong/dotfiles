@@ -8,7 +8,7 @@ touchpad_dell="Touchpad"
 trackpoint="TrackPoint"
 
 function set_mouse() {
-    mouse_id=$(xinput list | grep -m 1 "$mouse" | cut -d'=' -f2 | cut -f1) || :
+    mouse_id=$(xinput list | grep -m 1 --ignore-case "$mouse" | cut -d'=' -f2 | cut -f1) || :
     # 给鼠标的指针加速
     if [[ ! "$mouse_id" == "" ]]; then
         accel_speed_id=`xinput list-props $mouse_id | \
