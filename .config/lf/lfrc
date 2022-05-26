@@ -79,6 +79,7 @@ map oa :set sortby atime; set info atime
 map oc :set sortby ctime; set info ctime
 map oe :set sortby ext; set info
 map u :unselect; clear
+map <esc> :unselect; clear
 map W openterminal
 map f :fzf_jump
 # put lf into background, `fg` to restore
