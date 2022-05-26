@@ -341,7 +341,7 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'https://gitee.com/mirrors_jpalardy/vim-slime.git'
     " :help AutoSave.nvim, automatically saving your work whenever you make changes to it
     " :ASToggle, :ASOn, :ASOff
-    Plug 'Pocco81/AutoSave.nvim'
+    Plug 'https://gitee.com/giteeguangwei/AutoSave.nvim.git'
     " VimTex
     Plug 'https://gitee.com/mirrors/vimtex.git'
 call plug#end()
