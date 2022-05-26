@@ -2,4 +2,4 @@
 set -euo pipefail
 IFS=$'\n\t'
 
-$HOME/.config/polybar/launch-polybar.sh
+# $HOME/.config/polybar/launch-polybar.sh
