@@ -4,7 +4,7 @@ IFS=$'\n\t'
 
 # /usr/bin/amixer -qM set Master 5%- umute
 # bash ~/.dwm/dwm-status-refresh.sh
-pamixer -d 5
+pamixer -d 5 --allow-boost
 
 # update statusbar
 status=$(slstatus -1)
