@@ -115,7 +115,7 @@ tnoremap <Esc> <C-\><C-n>
 
 " Spell checking on the fly
 inoremap <c-l> <c-g>u<Esc>[s1z=`]a<c-g>u
-inoremap ,e <Esc>la
+inoremap <c-l> <Esc>la
 nnoremap <SPACE><SPACE> <Esc>/<<>><CR>:set nohlsearch<CR>v3l<c-g>
 inoremap ,s ''<Esc>i
 inoremap ,d ""<Esc>i
