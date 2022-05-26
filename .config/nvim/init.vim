@@ -584,3 +584,7 @@ let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 let g:UltiSnipsSnippetDirectories=["ultisnips"]
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
+
+" === autopairs begin
+let g:AutoPairs={'(':')', '[':']', '{':'}',"'":"'",'"':'"'}
+" === autopairs end
