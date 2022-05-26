@@ -30,6 +30,7 @@
 ,newsboat,"RSS feed reader"
 ,ueberzug,"image viewer for ranger preview"
 ,texlab,"LSP for latex"
+A,latex-mk,
 ,openssh-askpass,"askpass helper for sudo"
 ,trash-cli,"put files in trash"
 ,the_silver_searcher,"code searching tool"
