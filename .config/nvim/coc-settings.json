@@ -5,9 +5,6 @@
     "coc.preferences.formatOnSaveFiletypes": [
         "json"
     ],
-    "snippets.ultisnips.directories": [
-        "$HOME/.config/nvim/ultisnips"
-    ],
     "diagnostic.enable": false,
     "diagnostic.errorSign": "×",
     "diagnostic.warningSign": "»",
@@ -39,5 +36,8 @@
     "git.changeRemovedSign.hlGroup": "None",
     "git.conflict.incoming.hlGroup": "None",
     "git.conflict.current.hlGroup": "None",
-    "python.formatting.provider": "black"
+    "python.formatting.provider": "black",
+    "snippets.ultisnips.directories": [
+        "$HOME/.config/nvim/ultisnips"
+    ]
 }

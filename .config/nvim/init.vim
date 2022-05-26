@@ -117,11 +117,6 @@ tnoremap <Esc> <C-\><C-n>
 inoremap <c-]> <c-g>u<Esc>[s1z=`]a<c-g>u
 inoremap <c-l> <Esc>la
 nnoremap <SPACE><SPACE> <Esc>/<<>><CR>:set nohlsearch<CR>v3l<c-g>
-inoremap ,s ''<Esc>i
-inoremap ,d ""<Esc>i
-inoremap ,f =
-inoremap ,z ,
-inoremap ,. ,
 "inoremap < <><ESC>i
 "inoremap ( ()<ESC>i
 " inoremap () ()<Esc>i
@@ -144,96 +139,15 @@ autocmd TermClose * let g:term_buf_nr = -1
 autocmd BufEnter term://* startinsert | call Maximize()
 autocmd BufLeave term://* stopinsert | call Restore() | :normal G | " Output is followed if cursor is on the last line.
 
-autocmd FileType markdown,rmd inoremap ,a **** <<>><Esc>6hi
-autocmd FileType markdown,rmd inoremap ,c ``<SPACE><<>><Esc>F`i
-autocmd FileType markdown,rmd inoremap ,i ** <<>><Esc>F*i
-autocmd FileType markdown,rmd inoremap ,l [](<<>>)<Esc>F[a
-autocmd Filetype markdown,rmd inoremap ,g ~~~~ <<>><Esc>F~hi
-autocmd FileType markdown,rmd inoremap ,p ![](<<>>)<Esc>F[a
-autocmd FileType markdown,rmd inoremap ,m -<SPACE>[<SPACE>]<SPACE>
-autocmd FileType markdown,rmd inoremap ,n ---<CR><CR>
-autocmd FileType markdown,rmd inoremap ,1 #<SPACE>
-autocmd FileType markdown,rmd inoremap ,2 ##<SPACE>
-autocmd FileType markdown,rmd inoremap ,3 ###<SPACE>
-autocmd FileType markdown,rmd inoremap ,4 ####<SPACE>
-autocmd FileType markdown,rmd inoremap ,5 #####<SPACE>
-autocmd FileType markdown,rmd inoremap ,6 ######<SPACE>
-autocmd FileType markdown inoremap ,` ```<CR><<>><CR>```<CR><CR><<>><Esc>4ka
-autocmd FileType markdown,rmd nnoremap # /###<SPACE>
-
-autocmd FileType rmd inoremap ,` ```{}<CR><<>><CR>```<CR><CR><<>><Esc>4ka
-autocmd FileType rmd inoremap ,f <-
-
 " set filetype to 'tex' in empty latex file
     let g:tex_flavor='latex'
+
+
 autocmd Filetype tex nnoremap <F5> <Plug>(vimtex-compile)
-autocmd Filetype tex inoremap ,` \begin{lstlisting}<CR><CR>\end{lstlisting}<Up>
-autocmd Filetype tex inoremap ,l \href{}{<<>>}<<>><Esc>Ffla
-autocmd Filetype tex inoremap ,bf \begin{frame}<CR>\end{frame}<Esc>O
-autocmd Filetype tex inoremap ,bd \begin{compactdesc}<CR>\item[<<>>]<SPACE><<>><Esc>yy4p3jo\end{compactdesc}<Esc>5k0f<v3l<c-g>
-autocmd Filetype tex inoremap ,bi \begin{compactitem}<CR>\item<SPACE><<>><Esc>yy4p3jo\end{compactitem}<Esc>5k0f<v3l<c-g>
-autocmd Filetype tex inoremap ,be \begin{compactenum}<CR>\item<SPACE><<>><Esc>yy4p3jo\end{compactenum}<Esc>5k0f<v3l<c-g>
-autocmd Filetype tex inoremap ,bb \begin{<<>>}<CR>\end{<<>>}<Esc>k$hv3h<c-g>
-autocmd Filetype tex inoremap ,ipa \textipa{[<<>>]}<SPACE><<>><Esc>7hv3h<c-g>
-autocmd Filetype tex inoremap ,, \{<<>>}<Esc>5hi
-autocmd Filetype tex inoremap ,a \textbf{}<Esc>i
-autocmd Filetype tex inoremap ,bx <CR>\mbox{}<CR>
-autocmd Filetype tex inoremap ,bc \begin{cases}<CR>\end{cases}<Esc>O
-autocmd Filetype tex inoremap ,ii \textit{}<Esc>i
-autocmd Filetype tex inoremap ,u \uline{}<Esc>i
-autocmd Filetype tex inoremap ,n \emph{}<Esc>i
-autocmd Filetype tex inoremap ,m \item<SPACE>
-autocmd Filetype tex inoremap ,d ``''<SPACE><<>><Esc>6hi
-autocmd Filetype tex inoremap ,s `'<SPACE><<>><Esc>5hi
-autocmd Filetype tex inoremap ,t \citet{<<>>}<Esc>4hv3l<c-g>
-autocmd Filetype tex inoremap ,p \citep{<<>>}<Esc>4hv3l<c-g>
-autocmd Filetype tex inoremap ,k \usepackage{}<Esc>i
-autocmd Filetype tex inoremap ,f \footnote{}<Esc>i
-autocmd Filetype tex inoremap ,1 \part{<<>>}<CR>\label{prt:<<>>}<Esc>k$hv3h<c-g>
-autocmd Filetype tex inoremap ,2 \chapter{<<>>}<CR>\label{cha:<<>>}<Esc>k$hv3h<c-g>
-autocmd Filetype tex inoremap ,3 \section{<<>>}<CR>\label{sec:<<>>}<Esc>k$hv3h<c-g>
-autocmd Filetype tex inoremap ,4 \subsection{<<>>}<CR>\label{ssec:<<>>}<Esc>k$hv3h<c-g>
-autocmd Filetype tex inoremap ,5 \subsubsection{<<>>}<CR>\label{sssec:<<>>}<Esc>k$hv3h<c-g>
-autocmd Filetype tex inoremap ,6 \paragraph{<<>>}<CR>\label{par:<<>>}<Esc>k$hv3h<c-g>
-autocmd Filetype tex inoremap ,7 \subparagraph{<<>>}<CR>\label{spar:<<>>}<Esc>k$hv3h<c-g>
-
-autocmd Filetype c inoremap } {<CR>}<Esc>O
-autocmd Filetype c inoremap `if if () {<CR>}<Esc>O<<>><Esc>kF)i
-autocmd Filetype c inoremap `else else {<CR>}<Esc>O
-autocmd Filetype c inoremap `for for () {<CR>}<Esc>O<<>><Esc>kF)i
-autocmd Filetype c inoremap `main main ()<CR>{<CR>}<Esc>O
-autocmd Filetype c inoremap `p printf("");<ESC>0f"a
-
-autocmd Filetype r iunmap ,f
-autocmd Filetype r inoremap ,f <-
-autocmd Filetype r inoremap ,4 $
-
-autocmd Filetype sh inoremap ,c ``<Esc>i
-autocmd Filetype sh inoremap ,1 !
-autocmd Filetype sh inoremap ,2 @
-autocmd Filetype sh inoremap ,3 #
-autocmd Filetype sh inoremap ,4 $
-autocmd Filetype sh inoremap ,8 *
-autocmd Filetype sh inoremap ,( $()<Esc>i
-autocmd Filetype sh inoremap ,{ ${}<Esc>i
-autocmd Filetype sh inoremap ,[ $[]<Esc>i
-autocmd Filetype sh inoremap ," "$"<Esc>i
-autocmd Filetype sh inoremap } {<CR>}<Esc>O
-
-autocmd Filetype java inoremap `if if () {<CR>}<Esc>O<<>><Esc>kF)i
-autocmd Filetype java inoremap `else else {<CR>}<Esc>O
-autocmd Filetype java inoremap `for for () {<CR>}<Esc>O<<>><Esc>kF)i
-autocmd Filetype java inoremap `main main ()<CR>{<CR>}<Esc>O
-autocmd Filetype java inoremap `p System.out.printf("");<ESC>0f"a
-autocmd Filetype java inoremap `read System.in.read();
-autocmd Filetype java inoremap } {<CR>}<Esc>O
-
 autocmd Filetype perl inoremap ,2 @
 autocmd Filetype perl inoremap ,4 $
-
-autocmd Filetype go inoremap } {<CR>}<Esc>O
-
 autocmd Filetype awk inoremap ,4 $
+autocmd Filetype go inoremap } {<CR>}<Esc>O
 
 " Runs a script that cleans out tex build files whenever I close out of a .tex file.
     autocmd VimLeave *.tex !texclear %
@@ -318,7 +232,7 @@ call plug#begin('~/.config/nvim/plugged')
     " Plug 'https://gitee.com/mirrors_mattn/asyncomplete-lsp.vim.git'
     " Plug 'https://gitee.com/mirrors_mattn/asyncomplete.vim.git'
     " Plug 'https://gitee.com/tanloong/async.vim.git'
-    Plug 'https://gitee.com/yaowenqiang/ultisnips.git'
+    " Plug 'https://gitee.com/yaowenqiang/ultisnips.git'
     " Plug 'https://gitee.com/yaozhijin/vim-snippets.git'
     Plug 'https://gitee.com/zgpio/coc.nvim.git', {'branch':'release'}
     Plug 'https://gitee.com/linuor/vim-surround.git'
@@ -420,12 +334,12 @@ let g:coc_global_extensions = [
             \ 'coc-json',
             \ 'coc-actions',
             \ 'coc-git',
+            \ 'coc-snippets',
             \ 'coc-dictionary']
             " \ 'coc-sh',
             " \ 'coc-r-lsp',
             " \ 'coc-texlab',
             " \ 'coc-clangd',
-            " \ 'coc-snippets',
 
 " ===
 " === coc-texlab
@@ -435,11 +349,11 @@ let g:coc_global_extensions = [
 
 " === coc-snippets begin
 " Use <C-o> for trigger snippet expand.
-" imap <c-o> <Plug>(coc-snippets-expand)
+imap <c-o> <Plug>(coc-snippets-expand)
 " Use <C-j> for jump to next placeholder, it's default of coc.nvim
-" let g:coc_snippet_next = '<c-j>'
+let g:coc_snippet_next = '<c-j>'
 " Use <C-k> for jump to previous placeholder, it's default of coc.nvim
-" let g:coc_snippet_prev = '<c-k>'
+let g:coc_snippet_prev = '<c-k>'
 
 " Use tab for trigger completion with characters ahead and navigate.
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
@@ -454,6 +368,19 @@ function! s:check_back_space() abort
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 " === coc-snippets end
+
+" ===
+" === ultisnips
+" ===
+" Trigger configuration. You need to change this to something other than <tab> if you use one of the following:
+" - https://github.com/Valloric/YouCompleteMe
+" - https://github.com/nvim-lua/completion-nvim
+" let g:UltiSnipsExpandTrigger="<c-o>"
+" let g:UltiSnipsJumpForwardTrigger="<c-j>"
+" let g:UltiSnipsJumpBackwardTrigger="<c-k>"
+" let g:UltiSnipsSnippetDirectories=["ultisnips"]
+" " If you want :UltiSnipsEdit to split your window.
+" let g:UltiSnipsEditSplit="vertical"
 
 " === indentLine begin
 " indentLine will overwrite 'conceal' color with grey by default.
@@ -551,18 +478,6 @@ let g:vimtex_compiler_latexmk = {
     \   '-interaction=nonstopmode',
     \ ],
     \}
-" ===
-" === ultisnips
-" ===
-" Trigger configuration. You need to change this to something other than <tab> if you use one of the following:
-" - https://github.com/Valloric/YouCompleteMe
-" - https://github.com/nvim-lua/completion-nvim
-let g:UltiSnipsExpandTrigger="<c-o>"
-let g:UltiSnipsJumpForwardTrigger="<c-j>"
-let g:UltiSnipsJumpBackwardTrigger="<c-k>"
-let g:UltiSnipsSnippetDirectories=["ultisnips"]
-" If you want :UltiSnipsEdit to split your window.
-let g:UltiSnipsEditSplit="vertical"
 
 " === autopairs begin
 let g:AutoPairs={'(':')', '[':']', '{':'}',"'":"'",'"':'"'}
