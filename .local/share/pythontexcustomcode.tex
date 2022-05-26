@@ -1,0 +1,31 @@
+\begin{pythontexcustomcode}{py}
+import datetime
+inc = {}
+def num2cn(string="", isbig=False):
+    tb = str.maketrans("0123456789", "零壹貳叁肆伍陆柒捌玖" if isbig else "〇一二三四五六七八九")
+    return string.translate(tb)
+def today(fmtstr="%Y年%m月%d日"):
+    dt = datetime.datetime.now()
+    return dt.strftime(fmtstr)
+def getinc(name, st=1, isauto=True):
+    num = inc.get(name, st)
+    if isauto:
+        inc[name] = num + 1
+    return num
+def csv2table(fn: str, args: dict) -> str:
+    default_args = {
+        "position": "htbp",
+        "position_float": "centering",
+        "hrules": True,
+        "label": "tab:<Label>",
+        "caption": "<Caption>",}
+    default_args.update(args)
+
+    df = pd.read_csv(fn)
+    table = df.style.hide(axis="index").to_latex(**default_args)
+
+    table = table.replace(r"\toprule", r"\hline")
+    table = table.replace(r"\midrule", r"\hline")
+    table = table.replace(r"\bottomrule", r"\hline")
+    return table
+\end{pythontexcustomcode}
