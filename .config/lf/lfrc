@@ -126,9 +126,9 @@ cmd open ${{
         application/octet-stream) mpv --audio-display=no "$fx" ;;
 
         application/pdf|image/vnd.djvu) setsid -f "$PDFVIEWER" "$fx" >/dev/null 2>&1 ;;
-        application/*presentation|application/*ms-powerpoint) setsid -f wpp "$fx";;
-        application/*document|application/msword) setsid -f wps "$fx";;
-        application/*sheet|application/vnd.ms-excel) setsid -f et "$fx";;
+        application/*presentation|application/*ms-powerpoint) setsid -f libreoffice "$fx";;
+        application/*document|application/msword) setsid -f libreoffice "$fx";;
+        application/*sheet|application/vnd.ms-excel) setsid -f libreoffice "$fx";;
         message/rfc822) setsid -f "$BROWSER" "$fx";;
         *) for f in "$fx"; do setsid -f $OPENER $f >/dev/null 2>&1; done;;
     esac
