@@ -159,6 +159,7 @@ autocmd Filetype go inoremap } {<CR>}<Esc>O
     " autocmd BufWritePre * cal cursor(currPos[1], currPos[2])
 
 function! Maximize()
+" {{{
     let t:maximizer_sizes = { 'before': winrestcmd() }
     vert resize | resize
     let t:maximizer_sizes.after = winrestcmd()
@@ -172,6 +173,7 @@ function! Restore()
         unlet t:maximizer_sizes
     end
 endfunction
+
 let g:term_buf_nr = -1
 let g:my_cnsl_names = {
             \ 'python':'ipython',
@@ -195,7 +197,9 @@ function! ToggleConsole()
         execute "bd! " . g:term_buf_nr | " buffer delete
     endif
 endfunction
+
 function! ToggleTerminal()
+
     " needs autocmd TermClose * let g:term_buf_nr = -1
     " autocmd BufEnter term://* startinsert | call Maximize()
     " autocmd BufLeave term://* stopinsert | call Restore() | :normal G
@@ -210,8 +214,10 @@ function! ToggleTerminal()
         execute "bd! " . g:term_buf_nr
     endif
 endfunction
+" }}}
 
-autocmd BufNewFile *.c   0r ~/.config/nvim/skeleton/skeleton.c      | :normal G
+" {{{
+autocmd BufNewFile *.c   0r ~/.config/nvim/skeleton/skeleton.c      | :normal G 
 autocmd BufNewFile *.py	 0r ~/.config/nvim/skeleton/skeleton.python | :normal G
 autocmd BufNewFile *.sh	 0r ~/.config/nvim/skeleton/skeleton.sh     | :normal G
 autocmd BufNewFile *.tex 0r ~/.config/nvim/skeleton/skeleton.tex    | :normal G
@@ -220,11 +226,11 @@ autocmd BufNewFile *.r   0r ~/.config/nvim/skeleton/skeleton.r      | :normal G
 autocmd BufNewFile *.rmd 0r ~/.config/nvim/skeleton/skeleton.rmd    | :normal G
 autocmd BufNewFile *.sed 0r ~/.config/nvim/skeleton/skeleton.sed    | :normal G
 autocmd BufNewFile *.go  0r ~/.config/nvim/skeleton/skeleton.go     | :normal G
-autocmd BufNewFile *.pl  0r ~/.config/nvim/skeleton/skeleton.perl   | :normal G
+autocmd BufNewFile *.pl  0r ~/.config/nvim/skeleton/skeleton.perl   | :normal G 
+" }}}
 
-" ===
-" === vim-plug
-" ===
+" === vim-plug begin
+" {{{
 call plug#begin('~/.config/nvim/plugged')
     " Plug 'https://gitee.com/bon-ami/vim-lsp.git'
     " Plug 'https://gitee.com/cocosleep/vim-latex-live-preview.git', { 'for': 'tex' }
@@ -259,9 +265,12 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'https://gitee.com/giteeguangwei/AutoSave.nvim.git'
     " VimTex
     Plug 'https://gitee.com/mirrors/vimtex.git'
-call plug#end()
+call plug#end() 
+" }}}
+" === vim-plug end
 
 " === markdown-preview begin
+" {{{
 " specify browser to open preview page
 " let g:mkdp_browser = '/usr/bin/chromium'
 " let g:mkdp_auto_start = 0
@@ -270,9 +279,11 @@ call plug#end()
 " let g:mkdp_open_to_the_world = 1
 " let g:mkdp_port = 8080
 " let g:mkdp_echo_preview_url = 1
+" }}}
 " === markdown-preview end
 
 " === nerdcommenter begin
+" {{{
 " 关闭默认键位
 let g:NERDCreateDefaultMappings = 0
 " Add spaces after comment delimiters by default
@@ -282,23 +293,28 @@ let g:NERDSpaceDelims = 1
 let g:NERDDefaultAlign = 'left'
 " Use compact syntax for prettified multi-line comments
 let g:NERDCompactSexyComs = 1
-map <SPACE>c <plug>NERDCommenterToggle
+map <SPACE>c <plug>NERDCommenterToggle 
+" }}}
 " === nerdcommenter end
 
 " === vim-table-mode begin
+" {{{
 " 设置table mode先导键为<SPACE>t
 let g:table_mode_map_prefix = '<SPACE>t'
 " 进入或退出 table 模式时给出提示
 let g:table_mode_verbose = 1
 let g:table_mode_corner = '|'
+" }}}
 " === vim-table-mode end
 
 " === wildfire begin
+" {{{
 "Selects the next closest text object.
     map = <Plug>(wildfire-fuel)
 "Selects the previous closest text object.
     vmap - <Plug>(wildfire-water)
-    let g:wildfire_objects = ["i'", 'i"', "i)", "i]", "i}", "ip", "it", "iW", "i`"]
+    let g:wildfire_objects = ["i'", 'i"', "i)", "i]", "i}", "ip", "it", "iW", "i`"] 
+" }}}
 " === wildfire end
 
 " === vim-surround begin
@@ -306,6 +322,7 @@ xmap s <Plug>VSurround
 " === vim-surround end
 
 " === coc.nvim begin
+" {{{
 " Use `[g` and `]g` to navigate diagnostics
 " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
     nmap <silent> [g <Plug>(coc-diagnostic-prev)
@@ -341,6 +358,7 @@ let g:coc_global_extensions = [
             " \ 'coc-r-lsp',
             " \ 'coc-texlab',
             " \ 'coc-clangd',
+" }}}
 
 " ===
 " === coc-texlab
@@ -349,6 +367,7 @@ let g:coc_global_extensions = [
 " autocmd BufWritePost *tex :CocCommand latex.Build
 
 " === coc-snippets begin
+" {{{
 " Use <C-o> for trigger snippet expand.
 imap <c-o> <Plug>(coc-snippets-expand)
 " Use <C-j> for jump to next placeholder, it's default of coc.nvim
@@ -367,7 +386,8 @@ inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
+endfunction 
+" }}}
 " === coc-snippets end
 
 " ===
@@ -429,6 +449,7 @@ let g:vmt_dont_insert_fence = 0
 " === vim-slime end
 
 " === AutoSave begin
+" {{{
 lua << EOF
 local autosave = require("autosave")
 
@@ -452,9 +473,11 @@ autosave.setup(
     }
 )
 EOF
+" }}}
 " === AutoSave end
 
 " === VimTeX begin
+" {{{
 " 0. 快捷键！！！:help vimtex-default-mappings
 " 1. :help vimtex
 " 2. [Blog] https://ejmastnak.github.io/tutorials/vim-latex/vimtex.html
@@ -488,8 +511,10 @@ let g:vimtex_toc_config = {
     \ 'split_pos': 'vert leftabove'
     \ }
 nnoremap tt :VimtexTocToggle<CR><c-w>h
+" }}}
 " === VimTeX end
 
 " === autopairs begin
 let g:AutoPairs={'(':')', '[':']', '{':'}',"'":"'",'"':'"'}
 " === autopairs end
+
