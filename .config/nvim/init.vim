@@ -77,6 +77,7 @@ nnoremap <SPACE><CR> :nohlsearch<CR>
 " nnoremap <LEADER>c :CocCommand<SPACE>
 " nnoremap <LEADER>l :CocList<SPACE>
 nnoremap <F4> :q!<CR>
+nnoremap <leader>s :source $MYVIMRC<CR>
 
 nnoremap sl :set splitright<CR>:vsplit<CR>
 nnoremap sh :set nosplitright<CR>:vsplit<CR>
