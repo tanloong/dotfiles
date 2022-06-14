@@ -152,10 +152,10 @@ autocmd Filetype go inoremap } {<CR>}<Esc>O
 " Runs a script that cleans out tex build files whenever I close out of a .tex file.
     autocmd VimLeave *.tex !texclear %
 " Automatically deletes all trailing whitespace and newlines at end of file on save.
-    autocmd BufWritePre * let currPos = getpos(".")
-    autocmd BufWritePre * %s/\s\+$//e
-    autocmd BufWritePre * %s/\n\+\%$//e
-    autocmd BufWritePre * cal cursor(currPos[1], currPos[2])
+    " autocmd BufWritePre * let currPos = getpos(".")
+    " autocmd BufWritePre * %s/\s\+$//e
+    " autocmd BufWritePre * %s/\n\+\%$//e
+    " autocmd BufWritePre * cal cursor(currPos[1], currPos[2])
 
 function! Maximize()
     let t:maximizer_sizes = { 'before': winrestcmd() }
