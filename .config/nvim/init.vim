@@ -67,7 +67,7 @@ nnoremap st :call ToggleTerminal()<CR>
 nnoremap > >>
 nnoremap < <<
 nnoremap @@ @q
-nnoremap <c-p> :%s///g<Left><Left><Left>
+nnoremap <c-p> :%s///g<Left><Left>
 nnoremap <SPACE>a ggVG
 nnoremap <SPACE>s :w<CR>
 nnoremap <SPACE>w :x<CR>
