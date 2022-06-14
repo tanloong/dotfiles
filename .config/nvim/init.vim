@@ -465,6 +465,9 @@ let g:vimtex_view_method = 'zathura'
 let g:vimtex_quickfix_mode = 0
 let g:vimtex_quickfix_open_on_warning = 0
 let g:vimtex_matchparen_enabled = 0
+let g:vimtex_indent_enabled = 0
+let g:vimtex_imaps_enabled = 0
+let g:vimtex_compiler_method='latexmk'
 let g:vimtex_compiler_latexmk = {
     \ 'build_dir' : '',
     \ 'callback' : 1,
@@ -476,8 +479,15 @@ let g:vimtex_compiler_latexmk = {
     \   '-file-line-error',
     \   '-synctex=1',
     \   '-interaction=nonstopmode',
+    \   '-shell-escape',
     \ ],
     \}
+let g:vimtex_toc_config = {
+    \ 'fold_enable': 0,
+    \ 'split_pos': 'vert leftabove'
+    \ }
+nnoremap tt :VimtexTocToggle<CR><c-w>h
+" === VimTeX end
 
 " === autopairs begin
 let g:AutoPairs={'(':')', '[':']', '{':'}',"'":"'",'"':'"'}
