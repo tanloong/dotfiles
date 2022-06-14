@@ -16,6 +16,7 @@ set ratios 1
 
 # bindings
 # unmap default y
+map U calcdirsize
 map <f-4> quit
 map y
 map d
