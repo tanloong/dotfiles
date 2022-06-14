@@ -54,12 +54,26 @@
             "type": "url",
             "url": "http://dir.scmor.com/"
          }, {
+            "date_added": "13288707660250108",
+            "guid": "20eb41ac-4883-41a6-b2df-3a173fd312db",
+            "id": "125",
+            "name": "谷歌学术镜像",
+            "type": "url",
+            "url": "https://ac.scmor.com/"
+         }, {
             "date_added": "13280142839639417",
             "guid": "474d226b-bd77-4f49-b972-491150caa314",
             "id": "9",
             "name": "GitHub镜像 1",
             "type": "url",
             "url": "https://hub.xn--gzu630h.xn--kpry57d/"
+         }, {
+            "date_added": "13296557871625834",
+            "guid": "b1f67271-d165-4a1d-a2ae-c48745c5d60e",
+            "id": "209",
+            "name": "GitHub镜像2",
+            "type": "url",
+            "url": "https://hub.xn--p8jhe.tw/"
          }, {
             "date_added": "13279566933789327",
             "guid": "4b521b84-896e-4321-9b04-a25c38c52dd6",
@@ -663,13 +677,6 @@
             "type": "url",
             "url": "https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.scatter.html?highlight=scatter#matplotlib.axes.Axes.scatter"
          }, {
-            "date_added": "13288707660250108",
-            "guid": "20eb41ac-4883-41a6-b2df-3a173fd312db",
-            "id": "125",
-            "name": "谷歌学术镜像",
-            "type": "url",
-            "url": "https://ac.scmor.com/"
-         }, {
             "date_added": "13288815565300523",
             "guid": "5492a5f1-d5b4-4b8e-b86a-dbe1ee2d0085",
             "id": "127",
@@ -701,14 +708,14 @@
             "date_added": "13289418011776149",
             "guid": "afd69814-6ea2-4448-bd04-950e97b4a2d3",
             "id": "136",
-            "name": "ColorPalettes.net",
+            "name": "color_ColorPalettes.net",
             "type": "url",
             "url": "https://colorpalettes.net/"
          }, {
             "date_added": "13289418695292434",
             "guid": "a960e8d1-f119-4391-9326-b9a876ae874c",
             "id": "137",
-            "name": "网页常用色彩",
+            "name": "color_网页常用色彩",
             "type": "url",
             "url": "http://tool.chinaz.com/tools/use"
          }, {
@@ -781,13 +788,6 @@
             "name": "The RASP System",
             "type": "url",
             "url": "http://users.sussex.ac.uk/~johnca/rasp/"
-         }, {
-            "date_added": "13296557871625834",
-            "guid": "b1f67271-d165-4a1d-a2ae-c48745c5d60e",
-            "id": "209",
-            "name": "GitHub镜像2",
-            "type": "url",
-            "url": "https://hub.xn--p8jhe.tw/"
          }, {
             "date_added": "13292359789104696",
             "guid": "fc484092-c3fc-46d9-910e-6a5029ed609e",
