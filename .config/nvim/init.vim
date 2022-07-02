@@ -68,6 +68,7 @@ nnoremap > >>
 nnoremap < <<
 nnoremap @@ @q
 nnoremap <c-p> :%s///g<Left><Left>
+vnoremap <c-p> :s///g<Left><Left>
 nnoremap <SPACE>a ggVG
 nnoremap <SPACE>s :w<CR>
 nnoremap <SPACE>w :x<CR>
@@ -125,7 +126,6 @@ nnoremap <SPACE><SPACE> <Esc>/<<>><CR>:set nohlsearch<CR>v3l<c-g>
 " inoremap {} {}<Esc>i
 " inoremap {{ {{{<CR>}}}<Esc>O
 
-vnoremap <c-p> :s///g<Left><Left><Left>
 " unmap function keys in selected mode
     sunmap L
     sunmap H
