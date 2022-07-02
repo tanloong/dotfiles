@@ -17,8 +17,6 @@ feh --bg-scale /home/tan/.local/share/wallpapers/brad-huchteman-stone-mountain.r
 flameshot & > /dev/null 2>&1
 # redshift & > /dev/null 2>&1
 
-[ -z $(ps -ef | grep -w goldendict | grep -v grep) ] && goldendict &
-
 # Host-specific configuration
 case $(hostnamectl hostname) in
     bike)
