@@ -1,0 +1,64 @@
+#!/usr/bin/env python3
+# -*- coding=utf-8 -*-
+
+import os
+import subprocess
+import sys
+
+from PyQt5.QtWidgets import (
+    QApplication,
+    QDesktopWidget,
+    QInputDialog,
+    QLineEdit,
+    QWidget,
+)
+import requests
+
+
+class App(QWidget):
+    def __init__(self):
+        super().__init__()
+        self.resize(250, 150)
+        self.setWindowTitle("The Title")
+        self.center()
+
+    def center(self):
+        screen = QDesktopWidget().screenGeometry()
+        size = self.geometry()
+        self.move(
+            (screen.width() - size.width()) // 2, (screen.height() - size.height()) // 2
+        )
+
+    def getText(self):
+        text, okPressed = QInputDialog.getText(
+            self, "Get text", "查哪个字？", QLineEdit.Normal, ""
+        )
+        if okPressed and text != "":
+            return text
+
+
+def get_char():
+    _ = QApplication(sys.argv)
+    ex = App()
+    char = ex.getText()
+    return char
+
+
+def main():
+    char = get_char()
+    dir_o = os.path.expanduser("~/.local/share/五笔拆字图解/")
+    if not os.path.exists(dir_o):
+        os.makedirs(dir_o)
+    fn_o = dir_o + "{}.gif".format(char)
+
+    if not os.path.exists(fn_o):
+        url = "https://www.52wubi.com/wbbmcx/tp/{}.gif".format(char)
+        res = requests.get(url)
+        if res.status_code == 200:
+            with open(fn_o, "wb") as f:
+                f.write(res.content)
+    subprocess.Popen(f"sxiv -s w {fn_o}", shell=True)  # sxiv 是一个图像查看器
+
+
+if __name__ == "__main__":
+    main()
