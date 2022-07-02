@@ -6,7 +6,7 @@
             "date_added": "13264790096000000",
             "guid": "1180ba48-5932-4f81-a123-d580947d98d8",
             "id": "2",
-            "name": "邮箱",
+            "name": "email_QQ",
             "type": "url",
             "url": "https://mail.qq.com/"
          }, {
@@ -45,7 +45,7 @@
             "id": "7",
             "name": "维基百科",
             "type": "url",
-            "url": "https://en.jinzhao.wiki/wiki/Main_Page"
+            "url": "https://en.wikipedia.ahmu.cf/wiki/Main_Page"
          }, {
             "date_added": "13279892076007261",
             "guid": "29f8854b-ff24-4254-9794-47b8cad3f0d1",
@@ -141,14 +141,14 @@
             "date_added": "13278047388561164",
             "guid": "20bd466b-0a69-47cc-99be-b9d9e7952f21",
             "id": "22",
-            "name": "海大邮箱",
+            "name": "email_海大",
             "type": "url",
             "url": "http://stu.ouc.edu.cn/coremail/"
          }, {
             "date_added": "13278047388561423",
             "guid": "85098674-e7a9-4b40-b2b8-ac596f656dae",
             "id": "23",
-            "name": "网易邮箱",
+            "name": "email_网易",
             "type": "url",
             "url": "https://mail.126.com/"
          }, {
