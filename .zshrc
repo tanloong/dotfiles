@@ -5,7 +5,7 @@ HISTFILE=~/.histfile
 HISTSIZE=1000
 SAVEHIST=1000
 HISTCONTROL=ignoreboth
-setopt autocd nomatch correct
+setopt nomatch correct
 unsetopt beep extendedglob notify
 bindkey -v
 
