@@ -295,6 +295,7 @@ let g:coc_global_extensions = [
             \ 'coc-actions',
             \ 'coc-git',
             \ 'coc-snippets',
+            \ 'coc-r-lsp',
             \ 'coc-dictionary']
             " \ 'coc-json',
             " \ 'coc-sh',
