@@ -1,38 +1,11 @@
 ###########################################################################
 #                            TextMate Snippets                            #
 ###########################################################################
-# --------------
-# Functions
-# --------------
-global !p
-def printf_expand_args(snip):
-	"""
-	This will look how many placeholders printf has and adds the separated commas
-	at the end.
-	"""
-	
-	# now add so many "," as much as the amount of placeholders
-	amount_placeholders = snip.tabstops[1].current_text.count("%")
-
-	output = ""
-
-	# Add the amount of tabstops
-	for placeholder_index in range(3, amount_placeholders + 3):
-		output += f", ${placeholder_index}"
-	
-	# convert them into tabstops
-	snip.expand_anon(output)
-
-endglobal
 
 # ==============
 # Snippets 
 # ==============
 priority -50
-
-snippet def "#define ..."
-#define $1
-endsnippet
 
 snippet #ifndef "#ifndef ... #define ... #endif"
 #ifndef ${1/([A-Za-z0-9_]+).*/$1/}
@@ -63,28 +36,6 @@ int main(int argc, char *argv[])
 }
 endsnippet
 
-snippet for "for loop (for)"
-for (${2:i} = 0; $2 < ${1:count}; ${3:++$2}) {
-	${VISUAL}$0
-}
-endsnippet
-
-snippet fori "for int loop (fori)"
-for (${4:int} ${2:i} = 0; $2 < ${1:count}; ${3:++$2}) {
-	${VISUAL}$0
-}
-endsnippet
-
-snippet fora "for-loop" b
-for (${1:var}; ${2:condition}; `!p
-if len(t[1]) > 0:
-	snip.rv = t[1].split('=')[0].split()[-1]
-`++) {
-	
-	$0
-} /* for ($1; $2; `!p if len(t[1]) > 0: snip.rv = t[1].split('=')[0].split()[-1]`++) */
-endsnippet
-
 snippet once "Include header once only guard"
 #ifndef ${1:`!p
 if not snip.c:
@@ -105,16 +56,6 @@ snippet fprintf "fprintf ..."
 fprintf(${1:stderr}, "${2:%s}\n"${2/([^%]|%%)*(%.)?.*/(?2:, :\);)/}$3${2/([^%]|%%)*(%.)?.*/(?2:\);)/}
 endsnippet
 
-snippet eli "else if .. (eli)"
-else if (${1:/* condition */}) {
-	${VISUAL}$0
-}
-endsnippet
-
-post_jump "printf_expand_args(snip)"
-snippet "printf" "printf with auto-expand args" wr
-printf("$1\n"$2);
-endsnippet
 
 snippet st "struct"
 struct ${1:`!p snip.rv = (snip.basename or "name") + "_t"`} {
@@ -133,23 +74,6 @@ snippet fund "function declaration" b
 ${1:void} ${2:function_name}($3);
 endsnippet
 
-global !p
-def split_line(text):
-	import textwrap
-	lines = textwrap.wrap(text, 78 - 19)
-	output = list()
-	for line in lines:
-		output.append('*' + ' '*19 + line)
-	snip_line = snip.tabstops[4].end[0]
-	snip.buffer.append(output, snip_line + 1)
-	del snip.buffer[snip_line]
-
-def get_args(arglist):
-	args = [arg.strip() for arg in arglist.split(',') if arg]
-	return args
-endglobal
-
-post_jump "if snip.tabstop == 0 : split_line(snip.tabstops[4].current_text)"
 snippet head "File Header" b
 /******************************************************************************
 * File:             `!p snip.rv = fn`
@@ -183,4 +107,62 @@ ${1}($2){
 	${0}
 }
 endsnippet
-# vim:ft=snippets:
+# custom snippets begin
+snippet '(\S+)\*\*([\d.]+)([^\d.])' "exponentiation, need #include <math.h>" wrA
+pow(`!p snip.rv=match.group(1)`,`!p snip.rv=match.group(2)`)`!p snip.rv=match.group(3)`$0
+endsnippet
+snippet '^inc' "include header files" rA
+#include $0
+endsnippet
+snippet '^def' "define constants" rA
+#define $0
+endsnippet
+snippet ,f "" wA
+= $0
+endsnippet
+snippet p "print something"
+printf("$1\n"$2);$0
+endsnippet
+snippet s "scanf something"
+scanf("$1",&$2);$0
+endsnippet
+snippet while "while statement"
+while (${1:condition}) {
+	$0
+}
+endsnippet
+snippet if "if statement"
+if (${1:condition}) {
+	$0
+}
+endsnippet
+snippet elif "else if"
+else if (${1:condition}) {
+	$0
+}
+endsnippet
+snippet else "else"
+else {
+	$0
+}
+endsnippet
+snippet for "for-loop"
+for (${1:var}; ${2:condition}; ${3:update}) {
+	$0
+}
+endsnippet
+snippet switch "switch statement"
+switch (${1:expression}) {
+case ${2:condition}:
+	${3:block}
+	break;
+${0:<<>>}
+}
+endsnippet
+snippet case "case in switch statement"
+case ${1:condition}:
+	${2:block}
+	break;
+${0:<<>>}
+endsnippet
+# custom snippets end
