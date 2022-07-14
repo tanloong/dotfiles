@@ -92,13 +92,20 @@ endsnippet
 # =====================
 priority 0
 
-snippet ,d "double quotes" wA
-"$1"$0
+snippet box "Box"
+`!p snip.rv = '┌' + '─' * (len(t[1]) + 2) + '┐'`
+│ $1 │
+`!p snip.rv = '└' + '─' * (len(t[1]) + 2) + '┘'`
+$0
 endsnippet
 
-snippet ,s "single quotes" wA
-'$1'$0
-endsnippet
+# snippet ,d "double quotes" wA
+# "$1"$0
+# endsnippet
+
+# snippet ,s "single quotes" wA
+# '$1'$0
+# endsnippet
 
 # ===================
 # Custom snippets end
