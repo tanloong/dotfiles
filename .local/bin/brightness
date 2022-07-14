@@ -18,5 +18,9 @@ maximum = int(open(max_brighness_path, 'r').read().strip())
 
 new = current + int(coefficient * maximum)
 if new >= 1 and new <= maximum:
-    new = str(new)
     os.system(f"echo {new} | sudo tee {brightness_path}")
+elif new < 1:
+    os.system(f"echo 1 | sudo tee {brightness_path}")
+else:
+    os.system(f"echo {maximum} | sudo tee {brightness_path}")
+    os.system(f"notify-send 'Max Brightness!'")
