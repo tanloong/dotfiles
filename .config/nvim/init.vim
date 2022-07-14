@@ -501,9 +501,12 @@ let g:vimtex_compiler_latexmk = {
     \   '-shell-escape',
     \ ],
     \}
+" :help vimtex-toc
 let g:vimtex_toc_config = {
-    \ 'fold_enable': 0,
-    \ 'split_pos': 'vert leftabove'
+    \ 'fold_enable': 1,
+    \ 'split_pos': 'vert leftabove',
+    \ 'indent_levels': 1,
+    \ 'show_numbers': 0,
     \ }
 nnoremap tt :VimtexTocToggle<CR><c-w>h
 " }}}
