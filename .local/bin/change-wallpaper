@@ -3,5 +3,10 @@ set -euo pipefail
 IFS=$'\n\t'
 
 wallpaper_path=~/.local/share/wallpapers/*
-dmenufont='Cousine Nerd Font Mono:pixelsize=20:antialias=true:autohint=true'
-ls $wallpaper_path | dmenu -i -l 5 -fn $dmenufont | xargs -I {} feh --bg-scale {}
+case $XDG_SESSION_TYPE in
+    'wayland') 
+        ls $wallpaper_path | wofi --dmenu | xargs -I {} swaybg --image {} --mode fill;;
+    *)
+        dmenufont='Cousine Nerd Font Mono:pixelsize=20:antialias=true:autohint=true'
+        ls $wallpaper_path | dmenu -i -l 5 -fn $dmenufont | xargs -I {} feh --bg-scale {};;
+esac
