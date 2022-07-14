@@ -7,6 +7,7 @@ SAVEHIST=1000
 HISTCONTROL=ignoreboth
 setopt nomatch correct
 unsetopt beep extendedglob notify
+# vi mode
 bindkey -v
 
 #############
@@ -19,17 +20,30 @@ autoload -U zmv
 autoload -Uz compinit
 compinit
 
+# comment lines beginning with `#`
+# remember to put "ZSH_HIGHLIGHT_STYLES[comment]='none'" in zsh-syntax-highlighting.zsh
+setopt interactive_comments
+
+# 不保存重复的历史记录项
+setopt hist_save_no_dups
+setopt hist_ignore_dups
+
+# ^Xe 用$EDITOR编辑命令
+autoload -Uz edit-command-line
+zle -N edit-command-line
+bindkey '^E' edit-command-line
+
 # python-virtualenvwrapper
 source /usr/bin/virtualenvwrapper_lazy.sh
 
 # aliases
-    source $HOME/.config/aliasrc
+source $HOME/.config/aliasrc
 
 # functions
-    fpath=($HOME/.local/share/zsh_functions/ $fpath)
+fpath=($HOME/.local/share/zsh_functions/ $fpath)
 
 # source icons for lf
-    [ -f ~/.local/share/icons ] && source ~/.local/share/icons
+[ -f ~/.local/share/lf-icons ] && source ~/.local/share/lf-icons
 
 # display the last folder of the current working directory, but shorten the homedir to ~
 PS1='%F{green}%n%f:%B%F{#005fff}%1~%f%b$ '
@@ -41,7 +55,7 @@ PS1='%F{green}%n%f:%B%F{#005fff}%1~%f%b$ '
     source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # Remove mode switching delay.
-    KEYTIMEOUT=1
+KEYTIMEOUT=1
 
 # Change cursor shape for different vi modes.
 function zle-keymap-select {
