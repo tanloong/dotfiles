@@ -292,11 +292,12 @@ let g:coc_global_extensions = [
             " \ 'coc-clangd',
 " }}}
 
-" ===
-" === coc-texlab
-" ===
+" === coc-texlab begin
+" {{{
 " autocmd FileType tex nnoremap <LEADER>b :CocCommand latex.Build<CR>
 " autocmd BufWritePost *tex :CocCommand latex.Build
+" }}}
+" === coc-texlab end
 
 " === coc-snippets begin
 " {{{
@@ -322,9 +323,8 @@ endfunction
 " }}}
 " === coc-snippets end
 
-" ===
-" === ultisnips
-" ===
+" === ultisnips begin
+" {{{
 " Trigger configuration. You need to change this to something other than <tab> if you use one of the following:
 " - https://github.com/Valloric/YouCompleteMe
 " - https://github.com/nvim-lua/completion-nvim
@@ -334,8 +334,11 @@ endfunction
 " let g:UltiSnipsSnippetDirectories=["ultisnips"]
 " " If you want :UltiSnipsEdit to split your window.
 " let g:UltiSnipsEditSplit="vertical"
+" }}}
+" === ultisnips end
 
 " === indentLine begin
+" {{{
 " indentLine will overwrite 'conceal' color with grey by default.
 let g:indentLine_setColors = 1
 let g:indentLine_char = '¦'
@@ -343,9 +346,11 @@ let g:indentLine_char = '¦'
 ":IndentLinesToggle toggles lines on and off.
 " let g:indentLine_conceallevel=0
 let g:indentLine_concealcursor=''
+" }}}
 " === indentLine begin
 
 " === vim-codefmt begin
+" {{{
 " augroup autoformat_settings
 "   autocmd FileType bzl AutoFormatBuffer buildifier
 "   autocmd FileType c,cpp,proto,javascript,arduino AutoFormatBuffer clang-format
@@ -363,6 +368,7 @@ let g:indentLine_concealcursor=''
 "     autocmd FileType python nnoremap <LEADER>b :FormatCode<Space>black<CR>:w<CR>
 "     autocmd FileType python nnoremap <LEADER>l :FormatLine<Space>black<CR>:w<CR>
 " augroup END
+" }}}
 " === vim-codefmt end
 
 " === vim-markdown-toc begin
