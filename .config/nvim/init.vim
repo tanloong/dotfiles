@@ -117,7 +117,8 @@ tnoremap <Esc> <C-\><C-n>
 
 " Spell checking on the fly
 inoremap <c-]> <c-g>u<Esc>[s1z=`]a<c-g>u
-inoremap <c-l> <Esc>la
+inoremap jk <right>
+inoremap kj <left>
 nnoremap <SPACE><SPACE> <Esc>/<<>><CR>:set nohlsearch<CR>v3l<c-g>
 
 " unmap function keys in selected mode
@@ -302,9 +303,9 @@ let g:coc_global_extensions = [
 " Use <C-o> for trigger snippet expand.
 imap <c-o> <Plug>(coc-snippets-expand)
 " Use <C-j> for jump to next placeholder, it's default of coc.nvim
-let g:coc_snippet_next = '<c-j>'
+let g:coc_snippet_next = 'jk'
 " Use <C-k> for jump to previous placeholder, it's default of coc.nvim
-let g:coc_snippet_prev = '<c-k>'
+let g:coc_snippet_prev = 'kj'
 
 " Use tab for trigger completion with characters ahead and navigate.
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
