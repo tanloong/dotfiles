@@ -119,12 +119,6 @@ tnoremap <Esc> <C-\><C-n>
 inoremap <c-]> <c-g>u<Esc>[s1z=`]a<c-g>u
 inoremap <c-l> <Esc>la
 nnoremap <SPACE><SPACE> <Esc>/<<>><CR>:set nohlsearch<CR>v3l<c-g>
-"inoremap < <><ESC>i
-"inoremap ( ()<ESC>i
-" inoremap () ()<Esc>i
-" inoremap [ []<ESC>i
-" inoremap {} {}<Esc>i
-" inoremap {{ {{{<CR>}}}<Esc>O
 
 " unmap function keys in selected mode
     sunmap L
@@ -142,13 +136,6 @@ autocmd BufLeave term://* stopinsert | call Restore() | :normal G | " Output is 
 
 " set filetype to 'tex' in empty latex file
     let g:tex_flavor='latex'
-
-
-autocmd Filetype tex nnoremap <F5> <Plug>(vimtex-compile)
-autocmd Filetype perl inoremap ,2 @
-autocmd Filetype perl inoremap ,4 $
-autocmd Filetype awk inoremap ,4 $
-autocmd Filetype go inoremap } {<CR>}<Esc>O
 
 " Runs a script that cleans out tex build files whenever I close out of a .tex file.
     autocmd VimLeave *.tex !texclear %
