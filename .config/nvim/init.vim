@@ -158,63 +158,6 @@ autocmd Filetype go inoremap } {<CR>}<Esc>O
     " autocmd BufWritePre * %s/\n\+\%$//e
     " autocmd BufWritePre * cal cursor(currPos[1], currPos[2])
 
-function! Maximize()
-" {{{
-    let t:maximizer_sizes = { 'before': winrestcmd() }
-    vert resize | resize
-    let t:maximizer_sizes.after = winrestcmd()
-endfunction
-function! Restore()
-    if exists('t:maximizer_sizes')
-        silent! exe t:maximizer_sizes.before
-        if t:maximizer_sizes.before != winrestcmd()
-            wincmd =
-        endif
-        unlet t:maximizer_sizes
-    end
-endfunction
-
-let g:term_buf_nr = -1
-let g:my_cnsl_names = {
-            \ 'python':'ipython',
-            \ 'r':'radian'
-            \ }
-function! ToggleConsole()
-    " needs autocmd TermClose * let g:term_buf_nr = -1
-    " autocmd BufEnter term://* startinsert | call Maximize()
-    " autocmd BufLeave term://* stopinsert | call Restore() | :normal G
-    if g:term_buf_nr == -1
-        let l:cnsl_name = g:my_cnsl_names[&filetype]
-        let l:command = 'terminal' . printf(' %s', l:cnsl_name)
-        set splitbelow | split | execute l:command
-        let g:term_buf_nr = bufnr("$") | " Terminal buff name
-        let g:slime_last_channel = &channel
-        setlocal statusline=channel:\ %{&channel}
-        wincmd p | "go back to previous windows
-        let b:slime_config = {'jobid': g:slime_last_channel}
-        resize 95% | " Small terminal height
-    else
-        execute "bd! " . g:term_buf_nr | " buffer delete
-    endif
-endfunction
-
-function! ToggleTerminal()
-
-    " needs autocmd TermClose * let g:term_buf_nr = -1
-    " autocmd BufEnter term://* startinsert | call Maximize()
-    " autocmd BufLeave term://* stopinsert | call Restore() | :normal G
-    if g:term_buf_nr == -1
-        " set nosplitright | vsplit | term
-        set splitbelow | split | term
-        let g:term_buf_nr = bufnr("$") | " Terminal buff name
-        resize 5% | " Small terminal height
-        setlocal statusline=channel:\ %{&channel}
-        startinsert
-    else
-        execute "bd! " . g:term_buf_nr
-    endif
-endfunction
-" }}}
 
 " {{{
 autocmd BufNewFile *.c   0r ~/.config/nvim/skeleton/skeleton.c      | :normal G 
@@ -439,13 +382,70 @@ let g:vmt_dont_insert_fence = 0
 " === vim-markdown-toc end
 
 " === vim-slime begin
-" let g:slime_target = "neovim"
-" let g:slime_python_ipython = 1
-" let g:slime_no_mappings = 1
-" xmap <F5> <Plug>SlimeRegionSend
-" nmap <F5> :SlimeSendCurrentLine<CR>
-" nmap s<F5> <Plug>SlimeParagraphSend
-" nmap <c-c>v <Plug>SlimeConfig
+" {{{
+let g:slime_target = "x11"
+let g:slime_no_mappings = 1
+xmap <F5> <Plug>SlimeRegionSend
+nmap <F5> :SlimeSendCurrentLine<CR>
+nmap <c-c>v <Plug>SlimeConfig
+let g:slime_preserve_curpos = 0
+nmap s<F5> <Plug>SlimeSendCell
+" function! Maximize()
+"     let t:maximizer_sizes = { 'before': winrestcmd() }
+"     vert resize | resize
+"     let t:maximizer_sizes.after = winrestcmd()
+" endfunction
+" function! Restore()
+"     if exists('t:maximizer_sizes')
+"         silent! exe t:maximizer_sizes.before
+"         if t:maximizer_sizes.before != winrestcmd()
+"             wincmd =
+"         endif
+"         unlet t:maximizer_sizes
+"     end
+" endfunction
+
+" let g:term_buf_nr = -1
+" let g:my_cnsl_names = {
+"             \ 'python':'ipython',
+"             \ 'r':'radian'
+"             \ }
+" function! ToggleConsole()
+"     " needs autocmd TermClose * let g:term_buf_nr = -1
+"     " autocmd BufEnter term://* startinsert | call Maximize()
+"     " autocmd BufLeave term://* stopinsert | call Restore() | :normal G
+"     if g:term_buf_nr == -1
+"         let l:cnsl_name = g:my_cnsl_names[&filetype]
+"         let l:command = 'terminal' . printf(' %s', l:cnsl_name)
+"         set splitbelow | split | execute l:command
+"         let g:term_buf_nr = bufnr("$") | " Terminal buff name
+"         let g:slime_last_channel = &channel
+"         setlocal statusline=channel:\ %{&channel}
+"         wincmd p | "go back to previous windows
+"         let b:slime_config = {'jobid': g:slime_last_channel}
+"         resize 95% | " Small terminal height
+"     else
+"         execute "bd! " . g:term_buf_nr | " buffer delete
+"     endif
+" endfunction
+
+" function! ToggleTerminal()
+
+"     " needs autocmd TermClose * let g:term_buf_nr = -1
+"     " autocmd BufEnter term://* startinsert | call Maximize()
+"     " autocmd BufLeave term://* stopinsert | call Restore() | :normal G
+"     if g:term_buf_nr == -1
+"         " set nosplitright | vsplit | term
+"         set splitbelow | split | term
+"         let g:term_buf_nr = bufnr("$") | " Terminal buff name
+"         resize 5% | " Small terminal height
+"         setlocal statusline=channel:\ %{&channel}
+"         startinsert
+"     else
+"         execute "bd! " . g:term_buf_nr
+"     endif
+" endfunction
+" }}}
 " === vim-slime end
 
 " === AutoSave begin
