@@ -33,7 +33,7 @@ map <Right> scroll full-down
 map ` mark_evaluate
 map D toggle_page_mode
 map p print
-
+map <F4> quit
 
 # set statusbar-h-padding 0
 # set statusbar-v-padding 0
