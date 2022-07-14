@@ -12,7 +12,7 @@ set sandbox none
 set statusbar-basename true
 set scroll-step 40
 set zoom-step 10
-set incremental-search true
+set incremental-search false
 
 map b toggle_statusbar
 map r reload
