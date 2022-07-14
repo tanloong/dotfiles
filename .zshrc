@@ -112,4 +112,13 @@ precmd_functions+=(_fix_cursor)
     bindkey '^[[P' delete-char
     bindkey -M vicmd '^[[P' vi-delete-char
     bindkey -M visual '^[[P' vi-delete
+
+# https://codeberg.org/dnkl/foot/wiki#user-content-spawning-new-terminal-instances-in-the-current-working-directory
+function osc7 {
+    setopt localoptions extendedglob
+    input=( ${(s::)PWD} )
+    uri=${(j::)input/(#b)([^A-Za-z0-9_.\!~*\'\(\)-\/])/%${(l:2::0:)$(([##16]#match))}}
+    print -n "\e]7;file://${HOSTNAME}${uri}\e\\"
+}
+add-zsh-hook -Uz chpwd osc7
 stty -ixon
