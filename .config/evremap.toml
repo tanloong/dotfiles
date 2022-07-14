@@ -1,0 +1,56 @@
+# This config file is the one that @wez uses on a PixelBook Go
+
+device_name = "AT Translated Set 2 keyboard"
+
+# Hold capslock for ctrl, tap for esc
+# [[dual_role]]
+# input = "KEY_CAPSLOCK"
+# hold = ["KEY_LEFTCTRL"]
+# tap = ["KEY_ESC"]
+
+# Function keys are remapped to alternate functions by
+# default, so arrange for ALT-FX to produce FX instead.
+# First, let's preserve the ability to switch virtual
+# terminal consoles for the first three slots
+
+# [[remap]]
+# input = ["KEY_BACKSLASH"]
+# output = ["KEY_BACKSLASH"]
+
+[[remap]]
+input = ["KEY_RIGHTSHIFT"]
+output = ["KEY_LEFTSHIFT", "KEY_BACKSLASH"]
+
+[[remap]]
+input = ["KEY_COMPOSE"]
+output = ["KEY_LEFTCTRL"]
+
+[[remap]]
+input = ["KEY_CAPSLOCK"]
+output = ["KEY_LEFTSHIFT", "KEY_GRAVE"]
+
+# [[remap]]
+# input = ["KEY_GRAVE"]
+# output = ["KEY_GRAVE"]
+
+[[remap]]
+input = ["KEY_HOME"]
+output = ["KEY_BRIGHTNESSUP"]
+
+[[remap]]
+input = ["KEY_END"]
+output = ["KEY_BRIGHTNESSDOWN"]
+
+[[remap]]
+input = ["KEY_F1"]
+output = ["KEY_MUTE"]
+[[remap]]
+input = ["KEY_F2"]
+output = ["KEY_VOLUMEDOWN"]
+[[remap]]
+input = ["KEY_F3"]
+output = ["KEY_VOLUMEUP"]
+[[dual_role]]
+input = "KEY_LEFTALT"
+hold = ["KEY_LEFTALT"]
+tap = ["KEY_LEFTALT"]
