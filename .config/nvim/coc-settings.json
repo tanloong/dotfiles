@@ -5,7 +5,7 @@
     "coc.preferences.formatOnSaveFiletypes": [
         "json"
     ],
-    "diagnostic.enable": false,
+    "diagnostic.enable": true,
 	"diagnostic.errorSign": "\uf467",
 	"diagnostic.warningSign": "\uf071",
 	"diagnostic.infoSign": "\uf129",
@@ -16,7 +16,7 @@
     "diagnostic.virtualText": true,
     "diagnostic.virtualTextPrefix": " ❯❯❯ ",
     "diagnostic.enableMessage": "never",
-    "diagnostic.messageTarget": "float",
+    "diagnostic.messageTarget": "echo",
     "languageserver": {
         "golang": {
             "command": "gopls",
