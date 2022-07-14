@@ -292,11 +292,11 @@ xmap s <Plug>VSurround
 
 let g:coc_global_extensions = [
             \ 'coc-pyright',
-            \ 'coc-json',
             \ 'coc-actions',
             \ 'coc-git',
             \ 'coc-snippets',
             \ 'coc-dictionary']
+            " \ 'coc-json',
             " \ 'coc-sh',
             " \ 'coc-r-lsp',
             " \ 'coc-texlab',
