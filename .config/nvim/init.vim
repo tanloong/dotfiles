@@ -384,7 +384,7 @@ xmap <F5> <Plug>SlimeRegionSend
 nmap <F5> :SlimeSendCurrentLine<CR>
 nmap <c-c>v <Plug>SlimeConfig
 let g:slime_preserve_curpos = 0
-nmap s<F5> <Plug>SlimeSendCell
+nmap ,<F5> <Plug>SlimeSendCell
 " function! Maximize()
 "     let t:maximizer_sizes = { 'before': winrestcmd() }
 "     vert resize | resize
