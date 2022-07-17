@@ -3,3 +3,4 @@ R_PROFILE_USER = ${HOME}/.Rprofile
 R_LIBS_USER = ${HOME}/.local/lib/r/
 # R_HISTFILE = /path/to/your/filename.Rhistory # Do not forget to append the .Rhistory
 MYSQL_HOME = /var/lib/mysql
+PAGER = bat
