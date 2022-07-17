@@ -35,5 +35,6 @@ fcitx5 & > /dev/null 2>&1
 
 killall st > /dev/null 2>&1 || :
 setsid -f st
+goldendict &
 exec dwm
 # exec i3
