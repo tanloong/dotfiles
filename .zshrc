@@ -42,9 +42,6 @@ source $HOME/.config/aliasrc
 # functions
 fpath=($HOME/.local/share/zsh_functions/ $fpath)
 
-# source icons for lf
-[ -f ~/.local/share/lf-icons ] && source ~/.local/share/lf-icons
-
 # display the last folder of the current working directory, but shorten the homedir to ~
 PS1='%F{green}%n%f:%B%F{#005fff}%1~%f%b$ '
 
