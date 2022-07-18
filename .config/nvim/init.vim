@@ -256,27 +256,48 @@ xmap s <Plug>VSurround
 " {{{
 " Use `[g` and `]g` to navigate diagnostics
 " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
-    nmap <silent> [g <Plug>(coc-diagnostic-prev)
-    nmap <silent> ]g <Plug>(coc-diagnostic-next)
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
 " GoTo code navigation.
-    nmap <silent> gd <Plug>(coc-definition)
-    nmap <silent> gy <Plug>(coc-type-definition)
-    nmap <silent> gi <Plug>(coc-implementation)
-    nmap <silent> gr <Plug>(coc-references)
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
 " Symbol renaming.
-    nmap <leader>rn <Plug>(coc-rename)
+nmap <leader>rn <Plug>(coc-rename)
 " Format selected lines
-    xmap <leader>f  <Plug>(coc-format-selected)
-    nmap <leader>f  <Plug>(coc-format-selected)
+xmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
 " Format current buffer
-    nmap <F9>  <Plug>(coc-format)
+nmap <F9>  <Plug>(coc-format)
 " Applying codeAction to the selected region.
 " Example: `<leader>aap` for current paragraph
-    xmap <leader>a  <Plug>(coc-codeaction-selected)
-    nmap <leader>a  <Plug>(coc-codeaction-selected)
-" use <cr> to confirm completion
+xmap <leader>a  <Plug>(coc-codeaction-selected)
+nmap <leader>a  <Plug>(coc-codeaction-selected)
+" Use <cr> to confirm completion
 " <cr> could be remapped by other vim plugins, try `:verbose imap <CR>`
-    inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
+inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
+" Use to show documentation in preview window.
+nnoremap <silent> S :call ShowDocumentation()<CR>
+function! ShowDocumentation()
+    if CocAction('hasProvider','hover')
+        call CocActionAsync('doHover')
+    else
+        call feedkeys('S','in')
+    endif
+endfunction
+
+nmap <leader>qf  <Plug>(coc-fix-current)
+
+" Remap <C-f> and <C-b> for scroll float windows/popups.
+if has('nvim-0.4.0') || has('patch-8.2.0750')
+  nnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+  nnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
+  inoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
+  inoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
+  vnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+  vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
+endif
 
 let g:coc_global_extensions = [
             \ 'coc-pyright',
@@ -291,6 +312,7 @@ let g:coc_global_extensions = [
             " \ 'coc-texlab',
             " \ 'coc-clangd',
 " }}}
+" === coc.nvim end
 
 " === coc-texlab begin
 " {{{
