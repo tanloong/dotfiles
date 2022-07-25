@@ -11,7 +11,7 @@ set shiftwidth=4
 set updatetime=100
 set signcolumn=number
 set fdm=marker
-set mouse=a | "允许用鼠标操作
+set mouse= | "不允许用鼠标操作
 set nrformats= | "把所有数字当成 10 进制，不管是不是以 0 开头
 set scrolloff=5 | "光标垂直移动时保持顶端/底端显示5行
 set ignorecase
