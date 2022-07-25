@@ -117,6 +117,7 @@ A,deskreen,"Turns any device with a web browser to a second screen for your comp
 A,xsv,"index, slice, analyze, split, and join CSV files"
 ,icalingua++,"A third-party QQ client"
 ,xdotool,"Command-line X11 automation tool, for vim-slime plugin"
+,castget,"download podcasts"
 A,wechat-uos,"UOS专业版微信 (迫真魔改版)"
 A,nodejs-xml2json," Converts XML to JSON"
 A,libxft-bgra-git,"enable color emoji in suckless software without crashes"
