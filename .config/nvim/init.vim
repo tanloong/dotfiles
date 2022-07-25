@@ -62,8 +62,8 @@ nnoremap R :write<CR>:edit!<CR>
 nnoremap M J
 nnoremap g9 g$
 nnoremap ga :tabe<CR>:term lazygit<CR>i
-nnoremap sp :call ToggleConsole()<CR>
-nnoremap st :call ToggleTerminal()<CR>
+" nnoremap sp :call ToggleConsole()<CR>
+" nnoremap st :call ToggleTerminal()<CR>
 nnoremap > >>
 nnoremap < <<
 nnoremap @@ @q
