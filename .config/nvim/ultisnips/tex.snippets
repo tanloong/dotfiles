@@ -225,8 +225,12 @@ snippet ,p "\citep{} (\usepackage{natbib})" bwA
 \\citep{${1:${VISUAL}}}$0
 endsnippet
 
-snippet ,, "\{}" bwA
-\\$1{$2}
+snippet ,, "\..." bwA
+\\$0
+endsnippet
+
+snippet "(\\[a-zA-Z]+),," "\command{...}" rA
+`!p snip.rv = match.group(1)`{$1}$0
 endsnippet
 
 snippet "be(gin)?( (\S+))?" "begin{} / end{}" br
