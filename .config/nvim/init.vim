@@ -78,7 +78,7 @@ nnoremap <SPACE><CR> :nohlsearch<CR>
 " nnoremap <LEADER>c :CocCommand<SPACE>
 " nnoremap <LEADER>l :CocList<SPACE>
 nnoremap <F4> :q!<CR>
-nnoremap <leader>s :source $MYVIMRC<CR>
+nnoremap S :source $MYVIMRC<CR>
 
 nnoremap sl :set splitright<CR>:vsplit<CR>
 nnoremap sh :set nosplitright<CR>:vsplit<CR>
@@ -278,12 +278,12 @@ nmap <leader>a  <Plug>(coc-codeaction-selected)
 " <cr> could be remapped by other vim plugins, try `:verbose imap <CR>`
 inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
 " Use to show documentation in preview window.
-nnoremap <silent> S :call ShowDocumentation()<CR>
+nnoremap <silent> <leader>s :call ShowDocumentation()<CR>
 function! ShowDocumentation()
     if CocAction('hasProvider','hover')
         call CocActionAsync('doHover')
     else
-        call feedkeys('S','in')
+        call feedkeys('','in')
     endif
 endfunction
 
