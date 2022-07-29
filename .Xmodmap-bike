@@ -1,0 +1,19 @@
+clear lock
+clear shift
+clear Control
+keycode  37 = Control_L Control_L Control_L
+keycode  49 = asciitilde grave asciitilde grave
+keycode  51 = bar backslash bar backslash
+keycode  62 = backslash backslash backslash
+keycode  66 = grave grave grave
+keycode  67 = XF86AudioMute XF86AudioMute XF86AudioMute XF86AudioMute XF86AudioMute XF86AudioMute XF86AudioMute
+keycode  68 = XF86AudioLowerVolume XF86AudioLowerVolume XF86AudioLowerVolume XF86AudioLowerVolume XF86AudioLowerVolume XF86AudioLowerVolume XF86AudioLowerVolume
+keycode  69 = XF86AudioRaiseVolume XF86AudioRaiseVolume XF86AudioRaiseVolume XF86AudioRaiseVolume XF86AudioRaiseVolume XF86AudioRaiseVolume XF86AudioRaiseVolume
+keycode 105 = Menu NoSymbol Menu
+keycode 110 = XF86MonBrightnessUp NoSymbol XF86MonBrightnessUp
+keycode 115 = XF86MonBrightnessDown NoSymbol XF86MonBrightnessDown
+keycode 135 = Control_R Control_R Control_R Control_R
+keycode 252 =
+keycode 253 =
+add shift = Shift_L
+add Control = Control_L Control_R
