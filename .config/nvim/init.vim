@@ -164,13 +164,6 @@ autocmd BufNewFile *.pl  0r ~/.config/nvim/skeleton/skeleton.perl   | :normal G
 " === vim-plug begin
 " {{{
 call plug#begin('~/.config/nvim/plugged')
-    " Plug 'https://gitee.com/bon-ami/vim-lsp.git'
-    " Plug 'https://gitee.com/cocosleep/vim-latex-live-preview.git', { 'for': 'tex' }
-    " Plug 'https://gitee.com/cocosleep/vim-lsp-settings.git'
-    " Plug 'https://gitee.com/mirrors_matklad/nvim-lsp.git'
-    " Plug 'https://gitee.com/mirrors_mattn/asyncomplete-lsp.vim.git'
-    " Plug 'https://gitee.com/mirrors_mattn/asyncomplete.vim.git'
-    " Plug 'https://gitee.com/tanloong/async.vim.git'
     " Plug 'https://gitee.com/yaowenqiang/ultisnips.git'
     " Plug 'https://gitee.com/yaozhijin/vim-snippets.git'
     Plug 'https://gitee.com/zgpio/coc.nvim.git', {'branch':'release'}
@@ -183,10 +176,6 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'https://gitee.com/zerosharp/indentLine.git'
     Plug 'https://gitee.com/zgpio/wildfire.vim.git'
     Plug 'https://gitee.com/zgpio/vim-fugitive.git'
-    " auto format
-    " Plug 'https://gitee.com/bidaya0/vim-maktaba.git'
-    " Plug 'https://gitee.com/bidaya0/vim-codefmt.git'
-    " Plug 'https://gitee.com/bidaya0/vim-glaive.git'
     " auto pair
     Plug 'https://gitee.com/yaozhijin/auto-pairs.git'
     Plug 'https://gitee.com/oy456xd/vim-visual-multi.git'
