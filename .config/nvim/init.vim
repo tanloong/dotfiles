@@ -29,6 +29,8 @@ set matchpairs=<:>,(:),{:},[:]
 set path+=**
 set spelllang=en,cjk
 set complete=.,w,b,u,t,i,k
+set guicursor=i:ver1,a:blinkon1 
+" enable vertical cursor when in insert mode; enable cursor blinking
 exec "nohlsearch"
 
 
