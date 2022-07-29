@@ -32,6 +32,7 @@ set complete=.,w,b,u,t,i,k
 set guicursor=i:ver1,a:blinkon0
 " enable vertical cursor when in insert mode; disable cursor blinking
 exec "nohlsearch"
+highlight MatchParen cterm=none ctermbg=white ctermfg=black
 
 
 let g:netrw_winsize = 30 | " Change the size of the Netrw window when it creates a split.
