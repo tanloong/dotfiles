@@ -1,0 +1,26 @@
+#!/usr/bin/env python3
+# -*- coding=utf-8 -*-
+
+"""
+Convert between hexadecimal and binary patterns
+"""
+
+import sys
+
+def hexadecimal2binary(s: str):
+    num = int(s,16)
+    return bin(num)[2:]
+
+def binary2hexadecimal(s: str):
+    num = int(s,2)
+    return hex(num)
+
+def main():
+    arg = sys.argv[1]
+    if arg[:2] in ["0x", "0X"]:
+        print(hexadecimal2binary(arg))
+    else:
+        print(binary2hexadecimal(arg))
+
+if __name__ == "__main__":
+    main()
