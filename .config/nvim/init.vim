@@ -170,7 +170,7 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'https://gitee.com/linuor/vim-surround.git'
     Plug 'https://gitee.com/yanzhongqian/nerdcommenter.git'
     " markdown
-    Plug 'https://gitee.com/BIT_chenxinliang/markdown-preview.nvim.git', { 'do': 'cd app && yarn install'  }
+    Plug 'https://gitee.com/tanloong/markdown-preview.nvim.git', { 'do': 'cd app && yarn install'  }
     Plug 'https://gitee.com/lovealone72/vim-markdown-toc.git', {'for': ['markdown']}
     Plug 'https://gitee.com/yaozhijin/vim-table-mode.git', { 'for': ['markdown']}
     Plug 'https://gitee.com/zerosharp/indentLine.git'
@@ -180,12 +180,12 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'https://gitee.com/yaozhijin/auto-pairs.git'
     Plug 'https://gitee.com/oy456xd/vim-visual-multi.git'
     " vim-slime
-    Plug 'https://gitee.com/mirrors_jpalardy/vim-slime.git'
+    Plug 'https://gitee.com/tanloong/vim-slime'
     " :help AutoSave.nvim, automatically saving your work whenever you make changes to it
     " :ASToggle, :ASOn, :ASOff
     Plug 'https://gitee.com/giteeguangwei/AutoSave.nvim.git'
     " VimTex
-    Plug 'https://gitee.com/mirrors/vimtex.git'
+    Plug 'https://gitee.com/mirrors/vimtex.git', {'for': ['tex']}
 call plug#end() 
 " }}}
 " === vim-plug end
