@@ -131,3 +131,4 @@ G,vimium,https://gitee.com/tanloong/vimium.git
 P,autopep8,"Python code formatter"
 P,black,"Uncompromising Python code fommatter"
 G,vibreoffice,https://hub.xn--p8jhe.tw/seanyeh/vibreoffice
+,tealdeer,"A fast tldr client in Rust"
