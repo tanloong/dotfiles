@@ -155,7 +155,7 @@ autocmd BufLeave term://* stopinsert | call Restore() | :normal G | " Output is 
 autocmd BufNewFile *.c   0r ~/.config/nvim/skeleton/skeleton.c      | :normal G 
 autocmd BufNewFile *.py	 0r ~/.config/nvim/skeleton/skeleton.python | :normal G
 autocmd BufNewFile *.sh	 0r ~/.config/nvim/skeleton/skeleton.sh     | :normal G
-autocmd BufNewFile *.tex 0r ~/.config/nvim/skeleton/skeleton.tex    | :normal G
+autocmd BufNewFile *.tex 0r ~/.config/nvim/skeleton/skeleton.tex    | :startinsert!
 autocmd BufNewFile *.awk 0r ~/.config/nvim/skeleton/skeleton.awk    | :normal G
 autocmd BufNewFile *.r   0r ~/.config/nvim/skeleton/skeleton.r      | :normal G
 autocmd BufNewFile *.rmd 0r ~/.config/nvim/skeleton/skeleton.rmd    | :normal G
