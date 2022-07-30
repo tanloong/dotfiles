@@ -461,6 +461,19 @@ let g:vimtex_toc_config = {
     \ 'indent_levels': 1,
     \ 'show_numbers': 0,
     \ }
+let g:vimtex_syntax_conceal = {
+    \ 'accents': 1,
+    \ 'cites': 1,
+    \ 'fancy': 1,
+    \ 'greek': 1,
+    \ 'math_bounds': 0,
+    \ 'math_delimiters': 1,
+    \ 'math_fracs': 1,
+    \ 'math_super_sub': 1,
+    \ 'math_symbols': 1,
+    \ 'sections': 0,
+    \ 'styles': 1,
+    \}
 nnoremap tt :VimtexTocToggle<CR><c-w>h
 " }}}
 " === VimTeX end
