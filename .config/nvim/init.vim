@@ -31,7 +31,7 @@ set spelllang=en,cjk
 set complete=.,w,b,u,t,i,k
 set guicursor=i-v:ver1,a:blinkon0
 exec "nohlsearch"
-highlight MatchParen cterm=none ctermbg=white ctermfg=black
+highlight MatchParen cterm=none ctermbg=none ctermfg=green
 
 
 let g:netrw_winsize = 30 | " Change the size of the Netrw window when it creates a split.
