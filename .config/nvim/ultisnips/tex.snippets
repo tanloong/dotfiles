@@ -225,12 +225,16 @@ snippet ,p "\citep{} (\usepackage{natbib})" bwA
 \\citep{${1:${VISUAL}}}$0
 endsnippet
 
-snippet ,, "\..." bwA
-\\$0
+snippet "(^|\s+),," "\command" irA
+`!p snip.rv = match.group(1)`\\$0
 endsnippet
 
-snippet "(\\[a-zA-Z]+),," "\command{...}" rA
+snippet "(\\[^{\s]+),," "\command{...}" rA
 `!p snip.rv = match.group(1)`{$1}$0
+endsnippet
+
+snippet "(\\[^{\s]+)(\{[^}]+\}),," "\command[...]{...}" rA
+`!p snip.rv = match.group(1)`[$1]`!p snip.rv = match.group(2)`$0
 endsnippet
 
 snippet "be(gin)?( (\S+))?" "begin{} / end{}" br
