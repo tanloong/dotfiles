@@ -8,20 +8,18 @@ set info size:time
 set hiddenfiles '.*:*.aux:*.nav:*.toc:*.out:*.bbl:*.blg:*.snm:*.log:*.synctex.gz:*(busy):__pycache__'
 $lf -remote "send $id set previewer ${XDG_CONFIG_HOME:-$HOME/.config}/lf/previewer.sh"
 set incfilter true # filter 时跟随按键来动态显示
-###############
+
 # single column
-###############
 set nopreview
 set ratios 1
 
 # bindings
-# unmap default y
-map U calcdirsize
-map <f-4> quit
 map y
 map d
 map c
 map t
+map U calcdirsize
+map <f-4> quit
 map K push 5k
 map J push 5j
 map dd cut
@@ -48,7 +46,6 @@ map gcr cd ~/.config/ranger
 map gcl cd ~/.config/lf
 map gcv cd ~/.config/nvim
 map gcz cd ~/.config/zathura
-map gd cd ~/dotfiles
 map gsd cd ~/software/dwm/
 map gss cd ~/software
 map gst cd ~/software/st/
