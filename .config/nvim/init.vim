@@ -204,7 +204,7 @@ call plug#end()
 " 关闭默认键位
 let g:NERDCreateDefaultMappings = 0
 " Add spaces after comment delimiters by default
-let g:NERDSpaceDelims = 1
+let g:NERDSpaceDelims = 0
 " Align line-wise comment delimiters flush left instead of following code indentation
 " 注释符紧跟缩进的话， autopep8 会把注释行对齐成一行，取消注释时导致缩进错误
 let g:NERDDefaultAlign = 'left'
