@@ -463,6 +463,7 @@ let g:vimtex_toc_config = {
     \ }
 let g:vimtex_syntax_conceal = {
     \ 'accents': 1,
+    \ 'ligatures': 1,
     \ 'cites': 1,
     \ 'fancy': 1,
     \ 'greek': 1,
