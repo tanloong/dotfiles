@@ -132,9 +132,6 @@ nnoremap <SPACE><SPACE> <Esc>/<<>><CR>:set nohlsearch<CR>v3l<c-g>
 packadd! matchit
 let b:batch_words='begin:end'
 
-" set filetype to 'tex' in empty latex file
-    let g:tex_flavor='latex'
-
 " Runs a script that cleans out tex build files whenever I close out of a .tex file.
     autocmd VimLeave *.tex !texclear %
 " Automatically deletes all trailing whitespace and newlines at end of file on save.
@@ -433,6 +430,7 @@ EOF
 " 后，可以在 zathura 中用 Ctrl+左键 跳转到 vim 对应位置，
 " 也可以在 vim 中用 \lv 跳转到 zathura 对应位置
 " 4. 写入模式 `]]` 自动补全 `}` 或 `\end{<env>}`
+let g:tex_flavor='latex' | " set filetype to 'tex' in empty latex file
 let g:vimtex_view_method = 'zathura'
 let g:vimtex_quickfix_mode = 0
 let g:vimtex_quickfix_open_on_warning = 0
