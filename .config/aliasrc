@@ -28,7 +28,7 @@ done; unset command
 
 # These common commands are just too long! Abbreviate them.
 alias \
-    rm="trash -v" \
+    rm="trash" \
     c="clear" \
     cc="crow -b" \
     e="chmod u+x" \
