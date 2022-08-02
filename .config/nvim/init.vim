@@ -179,7 +179,7 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'https://gitee.com/tanloong/vim-slime'
     " :help AutoSave.nvim, automatically saving your work whenever you make changes to it
     " :ASToggle, :ASOn, :ASOff
-    Plug 'https://gitee.com/giteeguangwei/AutoSave.nvim.git'
+    Plug 'https://gitee.com/tanloong/auto-save.nvim.git'
     " VimTex
     Plug 'https://gitee.com/mirrors/vimtex.git', {'for': ['tex']}
 call plug#end() 
@@ -396,33 +396,33 @@ nmap ss <Plug>SlimeSendCell
 " }}}
 " === vim-slime end
 
-" === AutoSave begin
+" === auto-save begin
 " {{{
 lua << EOF
-local autosave = require("autosave")
 
-autosave.setup(
+require('auto-save').setup(
     {
         enabled = true,
         -- execution_message = "AutoSave: saved",
-        execution_message = function ()
-          return "AutoSave: saved at " .. vim.fn.strftime("%H:%M:%S") end,
-        events = {"InsertLeave", "TextChanged"},
-        conditions = {
-            exists = true,
-            filename_is_not = {},
-            filetype_is_not = {},
-            modifiable = true
+        execution_message = {
+            message = function() -- message to print on save
+                return ("AutoSave: saved at " .. vim.fn.strftime("%H:%M:%S")) end,
+            dim = 0.18, 
+            -- dim the color of `message`
+            cleaning_interval = 1250, 
+            -- (milliseconds) automatically clean MsgArea after displaying `message`.
+            -- See :h MsgArea
         },
-        write_all_buffers = false,
-        on_off_commands = true,
-        clean_command_line_interval = 0,
-        debounce_delay = 135
+        trigger_events = {"InsertLeave", "TextChanged"},
+        write_all_buffers = false, 
+        -- write all buffers when the current one meets `condition`
+        debounce_delay = 135, 
+        -- saves the file at most every `debounce_delay` milliseconds
     }
 )
 EOF
 " }}}
-" === AutoSave end
+" === auto-save end
 
 " === VimTeX begin
 " {{{
