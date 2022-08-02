@@ -166,7 +166,7 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'https://gitee.com/tanloong/markdown-preview.nvim.git', { 'do': 'cd app && yarn install'  }
     Plug 'https://gitee.com/lovealone72/vim-markdown-toc.git', {'for': ['markdown']}
     Plug 'https://gitee.com/yaozhijin/vim-table-mode.git', { 'for': ['markdown']}
-    Plug 'https://gitee.com/zerosharp/indentLine.git'
+    "Plug 'https://gitee.com/zerosharp/indentLine.git'
     Plug 'https://gitee.com/zgpio/wildfire.vim.git'
     Plug 'https://gitee.com/zgpio/vim-fugitive.git'
     " auto pair
@@ -344,13 +344,13 @@ endfunction
 
 " === indentLine begin
 " {{{
-" indentLine will overwrite 'conceal' color with grey by default.
-let g:indentLine_setColors = 1
-let g:indentLine_char = '¦'
-" let g:indentLine_char_list = ['|', '¦', '┆', '┊']
-":IndentLinesToggle toggles lines on and off.
-" let g:indentLine_conceallevel=0
-let g:indentLine_concealcursor=''
+"let g:indentLine_setColors = 0 
+"" don't overwirte 'conceal' color (cmd: highlight Conceal ...)
+"let g:indentLine_char = '¦'
+"" let g:indentLine_char_list = ['|', '¦', '┆', '┊']
+"":IndentLinesToggle toggles lines on and off.
+"" let g:indentLine_conceallevel=0
+"let g:indentLine_concealcursor=''
 " }}}
 " === indentLine begin
 
