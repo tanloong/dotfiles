@@ -230,18 +230,18 @@ snippet "(^|\s+),," "\command" irA
 endsnippet
 
 snippet "(\\[^{\s]+),," "\command{...}" rA
-`!p snip.rv = match.group(1)`{$1}$0
+`!p snip.rv = match.group(1)`{$0}
 endsnippet
 
 snippet "(\\[^{\s]+)(\{[^}]+\}),," "\command[...]{...}" rA
-`!p snip.rv = match.group(1)`[$1]`!p snip.rv = match.group(2)`$0
+`!p snip.rv = match.group(1)`[$0]`!p snip.rv = match.group(2)`<<>>
 endsnippet
 
 snippet "be(gin)?( (\S+))?" "begin{} / end{}" br
 \begin{${1:`!p
 snip.rv = match.group(3) if match.group(2) is not None else "something"`}}
 	${2:${VISUAL}}
-\end{$1}$0
+\end{$0}
 endsnippet
 
 # ====================
@@ -274,7 +274,7 @@ endsnippet
 
 context "python()"
 snippet ,f "=" wA
-= $1
+= $0
 endsnippet
 
 context "python()"
@@ -296,7 +296,7 @@ endsnippet
 
 context "R()"
 snippet ,f "=" wA
-<- $1
+<- $0
 endsnippet
 
 # custom snippets for math begin
@@ -318,30 +318,30 @@ endsnippet
 # endsnippet
 
 snippet $$ "inline math" iA
-$ ${1} $`!p
+$ $0 $`!p
 if t[2] and t[2][0] not in [',', '.', '?', '-', ' ']:
     snip.rv = ' '
 else:
     snip.rv = ''
-`$2
+`<<>>
 endsnippet
 
 snippet ￥￥ "inline math" iA
-$ ${1} $`!p
+$ $0 $`!p
 if t[2] and t[2][0] not in [',', '.', '?', '-', ' ']:
     snip.rv = ' '
 else:
     snip.rv = ''
-`$2
+`<<>>
 endsnippet
 
 snippet "([^a-zA-Z0-9])mm" "inline math" rA
-`!p snip.rv=match.group(1)`$ ${1} $`!p
+`!p snip.rv=match.group(1)`$ $0 $`!p
 if t[2] and t[2][0] not in [',', '.', '?', '-', ' ']:
     snip.rv = ' '
 else:
     snip.rv = ''
-`$2
+`<<>>
 endsnippet
 
 context "math()"
