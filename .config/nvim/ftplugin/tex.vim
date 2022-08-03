@@ -1,3 +1,4 @@
+set conceallevel=2
 nnoremap <F5> <Plug>(vimtex-compile)
 call matchadd('Conceal','\$',9999,-1,{'conceal':'$'})
 " don't hide dollar sign 

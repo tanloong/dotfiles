@@ -30,7 +30,6 @@ set path+=**
 set spelllang=en,cjk
 set complete=.,w,b,u,t,i,k
 set guicursor=i-v:ver1,a:blinkon0
-set conceallevel=2
 highlight Conceal cterm=none ctermbg=none ctermfg=none
 highlight MatchParen cterm=none ctermbg=none ctermfg=green
 exec "nohlsearch"
