@@ -122,7 +122,8 @@ inoremap <c-]> <c-g>u<Esc>[s1z=`]a<c-g>u
 inoremap jk <right>
 inoremap kj <left>
 
-nnoremap <SPACE><SPACE> /<<>><CR>:set nohlsearch<CR>v3lc
+nnoremap <SPACE><SPACE> /<<>><CR>:set nohlsearch<CR>c4<right>
+inoremap <c-n> <Esc>/<<>><CR>:set nohlsearch<CR>c4<right>
 "nnoremap <SPACE><SPACE> <Esc>/<<>><CR>:set nohlsearch<CR>v3l<c-g>
 "" unmap function keys in selected mode
 "    sunmap L
