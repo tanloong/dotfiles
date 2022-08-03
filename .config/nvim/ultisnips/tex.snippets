@@ -318,30 +318,30 @@ endsnippet
 # endsnippet
 
 snippet $$ "inline math" iA
-$ $0 $`!p
+$ $1 $`!p
 if t[2] and t[2][0] not in [',', '.', '?', '-', ' ']:
-    snip.rv = ' '
+	snip.rv = ' '
 else:
-    snip.rv = ''
-`<<>>
+	snip.rv = ''
+`${2:<<>>}
 endsnippet
 
 snippet ￥￥ "inline math" iA
-$ $0 $`!p
+$ $1 $`!p
 if t[2] and t[2][0] not in [',', '.', '?', '-', ' ']:
-    snip.rv = ' '
+	snip.rv = ' '
 else:
-    snip.rv = ''
-`<<>>
+	snip.rv = ''
+`${2:<<>>}
 endsnippet
 
 snippet "([^a-zA-Z0-9])mm" "inline math" rA
-`!p snip.rv=match.group(1)`$ $0 $`!p
+`!p snip.rv=match.group(1)`$ $1 $`!p
 if t[2] and t[2][0] not in [',', '.', '?', '-', ' ']:
     snip.rv = ' '
 else:
     snip.rv = ''
-`<<>>
+`${2:<<>>}
 endsnippet
 
 context "math()"
