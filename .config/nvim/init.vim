@@ -316,7 +316,7 @@ xmap <silent> <C-s> <Plug>(coc-range-select)
 
 " Add (Neo)Vim's native statusline support.
 "set statusline=%<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P
-set statusline=%<%f\ %h%m%{coc#status()}%{get(b:,'coc_current_function','')}%r%=%-14.(%l,%c%V%)\ %P
+set statusline=%<%f\ %h%m%{coc#status()}%{get(b:,'coc_current_function','')}%r%=%-14.(%l,%c%V%)\ %p%%
 
 " Add `:Format` command to format current buffer.
 command! -nargs=0 Format :call CocActionAsync('format')
