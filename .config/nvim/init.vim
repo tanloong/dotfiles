@@ -512,6 +512,6 @@ nnoremap tt :VimtexTocToggle<CR><c-w>h
 " === VimTeX end
 
 " === autopairs begin
-let g:AutoPairs={'(':')', '[':']', '{':'}',"'":"'",'"':'"'}
+let g:AutoPairs={'(':')<<>>', '[':']<<>>', '{':'}<<>>',"'":"'<<>>",'"':'"<<>>'}
 " === autopairs end
 
