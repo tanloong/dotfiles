@@ -210,7 +210,7 @@ snippet ,n "\emph{}" bwA
 endsnippet
 
 snippet ,l "\href{}{}" bwA
-\\href{$1}{$2}$0
+\\href{$0}{<<>>}<<>>
 endsnippet
 
 snippet ,f "\footnote{}" bwA
@@ -346,42 +346,42 @@ endsnippet
 
 context "math()"
 snippet "(t|d)?//" "fraction" wAr
-\\`!p snip.rv=match.group(1) if match.group(1) else ''`frac{$1}{$0} <<>>
+\\`!p snip.rv=match.group(1) if match.group(1) else ''`frac{$1}{<<>>}<<>>
 endsnippet
 
 context "math()"
 snippet '((\d+)|(\d*)(\\)?([A-Za-z]+)((\^|_)(\{\d+\}|\d))*)/' "Fraction" wrA
-\\frac{`!p snip.rv = match.group(1)`}{$0} <<>>
+\\frac{`!p snip.rv = match.group(1)`}{<<>>}<<>>
 endsnippet
 
 context "math()"
 snippet rt "\sqrt{}" wA
-\\sqrt{$0} <<>>
+\\sqrt{$0}<<>>
 endsnippet
 
 context "math()"
 snippet lrp "\left( \right)" iA
-\\left($0\\right) <<>>
+\\left($0\\right)<<>>
 endsnippet
 context "math()"
 snippet lrb "\left[ \right]" iA
-\\left[$0\\right] <<>>
+\\left[$0\\right]<<>>
 endsnippet
 context "math()"
 snippet lrc "\left{ \right}" iA
-\\left\\{$0\\right\\} <<>>
+\\left\\{$0\\right\\}<<>>
 endsnippet
 context "math()"
 snippet lra "\left< \right>" iA
-\\left<$0\\right> <<>>
+\\left<$0\\right><<>>
 endsnippet
 context "math()"
 snippet lr| "\left< \right>" iA
-\\left|$0\\right| <<>>
+\\left|$0\\right|<<>>
 endsnippet
 context "math()"
 snippet tt "\text{}" wA
-\\text{$0} <<>>
+\\text{$0}<<>>
 endsnippet
 context "math()"
 snippet ooo "\infty" iA
@@ -389,23 +389,23 @@ snippet ooo "\infty" iA
 endsnippet
 context "math()"
 snippet int "\int_{}^{}" w
-\\int_{${1:-\infty}}^{${0:\infty}} <<>>
+\\int_{$0}^{<<>>}<<>>
 endsnippet
 context "math()"
 snippet lim "\lim_{}" w
-\\lim_{${1:n} \to ${0:\infty}} <<>>
+\\lim_{$0} \to <<>>}<<>>
 endsnippet
 context "math()"
-snippet sum "sum" w
-\\sum_{${1:n=1}}^{${2:\infty}} ${0:a_n z^n} <<>>
+snippet sum "sum_{}^{}" w
+\\sum_{$0}^{<<>>}<<>>
 endsnippet
 context "math()"
 snippet part "偏导" wA
-\\frac{\\partial ${1:V}}{\\partial ${0:x}} <<>>
+\\frac{\\partial $0}{\\partial <<>>}<<>>
 endsnippet
 context "math()"
 snippet diff "微分" wA
-\\frac{\\mathrm{d}${1:y}}{\\mathrm{d}${2:x}}
+\\frac{\\mathrm{d}$0}{\\mathrm{d}<<>>}
 endsnippet
 
 context "math()"
@@ -474,7 +474,7 @@ _{$0}<<>>
 endsnippet
 context "math()"
 snippet ja "上下标" iA
-_{${1:sub}^{${0:super}}<<>>
+_{$0}^{<<>>}<<>>
 endsnippet
 
 context "math()"
@@ -596,7 +596,7 @@ endsnippet
 
 context "math()"
 snippet norm "norm" iA
-\|$1\|$0
+\|$0\|<<>>
 endsnippet
 
 context "math()"
@@ -625,22 +625,22 @@ endsnippet
 
 context "math()"
 snippet OO "emptyset" iA
-\O$0
+\O $0
 endsnippet
 
 context "math()"
 snippet RR "real" iA
-\R$0
+\R $0
 endsnippet
 
 context "math()"
 snippet QQ "Q" iA
-\Q$0
+\Q $0
 endsnippet
 
 context "math()"
 snippet ZZ "Z" iA
-\Z$0
+\Z $0
 endsnippet
 
 context "math()"
@@ -652,7 +652,7 @@ context "math()"
 snippet "(p|b|v|V)mat" "\begin{pmatrix} / \end{pmatrix}" wrA
 \\begin{`!p snip.rv=match.group(1)`matrix} 
 $0
-\\end{`!p snip.rv=match.group(1)`matrix} <<>>
+\\end{`!p snip.rv=match.group(1)`matrix}<<>>
 endsnippet
 
 priority 1000
@@ -668,7 +668,7 @@ while True:
 	if depth == 0: break;
 	i -= 1
 snip.rv = stripped[0:i] + "\\frac{" + stripped[i+1:-1] + "}"
-`{$0} <<>>
+`{$0}<<>>
 endsnippet
 
 context "math()"
