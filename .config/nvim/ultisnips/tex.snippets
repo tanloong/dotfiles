@@ -230,7 +230,7 @@ snippet "(^|\s+),," "\command" irA
 endsnippet
 
 snippet "(\\[^{\s]+),," "\command{...}" rA
-`!p snip.rv = match.group(1)`{$0}
+`!p snip.rv = match.group(1)`{$0}<<>>
 endsnippet
 
 snippet "(\\[^{\s]+)(\{[^}]+\}),," "\command[...]{...}" rA
