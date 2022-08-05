@@ -30,8 +30,11 @@ set path+=**
 set spelllang=en,cjk
 set complete=.,w,b,u,t,i,k
 set guicursor=i-v:ver1,a:blinkon0
-highlight Conceal cterm=none ctermbg=none ctermfg=none
-highlight MatchParen cterm=none ctermbg=none ctermfg=green
+highlight Visual     cterm=none   ctermbg=237  ctermfg=none
+highlight Conceal    cterm=none   ctermbg=none ctermfg=none
+highlight MatchParen cterm=none   ctermbg=none ctermfg=green
+highlight Pmenu      cterm=none   ctermbg=236  ctermfg=none
+highlight PmenuSel   cterm=none   ctermbg=24   ctermfg=none
 exec "nohlsearch"
 
 
@@ -238,6 +241,8 @@ xmap s <Plug>VSurround
 
 " === coc.nvim begin
 " {{{
+highlight! link CocMenuSel PmenuSel
+highlight! CocPumSearch ctermfg=yellow
 " Use tab for trigger completion with characters ahead and navigate.
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
 " other plugin before putting this into your config.
