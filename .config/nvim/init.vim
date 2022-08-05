@@ -172,8 +172,6 @@ call plug#begin('~/.config/nvim/plugged')
     "Plug 'https://gitee.com/zerosharp/indentLine.git'
     Plug 'https://gitee.com/zgpio/wildfire.vim.git'
     Plug 'https://gitee.com/zgpio/vim-fugitive.git'
-    " auto pair
-    Plug 'https://gitee.com/yaozhijin/auto-pairs.git'
     Plug 'https://gitee.com/oy456xd/vim-visual-multi.git'
     " vim-slime
     Plug 'https://gitee.com/tanloong/vim-slime'
@@ -510,8 +508,3 @@ let g:vimtex_syntax_conceal = {
 nnoremap tt :VimtexTocToggle<CR><c-w>h
 " }}}
 " === VimTeX end
-
-" === autopairs begin
-let g:AutoPairs={'(':')<<>>', '[':']<<>>', '{':'}<<>>',"'":"'<<>>",'"':'"<<>>'}
-" === autopairs end
-
