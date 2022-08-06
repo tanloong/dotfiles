@@ -167,8 +167,6 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'https://gitee.com/ProVim/coc.nvim.git', {'branch':'release'}
     Plug 'https://gitee.com/linuor/vim-surround.git'
     Plug 'https://gitee.com/yanzhongqian/nerdcommenter.git'
-    " markdown
-    Plug 'https://gitee.com/tanloong/markdown-preview.nvim.git', { 'do': 'cd app && yarn install'  }
     Plug 'https://gitee.com/lovealone72/vim-markdown-toc.git', {'for': ['markdown']}
     Plug 'https://gitee.com/yaozhijin/vim-table-mode.git', { 'for': ['markdown']}
     "Plug 'https://gitee.com/zerosharp/indentLine.git'
@@ -185,19 +183,6 @@ call plug#begin('~/.config/nvim/plugged')
 call plug#end() 
 " }}}
 " === vim-plug end
-
-" === markdown-preview begin
-" {{{
-" specify browser to open preview page
-" let g:mkdp_browser = '/usr/bin/chromium'
-" let g:mkdp_auto_start = 0
-" let g:mkdp_auto_close = 0
-" let g:mkdp_refresh_slow = 1
-" let g:mkdp_open_to_the_world = 1
-" let g:mkdp_port = 8080
-" let g:mkdp_echo_preview_url = 1
-" }}}
-" === markdown-preview end
 
 " === nerdcommenter begin
 " {{{
@@ -338,6 +323,8 @@ let g:coc_global_extensions = [
             \ 'coc-snippets',
             \ 'coc-r-lsp',
             \ 'coc-json',
+            \ 'coc-webview',
+            \ 'coc-markdown-preview-enhanced',
             \ 'coc-dictionary']
             " \ 'coc-sh',
             " \ 'coc-r-lsp',
