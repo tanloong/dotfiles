@@ -66,5 +66,6 @@
     "python.formatting.provider": "black",
     "snippets.ultisnips.directories": [
         "$HOME/.config/nvim/ultisnips"
-    ]
+    ],
+    "smartf.wordJump": false
 }
