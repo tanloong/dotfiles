@@ -129,6 +129,7 @@ tnoremap <Esc> <C-\><C-n>
     cnoremap <expr> %% getcmdtype()==':'? expand('%:h').'/' : '%%'
 " Perform dot commands over visual blocks:
     vnoremap . :normal .<CR>
+vnoremap p "_dP | " keep what I am pasting
 
 " Spell checking on the fly
 inoremap <c-]> <c-g>u<Esc>[s1z=`]a<c-g>u
