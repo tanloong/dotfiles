@@ -122,11 +122,10 @@ tnoremap <Esc> <C-\><C-n>
 
 " Spell checking on the fly
 inoremap <c-]> <c-g>u<Esc>[s1z=`]a<c-g>u
-"inoremap jk <right>
-"inoremap kj <left>
 
-nnoremap <SPACE><SPACE> /<<>><CR>:set nohlsearch<CR>c4<right>
-inoremap <c-n> <Esc>/<<>><CR>:set nohlsearch<CR>c4<right>
+nnoremap <SPACE><SPACE> /<<>><CR>:set nohlsearch<CR>"_c4<right>
+inoremap jk <Esc>/<<>><CR>:set nohlsearch<CR>"_c4<right>
+inoremap kj <left>
 "nnoremap <SPACE><SPACE> <Esc>/<<>><CR>:set nohlsearch<CR>v3l<c-g>
 "" unmap function keys in selected mode
 "    sunmap L
@@ -359,9 +358,9 @@ let g:coc_global_extensions = [
 " Use <C-o> for trigger snippet expand.
 imap <c-o> <Plug>(coc-snippets-expand)
 " Use <C-j> for jump to next placeholder, it's default of coc.nvim
-let g:coc_snippet_next = 'jk'
+let g:coc_snippet_next = '<c-j>'
 " Use <C-k> for jump to previous placeholder, it's default of coc.nvim
-let g:coc_snippet_prev = 'kj'
+let g:coc_snippet_prev = '<c-k>'
 " }}}
 " === coc-snippets end
 
