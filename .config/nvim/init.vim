@@ -1,4 +1,6 @@
-filetype plugin indent on
+"=== basic config {{{
+filetype plugin on 
+filetype indent on
 syntax on
 set t_Co=256
 set background=dark
@@ -37,7 +39,6 @@ highlight Pmenu      cterm=none   ctermbg=236  ctermfg=none
 highlight PmenuSel   cterm=none   ctermbg=24   ctermfg=none
 exec "nohlsearch"
 
-
 let g:netrw_winsize = 30 | " Change the size of the Netrw window when it creates a split.
 let g:netrw_banner = 0   | " Hide the banner. To show it temporarily use I inside Netrw.
 " check |netrw-browse-maps| for more mappings
@@ -51,7 +52,18 @@ endif
 
 " 打开文件时跳到上次的位置
     au BufReadPost * if line("'\"") > 1 && line("'\'") <= line("$") | exe "normal! g'\""| endif
+packadd! matchit
+let b:batch_words='begin:end'
 
+" Runs a script that cleans out tex build files whenever I close out of a .tex file.
+    autocmd VimLeave *.tex !texclear %
+" Automatically deletes all trailing whitespace and newlines at end of file on save.
+    " autocmd BufWritePre * let currPos = getpos(".")
+    " autocmd BufWritePre * %s/\s\+$//e
+    " autocmd BufWritePre * %s/\n\+\%$//e
+    " autocmd BufWritePre * cal cursor(currPos[1], currPos[2])
+"}}}
+"=== keybindings {{{
 noremap 9 $
 noremap K 5gk
 noremap J 5gj
@@ -64,8 +76,7 @@ nnoremap gk k
 nnoremap gj j
 nnoremap s :<nop>
 nnoremap S :<nop>
-nnoremap R :write<CR>:edit!<CR>
-" 保存修改，并重新从硬盘读取此文件
+nnoremap R :write<CR>:edit!<CR> | " 保存修改，并重新从硬盘读取此文件
 nnoremap M J
 nnoremap g9 g$
 nnoremap ga :tabe<CR>:term lazygit<CR>i
@@ -84,7 +95,6 @@ nnoremap <SPACE><CR> :nohlsearch<CR>
 " nnoremap <LEADER>l :CocList<SPACE>
 nnoremap <F4> :q!<CR>
 nnoremap S :source $MYVIMRC<CR>
-
 nnoremap sl :set splitright<CR>:vsplit<CR>
 nnoremap sh :set nosplitright<CR>:vsplit<CR>
 nnoremap sj :set splitbelow<CR>:split<CR>
@@ -122,7 +132,6 @@ tnoremap <Esc> <C-\><C-n>
 
 " Spell checking on the fly
 inoremap <c-]> <c-g>u<Esc>[s1z=`]a<c-g>u
-
 nnoremap <SPACE><SPACE> /<<>><CR>:set nohlsearch<CR>"_c4<right>
 inoremap jk <Esc>/<<>><CR>:set nohlsearch<CR>"_c4<right>
 inoremap kj <left>
@@ -133,20 +142,8 @@ inoremap kj <left>
 "    sunmap J
 "    sunmap K
 "    sunmap 9
-
-packadd! matchit
-let b:batch_words='begin:end'
-
-" Runs a script that cleans out tex build files whenever I close out of a .tex file.
-    autocmd VimLeave *.tex !texclear %
-" Automatically deletes all trailing whitespace and newlines at end of file on save.
-    " autocmd BufWritePre * let currPos = getpos(".")
-    " autocmd BufWritePre * %s/\s\+$//e
-    " autocmd BufWritePre * %s/\n\+\%$//e
-    " autocmd BufWritePre * cal cursor(currPos[1], currPos[2])
-
-
-" {{{
+" }}}
+"=== file header{{{
 autocmd BufNewFile *.c   0r ~/.config/nvim/skeleton/skeleton.c      | :normal G 
 autocmd BufNewFile *.py	 0r ~/.config/nvim/skeleton/skeleton.python | :normal G
 autocmd BufNewFile *.sh	 0r ~/.config/nvim/skeleton/skeleton.sh     | :normal G
@@ -157,10 +154,8 @@ autocmd BufNewFile *.rmd 0r ~/.config/nvim/skeleton/skeleton.rmd    | :normal G
 autocmd BufNewFile *.sed 0r ~/.config/nvim/skeleton/skeleton.sed    | :normal G
 autocmd BufNewFile *.go  0r ~/.config/nvim/skeleton/skeleton.go     | :normal G
 autocmd BufNewFile *.pl  0r ~/.config/nvim/skeleton/skeleton.perl   | :normal G 
-" }}}
-
-" === vim-plug begin
-" {{{
+"}}}
+" === vim-plug begin{{{
 call plug#begin('~/.config/nvim/plugged')
     " Plug 'https://gitee.com/yaowenqiang/ultisnips.git'
     " Plug 'https://gitee.com/yaozhijin/vim-snippets.git'
@@ -181,11 +176,9 @@ call plug#begin('~/.config/nvim/plugged')
     " VimTex
     Plug 'https://gitee.com/mirrors/vimtex.git', {'for': ['tex']}
 call plug#end() 
-" }}}
 " === vim-plug end
-
-" === nerdcommenter begin
-" {{{
+"}}}
+" === nerdcommenter begin{{{
 " 关闭默认键位
 let g:NERDCreateDefaultMappings = 0
 " Add spaces after comment delimiters by default
@@ -196,35 +189,29 @@ let g:NERDDefaultAlign = 'left'
 " Use compact syntax for prettified multi-line comments
 let g:NERDCompactSexyComs = 1
 map <SPACE>c <plug>NERDCommenterToggle 
-" }}}
 " === nerdcommenter end
-
-" === vim-table-mode begin
-" {{{
+"}}}
+" === vim-table-mode begin{{{
 " 设置table mode先导键为<SPACE>t
 let g:table_mode_map_prefix = '<SPACE>t'
 " 进入或退出 table 模式时给出提示
 let g:table_mode_verbose = 1
 let g:table_mode_corner = '|'
-" }}}
 " === vim-table-mode end
-
-" === wildfire begin
-" {{{
+"}}}
+" === wildfire begin{{{
 "Selects the next closest text object.
     map = <Plug>(wildfire-fuel)
 "Selects the previous closest text object.
     vmap - <Plug>(wildfire-water)
     let g:wildfire_objects = ["i'", 'i"', "i)", "i]", "i}", "ip", "it", "iW", "i`"] 
-" }}}
 " === wildfire end
-
-" === vim-surround begin
+"}}}
+" === vim-surround begin{{{
 xmap s <Plug>VSurround
 " === vim-surround end
-
-" === coc.nvim begin
-" {{{
+"}}}
+" === coc.nvim begin{{{
 highlight! link CocMenuSel PmenuSel
 highlight! CocPumSearch ctermfg=yellow
 " Use tab for trigger completion with characters ahead and navigate.
@@ -315,8 +302,11 @@ command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 
 " Add `:OR` command for organize imports of the current buffer.
 command! -nargs=0 OR   :call     CocActionAsync('runCommand', 'editor.action.organizeImport')
+" === coc.nvim end
 
-let g:coc_global_extensions = [
+"}}}
+"=== coc-extensions "{{{
+let g:coc_global_extensions = [ 
             \ 'coc-pyright',
             \ 'coc-actions',
             \ 'coc-git',
@@ -325,34 +315,23 @@ let g:coc_global_extensions = [
             \ 'coc-json',
             \ 'coc-webview',
             \ 'coc-markdown-preview-enhanced',
-            \ 'coc-dictionary']
+            \ 'coc-dictionary'
+            \ ]
             " \ 'coc-sh',
             " \ 'coc-r-lsp',
             " \ 'coc-texlab',
             " \ 'coc-clangd',
-" }}}
-" === coc.nvim end
-
-" === coc-texlab begin
-" {{{
-" autocmd FileType tex nnoremap <LEADER>b :CocCommand latex.Build<CR>
-" autocmd BufWritePost *tex :CocCommand latex.Build
-" }}}
-" === coc-texlab end
-
-" === coc-snippets begin
-" {{{
+"}}}
+" === coc-snippets begin{{{
 " Use <C-o> for trigger snippet expand.
 imap <c-o> <Plug>(coc-snippets-expand)
 " Use <C-j> for jump to next placeholder, it's default of coc.nvim
 let g:coc_snippet_next = '<c-j>'
 " Use <C-k> for jump to previous placeholder, it's default of coc.nvim
 let g:coc_snippet_prev = '<c-k>'
-" }}}
 " === coc-snippets end
-
-" === ultisnips begin
-" {{{
+"}}}
+" === ultisnips begin{{{
 " Trigger configuration. You need to change this to something other than <tab> if you use one of the following:
 " - https://github.com/Valloric/YouCompleteMe
 " - https://github.com/nvim-lua/completion-nvim
@@ -362,11 +341,9 @@ let g:coc_snippet_prev = '<c-k>'
 " let g:UltiSnipsSnippetDirectories=["ultisnips"]
 " " If you want :UltiSnipsEdit to split your window.
 " let g:UltiSnipsEditSplit="vertical"
-" }}}
 " === ultisnips end
-
-" === indentLine begin
-" {{{
+"}}}
+" === indentLine begin{{{
 "let g:indentLine_setColors = 0 
 "" don't overwirte 'conceal' color (cmd: highlight Conceal ...)
 "let g:indentLine_char = '¦'
@@ -374,38 +351,14 @@ let g:coc_snippet_prev = '<c-k>'
 "":IndentLinesToggle toggles lines on and off.
 "" let g:indentLine_conceallevel=0
 "let g:indentLine_concealcursor=''
-" }}}
 " === indentLine begin
-
-" === vim-codefmt begin
-" {{{
-" augroup autoformat_settings
-"   autocmd FileType bzl AutoFormatBuffer buildifier
-"   autocmd FileType c,cpp,proto,javascript,arduino AutoFormatBuffer clang-format
-"   autocmd FileType dart AutoFormatBuffer dartfmt
-"   autocmd FileType go AutoFormatBuffer gofmt
-"   autocmd FileType gn AutoFormatBuffer gn
-"   autocmd FileType html,css,sass,scss,less,json AutoFormatBuffer js-beautify
-"   autocmd FileType java AutoFormatBuffer google-java-format
-  " Alternative: autocmd FileType python AutoFormatBuffer yapf
-"   autocmd FileType python AutoFormatBuffer black
-"   autocmd FileType rust AutoFormatBuffer rustfmt
-"   autocmd FileType vue AutoFormatBuffer prettier
-" augroup END
-" augroup autoformat_settings
-"     autocmd FileType python nnoremap <LEADER>b :FormatCode<Space>black<CR>:w<CR>
-"     autocmd FileType python nnoremap <LEADER>l :FormatLine<Space>black<CR>:w<CR>
-" augroup END
-" }}}
-" === vim-codefmt end
-
-" === vim-markdown-toc begin
+"}}}
+" === vim-markdown-toc begin{{{
 let g:vmt_auto_update_on_save = 1
 let g:vmt_dont_insert_fence = 0
 " === vim-markdown-toc end
-
-" === vim-slime begin
-" {{{
+"}}}
+" === vim-slime begin{{{
 let g:slime_target = "x11"
 let g:slime_no_mappings = 1
 xmap <F5> <Plug>SlimeRegionSend
@@ -413,11 +366,9 @@ nmap <F5> :SlimeSendCurrentLine<CR>
 nmap <c-c>v <Plug>SlimeConfig
 let g:slime_preserve_curpos = 0
 nmap ss <Plug>SlimeSendCell
-" }}}
 " === vim-slime end
-
-" === auto-save begin
-" {{{
+"}}}
+" === auto-save begin{{{
 lua << EOF
 
 require('auto-save').setup(
@@ -441,11 +392,9 @@ require('auto-save').setup(
     }
 )
 EOF
-" }}}
 " === auto-save end
-
-" === VimTeX begin
-" {{{
+"}}}
+" === VimTeX begin{{{
 " 0. 快捷键！！！:help vimtex-default-mappings
 " 1. :help vimtex
 " 2. [Blog] https://ejmastnak.github.io/tutorials/vim-latex/vimtex.html
@@ -497,5 +446,4 @@ let g:vimtex_syntax_conceal = {
     \ 'styles': 1,
     \}
 nnoremap tt :VimtexTocToggle<CR><c-w>h
-" }}}
-" === VimTeX end
+" === VimTeX end}}}

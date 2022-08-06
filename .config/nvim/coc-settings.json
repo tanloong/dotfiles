@@ -6,10 +6,10 @@
         "json"
     ],
     "diagnostic.enable": true,
-	"diagnostic.errorSign": "\uf467",
-	"diagnostic.warningSign": "\uf071",
-	"diagnostic.infoSign": "\uf129",
-	"diagnostic.hintSign": "\uf864",
+    "diagnostic.errorSign": "\uf467",
+    "diagnostic.warningSign": "\uf071",
+    "diagnostic.infoSign": "\uf129",
+    "diagnostic.hintSign": "\uf864",
     "diagnostic.displayByAle": false,
     "diagnostic.refreshOnInsertMode": false,
     "diagnostic.checkCurrentLine": true,
@@ -67,5 +67,6 @@
     "snippets.ultisnips.directories": [
         "$HOME/.config/nvim/ultisnips"
     ],
-    "smartf.wordJump": false
+    "smartf.wordJump": false,
+    "smartf.timeout": 900
 }
