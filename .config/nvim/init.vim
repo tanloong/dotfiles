@@ -1,5 +1,5 @@
-"=== basic config {{{
-filetype plugin on 
+"basic config{{{
+filetype plugin on
 filetype indent on
 syntax on
 set t_Co=256
@@ -63,7 +63,7 @@ let b:batch_words='begin:end'
     " autocmd BufWritePre * %s/\n\+\%$//e
     " autocmd BufWritePre * cal cursor(currPos[1], currPos[2])
 "}}}
-"=== keybindings {{{
+"keybindings{{{
 noremap 9 $
 noremap K 5gk
 noremap J 5gj
@@ -88,7 +88,7 @@ vnoremap <c-p> :s///g<Left><Left>
 nnoremap <SPACE>a ggVG
 "nnoremap <SPACE>s :w<CR>
 " nnoremap <SPACE>w :x<CR>
- nnoremap <SPACE>q :q!<CR>
+nnoremap <SPACE>q :q!<CR>
 nnoremap <SPACE>e :set spell!<CR>
 nnoremap <SPACE><CR> :nohlsearch<CR>
 " nnoremap <LEADER>c :CocCommand<SPACE>
@@ -144,8 +144,8 @@ inoremap kj <left>
 "    sunmap K
 "    sunmap 9
 " }}}
-"=== file header{{{
-autocmd BufNewFile *.c   0r ~/.config/nvim/skeleton/skeleton.c      | :normal G 
+"file header{{{
+autocmd BufNewFile *.c   0r ~/.config/nvim/skeleton/skeleton.c      | :normal G
 autocmd BufNewFile *.py	 0r ~/.config/nvim/skeleton/skeleton.python | :normal G
 autocmd BufNewFile *.sh	 0r ~/.config/nvim/skeleton/skeleton.sh     | :normal G
 autocmd BufNewFile *.tex 0r ~/.config/nvim/skeleton/skeleton.tex    | :startinsert!
@@ -154,12 +154,10 @@ autocmd BufNewFile *.r   0r ~/.config/nvim/skeleton/skeleton.r      | :normal G
 autocmd BufNewFile *.rmd 0r ~/.config/nvim/skeleton/skeleton.rmd    | :normal G
 autocmd BufNewFile *.sed 0r ~/.config/nvim/skeleton/skeleton.sed    | :normal G
 autocmd BufNewFile *.go  0r ~/.config/nvim/skeleton/skeleton.go     | :normal G
-autocmd BufNewFile *.pl  0r ~/.config/nvim/skeleton/skeleton.perl   | :normal G 
+autocmd BufNewFile *.pl  0r ~/.config/nvim/skeleton/skeleton.perl   | :normal G
 "}}}
-" === vim-plug begin{{{
+"vim-plug{{{
 call plug#begin('~/.config/nvim/plugged')
-    " Plug 'https://gitee.com/yaowenqiang/ultisnips.git'
-    " Plug 'https://gitee.com/yaozhijin/vim-snippets.git'
     Plug 'https://gitee.com/ProVim/coc.nvim.git', {'branch':'release'}
     Plug 'https://gitee.com/linuor/vim-surround.git'
     Plug 'https://gitee.com/yanzhongqian/nerdcommenter.git'
@@ -176,10 +174,9 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'https://gitee.com/tanloong/auto-save.nvim.git'
     " VimTex
     Plug 'https://gitee.com/mirrors/vimtex.git', {'for': ['tex']}
-call plug#end() 
-" === vim-plug end
+call plug#end()
 "}}}
-" === nerdcommenter begin{{{
+"nerdcommenter{{{
 " 关闭默认键位
 let g:NERDCreateDefaultMappings = 0
 " Add spaces after comment delimiters by default
@@ -189,30 +186,26 @@ let g:NERDSpaceDelims = 0
 let g:NERDDefaultAlign = 'left'
 " Use compact syntax for prettified multi-line comments
 let g:NERDCompactSexyComs = 1
-map <SPACE>c <plug>NERDCommenterToggle 
-" === nerdcommenter end
+map <SPACE>c <plug>NERDCommenterToggle
 "}}}
-" === vim-table-mode begin{{{
+"vim-table-mode{{{
 " 设置table mode先导键为<SPACE>t
 let g:table_mode_map_prefix = '<SPACE>t'
 " 进入或退出 table 模式时给出提示
 let g:table_mode_verbose = 1
 let g:table_mode_corner = '|'
-" === vim-table-mode end
 "}}}
-" === wildfire begin{{{
+"wildfire{{{
 "Selects the next closest text object.
     map = <Plug>(wildfire-fuel)
 "Selects the previous closest text object.
     vmap - <Plug>(wildfire-water)
-    let g:wildfire_objects = ["i'", 'i"', "i)", "i]", "i}", "ip", "it", "iW", "i`"] 
-" === wildfire end
+    let g:wildfire_objects = ["i'", 'i"', "i)", "i]", "i}", "ip", "it", "iW", "i`"]
 "}}}
-" === vim-surround begin{{{
+"vim-surround{{{
 xmap s <Plug>VSurround
-" === vim-surround end
 "}}}
-" === coc.nvim begin{{{
+"coc.nvim{{{
 highlight! link CocMenuSel PmenuSel
 highlight! CocPumSearch ctermfg=yellow
 " Use tab for trigger completion with characters ahead and navigate.
@@ -303,11 +296,9 @@ command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 
 " Add `:OR` command for organize imports of the current buffer.
 command! -nargs=0 OR   :call     CocActionAsync('runCommand', 'editor.action.organizeImport')
-" === coc.nvim end
-
 "}}}
-"=== coc-extensions "{{{
-let g:coc_global_extensions = [ 
+"coc-extensions"{{{
+let g:coc_global_extensions = [
             \ 'coc-pyright',
             \ 'coc-actions',
             \ 'coc-git',
@@ -323,43 +314,19 @@ let g:coc_global_extensions = [
             " \ 'coc-texlab',
             " \ 'coc-clangd',
 "}}}
-" === coc-snippets begin{{{
+"coc-snippets{{{
 " Use <C-o> for trigger snippet expand.
 imap <c-o> <Plug>(coc-snippets-expand)
 " Use <C-j> for jump to next placeholder, it's default of coc.nvim
 let g:coc_snippet_next = '<c-j>'
 " Use <C-k> for jump to previous placeholder, it's default of coc.nvim
 let g:coc_snippet_prev = '<c-k>'
-" === coc-snippets end
 "}}}
-" === ultisnips begin{{{
-" Trigger configuration. You need to change this to something other than <tab> if you use one of the following:
-" - https://github.com/Valloric/YouCompleteMe
-" - https://github.com/nvim-lua/completion-nvim
-" let g:UltiSnipsExpandTrigger="<c-o>"
-" let g:UltiSnipsJumpForwardTrigger="<c-j>"
-" let g:UltiSnipsJumpBackwardTrigger="<c-k>"
-" let g:UltiSnipsSnippetDirectories=["ultisnips"]
-" " If you want :UltiSnipsEdit to split your window.
-" let g:UltiSnipsEditSplit="vertical"
-" === ultisnips end
-"}}}
-" === indentLine begin{{{
-"let g:indentLine_setColors = 0 
-"" don't overwirte 'conceal' color (cmd: highlight Conceal ...)
-"let g:indentLine_char = '¦'
-"" let g:indentLine_char_list = ['|', '¦', '┆', '┊']
-"":IndentLinesToggle toggles lines on and off.
-"" let g:indentLine_conceallevel=0
-"let g:indentLine_concealcursor=''
-" === indentLine begin
-"}}}
-" === vim-markdown-toc begin{{{
+"vim-markdown-toc{{{
 let g:vmt_auto_update_on_save = 1
 let g:vmt_dont_insert_fence = 0
-" === vim-markdown-toc end
 "}}}
-" === vim-slime begin{{{
+"vim-slime{{{
 let g:slime_target = "x11"
 let g:slime_no_mappings = 1
 xmap <F5> <Plug>SlimeRegionSend
@@ -367,9 +334,8 @@ nmap <F5> :SlimeSendCurrentLine<CR>
 nmap <c-c>v <Plug>SlimeConfig
 let g:slime_preserve_curpos = 0
 nmap ss <Plug>SlimeSendCell
-" === vim-slime end
 "}}}
-" === auto-save begin{{{
+"auto-save{{{
 lua << EOF
 
 require('auto-save').setup(
@@ -379,23 +345,22 @@ require('auto-save').setup(
         execution_message = {
             message = function() -- message to print on save
                 return ("AutoSave: saved at " .. vim.fn.strftime("%H:%M:%S")) end,
-            dim = 0.18, 
+            dim = 0.18,
             -- dim the color of `message`
-            cleaning_interval = 1250, 
+            cleaning_interval = 1250,
             -- (milliseconds) automatically clean MsgArea after displaying `message`.
             -- See :h MsgArea
         },
         trigger_events = {"InsertLeave", "TextChanged"},
-        write_all_buffers = false, 
+        write_all_buffers = false,
         -- write all buffers when the current one meets `condition`
-        debounce_delay = 135, 
+        debounce_delay = 135,
         -- saves the file at most every `debounce_delay` milliseconds
     }
 )
 EOF
-" === auto-save end
 "}}}
-" === VimTeX begin{{{
+"VimTeX{{{
 " 0. 快捷键！！！:help vimtex-default-mappings
 " 1. :help vimtex
 " 2. [Blog] https://ejmastnak.github.io/tutorials/vim-latex/vimtex.html
@@ -447,4 +412,4 @@ let g:vimtex_syntax_conceal = {
     \ 'styles': 1,
     \}
 nnoremap tt :VimtexTocToggle<CR><c-w>h
-" === VimTeX end}}}
+"}}}
