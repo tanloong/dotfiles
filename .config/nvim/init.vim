@@ -24,7 +24,6 @@ set linebreak | "不要从单词中间换行
 set noswapfile | "不要产生交换文件
 set laststatus=2 | "show filename below
 set clipboard^=unnamed,unnamedplus" | "复制到系统寄存器(*, +)
-set dictionary+=$HOME/projects/linguistics-notes/dict
 set dictionary+=$HOME/.local/share/BNC-40thousand.txt
 set wildignore+=*aux,*toc,*out
 set matchpairs=<:>,(:),{:},[:]
