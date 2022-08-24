@@ -31,11 +31,11 @@ set path+=**
 set spelllang=en,cjk
 set complete=.,w,b,u,t,i,k
 set guicursor=i-v:ver1,a:blinkon0
-highlight Visual     cterm=none   ctermbg=237  ctermfg=none
-highlight Conceal    cterm=none   ctermbg=none ctermfg=none
-highlight MatchParen cterm=none   ctermbg=none ctermfg=green
-highlight Pmenu      cterm=none   ctermbg=236  ctermfg=none
-highlight PmenuSel   cterm=none   ctermbg=24   ctermfg=none
+highlight Visual     cterm=none   ctermbg=237  ctermfg=none  guibg=237  guifg=none
+highlight Conceal    cterm=none   ctermbg=none ctermfg=none  guibg=none guifg=none
+highlight MatchParen cterm=none   ctermbg=none ctermfg=green guibg=none guifg=green
+highlight Pmenu      cterm=none   ctermbg=236  ctermfg=none  guibg=236  guifg=none
+highlight PmenuSel   cterm=none   ctermbg=24   ctermfg=none  guibg=24   guifg=none
 exec "nohlsearch"
 
 let g:netrw_winsize = 30 | " Change the size of the Netrw window when it creates a split.
@@ -61,6 +61,20 @@ let b:batch_words='begin:end'
     " autocmd BufWritePre * %s/\s\+$//e
     " autocmd BufWritePre * %s/\n\+\%$//e
     " autocmd BufWritePre * cal cursor(currPos[1], currPos[2])
+
+" Detect platform
+let g:iswindows = 0
+let g:islinux = 0
+if(has("win32") || has("win64") || has("win95") || has("win16"))
+    let g:iswindows = 1
+else
+    let g:islinux = 1
+endif
+if has("gui_running")
+    let g:isGUI = 1
+else
+    let g:isGUI = 0
+endif
 "}}}
 "keybindings{{{
 noremap 9 $
@@ -143,20 +157,37 @@ inoremap kj <left>
 "    sunmap K
 "    sunmap 9
 " }}}
-"file header{{{
-autocmd BufNewFile *.c   0r ~/.config/nvim/skeleton/skeleton.c      | :normal G
-autocmd BufNewFile *.py	 0r ~/.config/nvim/skeleton/skeleton.python | :normal G
-autocmd BufNewFile *.sh	 0r ~/.config/nvim/skeleton/skeleton.sh     | :normal G
-autocmd BufNewFile *.tex 0r ~/.config/nvim/skeleton/skeleton.tex    | :startinsert!
-autocmd BufNewFile *.awk 0r ~/.config/nvim/skeleton/skeleton.awk    | :normal G
-autocmd BufNewFile *.r   0r ~/.config/nvim/skeleton/skeleton.r      | :normal G
-autocmd BufNewFile *.rmd 0r ~/.config/nvim/skeleton/skeleton.rmd    | :normal G
-autocmd BufNewFile *.sed 0r ~/.config/nvim/skeleton/skeleton.sed    | :normal G
-autocmd BufNewFile *.go  0r ~/.config/nvim/skeleton/skeleton.go     | :normal G
-autocmd BufNewFile *.pl  0r ~/.config/nvim/skeleton/skeleton.perl   | :normal G
+"{{{skeleton
+if g:iswindows==1
+    autocmd BufNewFile *.c   0r C://Users//Administrator//AppData//Local//nvim//skeleton//skeleton.c      | :normal G
+    autocmd BufNewFile *.py	 0r C://Users//Administrator//AppData//Local//nvim//skeleton//skeleton.python | :normal G
+    autocmd BufNewFile *.sh	 0r C://Users//Administrator//AppData//Local//nvim//skeleton//skeleton.sh     | :normal G
+    autocmd BufNewFile *.tex 0r C://Users//Administrator//AppData//Local//nvim//skeleton//skeleton.tex    | :startinsert!
+    autocmd BufNewFile *.awk 0r C://Users//Administrator//AppData//Local//nvim//skeleton//skeleton.awk    | :normal G
+    autocmd BufNewFile *.r   0r C://Users//Administrator//AppData//Local//nvim//skeleton//skeleton.r      | :normal G
+    autocmd BufNewFile *.rmd 0r C://Users//Administrator//AppData//Local//nvim//skeleton//skeleton.rmd    | :normal G
+    autocmd BufNewFile *.sed 0r C://Users//Administrator//AppData//Local//nvim//skeleton//skeleton.sed    | :normal G
+    autocmd BufNewFile *.go  0r C://Users//Administrator//AppData//Local//nvim//skeleton//skeleton.go     | :normal G
+    autocmd BufNewFile *.pl  0r C://Users//Administrator//AppData//Local//nvim//skeleton//skeleton.perl   | :normal G
+else
+    autocmd BufNewFile *.c   0r ~/.config/nvim/skeleton/skeleton.c      | :normal G
+    autocmd BufNewFile *.py	 0r ~/.config/nvim/skeleton/skeleton.python | :normal G
+    autocmd BufNewFile *.sh	 0r ~/.config/nvim/skeleton/skeleton.sh     | :normal G
+    autocmd BufNewFile *.tex 0r ~/.config/nvim/skeleton/skeleton.tex    | :startinsert!
+    autocmd BufNewFile *.awk 0r ~/.config/nvim/skeleton/skeleton.awk    | :normal G
+    autocmd BufNewFile *.r   0r ~/.config/nvim/skeleton/skeleton.r      | :normal G
+    autocmd BufNewFile *.rmd 0r ~/.config/nvim/skeleton/skeleton.rmd    | :normal G
+    autocmd BufNewFile *.sed 0r ~/.config/nvim/skeleton/skeleton.sed    | :normal G
+    autocmd BufNewFile *.go  0r ~/.config/nvim/skeleton/skeleton.go     | :normal G
+    autocmd BufNewFile *.pl  0r ~/.config/nvim/skeleton/skeleton.perl   | :normal G
+endif
 "}}}
-"vim-plug{{{
-call plug#begin('~/.config/nvim/plugged')
+"{{{ vim-plug
+if g:iswindows==1
+    call plug#begin('C:\Users\Administrator\AppData\Local\nvim\autoload\plugged')
+else
+    call plug#begin('~/.config/nvim/plugged')
+endif
     Plug 'https://gitee.com/ProVim/coc.nvim.git', {'branch':'release'}
     Plug 'https://gitee.com/linuor/vim-surround.git'
     Plug 'https://gitee.com/yanzhongqian/nerdcommenter.git'
@@ -368,7 +399,11 @@ EOF
 " 也可以在 vim 中用 \lv 跳转到 zathura 对应位置
 " 4. 写入模式 `]]` 自动补全 `}` 或 `\end{<env>}`
 let g:tex_flavor='latex' | " set filetype to 'tex' in empty latex file
-let g:vimtex_view_method = 'zathura'
+if g:iswindows==1
+    let g:vimtex_view_general_viewer = 'SumatraPDF'
+else
+    let g:vimtex_view_method = 'zathura'
+endif
 let g:vimtex_quickfix_mode = 0
 let g:vimtex_quickfix_open_on_warning = 0
 let g:vimtex_matchparen_enabled = 0
