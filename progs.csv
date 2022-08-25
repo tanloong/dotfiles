@@ -70,6 +70,7 @@ A,texlive-tlpdb,"The texlive package database (texlive.tlpdb)"
 ,golps,"Language server for Go programming language"
 ,js-beautify,"Beautify JavaScript/JSON (jsbeautifier.org)"
 ,bash-language-server,"Bash language server implementation based on Tree Sitter and its grammar for Bash"
+,lua-language-server,
 ,dmidecode,"get serial number of the computer"
 ,exa,"A modern replacement for ls"
 ,gcc-fortran,"dependency for compiling some R packages"
