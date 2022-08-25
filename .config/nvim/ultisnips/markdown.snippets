@@ -115,32 +115,33 @@ $0
 endsnippet
 
 snippet ,a "bold" wA
-**${1:${VISUAL}}**$0
+**$1** <<>>
 endsnippet
 
 snippet ,i "italics" wA
-*${1:${VISUAL}}*$0
+*$1* <<>>
 endsnippet
 
-snippet ,g "deleted string" wA
-~~$1~~$0
+snippet ,s "deleted string" wA
+~~$1~~ <<>>
 endsnippet
 
 snippet ,c "inline code" wA
-\`$1\`$0
+\`$1\` <<>>
 endsnippet
 
 snippet ,` "code blocks" bA
 \`\`\`$1
+<<>>
 \`\`\`
 endsnippet
 
 snippet ,p "picture" wA
-![$1]($2)$0
+![$1](<<>>)<<>>
 endsnippet
 
 snippet ,l "link" wA
-[$1]($2)$0
+[$1](<<>>)<<>>
 endsnippet
 
 snippet ,1 "Section" bA
