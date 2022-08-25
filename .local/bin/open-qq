@@ -2,5 +2,5 @@
 set -euo pipefail
 IFS=$'\n\t'
 
-notify-send "打开 QQ……" -t 300
+notify-send --urgency low "Opening QQ..." -t 1000
 icalingua

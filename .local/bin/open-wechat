@@ -2,6 +2,6 @@
 set -euo pipefail
 IFS=$'\n\t'
 
-notify-send "打开微信……" -t 300
+notify-send --urgency low "Opening WeChat..." -t 1000
 # wechat-uos
 /opt/apps/com.tencent.weixin/files/weixin/weixin.sh
