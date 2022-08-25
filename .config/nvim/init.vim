@@ -12,7 +12,6 @@ set expandtab
 set shiftwidth=4
 set updatetime=100
 set signcolumn=number
-set fdm=marker
 set mouse= | "不允许用鼠标操作
 set nrformats= | "把所有数字当成 10 进制，不管是不是以 0 开头
 set scrolloff=5 | "光标垂直移动时保持顶端/底端显示5行
@@ -23,10 +22,11 @@ set wrapscan | "环形搜索，nowrapscan
 set linebreak | "不要从单词中间换行
 set noswapfile | "不要产生交换文件
 set laststatus=2 | "show filename below
-set clipboard^=unnamed,unnamedplus" | "复制到系统寄存器(*, +)
+set clipboard^=unnamed,unnamedplus | "复制到系统寄存器(*, +)
 set dictionary+=$HOME/.local/share/BNC-40thousand.txt
 set wildignore+=*aux,*toc,*out
 set matchpairs=<:>,(:),{:},[:]
+set foldmethod=marker
 set path+=**
 set spelllang=en,cjk
 set complete=.,w,b,u,t,i,k
