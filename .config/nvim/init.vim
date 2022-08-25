@@ -99,9 +99,7 @@ nnoremap @@ @q
 nnoremap <c-p> :%s///g<Left><Left>
 vnoremap <c-p> :s///g<Left><Left>
 nnoremap <SPACE>a ggVG
-"nnoremap <SPACE>s :w<CR>
-" nnoremap <SPACE>w :x<CR>
-nnoremap <SPACE>q :q!<CR>
+nnoremap <c-w> :q!<CR>
 nnoremap <SPACE>e :set spell!<CR>
 nnoremap <SPACE><CR> :nohlsearch<CR>
 " nnoremap <LEADER>c :CocCommand<SPACE>
