@@ -23,6 +23,7 @@ set linebreak | "不要从单词中间换行
 set noswapfile | "不要产生交换文件
 set laststatus=2 | "show filename below
 set clipboard^=unnamed,unnamedplus | "复制到系统寄存器(*, +)
+set infercase
 set dictionary+=$HOME/.local/share/BNC-40thousand.txt
 set wildignore+=*aux,*toc,*out
 set matchpairs=<:>,(:),{:},[:]
@@ -38,7 +39,9 @@ highlight MatchParen cterm=none   ctermbg=none ctermfg=green guibg=none guifg=gr
 highlight Pmenu      cterm=none   ctermbg=236  ctermfg=none  guibg=236  guifg=none
 highlight PmenuSel   cterm=none   ctermbg=24   ctermfg=none  guibg=24   guifg=none
 exec "nohlsearch"
+set pumheight=5
 
+iabbrev teh the
 let g:netrw_winsize = 30 | " Change the size of the Netrw window when it creates a split.
 let g:netrw_banner = 0   | " Hide the banner. To show it temporarily use I inside Netrw.
 " check |netrw-browse-maps| for more mappings
