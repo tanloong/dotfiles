@@ -27,6 +27,7 @@ set dictionary+=$HOME/.local/share/BNC-40thousand.txt
 set wildignore+=*aux,*toc,*out
 set matchpairs=<:>,(:),{:},[:]
 set foldmethod=marker
+set fillchars=fold:─
 set path+=**
 set spelllang=en,cjk
 set complete=.,w,b,u,t,i,k
