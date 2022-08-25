@@ -132,3 +132,5 @@ P,autopep8,"Python code formatter"
 P,black,"Uncompromising Python code fommatter"
 G,vibreoffice,https://hub.xn--p8jhe.tw/seanyeh/vibreoffice
 ,tealdeer,"A fast tldr client in Rust"
+,jre-openjdk,'OpenJDK Java 18 full runtime environment'
+,jdk-openjdk,'OpenJDK Java 18 development kit'
