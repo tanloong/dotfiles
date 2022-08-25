@@ -33,15 +33,23 @@ set path+=**
 set spelllang=en,cjk
 set complete=.,w,b,u,t,i,k
 set guicursor=i-v:ver1,a:blinkon0
-highlight Visual     cterm=none   ctermbg=237  ctermfg=none  guibg=237  guifg=none
-highlight Conceal    cterm=none   ctermbg=none ctermfg=none  guibg=none guifg=none
-highlight MatchParen cterm=none   ctermbg=none ctermfg=green guibg=none guifg=green
-highlight Pmenu      cterm=none   ctermbg=236  ctermfg=none  guibg=236  guifg=none
-highlight PmenuSel   cterm=none   ctermbg=24   ctermfg=none  guibg=24   guifg=none
 exec "nohlsearch"
 set pumheight=5
 
 iabbrev teh the
+
+"highlight Visual cterm=none ctermbg=237 ctermfg=none
+highlight Visual cterm=none ctermbg=lightgray ctermfg=black guibg=lightgray guifg=black
+highlight Conceal cterm=none ctermbg=none ctermfg=none guibg=none guifg=none
+highlight MatchParen cterm=none ctermbg=none ctermfg=green guibg=none guifg=green
+highlight Pmenu cterm=none ctermbg=236 ctermfg=none guibg=236 guifg=none
+highlight PmenuSel cterm=none ctermbg=24 ctermfg=none guibg=24 guifg=none
+highlight Folded cterm=none ctermbg=none ctermfg=14 guibg=none guifg=14
+highlight SpellBad cterm=undercurl ctermbg=none ctermfg=9 guibg=none guifg=9
+highlight SpellCap cterm=undercurl ctermbg=none ctermfg=12 guibg=none guifg=12
+highlight SpellLocal cterm=undercurl ctermbg=none ctermfg=14 guibg=none guifg=14
+highlight SpellRare cterm=undercurl ctermbg=none ctermfg=13 guibg=none guifg=13
+
 let g:netrw_winsize = 30 | " Change the size of the Netrw window when it creates a split.
 let g:netrw_banner = 0   | " Hide the banner. To show it temporarily use I inside Netrw.
 " check |netrw-browse-maps| for more mappings
