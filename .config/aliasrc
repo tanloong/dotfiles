@@ -16,9 +16,9 @@ alias \
 
 # Use neovim for vim if present.
 if [ -x "$(command -v nvim)" ]; then
-    export EDITOR="nvim"; alias vv="nvim $HOME/.config/nvim/init.vim" vimdiff="nvim -d"
+    export EDITOR="nvim"; alias vv='nvim $HOME/.config/nvim/init.vim' vimdiff="nvim -d"
 else
-    export EDITOR="vim"; alias vv="vim $HOME/.vim/vimrc"
+    export EDITOR="vim"; alias vv='vim $HOME/.vim/vimrc'
 fi
 
 # sudo not required for some system commands
@@ -36,7 +36,7 @@ alias \
     p="sudo pacman" \
     t="tldr find" \
     q="exit" \
-    r="$FILE_MANAGER" \
+    r='$FILE_MANAGER' \
     n="newsboat" \
     L="less" \
     ..="cd .." \
@@ -46,23 +46,22 @@ alias \
     gh="history 0 | grep" \
     cd-="cd -" \
     sc="shellcheck" \
-    v="$EDITOR" \
-    vim="$EDITOR" \
-    va="$EDITOR $HOME/.config/aliasrc" \
-    vb="$EDITOR $HOME/.${SHELL##*/}rc" \
-    vc="$EDITOR $HOME/curricula/2021-autumn/linguistics/literature-review/uni.bib" \
+    v='$EDITOR' \
+    vim='$EDITOR' \
+    va='$EDITOR $HOME/.config/aliasrc' \
+    vb='$EDITOR $HOME/.${SHELL##*/}rc' \
     ga="lazygit" \
-    mm="$EDITOR -X $HOME/document/memorandum/Linux.md" \
-    jr="$EDITOR $HOME/document/memorandum/journal.md" \
-    wr="cd $HOME/workspace/writing" \
+    mm='$EDITOR -X $HOME/document/memorandum/Linux.md' \
+    jr='$EDITOR $HOME/document/memorandum/journal.md' \
+    wr='cd $HOME/workspace/writing' \
     sshs="ssh root@124.70.3.11" \
     sftps="sftp root@124.70.3.11" \
     fv='fzf_open_with $EDITOR' \
     fz='fzf_open_with $PDFVIEWER' \
-    fr="fzf_open_with cd; $FILE_MANAGER" \
+    fr='fzf_open_with cd; $FILE_MANAGER' \
     fs="fzf_open_with bluetooth-sendto" \
     fcd="fzf_open_with cd" \
-    neofetch="neofetch --config $HOME/.config/neofetch.conf" \
+    neofetch='neofetch --config $HOME/.config/neofetch.conf' \
 
 # aliases that precedes with "setsid -f"
 alias \
