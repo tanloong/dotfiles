@@ -21,3 +21,5 @@
     st = status
     stat = status
     t = tag -n # see tags with <n> lines of each tag message
+[core]
+	longpaths = true
