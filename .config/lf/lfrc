@@ -35,6 +35,7 @@ map x $compiler $f # 运行完并自动返回 lf
 map X !compiler $f # 运行完在终端驻留
 map A rename # at the very end
 map a push A<a-b><a-b><a-f> # before extention
+map b :backup; unselect
 map i push A<c-a> # at the very beginning
 map I push A<c-a> # at the very beginning
 map cw push A<c-u> # new rename
@@ -229,3 +230,7 @@ cmd newfold ${{
     mv -- $fx "$newd"
 }}
 cmd snd ${{ bluetooth-sendto $fx }}
+cmd backup ${{ echo $fx |
+            xargs readlink -f |
+            xargs -I {} cp --no-clobber {} {}.bak
+}}
