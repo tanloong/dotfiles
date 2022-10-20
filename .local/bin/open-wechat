@@ -4,4 +4,5 @@ IFS=$'\n\t'
 
 notify-send --urgency low "Opening WeChat..." -t 1000
 # wechat-uos
-/opt/apps/com.tencent.weixin/files/weixin/weixin.sh
+# /opt/apps/com.tencent.weixin/files/weixin/weixin.sh
+"/opt/apps/com.qq.weixin.deepin/files/run.sh" -f %f
