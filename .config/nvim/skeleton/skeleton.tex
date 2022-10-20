@@ -1,33 +1,50 @@
 \documentclass
 % {{{
-%\usepackage[gobble=auto]{pythontex}
+\usepackage{xeCJK}
+\setCJKmainfont{SimHei}
+\xeCJKsetup{
+    CJKmath=true, % 直接在数学环境中输入中文
+    LoadFandol=false, % 未设置 CJK 字体时，是否使用 Fandol 字体。
+}
+
 \usepackage{fontspec}
+\setmainfont{Times New Roman}
+
 \usepackage{indentfirst}
 \usepackage{paralist}                 % 压缩项目列表
 \usepackage[normalem]{ulem}           % 优化 \emph 命令
 \usepackage[hmargin=1.25in,vmargin=1in]{geometry}
+
 \usepackage{hyperref}
-\usepackage[normalem]{ulem}           % normalem 让 \emph 仍为斜体效果
-\usepackage{minted}
-\usepackage{mdframed}
-\usepackage{xcolor}                   % provides \definecolor
-\usepackage{fancyhdr}
-\usepackage[xelatex,inactive,tightpage,displaymath,graphics,floats]{preview}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\setminted{escapeinside=~~}           % [minted] interprete codes between ~~ as LaTeX
-\surroundwithmdframed[backgroundcolor=bg]{minted} % [mdframed]
-\setlength\PreviewBorder{1mm} % [preview] 外框加 1mm 的白边
-\definecolor{bg}{rgb}{0.97,0.97,0.97} % for code blocks
 \hypersetup{hidelinks,
             colorlinks=true,
             allcolors=blue}
+
+\usepackage{fancyhdr}
 \pagestyle{fancy}
 \fancyhf{}                            % clear headers and foots
 \fancyfoot[C]{\thepage}
 \renewcommand{\headrulewidth}{0pt}
-\setmainfont{Times New Roman}
-\setcounter{tocdepth}{3}
+
+\usepackage[normalem]{ulem}           % normalem 让 \emph 仍为斜体效果
+
+\usepackage{minted}
+\setminted{escapeinside=~~}           % [minted] interprete codes between ~~ as LaTeX
+
+\usepackage{mdframed}
+\surroundwithmdframed[backgroundcolor=bg]{minted} % [mdframed]
+
+\usepackage{xcolor}                   % provides \definecolor
+\definecolor{bg}{rgb}{0.97,0.97,0.97} % for code blocks
+
+%\usepackage[xelatex,inactive,tightpage,displaymath,graphics,floats]{preview}
+%\setlength\PreviewBorder{1mm} % [preview] 外框加 1mm 的白边
+
+%\usepackage[gobble=auto]{pythontex}
 %\input{/home/tan/.local/share/LaTeX-pythontex-customcode}
+
+\setcounter{tocdepth}{3}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % }}}
 \begin{document}
 <<>>
