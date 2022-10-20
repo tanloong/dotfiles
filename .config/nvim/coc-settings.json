@@ -78,6 +78,8 @@
         "80",
         "--preview"
     ],
+    "pyright.inlayHints.functionReturnTypes": true,
+    "pyright.inlayHints.variableTypes": false,
     "snippets.ultisnips.directories": [
         "$HOME/.config/nvim/ultisnips"
     ],
