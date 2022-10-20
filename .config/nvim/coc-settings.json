@@ -83,8 +83,5 @@
     "snippets.ultisnips.directories": [
         "$HOME/.config/nvim/ultisnips"
     ],
-    "Lua.telemetry.enable": false,
-    "smartf.timeout": 5000,
-    "smartf.jumpOnTrigger": false,
-    "smartf.wordJump": false
+    "Lua.telemetry.enable": false
 }
