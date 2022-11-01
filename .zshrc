@@ -7,6 +7,8 @@ SAVEHIST=1000
 HISTCONTROL=ignoreboth
 setopt nomatch correct
 unsetopt beep extendedglob notify
+# Reloads the history whenever you use it
+setopt share_history
 # vi mode
 bindkey -v
 
