@@ -46,7 +46,7 @@ snippet uuid "Random UUID" w
 `!p if not snip.c: import uuid; snip.rv = str(uuid.uuid4())`
 endsnippet
 
-snippet sympy "sympyblock " w
+snippet sympy "sympy block " w
 sympy $1 sympy$0
 endsnippet
 
@@ -58,7 +58,11 @@ x, y, z, t = symbols('x y z t')
 k, m, n = symbols('k m n', integer=True)
 f, g, h = symbols('f g h', cls=Function)
 init_printing()
-snip.rv = eval('latex(' + match.group(1).replace('\\', '').replace('^', '**').replace('{', '(').replace('}', ')') + ')')
+snip.rv = eval('latex(' + match.group(1)\
+				.replace('\\', '')\
+				.replace('^', '**')\
+				.replace('{', '(')\
+				.replace('}', ')') + ')').lstrip('- ')
 `
 endsnippet
 
@@ -74,32 +78,21 @@ snippet box "Box"
 $0
 endsnippet
 
-snippet ( "parentheses" i
-($0)<<>>
+snippet ( "parentheses" iA
+($0)
 endsnippet
-snippet [ "square brackets" i
-[$0]<<>>
+snippet [ "square brackets" iA
+[$0]
 endsnippet
-snippet { "curly brackets" i
-\{$0\}<<>>
+snippet { "curly brackets" iA
+\{$0\}
 endsnippet
-snippet " "double quotes" i
-"$0"<<>>
+snippet " "double quotes" iA
+"$0"
 endsnippet
-snippet ' "single quotes" i
-'$0'<<>>
+snippet ` "backticks" iA
+\`$0\`
 endsnippet
-snippet ` "backticks" i
-\`$0\`<<>>
-endsnippet
-
-# snippet ,d "double quotes" wA
-# "$1"$0
-# endsnippet
-
-# snippet ,s "single quotes" wA
-# '$1'$0
-# endsnippet
 
 # ===================
 # Custom snippets end

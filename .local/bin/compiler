@@ -23,7 +23,14 @@ textype() { \
 
 case "$ext" in
 	# Try to keep these cases in alphabetical order.
+	py) python "$file" ;;
+	tex) textype "$file" ;;
+	[rR]md) Rscript -e "rmarkdown::render('$file', quiet=TRUE)" ;;
 	[0-9]) preconv "$file" | refer -PS -e | groff -mandoc -T pdf > "$base".pdf ;;
+	rs) cargo build ;;
+	sass) sassc -a "$file" "$base.css" ;;
+	scad) openscad -o "$base".stl "$file" ;;
+	sent) setsid -f sent "$file" 2>/dev/null ;;
 	c) gcc "$file" -o "$base" && "$base" ;;
 	cpp) g++ "$file" -o "$base" && "$base" ;;
 	cs) mcs "$file" && mono "$base".exe ;;
@@ -34,12 +41,5 @@ case "$ext" in
 	mom) preconv "$file" | refer -PS -e | groff -mom -kept -T pdf > "$base".pdf ;;
 	ms) preconv "$file" | refer -PS -e | groff -me -ms -kept -T pdf > "$base".pdf ;;
 	org) emacs "$file" --batch -u "$USER" -f org-latex-export-to-pdf ;;
-	py) python "$file" ;;
-	[rR]md) Rscript -e "rmarkdown::render('$file', quiet=TRUE)" ;;
-	rs) cargo build ;;
-	sass) sassc -a "$file" "$base.css" ;;
-	scad) openscad -o "$base".stl "$file" ;;
-	sent) setsid -f sent "$file" 2>/dev/null ;;
-	tex) textype "$file" ;;
 	*) sed -n '/^#!/s/^#!//p; q' "$file" | xargs -r -I % "$file" ;;
 esac
