@@ -88,6 +88,11 @@ map <c-n> newfold
 map <enter> open
 map za set hidden!
 
+set mouse true
+#map <m-1> open
+#map <m-2> updir
+map <m-up> scroll-up
+map <m-down> scroll-down
 
 # cmds/functions
 cmd on-cd &{{
