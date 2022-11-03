@@ -21,11 +21,6 @@ else
     export EDITOR="vim"; alias vv='vim $HOME/.vim/vimrc'
 fi
 
-# sudo not required for some system commands
-for command in ln mount umount pacman make systemctl ; do
-	alias $command="sudo $command"
-done; unset command
-
 # These common commands are just too long! Abbreviate them.
 alias \
     rm="trash" \
