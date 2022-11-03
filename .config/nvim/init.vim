@@ -118,26 +118,12 @@ nnoremap <SPACE><CR> :nohlsearch<CR>
 " nnoremap <LEADER>l :CocList<SPACE>
 nnoremap <F4> :q!<CR>
 nnoremap S :source $MYVIMRC<CR>
-nnoremap sl :set splitright<CR>:vsplit<CR>
-nnoremap sh :set nosplitright<CR>:vsplit<CR>
-nnoremap sj :set splitbelow<CR>:split<CR>
-nnoremap sk :set nosplitbelow<CR>:split<CR>
+nnoremap sv :vsplit<CR>
+nnoremap ss :split<CR>
 nnoremap <up> :res +2<CR>
 nnoremap <down> :res -2<CR>
 nnoremap <left> :vertical resize-2<CR>
 nnoremap <right> :vertical resize+2<CR>
-tnoremap <c-h> <c-\><c-N><c-w>h
-tnoremap <c-l> <c-\><c-N><c-w>l
-tnoremap <c-j> <c-\><c-N><c-w>j
-tnoremap <c-k> <c-\><c-N><c-w>k
-inoremap <c-h> <c-\><c-N><c-w>h
-inoremap <c-j> <c-\><c-N><c-w>j
-inoremap <c-k> <c-\><c-N><c-w>k
-inoremap <c-l> <c-\><c-N><c-w>l
-nnoremap <c-h> <c-w>h
-nnoremap <c-l> <c-w>l
-nnoremap <c-j> <c-w>j
-nnoremap <c-k> <c-w>k
 tnoremap <Esc> <C-\><C-n>
 
 " To Turn One Line Into Title Caps, Make Every First Letter Of A Word Uppercase:
@@ -373,7 +359,6 @@ xmap <F5> <Plug>SlimeRegionSend
 nmap <F5> :SlimeSendCurrentLine<CR>
 nmap <c-c>v <Plug>SlimeConfig
 let g:slime_preserve_curpos = 0
-nmap ss <Plug>SlimeSendCell
 "}}}
 "auto-save{{{
 lua << EOF
@@ -399,6 +384,7 @@ require('auto-save').setup(
     }
 )
 EOF
+nmap s<F5> <Plug>SlimeSendCell
 "}}}
 "VimTeX{{{
 " 0. 快捷键！！！:help vimtex-default-mappings
