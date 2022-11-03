@@ -1,9 +1,0 @@
-#!/usr/bin/env bash
-set -euo pipefail
-IFS=$'\n\t'
-
-tip='/home/tan/.local/share/wubi.png'
-
-killall feh 2> /dev/null || {
-    feh --scale-down "$tip";
-}
