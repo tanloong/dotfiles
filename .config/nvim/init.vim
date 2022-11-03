@@ -67,7 +67,7 @@ packadd! matchit
 let b:batch_words='begin:end'
 
 " Runs a script that cleans out tex build files whenever I close out of a .tex file.
-    autocmd VimLeave *.tex !texclear %
+    autocmd VimLeave *.tex !latexmk -c %
 " Automatically deletes all trailing whitespace and newlines at end of file on save.
     " autocmd BufWritePre * let currPos = getpos(".")
     " autocmd BufWritePre * %s/\s\+$//e
