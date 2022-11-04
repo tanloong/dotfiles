@@ -5,12 +5,35 @@ IFS=$'\n\t'
 app="$1"
 
 case "$app" in
-    blueman-manager) blueman-manager;;
+    terminal)
+        case $XDG_SESSION_TYPE in
+            'wayland')
+                # foot;;
+                st;;
+            *)
+                st;
+        esac;;
     browser) brave;;
-    control-center) gnome-control-center;;
     dictionary) goldendict;;
-    filemanager) nautilus;;
     keepassx) keepassxc;;
+    screenshot-interactive)
+        case $XDG_SESSION_TYPE in
+            'wayland') slurp | grim -g - "$HOME"/"$(date '+%F_%T')".png;;
+            *) flameshot gui  --path "$HOME";;
+        esac;;
+    screenshot-uninteractive)
+        case $XDG_SESSION_TYPE in
+            'wayland') grim "$HOME"/"$(date '+%F_%T')".png;;
+            *) flameshot full --path "$HOME";;
+        esac;;
+    wechat) notify-send --urgency low "Opening WeChat..." -t 1000
+        # wechat-uos
+        # /opt/apps/com.tencent.weixin/files/weixin/weixin.sh
+        "/opt/apps/com.qq.weixin.deepin/files/run.sh" -f %f;;
+    qq) notify-send --urgency low "Opening QQ..." -t 1000
+        icalingua;;
+    office) libreoffice;;
+    blueman-manager) blueman-manager;;
     menu)
         case $XDG_SESSION_TYPE in
             'wayland') wofi --show run;;
@@ -24,37 +47,14 @@ case "$app" in
             col_cyan="#005577"
             dmenu_run -i -l ${dmenulines} -m ${dmenumon} -fn "${dmenufont}" -nb ${col_gray1} -nf ${col_gray3} -sb ${col_cyan} -sf ${col_gray4};;
         esac;;
-        office) libreoffice;;
-        qq) notify-send --urgency low "Opening QQ..." -t 1000
-            icalingua;;
-        screenkey)
-            killall screenkey 2> /dev/null ||\
-            screenkey -s small --persist --opacity 1 ;;
-        screenshot-interactive)
-            case $XDG_SESSION_TYPE in
-                'wayland') slurp | grim -g - "$HOME"/"$(date '+%F_%T')".png;;
-                *) flameshot gui  --path "$HOME";;
-            esac;;
-        screenshot-uninteractive)
-            case $XDG_SESSION_TYPE in
-                'wayland') grim "$HOME"/"$(date '+%F_%T')".png;;
-                *) flameshot full --path "$HOME";;
-            esac;;
-        terminal)
-            case $XDG_SESSION_TYPE in
-                'wayland')
-                    # foot;;
-                    st;;
-                *)
-                    st;
-            esac;;
-        tip)
-            dir_tip='/home/tan/.local/share/tip-pictures'
-            killall sxiv 2> /dev/null || {
-                sxiv "$dir_tip"/*;
-            };;
-        wechat) notify-send --urgency low "Opening WeChat..." -t 1000
-            # wechat-uos
-            # /opt/apps/com.tencent.weixin/files/weixin/weixin.sh
-            "/opt/apps/com.qq.weixin.deepin/files/run.sh" -f %f;;
+    screenkey)
+        killall screenkey 2> /dev/null ||\
+        screenkey -s small --persist --opacity 1 ;;
+    tip)
+        dir_tip='/home/tan/.local/share/tip-pictures'
+        killall sxiv 2> /dev/null || {
+            sxiv "$dir_tip"/*;
+        };;
+    control-center) gnome-control-center;;
+    filemanager) nautilus;;
 esac
