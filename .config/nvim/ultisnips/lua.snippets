@@ -104,4 +104,22 @@ snippet local "local x = 1"
 local ${1:x} = ${0:1}
 endsnippet
 
+# =====================
+# Custom snippets start
+# =====================
+snippet p "print something"
+print(${1:${VISUAL}})
+endsnippet
+
+snippet ,f "=" wA
+= $1
+endsnippet
+
+snippet ,, "_" iA
+_$0
+endsnippet
+# ===================
+# Custom snippets end
+# ===================
+
 # vim:ft=snippets:

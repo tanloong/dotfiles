@@ -22,14 +22,16 @@ textype() { \
 }
 
 case "$ext" in
-	# Try to keep these cases in alphabetical order.
+    sh) bash "$file";;
 	py) python "$file" ;;
 	tex) textype "$file" ;;
     docx|doc) soffice --headless --convert-to pdf "$file" ;;
     xlsx|xls) soffice --headless --convert-to csv "$file" ;;
+    csv) soffice --headless --convert-to xlsx --infilter=csv:44,34,76 "$file";;
 	[rR]md) Rscript -e "rmarkdown::render('$file', quiet=TRUE)" ;;
-	[0-9]) preconv "$file" | refer -PS -e | groff -mandoc -T pdf > "$base".pdf ;;
+    lua) lua "$file";;
     caj) caj2pdf convert "$file";;
+	[0-9]) preconv "$file" | refer -PS -e | groff -mandoc -T pdf > "$base".pdf ;;
 	rs) cargo build ;;
 	sass) sassc -a "$file" "$base.css" ;;
 	scad) openscad -o "$base".stl "$file" ;;
