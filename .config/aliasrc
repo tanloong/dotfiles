@@ -16,7 +16,7 @@ alias \
 
 # Use neovim for vim if present.
 if [ -x "$(command -v nvim)" ]; then
-    export EDITOR="nvim"; alias vv='nvim $HOME/.config/nvim/init.lua' vimdiff="nvim -d"
+    export EDITOR="nvim"; alias vv='$FILE_MANAGER $HOME/.config/nvim/lua'
 else
     export EDITOR="vim"; alias vv='vim $HOME/.vim/vimrc'
 fi

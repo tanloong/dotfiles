@@ -5,11 +5,12 @@
     "coc.preferences.formatOnSaveFiletypes": [
         "json"
     ],
+    "coc.preferences.diagnostic.refreshOnInsertMode":false,
     "diagnostic.enable": true,
-    "diagnostic.errorSign": "\uf467",
-    "diagnostic.warningSign": "\uf071",
-    "diagnostic.infoSign": "\uf129",
-    "diagnostic.hintSign": "\uf864",
+    "diagnostic.errorSign": "",
+    "diagnostic.warningSign": "",
+    "diagnostic.infoSign": "",
+    "diagnostic.hintSign": "",
     "diagnostic.displayByAle": false,
     "diagnostic.refreshOnInsertMode": false,
     "diagnostic.checkCurrentLine": true,
@@ -18,35 +19,20 @@
     "diagnostic.enableMessage": "never",
     "diagnostic.messageTarget": "echo",
     "languageserver": {
-        "golang": {
-            "command": "gopls",
-            "rootPatterns": [
-                "go.mod"
-            ],
-            "filetypes": [
-                "go"
-            ]
-        },
         "bash": {
             "command": "bash-language-server",
-            "args": [
-                "start"
-            ],
-            "filetypes": [
-                "sh"
-            ]
+            "args": ["start"],
+            "filetypes": ["sh"]
         },
         "R": {
             "enable": true,
             "command": "/usr/bin/R",
-            "args": [
-                "--slave",
-                "-e",
-                "languageserver::run()"
-            ],
-            "filetypes": [
-                "r"
-            ]
+            "args": ["--slave", "-e", "languageserver::run()"],
+            "filetypes":["r"]},
+        "golang": {
+            "command": "gopls",
+            "rootPatterns": ["go.mod"],
+            "filetypes": ["go"]
         },
         "clangd": {
             "command": "clangd",
@@ -83,5 +69,7 @@
     "snippets.ultisnips.directories": [
         "$HOME/.config/nvim/ultisnips"
     ],
-    "Lua.telemetry.enable": false
+    "sumneko-lua.locale":"en-us",
+    "Lua.telemetry.enable": false,
+    "Lua.diagnostics.globals":["vim"]
 }
