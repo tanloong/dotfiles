@@ -6,6 +6,10 @@ IFS=$'\n\t'
 # bash ~/.dwm/dwm-status-refresh.sh
 pamixer -d 5 --allow-boost
 
+notify-send --urgency low \
+    --hint string:x-canonical-private-synchronous:volume \
+    "Volume: $(pamixer --get-volume)" -t 2000
+
 # update statusbar
 status=$(slstatus -1)
 xsetroot -name "$status"

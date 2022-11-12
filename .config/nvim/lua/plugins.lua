@@ -3,10 +3,26 @@
 -- Only required if you have packer configured as `opt`
 vim.cmd [[packadd packer.nvim]]
 
-return require('packer').startup(function(use)
+vim.cmd([[
+    augroup packer_user_config
+    autocmd!
+    autocmd BufWritePost plugins.lua source <afile> | PackerCompile
+    augroup end
+]])
+
+local packer = require('packer')
+packer.init{
+    display = {
+        open_fn = function()
+            return require("packer.util").float({border='single'})
+        end
+    }
+}
+
+return packer.startup(function(use)
     -- Packer can manage itself
     use {'https://gitee.com/nvim-plugin/packer.nvim'}
-    use {'https://gitee.com/ProVim/coc.nvim.git',
+    use {'https://gitee.com/adamzyg/coc.nvim.git',
          branch='release',
          run = 'yarn install --frozen-lockfile',
          event = {'InsertEnter', 'CursorHold'},
@@ -31,9 +47,18 @@ event='CursorHold'}
     use {'https://gitee.com/tanloong/vim-slime',
         config = [[require('plugin_config.vim_slime')]]} -- needs xdotool
     use {'https://gitee.com/mirrors/vimtex.git',
+    cmd = {'VimtexCompile'},
         config = [[require('plugin_config.vimtex')]]}
-    use {'https://gitee.com/ProVim/vim-easymotion.git',
-        config = [[require('plugin_config.vim_easymotion')]]}
-    -- ch(如，常)对应字母i，sh(如，厦)对应字母u，zh(如，真)对应字母v
-    use {'https://gitee.com/tanloong/vim-easymotion-chs.git'}
+    use {'/home/tan/software/hop.nvim',
+        config=[[require('plugin_config.hop')]]}
+    use {'https://gitee.com/tanloong/nvim-terminal.git',
+        config=[[require('plugin_config.nvim_terminal')]]}
+    use {'https://gitee.com/jianshanbushishan/nvim-treesitter.git',
+        run = ':TSUpdate',
+        config=[[require('plugin_config.nvim_treesitter')]],
+        event='CursorHold'}
+    -- use {'https://gitee.com/ProVim/vim-easymotion.git',
+    --     config = [[require('plugin_config.vim_easymotion')]]}
+    -- -- ch(如，常)对应字母i，sh(如，厦)对应字母u，zh(如，真)对应字母v
+    -- use {'https://gitee.com/tanloong/vim-easymotion-chs.git'}
 end)

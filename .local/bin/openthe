@@ -16,15 +16,15 @@ case "$app" in
     browser) brave;;
     dictionary) goldendict;;
     keepassx) keepassxc;;
-    screenshot-interactive)
+    screenshot-noclip)
         case $XDG_SESSION_TYPE in
             'wayland') slurp | grim -g - "$HOME"/"$(date '+%F_%T')".png;;
-            *) flameshot gui  --path "$HOME";;
+            *) flameshot gui --clipboard --path "$HOME";;
         esac;;
-    screenshot-uninteractive)
+    screenshot-clip)
         case $XDG_SESSION_TYPE in
             'wayland') grim "$HOME"/"$(date '+%F_%T')".png;;
-            *) flameshot full --path "$HOME";;
+            *) flameshot gui --clipboard;;
         esac;;
     wechat) notify-send --urgency low "Opening WeChat..." -t 1000
         # wechat-uos

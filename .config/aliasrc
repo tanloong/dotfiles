@@ -2,11 +2,20 @@
 
 function fzf_open_with {
     file="$(fzf --reverse)"
-    dir="${file%/*}"
     if [ -n "$file" ]; then # in case you press <Esc> and fzf returns zero length of string
-        "$1" "$file" 2>/dev/null || "$1" "$dir";
+        dir="${file%/*}"
+        case "$1" in
+            cd) cd "$dir" || return;;
+            *) cd "$dir" && "$1" "$file" || return;;
+        esac
     fi
 }
+alias \
+    fcd="fzf_open_with cd" \
+    fv='fzf_open_with $EDITOR' \
+    fz='fzf_open_with $PDFVIEWER' \
+    fr='fzf_open_with $FILE_MANAGER' \
+    fs="fzf_open_with bluetooth-sendto" \
 
 # Colorize commands when possible.
 alias \
@@ -25,17 +34,16 @@ fi
 alias \
     rm="trash" \
     c="clear" \
-    cc="crow -b" \
     e="chmod u+x" \
     g="git" \
     p="sudo pacman" \
-    t="tldr find" \
+    t="tldr" \
     q="exit" \
     r='$FILE_MANAGER' \
     n="newsboat" \
     L="less" \
-    ..="cd .." \
-    ....="cd ../.." \
+    .="cd .." \
+    ..="cd ../.." \
     lt="du -sh * | sort -h" \
     ka="killall" \
     gh="history 0 | grep" \
@@ -51,12 +59,8 @@ alias \
     wr='cd $HOME/workspace/writing' \
     sshs="ssh root@124.70.3.11" \
     sftps="sftp root@124.70.3.11" \
-    fv='fzf_open_with $EDITOR' \
-    fz='fzf_open_with $PDFVIEWER' \
-    fr='fzf_open_with cd; $FILE_MANAGER' \
-    fs="fzf_open_with bluetooth-sendto" \
-    fcd="fzf_open_with cd" \
     neofetch='neofetch --config $HOME/.config/neofetch.conf' \
+    myclip='xclip -rmlastnl -sel clipboard' \
 
 # aliases that precedes with "setsid -f"
 alias \
@@ -89,4 +93,5 @@ alias \
 	cp="cp -iv" \
 	mv="mv -iv" \
 	mkd="mkdir -pv" \
+
 	# rm="rm -vI" \

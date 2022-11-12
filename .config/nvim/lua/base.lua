@@ -1,6 +1,7 @@
 #!/usr/bin/env lua
 
 local optset = vim.opt
+local au = vim.api.nvim_create_autocmd
 
 optset.backspace='start,eol,indent'
 optset.background='dark'
@@ -14,13 +15,13 @@ optset.signcolumn='number'
 optset.mouse='nvi'
 optset.scrolloff=5
 optset.ignorecase=true
+optset.infercase=true
 optset.smartcase=true
 optset.wrap=true
 optset.wrapscan=true
 optset.linebreak=true
 optset.swapfile=false
 optset.laststatus=2
-optset.infercase=true
 optset.matchpairs='<:>,(:),{:},[:]'
 optset.foldmethod='marker'
 optset.spelllang='en,cjk'
@@ -35,6 +36,11 @@ optset.clipboard:prepend {'unnamed,unnamedplus'}
 optset.dictionary:append {vim.env.HOME.."/.local/share/BNC-40thousand.txt"}
 optset.wildignore:append {'*aux,*toc,*out'}
 optset.path:append {'**'}
+
+au("TermOpen", {pattern="*", command=[[setlocal norelativenumber nonumber | setlocal statusline=channel:\ %{&channel} | startinsert]]})
+au("BufEnter", {pattern="term://*", command='startinsert'})
+-- Output is followed if cursor is on the last line.
+au("BufLeave", {pattern="term://*", command='normal G'})
 
 vim.cmd([[filetype plugin on]])
 vim.cmd([[filetype indent on]])
@@ -63,3 +69,7 @@ endif
 ]])
 vim.cmd([[packadd! matchit]])
 vim.b['batch_words']='begin:end'
+vim.g['python_host_skip_check']=1
+vim.g['python_host_prog']='/usr/bin/python'
+vim.g['python3_host_skip_check']=1
+vim.g['python3_host_prog']='/usr/bin/python3'

@@ -26,9 +26,9 @@ with ${1:expr}`!p snip.rv = " as " if t[2] else ""`${2:var}:
 $0
 endsnippet
 
-snippet for "for loop" b
-for ${1:item} in ${2:iterable}:
-	${3:${VISUAL:pass}}
+snippet "^\s*for" "for loop" brA
+for $0 in <<>>:
+	<<>>
 endsnippet
 
 ##########
@@ -538,7 +538,7 @@ self.
 endsnippet
 
 snippet from "from module import name" b
-from ${1:module} import ${2:Stuff}
+from $0 import <<>>
 endsnippet
 
 
@@ -736,7 +736,7 @@ print(response.status_code)
 endsnippet
 
 snippet join "join a list of strings"
-'${1}'.join([${2}])
+'$0'.join([<<>>])
 endsnippet
 
 snippet p "print something"
@@ -764,6 +764,9 @@ endsnippet
 
 snippet ,, "_" iA
 _$0
+endsnippet
+snippet ii "import" bA
+import $0
 endsnippet
 # ===================
 # Custom snippets end

@@ -23,8 +23,8 @@ snippet date "YYYY-MM-DD" w
 `!v strftime("%Y-%m-%d")`
 endsnippet
 
-snippet ddate "Month DD, YYYY" w
-`!v strftime("%b %d, %Y")`
+snippet ddate "年月日" w
+`!v strftime("%Y年%m月%d日")`
 endsnippet
 
 snippet diso "ISO format datetime" w
@@ -87,13 +87,18 @@ endsnippet
 snippet { "curly brackets" iA
 \{$0\}
 endsnippet
-snippet " "double quotes" iA
-"$0"
-endsnippet
+# snippet " "double quotes" iA
+# "$0"
+# endsnippet
 snippet ` "backticks" iA
 \`$0\`
 endsnippet
 
+priority 10
+
+snippet "`([^`]+)`" "calculate" ir
+`!p snip.rv = eval(match.group(1))`
+endsnippet
 # ===================
 # Custom snippets end
 # ===================

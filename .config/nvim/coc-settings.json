@@ -5,7 +5,8 @@
     "coc.preferences.formatOnSaveFiletypes": [
         "json"
     ],
-    "coc.preferences.diagnostic.refreshOnInsertMode":false,
+    "suggest.defaultSortMethod": "none",
+    "coc.preferences.diagnostic.refreshOnInsertMode": false,
     "diagnostic.enable": true,
     "diagnostic.errorSign": "",
     "diagnostic.warningSign": "",
@@ -21,18 +22,33 @@
     "languageserver": {
         "bash": {
             "command": "bash-language-server",
-            "args": ["start"],
-            "filetypes": ["sh"]
+            "args": [
+                "start"
+            ],
+            "filetypes": [
+                "sh"
+            ]
         },
         "R": {
             "enable": true,
             "command": "/usr/bin/R",
-            "args": ["--slave", "-e", "languageserver::run()"],
-            "filetypes":["r"]},
+            "args": [
+                "--slave",
+                "-e",
+                "languageserver::run()"
+            ],
+            "filetypes": [
+                "r"
+            ]
+        },
         "golang": {
             "command": "gopls",
-            "rootPatterns": ["go.mod"],
-            "filetypes": ["go"]
+            "rootPatterns": [
+                "go.mod"
+            ],
+            "filetypes": [
+                "go"
+            ]
         },
         "clangd": {
             "command": "clangd",
@@ -69,7 +85,37 @@
     "snippets.ultisnips.directories": [
         "$HOME/.config/nvim/ultisnips"
     ],
-    "sumneko-lua.locale":"en-us",
+    "sumneko-lua.locale": "en-us",
     "Lua.telemetry.enable": false,
-    "Lua.diagnostics.globals":["vim"]
+    "Lua.diagnostics.globals": [
+        "vim"
+    ],
+    "suggest.completionItemKindLabels": {
+        "constructor": "ﬥ",
+        "keyword": "",
+        "variable": "",
+        "value": "",
+        "operator": "Ψ",
+        "function": "ƒ",
+        "reference": "渚",
+        "constant": "",
+        "method": "",
+        "struct": "פּ",
+        "class": "",
+        "interface": "",
+        "text": "",
+        "enum": "",
+        "enumMember": "",
+        "module": "",
+        "color": "",
+        "property": "",
+        "field": "料",
+        "unit": "",
+        "event": "鬒",
+        "file": "",
+        "folder": "",
+        "snippet": "",
+        "typeParameter": "",
+        "default": " "
+    }
 }

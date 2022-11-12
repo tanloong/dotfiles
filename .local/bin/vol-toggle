@@ -4,7 +4,16 @@ IFS=$'\n\t'
 
 # /usr/bin/amixer set Master toggle
 # amixer -D pulse set Master 1+ toggle
-pamixer -t
+pamixer --toggle-mute
+
+case "$(pamixer --get-mute)" in
+    true) notify-send --urgency low \
+        --hint string:x-canonical-private-synchronous:volume \
+        -t 2000 "Volume: muted";;
+    false) notify-send --urgency low \
+        --hint string:x-canonical-private-synchronous:volume \
+        -t 2000 "Volume: $(pamixer --get-volume)";;
+esac
 
 # update statusbar
 status=$(slstatus -1)

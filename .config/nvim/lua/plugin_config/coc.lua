@@ -1,5 +1,5 @@
 #!/usr/bin/env lua
-vim.keymap.set('n', '<leader>c', '<Cmd>CocCommand<space>')
+vim.keymap.set('n', '<leader>c', ':CocCommand<space>')
 vim.cmd([[highlight! link CocMenuSel PmenuSel]])
 vim.cmd([[highlight! CocPumSearch ctermfg=yellow]])
 -- Use tab for trigger completion with characters ahead and navigate.
