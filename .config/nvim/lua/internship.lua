@@ -24,7 +24,7 @@ function M.intrn_join()
     local line_cur = vim.fn.getline(".")
     local line_target = vim.fn.getline(lnum_target)
     local sep = " "
-    if vim.fn.getline(lnum_cur-1)=="" then sep="" end
+    if (vim.fn.getline(lnum_cur-1)=="" or line_target=="") then sep="" end
     vim.fn.setline(lnum_target,M.strip(line_target)..sep..line_cur)
     vim.fn.setline(lnum_cur,'')
 end

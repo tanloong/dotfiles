@@ -90,6 +90,7 @@
     "Lua.diagnostics.globals": [
         "vim"
     ],
+    "Lua.hint.arrayIndex": "Disable",
     "suggest.completionItemKindLabels": {
         "constructor": "ﬥ",
         "keyword": "",

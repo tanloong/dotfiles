@@ -32,7 +32,7 @@ fi
 
 # These common commands are just too long! Abbreviate them.
 alias \
-    rm="trash" \
+    dl="trash" \
     c="clear" \
     e="chmod u+x" \
     g="git" \
