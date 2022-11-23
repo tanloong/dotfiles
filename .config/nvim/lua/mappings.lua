@@ -76,20 +76,21 @@ keyset('t', '<right>', '<c-\\><c-N><Cmd>vertical resize+2|startinsert<CR>')
 -- destroy terminals
 keyset('t', '<c-q>', '<c-\\><c-N><Cmd>bdelete!<CR>')
 
--- To Turn One Line Into Title Caps, Make Every First Letter Of A Word Uppercase:
-    keyset('n', 'gug', '<Cmd>s/\\v<(.)(\\w*)/\\u\\1\\L\\2/g | nohlsearch<CR>')
--- Compile document, be it groff/LaTeX/markdown/etc.
-    keyset('n', '<LEADER><F5>', '<Cmd>w! | !compiler "%"<CR>')
--- Open corresponding .pdf/.html or preview
-    keyset('n', 'go', '<Cmd>silent!!opout "%"<CR>')
--- Perform dot commands over visual blocks:
-    keyset('v', '.', '<Cmd>normal .<CR>')
-keyset('v', 'p', '"_dP') -- keep what I am pasting
--- Spell checking on the fly
-keyset('i', '<c-l>', '<c-g>u<Esc>[s1z=`]a<c-g>u')
+keyset('n', 'gug', '<Cmd>s/\\v<(.)(\\w*)/\\u\\1\\L\\2/g | nohlsearch<CR>',
+    {desc=[[To Turn One Line Into Title Caps, Make Every First Letter Of A Word Uppercase]]})
+keyset('n', '<LEADER><F5>', '<Cmd>w! | !compiler "%"<CR>',
+    {desc=[[Compile document, be it groff/LaTeX/markdown/etc.]]})
+keyset('n', 'go', '<Cmd>silent!!opout "%"<CR>',
+    {desc=[[Open corresponding .pdf/.html or preview]]})
+keyset('v', '.', '<Cmd>normal .<CR>',
+    {desc=[[Perform dot commands over visual blocks]]})
+keyset('v', 'p', '"_dP',
+    {desc=[[keep what I am pasting]]})
+keyset('i', '<c-l>', '<c-g>u<Esc>[s1z=`]a<c-g>u',
+    {desc=[[Spell checking on the fly]]})
 keyset('n', '<SPACE><SPACE>', '/<<>><CR>:set nohlsearch<CR>"_c4<right>')
 keyset('i', 'jk', '<Esc>/<<>><CR>:set nohlsearch<CR>"_c4<right>')
 keyset('i', 'jj', '<right>')
 keyset('i', 'kk', '<left>')
---  展开活动缓冲区所在目录
-    keyset('c', '%%', "getcmdtype()==':'? expand('%:h').'/' : '%%'", {expr=true})
+keyset('c', '%%', "getcmdtype()==':'? expand('%:h').'/' : '%%'",
+    {expr=true,desc=[[展开活动缓冲区所在目录]]})

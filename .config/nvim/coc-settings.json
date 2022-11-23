@@ -91,6 +91,9 @@
         "vim"
     ],
     "Lua.hint.arrayIndex": "Disable",
+    "Lua.diagnostics.neededFileStatus": {
+        "lowercase-global": "None"
+    },
     "suggest.completionItemKindLabels": {
         "constructor": "ﬥ",
         "keyword": "",

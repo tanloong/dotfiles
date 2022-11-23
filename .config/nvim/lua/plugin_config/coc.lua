@@ -1,7 +1,11 @@
 #!/usr/bin/env lua
+local hi = vim.api.nvim_set_hl
+hi(0, 'CocMenuSel', {link='PmenuSel'})
+hi(0, 'CocPumSearch', {ctermfg='yellow'})
+hi(0, 'CocInlayHint', {ctermbg='none', ctermfg='darkgray'})
+hi(0, 'CocHintVirtualText', {ctermbg='none', ctermfg='darkgray'})
+
 vim.keymap.set('n', '<leader>c', ':CocCommand<space>')
-vim.cmd([[highlight! link CocMenuSel PmenuSel]])
-vim.cmd([[highlight! CocPumSearch ctermfg=yellow]])
 -- Use tab for trigger completion with characters ahead and navigate.
 -- NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
 -- other plugin before putting this into your config.
@@ -89,7 +93,7 @@ vim.keymap.set("x", "<C-s>", "<Plug>(coc-range-select)", {silent = true})
 vim.cmd([[set statusline=%<%f\ %h%m%{coc#status()}%{get(b:,'coc_current_function','')}%r%=%-14.(%l,%c%V%)\ %p%%]])
 -- Add `:Format` command to format current buffer.
 vim.api.nvim_create_user_command("Format", "call CocAction('format')", {})
---vim.keynmap.set('n', '<F9>', ":call CocActionAsync('format')<CR>")
+vim.keymap.set('n', '<F9>', ":call CocActionAsync('format')<CR>")
 -- " Add `:Fold` command to fold current buffer.
 vim.api.nvim_create_user_command("Fold", "call CocAction('fold', <f-args>)", {nargs = '?'})
 -- Add `:OR` command for organize imports of the current buffer.

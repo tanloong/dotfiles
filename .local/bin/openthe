@@ -19,7 +19,7 @@ case "$app" in
     screenshot-noclip)
         case $XDG_SESSION_TYPE in
             'wayland') slurp | grim -g - "$HOME"/"$(date '+%F_%T')".png;;
-            *) flameshot gui --clipboard --path "$HOME";;
+            *) flameshot gui --path "$HOME";;
         esac;;
     screenshot-clip)
         case $XDG_SESSION_TYPE in
