@@ -3,7 +3,7 @@ require'nvim-treesitter.configs'.setup {
   -- Automatically install missing parsers when entering buffer
   -- Recommendation: set to false if you don't have `tree-sitter` CLI installed locally
   auto_install = true,
-  ignore_install = {'latex'},
+  ignore_install = {},
 
   highlight = {
     -- `false` will disable the whole extension
@@ -13,6 +13,6 @@ require'nvim-treesitter.configs'.setup {
     -- Using this option may slow down your editor, and you may see some duplicate highlights.
     -- Instead of true it can also be a list of languages
     additional_vim_regex_highlighting = false,
-    disable = {'latex'},
+    disable = {},
   },
 }
