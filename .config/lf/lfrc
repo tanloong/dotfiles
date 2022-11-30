@@ -28,18 +28,18 @@ map dD trash
 map du !clear;tput cup $(($(tput lines)/3));tput bold;du --max-depth=1 -h --apparent-size
 map dU !clear;tput cup $(($(tput lines)/3));tput bold;du --max-depth=1 -h --apparent-size | sort -rh
 map ` mark-load
-map s shell-wait
+map s shell
 # map x $$f # 运行完并自动返回 lf
 # map X !$f # 运行完在终端驻留
 map x $compiler $f # 运行完并自动返回 lf
 map X !compiler $f # 运行完在终端驻留
 map A rename # at the very end
-map a push A<a-b><a-b><a-f> # before extention
+map a rename_before_ext # before extention
 map b :backup; unselect
 map i push A<c-a> # at the very beginning
 map I push A<c-a> # at the very beginning
-map cw push A<c-u> # new rename
-map B bulkrename
+map cw rename_edit # new rename
+map B rename_bulk
 map cx $sudo chmod +x $fx
 map cX $sudo chmod -x $fx
 map gcc cd ~/.config
@@ -123,7 +123,7 @@ cmd open ${{
         video/*|image/gif) setsid -f mpv "$fx" -quiet >/dev/null 2>&1 ;;
         image/x-xcf) setsid -f gimp "$fx" >/dev/null 2>&1 ;;
         image/svg+xml) setsid -f display -- "$fx" ;;
-        image/*) setsid -f sxiv "${fx%/*}" ;;
+        image/*) setsid -f sxiv "$fx" ;;
         # image/*) setsid -f imv "${fx%/*}" ;;
 
         application/octet-stream) mpv --audio-display=no "$fx" ;;
@@ -148,7 +148,7 @@ cmd delete ${{
     clear
 }}
 
-cmd bulkrename ${{
+cmd rename_bulk ${{
     index=$(mktemp /tmp/lf-bulk-rename-index.XXXXXXXXXX)
     if [ -n "${fs}" ]; then
         echo "$fs" > $index
@@ -175,7 +175,28 @@ cmd bulkrename ${{
     fi
     rm $index $index_edit
 }}
+cmd rename_before_ext &{{
+    filename="${f##*/}"         # Get basename of the selection
+    extension="${filename##*.}" # Get extension only
 
+    # If file doesn't have any extension, handle normally
+    [ "$extension" = "$filename" ] && \
+        lf -remote "send $id push :rename<enter><c-u>" && exit
+
+    lefts="$(printf '%0.s<left>' $(seq 0 "${#extension}"))"
+    
+    # Command below is behaving weirdly:
+    lf -remote "send $id push :rename<enter>$lefts"
+}}
+cmd rename_edit &{{
+	if [ -n "$fs" ]
+	then
+		# Bulkrename
+		lf -remote "send $id rename_bulk"
+	else
+		lf -remote "send $id push :rename<enter><c-u>"
+	fi
+}}
 cmd yank-dirname $dirname -- "$f" | head -c-1 | xclip -i -selection clipboard
 cmd yank-path $printf '%s' "$fx" | xclip -i -selection clipboard
 cmd yank-basename $basename -a -- $fx | head -c-1 | xclip -i -selection clipboard

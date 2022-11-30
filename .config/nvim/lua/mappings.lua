@@ -1,11 +1,11 @@
 #!/usr/bin/env lua
 local keyset = vim.keymap.set
-keyset({'n','v','o'}, '9', '$')
-keyset({'n','v','o'}, 'K', '5gk')
-keyset({'n','v','o'}, 'J', '5gj')
-keyset({'n','v','o'}, 'H', '5h')
-keyset({'n','v','o'}, 'L', '5l')
-keyset({'n','v','o'}, 'Q', '@q')
+keyset({ 'n', 'v', 'o' }, '9', '$')
+keyset({ 'n', 'v', 'o' }, 'K', '5gk')
+keyset({ 'n', 'v', 'o' }, 'J', '5gj')
+keyset({ 'n', 'v', 'o' }, 'H', '5h')
+keyset({ 'n', 'v', 'o' }, 'L', '5l')
+keyset({ 'n', 'v', 'o' }, 'Q', '@q')
 keyset('n', 'j', 'gj')
 keyset('n', 'k', 'gk')
 keyset('n', 'gk', 'k')
@@ -45,6 +45,7 @@ keyset('n', 'vib', 'ggVG')
 keyset('n', 'dib', '<Cmd>%d<cr>')
 keyset('n', 'yib', '<Cmd>%y<cr>')
 keyset('n', 'cib', 'ggcG')
+keyset('n', '<enter>', 'i<enter><esc>')
 
 -- jumping between a normal buffer and a neovim terminal
 keyset('t', '<leader><esc>', '<c-\\><c-N>')
@@ -52,10 +53,10 @@ keyset('t', '<c-h>', '<c-\\><c-N><c-w>h')
 keyset('t', '<c-j>', '<c-\\><c-N><c-w>j')
 keyset('t', '<c-k>', '<c-\\><c-N><c-w>k')
 keyset('t', '<c-l>', '<c-\\><c-N><c-w>l')
-keyset('t', 'sh', '<c-\\><c-N><c-w>h')
-keyset('t', 'sj', '<c-\\><c-N><c-w>j')
-keyset('t', 'sk', '<c-\\><c-N><c-w>k')
-keyset('t', 'sl', '<c-\\><c-N><c-w>l')
+-- keyset('t', 'sh', '<c-\\><c-N><c-w>h')
+-- keyset('t', 'sj', '<c-\\><c-N><c-w>j')
+-- keyset('t', 'sk', '<c-\\><c-N><c-w>k')
+-- keyset('t', 'sl', '<c-\\><c-N><c-w>l')
 keyset('i', '<c-h>', '<c-\\><c-N><c-w>h')
 keyset('i', '<c-j>', '<c-\\><c-N><c-w>j')
 keyset('i', '<c-k>', '<c-\\><c-N><c-w>k')
@@ -77,20 +78,20 @@ keyset('t', '<right>', '<c-\\><c-N><Cmd>vertical resize+2|startinsert<CR>')
 keyset('t', '<c-q>', '<c-\\><c-N><Cmd>bdelete!<CR>')
 
 keyset('n', 'gug', '<Cmd>s/\\v<(.)(\\w*)/\\u\\1\\L\\2/g | nohlsearch<CR>',
-    {desc=[[To Turn One Line Into Title Caps, Make Every First Letter Of A Word Uppercase]]})
+    { desc = [[To Turn One Line Into Title Caps, Make Every First Letter Of A Word Uppercase]] })
 keyset('n', '<LEADER><F5>', '<Cmd>w! | !compiler "%"<CR>',
-    {desc=[[Compile document, be it groff/LaTeX/markdown/etc.]]})
+    { desc = [[Compile document, be it groff/LaTeX/markdown/etc.]] })
 keyset('n', 'go', '<Cmd>silent!!opout "%"<CR>',
-    {desc=[[Open corresponding .pdf/.html or preview]]})
-keyset('v', '.', '<Cmd>normal .<CR>',
-    {desc=[[Perform dot commands over visual blocks]]})
+    { desc = [[Open corresponding .pdf/.html or preview]] })
+keyset('v', '.', ':normal .<CR>',
+    { desc = [[Perform dot commands over visual blocks]] })
 keyset('v', 'p', '"_dP',
-    {desc=[[keep what I am pasting]]})
+    { desc = [[keep what I am pasting]] })
 keyset('i', '<c-l>', '<c-g>u<Esc>[s1z=`]a<c-g>u',
-    {desc=[[Spell checking on the fly]]})
+    { desc = [[Spell checking on the fly]] })
 keyset('n', '<SPACE><SPACE>', '/<<>><CR>:set nohlsearch<CR>"_c4<right>')
 keyset('i', 'jk', '<Esc>/<<>><CR>:set nohlsearch<CR>"_c4<right>')
 keyset('i', 'jj', '<right>')
 keyset('i', 'kk', '<left>')
 keyset('c', '%%', "getcmdtype()==':'? expand('%:h').'/' : '%%'",
-    {expr=true,desc=[[展开活动缓冲区所在目录]]})
+    { expr = true, desc = [[展开活动缓冲区所在目录]] })

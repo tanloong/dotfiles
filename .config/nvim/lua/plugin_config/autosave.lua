@@ -5,18 +5,18 @@ require('auto-save').setup(
         -- execution_message = "AutoSave: saved",
         execution_message = {
             message = function() -- message to print on save
-                return ("AutoSave: saved at " .. vim.fn.strftime("%H:%M:%S")) end,
+                return ("AutoSave: saved at " .. vim.fn.strftime("%H:%M:%S"))
+            end,
             dim = 0,
             -- dim the color of `message`
             cleaning_interval = 1250,
             -- (milliseconds) automatically clean MsgArea after displaying `message`.
             -- See :h MsgArea
         },
-        trigger_events = {"InsertLeave", "TextChanged"},
+        trigger_events = { "InsertLeave", "TextChanged" },
         write_all_buffers = false,
         -- write all buffers when the current one meets `condition`
         debounce_delay = 135,
         -- saves the file at most every `debounce_delay` milliseconds
     }
 )
-

@@ -26,8 +26,8 @@ with ${1:expr}`!p snip.rv = " as " if t[2] else ""`${2:var}:
 $0
 endsnippet
 
-snippet "^\s*for\s" "for loop" brA
-for $0 in <<>>:
+snippet "^(\s*)for\s" "for loop" rA
+`!p snip.rv=match.group(1)`for $0 in <<>>:
 	<<>>
 endsnippet
 

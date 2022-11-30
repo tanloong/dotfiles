@@ -18,6 +18,7 @@ export TESSDATA_PREFIX=/usr/share/tessdata/
 export SUDO_ASKPASS=/usr/bin/qt4-ssh-askpass
 export CDPATH=$HOME:$HOME/university/:$HOME/software:$HOME/projects:$HOME/document
 export CDPATH=$CDPATH:$HOME/university/this-year/current-semester
+export CDPATH=$CDPATH:$HOME/projects/.shangwai/
 export TERMINAL="st"
 export PDFVIEWER="zathura"
 export BROWSER="brave"

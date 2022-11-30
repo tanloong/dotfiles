@@ -66,6 +66,7 @@ alias \
 alias \
     deskreen="setsid -f deskreen" \
 	z="setsid -f zathura" \
+    x="setsid -f xournalpp" \
 	zathura="setsid -f zathura" \
     gedit="setsid -f gedit" \
     rstudio="setsid -f rstudio-bin" \

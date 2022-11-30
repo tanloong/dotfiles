@@ -21,4 +21,4 @@ require('nvim-terminal').setup({
     toggle_keymap = '<m-=>'
 })
 terminal = require('nvim-terminal').DefaultTerminal;
-vim.keymap.set('t', '<m-=>', '<c-\\><c-N><Cmd>lua terminal:toggle()<cr>', {silent=true})
+vim.keymap.set('t', '<m-=>', '<c-\\><c-N><Cmd>lua terminal:toggle()<cr>', { silent = true })
