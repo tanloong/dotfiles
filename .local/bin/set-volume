@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+set -euo pipefail
+IFS=$'\n\t'
+
+flag="$1"
+coefficient=5 # 每次调整 5%
+
+case "$flag" in
+    1) pamixer --unmute --increase "$coefficient" --allow-boost;;
+    -1) pamixer --decrease "$coefficient" --allow-boost;;
+    *) pamixer --toggle-mute;;
+esac
+
+notify-send --urgency low \
+    --hint string:x-canonical-private-synchronous:volume \
+    -t 2000 "Volume: $(pamixer --get-volume-human)"
+
+# update statusbar
+status=$(slstatus -1)
+xsetroot -name "$status"
