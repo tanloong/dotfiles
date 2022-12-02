@@ -39,7 +39,6 @@ map b :backup; unselect
 map i push A<c-a> # at the very beginning
 map I push A<c-a> # at the very beginning
 map cw rename_edit # new rename
-map B rename_bulk
 map cx $sudo chmod +x $fx
 map cX $sudo chmod -x $fx
 map gcc cd ~/.config
@@ -181,7 +180,7 @@ cmd rename_before_ext &{{
 
     # If file doesn't have any extension, handle normally
     [ "$extension" = "$filename" ] && \
-        lf -remote "send $id push :rename<enter><c-u>" && exit
+        lf -remote "send $id push :rename<enter>" && exit
 
     lefts="$(printf '%0.s<left>' $(seq 0 "${#extension}"))"
     

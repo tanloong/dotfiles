@@ -22,7 +22,7 @@ packer.init {
 return packer.startup(function(use)
     -- Packer can manage itself
     use { 'https://gitee.com/nvim-plugin/packer.nvim' }
-    use { 'https://gitee.com/adamzyg/coc.nvim.git',
+    use { 'https://gitee.com/billscofield/coc.nvim.git',
         branch = 'release',
         run = 'yarn install --frozen-lockfile',
         event = { 'InsertEnter', 'CursorHold' },

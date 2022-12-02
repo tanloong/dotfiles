@@ -46,8 +46,7 @@ au("BufEnter", { pattern = "term://*", command = 'startinsert' })
 -- Output is followed if cursor is on the last line.
 au("BufLeave", { pattern = "term://*", command = 'normal G' })
 
-vim.cmd([[filetype plugin on]])
-vim.cmd([[filetype indent on]])
+vim.cmd([[filetype plugin indent on]])
 vim.cmd([[syntax on]])
 vim.cmd([[iabbrev teh the]])
 vim.g['netrw_winsize'] = 30 -- Change the size of the Netrw window when it creates a split.

@@ -53,6 +53,7 @@ alias \
     vim='$EDITOR' \
     va='$EDITOR $HOME/.config/aliasrc' \
     vb='$EDITOR $HOME/.${SHELL##*/}rc' \
+    ve='$EDITOR $HOME/.${SHELL##*/}env' \
     ga="lazygit" \
     mm='$EDITOR -X $HOME/document/memorandum/Linux.md' \
     jr='$EDITOR $HOME/document/memorandum/journal.md' \

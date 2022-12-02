@@ -13,9 +13,10 @@ function M.intrn_join()
     -- 将光标所在pair的中文或英文行合并到上一个pair对应中文或英文行的末尾
     local lnum_cur = vim.fn.line(".")
     local lnum_prev3 = lnum_cur - 3
+    local lnum_prev1 = lnum_cur - 1
     local line_cur = vim.fn.getline(".")
     local line_prev3 = vim.fn.getline(lnum_prev3)
-    local line_prev1 = vim.fn.getline(lnum_cur-1)
+    local line_prev1 = vim.fn.getline(lnum_prev1)
     local sep = " "
     if (line_prev1 == "" or line_prev3 == "") then sep = "" end
     vim.fn.setline(lnum_prev3, M.strip(line_prev3) .. sep .. line_cur)
@@ -29,4 +30,4 @@ local map_intern = function()
     keyset('n', ',r', '<Cmd>let pos=getcurpos()[1:] | %d | 0r %.bak | call cursor(pos)<CR>')
 end
 
-vim.api.nvim_create_autocmd("BufEnter", { pattern = "interlaced*", callback = map_intern})
+vim.api.nvim_create_autocmd("BufEnter", { pattern = "interlaced*", callback = map_intern })
