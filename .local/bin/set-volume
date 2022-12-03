@@ -16,5 +16,5 @@ notify-send --urgency low \
     -t 2000 "Volume: $(pamixer --get-volume-human)"
 
 # update statusbar
-status=$(slstatus -1)
-xsetroot -name "$status"
+# status=$(slstatus -1)
+# xsetroot -name "$status"

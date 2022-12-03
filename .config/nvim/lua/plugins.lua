@@ -45,7 +45,7 @@ return packer.startup(function(use)
     use { 'https://gitee.com/oy456xd/vim-visual-multi.git',
         event = 'CursorHold' }
     use { 'https://gitee.com/tanloong/vim-slime',
-        config = [[require('plugin_config.vim_slime')]] } -- needs xdotool
+        config = [[require('plugin_config.vim_slime')]] }
     use { 'https://gitee.com/mirrors/vimtex.git',
         cmd = { 'VimtexCompile' },
         config = [[require('plugin_config.vimtex')]] }

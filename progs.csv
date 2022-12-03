@@ -136,3 +136,4 @@ G,vibreoffice,https://hub.xn--p8jhe.tw/seanyeh/vibreoffice
 ,jdk-openjdk,'OpenJDK Java 18 development kit'
 ,twine,"Collection of utilities for interacting with PyPI"
 ,baidupcs-go,"Terminal utility for Baidu Network Disk"
+A,nvim-packer-git,"A use-package inspired plugin manager for Neovim."
