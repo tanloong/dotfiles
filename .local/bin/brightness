@@ -9,7 +9,7 @@ import sys
 import os
 
 flag = float(sys.argv[1])  # flag 为 1 或 -1
-coefficient = 0.1  # 每次增减最大亮度的 10%
+coefficient = 0.1*flag  # 每次增减最大亮度的 10%
 
 brightness_path = "/sys/class/backlight/intel_backlight/brightness"
 max_brighness_path = "/sys/class/backlight/intel_backlight/max_brightness"
