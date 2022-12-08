@@ -340,7 +340,7 @@ else:
 `${2:<<>>}
 endsnippet
 
-snippet "([^a-zA-Z0-9])mm" "inline math" irA
+snippet "(^|[^a-zA-Z0-9])mm" "inline math" irA
 `!p snip.rv=match.group(1)`$ $1 $`!p
 if t[2] and t[2][0] not in [',', '.', '?', '-', ' ']:
     snip.rv = ' '

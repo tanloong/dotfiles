@@ -81,7 +81,7 @@ alias \
     texdoc="setsid -f texdoc" \
     sxiv="setsid -f sxiv" \
     s="setsid -f sxiv" \
-    brave="setsid -f brave" \
+    brave="setsid -f brave --proxy-server=127.0.0.1:7890" \
     gimp="setsid -f gimp" \
     xournalpp="setsid -f xournalpp" \
     xl="setsid -f xournalpp" \

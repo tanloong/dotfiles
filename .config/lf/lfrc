@@ -28,10 +28,10 @@ map dD trash
 map du !clear;tput cup $(($(tput lines)/3));tput bold;du --max-depth=1 -h --apparent-size
 map dU !clear;tput cup $(($(tput lines)/3));tput bold;du --max-depth=1 -h --apparent-size | sort -rh
 map ` mark-load
-map s shell
+map s shell-pipe
 # map x $$f # 运行完并自动返回 lf
 # map X !$f # 运行完在终端驻留
-map x $compiler $f # 运行完并自动返回 lf
+map x %compiler $f # 运行完并自动返回 lf
 map X !compiler $f # 运行完在终端驻留
 map A rename # at the very end
 map a rename_before_ext # before extention
@@ -39,8 +39,8 @@ map b :backup; unselect
 map i push A<c-a> # at the very beginning
 map I push A<c-a> # at the very beginning
 map cw rename_edit # new rename
-map cx $sudo chmod +x $fx
-map cX $sudo chmod -x $fx
+map cx %sudo chmod +x $fx
+map cX %sudo chmod -x $fx
 map gcc cd ~/.config
 map gcr cd ~/.config/ranger
 map gcl cd ~/.config/lf
@@ -196,10 +196,10 @@ cmd rename_edit &{{
 		lf -remote "send $id push :rename<enter><c-u>"
 	fi
 }}
-cmd yank-dirname $dirname -- "$f" | head -c-1 | xclip -i -selection clipboard
-cmd yank-path $printf '%s' "$fx" | xclip -i -selection clipboard
-cmd yank-basename $basename -a -- $fx | head -c-1 | xclip -i -selection clipboard
-cmd yank-basename-without-extension ${{
+cmd yank-dirname &dirname -- "$f" | head -c-1 | xclip -i -selection clipboard
+cmd yank-path &printf '%s' "$fx" | xclip -i -selection clipboard
+cmd yank-basename &basename -a -- $fx | head -c-1 | xclip -i -selection clipboard
+cmd yank-basename-without-extension &{{
     echo "$fx" |
       xargs -r -d '\n' basename -a |
       awk -e '{
