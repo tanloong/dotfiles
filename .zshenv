@@ -11,9 +11,9 @@ export PATH=$PATH:$STANFORD_TREGEX_HOME:$STANFORD_PARSER_HOME
 
 export PATH=$PATH:$HOME/.local/bin
 export PATH=$PATH:$HOME/.local/bin/data-science-utils
+export PATH=$PATH:$HOME/.local/bin/internship
 export PATH=$PATH:/usr/jre1.8.0_301/bin/
 export PATH=$PATH:/home/tan/software/rasp3os/scripts
-export PATH=$PATH:/home/tan/projects/internship/utils
 export NLTK_DATA=$HOME/software/nltk_data/
 export TESSDATA_PREFIX=/usr/share/tessdata/
 export SUDO_ASKPASS=/usr/bin/qt4-ssh-askpass

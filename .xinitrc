@@ -2,7 +2,7 @@
 xset -b
 export LANG=zh_CN.UTF-8
 export LANGUAGE=zh_CN:en_US
-[[ -f ~/.Xresources ]] && xrdb -merge -I$HOME ~/.Xresources
+[ -f ~/.Xresources ] && xrdb -merge -I$HOME ~/.Xresources
 
 slstatus &
 
@@ -22,11 +22,11 @@ ln --symbolic --force ~/.Xmodmap-"${hostname}" ~/.Xmodmap
 # /etc/X11/xinit/xinitrc 会加载 $HOME/.Xmodmap 文件
 ln --symbolic --force ~/.Xresources-"${hostname}" ~/.Xresources
 
-[[ -f ~/.Xresources ]] && xrdb -merge -I$HOME ~/.Xresources
-fcitx5 & > /dev/null 2>&1
+fcitx5 > /dev/null 2>&1 &
 
 killall st > /dev/null 2>&1 || :
 setsid -f st
 goldendict &
+"$HOME/software/Clash for Windows-0.20.10-x64-linux/cfw" &
 exec dwm
 # exec i3

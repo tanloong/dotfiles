@@ -93,6 +93,7 @@ alias \
 alias \
 	cp="cp -iv" \
 	mv="mv -iv" \
+    grep="grep --color" \
 	mkd="mkdir -pv" \
 
 	# rm="rm -vI" \
