@@ -28,6 +28,8 @@ case "$app" in
         esac;;
     ladder) notify-send --urgency low "Opening Clash..." -t 1000
             "$HOME/software/Clash for Windows-0.20.10-x64-linux/cfw";;
+    netdisk) notify-send --urgency low "Opening 百度网盘..." -t 1000
+            /usr/lib/baidunetdisk/baidunetdisk --no-sandbox %U;;
     wechat) notify-send --urgency low "Opening WeChat..." -t 1000
         # wechat-uos
         # /opt/apps/com.tencent.weixin/files/weixin/weixin.sh
@@ -59,4 +61,5 @@ case "$app" in
         };;
     control-center) gnome-control-center;;
     filemanager) nautilus;;
+    sun) sunloginremote;;
 esac

@@ -131,7 +131,7 @@ G,vibreoffice,https://hub.xn--p8jhe.tw/seanyeh/vibreoffice
 ,jre-openjdk,'OpenJDK Java 18 full runtime environment'
 ,jdk-openjdk,'OpenJDK Java 18 development kit'
 ,twine,"Collection of utilities for interacting with PyPI"
-,baidupcs-go,"Terminal utility for Baidu Network Disk"
+A,baidunetdisk-bin,""
 A,nvim-packer-git,"A use-package inspired plugin manager for Neovim."
 ,aspell,"A spell checker designed to eventually replace Ispell"
 ,aspell-en,"English dictionary for aspell"
@@ -146,3 +146,5 @@ A,nvim-packer-git,"A use-package inspired plugin manager for Neovim."
 ,python-pip,"The PyPA recommended tool for installing Python packages"
 ,python-dill,"Serialize all of python"
 ,python-pipreqs,"Pip requirements.txt generator"
+,mypy,"Optional static typing for Python 2 and 3"
+A,sunloginremote,""
