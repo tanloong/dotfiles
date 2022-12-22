@@ -51,15 +51,10 @@ case "$app" in
             col_cyan="#005577"
             dmenu_run -i -l ${dmenulines} -m ${dmenumon} -fn "${dmenufont}" -nb ${col_gray1} -nf ${col_gray3} -sb ${col_cyan} -sf ${col_gray4};;
         esac;;
-    screenkey)
-        killall screenkey 2> /dev/null ||\
-        screenkey -s small --persist --opacity 1 ;;
-    tip)
-        dir_tip='/home/tan/.local/share/tip-pictures'
-        killall sxiv 2> /dev/null || {
-            sxiv "$dir_tip"/*;
-        };;
+    screenkey) togglethe.sh screenkey -s small --persist --opacity 1 ;;
+    tip) dir_tip='/home/tan/.local/share/tip-pictures'
+         togglethe.sh sxiv "$dir_tip"/*;;
     control-center) gnome-control-center;;
-    filemanager) nautilus;;
+    filemanager) togglethe.sh pcmanfm;;
     sun) sunloginremote;;
 esac
