@@ -2,9 +2,7 @@
     "suggest.noselect": true,
     "suggest.enablePreselect": false,
     "coc.preferences.extensionUpdateCheck": "weekly",
-    "coc.preferences.formatOnSaveFiletypes": [
-        "json"
-    ],
+    "coc.preferences.formatOnSaveFiletypes": [],
     "suggest.defaultSortMethod": "none",
     "coc.preferences.diagnostic.refreshOnInsertMode": false,
     "diagnostic.enable": true,
@@ -77,7 +75,7 @@
     "python.formatting.provider": "black",
     "python.formatting.blackArgs": [
         "--line-length",
-        "80",
+        "90",
         "--preview"
     ],
     "pyright.inlayHints.functionReturnTypes": true,

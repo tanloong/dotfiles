@@ -2,7 +2,6 @@
 # -*- coding=utf-8 -*-
 
 import sys
-import time
 import stanza
 
 
@@ -25,7 +24,7 @@ def main():
     )
     for ifile in ifiles:
         print(f"Segmenting {ifile}")
-        ofile = ifile.rstrip(".txt") + ".segmented.txt"
+        ofile = ifile + '.segged'
         with open(ifile, "r", encoding="utf-8") as f:
             text = f.read()
         sents = segment_sent_en(text, nlp)

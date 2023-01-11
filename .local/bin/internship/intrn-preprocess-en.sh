@@ -10,11 +10,13 @@ IFS=$'\n\t'
 fn_in="$1"
 fn_out="${1/.txt}".tmp
 sed -E -e "s/[‘’]/'/g; s/[“”]/\"/g; s/''/\"/g;" "$fn_in" |\
-    sed -E 's/—/ - /g' |\
+    sed -E 's/—/ – /g' |\
+    sed -E 's/…/.../g' |\
     sed -E 's/^\s*[0-9]{1,3}\s*$//g' |\
     sed -E 's/^\s*[ivxIVX]+\s*-\s*[0-9]+\s*$//g' |\
     sed -E 's/^[□§・■♦►•]\s*//g' |\
     sed -E 's/\t/ /g' |\
-    tr -s ' ' > "$fn_out"
+    tr --squeeze-repeats '\n' |\
+    tr --squeeze-repeats ' ' > "$fn_out"
 
 mv --force "$fn_out" "$fn_in"

@@ -72,7 +72,7 @@ alias \
     rstudio="setsid -f rstudio-bin" \
     spyder="setsid -f spyder" \
     wechat="setsid -f wechat-uos" \
-    QQ="setsid -f icalingua" \
+    QQ="setsid -f linuxqq" \
     et="setsid -f et" \
     wps="setsid -f wps" \
     wpp="setsid -f wpp" \
@@ -81,13 +81,15 @@ alias \
     texdoc="setsid -f texdoc" \
     sxiv="setsid -f sxiv" \
     s="setsid -f sxiv" \
-    brave="setsid -f brave --proxy-server=127.0.0.1:7890" \
+    brave="setsid -f brave" \
     gimp="setsid -f gimp" \
     xournalpp="setsid -f xournalpp" \
     xl="setsid -f xournalpp" \
     virtualbox="setsid -f virtualbox" \
     mpv="mpv --no-terminal" \
     R="R --quiet --no-save" \
+
+    # brave="setsid -f brave --proxy-server=127.0.0.1:7890" \
 
 # Verbosity and settings that you pretty much just always are going to want.
 alias \

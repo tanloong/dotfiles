@@ -36,8 +36,7 @@ cat "$fn_in" |\
     tr --squeeze-repeats '\n' |\
     tr --squeeze-repeats ' ' |\
     sed -E '1~2b;{N;s/([第的，、])\n/\1/g}' |\
-    sed -E '2~2b;{N;s/([第的，、])\n/\1/g}' |\
-    sed -E 's/刖言/前言/g' > "$fn_out"
+    sed -E '2~2b;{N;s/([第的，、])\n/\1/g}' > "$fn_out"
 
 mv --force "$fn_out" "$fn_in"
 #perl -CIOED -p -e \
@@ -77,3 +76,4 @@ mv --force "$fn_out" "$fn_in"
 #sed -E 's/([0-9])( +\. +| +\.|\. +)([0-9])/\1.\3/g;' |\
 #sed -E 's/^\([a-z]+\)( +\. +| +\.|\. +)/\1 /g' |\
 #sed -E 's/^([0-9]+)(\.[0-9]+)+([^0-9 ])/\1\2 \3/g' |\
+# sed -E 's/刖言/前言/g' |\

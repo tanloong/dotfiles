@@ -24,10 +24,13 @@ function M.intrn_join()
 end
 
 local map_intern = function()
-    keyset('n', ',d', '<Cmd>write<CR><Cmd>silent!! intrn-align-update.sh %:s?interlaced?zh? %:s?interlaced?en? %<CR>')
+    keyset('n', '<c-k>', '{')
+    keyset('n', '<c-j>', '}')
+
+    keyset('n', ',d', '<Cmd>write<CR><Cmd>silent!! intrn-align-update.sh %<CR>')
     keyset('n', ',.', '<Cmd>lua M.intrn_join()<CR>')
     keyset('n', ',,', ',.,d', { remap = true })
     keyset('n', ',r', '<Cmd>let pos=getcurpos()[1:] | %d | 0r %.bak | call cursor(pos)<CR>')
 end
 
-vim.api.nvim_create_autocmd("BufEnter", { pattern = "interlaced*", callback = map_intern })
+vim.api.nvim_create_autocmd("BufEnter", { pattern = "*interlaced*", callback = map_intern })

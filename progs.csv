@@ -95,6 +95,7 @@ A,rar,""
 ,ipython,"An enhanced Interactive Python shell"
 ,gnome-shell-pomodoro,"A time management utility for GNOME based on the pomodoro technique"
 ,bilili,"bilibili video downloader"
+,you-get,"YouTube video downloader"
 ,r-languageserver,""
 ,clang,""
 ,network-manager-applet,"Applet for managing network connections"
@@ -126,7 +127,6 @@ G,sxiv,https://gitee.com/tanloong/sxiv.git
 G,vimium,https://gitee.com/tanloong/vimium.git
 P,autopep8,"Python code formatter"
 P,black,"Uncompromising Python code fommatter"
-G,vibreoffice,https://hub.xn--p8jhe.tw/seanyeh/vibreoffice
 ,tealdeer,"A fast tldr client in Rust"
 ,jre-openjdk,'OpenJDK Java 18 full runtime environment'
 ,jdk-openjdk,'OpenJDK Java 18 development kit'
@@ -136,9 +136,12 @@ A,nvim-packer-git,"A use-package inspired plugin manager for Neovim."
 ,aspell,"A spell checker designed to eventually replace Ispell"
 ,aspell-en,"English dictionary for aspell"
 ,libreoffice-extension-texmaths,"A LaTeX equation editor for LibreOffice"
+G,"vibreoffice", "https://github.com/yamsu/vibreoffice"
+,libreoffice-still,
+,libreoffice-still-zh-cn,
 ,pdfgrep,"A tool to search text in PDF files"
 ,kernel-modules-hook,"Keeps your system fully functional after a kernel upgrade"
-.G,"Clash.for.Windows-0.20.10-x64-linux.tar.gz","https://github.com/Fndroid/clash_for_windows_pkg/releases"
+G,"Clash.for.Windows-0.20.10-x64-linux.tar.gz","https://github.com/Fndroid/clash_for_windows_pkg/releases"
 ,python-coverage,"A tool for measuring code coverage of Python programs"
 ,python-pygments,"Pytho syntax highlighter"
 ,python-nltk,"Natural language processing in Python"
@@ -149,3 +152,5 @@ A,nvim-packer-git,"A use-package inspired plugin manager for Neovim."
 ,mypy,"Optional static typing for Python 2 and 3"
 A,sunloginremote,""
 ,pcmanfm,"Extremely fast and lightweight file manager"
+A,jabref-bin,"reference manager"
+A,linuxqq,"official QQ"

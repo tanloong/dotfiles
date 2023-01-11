@@ -30,7 +30,7 @@ def main():
         max_char_length=10000000,
     ) as client:
         for ifile in ifiles:
-            ofile = ifile.rstrip(".txt") + ".segmented.txt"
+            ofile = ifile + '.segged'
             with open(ifile, "r", encoding="utf-8") as f:
                 text = f.read()
             sents = segment_sent_en(text, client)
