@@ -11,8 +11,8 @@ import os
 flag = float(sys.argv[1])  # flag 为 1 或 -1
 coefficient = 0.1*flag  # 每次增减最大亮度的 10%
 
-brightness_path = "/sys/class/backlight/intel_backlight/brightness"
-max_brighness_path = "/sys/class/backlight/intel_backlight/max_brightness"
+brightness_path = "/sys/class/backlight/acpi_video0/brightness"
+max_brighness_path = "/sys/class/backlight/acpi_video0/max_brightness"
 current = int(open(brightness_path, 'r').read().strip())
 maximum = int(open(max_brighness_path, 'r').read().strip())
 

@@ -56,4 +56,4 @@ vim.g['vimtex_syntax_conceal'] = {
     sections = 0,
     styles = 1,
 }
-vim.keymap.set('n', 'tt', '<Cmd>VimtexTocToggle<CR><c-w>h')
+vim.keymap.set('n', '<c-t>', '<Cmd>VimtexTocToggle<CR><c-w>h')

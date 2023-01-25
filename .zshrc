@@ -51,23 +51,23 @@ PS1='%F{green}%n%f:%B%F{#005fff}%1~%f%b$ '
 [ -n "$LF_LEVEL" ] && PS1="${PS1%' '}""($LF_LEVEL) "
 
 [ -r /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ] && \
-    source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # Remove mode switching delay.
 KEYTIMEOUT=1
 
 # Change cursor shape for different vi modes.
 function zle-keymap-select {
-  if [[ ${KEYMAP} == vicmd ]]   ||
-     [[ $1 = 'block' ]]; then
-    echo -ne '\e[1 q'
+if [[ ${KEYMAP} == vicmd ]]   ||
+[[ $1 = 'block' ]]; then
+echo -ne '\e[1 q'
 
-  elif [[ ${KEYMAP} == main ]]  ||
-       [[ ${KEYMAP} == viins ]] ||
-       [[ ${KEYMAP} = '' ]]     ||
-       [[ $1 = 'beam' ]]; then
-    echo -ne '\e[5 q'
-  fi}
+elif [[ ${KEYMAP} == main ]]  ||
+[[ ${KEYMAP} == viins ]] ||
+[[ ${KEYMAP} = '' ]]     ||
+[[ $1 = 'beam' ]]; then
+echo -ne '\e[5 q'
+fi}
 zle -N zle-keymap-select
 
 # Use beam shape cursor on startup.
@@ -75,27 +75,31 @@ _fix_cursor() { echo -ne '\e[5 q' }
 precmd_functions+=(_fix_cursor)
 
 # Ctrl-w - delete a full WORD (including colon, dot, comma, quotes...)
-    my-backward-kill-word () {
-        # Add colon, comma, single/double quotes to word chars
-        local WORDCHARS='*?_-.[]~=&;!#$%^(){}<>:,"'"'"
-        zle -f kill # Append to the kill ring on subsequent kills.
-        zle backward-kill-word
-    }
-    zle -N my-backward-kill-word
-    bindkey '^w' my-backward-kill-word
-    bindkey '^u' backward-kill-line
-    bindkey '^?' backward-delete-char
+my-backward-kill-word () {
+# Add colon, comma, single/double quotes to word chars
+local WORDCHARS='*?_-.[]~=&;!#$%^(){}<>:,"'"'"
+zle -f kill # Append to the kill ring on subsequent kills.
+zle backward-kill-word
+}
+zle -N my-backward-kill-word
+bindkey '^w' my-backward-kill-word
+bindkey '^u' backward-kill-line
+bindkey '^?' backward-delete-char
 # to fix the delete key in st
-    bindkey '^[[P' delete-char
-    bindkey -M vicmd '^[[P' vi-delete-char
-    bindkey -M visual '^[[P' vi-delete
+bindkey '^[[P' delete-char
+bindkey -M vicmd '^[[P' vi-delete-char
+bindkey -M visual '^[[P' vi-delete
 
 # https://codeberg.org/dnkl/foot/wiki#user-content-spawning-new-terminal-instances-in-the-current-working-directory
 function osc7 {
-    setopt localoptions extendedglob
-    input=( ${(s::)PWD} )
-    uri=${(j::)input/(#b)([^A-Za-z0-9_.\!~*\'\(\)-\/])/%${(l:2::0:)$(([##16]#match))}}
-    print -n "\e]7;file://${HOSTNAME}${uri}\e\\"
+setopt localoptions extendedglob
+input=( ${(s::)PWD} )
+uri=${(j::)input/(#b)([^A-Za-z0-9_.\!~*\'\(\)-\/])/%${(l:2::0:)$(([##16]#match))}}
+print -n "\e]7;file://${HOSTNAME}${uri}\e\\"
 }
 add-zsh-hook -Uz chpwd osc7
 stty -ixon
+export STANFORD_PARSER_HOME="/home/tan/.local/share/stanford-parser-full-2020-11-17"
+export STANFORD_TREGEX_HOME="/home/tan/.local/share/stanford-tregex-2020-11-17"
+export JAVA_HOME="/home/tan/.local/share/jdk8u352-b08"
+export PATH=$PATH:"/home/tan/.local/share/jdk8u352-b08/bin"

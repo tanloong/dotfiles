@@ -59,10 +59,11 @@ end
 -- Highlight the symbol and its references when holding the cursor.
 -- vim.api.nvim_create_augroup("CocGroup", {})
 -- vim.api.nvim_create_autocmd("CursorHold", {
--- group = "CocGroup",
--- command = "silent call CocActionAsync('highlight')",
--- desc = "Highlight symbol under cursor on CursorHold"
+--     group = "CocGroup",
+--     command = "silent call CocActionAsync('highlight')",
+--     desc = "Highlight symbol under cursor on CursorHold"
 -- })
+-- vim.api.nvim_set_hl(0, 'CocHighlightText', { ctermbg = 'DarkGray' })
 -- Symbol renaming.
 vim.keymap.set("n", "<leader>rn", "<Plug>(coc-rename)", { silent = true })
 -- Formatting selected code.

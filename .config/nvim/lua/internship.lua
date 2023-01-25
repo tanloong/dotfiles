@@ -17,7 +17,8 @@ function M.intrn_join()
     local line_cur = vim.fn.getline(".")
     local line_prev3 = vim.fn.getline(lnum_prev3)
     local line_prev1 = vim.fn.getline(lnum_prev1)
-    local sep = " "
+    -- local sep = " "
+    local sep = "" -- 暂时用于en2zh，然后平行中文原文和中文机翻
     if (line_prev1 == "" or line_prev3 == "") then sep = "" end
     vim.fn.setline(lnum_prev3, M.strip(line_prev3) .. sep .. line_cur)
     vim.fn.setline(lnum_cur, '')
