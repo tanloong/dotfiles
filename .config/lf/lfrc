@@ -28,6 +28,7 @@ map dD trash
 map du !clear;tput cup $(($(tput lines)/3));tput bold;du --max-depth=1 -h --apparent-size
 map dU !clear;tput cup $(($(tput lines)/3));tput bold;du --max-depth=1 -h --apparent-size | sort -rh
 map ` mark-load
+map S shell-wait
 map s shell-pipe
 # map x $$f # 运行完并自动返回 lf
 # map X !$f # 运行完在终端驻留
