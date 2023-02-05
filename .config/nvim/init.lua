@@ -4,4 +4,4 @@ require('internship')
 require('mappings')
 require('skeletons')
 require('plugins')
-
+require('commands')
