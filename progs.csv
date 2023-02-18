@@ -126,7 +126,9 @@ G,slstatus,https://gitee.com/tanloong/slstatus.git
 G,sxiv,https://gitee.com/tanloong/sxiv.git
 G,vimium,https://gitee.com/tanloong/vimium.git
 P,autopep8,"Python code formatter"
-P,black,"Uncompromising Python code fommatter"
+,python-black,"Uncompromising Python code fommatter"
+,flake8,""
+,autopep8,""
 ,tealdeer,"A fast tldr client in Rust"
 ,jre-openjdk,'OpenJDK Java 18 full runtime environment'
 ,jdk-openjdk,'OpenJDK Java 18 development kit'
@@ -144,7 +146,7 @@ G,"vibreoffice", "https://github.com/yamsu/vibreoffice"
 G,"Clash.for.Windows-0.20.10-x64-linux.tar.gz","https://github.com/Fndroid/clash_for_windows_pkg/releases"
 ,python-coverage,"A tool for measuring code coverage of Python programs"
 A,python-codecov, "Report uploader for Codecov"
-,python-pygments,"Pytho syntax highlighter"
+,python-pygments,"Python syntax highlighter"
 ,python-nltk,"Natural language processing in Python"
 ,python-jedi,"richer tab completion in Python shell"
 ,python-pip,"The PyPA recommended tool for installing Python packages"
@@ -160,3 +162,4 @@ P,pynvim,"Python client to neovim"
 P,pip-autoremove,"Remove a package and its unused dependencies"
 ,python-pyqt6,""
 ,python-docs,"Offline Python documentation: /usr/share/doc/python/html/index.html"
+,kdeconnect,"Connect Linux and Android: https://wiki.archlinuxcn.org/wiki/KDE#KDE_Connect, https://kdeconnect.kde.org/download.html"

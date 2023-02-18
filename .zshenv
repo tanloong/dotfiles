@@ -33,5 +33,8 @@ export GTK_IM_MODULE=fcitx
 export http_proxy=127.0.0.1:7890
 export https_proxy=127.0.0.1:7890
 
+# display icons properly for CJK environment in Lf: https://github.com/gokcehan/lf/issues/583
+export RUNEWIDTH_EASTASIAN=0
+
 # source LS_COLORS
 [ -f $HOME/.local/share/ls-colors.sh ] && source $HOME/.local/share/ls-colors.sh

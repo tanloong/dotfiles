@@ -37,7 +37,7 @@ case "$app" in
     qq) notify-send --urgency low "Opening QQ..." -t 1000
         linuxqq;;
     office) libreoffice;;
-    blueman-manager) blueman-manager;;
+    sharing) ;; # blueman-manager) blueman-manager;;
     menu)
         case $XDG_SESSION_TYPE in
             'wayland') wofi --show run;;

@@ -10,7 +10,7 @@ imwheel > /dev/null 2>&1 &
 /home/tan/.local/bin/fix-touchpad &
 
 dunst &
-blueman-applet &
+# blueman-applet &
 nm-applet &
 feh --bg-scale /home/tan/.local/share/wallpapers/brad-huchteman-stone-mountain.resized.jpg
 # picom -c > /dev/null 2>&1 &

@@ -21,7 +21,6 @@ keyset('n', '<', '<<')
 keyset('n', '<c-p>', ':%s///g<Left><Left>')
 keyset('v', '<c-p>', ':s///g<Left><Left>')
 keyset('n', '<c-q>', '<Cmd>q!<CR>')
-keyset('n', '<SPACE>q', '<Cmd>q!<CR>')
 keyset('n', '<SPACE>e', '<Cmd>set spell!<bar>set spell?<CR>')
 keyset('n', 'g<CR>', '<Cmd>set hlsearch!<bar>set hlsearch?<CR>')
 keyset('n', '<F4>', '<Cmd>q!<CR>')
@@ -100,4 +99,4 @@ keyset('i', 'kk', '<left>')
 keyset('c', '%%', "getcmdtype()==':'? expand('%:h').'/' : '%%'",
     { expr = true, desc = [[展开活动缓冲区所在目录]] })
 keyset('n', 'd<space>', "<Cmd>let pos=getcurpos()[1:] | %s/\\s\\+$//e | nohlsearch | call cursor(pos)<CR>",
-    { silent = true, nowait = true, desc = [[Remove trailing spaces]] })
+    { desc = [[Remove trailing spaces]] })

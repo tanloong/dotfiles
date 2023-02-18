@@ -77,10 +77,11 @@
     "git.enableGutters": true,
     "git.conflict.incoming.hlGroup": "None",
     "git.conflict.current.hlGroup": "None",
-    "python.formatting.provider": "black",
+    "python.formatting.provider": "autopep8",
+    "python.formatting.autopep8Args": ["--max-line-length", "96"],
     "python.formatting.blackArgs": [
         "--line-length",
-        "110",
+        "96",
         "--preview"
     ],
     "pyright.inlayHints.functionReturnTypes": true,

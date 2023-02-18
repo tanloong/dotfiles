@@ -4,6 +4,7 @@ hi(0, 'CocMenuSel', { link = 'PmenuSel' })
 hi(0, 'CocPumSearch', { ctermfg = 'yellow' })
 hi(0, 'CocInlayHint', { ctermbg = 'none', ctermfg = 'darkgray' })
 hi(0, 'CocHintVirtualText', { ctermbg = 'none', ctermfg = 'darkgray' })
+hi(0, 'CocErrorFloat', {ctermbg='none', ctermfg='red'})
 
 vim.keymap.set('n', '<leader>c', ':CocCommand<space>')
 -- Use tab for trigger completion with characters ahead and navigate.

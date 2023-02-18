@@ -18,6 +18,7 @@ map y
 map d
 map c
 map t
+map e &pcmanfm $PWD
 map U calcdirsize
 map <f-4> quit
 map K push 5k

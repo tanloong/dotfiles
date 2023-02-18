@@ -537,10 +537,13 @@ snippet /(^|(?<=\W))\./ "self." r
 self.
 endsnippet
 
-snippet from "from module import name" b
+snippet f "from module import name" b
 from $0 import <<>>
 endsnippet
 
+snippet from "from module import name" b
+from $0 import <<>>
+endsnippet
 
 ##############
 # PROPERTIES #
@@ -762,6 +765,9 @@ snippet ,f "=" wA
 = $1
 endsnippet
 
+snippet -- "_" iA
+_$0
+endsnippet
 snippet ,, "_" iA
 _$0
 endsnippet
