@@ -8,7 +8,6 @@ larbs.sh_
 .local/share/lf/marks
 .local/share/fonts/
 .local/share/wallpapers/
-cnc*
 
 larbs1.sh
 blank.sh
