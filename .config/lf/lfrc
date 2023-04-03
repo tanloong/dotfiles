@@ -123,7 +123,7 @@ cmd open ${{
         audio/*) mpv --audio-display=no "$fx" ;;
         video/*|image/gif) setsid -f mpv "$fx" -quiet >/dev/null 2>&1 ;;
         image/x-xcf) setsid -f gimp "$fx" >/dev/null 2>&1 ;;
-        image/svg+xml) setsid -f display -- "$fx" ;;
+        image/svg+xml) setsid -f $BROWSER -- "$fx" ;;
         image/*) setsid -f sxiv "$fx" ;;
         # image/*) setsid -f imv "${fx%/*}" ;;
 

@@ -22,7 +22,7 @@ packer.init {
 return packer.startup(function(use)
     -- Packer can manage itself
     use { 'https://gitee.com/nvim-plugin/packer.nvim' }
-    use { 'https://gitee.com/billscofield/coc.nvim.git',
+    use {'https://github.com/neoclide/coc.nvim.git',
         branch = 'release',
         run = 'yarn install --frozen-lockfile',
         event = { 'InsertEnter', 'CursorHold' },
@@ -62,8 +62,4 @@ return packer.startup(function(use)
         config = [[require('plugin_config.indent_blankline')]] }
     use { 'https://gitee.com/tanloong/nvim-align.git',
         event = "CursorHold" }
-    -- use {'https://gitee.com/ProVim/vim-easymotion.git',
-    --     config = [[require('plugin_config.vim_easymotion')]]}
-    -- -- ch(如，常)对应字母i，sh(如，厦)对应字母u，zh(如，真)对应字母v
-    -- use {'https://gitee.com/tanloong/vim-easymotion-chs.git'}
 end)

@@ -104,18 +104,19 @@ vim.api.nvim_create_user_command("OR", "call CocActionAsync('runCommand', 'edito
 
 -- coc-extensions{{{
 vim.g['coc_global_extensions'] = {
-    'coc-pyright',
     'coc-actions',
     'coc-git',
     'coc-snippets',
-    'coc-r-lsp',
     'coc-sumneko-lua',
     'coc-json',
+    'coc-dictionary',
+    'coc-r-lsp',
+    'coc-java',
+    'coc-pyright',
     'coc-webview',
     'coc-markdown-preview-enhanced',
-    'coc-java',
-    'coc-dictionary'
 }
+
 -- \ 'coc-smartf',
 -- \ 'coc-vimtex',
 -- \ 'coc-sh',

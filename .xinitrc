@@ -11,11 +11,10 @@ imwheel > /dev/null 2>&1 &
 
 dunst &
 # blueman-applet &
-nm-applet &
+nm-applet --no-agent &
 feh --bg-scale /home/tan/.local/share/wallpapers/brad-huchteman-stone-mountain.resized.jpg
 # picom -c > /dev/null 2>&1 &
 flameshot & > /dev/null 2>&1
-# redshift & > /dev/null 2>&1
 
 hostname=$(hostnamectl hostname)
 ln --symbolic --force ~/.Xmodmap-"${hostname}" ~/.Xmodmap 

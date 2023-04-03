@@ -77,11 +77,11 @@
     "git.enableGutters": true,
     "git.conflict.incoming.hlGroup": "None",
     "git.conflict.current.hlGroup": "None",
-    "python.formatting.provider": "autopep8",
-    "python.formatting.autopep8Args": ["--max-line-length", "96"],
+    "python.formatting.provider": "black",
+    "python.formatting.autopep8Args": ["--max-line-length", "97"],
     "python.formatting.blackArgs": [
         "--line-length",
-        "96",
+        "97",
         "--preview"
     ],
     "pyright.inlayHints.functionReturnTypes": true,
@@ -126,4 +126,5 @@
         "typeParameter": "",
         "default": " "
     },
+    "java.format.onType.enabled":false,
 }

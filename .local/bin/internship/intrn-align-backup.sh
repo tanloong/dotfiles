@@ -9,7 +9,6 @@ fn_zh="$(sed -n '1p' ./.intrn-align_input-files | sed -E -e 's/^\s+//g;s/\s+$//g
 fn_en="$(sed -n '2p' ./.intrn-align_input-files | sed -E -e 's/^\s+//g;s/\s+$//g')"
 fn_algnd="$1"
 
-sed -E -n '1~3p' "$fn_algnd" | sed -e '/^---$/d; /^$/d' > "$fn_zh"
-sed -E -n '2~3p' "$fn_algnd" | sed -e '/^---$/d; /^$/d' > "$fn_en"
-
-paste -d '\n' "$fn_zh" "$fn_en" | sed -E '0~2G' > "$fn_algnd"
+[ -f "$fn_zh" ] && cp --force "$fn_zh" "$fn_zh".bak
+[ -f "$fn_en" ] && cp --force "$fn_en" "$fn_en".bak
+[ -f "$fn_algnd" ] && cp --force "$fn_algnd" "$fn_algnd".bak

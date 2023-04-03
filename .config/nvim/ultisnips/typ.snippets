@@ -1,0 +1,108 @@
+global !p
+def math():
+    row, col = vim.current.window.cursor
+    line = vim.current.buffer[row - 1]
+    left_hand = line[:col - 1]
+    right_hand = line[col:]
+
+    is_enter_math = (left_hand.count('$') % 2 == 1)
+    is_exit_math = (right_hand.count('$') % 2 == 1)
+    if is_enter_math and is_exit_math:
+        return True
+    return False
+endglobal
+
+priority 100
+snippet ,c "inline raw text" wA
+`$0` <<>>
+endsnippet
+snippet ,` "code blocks" bA
+\`\`\`$0
+<<>>
+\`\`\`
+
+<<>>
+endsnippet
+snippet 3 "code" bA
+#$0
+endsnippet
+snippet # "code" bA
+3$0
+endsnippet
+snippet ,d "double quote" wA
+"$0"
+endsnippet
+snippet ,s "single quote" wA
+'$0'
+endsnippet
+snippet ,, "underline" iA
+_$0
+endsnippet
+
+priority 200
+# math snippets begin
+snippet $$ "inline math" iA
+$$1$`!p
+if t[2] and t[2][0] not in [',', '.', '?', '-', ' ']:
+	snip.rv = ' '
+else:
+	snip.rv = ''
+`${2:<<>>}
+endsnippet
+snippet ￥￥ "inline math" iA
+$$1$`!p
+if t[2] and t[2][0] not in [',', '.', '?', '-', ' ']:
+	snip.rv = ' '
+else:
+	snip.rv = ''
+`${2:<<>>}
+endsnippet
+snippet mm "inline math" iA
+$$1$`!p
+if t[2] and t[2][0] not in [',', '.', '?', '-', ' ']:
+	snip.rv = ' '
+else:
+	snip.rv = ''
+`${2:<<>>}
+endsnippet
+snippet nn "block math" bA
+$ $0 $
+<<>>
+endsnippet
+context "math()"
+snippet .. "superscript" iA
+^($0)<<>>
+endsnippet
+context "math()"
+snippet ,, "subscript" iA
+_($0)<<>>
+endsnippet
+context "math()"
+snippet ,. "suber- and sub-script" iA
+_($0)^(<<>>) <<>>
+endsnippet
+context "math()"
+snippet lrp "( )" iA
+($0)<<>>
+endsnippet
+context "math()"
+snippet lrb "[ ]" iA
+[$0]<<>>
+endsnippet
+context "math()"
+snippet lrc "{ }" iA
+{$0}<<>>
+endsnippet
+context "math()"
+snippet lra "< >" iA
+<$0><<>>
+endsnippet
+context "math()"
+snippet lr| "| |" iA
+|$0|<<>>
+endsnippet
+context "math()"
+snippet rt "sqrt()" wA
+sqrt($0)<<>>
+endsnippet
+# math snippets end

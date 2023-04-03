@@ -53,7 +53,7 @@ case "$app" in
         esac;;
     screenkey) togglethe.sh screenkey -s small --persist --opacity 1 ;;
     tip) dir_tip='/home/tan/.local/share/tip-pictures'
-         togglethe.sh sxiv "$dir_tip"/*;;
+         togglethe.sh sxiv "$dir_tip"/wubi*;;
     control-center) gnome-control-center;;
     filemanager) togglethe.sh pcmanfm;;
     sun) sunloginremote;;

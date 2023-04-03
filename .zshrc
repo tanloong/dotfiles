@@ -101,5 +101,5 @@ add-zsh-hook -Uz chpwd osc7
 stty -ixon
 export STANFORD_PARSER_HOME="/home/tan/.local/share/stanford-parser-full-2020-11-17"
 export STANFORD_TREGEX_HOME="/home/tan/.local/share/stanford-tregex-2020-11-17"
-export JAVA_HOME="/home/tan/.local/share/jdk8u352-b08"
-export PATH=$PATH:"/home/tan/.local/share/jdk8u352-b08/bin"
+export JAVA_HOME="/home/tan/.local/share/jdk8u362-b09"
+export PATH=$PATH:"/home/tan/.local/share/jdk8u362-b09/bin"

@@ -1,6 +1,6 @@
-# export LANG=zh_CN.UTF-8
-# export LANG=en_US.UTF-8
-# export LANGUAGE=zh_CN:en_US
+export LANG=zh_CN.UTF-8
+export LANG=en_US.UTF-8
+export LANGUAGE=zh_CN:en_US
 
 export CORENLP_HOME=$HOME/software/stanford-corenlp-4.5.1/
 export PATH=$PATH:$HOME/.local/bin

@@ -57,6 +57,8 @@ def main():
         if res.status_code == 200:
             with open(fn_o, "wb") as f:
                 f.write(res.content)
+        else:
+            print("Error!")
     subprocess.Popen(f"sxiv -s w {fn_o}", shell=True)  # sxiv 是一个图像查看器
 
 
