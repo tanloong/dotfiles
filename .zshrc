@@ -23,7 +23,7 @@ autoload -Uz compinit
 compinit
 
 # comment lines beginning with `#`
-# remember to put "ZSH_HIGHLIGHT_STYLES[comment]='none'" in zsh-syntax-highlighting.zsh
+# remember to put "ZSH_HIGHLIGHT_STYLES[comment]='none'" in /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 setopt interactive_comments
 
 # 不保存重复的历史记录项

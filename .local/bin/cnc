@@ -8,7 +8,8 @@ if [ -z "$is_on_OUCWIFI" ]; then
 fi
 
 password="$(sed ':a;N;$!ba;s/\n+$//g' "$HOME"/.WIFI_password)"
-url="https://10.100.29.2:802/eportal/portal/login?callback=dr1003&login_method=1&user_account=%2C0%2C18050021026&user_password=$password&wlan_user_ip=10.117.140.230&wlan_user_ipv6=&wlan_user_mac=000000000000&wlan_ac_ip=&wlan_ac_name=&jsVersion=4.1&terminal_type=1&lang=zh-cn&v=9188&lang=zh"
+ipaddr=$(ip addr | grep 'state UP' -A2 | tail -n1 | awk '{print $2}' | cut -f1  -d'/')
+url="https://10.100.29.2:802/eportal/portal/login?callback=dr1003&login_method=1&user_account=%2C0%2C18050021026&user_password=$password&wlan_user_ip=$ipaddr&wlan_user_ipv6=&wlan_user_mac=000000000000&wlan_ac_ip=&wlan_ac_name=&jsVersion=4.1&terminal_type=1&lang=zh-cn&v=9188&lang=zh"
 
 output=$(wget -q -O - --no-check-certificate "$url" 2> /dev/null)
 echo "$output" | cut -d '"' -f 6

@@ -4,7 +4,7 @@ IFS=$'\n\t'
 
 mouse="Mouse"
 touchpad_lenovo="Synaptics"
-touchpad_dell="Touchpad"
+touchpad_rain="Touchpad"
 trackpoint="TrackPoint"
 
 function set_mouse() {
@@ -12,8 +12,8 @@ function set_mouse() {
     # 给鼠标的指针加速
     if [[ ! "$mouse_id" == "" ]]; then
         accel_speed_id=$(xinput list-props "$mouse_id" | \
-                              grep "Accel Speed (" \
-                              | cut -d'(' -f2 | cut -d')' -f1)
+                              grep "Accel Speed (" | \
+                              cut -d'(' -f2 | cut -d')' -f1)
         xinput --set-prop "$mouse_id" "$accel_speed_id" 0.7
     fi
 }
@@ -55,7 +55,7 @@ function set_trackpoint(){
     if [[ ! "$trackpoint_id" == "" ]]; then
         accel_speed_id=$(xinput list-props "$trackpoint_id" |\
             sed -E -n 's/^.*Accel Speed \(([0-9]+).*$/\1/p')
-        xinput --set-prop "$trackpoint_id" "$accel_speed_id" 0.6
+        xinput --set-prop "$trackpoint_id" "$accel_speed_id" 0.7
     fi
 }
 
@@ -66,6 +66,7 @@ case $(hostnamectl hostname) in
         set_trackpoint;;
     ideapad320)
         set_touchpad "$touchpad_lenovo";;
-    cup)
-        set_touchpad "$touchpad_dell";;
+    rain)
+        set_trackpoint
+        set_touchpad "$touchpad_rain";;
 esac

@@ -17,7 +17,7 @@ feh --bg-scale /home/tan/.local/share/wallpapers/brad-huchteman-stone-mountain.r
 flameshot & > /dev/null 2>&1
 
 hostname=$(hostnamectl hostname)
-ln --symbolic --force ~/.Xmodmap-"${hostname}" ~/.Xmodmap 
+ln --symbolic --force ~/.Xmodmap-"${hostname}" ~/.Xmodmap
 # /etc/X11/xinit/xinitrc 会加载 $HOME/.Xmodmap 文件
 ln --symbolic --force ~/.Xresources-"${hostname}" ~/.Xresources
 

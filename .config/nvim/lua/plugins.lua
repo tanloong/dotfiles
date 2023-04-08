@@ -49,7 +49,8 @@ return packer.startup(function(use)
     use { 'https://gitee.com/mirrors/vimtex.git',
         -- cmd = { 'VimtexCompile' },
         config = [[require('plugin_config.vimtex')]] }
-    use { '/home/tan/software/hop.nvim',
+    use { 'https://gitee.com/tanloong/hop.nvim',
+        branch = 'match-mappings',
         config = [[require('plugin_config.hop')]] }
     use { 'https://gitee.com/tanloong/nvim-terminal.git',
         config = [[require('plugin_config.nvim_terminal')]] }
