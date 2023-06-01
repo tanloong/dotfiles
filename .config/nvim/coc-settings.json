@@ -1,7 +1,7 @@
 {
     "suggest.noselect": true,
     "suggest.enablePreselect": false,
-    "coc.preferences.extensionUpdateCheck": "weekly",
+    "coc.preferences.extensionUpdateCheck": "never",
     "coc.preferences.formatOnSaveFiletypes": [],
     "suggest.defaultSortMethod": "none",
     "coc.preferences.diagnostic.refreshOnInsertMode": false,
@@ -35,18 +35,6 @@
             ],
             "filetypes": [
                 "sh"
-            ]
-        },
-        "R": {
-            "enable": true,
-            "command": "/usr/bin/R",
-            "args": [
-                "--slave",
-                "-e",
-                "languageserver::run()"
-            ],
-            "filetypes": [
-                "r"
             ]
         },
         "golang": {

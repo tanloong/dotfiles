@@ -11,6 +11,7 @@ unsetopt beep extendedglob notify
 setopt share_history
 # vi mode
 bindkey -v
+bindkey -s '^R' '$FILE_MANAGER\n'
 
 #############
 # compinstall
@@ -21,6 +22,8 @@ autoload -U mcd
 autoload -U zmv
 autoload -Uz compinit
 compinit
+autoload -U select-word-style
+select-word-style bash
 
 # comment lines beginning with `#`
 # remember to put "ZSH_HIGHLIGHT_STYLES[comment]='none'" in /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
@@ -74,16 +77,9 @@ zle -N zle-keymap-select
 _fix_cursor() { echo -ne '\e[5 q' }
 precmd_functions+=(_fix_cursor)
 
-# Ctrl-w - delete a full WORD (including colon, dot, comma, quotes...)
-my-backward-kill-word () {
-# Add colon, comma, single/double quotes to word chars
-local WORDCHARS='*?_-.[]~=&;!#$%^(){}<>:,"'"'"
-zle -f kill # Append to the kill ring on subsequent kills.
-zle backward-kill-word
-}
-zle -N my-backward-kill-word
-bindkey '^w' my-backward-kill-word
 bindkey '^u' backward-kill-line
+bindkey '^w' backward-kill-word
+bindkey '^h' backward-delete-char
 bindkey '^?' backward-delete-char
 # to fix the delete key in st
 bindkey '^[[P' delete-char
@@ -101,5 +97,3 @@ add-zsh-hook -Uz chpwd osc7
 stty -ixon
 export STANFORD_PARSER_HOME="/home/tan/.local/share/stanford-parser-full-2020-11-17"
 export STANFORD_TREGEX_HOME="/home/tan/.local/share/stanford-tregex-2020-11-17"
-export JAVA_HOME="/home/tan/.local/share/jdk8u362-b09"
-export PATH=$PATH:"/home/tan/.local/share/jdk8u362-b09/bin"

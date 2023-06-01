@@ -25,6 +25,7 @@ case "$ext" in
     sh) bash "$file";;
 	py) python "$file" ;;
 	tex) textype "$file" ;;
+    typ) typst compile "$file";;
     ppt) soffice --headless --convert-to pdf "$file" ;;
     docx|doc) soffice --headless --convert-to pdf "$file" ;;
     xlsx|xls) soffice --headless --convert-to csv "$file" ;;

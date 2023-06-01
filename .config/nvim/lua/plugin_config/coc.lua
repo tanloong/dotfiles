@@ -110,12 +110,12 @@ vim.g['coc_global_extensions'] = {
     'coc-sumneko-lua',
     'coc-json',
     'coc-dictionary',
-    'coc-r-lsp',
     'coc-java',
     'coc-pyright',
     'coc-webview',
     'coc-markdown-preview-enhanced',
 }
+-- 'coc-r-lsp',
 
 -- \ 'coc-smartf',
 -- \ 'coc-vimtex',

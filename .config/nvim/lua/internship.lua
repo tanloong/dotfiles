@@ -19,7 +19,6 @@ function M.intrn_join()
     local line_minus1 = vim.fn.getline(lineno_minus1)
 
     local sep = " "
-    -- local sep = "" -- 暂时用于en2zh，然后平行中文原文和中文机翻
     if (line_minus1 == "" or line_minus3 == "") then sep = "" end
     vim.fn.setline(lineno_minus3, M.strip(line_minus3) .. sep .. line)
     vim.fn.setline(lineno, '')
@@ -35,4 +34,4 @@ local map_intern = function()
     keyset('n', 'r', '<Cmd>let pos=getcurpos()[1:] | %d | 0r %.bak | call cursor(pos)<CR>', { buffer = true, nowait=true })
 end
 
-vim.api.nvim_create_autocmd("BufEnter", { pattern = "*interlaced*", callback = map_intern })
+vim.api.nvim_create_autocmd("BufEnter", { pattern = "*interlaced*.txt", callback = map_intern })

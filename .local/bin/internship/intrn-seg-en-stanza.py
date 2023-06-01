@@ -9,7 +9,8 @@ def segment_sent_en(text: str, nlp) -> str:
     doc = nlp(text)
     sents = ""
     for sent in doc.sentences:
-        sents += " ".join(token.text for token in sent.tokens) + "\n"
+        # sents += " ".join(token.text for token in sent.tokens) + "\n"
+        sents += sent.text + "\n"
     return sents
 
 

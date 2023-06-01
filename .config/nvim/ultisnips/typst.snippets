@@ -13,8 +13,14 @@ def math():
 endglobal
 
 priority 100
+snippet ,a "bold" wA
+*$1* <<>>
+endsnippet
+snippet ,i "italics" wA
+_$1_ <<>>
+endsnippet
 snippet ,c "inline raw text" wA
-`$0` <<>>
+#$0
 endsnippet
 snippet ,` "code blocks" bA
 \`\`\`$0
@@ -23,11 +29,28 @@ snippet ,` "code blocks" bA
 
 <<>>
 endsnippet
-snippet 3 "code" bA
-#$0
+snippet ,1 "Section" bA
+= $1
 endsnippet
-snippet # "code" bA
-3$0
+
+snippet ,2 "Sub Section" bA
+== $1
+endsnippet
+
+snippet ,3 "SubSub Section" bA
+=== $1
+endsnippet
+
+snippet ,4 "Paragraph" bA
+==== $1
+endsnippet
+
+snippet ,5 "Paragraph" bA
+===== $1
+endsnippet
+
+snippet ,6 "Sub Paragraph" bA
+====== $1
 endsnippet
 snippet ,d "double quote" wA
 "$0"
@@ -37,6 +60,15 @@ snippet ,s "single quote" wA
 endsnippet
 snippet ,, "underline" iA
 _$0
+endsnippet
+snippet ,p "image" wA
+#image("$0")<<>>
+endsnippet
+snippet fig "figure" b
+#figure(
+image("$1")
+caption: [<<>>]
+) <<>>
 endsnippet
 
 priority 200
@@ -57,7 +89,7 @@ else:
 	snip.rv = ''
 `${2:<<>>}
 endsnippet
-snippet mm "inline math" iA
+snippet mm "inline math" wA
 $$1$`!p
 if t[2] and t[2][0] not in [',', '.', '?', '-', ' ']:
 	snip.rv = ' '

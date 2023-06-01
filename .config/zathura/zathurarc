@@ -1,7 +1,4 @@
 # website: https://pwmt.org/projects/zathura/documentation/
-#
-# One can press f to highlight all links on the page and assign them a number, typing the number of the link and pressing enter will then jump to the link's location. If F is used, only the location of the link will be shown in the status bar.
-# Commands may be entered directly into zathura by pressing :, just like in vi.
 
 # define the gap in pixels between rendered pages
     set page-padding 5

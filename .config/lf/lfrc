@@ -21,6 +21,7 @@ map t
 map e &pcmanfm $PWD
 map U calcdirsize
 map <f-4> quit
+map <c-q> quit
 map K push 5k
 map J push 5j
 map dd cut
@@ -35,11 +36,10 @@ map s shell-pipe
 # map X !$f # 运行完在终端驻留
 map x %compiler $f # 运行完并自动返回 lf
 map X !compiler $f # 运行完在终端驻留
-map A rename # at the very end
-map a rename_before_ext # before extention
+map A :rename; cmd-end # at the very end
+map a rename
+map I :rename; cmd-home # at the very beginning
 map b :backup; unselect
-map i push A<c-a> # at the very beginning
-map I push A<c-a> # at the very beginning
 map cw rename_edit # new rename
 map cx %sudo chmod +x $fx
 map cX %sudo chmod -x $fx
@@ -65,19 +65,19 @@ map yb yank-basename
 map yd yank-dirname
 map yp yank-path
 map y. yank-basename-without-extension
-map <c-r> push :open-with<space>
+map R push :open-with<space>
 map r reload
 map tz zip
 map te extract
 map tt tar
 map tb tarbz2
 map tg targz
-map on :set sortby natural; set info
-map os :set sortby size; set info size
-map ot :set sortby time; set info time
-map oa :set sortby atime; set info atime
-map oc :set sortby ctime; set info ctime
-map oe :set sortby ext; set info
+map on :set sortby natural;
+map os :set sortby size;
+map ot :set sortby time;
+map oa :set sortby atime; set info size:atime
+map oc :set sortby ctime; set info size:ctime
+map oe :set sortby ext;
 map u :unselect; clear
 map <esc> :unselect; clear
 map W openterminal
@@ -123,16 +123,16 @@ cmd open ${{
         audio/*) mpv --audio-display=no "$fx" ;;
         video/*|image/gif) setsid -f mpv "$fx" -quiet >/dev/null 2>&1 ;;
         image/x-xcf) setsid -f gimp "$fx" >/dev/null 2>&1 ;;
-        image/svg+xml) setsid -f $BROWSER -- "$fx" ;;
+        image/svg+xml) setsid -f $BROWSER >/dev/null 2>&1 -- "$fx" ;;
         image/*) setsid -f sxiv "$fx" ;;
         # image/*) setsid -f imv "${fx%/*}" ;;
 
         application/octet-stream) mpv --audio-display=no "$fx" ;;
 
         application/pdf|image/vnd.djvu) setsid -f "$PDFVIEWER" "$fx" >/dev/null 2>&1 ;;
-        application/*presentation|application/*ms-powerpoint) setsid -f libreoffice "$fx";;
-        application/*document|application/msword) setsid -f libreoffice "$fx";;
-        application/*sheet|application/vnd.ms-excel) setsid -f libreoffice "$fx";;
+        application/*presentation|application/*ms-powerpoint) setsid -f libreoffice "$fx" >/dev/null 2>&1;;
+        application/*document|application/msword) setsid -f libreoffice "$fx" >/dev/null 2>&1;;
+        application/*sheet|application/vnd.ms-excel) setsid -f libreoffice "$fx" >/dev/null 2>&1;;
         message/rfc822) setsid -f "$BROWSER" "$fx";;
         *) for f in "$fx"; do setsid -f $OPENER $f >/dev/null 2>&1; done;;
     esac
@@ -175,19 +175,6 @@ cmd rename_bulk ${{
         echo "Number of lines must stay the same"
     fi
     rm $index $index_edit
-}}
-cmd rename_before_ext &{{
-    filename="${f##*/}"         # Get basename of the selection
-    extension="${filename##*.}" # Get extension only
-
-    # If file doesn't have any extension, handle normally
-    [ "$extension" = "$filename" ] && \
-        lf -remote "send $id push :rename<enter>" && exit
-
-    lefts="$(printf '%0.s<left>' $(seq 0 "${#extension}"))"
-    
-    # Command below is behaving weirdly:
-    lf -remote "send $id push :rename<enter>$lefts"
 }}
 cmd rename_edit &{{
 	if [ -n "$fs" ]
