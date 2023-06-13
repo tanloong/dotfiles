@@ -24,7 +24,6 @@ return packer.startup(function(use)
     use { 'https://gitee.com/nvim-plugin/packer.nvim' }
     use {'https://github.com/neoclide/coc.nvim.git',
         branch = 'release',
-        run = 'yarn install --frozen-lockfile',
         event = { 'InsertEnter', 'CursorHold' },
         config = [[require('plugin_config.coc')]] }
     -- :ASToggle, :ASOn, :ASOff

@@ -54,8 +54,8 @@ alias \
     vb='$EDITOR $HOME/.${SHELL##*/}rc' \
     ve='$EDITOR $HOME/.${SHELL##*/}env' \
     ga="lazygit" \
-    mm='$EDITOR -X $HOME/document/memorandum/Linux.md' \
-    jr='$EDITOR $HOME/document/memorandum/journal.md' \
+    mm='$EDITOR -X $HOME/docx/memorandum/Linux.md' \
+    jr='$EDITOR $HOME/docx/memorandum/journal.md' \
     wr='cd $HOME/workspace/writing' \
     sshs="ssh root@124.70.3.11" \
     sftps="sftp root@124.70.3.11" \
