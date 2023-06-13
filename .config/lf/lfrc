@@ -115,7 +115,7 @@ cmd on-cd &{{
 }}
 on-cd
 
-cmd open-with %"$@" $fx
+cmd open-with &"$@" $fx
 cmd open ${{
     test -L "$f" && f=$(readlink -f "$f")
     case $(file --mime-type "$f" -b) in
