@@ -80,9 +80,9 @@
   <zoomFactor>1.6</zoomFactor>
   <helpZoomFactor>1</helpZoomFactor>
   <wordsZoomLevel>0</wordsZoomLevel>
-  <enableMainWindowHotkey>1</enableMainWindowHotkey>
+  <enableMainWindowHotkey>0</enableMainWindowHotkey>
   <mainWindowHotkey>Ctrl+F11, Ctrl+F11</mainWindowHotkey>
-  <enableClipboardHotkey>0</enableClipboardHotkey>
+  <enableClipboardHotkey>1</enableClipboardHotkey>
   <clipboardHotkey>Ctrl+C, Ctrl+C</clipboardHotkey>
   <enableScanPopup>1</enableScanPopup>
   <startWithScanPopupOn>0</startWithScanPopupOn>
