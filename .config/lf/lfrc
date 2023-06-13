@@ -41,8 +41,8 @@ map a rename
 map I :rename; cmd-home # at the very beginning
 map b :backup; unselect
 map cw rename_edit # new rename
-map cx %sudo chmod +x $fx
-map cX %sudo chmod -x $fx
+map cx %chmod +x $fx
+map cX %chmod -x $fx
 map gcc cd ~/.config
 map gcr cd ~/.config/ranger
 map gcl cd ~/.config/lf

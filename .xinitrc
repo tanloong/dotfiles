@@ -9,7 +9,7 @@ slstatus &
 dunst &
 # blueman-applet &
 nm-applet &
-feh --bg-scale /home/tan/.local/share/wallpapers/mywallpaper.jpg
+feh --bg-scale /home/tan/.local/share/wallpapers/brad-huchteman-stone-mountain.resized.jpg
 # picom -c > /dev/null 2>&1 &
 flameshot & > /dev/null 2>&1
 

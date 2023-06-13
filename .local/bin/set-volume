@@ -13,7 +13,7 @@ esac
 
 notify-send --urgency low \
     --hint string:x-canonical-private-synchronous:volume \
-    -t 2000 "Volume: $(pamixer --get-volume-human)"
+    -t 400 "Volume: $(pamixer --get-volume-human)"
 
 # update statusbar
 # status=$(slstatus -1)
