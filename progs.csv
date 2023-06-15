@@ -115,7 +115,6 @@ A,xsv,"index, slice, analyze, split, and join CSV files"
 A,com.qq.weixin.deepin,"WeChat"
 A,nodejs-xml2json," Converts XML to JSON"
 ,libxft,"enable color emoji in suckless software without crashes"
-A,polybar-dwm-module,""
 G,dmenu,https://gitee.com/tanloong/dmenu.git
 G,dwm,https://gitee.com/tanloong/dwm.git
 G,st,https:/gitee.com/tanloong/st.git

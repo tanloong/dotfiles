@@ -29,7 +29,7 @@ install.packages("$2", type = "source", repos = NULL)
 library("${3:${2/^(\w+)_.*$/(?1:$1)/ga}}")
 endsnippet
 
-snippet lib "Import a library"
+snippet l "Import a library" b
 library('${0:${VISUAL:package}}')
 endsnippet
 
