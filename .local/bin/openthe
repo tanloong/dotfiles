@@ -54,7 +54,7 @@ case "$app" in
     screenkey) togglethe.sh screenkey -s small --persist --opacity 1 ;;
     tip) dir_tip='/home/tan/.local/share/tip-pictures'
          togglethe.sh sxiv "$dir_tip"/wubi*;;
-    control-center) gnome-control-center;;
+    control-center) systemsettings;;
     filemanager) togglethe.sh pcmanfm;;
     sun) sunloginremote;;
 esac
