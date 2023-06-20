@@ -7,6 +7,7 @@ export PATH=$PATH:$HOME/.local/bin
 export PATH=$PATH:$HOME/.local/bin/data-science-utils
 export PATH=$PATH:$HOME/.local/bin/internship
 export PATH=$PATH:/home/tan/software/rasp3os/scripts
+export PATH=$PATH:$STANFORD_TREGEX_HOME:$STANFORD_PARSER_HOME
 export NLTK_DATA=$HOME/software/nltk_data/
 export TESSDATA_PREFIX=/usr/share/tessdata/
 export SUDO_ASKPASS=/usr/bin/lxqt-openssh-askpass
