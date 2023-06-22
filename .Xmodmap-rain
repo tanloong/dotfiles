@@ -2,7 +2,7 @@ clear lock
 clear shift
 clear Control
 keycode  66 = Mode_switch
-keycode  32 = o O Enter o
+keycode  32 = o O Return o
 keycode  56 = b B Prior b
 keycode  41 = f F Next f
 keycode  43 = h H Left h
