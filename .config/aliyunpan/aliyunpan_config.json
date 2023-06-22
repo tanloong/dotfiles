@@ -1,0 +1,93 @@
+{
+ "configVer": "1.0",
+ "activeUID": "44b15633c59d4716acc4787e21561dc6",
+ "userList": [
+  {
+   "userId": "44b15633c59d4716acc4787e21561dc6",
+   "nickname": "黑暗河流上的闪光",
+   "accountName": "178***953",
+   "workdir": "/",
+   "workdirFileEntity": {
+    "driveId": "",
+    "domainId": "",
+    "fileId": "root",
+    "fileName": "/",
+    "fileSize": 0,
+    "fileType": "folder",
+    "createdAt": "",
+    "updatedAt": "",
+    "fileExtension": "",
+    "uploadId": "",
+    "parentFileId": "",
+    "crc64Hash": "",
+    "contentHash": "",
+    "contentHashName": "",
+    "path": "/",
+    "category": "",
+    "syncFlag": false,
+    "syncMeta": ""
+   },
+   "albumWorkdir": "",
+   "albumWorkdirFileEntity": {
+    "driveId": "",
+    "domainId": "",
+    "fileId": "",
+    "fileName": "",
+    "fileSize": 0,
+    "fileType": "",
+    "createdAt": "",
+    "updatedAt": "",
+    "fileExtension": "",
+    "uploadId": "",
+    "parentFileId": "",
+    "crc64Hash": "",
+    "contentHash": "",
+    "contentHashName": "",
+    "path": "",
+    "category": "",
+    "syncFlag": false,
+    "syncMeta": ""
+   },
+   "activeDriveId": "26085931",
+   "driveList": [
+    {
+     "driveId": "26085931",
+     "driveName": "文件",
+     "driveTag": "File"
+    },
+    {
+     "driveId": "68034931",
+     "driveName": "相册",
+     "driveTag": "Album"
+    }
+   ],
+   "refreshToken": "1aa7c2af9e0b4ea4981de92207c7e0f8",
+   "webToken": {
+    "accessTokenType": "Bearer",
+    "accessToken": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI0NGIxNTYzM2M1OWQ0NzE2YWNjNDc4N2UyMTU2MWRjNiIsImN1c3RvbUpzb24iOiJ7XCJjbGllbnRJZFwiOlwiMjVkelgzdmJZcWt0Vnh5WFwiLFwiZG9tYWluSWRcIjpcImJqMjlcIixcInNjb3BlXCI6W1wiRFJJVkUuQUxMXCIsXCJTSEFSRS5BTExcIixcIkZJTEUuQUxMXCIsXCJVU0VSLkFMTFwiLFwiVklFVy5BTExcIixcIlNUT1JBR0UuQUxMXCIsXCJTVE9SQUdFRklMRS5MSVNUXCIsXCJCQVRDSFwiLFwiT0FVVEguQUxMXCIsXCJJTUFHRS5BTExcIixcIklOVklURS5BTExcIixcIkFDQ09VTlQuQUxMXCIsXCJTWU5DTUFQUElORy5MSVNUXCIsXCJTWU5DTUFQUElORy5ERUxFVEVcIl0sXCJyb2xlXCI6XCJ1c2VyXCIsXCJyZWZcIjpcImh0dHBzOi8vd3d3LmFsaXl1bmRyaXZlLmNvbS9cIixcImRldmljZV9pZFwiOlwiZjU1ZjQ3ZmRhZTNlNGYyM2JmZTRmNGZiNTc4NDEwMzRcIn0iLCJleHAiOjE2ODc0NTEyNjQsImlhdCI6MTY4NzQ0NDAwNH0.TZ9-8QJcOBXLA1PJTNwIDkH7EDE05XxIia1J3bi2IVsn4bYTJ1gyt4zw9hjS_2ak9aS1ETTwkMtQybq8rA3gzoEKm4L67S9CF6tu9vDI9eWQWbODX92EQU0lIhEXXuWXo5TNKHiFfIHeOInat9mF4FeZ6n_i-bfLpzbxdAueyMU",
+    "refreshToken": "f55f47fdae3e4f23bfe4f4fb57841034",
+    "expiresIn": 7200,
+    "expireTime": "2023-06-23 00:27:44"
+   },
+   "tokenId": ""
+  }
+ ],
+ "cacheSize": 0,
+ "maxDownloadParallel": 6,
+ "maxUploadParallel": 6,
+ "maxDownloadRate": 0,
+ "maxUploadRate": 0,
+ "transferUrlType": 0,
+ "saveDir": "/home/tan",
+ "proxy": "",
+ "localAddrs": "",
+ "updateCheckInfo": {
+  "preferUpdateSrv": "",
+  "latestVer": "",
+  "checkTime": 0
+ },
+ "videoFileExtensions": "mp4,flv,mkv,mov,rm,rmvb,wmv,wma,mv,asf,asx,mpg,mpeg,mpe,3gp,m4v,avi,vob",
+ "fileRecordConfig": "1",
+ "deviceId": "jJ6DwSywZXLidHbHjzRjrzDH",
+ "deviceName": "Chrome浏览器"
+}
