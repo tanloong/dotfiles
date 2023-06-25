@@ -37,8 +37,6 @@ optset.dictionary:append { vim.env.HOME .. "/.local/share/BNC-40thousand.txt" }
 optset.wildignore:append { '*aux,*toc,*out' }
 optset.path:append { '**' }
 
-au("FileType", { pattern = "*", command = [[set formatoptions-=ro]] })
-
 au("TermOpen",
     { pattern = "*",
         command = [[setlocal norelativenumber nonumber | setlocal statusline=channel:\ %{&channel} | startinsert]] })

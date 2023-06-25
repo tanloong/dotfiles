@@ -22,6 +22,8 @@ map e &pcmanfm $PWD
 map U calcdirsize
 map <f-4> quit
 map <c-q> quit
+map <c-e> down
+map <c-y> up
 map K push 5k
 map J push 5j
 map dd cut
