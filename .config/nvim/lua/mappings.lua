@@ -90,7 +90,7 @@ keyset('n', 'go', '<Cmd>silent!!opout "%"<CR>',
     { desc = [[Open corresponding .pdf/.html or preview]] })
 keyset('v', '.', ':normal .<CR>',
     { desc = [[Perform dot commands over visual blocks]] })
-keyset('v', 'p', '"_dP',
+keyset('v', 'p', 'P',
     { desc = [[keep what I am pasting]] })
 keyset('i', '<c-l>', '<c-g>u<Esc>[s1z=`]a<c-g>u',
     { desc = [[Spell checking on the fly]] })

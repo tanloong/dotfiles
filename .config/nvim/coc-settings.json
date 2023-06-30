@@ -37,21 +37,15 @@
                 "sh"
             ]
         },
-        "golang": {
-            "command": "gopls",
-            "rootPatterns": [
-                "go.mod"
-            ],
-            "filetypes": [
-                "go"
-            ]
-        },
     },
     "git.enableGutters": true,
     "git.conflict.incoming.hlGroup": "None",
     "git.conflict.current.hlGroup": "None",
     "python.formatting.provider": "black",
-    "python.formatting.autopep8Args": ["--max-line-length", "97"],
+    "python.formatting.autopep8Args": [
+        "--max-line-length",
+        "97"
+    ],
     "python.formatting.blackArgs": [
         "--line-length",
         "97",
@@ -99,5 +93,10 @@
         "typeParameter": "",
         "default": " "
     },
-    "java.format.onType.enabled":false,
+    "java.format.onType.enabled": false,
+    "coc.source.dictionary.priority": 1,
+    "coc.source.around.priority": 50,
+    "coc.source.buffer.priority":50,
+    "coc.source.file.priority": 50,
+    "snippets.priority": 99,
 }
