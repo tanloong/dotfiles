@@ -96,7 +96,7 @@
     "java.format.onType.enabled": false,
     "coc.source.dictionary.priority": 1,
     "coc.source.around.priority": 50,
-    "coc.source.buffer.priority":50,
+    "coc.source.buffer.priority": 50,
     "coc.source.file.priority": 50,
     "snippets.priority": 99,
 }

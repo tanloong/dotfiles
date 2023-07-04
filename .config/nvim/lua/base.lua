@@ -37,9 +37,17 @@ optset.dictionary:append { vim.env.HOME .. "/.local/share/BNC-40thousand.txt" }
 optset.wildignore:append { '*aux,*toc,*out' }
 optset.path:append { '**' }
 
+au("FileType",
+    {
+        pattern = "*",
+        command = [[set formatoptions-=ro]]
+    })
+
 au("TermOpen",
-    { pattern = "*",
-        command = [[setlocal norelativenumber nonumber | setlocal statusline=channel:\ %{&channel} | startinsert]] })
+    {
+        pattern = "*",
+        command = [[setlocal norelativenumber nonumber | setlocal statusline=channel:\ %{&channel} | startinsert]]
+    })
 au("BufEnter", { pattern = "term://*", command = 'startinsert' })
 -- Output is followed if cursor is on the last line.
 au("BufLeave", { pattern = "term://*", command = 'normal G' })
@@ -48,7 +56,7 @@ vim.cmd([[filetype plugin indent on]])
 vim.cmd([[syntax on]])
 vim.cmd([[iabbrev teh the]])
 vim.g['netrw_winsize'] = 30 -- Change the size of the Netrw window when it creates a split.
-vim.g['netrw_banner'] = 0 -- Hide the banner. To show it temporarily use I inside Netrw.
+vim.g['netrw_banner'] = 0   -- Hide the banner. To show it temporarily use I inside Netrw.
 -- check |netrw-browse-maps| for more mappings
 -- Save files that require root permission
 vim.cmd([[cabbrev w!! execute 'silent! write !sudo tee % >/dev/null' <bar> edit!]])

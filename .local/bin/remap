@@ -4,7 +4,7 @@ IFS=$'\n\t'
 
 imwheel > /dev/null 2>&1 &
 /home/tan/.local/bin/fix-touchpad &
-xset r rate 240 70
+xset r rate 260 70
 
 hostname=$(hostnamectl hostname)
 ln --symbolic --force ~/.Xmodmap-"${hostname}" ~/.Xmodmap
