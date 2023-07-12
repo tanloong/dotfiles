@@ -113,15 +113,19 @@ vim.g['coc_global_extensions'] = {
     'coc-pyright',
     'coc-webview',
     'coc-markdown-preview-enhanced',
+    'coc-explorer',
 }
 -- 'coc-java',
 -- 'coc-r-lsp',
-
 -- \ 'coc-smartf',
 -- \ 'coc-vimtex',
 -- \ 'coc-sh',
 -- \ 'coc-texlab',
 -- \ 'coc-clangd',
+
+-- coc-explorer
+vim.keymap.set("n", "tt", "<Cmd>CocCommand explorer<CR>")
+
 -- }}}
 -- coc-snippets{{{
 -- Use <C-o> for trigger snippet expand.

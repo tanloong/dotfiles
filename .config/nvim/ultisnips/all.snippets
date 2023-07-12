@@ -106,11 +106,15 @@ snippet "`([^`]+)`" "calculate" ir
 `!p snip.rv = eval(match.group(1))`
 endsnippet
 
-snippet lrp "parenthesis" iA 
+snippet lrp "parenthesis" iA
 ($0)
 endsnippet
 
-snippet lrq "quote" iA 
+snippet lrb "bracket" iA
+[$0]
+endsnippet
+
+snippet lrq "quote" iA
 "$0"
 endsnippet
 # ===================
