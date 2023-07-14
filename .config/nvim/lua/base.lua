@@ -48,9 +48,9 @@ au("TermOpen",
         pattern = "*",
         command = [[setlocal norelativenumber nonumber | setlocal statusline=channel:\ %{&channel} | startinsert]]
     })
--- au("BufEnter", { pattern = "term://*", command = 'startinsert' })
+au("BufEnter", { pattern = "term://*", command = 'startinsert' })
 -- Output is followed if cursor is on the last line.
--- au("BufLeave", { pattern = "term://*", command = 'normal G' })
+au("BufLeave", { pattern = "term://*", command = 'normal G' })
 
 vim.cmd([[filetype plugin indent on]])
 vim.cmd([[syntax on]])

@@ -48,7 +48,7 @@ keyset('n', 'dib', '<Cmd>%d<cr>')
 keyset('n', 'yib', '<Cmd>%y<cr>')
 keyset('n', 'cib', 'ggcG')
 keyset('n', '<enter>', 'i<enter><esc>')
-keyset('n', '<tab>', "<Cmd>exe 'silent!!goldendict ' .. expand('<cword>')<cr>")
+-- keyset('n', '<tab>', "<Cmd>exe 'silent!!goldendict ' .. expand('<cword>')<cr>")
 keyset('v', '<tab>', ":w <Home>silent<End> !xargs goldendict<cr>")
 keyset('n', 'Y', '<Cmd>call setreg("+", getline("."), "v")<CR>', {silent = true})
 
@@ -92,7 +92,7 @@ keyset('v', '.', ':normal .<CR>',
     { desc = [[Perform dot commands over visual blocks]] })
 keyset('v', 'p', 'P',
     { desc = [[keep what I am pasting]] })
-keyset('i', '<c-l>', '<c-g>u<Esc>[s1z=`]a<c-g>u',
+keyset('i', '<c-p>', '<c-g>u<Esc>[s1z=`]a<c-g>u',
     { desc = [[Spell checking on the fly]] })
 keyset('n', '<SPACE><SPACE>', '/<<>><CR>:set nohlsearch<CR>"_c4<right>')
 keyset('i', 'jk', '<Esc>/<<>><CR>:set nohlsearch<CR>"_c4<right>')

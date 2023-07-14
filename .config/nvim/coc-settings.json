@@ -2,9 +2,8 @@
     "suggest.noselect": true,
     "suggest.enablePreselect": false,
     "coc.preferences.extensionUpdateCheck": "never",
-    "coc.preferences.formatOnSaveFiletypes": [],
+    "coc.preferences.formatOnSave": false,
     "suggest.defaultSortMethod": "none",
-    "coc.preferences.diagnostic.refreshOnInsertMode": false,
     "diagnostic.enable": true,
     "diagnostic.errorSign": "┃",
     "diagnostic.warningSign": "┃",
@@ -57,7 +56,6 @@
         "$HOME/.config/nvim/ultisnips"
     ],
     "sumneko-lua.locale": "en-us",
-    "Lua.telemetry.enable": false,
     "Lua.diagnostics.globals": [
         "vim"
     ],
@@ -99,4 +97,5 @@
     "coc.source.buffer.priority": 50,
     "coc.source.file.priority": 50,
     "snippets.priority": 99,
+    "outline.sortBy": "position",
 }

@@ -22,7 +22,7 @@ packer.init {
 return packer.startup(function(use)
     -- Packer can manage itself
     use { 'https://gitee.com/nvim-plugin/packer.nvim' }
-    use {'https://github.com/neoclide/coc.nvim.git',
+    use { 'https://github.com/neoclide/coc.nvim.git',
         branch = 'release',
         event = { 'InsertEnter', 'CursorHold' },
         config = [[require('plugin_config.coc')]] }
@@ -62,4 +62,7 @@ return packer.startup(function(use)
         config = [[require('plugin_config.indent_blankline')]] }
     use { 'https://gitee.com/tanloong/nvim-align.git',
         event = "CursorHold" }
+    use {'dstein64/nvim-scrollview',
+        event = "CursorHold",
+        config = [[require('plugin_config.scrollview')]]}
 end)

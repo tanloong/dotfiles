@@ -135,3 +135,14 @@ vim.g['coc_snippet_next'] = '<c-j>'
 -- Use <C-k> for jump to previous placeholder, it's default of coc.nvim
 vim.g['coc_snippet_prev'] = '<c-k>'
 -- }}}
+-- coc-outline{{{
+vim.api.nvim_set_keymap('n', 'so', ':lua ToggleOutline()<CR>', {silent = true, nowait = true})
+
+function ToggleOutline()
+  local winid = vim.fn['coc#window#find']('cocViewId', 'OUTLINE')
+  if winid == -1 then
+    vim.fn['CocActionAsync']('showOutline', 1)
+  else
+    vim.fn['coc#window#close'](winid)
+  end
+end-- }}}
