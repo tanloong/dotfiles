@@ -98,4 +98,5 @@
     "coc.source.file.priority": 50,
     "snippets.priority": 99,
     "outline.sortBy": "position",
+    "tree.key.activeFilter": "/"
 }

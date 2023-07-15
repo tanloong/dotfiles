@@ -107,6 +107,7 @@ A,wps-office,"wps"
 ,libnotify,"notify-send"
 ,dunst,"notification server"
 A,htop-vim,"a process viewer with vim-like keybinding"
+,bashtop,
 A,deskreen,"Turns any device with a web browser to a second screen for your computer"
 A,xsv,"index, slice, analyze, split, and join CSV files"
 ,icalingua++,"A third-party QQ client"

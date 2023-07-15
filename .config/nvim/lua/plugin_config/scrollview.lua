@@ -1,7 +1,7 @@
 #!/usr/bin/env lua
 
 require('scrollview').setup({
-    current_only = true,
+    current_only = false,
     winblend = 80,
     base = 'right',
     column = 1,
