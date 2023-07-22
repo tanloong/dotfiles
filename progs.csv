@@ -37,10 +37,18 @@ A,latex-mk,
 ,xournalpp,"handwriting notetaking software with PDF annotation support"
 ,picom,"a compositor for X11"
 ,moreutils,"A growing collection of the unix tools that nobody thought to write thirty years ago"
-,texlive-most,"ontains most TeX Live packages"
-,texlive-lang,"contains packages providing character sets and features for languages with non-Latin characters"
-,texlive-bibtexextra,"contains additional BibTeX and BibLaTeX styles and bibliography databases"
-A,texlive-tlpdb,"The texlive package database (texlive.tlpdb)"
+,texlive-basic,
+,texlive-bin,
+,texlive-binextra,
+,texlive-fontsrecommended,
+,texlive-langchinese,
+,texlive-langcjk,
+,texlive-latex,
+,texlive-latexextra,
+,texlive-latexrecommended,
+,texlive-pictures,
+,texlive-plaingeneric,
+,texlive-xetex,
 ,zathura,"Minimalistic document viewer"
 ,zathura-djvu,"DjVu support for Zathura"
 ,zathura-pdf-mupdf,"PDF support for Zathura (MuPDF backend) (Supports PDF, ePub, and OpenXPS)"

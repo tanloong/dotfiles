@@ -92,8 +92,8 @@ keyset('v', '.', ':normal .<CR>',
     { desc = [[Perform dot commands over visual blocks]] })
 keyset('v', 'p', 'P',
     { desc = [[keep what I am pasting]] })
-keyset('i', '<c-p>', '<c-g>u<Esc>[s1z=`]a<c-g>u',
-    { desc = [[Spell checking on the fly]] })
+-- keyset('i', '<c-l>', '<c-g>u<Esc>[s1z=`]a<c-g>u',
+--     { desc = [[Spell checking on the fly]] })
 keyset('n', '<SPACE><SPACE>', '/<<>><CR>:set nohlsearch<CR>"_c4<right>')
 keyset('i', 'jk', '<Esc>/<<>><CR>:set nohlsearch<CR>"_c4<right>')
 keyset('i', 'jj', '<right>')

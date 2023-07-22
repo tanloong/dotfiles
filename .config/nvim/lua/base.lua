@@ -13,7 +13,7 @@ optset.shiftwidth = 4
 optset.updatetime = 100
 optset.signcolumn = 'yes'
 optset.mouse = 'nvi'
-optset.scrolloff = 0
+optset.scrolloff = 3
 optset.ignorecase = true
 optset.infercase = true
 optset.smartcase = true
@@ -46,11 +46,11 @@ au("FileType",
 au("TermOpen",
     {
         pattern = "*",
-        command = [[setlocal norelativenumber nonumber | setlocal statusline=channel:\ %{&channel} | startinsert]]
+        command = [[setlocal norelativenumber nonumber | setlocal statusline=channel:\ %{&channel} | setlocal cmdheight=0 | startinsert]]
     })
-au("BufEnter", { pattern = "term://*", command = 'startinsert' })
+-- au("BufEnter", { pattern = "term://*", command = 'startinsert' })
 -- Output is followed if cursor is on the last line.
-au("BufLeave", { pattern = "term://*", command = 'normal G' })
+-- au("BufLeave", { pattern = "term://*", command = 'normal G' })
 
 vim.cmd([[filetype plugin indent on]])
 vim.cmd([[syntax on]])

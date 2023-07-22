@@ -52,6 +52,7 @@
     ],
     "pyright.inlayHints.functionReturnTypes": true,
     "pyright.inlayHints.variableTypes": false,
+    "diagnostic.level": "warning",
     "snippets.ultisnips.directories": [
         "$HOME/.config/nvim/ultisnips"
     ],
@@ -98,5 +99,6 @@
     "coc.source.file.priority": 50,
     "snippets.priority": 99,
     "outline.sortBy": "position",
-    "tree.key.activeFilter": "/"
+    "tree.key.activeFilter": "/",
+    "markdown-preview-enhanced.scrollSync": false,
 }

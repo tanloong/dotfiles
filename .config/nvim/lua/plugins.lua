@@ -41,8 +41,6 @@ return packer.startup(function(use)
         config = [[require('plugin_config.vim_table_mode')]] }
     use { 'https://gitee.com/tanloong/wildfire.vim.git',
         config = [[require('plugin_config.wildfire')]] }
-    -- use { 'https://gitee.com/oy456xd/vim-visual-multi.git',
-    --     event = 'CursorHold' }
     use { 'https://gitee.com/tanloong/vim-slime',
         config = [[require('plugin_config.vim_slime')]] }
     use { 'https://gitee.com/mirrors/vimtex.git',
@@ -51,8 +49,8 @@ return packer.startup(function(use)
     use { 'https://gitee.com/tanloong/hop.nvim',
         branch = 'match-mappings',
         config = [[require('plugin_config.hop')]] }
-    use { 'https://gitee.com/tanloong/nvim-terminal.git',
-        config = [[require('plugin_config.nvim_terminal')]] }
+    -- use { 'https://gitee.com/tanloong/nvim-terminal.git',
+    --     config = [[require('plugin_config.nvim_terminal')]] }
     use { 'https://gitee.com/jianshanbushishan/nvim-treesitter.git',
         run = ':TSUpdate',
         config = [[require('plugin_config.nvim_treesitter')]],
@@ -65,4 +63,5 @@ return packer.startup(function(use)
     use {'dstein64/nvim-scrollview',
         event = "CursorHold",
         config = [[require('plugin_config.scrollview')]]}
+    use {"akinsho/toggleterm.nvim", event="CursorHold", config = [[require('plugin_config.toggleterm')]]}
 end)
