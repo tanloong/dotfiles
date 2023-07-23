@@ -49,19 +49,14 @@ return packer.startup(function(use)
     use { 'https://gitee.com/tanloong/hop.nvim',
         branch = 'match-mappings',
         config = [[require('plugin_config.hop')]] }
-    -- use { 'https://gitee.com/tanloong/nvim-terminal.git',
-    --     config = [[require('plugin_config.nvim_terminal')]] }
-    use { 'https://gitee.com/jianshanbushishan/nvim-treesitter.git',
+    use { 'nvim-treesitter/nvim-treesitter',
         run = ':TSUpdate',
         config = [[require('plugin_config.nvim_treesitter')]],
         event = 'CursorHold' }
-    use { 'https://gitee.com/nvim-plugin/indent-blankline.nvim.git',
+    use { 'lukas-reineke/indent-blankline.nvim',
         event = "CursorHold",
         config = [[require('plugin_config.indent_blankline')]] }
     use { 'https://gitee.com/tanloong/nvim-align.git',
         event = "CursorHold" }
-    use {'dstein64/nvim-scrollview',
-        event = "CursorHold",
-        config = [[require('plugin_config.scrollview')]]}
     use {"akinsho/toggleterm.nvim", event="CursorHold", config = [[require('plugin_config.toggleterm')]]}
 end)
