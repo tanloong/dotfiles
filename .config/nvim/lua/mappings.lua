@@ -104,15 +104,23 @@ keyset('n', 'd<space>', "<Cmd>let pos=getcurpos()[1:] | %s/\\s\\+$//e | nohlsear
     { desc = [[Remove trailing spaces]] })
 
 local toggle_boolean = function()
-    cword = vim.call("expand", "<cword>")
-    toggle_map = { [true] = "false", TRUE = "FALSE", T = "F", True = "False", [false] = "true", FALSE = "TRUE", F = "T",
-        False = "True" }
-    for key, val in pairs(toggle_map) do
-        if cword == key then
-            vim.cmd('normal! ciw' .. val)
-            return
-        end
+    local cword = vim.fn.expand("<cword>")
+    local boolean_map = {
+        ["true"] = "false", -- lua, ...
+        ["false"] = "true", -- lua, ...
+        ["True"] = "False",   -- Python
+        ["False"] = "True",   -- Python
+        ["TRUE"] = "FALSE",   -- R
+        ["FALS"] = "TRUE",   -- R
+        ["T"] = "F",          -- R
+        ["F"] = "T",          -- R
+    }
+
+    local val = boolean_map[cword]
+    if val then
+        vim.cmd('normal! ciw' .. val)
+    else
+        print("Error: toggle_boolean got unknown key " .. cword)
     end
-    print("Can only toggle True/False, true/false, TRUE/FALSE, and T/F.")
 end
 keyset('n', '<leader>t', toggle_boolean)

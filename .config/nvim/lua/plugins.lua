@@ -35,9 +35,11 @@ return packer.startup(function(use)
         config = [[vim.keymap.set('x', 's', '<Plug>VSurround')]] }
     use { 'https://gitee.com/nvim-plugin/Comment.nvim.git',
         config = [[require('plugin_config.comment')]] }
-    use { 'https://gitee.com/lovealone72/vim-markdown-toc.git', ft = { 'markdown' },
+    use { 'https://gitee.com/lovealone72/vim-markdown-toc.git',
+        ft = { 'markdown' },
         config = [[require('plugin_config.vim_markdown_toc')]] }
-    use { 'https://gitee.com/yaozhijin/vim-table-mode.git', ft = { 'markdown' },
+    use { 'https://gitee.com/yaozhijin/vim-table-mode.git',
+        ft = { 'markdown' },
         config = [[require('plugin_config.vim_table_mode')]] }
     use { 'https://gitee.com/tanloong/wildfire.vim.git',
         config = [[require('plugin_config.wildfire')]] }
@@ -58,5 +60,12 @@ return packer.startup(function(use)
         config = [[require('plugin_config.indent_blankline')]] }
     use { 'https://gitee.com/tanloong/nvim-align.git',
         event = "CursorHold" }
-    use {"akinsho/toggleterm.nvim", event="CursorHold", config = [[require('plugin_config.toggleterm')]]}
+    use { "akinsho/toggleterm.nvim",
+        event = "CursorHold",
+        config = [[require('plugin_config.toggleterm')]] }
+    use({
+        "lmburns/lf.nvim",
+        config = [[require('plugin_config.lf_nvim')]],
+        requires = { "toggleterm.nvim" }
+    })
 end)

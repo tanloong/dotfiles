@@ -42,11 +42,6 @@ try {
 }
 endsnippet
 
-snippet /i|n/ "new primitive or int" br
-${1:int} ${2:i} = ${3:1};
-$0
-endsnippet
-
 snippet /o|v/ "new Object or variable" br
 ${1:Object} ${2:var} = new $1($3);
 endsnippet
@@ -431,5 +426,11 @@ while ($1)`!p nl(snip)`{
 	$0
 }
 endsnippet
+
+# custom snippets begin
+snippet i "import" b
+import $0;
+endsnippet
+# custom snippets end
 
 # vim:ft=snippets:
