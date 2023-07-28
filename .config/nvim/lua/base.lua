@@ -46,11 +46,31 @@ au("FileType",
 au("TermOpen",
     {
         pattern = "*",
-        command = [[setlocal norelativenumber nonumber | setlocal statusline=channel:\ %{&channel} | setlocal cmdheight=0 | startinsert]]
+        command = [[setlocal norelativenumber nonumber | setlocal statusline=channel:\ %{&channel} | startinsert]]
     })
+
 -- au("BufEnter", { pattern = "term://*", command = 'startinsert' })
 -- Output is followed if cursor is on the last line.
 -- au("BufLeave", { pattern = "term://*", command = 'normal G' })
+
+local preview_stack_trace = function()
+    local line = vim.api.nvim_get_current_line()
+    local pattern = 'File "([^"]+)", line (%d+)'
+    local filepath, lineno = string.match(line, pattern)
+
+    if filepath and lineno then
+        vim.cmd("wincmd k")
+        vim.cmd("e " .. filepath)
+        vim.api.nvim_win_set_cursor(0, {tonumber(lineno), 1})
+        vim.cmd("wincmd j")
+    end
+end
+au("BufEnter", {
+    pattern = "term://*",
+    callback = function()
+        vim.keymap.set("n", "p", preview_stack_trace, {silent=true, noremap=true, buffer=true})
+    end
+})
 
 vim.cmd([[filetype plugin indent on]])
 vim.cmd([[syntax on]])

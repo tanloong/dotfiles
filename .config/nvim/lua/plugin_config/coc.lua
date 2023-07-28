@@ -96,7 +96,7 @@ vim.keymap.set("x", "<C-s>", "<Plug>(coc-range-select)", { silent = true })
 vim.cmd([[set statusline=%<%f\ %h%m%{coc#status()}%{get(b:,'coc_current_function','')}%r%=%-14.(%l,%c%V%)\ %p%%]])
 -- Add `:Format` command to format current buffer.
 vim.api.nvim_create_user_command("Format", "call CocAction('format')", {})
-vim.keymap.set('n', '<F9>', ":call CocActionAsync('format')<CR>")
+vim.keymap.set('n', '<leader>f', ":call CocActionAsync('format')<CR>")
 -- " Add `:Fold` command to fold current buffer.
 vim.api.nvim_create_user_command("Fold", "call CocAction('fold', <f-args>)", { nargs = '?' })
 -- Add `:OR` command for organize imports of the current buffer.

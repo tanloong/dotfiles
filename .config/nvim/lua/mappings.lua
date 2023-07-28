@@ -50,7 +50,7 @@ keyset('n', 'cib', 'ggcG')
 keyset('n', '<enter>', 'i<enter><esc>')
 -- keyset('n', '<tab>', "<Cmd>exe 'silent!!goldendict ' .. expand('<cword>')<cr>")
 keyset('v', '<tab>', ":w <Home>silent<End> !xargs goldendict<cr>")
-keyset('n', 'Y', '<Cmd>call setreg("+", getline("."), "v")<CR>', {silent = true})
+keyset('n', 'Y', '<Cmd>call setreg("+", getline("."), "v")<CR>', { silent = true })
 
 -- jumping between a normal buffer and a neovim terminal
 keyset('t', '<leader><esc>', '<c-\\><c-N>')
@@ -102,3 +102,17 @@ keyset('c', '%%', "getcmdtype()==':'? expand('%:h').'/' : '%%'",
     { expr = true, desc = [[展开活动缓冲区所在目录]] })
 keyset('n', 'd<space>', "<Cmd>let pos=getcurpos()[1:] | %s/\\s\\+$//e | nohlsearch | call cursor(pos)<CR>",
     { desc = [[Remove trailing spaces]] })
+
+local toggle_boolean = function()
+    cword = vim.call("expand", "<cword>")
+    toggle_map = { [true] = "false", TRUE = "FALSE", T = "F", True = "False", [false] = "true", FALSE = "TRUE", F = "T",
+        False = "True" }
+    for key, val in pairs(toggle_map) do
+        if cword == key then
+            vim.cmd('normal! ciw' .. val)
+            return
+        end
+    end
+    print("Can only toggle True/False, true/false, TRUE/FALSE, and T/F.")
+end
+keyset('n', '<leader>t', toggle_boolean)
