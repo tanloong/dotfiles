@@ -103,24 +103,24 @@ keyset('c', '%%', "getcmdtype()==':'? expand('%:h').'/' : '%%'",
 keyset('n', 'd<space>', "<Cmd>let pos=getcurpos()[1:] | %s/\\s\\+$//e | nohlsearch | call cursor(pos)<CR>",
     { desc = [[Remove trailing spaces]] })
 
-local toggle_boolean = function()
-    local cword = vim.fn.expand("<cword>")
-    local boolean_map = {
-        ["true"] = "false", -- lua, ...
-        ["false"] = "true", -- lua, ...
-        ["True"] = "False",   -- Python
-        ["False"] = "True",   -- Python
-        ["TRUE"] = "FALSE",   -- R
-        ["FALS"] = "TRUE",   -- R
-        ["T"] = "F",          -- R
-        ["F"] = "T",          -- R
-    }
-
-    local val = boolean_map[cword]
-    if val then
-        vim.cmd('normal! ciw' .. val)
-    else
-        print("Error: toggle_boolean got unknown key " .. cword)
-    end
-end
-keyset('n', '<leader>t', toggle_boolean)
+-- local toggle_boolean = function()
+--     local cword = vim.fn.expand("<cword>")
+--     local boolean_map = {
+--         ["true"] = "false", -- lua, ...
+--         ["false"] = "true", -- lua, ...
+--         ["True"] = "False",   -- Python
+--         ["False"] = "True",   -- Python
+--         ["TRUE"] = "FALSE",   -- R
+--         ["FALS"] = "TRUE",   -- R
+--         ["T"] = "F",          -- R
+--         ["F"] = "T",          -- R
+--     }
+--
+--     local val = boolean_map[cword]
+--     if val then
+--         vim.cmd('normal! ciw' .. val)
+--     else
+--         print("Error: toggle_boolean got unknown key " .. cword)
+--     end
+-- end
+-- keyset('n', '<leader>t', toggle_boolean)

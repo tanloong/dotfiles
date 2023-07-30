@@ -63,9 +63,13 @@ return packer.startup(function(use)
     use { "akinsho/toggleterm.nvim",
         event = "CursorHold",
         config = [[require('plugin_config.toggleterm')]] }
-    use({
+    use {
         "lmburns/lf.nvim",
         config = [[require('plugin_config.lf_nvim')]],
-        requires = { "toggleterm.nvim" }
-    })
+        requires = { "toggleterm.nvim" } }
+    use {
+        "nat-418/boole.nvim",
+        event = "CursorHold",
+        config = [[require('plugin_config.boole_nvim')]],
+    }
 end)
