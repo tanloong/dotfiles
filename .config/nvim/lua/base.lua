@@ -80,14 +80,6 @@ vim.g['netrw_banner'] = 0   -- Hide the banner. To show it temporarily use I ins
 -- check |netrw-browse-maps| for more mappings
 -- Save files that require root permission
 vim.cmd([[cabbrev w!! execute 'silent! write !sudo tee % >/dev/null' <bar> edit!]])
--- 打开文件时跳到上次的位置
-vim.cmd([[
-    au BufReadPost *
-    \ if line("'\"") > 1
-    \ && line("'\'") <= line("$") |
-    \ exe "normal! g'\""|
-    \ endif
-]])
 vim.cmd([[
 if &term =~ '256color'
     " disable Background Color Erase (BCE) so that color schemes
