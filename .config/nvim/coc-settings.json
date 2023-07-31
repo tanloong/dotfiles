@@ -57,9 +57,8 @@
         "$HOME/.config/nvim/ultisnips"
     ],
     "sumneko-lua.locale": "en-us",
-    "Lua.diagnostics.globals": [
-        "vim"
-    ],
+    "sumneko-lua.enableNvimLuaDev": true,
+    "sumneko-lua.checkUpdate": false,
     "Lua.hint.arrayIndex": "Disable",
     "Lua.diagnostics.neededFileStatus": {
         "lowercase-global": "None"
