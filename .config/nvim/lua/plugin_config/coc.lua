@@ -73,8 +73,8 @@ vim.keymap.set("n", "<leader>f", "<Plug>(coc-format-selected)", { silent = true 
 -- Applying codeAction to the selected region.
 -- Example: `<leader>aap` for current paragraph
 local opts = { silent = true, nowait = true }
-vim.keymap.set("x", "<leader>a", "<Plug>(coc-codeaction-selected)", opts)
-vim.keymap.set("n", "<leader>a", "<Plug>(coc-codeaction-selected)", opts)
+-- vim.keymap.set("x", "<leader>a", "<Plug>(coc-codeaction-selected)", opts)
+-- vim.keymap.set("n", "<leader>a", "<Plug>(coc-codeaction-selected)", opts)
 -- Apply AutoFix to problem on the current line.
 vim.keymap.set("n", "<leader>qf", "<Plug>(coc-fix-current)", opts)
 -- Remap <C-f> and <C-b> for scroll float windows/popups.
@@ -104,7 +104,6 @@ vim.api.nvim_create_user_command("OR", "call CocActionAsync('runCommand', 'edito
 
 -- coc-extensions{{{
 vim.g['coc_global_extensions'] = {
-    'coc-actions',
     'coc-git',
     'coc-snippets',
     'coc-sumneko-lua',
@@ -114,6 +113,7 @@ vim.g['coc_global_extensions'] = {
     'coc-webview',
     'coc-markdown-preview-enhanced',
 }
+-- 'coc-actions',
 -- 'coc-explorer',
 -- 'coc-java',
 -- 'coc-r-lsp',

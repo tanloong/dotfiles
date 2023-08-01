@@ -101,5 +101,20 @@
     "tree.key.activeFilter": "/",
     "markdown-preview-enhanced.scrollSync": false,
     "explorer.position": "floating",
-    "explorer.keyMappings.global": {"J": ["wait", "normal:5j"], "K": ["wait", "normal:5k"], "<space>": ["toggleSelection"], "u": ["clearCopyOrCut"]}
+    "explorer.keyMappings.global": {
+        "J": [
+            "wait",
+            "normal:5j"
+        ],
+        "K": [
+            "wait",
+            "normal:5k"
+        ],
+        "<space>": [
+            "toggleSelection"
+        ],
+        "u": [
+            "clearCopyOrCut"
+        ]
+    }
 }

@@ -33,7 +33,7 @@ return packer.startup(function(use)
         config = [[require('plugin_config.autosave')]] }
     use { 'https://gitee.com/tanloong/vim-surround.git',
         config = [[vim.keymap.set('x', 's', '<Plug>VSurround')]] }
-    use { 'https://gitee.com/nvim-plugin/Comment.nvim.git',
+    use { 'https://github.com/numToStr/Comment.nvim',
         config = [[require('plugin_config.comment')]] }
     use { 'https://gitee.com/lovealone72/vim-markdown-toc.git',
         ft = { 'markdown' },
@@ -55,6 +55,13 @@ return packer.startup(function(use)
         run = ':TSUpdate',
         config = [[require('plugin_config.nvim_treesitter')]],
         event = 'CursorHold' }
+    use({
+        "nvim-treesitter/nvim-treesitter-textobjects",
+        after = "nvim-treesitter",
+        event = 'CursorHold',
+        requires = "nvim-treesitter/nvim-treesitter",
+        config = [[require('plugin_config.nvim_treesitter_textobjects')]],
+    })
     use { 'lukas-reineke/indent-blankline.nvim',
         event = "CursorHold",
         config = [[require('plugin_config.indent_blankline')]] }
