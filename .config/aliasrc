@@ -2,11 +2,12 @@
 
 function fzf_open_with {
     file="$(fzf --reverse)"
-    if [ -n "$file" ]; then # in case you press <Esc> and fzf returns zero length of string
+    # in case you press <Esc> and fzf returns zero length of string
+    if [ -n "$file" ]; then
         dir="${file%/*}"
         case "$1" in
             cd) cd "$dir" || return;;
-            *) cd "$dir" && "$1" "$file" || return;;
+            *) "$1" "$file" || return;;
         esac
     fi
 }
