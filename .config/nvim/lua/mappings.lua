@@ -50,7 +50,7 @@ keyset('n', 'cib', 'ggcG')
 keyset('n', '<enter>', 'i<enter><esc>')
 -- keyset('n', '<tab>', "<Cmd>exe 'silent!!goldendict ' .. expand('<cword>')<cr>")
 keyset('v', '<tab>', ":w <Home>silent<End> !xargs goldendict<cr>")
-keyset('n', 'Y', '<Cmd>call setreg("+", getline("."), "v")<CR>', { silent = true })
+keyset('n', 'Y', function() vim.fn.setreg('+', vim.trim(vim.api.nvim_get_current_line())) end)
 
 -- jumping between a normal buffer and a neovim terminal
 keyset('t', '<leader><esc>', '<c-\\><c-N>')
