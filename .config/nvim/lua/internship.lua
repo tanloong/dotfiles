@@ -1,6 +1,6 @@
 #!/usr/bin/env lua
 
-local AppendLineToThreeLinesAbove = function(lineno)
+local AppendLineThreeLinesAbove = function(lineno)
     --[[ 将行所在pair的中文或英文行合并到上一个pair对应中文或英文行的末尾 ]]
     local lineno_minus3 = lineno - 3
     local lineno_minus1 = lineno - 1
@@ -14,16 +14,27 @@ local AppendLineToThreeLinesAbove = function(lineno)
     vim.fn.setline(lineno, '')
 end
 
+local CopyLineThreeLinesAbove = function(lineno)
+    --[[ 用行所在pair的中文或英文行覆盖上一个pair对应中文或英文行 ]]
+    local lineno_minus3 = lineno - 3
+    local line = vim.fn.getline(lineno)
+    local line_minus3 = vim.fn.getline(lineno_minus3)
+
+    vim.fn.setline(lineno_minus3, line)
+end
+
 local MergeLines = function()
     local lineno = vim.fn.line(".")
     if lineno <= 3 then return end
-
     local last_lineno = vim.fn.line("$")
 
+    AppendLineThreeLinesAbove(lineno)
+    lineno = lineno + 3
     while lineno <= last_lineno do
-        AppendLineToThreeLinesAbove(lineno)
+        CopyLineThreeLinesAbove(lineno)
         lineno = lineno + 3
     end
+    vim.fn.setline(lineno - 3, '')
 
     local buf = vim.api.nvim_get_current_buf()
     while string.match(vim.fn.getline(last_lineno), "^%s*$") do
