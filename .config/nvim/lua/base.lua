@@ -1,7 +1,8 @@
 #!/usr/bin/env lua
 
 local optset = vim.opt
-local au = vim.api.nvim_create_autocmd
+local autocmd = vim.api.nvim_create_autocmd
+local augroup = vim.api.nvim_create_augroup
 
 optset.backspace = 'start,eol,indent'
 optset.background = 'dark'
@@ -37,15 +38,17 @@ optset.dictionary:append { vim.env.HOME .. "/.local/share/BNC-40thousand.txt" }
 optset.wildignore:append { '*aux,*toc,*out' }
 optset.path:append { '**' }
 
-au("FileType",
+autocmd("FileType",
     {
         pattern = "*",
+        group = augroup("formatoptions", { clear = true }),
         command = [[set formatoptions-=ro]]
     })
 
-au("TermOpen",
+autocmd("TermOpen",
     {
         pattern = "*",
+        group = augroup("termopen", { clear = true }),
         command = [[setlocal norelativenumber nonumber | setlocal statusline=channel:\ %{&channel} | startinsert]]
     })
 
@@ -61,14 +64,15 @@ local preview_stack_trace = function()
     if filepath and lineno then
         vim.cmd("wincmd k")
         vim.cmd("e " .. filepath)
-        vim.api.nvim_win_set_cursor(0, {tonumber(lineno), 1})
+        vim.api.nvim_win_set_cursor(0, { tonumber(lineno), 1 })
         vim.cmd("wincmd j")
     end
 end
-au("BufEnter", {
+autocmd("BufEnter", {
     pattern = "term://*",
+    group = augroup("preview_stack_trace", { clear = true }),
     callback = function()
-        vim.keymap.set("n", "p", preview_stack_trace, {silent=true, noremap=true, buffer=true})
+        vim.keymap.set("n", "p", preview_stack_trace, { silent = true, noremap = true, buffer = true })
     end
 })
 

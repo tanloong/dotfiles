@@ -1,4 +1,6 @@
 #!/usr/bin/env lua
+local autocmd = vim.api.nvim_create_autocmd
+local augroup = vim.api.nvim_create_augroup
 
 local AppendLineThreeLinesAbove = function(lineno)
     --[[ 将行所在pair的中文或英文行合并到上一个pair对应中文或英文行的末尾 ]]
@@ -54,4 +56,8 @@ local map_intern = function()
     end
 end
 
-vim.api.nvim_create_autocmd("BufEnter", { pattern = "*interlaced*.txt", callback = map_intern })
+autocmd("BufEnter", {
+    pattern = "*interlaced*.txt",
+    group = augroup("interlaced", { clear = true }),
+    callback = map_intern
+})
