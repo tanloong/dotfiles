@@ -765,10 +765,6 @@ with open(${1:filename}, '${2:w}', encoding="utf-8") as f:
 	f.write(${3:content})
 endsnippet
 
-snippet ,f "=" wA
-= $1
-endsnippet
-
 snippet ,, "_" iA
 _$0
 endsnippet
@@ -781,6 +777,14 @@ endsnippet
 
 snippet nocv "# pragma: no cover"
 # pragma: no cover$0
+endsnippet
+
+snippet defp "PLY production rule" b
+def p_$1(p):
+	"""
+	$2
+	"""$0
+	logging.debug("following rule: $2")
 endsnippet
 # ===================
 # Custom snippets end

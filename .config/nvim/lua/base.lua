@@ -1,8 +1,6 @@
 #!/usr/bin/env lua
 
 local optset = vim.opt
-local autocmd = vim.api.nvim_create_autocmd
-local augroup = vim.api.nvim_create_augroup
 
 optset.backspace = 'start,eol,indent'
 optset.background = 'dark'
@@ -37,44 +35,6 @@ optset.clipboard:prepend { 'unnamed,unnamedplus' }
 optset.dictionary:append { vim.env.HOME .. "/.local/share/BNC-40thousand.txt" }
 optset.wildignore:append { '*aux,*toc,*out' }
 optset.path:append { '**' }
-
-autocmd("FileType",
-    {
-        pattern = "*",
-        group = augroup("formatoptions", { clear = true }),
-        command = [[set formatoptions-=ro]]
-    })
-
-autocmd("TermOpen",
-    {
-        pattern = "*",
-        group = augroup("termopen", { clear = true }),
-        command = [[setlocal norelativenumber nonumber | setlocal statusline=channel:\ %{&channel} | startinsert]]
-    })
-
--- au("BufEnter", { pattern = "term://*", command = 'startinsert' })
--- Output is followed if cursor is on the last line.
--- au("BufLeave", { pattern = "term://*", command = 'normal G' })
-
-local preview_stack_trace = function()
-    local line = vim.api.nvim_get_current_line()
-    local pattern = 'File "([^"]+)", line (%d+)'
-    local filepath, lineno = string.match(line, pattern)
-
-    if filepath and lineno then
-        vim.cmd("wincmd k")
-        vim.cmd("e " .. filepath)
-        vim.api.nvim_win_set_cursor(0, { tonumber(lineno), 1 })
-        vim.cmd("wincmd j")
-    end
-end
-autocmd("BufEnter", {
-    pattern = "term://*",
-    group = augroup("preview_stack_trace", { clear = true }),
-    callback = function()
-        vim.keymap.set("n", "p", preview_stack_trace, { silent = true, noremap = true, buffer = true })
-    end
-})
 
 vim.cmd([[filetype plugin indent on]])
 vim.cmd([[syntax on]])

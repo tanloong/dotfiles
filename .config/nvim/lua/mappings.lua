@@ -80,7 +80,7 @@ keyset('t', '<c-down>', '<c-\\><c-N><Cmd>res -2|startinsert<CR>')
 keyset('t', '<c-left>', '<c-\\><c-N><Cmd>vertical resize-2|startinsert<CR>')
 keyset('t', '<c-right>', '<c-\\><c-N><Cmd>vertical resize+2|startinsert<CR>')
 -- destroy terminals
-keyset('t', '<c-q>', '<c-\\><c-N><Cmd>bdelete!<CR>')
+keyset('t', '<c-q>', '<c-\\><c-N><Cmd>exit<CR>')
 
 keyset('n', 'gug', '<Cmd>s/\\v<(.)(\\w*)/\\u\\1\\L\\2/g | nohlsearch<CR>',
     { desc = [[To Turn One Line Into Title Caps, Make Every First Letter Of A Word Uppercase]] })
