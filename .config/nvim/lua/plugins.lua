@@ -75,4 +75,9 @@ return packer.startup(function(use)
         event = "CursorHold",
         config = [[require('plugin_config.boole_nvim')]],
     }
+    use { 'nvimdev/hlsearch.nvim', event = 'BufRead', config =
+        function()
+            require('hlsearch').setup()
+        end
+    }
 end)
