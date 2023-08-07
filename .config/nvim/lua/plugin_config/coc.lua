@@ -113,6 +113,8 @@ vim.g['coc_global_extensions'] = {
     'coc-webview',
     'coc-markdown-preview-enhanced',
 }
+-- 'coc-html',
+-- 'coc-tsserver',
 -- 'coc-actions',
 -- 'coc-explorer',
 -- 'coc-java',

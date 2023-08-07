@@ -24,14 +24,15 @@ textype() { \
 case "$ext" in
     sh) bash "$file";;
 	py) python "$file" ;;
+	[rR]md) Rscript -e "rmarkdown::render('$file', quiet=TRUE)" ;;
 	tex) textype "$file" ;;
     typ) typst compile "$file";;
     ppt) soffice --headless --convert-to pdf "$file" ;;
     docx|doc) soffice --headless --convert-to pdf "$file" ;;
     xlsx|xls) soffice --headless --convert-to csv "$file" ;;
     csv) soffice --headless --convert-to xlsx --infilter=csv:44,34,76 "$file";;
-	[rR]md) Rscript -e "rmarkdown::render('$file', quiet=TRUE)" ;;
     lua) lua "$file";;
+    js) node "$file";;
     caj) caj2pdf convert "$file";;
 	[0-9]) preconv "$file" | refer -PS -e | groff -mandoc -T pdf > "$base".pdf ;;
 	rs) cargo run ;;

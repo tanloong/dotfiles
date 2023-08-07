@@ -40,5 +40,8 @@ autocmd("BufNewFile", {
     command = before .. "skeleton.perl" .. after
 })
 autocmd("BufNewFile",
-    { pattern = "*.tex", group = augroup("skeleton_tex", { clear = true }),
-        command = before .. "skeleton.tex | :startinsert!" })
+    {
+        pattern = "*.tex",
+        group = augroup("skeleton_tex", { clear = true }),
+        command = before .. "skeleton.tex | :startinsert!"
+    })

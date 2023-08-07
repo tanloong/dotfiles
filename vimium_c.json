@@ -10,14 +10,10 @@
 	"keyLayout": 2,
 	"keyMappings": [
 		"#!no-check",
-		"map J scrollPageDown",
-		"map K scrollPageUp",
 		"map u scrollPageUp",
 		"map d scrollPageDown",
 		"map <c-u> goBack",
 		"map <c-r> goForward",
-		"map H previousTab",
-		"map L nextTab",
 		"map gh previousTab",
 		"map gl nextTab",
 		"unmap x",
@@ -30,8 +26,7 @@
 		"map l scrollToRight",
 		"map <c-s-j> zoomOut",
 		"map <c-s-k> zoomIn",
-		"map <c-s-space> zoomReset",
-		""
+		"map <c-s-space> zoomReset"
 	],
 	"searchUrl": "https://www.bing.com/search?q=$s",
 	"vimSync": true

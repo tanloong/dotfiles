@@ -20,11 +20,11 @@ hl(0, 'DiffChange', { ctermfg = 'yellow' })
 hl(0, 'DiffDelete', { ctermfg = 'red' })
 hl(0, 'StatusLineNC', { underline = true })
 
-autocmd("TextYankPost",
-    {
-        pattern = "*",
-        group = augroup("highlight_yank", { clear = true }),
-        callback = function()
-            vim.highlight.on_yank({ higroup = "Visual", timeout = 100, on_visual = false })
-        end
-    })
+-- autocmd("TextYankPost",
+--     {
+--         pattern = "*",
+--         group = augroup("highlight_yank", { clear = true }),
+--         callback = function()
+--             vim.highlight.on_yank({ higroup = "Visual", timeout = 30, on_visual = false })
+--         end
+--     })
