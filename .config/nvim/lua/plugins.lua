@@ -26,9 +26,6 @@ return packer.startup(function(use)
         branch = 'release',
         event = { 'InsertEnter', 'CursorHold' },
         config = [[require('plugin_config.coc')]] }
-    -- :ASToggle, :ASOn, :ASOff
-    -- :help A
-    -- utoSave.nvim
     use { 'https://gitee.com/tanloong/auto-save.nvim.git',
         config = [[require('plugin_config.autosave')]] }
     use { 'https://gitee.com/tanloong/vim-surround.git',
@@ -58,7 +55,6 @@ return packer.startup(function(use)
     use({
         "nvim-treesitter/nvim-treesitter-textobjects",
         after = "nvim-treesitter",
-        event = 'CursorHold',
         requires = "nvim-treesitter/nvim-treesitter",
         config = [[require('plugin_config.nvim_treesitter_textobjects')]],
     })

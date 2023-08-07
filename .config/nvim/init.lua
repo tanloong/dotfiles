@@ -1,6 +1,5 @@
 require('base')
 require('highlights')
-require('internship')
 require('mappings')
 require('skeletons')
 require('plugins')

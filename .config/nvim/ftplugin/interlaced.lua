@@ -59,8 +59,4 @@ local function map_intern()
     end
 end
 
-autocmd("BufEnter", {
-    pattern = "*interlaced*.txt",
-    group = augroup("interlaced", { clear = true }),
-    callback = map_intern
-})
+map_intern()
