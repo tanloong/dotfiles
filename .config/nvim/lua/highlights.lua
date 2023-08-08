@@ -18,6 +18,7 @@ hl(0, 'SignColumn', { ctermbg = 'none' })
 hl(0, 'DiffAdd', { ctermfg = 'green' })
 hl(0, 'DiffChange', { ctermfg = 'yellow' })
 hl(0, 'DiffDelete', { ctermfg = 'red' })
+hl(0, 'StatusLine', { underline = true, bold = true })
 hl(0, 'StatusLineNC', { underline = true })
 
 -- autocmd("TextYankPost",
