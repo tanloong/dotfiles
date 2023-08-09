@@ -76,9 +76,11 @@ return packer.startup(function(use)
         event = "CursorHold",
         config = [[require('plugin_config.boole_nvim')]],
     }
-    use { 'nvimdev/hlsearch.nvim', event = 'BufRead', config =
-        function()
+    use { 'nvimdev/hlsearch.nvim', event = 'BufRead', config = function()
             require('hlsearch').setup()
         end
     }
+    use { '~/projects/interlaced.nvim', ft = { "interlaced" }, config = function()
+        require("interlaced").setup()
+    end }
 end)
