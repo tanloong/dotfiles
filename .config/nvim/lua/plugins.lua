@@ -25,6 +25,7 @@ return packer.startup(function(use)
     use { 'https://github.com/neoclide/coc.nvim.git',
         branch = 'release',
         event = { 'InsertEnter', 'CursorHold' },
+        cond = function() return vim.bo.filetype ~= "interlaced" end, -- don't load coc.nvim on "interlaced" filetype
         config = [[require('plugin_config.coc')]] }
     use { 'https://gitee.com/tanloong/auto-save.nvim.git',
         config = [[require('plugin_config.autosave')]] }
