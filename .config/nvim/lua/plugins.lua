@@ -25,9 +25,17 @@ return packer.startup(function(use)
     use { 'https://github.com/neoclide/coc.nvim.git',
         branch = 'release',
         event = { 'InsertEnter', 'CursorHold' },
-        cond = function() return vim.bo.filetype ~= "interlaced" end, -- don't load coc.nvim on "interlaced" filetype
+        -- don't load coc.nvim on "interlaced" filetype
+        cond = function()
+            local bufnr = vim.api.nvim_get_current_buf()
+            return not string.find(vim.api.nvim_buf_get_name(bufnr), "interlaced.*%.txt$")
+        end,
         config = [[require('plugin_config.coc')]] }
     use { 'https://gitee.com/tanloong/auto-save.nvim.git',
+        cond = function()
+            local bufnr = vim.api.nvim_get_current_buf()
+            return not string.find(vim.api.nvim_buf_get_name(bufnr), "interlaced.*%.txt$")
+        end,
         config = [[require('plugin_config.autosave')]] }
     use { 'https://gitee.com/tanloong/vim-surround.git',
         config = [[vim.keymap.set('x', 's', '<Plug>VSurround')]] }
@@ -77,10 +85,15 @@ return packer.startup(function(use)
         config = [[require('plugin_config.boole_nvim')]],
     }
     use { 'nvimdev/hlsearch.nvim', event = 'BufRead', config = function()
-            require('hlsearch').setup()
-        end
+        require('hlsearch').setup()
+    end
     }
-    use { '~/projects/interlaced.nvim', ft = { "interlaced" }, config = function()
-        require("interlaced").setup()
-    end }
+    use { '~/projects/interlaced.nvim',
+        cond = function()
+            local bufnr = vim.api.nvim_get_current_buf()
+            return string.find(vim.api.nvim_buf_get_name(bufnr), "interlaced.*%.txt$") and true or false
+        end,
+        config = function()
+            require("interlaced").setup()
+        end }
 end)
