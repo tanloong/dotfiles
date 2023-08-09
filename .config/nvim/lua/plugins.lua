@@ -93,7 +93,6 @@ return packer.startup(function(use)
             local bufnr = vim.api.nvim_get_current_buf()
             return string.find(vim.api.nvim_buf_get_name(bufnr), "interlaced.*%.txt$") and true or false
         end,
-        config = function()
-            require("interlaced").setup()
-        end }
+        config = [[require('plugin_config.interlaced_nvim')]],
+    }
 end)
