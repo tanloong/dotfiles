@@ -52,7 +52,7 @@
     ],
     "pyright.inlayHints.functionReturnTypes": true,
     "pyright.inlayHints.variableTypes": false,
-    "diagnostic.level": "warning",
+    "diagnostic.level": "hint",
     "snippets.ultisnips.directories": [
         "$HOME/.config/nvim/ultisnips"
     ],

@@ -47,8 +47,6 @@ return packer.startup(function(use)
     use { 'https://gitee.com/yaozhijin/vim-table-mode.git',
         ft = { 'markdown' },
         config = [[require('plugin_config.vim_table_mode')]] }
-    use { 'https://gitee.com/tanloong/wildfire.vim.git',
-        config = [[require('plugin_config.wildfire')]] }
     use { 'https://gitee.com/tanloong/vim-slime',
         config = [[require('plugin_config.vim_slime')]] }
     use { 'https://gitee.com/mirrors/vimtex.git',
@@ -67,6 +65,11 @@ return packer.startup(function(use)
         requires = "nvim-treesitter/nvim-treesitter",
         config = [[require('plugin_config.nvim_treesitter_textobjects')]],
     })
+    use {"https://github.com/SUSTech-data/wildfire.nvim",
+        after = "nvim-treesitter",
+        requires = "nvim-treesitter/nvim-treesitter",
+        config = [[require('plugin_config.wildfire')]],
+}
     use { 'lukas-reineke/indent-blankline.nvim',
         event = "CursorHold",
         config = [[require('plugin_config.indent_blankline')]] }

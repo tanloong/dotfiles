@@ -17,6 +17,7 @@ bindkey -s '^R' '$FILE_MANAGER\n'
 # compinstall
 #############
 zstyle :compinstall filename '/home/tan/.zshrc'
+zstyle ':completion:*' menu select
 
 autoload -U mcd
 autoload -U zmv
