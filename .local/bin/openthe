@@ -42,9 +42,9 @@ case "$app" in
         case $XDG_SESSION_TYPE in
             'wayland') wofi --show run;;
         *)
-            dmenulines=5
+            dmenulines=10
             dmenumon="0"
-            dmenufont="Cousine Nerd Font Mono:pixelsize=20:antialias=true:autohint=true"
+            dmenufont="Cousine Nerd Font Mono:pixelsize=27:antialias=true:autohint=true"
             col_gray1="#222222"
             col_gray3="#bbbbbb"
             col_gray4="#eeeeee"
