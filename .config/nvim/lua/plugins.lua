@@ -65,11 +65,11 @@ return packer.startup(function(use)
         requires = "nvim-treesitter/nvim-treesitter",
         config = [[require('plugin_config.nvim_treesitter_textobjects')]],
     })
-    use {"https://github.com/SUSTech-data/wildfire.nvim",
+    use { "https://github.com/SUSTech-data/wildfire.nvim",
         after = "nvim-treesitter",
         requires = "nvim-treesitter/nvim-treesitter",
         config = [[require('plugin_config.wildfire')]],
-}
+    }
     use { 'lukas-reineke/indent-blankline.nvim',
         event = "CursorHold",
         config = [[require('plugin_config.indent_blankline')]] }
@@ -98,4 +98,5 @@ return packer.startup(function(use)
         end,
         config = [[require('plugin_config.interlaced_nvim')]],
     }
+    use { 'kaarmu/typst.vim', ft = { 'typst' } }
 end)
