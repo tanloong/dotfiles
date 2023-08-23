@@ -33,7 +33,8 @@ case "$app" in
     wechat) notify-send --urgency low "Opening WeChat..." -t 1000
         # wechat-uos
         # /opt/apps/com.tencent.weixin/files/weixin/weixin.sh
-        "/opt/apps/com.qq.weixin.deepin/files/run.sh" -f %f;;
+        # "/opt/apps/com.qq.weixin.deepin/files/run.sh" -f %f;;
+        "/usr/bin/wechat";;
     qq) notify-send --urgency low "Opening QQ..." -t 400
         linuxqq;;
     office) libreoffice;;

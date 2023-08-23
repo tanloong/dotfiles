@@ -168,8 +168,6 @@ A,pip-autoremove,"Remove a package and its unused dependencies"
 ,python-pyqt6,""
 ,python-docs,"Offline Python documentation: /usr/share/doc/python/html/index.html"
 ,kdeconnect,"Connect Linux and Android: https://wiki.archlinuxcn.org/wiki/KDE#KDE_Connect, https://kdeconnect.kde.org/download.html"
-,wine,""
-,wine-mono,"needed by wine"
 A,ttf-smiley-sans-bin,""
 ,miller,'Name-indexed data processing tool'
 ,flameshot,
@@ -181,3 +179,6 @@ A,ttf-smiley-sans-bin,""
 A,aliyunpan-go,
 ,datamash,
 ,downgrade,
+,wine-for-wechat,""
+,wine-wechat-setup,""
+,wine-mono,"needed by wine"

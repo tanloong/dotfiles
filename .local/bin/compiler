@@ -33,6 +33,7 @@ case "$ext" in
     csv) soffice --headless --convert-to xlsx --infilter=csv:44,34,76 "$file";;
     lua) lua "$file";;
     js) node "$file";;
+    html) brave "$file";;
     caj) caj2pdf convert "$file";;
 	[0-9]) preconv "$file" | refer -PS -e | groff -mandoc -T pdf > "$base".pdf ;;
 	rs) cargo run ;;
