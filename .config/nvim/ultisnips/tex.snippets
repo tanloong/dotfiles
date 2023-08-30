@@ -136,7 +136,7 @@ endsnippet
 # custom snippets begin
 # =====================
 
-priority 10
+priority 20
 
 snippet ,` "\begin{minted} / \end{minted}" bA
 \\begin{minted}{$1}
@@ -294,11 +294,6 @@ print(table)
 \\end\{pycode}
 endsnippet
 
-context "R()"
-snippet ,f "=" wA
-<- $0
-endsnippet
-
 # custom snippets for math begin
 snippet nn "equation" bA
 \\begin{equation}
@@ -342,6 +337,11 @@ if t[2] and t[2][0] not in [',', '.', '?', '-', ' ']:
 else:
     snip.rv = ''
 `${2:<<>>}
+endsnippet
+
+context "math()"
+snippet ,f "=" wA
+= $0
 endsnippet
 
 context "math()"
@@ -464,16 +464,28 @@ snippet '([A-Za-z])_(\d\d)' "auto subscript2" wrA
 `!p snip.rv = match.group(1)`_{`!p snip.rv = match.group(2)`}
 endsnippet
 
+# context "math()"
+# snippet jw "superscript" iA
+# ^{$0}<<>>
+# endsnippet
+# context "math()"
+# snippet js "subscript" iA
+# _{$0}<<>>
+# endsnippet
+# context "math()"
+# snippet ja "上下标" iA
+# _{$0}^{<<>>}<<>>
+# endsnippet
 context "math()"
-snippet jw "superscript" iA
+snippet .. "superscript" iA
 ^{$0}<<>>
 endsnippet
 context "math()"
-snippet js "subscript" iA
+snippet ,, "subscript" iA
 _{$0}<<>>
 endsnippet
 context "math()"
-snippet ja "上下标" iA
+snippet ,. "suber- and sub-script" iA
 _{$0}^{<<>>}<<>>
 endsnippet
 
@@ -488,6 +500,11 @@ endsnippet
 context "math()"
 snippet ",D" "\Delta" wA
 \\Delta$0
+endsnippet
+
+context "R()"
+snippet ,f "=" wA
+<- $0
 endsnippet
 
 priority 10

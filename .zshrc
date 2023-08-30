@@ -11,13 +11,11 @@ unsetopt beep extendedglob notify
 setopt share_history
 # vi mode
 bindkey -v
-bindkey -s '^R' '$FILE_MANAGER\n'
 
 #############
 # compinstall
 #############
 zstyle :compinstall filename '/home/tan/.zshrc'
-zstyle ':completion:*' menu select
 
 autoload -U mcd
 autoload -U zmv
@@ -31,8 +29,8 @@ select-word-style bash
 setopt interactive_comments
 
 # 不保存重复的历史记录项
-setopt hist_save_no_dups
-setopt hist_ignore_dups
+setopt HIST_SAVE_NO_DUPS
+setopt HIST_IGNORE_ALL_DUPS
 
 # ^Xe 用$EDITOR编辑命令
 autoload -Uz edit-command-line
