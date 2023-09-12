@@ -49,6 +49,7 @@ A,latex-mk,
 ,texlive-pictures,
 ,texlive-plaingeneric,
 ,texlive-xetex,
+,texlive-humanities,
 ,zathura,"Minimalistic document viewer"
 ,zathura-djvu,"DjVu support for Zathura"
 ,zathura-pdf-mupdf,"PDF support for Zathura (MuPDF backend) (Supports PDF, ePub, and OpenXPS)"

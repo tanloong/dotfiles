@@ -1,12 +1,13 @@
 <config>
  <paths>
   <path recursive="0">/home/tan/software/goldendict/LDOCE</path>
+  <path recursive="1">/home/tan/software/goldendict/新世纪汉英大词典</path>
  </paths>
  <sounddirs/>
- <dictionaryOrder id="0" name="">
+ <dictionaryOrder name="" id="0">
   <mutedDictionaries/>
  </dictionaryOrder>
- <inactiveDictionaries id="0" name="">
+ <inactiveDictionaries name="" id="0">
   <dictionary name="English Wikipedia">ae6f89aac7151829681b85f035d54e48</dictionary>
   <mutedDictionaries/>
  </inactiveDictionaries>
@@ -38,23 +39,23 @@
   <languageCodes></languageCodes>
  </forvo>
  <mediawikis>
-  <mediawiki id="ae6f89aac7151829681b85f035d54e48" name="English Wikipedia" url="https://en.wikipedia.org/w" icon="" enabled="1"/>
-  <mediawiki id="affcf9678e7bfe701c9b071f97eccba3" name="English Wiktionary" url="https://en.wiktionary.org/w" icon="" enabled="0"/>
-  <mediawiki id="8e0c1c2b6821dab8bdba8eb869ca7176" name="Russian Wikipedia" url="https://ru.wikipedia.org/w" icon="" enabled="0"/>
-  <mediawiki id="b09947600ae3902654f8ad4567ae8567" name="Russian Wiktionary" url="https://ru.wiktionary.org/w" icon="" enabled="0"/>
-  <mediawiki id="a8a66331a1242ca2aeb0b4aed361c41d" name="German Wikipedia" url="https://de.wikipedia.org/w" icon="" enabled="0"/>
-  <mediawiki id="21c64bca5ec10ba17ff19f3066bc962a" name="German Wiktionary" url="https://de.wiktionary.org/w" icon="" enabled="0"/>
-  <mediawiki id="96957cb2ad73a20c7a1d561fc83c253a" name="Portuguese Wikipedia" url="https://pt.wikipedia.org/w" icon="" enabled="0"/>
-  <mediawiki id="ed4c3929196afdd93cc08b9a903aad6a" name="Portuguese Wiktionary" url="https://pt.wiktionary.org/w" icon="" enabled="0"/>
-  <mediawiki id="f3b4ec8531e52ddf5b10d21e4577a7a2" name="Greek Wikipedia" url="https://el.wikipedia.org/w" icon="" enabled="0"/>
-  <mediawiki id="5d45232075d06e002dea72fe3e137da1" name="Greek Wiktionary" url="https://el.wiktionary.org/w" icon="" enabled="0"/>
+  <mediawiki name="English Wikipedia" url="https://en.wikipedia.org/w" id="ae6f89aac7151829681b85f035d54e48" icon="" enabled="1"/>
+  <mediawiki name="English Wiktionary" url="https://en.wiktionary.org/w" id="affcf9678e7bfe701c9b071f97eccba3" icon="" enabled="0"/>
+  <mediawiki name="Russian Wikipedia" url="https://ru.wikipedia.org/w" id="8e0c1c2b6821dab8bdba8eb869ca7176" icon="" enabled="0"/>
+  <mediawiki name="Russian Wiktionary" url="https://ru.wiktionary.org/w" id="b09947600ae3902654f8ad4567ae8567" icon="" enabled="0"/>
+  <mediawiki name="German Wikipedia" url="https://de.wikipedia.org/w" id="a8a66331a1242ca2aeb0b4aed361c41d" icon="" enabled="0"/>
+  <mediawiki name="German Wiktionary" url="https://de.wiktionary.org/w" id="21c64bca5ec10ba17ff19f3066bc962a" icon="" enabled="0"/>
+  <mediawiki name="Portuguese Wikipedia" url="https://pt.wikipedia.org/w" id="96957cb2ad73a20c7a1d561fc83c253a" icon="" enabled="0"/>
+  <mediawiki name="Portuguese Wiktionary" url="https://pt.wiktionary.org/w" id="ed4c3929196afdd93cc08b9a903aad6a" icon="" enabled="0"/>
+  <mediawiki name="Greek Wikipedia" url="https://el.wikipedia.org/w" id="f3b4ec8531e52ddf5b10d21e4577a7a2" icon="" enabled="0"/>
+  <mediawiki name="Greek Wiktionary" url="https://el.wiktionary.org/w" id="5d45232075d06e002dea72fe3e137da1" icon="" enabled="0"/>
  </mediawikis>
  <websites>
-  <website id="b88cb2898e634c6638df618528284c2d" inside_iframe="1" name="Google En-En (Oxford)" url="https://www.google.com/dictionary?aq=f&amp;langpair=en|en&amp;q=%GDWORD%&amp;hl=en" icon="" enabled="0"/>
-  <website id="f376365a0de651fd7505e7e5e683aa45" inside_iframe="1" name="Urban Dictionary" url="https://www.urbandictionary.com/define.php?term=%GDWORD%" icon="" enabled="0"/>
-  <website id="324ca0306187df7511b26d3847f4b07c" inside_iframe="1" name="Multitran (En)" url="https://multitran.ru/c/m.exe?CL=1&amp;l1=1&amp;s=%GD1251%" icon="" enabled="0"/>
-  <website id="924db471b105299c82892067c0f10787" inside_iframe="1" name="Lingvo (En-Ru)" url="http://lingvopro.abbyyonline.com/en/Search/en-ru/%GDWORD%" icon="" enabled="0"/>
-  <website id="087a6d65615fb047f4c80eef0a9465db" inside_iframe="1" name="Michaelis (Pt-En)" url="http://michaelis.uol.com.br/moderno/ingles/index.php?lingua=portugues-ingles&amp;palavra=%GDISO1%" icon="" enabled="0"/>
+  <website inside_iframe="1" name="Google En-En (Oxford)" url="https://www.google.com/dictionary?aq=f&amp;langpair=en|en&amp;q=%GDWORD%&amp;hl=en" id="b88cb2898e634c6638df618528284c2d" icon="" enabled="0"/>
+  <website inside_iframe="1" name="Urban Dictionary" url="https://www.urbandictionary.com/define.php?term=%GDWORD%" id="f376365a0de651fd7505e7e5e683aa45" icon="" enabled="0"/>
+  <website inside_iframe="1" name="Multitran (En)" url="https://multitran.ru/c/m.exe?CL=1&amp;l1=1&amp;s=%GD1251%" id="324ca0306187df7511b26d3847f4b07c" icon="" enabled="0"/>
+  <website inside_iframe="1" name="Lingvo (En-Ru)" url="http://lingvopro.abbyyonline.com/en/Search/en-ru/%GDWORD%" id="924db471b105299c82892067c0f10787" icon="" enabled="0"/>
+  <website inside_iframe="1" name="Michaelis (Pt-En)" url="http://michaelis.uol.com.br/moderno/ingles/index.php?lingua=portugues-ingles&amp;palavra=%GDISO1%" id="087a6d65615fb047f4c80eef0a9465db" icon="" enabled="0"/>
  </websites>
  <dictservers/>
  <programs/>
@@ -153,7 +154,7 @@
  <lastMainGroupId>0</lastMainGroupId>
  <lastPopupGroupId>0</lastPopupGroupId>
  <popupWindowState>AAAA/wAAAAH9AAAAAAAAAg8AAAGTAAAABAAAAAQAAAAIAAAACPwAAAABAAAAAQAAAAEAAAAaAGQAaQBjAHQAaQBvAG4AYQByAHkAQgBhAHIDAAAAAP////8AAAAAAAAAAA==</popupWindowState>
- <popupWindowGeometry>AdnQywADAAAAAAEPAAAAZwAAAzsAAAH5AAABDwAAAGcAAAM7AAAB+QAAAAAAAAAABVYAAAEPAAAAZwAAAzsAAAH5</popupWindowGeometry>
+ <popupWindowGeometry>AdnQywADAAAAAAAAAAAAAAAAAiwAAAGSAAAAAAAAAAAAAAIsAAABkgAAAAAAAAAAB4AAAAAAAAAAAAAAAiwAAAGS</popupWindowGeometry>
  <pinPopupWindow>0</pinPopupWindow>
  <popupWindowAlwaysOnTop>0</popupWindowAlwaysOnTop>
  <mainWindowState></mainWindowState>
@@ -162,7 +163,8 @@
  <helpSplitterState></helpSplitterState>
  <dictInfoGeometry></dictInfoGeometry>
  <inspectorGeometry></inspectorGeometry>
- <dictionariesDialogGeometry></dictionariesDialogGeometry>
+ <dictionariesDialogGeometry>AdnQywADAAAAAAFUAAAAzQAABhwAAAMHAAABVgAAAM8AAAYaAAADBQAAAAAAAAAAB4AAAAFWAAAAzwAABhoAAAMF</dictionariesDialogGeometry>
+ <printPreviewDialogGeometry></printPreviewDialogGeometry>
  <timeForNewReleaseCheck>2021-09-13T16:17:43</timeForNewReleaseCheck>
  <skippedRelease></skippedRelease>
  <showingDictBarNames>0</showingDictBarNames>
