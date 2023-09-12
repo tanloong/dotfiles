@@ -19,6 +19,7 @@ local plugin_specs = {
             local bufnr = vim.api.nvim_get_current_buf()
             return not string.find(vim.api.nvim_buf_get_name(bufnr), "interlaced.*%.txt$")
         end,
+        event = "VeryLazy",
         config = function()
             require("plugin_config.autosave")
         end
@@ -26,7 +27,6 @@ local plugin_specs = {
     {
         'https://github.com/neoclide/coc.nvim.git',
         branch = 'release',
-        event = { 'InsertEnter', 'CursorHold' },
         -- don't load coc.nvim on "interlaced" filetype
         cond = function()
             local bufnr = vim.api.nvim_get_current_buf()
@@ -36,24 +36,29 @@ local plugin_specs = {
     },
     {
         'https://gitee.com/tanloong/vim-surround.git',
+        event = "VeryLazy",
         config = function() vim.keymap.set('x', 's', '<Plug>VSurround') end
     },
     {
         'https://github.com/numToStr/Comment.nvim',
+        event = "VeryLazy",
         config = function() require('plugin_config.comment') end
     },
     {
         'https://gitee.com/lovealone72/vim-markdown-toc.git',
         ft = { 'markdown' },
+        event = "VeryLazy",
         config = function() require('plugin_config.vim_markdown_toc') end
     },
     {
         'https://gitee.com/yaozhijin/vim-table-mode.git',
         ft = { 'markdown' },
+        event = "VeryLazy",
         config = function() require('plugin_config.vim_table_mode') end
     },
     {
         'https://gitee.com/tanloong/vim-slime',
+        event = "VeryLazy",
         config = function() require('plugin_config.vim_slime') end
     },
     {
@@ -64,51 +69,55 @@ local plugin_specs = {
     {
         'https://gitee.com/tanloong/hop.nvim',
         branch = 'match-mappings',
+        event = "VeryLazy",
         config = function() require('plugin_config.hop') end
     },
     {
         'nvim-treesitter/nvim-treesitter',
         run = ':TSUpdate',
         config = function() require('plugin_config.nvim_treesitter') end,
-        event = 'CursorHold'
+        event = "VeryLazy"
     },
     {
         "nvim-treesitter/nvim-treesitter-textobjects",
         dependencies = "nvim-treesitter/nvim-treesitter",
+        event = "VeryLazy",
         config = function() require('plugin_config.nvim_treesitter_textobjects') end,
     },
     {
         "https://github.com/SUSTech-data/wildfire.nvim",
         dependencies = "nvim-treesitter/nvim-treesitter",
+        event = "VeryLazy",
         config = function() require('plugin_config.wildfire') end,
     },
     {
         'lukas-reineke/indent-blankline.nvim',
-        event = "CursorHold",
+        event = "VeryLazy",
         config = function() require('plugin_config.indent_blankline') end
     },
     {
         'https://gitee.com/tanloong/nvim-align.git',
-        event = "CursorHold"
+        event = "VeryLazy",
     },
     {
         "akinsho/toggleterm.nvim",
-        event = "CursorHold",
+        event = "VeryLazy",
         config = function() require('plugin_config.toggleterm') end
     },
     {
         "lmburns/lf.nvim",
         config = function() require('plugin_config.lf_nvim') end,
+        event = "VeryLazy",
         dependencies = { "toggleterm.nvim" }
     },
     {
         "nat-418/boole.nvim",
-        event = "CursorHold",
+        event = "VeryLazy",
         config = function() require('plugin_config.boole_nvim') end,
     },
     {
         'nvimdev/hlsearch.nvim',
-        event = 'BufRead',
+        event = "VeryLazy",
         config = function()
             require('hlsearch').setup()
         end
@@ -128,7 +137,7 @@ local plugin_specs = {
 local lazy_opts = {
     ui = {
         border = "single",
-        title = "Plugin Manager",
+        title = "Lazy.nvim",
         title_pos = "center",
     },
 }
