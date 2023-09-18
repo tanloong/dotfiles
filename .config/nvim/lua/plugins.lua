@@ -123,14 +123,22 @@ local plugin_specs = {
         end
     },
     {
-        '~/projects/interlaced.nvim',
+        dir = '~/projects/interlaced.nvim',
         cond = function()
             local bufnr = vim.api.nvim_get_current_buf()
             return string.find(vim.api.nvim_buf_get_name(bufnr), "interlaced.*%.txt$") and true or false
         end,
         config = function() require('plugin_config.interlaced_nvim') end,
     },
-    { 'kaarmu/typst.vim', ft = { 'typst' } },
+    {
+        'kaarmu/typst.vim',
+        ft = { 'typst' }
+    },
+    {
+        'https://github.com/lilydjwg/fcitx.vim',
+        event = "VeryLazy"
+    }
+
 }
 
 -- configuration for lazy itself.
