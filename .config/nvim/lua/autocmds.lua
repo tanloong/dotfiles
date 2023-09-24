@@ -55,7 +55,7 @@ local function preview_pair(direction)
     vim.cmd([[tabprevious]])
 
     vim_zh_re = py_zh_re:gsub("%(%?:", "%%("):gsub("%(%?!([^)]+)%)", "(%1)@!")
-    vim_en_re = py_en_re:gsub("%(%?i[^)]*%)", "\\c"):gsub("\\b(.*)\\b", "<%1>")
+    vim_en_re = py_en_re:gsub("%(%?i[^)]*%)", "\\c"):gsub("\\b", "%(<|>)")
 
     start_hl()
     vim.cmd("/\\v" .. vim_zh_re .. "|" .. vim_en_re)
@@ -68,6 +68,7 @@ local function preview_pair(direction)
     raw_elem_zh = raw_elem_zh:gsub("%(%?!的%)", "")
     -- (?:他|它|她)们 --> 他们
     raw_elem_zh = raw_elem_zh:gsub("%(%?:([^|)]+)[^)]*%)", "%1")
+    raw_elem_zh = raw_elem_zh:gsub("[%^%$]", "")
     vim.fn.setreg("+", raw_elem_zh)
 end
 
