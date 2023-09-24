@@ -115,20 +115,43 @@ local plugin_specs = {
         event = "VeryLazy",
         config = function() require('plugin_config.boole_nvim') end,
     },
-    {
-        'nvimdev/hlsearch.nvim',
-        event = "VeryLazy",
-        config = function()
-            require('hlsearch').setup()
-        end
-    },
+    -- {
+    --     -- 'nvimdev/hlsearch.nvim',
+    --     dir = '/home/tan/software/hlsearch.nvim/',
+    --     event = "BufRead",
+    --     config = function()
+    --         require('hlsearch').setup()
+    --     end,
+    --     cond = function()
+    --         local bufnr = vim.api.nvim_get_current_buf()
+    --         return not string.find(vim.api.nvim_buf_get_name(bufnr), "interlaced.*%.txt$")
+    --     end,
+    -- },
     {
         dir = '~/projects/interlaced.nvim',
-        cond = function()
+        ft = "text",
+        config = function()
+            opts = {
+                mappings = {
+                    JoinUp = ",",
+                    SplitAtCursor = "d",
+                    JoinDown = "D",
+                    NavigateDown = "J",
+                    NavigateUp = "K",
+                },
+
+                setup_mappings_now = false,
+            }
             local bufnr = vim.api.nvim_get_current_buf()
-            return string.find(vim.api.nvim_buf_get_name(bufnr), "interlaced.*%.txt$") and true or false
+            -- automatically enable mappings for *interlaced.txt files, or
+            -- otherwise you need to run "MapInterlaced" manually to enable
+            -- them
+            local is_interlaced_file = (vim.api.nvim_buf_get_name(bufnr)):find("interlaced%.txt$")
+            if is_interlaced_file then
+                opts["setup_mappings_now"] = true
+            end
+            require("interlaced").setup(opts)
         end,
-        config = function() require('plugin_config.interlaced_nvim') end,
     },
     {
         'kaarmu/typst.vim',
