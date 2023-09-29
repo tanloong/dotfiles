@@ -40,7 +40,7 @@ local function preview_pair(direction)
     vim.cmd(direction)
 
     local line = vim.api.nvim_get_current_line()
-    local patterns = { 'line (%d+): ([^,]+),([^,]+)', }
+    local patterns = { 'line (%d+): ([^,]+),(.*)$', }
 
     for _, pattern in ipairs(patterns) do
         lineno, py_zh_re, py_en_re = string.match(line, pattern)
@@ -54,8 +54,8 @@ local function preview_pair(direction)
 
     vim.cmd([[tabprevious]])
 
-    vim_zh_re = py_zh_re:gsub("%(%?:", "%%("):gsub("%(%?!([^)]+)%)", "(%1)@!")
-    vim_en_re = py_en_re:gsub("%(%?i[^)]*%)", "\\c"):gsub("\\b", "%(<|>)")
+    vim_zh_re = py_zh_re:gsub("%(%?:", "%%("):gsub("%(%?(<?)([!=])([^)]+)%)", "(%3)@%1%2")
+    vim_en_re = py_en_re:gsub("%(%?i[^)]*%)", "\\c"):gsub("\\b", "%%(<|>)"):gsub("%(%?(<?)([!=])([^)]+)%)", "(%3)@%1%2"):gsub("%(%?:([^|)]+)[^)]*%)", "%1")
 
     start_hl()
     vim.cmd("/\\v" .. vim_zh_re .. "|" .. vim_en_re)
@@ -64,11 +64,11 @@ local function preview_pair(direction)
     vim.fn.cursor({ tonumber(lineno), 1 })
 
     local raw_elem_zh = py_zh_re:gsub("%(%?x%)", "")
-    -- (?:他|它|她)们(?!的) --> (?:他|它|她)们(?!的)
-    raw_elem_zh = raw_elem_zh:gsub("%(%?!的%)", "")
     -- (?:他|它|她)们 --> 他们
     raw_elem_zh = raw_elem_zh:gsub("%(%?:([^|)]+)[^)]*%)", "%1")
     raw_elem_zh = raw_elem_zh:gsub("[%^%$]", "")
+    -- (?:他|它|她)们(?!的) --> (?:他|它|她)们
+    raw_elem_zh = raw_elem_zh:gsub("%(%?(<?)([!=])([^)]+)%)", "")
     vim.fn.setreg("+", raw_elem_zh)
 end
 
@@ -80,8 +80,25 @@ local function preview_previous()
     preview_pair("normal! j")
 end
 
+local function toggle_map_preview()
+    if not _G.has_preview_mapping then
+        vim.keymap.set("n", "n", preview_next, { buffer = true })
+        vim.keymap.set("n", "N", preview_previous, { buffer = true })
+
+        _G.has_preview_mapping = true
+        print('Enabled mappings for preview')
+    else
+        vim.api.nvim_buf_del_keymap(0, "n", "n")
+        vim.api.nvim_buf_del_keymap(0, "n", "N")
+
+        _G.has_preview_mapping = false
+        print('Disabled mappings for preview')
+    end
+end
+
 vim.api.nvim_create_user_command("PreviewNext", preview_next, {})
 vim.api.nvim_create_user_command("PreviewPrevious", preview_previous, {})
+vim.api.nvim_create_user_command("ToggleMapPreview", toggle_map_preview, {})
 
 -- autocmd("TermOpen", {
 --     group = augroup("preview_stack_trace", { clear = true }),

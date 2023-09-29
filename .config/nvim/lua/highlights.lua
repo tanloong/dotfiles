@@ -20,6 +20,7 @@ hl(0, 'DiffChange', { ctermfg = 'yellow' })
 hl(0, 'DiffDelete', { ctermfg = 'red' })
 hl(0, 'StatusLine', { underline = true, bold = true })
 hl(0, 'StatusLineNC', { underline = true })
+hl(0, 'CursorLine', {bold=true, ctermfg='green'})
 
 -- autocmd("TextYankPost",
 --     {
