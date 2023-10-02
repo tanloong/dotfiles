@@ -92,6 +92,7 @@ local plugin_specs = {
     },
     {
         'lukas-reineke/indent-blankline.nvim',
+        tag = "v2.20.8",
         event = "VeryLazy",
         config = function() require('plugin_config.indent_blankline') end
     },
