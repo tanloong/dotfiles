@@ -15,10 +15,11 @@ vim.opt.rtp:prepend(lazypath)
 local plugin_specs = {
     {
         'https://gitee.com/tanloong/auto-save.nvim.git',
-        cond = function()
-            local bufnr = vim.api.nvim_get_current_buf()
-            return not string.find(vim.api.nvim_buf_get_name(bufnr), "interlaced.*%.txt$")
-        end,
+        -- cond = function()
+        --     local bufnr = vim.api.nvim_get_current_buf()
+        --     return not string.find(vim.api.nvim_buf_get_name(bufnr), "interlaced.*%.txt$")
+        -- end,
+        ft = "python",
         event = "VeryLazy",
         config = function()
             require("plugin_config.autosave")
@@ -161,8 +162,7 @@ local plugin_specs = {
     {
         'https://github.com/lilydjwg/fcitx.vim',
         event = "VeryLazy"
-    }
-
+    },
 }
 
 -- configuration for lazy itself.

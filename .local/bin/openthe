@@ -31,13 +31,14 @@ case "$app" in
     netdisk) notify-send --urgency low "Opening 百度网盘..." -t 1000
             /usr/lib/baidunetdisk/baidunetdisk --no-sandbox %U;;
     wechat) notify-send --urgency low "Opening WeChat..." -t 1000
-        # wechat-uos
+        wechat-uos ;;
         # /opt/apps/com.tencent.weixin/files/weixin/weixin.sh
         # "/opt/apps/com.qq.weixin.deepin/files/run.sh" -f %f;;
-        "/usr/bin/wechat";;
+        # "/usr/bin/wechat";;
     qq) notify-send --urgency low "Opening QQ..." -t 400
         linuxqq;;
     office) libreoffice;;
+    phone) scrcpy --stay-awake --video-bit-rate=1M --max-size 1200;;
     sharing) ;; # blueman-manager) blueman-manager;;
     menu)
         case $XDG_SESSION_TYPE in
@@ -53,6 +54,7 @@ case "$app" in
             dmenu_run -i -l ${dmenulines} -m ${dmenumon} -fn "${dmenufont}" -nb ${col_gray1} -nf ${col_gray3} -sb ${col_cyan} -sf ${col_gray4};;
         esac;;
     screenkey) togglethe.sh screenkey -s small --persist --opacity 1 ;;
+    zeal) zeal ;;
     tip) dir_tip='/home/tan/.local/share/tip-pictures'
          togglethe.sh sxiv "$dir_tip"/wubi*;;
     control-center) systemsettings;;

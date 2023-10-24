@@ -7,7 +7,7 @@ hi(0, 'CocMenuSel', { link = 'PmenuSel' })
 hi(0, 'CocPumSearch', { ctermfg = 'yellow' })
 hi(0, 'CocInlayHint', { ctermbg = 'none', ctermfg = 'darkgray' })
 hi(0, 'CocHintVirtualText', { ctermbg = 'none', ctermfg = 'darkgray' })
-hi(0, 'CocErrorFloat', {ctermbg='none', ctermfg='red'})
+hi(0, 'CocErrorFloat', { ctermbg = 'none', ctermfg = 'red' })
 
 keymap('n', '<leader>c', ':CocCommand<space>')
 -- Use tab for trigger completion with characters ahead and navigate.
@@ -61,13 +61,14 @@ function _G.show_docs()
 end
 
 -- Highlight the symbol and its references when holding the cursor.
--- api.nvim_create_augroup("CocGroup", {})
--- api.nvim_create_autocmd("CursorHold", {
---     group = "CocGroup",
---     command = "silent call CocActionAsync('highlight')",
---     desc = "Highlight symbol under cursor on CursorHold"
--- })
--- api.nvim_set_hl(0, 'CocHighlightText', { ctermbg = 'DarkGray' })
+api.nvim_create_augroup("CocGroup", {})
+api.nvim_create_autocmd("CursorHold", {
+    group = "CocGroup",
+    command = "silent call CocActionAsync('highlight')",
+    desc = "Highlight symbol under cursor on CursorHold"
+})
+api.nvim_set_hl(0, 'CocHighlightText', { ctermbg=237 })
+-- api.nvim_set_hl(0, 'CocHighlightText', { ctermfg='LightMagenta' })
 
 -- Symbol renaming.
 keymap("n", "<leader>rn", "<Plug>(coc-rename)", { silent = true })
@@ -142,13 +143,13 @@ vim.g['coc_snippet_next'] = '<c-j>'
 vim.g['coc_snippet_prev'] = '<c-k>'
 -- }}}
 -- coc-outline{{{
-api.nvim_set_keymap('n', 'so', ':lua ToggleOutline()<CR>', {silent = true, nowait = true})
+api.nvim_set_keymap('n', 'so', ':lua ToggleOutline()<CR>', { silent = true, nowait = true })
 
 function ToggleOutline()
-  local winid = vim.fn['coc#window#find']('cocViewId', 'OUTLINE')
-  if winid == -1 then
-    vim.fn['CocActionAsync']('showOutline', 1)
-  else
-    vim.fn['coc#window#close'](winid)
-  end
-end-- }}}
+    local winid = vim.fn['coc#window#find']('cocViewId', 'OUTLINE')
+    if winid == -1 then
+        vim.fn['CocActionAsync']('showOutline', 1)
+    else
+        vim.fn['coc#window#close'](winid)
+    end
+end -- }}}

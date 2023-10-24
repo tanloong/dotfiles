@@ -53,7 +53,6 @@ local function preview_pair(direction)
     end
 
     vim.cmd([[tabprevious]])
-
     vim_zh_re = py_zh_re:gsub("%(%?:", "%%("):gsub("%(%?(<?)([!=])([^)]+)%)", "(%3)@%1%2")
     vim_en_re = py_en_re:gsub("%(%?i[^)]*%)", "\\c"):gsub("\\b", "%%(<|>)"):gsub("%(%?(<?)([!=])([^)]+)%)", "(%3)@%1%2"):gsub("%(%?:([^|)]+)[^)]*%)", "%1")
 
@@ -74,10 +73,12 @@ end
 
 local function preview_next()
     preview_pair("normal! k")
+    vim.cmd([[normal! zz]])
 end
 
 local function preview_previous()
     preview_pair("normal! j")
+    vim.cmd([[normal! zz]])
 end
 
 local function toggle_map_preview()
