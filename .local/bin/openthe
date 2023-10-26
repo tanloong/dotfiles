@@ -40,6 +40,7 @@ case "$app" in
     office) libreoffice;;
     phone) scrcpy --stay-awake --video-bit-rate=1M --max-size 1200;;
     sharing) ;; # blueman-manager) blueman-manager;;
+    sun) sudo systemctl start runsunloginclient && sunloginclient ;;
     menu)
         case $XDG_SESSION_TYPE in
             'wayland') wofi --show run;;
@@ -54,7 +55,6 @@ case "$app" in
             dmenu_run -i -l ${dmenulines} -m ${dmenumon} -fn "${dmenufont}" -nb ${col_gray1} -nf ${col_gray3} -sb ${col_cyan} -sf ${col_gray4};;
         esac;;
     screenkey) togglethe.sh screenkey -s small --persist --opacity 1 ;;
-    zeal) zeal ;;
     tip) dir_tip='/home/tan/.local/share/tip-pictures'
          togglethe.sh sxiv "$dir_tip"/wubi*;;
     control-center) systemsettings;;
