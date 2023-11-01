@@ -1,0 +1,30 @@
+clear lock
+clear shift
+clear mod1
+clear mod4
+clear Control
+keycode  66 = Mode_switch
+keycode  32 = o O Return o
+keycode  56 = b B Prior b
+keycode  41 = f F Next f
+keycode  43 = h H Left h
+keycode  44 = j J Down j
+keycode  45 = k K Up k
+keycode  46 = l L Right l
+keycode  53 = x X BackSpace x
+keycode  40 = d D Delete d
+keycode  37 = Control_L Control_L Control_L Control_L
+keycode  49 = asciitilde grave asciitilde asciitilde
+keycode  51 = bar bar bar bar
+keycode  62 = backslash backslash backslash backslash
+keycode  67 = XF86AudioMute NoSymbol XF86AudioMute
+keycode  68 = XF86AudioLowerVolume NoSymbol XF86AudioLowerVolume
+keycode  69 = XF86AudioRaiseVolume XF86AudioRaiseVolume XF86AudioRaiseVolume XF86AudioRaiseVolume XF86AudioRaiseVolume XF86AudioRaiseVolume XF86AudioRaiseVolume
+keycode 134 = Control_R Control_R Control_R Control_R
+keycode 108 = Control_R Control_R Control_R Control_R
+keycode 95 = XF86MonBrightnessDown NoSymbol XF86MonBrightnessDown
+keycode 96 = XF86MonBrightnessUp NoSymbol XF86MonBrightnessUp
+add shift = Shift_L
+add mod1 = Alt_L
+add mod4 = Super_L
+add Control = Control_L Control_R

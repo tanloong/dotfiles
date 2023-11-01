@@ -7,7 +7,11 @@ imwheel > /dev/null 2>&1 &
 xset r rate 300 50
 
 hostname=$(hostnamectl hostname)
-ln --symbolic --force ~/.Xmodmap-"${hostname}" ~/.Xmodmap
+if [ -n "$(xinput list --name-only | grep 'SONiX USB DEVICE Keyboard')" ]; then
+    ln --symbolic --force ~/.Xmodmap-V860-87 ~/.Xmodmap
+else
+    ln --symbolic --force ~/.Xmodmap-"${hostname}" ~/.Xmodmap
+fi
 xmodmap ~/.Xmodmap
 # /etc/X11/xinit/xinitrc 会加载 $HOME/.Xmodmap 文件
 ln --symbolic --force ~/.Xresources-"${hostname}" ~/.Xresources
