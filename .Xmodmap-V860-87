@@ -22,6 +22,7 @@ keycode  68 = XF86AudioLowerVolume NoSymbol XF86AudioLowerVolume
 keycode  69 = XF86AudioRaiseVolume XF86AudioRaiseVolume XF86AudioRaiseVolume XF86AudioRaiseVolume XF86AudioRaiseVolume XF86AudioRaiseVolume XF86AudioRaiseVolume
 keycode 134 = Control_R Control_R Control_R Control_R
 keycode 108 = Control_R Control_R Control_R Control_R
+keycode 105 = Print Sys_Req Print Sys_Req
 keycode 95 = XF86MonBrightnessDown NoSymbol XF86MonBrightnessDown
 keycode 96 = XF86MonBrightnessUp NoSymbol XF86MonBrightnessUp
 add shift = Shift_L
