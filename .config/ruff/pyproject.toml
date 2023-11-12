@@ -2,6 +2,7 @@
 # Ruff complete options: https://docs.astral.sh/ruff/settings/#extend
 [tool.ruff]
 line-length = 113
+# consider modules under src/ as first-party when resolving first- vs. thrid-party imports.
 src = ["src"]
 
 [tool.ruff.lint]

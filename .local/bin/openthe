@@ -17,13 +17,15 @@ case "$app" in
     dictionary) goldendict;;
     keepassx) togglethe.sh keepassxc;;
     screenshot-noclip)
+        filepath="$HOME"/"$(date '+%F_%H-%M-%S')".png
         case $XDG_SESSION_TYPE in
-            'wayland') slurp | grim -g - "$HOME"/"$(date '+%F_%T')".png;;
-            *) flameshot gui --path "$HOME";;
+            'wayland') slurp | grim -g - "$filepath";;
+            *) flameshot gui --path "$filepath" ; echo "$filepath" | xclip -rmlastnl -sel clipboard;;
         esac;;
     screenshot-clip)
+        filepath="$HOME"/"$(date '+%F_%H-%M-%S')".png
         case $XDG_SESSION_TYPE in
-            'wayland') grim "$HOME"/"$(date '+%F_%T')".png;;
+            'wayland') grim "$filepath";;
             *) flameshot gui --clipboard;;
         esac;;
     ladder) notify-send --urgency low "Opening Clash..." -t 1000

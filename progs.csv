@@ -133,6 +133,7 @@ G,sxiv,https://gitee.com/tanloong/sxiv.git
 G,vimium,https://gitee.com/tanloong/vimium.git
 P,autopep8,"Python code formatter"
 ,python-black,"Uncompromising Python code fommatter"
+,ruff,"An extremely fast Python linter, written in Rust"
 ,flake8,""
 ,autopep8,""
 ,tealdeer,"A fast tldr client in Rust"

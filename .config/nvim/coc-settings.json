@@ -16,6 +16,7 @@
     "diagnostic.virtualTextPrefix": " ❯❯❯ ",
     "diagnostic.enableMessage": "jump",
     "diagnostic.messageTarget": "float",
+    "git.showCommitInFloating": true,
     "git.addedSign.hlGroup": "DiffAdd",
     "git.changedSign.hlGroup": "DiffChange",
     "git.removedSign.hlGroup": "DiffDelete",
@@ -35,12 +36,16 @@
             "filetypes": [
                 "sh"
             ]
-        },
+        }
     },
     "git.enableGutters": true,
     "git.conflict.incoming.hlGroup": "None",
     "git.conflict.current.hlGroup": "None",
-    "python.formatting.provider": "black",
+    "python.linting.ruffEnabled": true,
+    "python.formatting.provider": "ruff",
+    "pyright.organizeimports.provider": "ruff",
+    "pyright.inlayHints.functionReturnTypes": true,
+    "pyright.inlayHints.variableTypes": false,
     "python.formatting.autopep8Args": [
         "--max-line-length",
         "97"
@@ -50,8 +55,6 @@
         "97",
         "--preview"
     ],
-    "pyright.inlayHints.functionReturnTypes": true,
-    "pyright.inlayHints.variableTypes": false,
     "diagnostic.level": "hint",
     "snippets.ultisnips.directories": [
         "$HOME/.config/nvim/ultisnips"
@@ -99,7 +102,7 @@
     "coc.source.file.priority": 50,
     "snippets.priority": 99,
     "outline.sortBy": "position",
-    "tree.key.activeFilter": "/",
+    "tree.key.activeFilter": "f",
     "markdown-preview-enhanced.scrollSync": false,
     "explorer.position": "floating",
     "explorer.keyMappings.global": {

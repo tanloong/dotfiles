@@ -15,7 +15,7 @@ autocmd("TermOpen",
     {
         pattern = "*",
         group = augroup("config_for_terminal_buf", { clear = true }),
-        command = [[setlocal norelativenumber nonumber | setlocal statusline=channel:\ %{&channel} | startinsert]]
+        command = [[setlocal norelativenumber nonumber | setlocal statusline=channel:\ %{&channel}]]
     }) -- }}}
 -- {{{ don't show [Process exited] in finished terminal
 autocmd("TermClose", {
