@@ -74,7 +74,8 @@ api.nvim_set_hl(0, 'CocHighlightText', { ctermbg=237 })
 keymap("n", "<leader>rn", "<Plug>(coc-rename)", { silent = true })
 -- Formatting selected code.
 keymap("x", "<leader>f", "<Plug>(coc-format-selected)", { silent = true })
-keymap("n", "<leader>f", "<Plug>(coc-format-selected)", { silent = true })
+-- keymap("n", "<leader>f", "<Plug>(coc-format)", { silent = true })
+keymap("n", "<leader>f", "<Cmd>CocCommand editor.action.formatDocument<CR><Cmd>CocCommand editor.action.organizeImport<CR>", {silent = true})
 -- Applying codeAction to the selected region.
 -- Example: `<leader>aap` for current paragraph
 local opts = { silent = true, nowait = true }
