@@ -149,7 +149,7 @@ api.nvim_set_keymap('n', 'so', ':lua ToggleOutline()<CR>', { silent = true, nowa
 function ToggleOutline()
     local winid = vim.fn['coc#window#find']('cocViewId', 'OUTLINE')
     if winid == -1 then
-        vim.fn['CocActionAsync']('showOutline', 1)
+        vim.fn['CocActionAsync']('showOutline', 0)
     else
         vim.fn['coc#window#close'](winid)
     end
