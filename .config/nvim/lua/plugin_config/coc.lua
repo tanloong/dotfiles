@@ -45,10 +45,10 @@ keymap("n", "]g", "<Plug>(coc-diagnostic-next)", { silent = true })
 -- GoTo code navigation.
 keymap("n", "gd", "<Plug>(coc-definition)", { silent = true })
 keymap("n", "gy", "<Plug>(coc-type-definition)", { silent = true })
-keymap("n", "gi", "<Plug>(coc-implementation)", { silent = true })
+-- keymap("n", "gi", "<Plug>(coc-implementation)", { silent = true })
 keymap("n", "gr", "<Plug>(coc-references)", { silent = true })
 -- Show documentation in preview window.
-keymap("n", "<leader>s", '<CMD>lua _G.show_docs()<CR>', { silent = true })
+keymap("n", "<leader>d", '<CMD>lua _G.show_docs()<CR>', { silent = true })
 function _G.show_docs()
     local cw = vim.fn.expand('<cword>')
     if vim.fn.index({ 'vim', 'help' }, vim.bo.filetype) >= 0 then
@@ -67,13 +67,13 @@ api.nvim_create_autocmd("CursorHold", {
     command = "silent call CocActionAsync('highlight')",
     desc = "Highlight symbol under cursor on CursorHold"
 })
-api.nvim_set_hl(0, 'CocHighlightText', { ctermbg=237 })
+api.nvim_set_hl(0, 'CocHighlightText', { ctermbg = 237 })
 -- api.nvim_set_hl(0, 'CocHighlightText', { ctermfg='LightMagenta' })
 
 -- Symbol renaming.
 keymap("n", "<leader>rn", "<Plug>(coc-rename)", { silent = true })
 -- Formatting selected code.
-keymap("x", "<leader>f", "<Plug>(coc-format-selected)", { silent = true })
+-- keymap("x", "<leader>f", "<Plug>(coc-format-selected)", { silent = true })
 -- keymap("n", "<leader>f", "<Plug>(coc-format)", { silent = true })
 keymap("n", "<leader>f", "<Cmd>CocCommand editor.action.formatDocument<CR><Cmd>CocCommand editor.action.organizeImport<CR>", {silent = true})
 -- Applying codeAction to the selected region.
@@ -102,7 +102,7 @@ keymap("x", "<C-s>", "<Plug>(coc-range-select)", { silent = true })
 vim.cmd([[set statusline=%<%f\ %h%m%{coc#status()}%{get(b:,'coc_current_function','')}%r%=%-14.(%l,%c%V%)\ %p%%]])
 -- Add `:Format` command to format current buffer.
 api.nvim_create_user_command("Format", "call CocAction('format')", {})
-keymap('n', '<leader>f', ":call CocActionAsync('format')<CR>")
+-- keymap('n', '<leader>f', ":call CocActionAsync('format')<CR>")
 -- " Add `:Fold` command to fold current buffer.
 api.nvim_create_user_command("Fold", "call CocAction('fold', <f-args>)", { nargs = '?' })
 -- Add `:OR` command for organize imports of the current buffer.
@@ -154,3 +154,20 @@ function ToggleOutline()
         vim.fn['coc#window#close'](winid)
     end
 end -- }}}
+
+-- coc-git
+-- navigate chunks of current buffer
+keymap('n', "gh", "<Plug>(coc-git-prevchunk)", { silent = true })
+keymap('n', "gl", "<Plug>(coc-git-nextchunk)", { silent = true })
+-- navigate conflicts of current buffer
+keymap('n', "[c", "<Plug>(coc-git-prevconflict)", { silent = true })
+keymap('n', "]c", "<Plug>(coc-git-nextconflict)", { silent = true })
+-- show chunk diff at current position
+keymap('n', "gs", "<Plug>(coc-git-chunkinfo)", { silent = true })
+-- show commit contains current position
+keymap('n', "gS", "<Plug>(coc-git-commit)", { silent = true })
+-- create text object for git chunks
+keymap({ 'o', 'x' }, "ig", "<Plug>(coc-git-chunk-inner)", { silent = true })
+keymap({ 'o', 'x' }, "ag", "<Plug>(coc-git-chunk-outer)", { silent = true })
+keymap("n", "gm", "<Cmd>CocCommand git.chunkStage<CR>")
+keymap("n", "gM", "<Cmd>CocCommand git.chunkUnstage<CR>")

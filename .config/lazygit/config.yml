@@ -1,2 +1,7 @@
 gui:
   showFileTree: false # for rendering changes files in a tree format
+keybinding:
+  files:
+    viewResetOptions: '|'
+  commits:
+    viewResetOptions: '|'

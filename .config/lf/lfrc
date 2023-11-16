@@ -249,5 +249,5 @@ cmd newfold ${{
 cmd snd ${{ bluetooth-sendto $fx }}
 cmd backup ${{ echo $fx |
             xargs readlink -f |
-            xargs -I {} cp --no-clobber {} {}.bak
+            xargs -I {} cp --no-clobber "{}" "{}".bak
 }}
