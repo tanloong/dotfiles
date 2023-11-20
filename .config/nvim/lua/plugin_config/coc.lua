@@ -73,9 +73,9 @@ api.nvim_set_hl(0, 'CocHighlightText', { ctermbg = 237 })
 -- Symbol renaming.
 keymap("n", "<leader>rn", "<Plug>(coc-rename)", { silent = true })
 -- Formatting selected code.
--- keymap("x", "<leader>f", "<Plug>(coc-format-selected)", { silent = true })
--- keymap("n", "<leader>f", "<Plug>(coc-format)", { silent = true })
-keymap("n", "<leader>f", "<Cmd>CocCommand editor.action.formatDocument<CR><Cmd>CocCommand editor.action.organizeImport<CR>", {silent = true})
+keymap("x", "<leader>f", "<Plug>(coc-format-selected)", { silent = true })
+keymap("n", "<leader>f", "<Plug>(coc-format)", { silent = true })
+-- keymap("n", "<leader>f", "<Cmd>CocCommand editor.action.formatDocument<CR><Cmd>CocCommand editor.action.organizeImport<CR>", {silent = true})
 -- Applying codeAction to the selected region.
 -- Example: `<leader>aap` for current paragraph
 local opts = { silent = true, nowait = true }
@@ -157,8 +157,8 @@ end -- }}}
 
 -- coc-git
 -- navigate chunks of current buffer
-keymap('n', "gh", "<Plug>(coc-git-prevchunk)", { silent = true })
-keymap('n', "gl", "<Plug>(coc-git-nextchunk)", { silent = true })
+keymap('n', "gp", "<Plug>(coc-git-prevchunk)", { silent = true })
+keymap('n', "gn", "<Plug>(coc-git-nextchunk)", { silent = true })
 -- navigate conflicts of current buffer
 keymap('n', "[c", "<Plug>(coc-git-prevconflict)", { silent = true })
 keymap('n', "]c", "<Plug>(coc-git-nextconflict)", { silent = true })
@@ -171,3 +171,4 @@ keymap({ 'o', 'x' }, "ig", "<Plug>(coc-git-chunk-inner)", { silent = true })
 keymap({ 'o', 'x' }, "ag", "<Plug>(coc-git-chunk-outer)", { silent = true })
 keymap("n", "gm", "<Cmd>CocCommand git.chunkStage<CR>")
 keymap("n", "gM", "<Cmd>CocCommand git.chunkUnstage<CR>")
+keymap("n", "gG", "<Cmd>CocCommand git.chunkUndo<CR>")

@@ -28,10 +28,6 @@ export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quo
 export FZF_DEFAULT_COMMAND='ag --path-to-ignore "$HOME/.agignore" --hidden -g "" "$HOME/"'
 export FZF_DEFAULT_OPTS='--reverse --height=60%'
 
-export QT_IM_MODULE=fcitx
-export XMODIFIERS=@im=fcitx
-export GTK_IM_MODULE=fcitx
-
 export http_proxy=127.0.0.1:7890
 export https_proxy=127.0.0.1:7890
 

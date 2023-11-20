@@ -5,7 +5,7 @@ hop.setup({ match_mappings = { 'zh', 'zh_sc' } })
 vim.keymap.set({ 'n', 'v', 'o' }, '<bar>', function()
     hop.hint_char1()
 end, { remap = true })
-vim.keymap.set({ 'n', 'v', 'o' }, 'g/', function()
+vim.keymap.set({ 'n', 'v', 'o' }, 'ff', function()
     hop.hint_char1()
 end, { remap = true })
 
