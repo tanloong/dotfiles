@@ -102,7 +102,6 @@ keymap("x", "<C-s>", "<Plug>(coc-range-select)", { silent = true })
 vim.cmd([[set statusline=%<%f\ %h%m%{coc#status()}%{get(b:,'coc_current_function','')}%r%=%-14.(%l,%c%V%)\ %p%%]])
 -- Add `:Format` command to format current buffer.
 api.nvim_create_user_command("Format", "call CocAction('format')", {})
--- keymap('n', '<leader>f', ":call CocActionAsync('format')<CR>")
 -- " Add `:Fold` command to fold current buffer.
 api.nvim_create_user_command("Fold", "call CocAction('fold', <f-args>)", { nargs = '?' })
 -- Add `:OR` command for organize imports of the current buffer.
@@ -118,6 +117,7 @@ vim.g['coc_global_extensions'] = {
     'coc-pyright',
     'coc-webview',
     'coc-markdown-preview-enhanced',
+    'coc-pairs',
 }
 -- 'coc-html',
 -- 'coc-tsserver',
@@ -157,8 +157,8 @@ end -- }}}
 
 -- coc-git
 -- navigate chunks of current buffer
-keymap('n', "gp", "<Plug>(coc-git-prevchunk)", { silent = true })
-keymap('n', "gn", "<Plug>(coc-git-nextchunk)", { silent = true })
+keymap('n', "gp", "<Cmd>CocCommand git.prevChunk<CR><Cmd>sleep 100m<CR><Cmd>CocCommand git.chunkInfo<CR>", { silent = true })
+keymap('n', "gn", "<Cmd>CocCommand git.nextChunk<CR><Cmd>sleep 100m<CR><Cmd>CocCommand git.chunkInfo<CR>", { silent = true })
 -- navigate conflicts of current buffer
 keymap('n', "[c", "<Plug>(coc-git-prevconflict)", { silent = true })
 keymap('n', "]c", "<Plug>(coc-git-nextconflict)", { silent = true })
