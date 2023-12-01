@@ -25,6 +25,7 @@ keycode 108 = Control_R Control_R Control_R Control_R
 keycode 105 = Print Sys_Req Print Sys_Req
 keycode 95 = XF86MonBrightnessDown NoSymbol XF86MonBrightnessDown
 keycode 96 = XF86MonBrightnessUp NoSymbol XF86MonBrightnessUp
+keycode 127 = XF86_Suspend
 add shift = Shift_L
 add mod1 = Alt_L
 add mod4 = Super_L

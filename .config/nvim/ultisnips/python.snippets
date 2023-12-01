@@ -664,6 +664,10 @@ snippet aae "Assert almost equal" b
 self.assertAlmostEqual(${1:${VISUAL:first}}, ${2:second})
 endsnippet
 
+snippet ane "Assert not equal" b
+self.assertNotEqual(${1:${VISUAL:first}}, ${2:second})
+endsnippet
+
 snippet ar "Assert raises" b
 self.assertRaises(${1:exception}, ${2:${VISUAL:func}}${3/.+/, /}${3:arguments})
 endsnippet
@@ -736,6 +740,32 @@ url = "${1}"
 response = requests.get(url)
 print(response.status_code)
 # soup = BeautifulSoup(response.text, "html.parser")
+endsnippet
+
+snippet qt6 "boilerplate for Qt6"
+import sys
+
+from PySide6 import QtCore, QtGui
+from PySide6.QtWidgets import QApplication, QWidget
+
+
+class MyWidget(QWidget):
+def __init__(self, *args, **kwargs):
+	super().__init__(*args, **kwargs)
+	self.setWindowTitle("空白测试模板")
+	self.resize(800, 600)
+	self.setup_ui()
+
+def setup_ui(self) -> None:
+	"""设置界面"""
+	# 在此处编写设置UI的代码
+
+
+if __name__ == "__main__":
+	app = QApplication(sys.argv)
+	window = MyWidget()
+	window.show()
+	sys.exit(app.exec())
 endsnippet
 
 snippet join "join a list of strings"
