@@ -1,6 +1,5 @@
 #!/usr/bin/env lua
 
--- Setup nvim-cmp.
 local cmp = require("cmp")
 local lspkind = require("lspkind")
 
