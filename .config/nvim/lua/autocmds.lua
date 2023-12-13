@@ -54,7 +54,8 @@ local function preview_pair(direction)
 
     vim.cmd([[tabprevious]])
     vim_zh_re = py_zh_re:gsub("%(%?:", "%%("):gsub("%(%?(<?)([!=])([^)]+)%)", "(%3)@%1%2")
-    vim_en_re = py_en_re:gsub("%(%?i[^)]*%)", "\\c"):gsub("\\b", "%%(<|>)"):gsub("%(%?(<?)([!=])([^)]+)%)", "(%3)@%1%2"):gsub("%(%?:([^|)]+)[^)]*%)", "%1")
+    vim_en_re = py_en_re:gsub("%(%?i[^)]*%)", "\\c"):gsub("\\b", "%%(<|>)"):gsub("%(%?(<?)([!=])([^)]+)%)", "(%3)@%1%2")
+    :gsub("%(%?:([^|)]+)[^)]*%)", "%1")
 
     start_hl()
     vim.cmd("/\\v" .. vim_zh_re .. "|" .. vim_en_re)

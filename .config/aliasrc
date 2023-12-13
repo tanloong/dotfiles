@@ -37,6 +37,7 @@ alias \
     e="chmod u+x" \
     g="git" \
     p="sudo pacman" \
+    pt="python" \
     t="tldr" \
     q="exit" \
     r='$FILE_MANAGER' \
@@ -62,14 +63,18 @@ alias \
     sftps="sftp root@124.70.3.11" \
     neofetch='neofetch --config $HOME/.config/neofetch.conf' \
     myclip='xclip -rmlastnl -sel clipboard' \
+    wk="workon" \
+    j="jupyter" \
+    jt="jupyter nbconvert --to script" \
+    jn="jupyter-notebook" \
 
 # aliases that precedes with "setsid -f"
 alias \
     deskreen="setsid -f deskreen" \
 	z="setsid -f zathura" \
+    xournalpp="setsid -f xournalpp" \
     x="setsid -f xournalpp" \
 	zathura="setsid -f zathura" \
-    gedit="setsid -f gedit" \
     rstudio="setsid -f rstudio-bin" \
     spyder="setsid -f spyder" \
     wechat="setsid -f wechat-uos" \
@@ -84,8 +89,6 @@ alias \
     s="setsid -f sxiv" \
     brave="setsid -f brave" \
     gimp="setsid -f gimp" \
-    xournalpp="setsid -f xournalpp" \
-    xl="setsid -f xournalpp" \
     virtualbox="setsid -f virtualbox" \
     mpv="mpv --no-terminal" \
     R="R --quiet --no-save" \

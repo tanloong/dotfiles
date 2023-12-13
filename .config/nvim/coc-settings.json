@@ -102,8 +102,7 @@
     "coc.source.file.priority": 50,
     "snippets.priority": 99,
     "outline.sortBy": "position",
-    "outline.autoWidth": false,
-    "outline.splitCommand": "botright 27vs",
+    "outline.autoWidth": true,
     "outline.keepWindow": false,
     "tree.key.activeFilter": "f",
     "markdown-preview-enhanced.scrollSync": false,
@@ -124,4 +123,10 @@
             "clearCopyOrCut"
         ]
     },
+    "workspace.ignoredFolders": [
+        "$HOME",
+        "$HOME/.cargo/**",
+        "$HOME/.rustup/**"
+    ],
+    "notification.disabledProgressSources": ["*"]
 }
