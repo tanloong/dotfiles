@@ -114,13 +114,12 @@ api.nvim_create_user_command("Fold", "call CocAction('fold', <f-args>)", { nargs
 api.nvim_create_user_command("OR", "call CocActionAsync('runCommand', 'editor.action.organizeImport')", {})
 
 -- coc-extensions{{{
-vim.g["coc_global_extensions"] = {
-  "coc-git",
-  "coc-snippets",
-  "coc-sumneko-lua",
-  "coc-json",
-  "coc-dictionary",
-  "coc-pyright",
+vim.g['coc_global_extensions'] = {
+    'coc-git',
+    'coc-sumneko-lua',
+    'coc-json',
+    'coc-dictionary',
+    'coc-pyright',
 }
 -- 'coc-lists',
 -- 'coc-pairs',
@@ -137,6 +136,7 @@ vim.g["coc_global_extensions"] = {
 -- \ 'coc-sh',
 -- \ 'coc-texlab',
 -- \ 'coc-clangd',
+-- 'coc-snippets',
 
 -- coc-explorer
 -- keymap("n", "tt", "<Cmd>CocCommand explorer<CR>")
@@ -146,9 +146,9 @@ vim.g["coc_global_extensions"] = {
 -- Use <C-o> for trigger snippet expand.
 keyset("i", "<c-o>", "<Plug>(coc-snippets-expand)")
 -- Use <C-j> for jump to next placeholder, it's default of coc.nvim
-vim.g["coc_snippet_next"] = "<c-j>"
+-- vim.g['coc_snippet_next'] = '<c-j>'
 -- Use <C-k> for jump to previous placeholder, it's default of coc.nvim
-vim.g["coc_snippet_prev"] = "<c-k>"
+-- vim.g['coc_snippet_prev'] = '<c-k>'
 -- }}}
 -- coc-outline{{{
 api.nvim_set_keymap("n", "so", ":lua ToggleOutline()<CR>", { silent = true, nowait = true })
