@@ -1,0 +1,20 @@
+modmap:
+  - name: _
+    remap:
+      KEY_F1: KEY_MUTE
+      KEY_F2: KEY_VOLUMEDOWN
+      KEY_F3: KEY_VOLUMEUP
+      KEY_F11: KEY_BRIGHTNESSDOWN
+      KEY_F12: KEY_BRIGHTNESSUP
+      KEY_PAUSE: KEY_SUSPEND
+      KEY_RIGHTSHIFT: KEY_BACKSLASH
+virtual_modifiers:
+  - CapsLock
+keymap:
+  - name: _
+    remap:
+      # KEY_BACKSLASH: SHIFT-KEY_BACKSLASH
+      CapsLock-k: Up
+      CapsLock-h: Left
+      CapsLock-j: Down
+      CapsLock-l: Right
