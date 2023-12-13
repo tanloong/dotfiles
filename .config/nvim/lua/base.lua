@@ -37,6 +37,10 @@ optset.wildignore:append { '*aux,*toc,*out' }
 optset.path:append { '**' }
 optset.cursorlineopt = 'screenline'
 
+-- Disable netrw
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
 vim.cmd([[filetype plugin indent on]])
 vim.cmd([[syntax on]])
 vim.cmd([[iabbrev teh the]])
