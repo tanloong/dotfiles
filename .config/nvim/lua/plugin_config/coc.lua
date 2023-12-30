@@ -38,6 +38,8 @@ vim.cmd([[
 -- local col = vim.fn.col('.') - 1
 -- return col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') ~= nil
 -- end
+-- Use <c-a> to trigger completion
+keymap("i", "<c-a>", "coc#refresh()", { silent = true, expr = true })
 -- Use `[g` and `]g` to navigate diagnostics
 -- Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
 keymap("n", "[g", "<Plug>(coc-diagnostic-prev)", { silent = true })
@@ -48,7 +50,7 @@ keymap("n", "gy", "<Plug>(coc-type-definition)", { silent = true })
 -- keymap("n", "gi", "<Plug>(coc-implementation)", { silent = true })
 keymap("n", "gr", "<Plug>(coc-references)", { silent = true })
 -- Show documentation in preview window.
-keymap("n", "<leader>d", '<CMD>lua _G.show_docs()<CR>', { silent = true })
+keymap("n", "<leader>s", '<CMD>lua _G.show_docs()<CR>', { silent = true })
 function _G.show_docs()
     local cw = vim.fn.expand('<cword>')
     if vim.fn.index({ 'vim', 'help' }, vim.bo.filetype) >= 0 then
@@ -157,8 +159,10 @@ end -- }}}
 
 -- coc-git
 -- navigate chunks of current buffer
-keymap('n', "gp", "<Cmd>CocCommand git.prevChunk<CR><Cmd>sleep 100m<CR><Cmd>CocCommand git.chunkInfo<CR>", { silent = true })
-keymap('n', "gn", "<Cmd>CocCommand git.nextChunk<CR><Cmd>sleep 100m<CR><Cmd>CocCommand git.chunkInfo<CR>", { silent = true })
+keymap('n', "gp", "<Cmd>CocCommand git.prevChunk<CR><Cmd>sleep 100m<CR><Cmd>CocCommand git.chunkInfo<CR>",
+    { silent = true })
+keymap('n', "gn", "<Cmd>CocCommand git.nextChunk<CR><Cmd>sleep 100m<CR><Cmd>CocCommand git.chunkInfo<CR>",
+    { silent = true })
 -- navigate conflicts of current buffer
 keymap('n', "[c", "<Plug>(coc-git-prevconflict)", { silent = true })
 keymap('n', "]c", "<Plug>(coc-git-nextconflict)", { silent = true })

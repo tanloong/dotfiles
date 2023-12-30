@@ -16,9 +16,9 @@ flameshot & > /dev/null 2>&1
 fcitx5 > /dev/null 2>&1 &
 
 remap 2> /dev/null
-killall st > /dev/null 2>&1 || :
-setsid -f st
+killall $TERMINAL > /dev/null 2>&1 || :
+setsid -f $TERMINAL
 goldendict &
 "/home/tan/software/Clash for Windows-0.20.25-x64-linux/cfw" &
-exec dwm
+exec startdwm.sh
 # exec i3

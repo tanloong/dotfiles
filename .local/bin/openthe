@@ -9,9 +9,9 @@ case "$app" in
         case $XDG_SESSION_TYPE in
             'wayland')
                 # foot;;
-                st;;
+                $TERMINAL;;
             *)
-                st;
+                $TERMINAL;
         esac;;
     browser) brave --proxy-server=127.0.0.1:7890;;
     dictionary) goldendict;;

@@ -1,0 +1,22 @@
+[font]
+size = 13.3
+
+[font.bold]
+family = "Cousine Nerd Font Mono"
+style = "Bold"
+
+[font.bold_italic]
+family = "Cousine Nerd Font Mono"
+style = "Bold Italic"
+
+[font.italic]
+family = "Cousine Nerd Font Mono"
+style = "Italic"
+
+[font.normal]
+family = "Cousine Nerd Font Mono"
+style = "Regular"
+
+[cursor]
+style = "Block"
+blinking = "Never"

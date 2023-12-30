@@ -5,10 +5,10 @@
     "coc.preferences.formatOnSave": false,
     "suggest.defaultSortMethod": "none",
     "diagnostic.enable": true,
-    "diagnostic.errorSign": "┃",
-    "diagnostic.warningSign": "┃",
-    "diagnostic.infoSign": "┃",
-    "diagnostic.hintSign": "┃",
+    "diagnostic.errorSign": "❌",
+    "diagnostic.warningSign": "⚠️",
+    "diagnostic.infoSign": "🛈",
+    "diagnostic.hintSign": "💡",
     "diagnostic.displayByAle": false,
     "diagnostic.refreshOnInsertMode": false,
     "diagnostic.checkCurrentLine": true,
@@ -128,5 +128,8 @@
         "$HOME/.cargo/**",
         "$HOME/.rustup/**"
     ],
-    "notification.disabledProgressSources": ["*"]
+    "notification.disabledProgressSources": [
+        "*"
+    ],
+    "tabnine.filetypes": ["python", "lua"]
 }
