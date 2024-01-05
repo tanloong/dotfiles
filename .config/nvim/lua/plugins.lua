@@ -1,4 +1,6 @@
 #!/usr/bin/env lua
+
+local keyset = vim.keymap.set
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
     vim.fn.system({
@@ -162,6 +164,102 @@ local plugin_specs = {
     {
         'https://github.com/lilydjwg/fcitx.vim',
         event = "VeryLazy"
+    },
+    -- {
+    --     "https://github.com/askfiy/visual_studio_code",
+    --     priority = 100,
+    --     config = function()
+    --         require("visual_studio_code").setup({ -- {{{
+    --             -- `dark` or `light`
+    --             mode = "dark",
+    --             -- Whether to load all color schemes
+    --             preset = true,
+    --             -- Whether to enable background transparency
+    --             transparent = false,
+    --             -- Whether to apply the adapted plugin
+    --             expands = {
+    --                 hop = true,
+    --                 dbui = true,
+    --                 lazy = true,
+    --                 aerial = true,
+    --                 null_ls = true,
+    --                 nvim_cmp = true,
+    --                 gitsigns = true,
+    --                 which_key = true,
+    --                 nvim_tree = true,
+    --                 lspconfig = true,
+    --                 telescope = true,
+    --                 bufferline = true,
+    --                 nvim_navic = true,
+    --                 nvim_notify = true,
+    --                 vim_illuminate = true,
+    --                 nvim_treesitter = true,
+    --                 nvim_ts_rainbow = true,
+    --                 nvim_scrollview = true,
+    --                 nvim_ts_rainbow2 = true,
+    --                 indent_blankline = true,
+    --                 vim_visual_multi = true,
+    --             },
+    --             hooks = {
+    --                 before = function(conf, colors, utils) end,
+    --                 after = function(conf, colors, utils) end,
+    --             },
+    --         }) -- }}}
+    --         vim.opt.termguicolors = true
+    --         vim.cmd([[colorscheme visual_studio_code]])
+    --     end,
+    -- },
+    -- install without yarn or npm
+    {
+        "iamcco/markdown-preview.nvim",
+        cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+        ft = { "markdown" },
+        build = function() vim.fn["mkdp#util#install"]() end,
+        event = "VeryLazy",
+        config = function() require("plugin_config.markdown_preview") end,
+    },
+    {
+        'akinsho/bufferline.nvim',
+        version = "*",
+        dependencies = 'nvim-tree/nvim-web-devicons',
+        event = "VeryLazy",
+        config = function()
+            bufferline = require("bufferline")
+            bufferline.setup({
+                options = {
+                    style_preset = bufferline.style_preset.no_italic,
+                    indicator = { style = "none" },
+                    diagnostics = false,
+                    show_buffer_icons = false,
+                    show_buffer_close_icons = false,
+                    always_show_bufferline = false,
+                    separator_style = { '', '' },
+                    enforce_regular_tabs = false,
+                    tab_size = 0,
+                },
+                highlights = {
+                    -- lua print(vim.inspect(vim.api.nvim_get_hl(0, {name = "TabLineFill"})))
+                    fill = { ctermbg = 242, underline = true },
+                    -- lua print(vim.inspect(vim.api.nvim_get_hl(0, {name = "TabLine"})))
+                    background = {
+                        ctermbg = 242,
+                        ctermfg = 15,
+                        underline = true
+                    },
+                    -- lua print(vim.inspect(vim.api.nvim_get_hl(0, {name = "TabLineSel"})))
+                    tab_selected = { bold = true },
+                    -- lua print(vim.inspect(vim.api.nvim_get_hl(0, {name = "TabLineSel"})))
+                    buffer_selected = { bold = true },
+                }
+            })
+            keyset("n", "gl", "<Cmd>BufferLineCycleNext<CR>", { silent = true })
+            keyset("n", "gh", "<Cmd>BufferLineCyclePrev<CR>", { silent = true })
+            keyset("n", "gH", "<Cmd>BufferLineGoToBuffer 1<CR>", { silent = true })
+            keyset("n", "gL", "<Cmd>BufferLineGoToBuffer -1<CR>", { silent = true })
+            keyset("n", "<m-H>", "<Cmd>BufferLineMovePrev<CR>", { silent = true })
+            keyset("n", "<m-L>", "<Cmd>BufferLineMoveNext<CR>", { silent = true })
+            keyset("n", "<leader><leader>", "<Cmd>BufferLinePick<CR>", { silent = true })
+        end,
     },
 }
 

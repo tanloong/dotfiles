@@ -117,10 +117,10 @@ vim.g['coc_global_extensions'] = {
     'coc-json',
     'coc-dictionary',
     'coc-pyright',
-    'coc-webview',
-    'coc-markdown-preview-enhanced',
     'coc-pairs',
 }
+-- 'coc-markdown-preview-enhanced',
+-- 'coc-webview',
 -- 'coc-html',
 -- 'coc-tsserver',
 -- 'coc-actions',

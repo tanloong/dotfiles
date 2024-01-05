@@ -8,9 +8,12 @@ end
 toggleterm.setup({
     size = 10,
     open_mapping = [[<m-=>]],
+    skip_toggle = function(t)
+        return t and t.cmd and vim.startswith(t.cmd, "lf ")
+    end,
     hide_numbers = true,
     shade_filetypes = {},
-    shade_terminals = true,
+    shade_terminals = false,
     shading_factor = 2,
     start_in_insert = true,
     insert_mappings = true,
