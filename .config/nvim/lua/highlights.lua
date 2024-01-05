@@ -21,6 +21,7 @@ hl(0, 'DiffDelete', { ctermfg = 'red', fg = 'red' })
 hl(0, 'StatusLine', { underline = true, bold = true })
 hl(0, 'StatusLineNC', { underline = true })
 hl(0, 'CursorLine', { bold = true, ctermfg = 'green', fg = 'lightgreen' })
+hl(0, 'NonText', { fg = '#1A8FFF', ctermfg = 12 })
 
 -- autocmd("TextYankPost",
 --     {

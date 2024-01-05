@@ -1,6 +1,8 @@
 #!/usr/bin/env lua
 
 local keyset = vim.keymap.set
+local hl = vim.api.nvim_set_hl
+
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
     vim.fn.system({
@@ -95,9 +97,12 @@ local plugin_specs = {
     },
     {
         'lukas-reineke/indent-blankline.nvim',
-        tag = "v2.20.8",
+        main = "ibl",
         event = "VeryLazy",
-        config = function() require('plugin_config.indent_blankline') end
+        config = function()
+            hl(0, "IblIndent", { ctermbg = 'none', ctermfg = 'darkgray', fg = 'darkgray' })
+            require("ibl").setup({ indent = {char = '▏'}, scope = { enabled = false } })
+        end
     },
     {
         'https://gitee.com/tanloong/nvim-align.git',
@@ -213,7 +218,6 @@ local plugin_specs = {
     --         vim.cmd([[colorscheme visual_studio_code]])
     --     end,
     -- },
-    -- install without yarn or npm
     {
         "iamcco/markdown-preview.nvim",
         cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
@@ -240,6 +244,7 @@ local plugin_specs = {
                     separator_style = { '', '' },
                     enforce_regular_tabs = false,
                     tab_size = 0,
+                    themable = true,
                 },
                 highlights = {
                     -- lua print(vim.inspect(vim.api.nvim_get_hl(0, {name="TabLineFill"})))

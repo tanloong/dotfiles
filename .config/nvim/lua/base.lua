@@ -25,7 +25,7 @@ optset.matchpairs = '<:>,(:),{:},[:]'
 optset.foldmethod = 'marker'
 optset.spelllang = 'en,cjk'
 optset.complete = '.,w,b,u,t,i,k'
-optset.guicursor = { 'i-v:ver1,a:blinkon0' }
+optset.guicursor = { 'i:ver1,v:block-inverse,a:blinkon0' }
 optset.pumheight = 7
 optset.backup = false
 optset.nrformats = 'octal'
@@ -36,6 +36,7 @@ optset.dictionary:append { vim.env.HOME .. "/.local/share/BNC-40thousand.txt" }
 optset.wildignore:append { '*aux,*toc,*out' }
 optset.path:append { '**' }
 optset.cursorlineopt = 'screenline'
+optset.termguicolors = true
 
 -- Disable netrw
 vim.g.loaded_netrw = 1
