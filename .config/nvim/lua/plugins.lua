@@ -104,12 +104,16 @@ local plugin_specs = {
         event = "VeryLazy",
     },
     {
-        "akinsho/toggleterm.nvim",
+        "https://github.com/tanloong/toggleterm.nvim",
+        branch = "skip-toggle",
+        -- "https://github.com/akinsho/toggleterm.nvim",
         event = "VeryLazy",
         config = function() require('plugin_config.toggleterm') end
     },
     {
-        "lmburns/lf.nvim",
+        "https://github.com/tanloong/lf.nvim",
+        branch = "fix-wrong-number-of-arguments-to-insert",
+        -- "https://github.com/lmburns/lf.nvim",
         config = function() require('plugin_config.lf_nvim') end,
         event = "VeryLazy",
         dependencies = { "toggleterm.nvim" }
@@ -238,17 +242,19 @@ local plugin_specs = {
                     tab_size = 0,
                 },
                 highlights = {
-                    -- lua print(vim.inspect(vim.api.nvim_get_hl(0, {name = "TabLineFill"})))
-                    fill = { ctermbg = 242, underline = true },
-                    -- lua print(vim.inspect(vim.api.nvim_get_hl(0, {name = "TabLine"})))
+                    -- lua print(vim.inspect(vim.api.nvim_get_hl(0, {name="TabLineFill"})))
+                    fill = { bg = '#DDDDDD', ctermbg = 242, underline = true },
+                    -- lua print(vim.inspect(vim.api.nvim_get_hl(0, {name="TabLine"})))
                     background = {
+                        bg = '#6C6C6C',
                         ctermbg = 242,
-                        ctermfg = 15,
+                        fg = 'white',
+                        ctermfg = 'white',
                         underline = true
                     },
-                    -- lua print(vim.inspect(vim.api.nvim_get_hl(0, {name = "TabLineSel"})))
+                    -- lua print(vim.inspect(vim.api.nvim_get_hl(0, {name="TabLineSel"})))
                     tab_selected = { bold = true },
-                    -- lua print(vim.inspect(vim.api.nvim_get_hl(0, {name = "TabLineSel"})))
+                    -- lua print(vim.inspect(vim.api.nvim_get_hl(0, {name="TabLineSel"})))
                     buffer_selected = { bold = true },
                 }
             })
