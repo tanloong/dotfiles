@@ -69,7 +69,7 @@ api.nvim_create_autocmd("CursorHold", {
     command = "silent call CocActionAsync('highlight')",
     desc = "Highlight symbol under cursor on CursorHold"
 })
-api.nvim_set_hl(0, 'CocHighlightText', { ctermbg = 237 })
+api.nvim_set_hl(0, 'CocHighlightText', { ctermbg = 237, bg = '#3A3A3A' })
 -- api.nvim_set_hl(0, 'CocHighlightText', { ctermfg='LightMagenta' })
 
 -- Symbol renaming.

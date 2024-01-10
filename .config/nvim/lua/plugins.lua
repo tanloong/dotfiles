@@ -100,8 +100,8 @@ local plugin_specs = {
         main = "ibl",
         event = "VeryLazy",
         config = function()
-            hl(0, "IblIndent", { ctermbg = 'none', ctermfg = 'darkgray', fg = 'darkgray' })
-            require("ibl").setup({ indent = {char = '▏'}, scope = { enabled = false } })
+            hl(0, "IblIndent", { ctermbg = 'none', ctermfg = 'darkgray', fg = '#3A3A3A' })
+            require("ibl").setup({ scope = { enabled = false } })
         end
     },
     {
@@ -128,18 +128,18 @@ local plugin_specs = {
         event = "VeryLazy",
         config = function() require('plugin_config.boole_nvim') end,
     },
-    -- {
-    --     -- 'nvimdev/hlsearch.nvim',
-    --     dir = '/home/tan/software/hlsearch.nvim/',
-    --     event = "BufRead",
-    --     config = function()
-    --         require('hlsearch').setup()
-    --     end,
-    --     cond = function()
-    --         local bufnr = vim.api.nvim_get_current_buf()
-    --         return not string.find(vim.api.nvim_buf_get_name(bufnr), "interlaced.*%.txt$")
-    --     end,
-    -- },
+    {
+        -- 'nvimdev/hlsearch.nvim',
+        dir = '/home/tan/software/hlsearch.nvim/',
+        event = "BufRead",
+        config = function()
+            require('hlsearch').setup()
+        end,
+        cond = function()
+            local bufnr = vim.api.nvim_get_current_buf()
+            return not string.find(vim.api.nvim_buf_get_name(bufnr), "interlaced.*%.txt$")
+        end,
+    },
     {
         dir = '~/projects/interlaced.nvim',
         ft = "text",
@@ -239,12 +239,14 @@ local plugin_specs = {
                     indicator = { style = "none" },
                     diagnostics = false,
                     show_buffer_icons = false,
+                    show_close_icon = false,
                     show_buffer_close_icons = false,
                     always_show_bufferline = false,
                     separator_style = { '', '' },
                     enforce_regular_tabs = false,
                     tab_size = 0,
                     themable = true,
+                    show_tab_indicators = false,
                 },
                 highlights = {
                     -- lua print(vim.inspect(vim.api.nvim_get_hl(0, {name="TabLineFill"})))
@@ -269,7 +271,10 @@ local plugin_specs = {
             keyset("n", "gL", "<Cmd>BufferLineGoToBuffer -1<CR>", { silent = true })
             keyset("n", "<m-H>", "<Cmd>BufferLineMovePrev<CR>", { silent = true })
             keyset("n", "<m-L>", "<Cmd>BufferLineMoveNext<CR>", { silent = true })
-            keyset("n", "<leader><leader>", "<Cmd>BufferLinePick<CR>", { silent = true })
+            keyset("n", "ZP", "<Cmd>BufferLinePick<CR>", { silent = true })
+            keyset("n", "ZO", "<Cmd>BufferLineCloseOthers<CR>", { silent = true })
+            keyset("n", "ZL", "<Cmd>BufferLineCloseRight<CR>", { silent = true })
+            keyset("n", "ZH", "<Cmd>BufferLineCloseLeft<CR>", { silent = true })
         end,
     },
 }
