@@ -61,10 +61,51 @@ local plugin_specs = {
         event = "VeryLazy",
         config = function() require('plugin_config.vim_table_mode') end
     },
+    -- {
+    --     'https://gitee.com/tanloong/vim-slime',
+    --     event = "VeryLazy",
+    --     config = function() require('plugin_config.vim_slime') end
+    -- },
     {
-        'https://gitee.com/tanloong/vim-slime',
-        event = "VeryLazy",
-        config = function() require('plugin_config.vim_slime') end
+        'Vigemus/iron.nvim',
+        config = function()
+            local iron = require("iron.core")
+
+            iron.setup {
+                config = {
+                    -- Whether a repl should be discarded or not
+                    scratch_repl = true,
+                    repl_definition = {
+                        sh     = { command = { "bash" } },
+                        python = { command = { "python" } },
+                        r      = { command = { "R" } },
+                        lua    = { command = { "lua" } },
+                    },
+                    repl_open_cmd = require('iron.view').split.horizontal.botright(0.35)
+                },
+                keymaps = {
+                    send_motion = "<space>sc",
+                    visual_send = "<space>sc",
+                    send_file = "<space>sf",
+                    send_line = "<space>sl",
+                    send_until_cursor = "<space>su",
+                    send_mark = "<space>sm",
+                    mark_motion = "<space>mc",
+                    mark_visual = "<space>mc",
+                    remove_mark = "<space>md",
+                    cr = "<space>s<cr>",
+                    interrupt = "<space>s<space>",
+                    exit = "<space>sq",
+                    clear = "<space>cl",
+                },
+                highlight = { italic = false },
+                ignore_blank_lines = true,
+            }
+            vim.keymap.set('n', '<space>rs', '<cmd>IronRepl<cr>')
+            vim.keymap.set('n', '<space>rr', '<cmd>IronRestart<cr>')
+            vim.keymap.set('n', '<space>rf', '<cmd>IronFocus<cr>')
+            vim.keymap.set('n', '<space>rh', '<cmd>IronHide<cr>')
+        end
     },
     {
         'https://gitee.com/mirrors/vimtex.git',
@@ -258,6 +299,15 @@ local plugin_specs = {
                         fg = 'white',
                         ctermfg = 'white',
                         underline = true
+                    },
+                    pick_selected = { fg = 'white', bg = 'none', italic = false },
+                    pick = {
+                        bg = '#6C6C6C',
+                        ctermbg = 242,
+                        fg = 'white',
+                        ctermfg = 'white',
+                        underline = true,
+                        italic = false,
                     },
                     -- lua print(vim.inspect(vim.api.nvim_get_hl(0, {name="TabLineSel"})))
                     tab_selected = { bold = true },
