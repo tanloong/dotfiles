@@ -20,6 +20,9 @@ export PDFVIEWER="zathura"
 export BROWSER="brave"
 export FILE_MANAGER="lf"
 export WORKON_HOME=~/.virtualenvs
+export OPENAI_API_KEY=$(cat $HOME/.config/openai/OPENAI_API_KEY)
+export OPENAI_API_BASE=$(cat $HOME/.config/openai/OPENAI_API_BASE)
+export OPENAI_API_HOST=$(cat $HOME/.config/openai/OPENAI_API_HOST)
 
 # colored GCC warnings and errors
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'

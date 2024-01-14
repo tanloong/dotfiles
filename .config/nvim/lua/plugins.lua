@@ -164,6 +164,20 @@ local plugin_specs = {
         event = "VeryLazy",
         dependencies = { "toggleterm.nvim" }
     },
+    -- {
+    --     "nvim-neo-tree/neo-tree.nvim", -- {{{
+    --     branch = "v3.x",
+    --     dependencies = {
+    --         "nvim-lua/plenary.nvim",
+    --         "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
+    --         "MunifTanjim/nui.nvim",
+    --         -- "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
+    --     },
+    --     event = "VeryLazy",
+    --     config = function()
+    --         require("plugin_config.neo_tree")
+    --     end, -- }}}
+    -- },
     {
         "nat-418/boole.nvim",
         event = "VeryLazy",
@@ -268,7 +282,7 @@ local plugin_specs = {
         config = function() require("plugin_config.markdown_preview") end,
     },
     {
-        'akinsho/bufferline.nvim',
+        'akinsho/bufferline.nvim', -- {{{
         version = "*",
         dependencies = 'nvim-tree/nvim-web-devicons',
         event = "VeryLazy",
@@ -325,7 +339,57 @@ local plugin_specs = {
             keyset("n", "ZO", "<Cmd>BufferLineCloseOthers<CR>", { silent = true })
             keyset("n", "ZL", "<Cmd>BufferLineCloseRight<CR>", { silent = true })
             keyset("n", "ZH", "<Cmd>BufferLineCloseLeft<CR>", { silent = true })
+        end, -- }}}
+    },
+    {
+        "jackMort/ChatGPT.nvim",
+        event = "VeryLazy",
+        config = function()
+            -- https://github.com/jackMort/ChatGPT.nvim/blob/main/lua/chatgpt/config.lua
+            require("chatgpt").setup({
+                chat = {
+                    border = { style = "single", },
+                    keymaps = {
+                        close = "<C-c>",
+                        yank_last = "<C-y>",
+                        yank_last_code = "<C-k>",
+                        scroll_up = "<C-u>",
+                        scroll_down = "<C-d>",
+                        new_session = "<C-n>",
+                        cycle_windows = "<Tab>",
+                        cycle_modes = "<C-f>",
+                        next_message = "<C-j>",
+                        prev_message = "<C-k>",
+                        select_session = "<Space>",
+                        rename_session = "cw",
+                        delete_session = "dd",
+                        draft_message = "<C-r>",
+                        edit_message = "e",
+                        delete_message = "dd",
+                        toggle_settings = "<C-o>",
+                        toggle_sessions = "<C-p>",
+                        toggle_help = "<C-h>",
+                        toggle_message_role = "<C-r>",
+                        toggle_system_role_open = "<C-s>",
+                        stop_generating = "<C-x>",
+                    }
+                },
+                popup_window = { border = { style = "single", }, },
+                system_window = { border = { style = "single", }, },
+                popup_input = { border = { style = "single", }, },
+                settings_window = { border = { style = "single", }, },
+                help_window = { border = { style = "single", }, },
+            })
+            keyset("n", "<bar>", "<Cmd>ChatGPT<CR>")
+            keyset("v", "<bar>", "<Cmd>ChatGPTEditWithInstructions<CR>")
+            keyset("n", "<c-bar>", "<Cmd>ChatGPTActAs<CR>")
+            keyset("n", "<c-s-bar>", ":ChatGPTRun<space>")
         end,
+        dependencies = {
+            "MunifTanjim/nui.nvim",
+            "nvim-lua/plenary.nvim",
+            "nvim-telescope/telescope.nvim"
+        },
     },
 }
 
