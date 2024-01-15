@@ -1,7 +1,9 @@
 .git
+.github
 .cache
 .npm
 .wine
+__pycache__
 weixin
 lazygit
 baidunetdisk
@@ -13,3 +15,4 @@ Trash
 software
 scropus
 lctt
+lctt.bak

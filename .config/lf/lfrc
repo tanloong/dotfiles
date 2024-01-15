@@ -99,24 +99,24 @@ map za set hidden!
 # map <m-down> scroll-down
 
 # cmds/functions
-cmd on-cd &{{
-    # display git repository status in your prompt
-    source /usr/share/git/completion/git-prompt.sh
-    GIT_PS1_SHOWDIRTYSTATE=auto
-    GIT_PS1_SHOWSTASHSTATE=auto
-    GIT_PS1_SHOWUNTRACKEDFILES=auto
-    GIT_PS1_SHOWUPSTREAM=auto
-    git=$(__git_ps1 " (%s)") || true
-    # fmt="\033[32;1m%u@%h\033[0m:\033[34;1m%d\033[0m\033[1m%f$git\033[0m"
-    fmt="\033[34;1m%d\033[0m\033[1m%f$git\033[0m"
-    lf -remote "send $id set promptfmt \"$fmt\""
-    # '&' commands run silently in background (which is what we want here),
-    # but are not connected to stdout.
-    # To make sure our escape sequence still reaches stdout we pipe it to /dev/tty
-    # printf "\033]0; lf   $(pwd | sed "s|$HOME|~|")\007" > /dev/tty
-    printf "\033]0; lf\007" > /dev/tty
-}}
-on-cd
+# cmd on-cd &{{
+#     # display git repository status in your prompt
+#     source /usr/share/git/completion/git-prompt.sh
+#     GIT_PS1_SHOWDIRTYSTATE=auto
+#     GIT_PS1_SHOWSTASHSTATE=auto
+#     GIT_PS1_SHOWUNTRACKEDFILES=auto
+#     GIT_PS1_SHOWUPSTREAM=auto
+#     git=$(__git_ps1 " (%s)") || true
+#     # fmt="\033[32;1m%u@%h\033[0m:\033[34;1m%d\033[0m\033[1m%f$git\033[0m"
+#     fmt="\033[34;1m%d\033[0m\033[1m%f$git\033[0m"
+#     lf -remote "send $id set promptfmt \"$fmt\""
+#     # '&' commands run silently in background (which is what we want here),
+#     # but are not connected to stdout.
+#     # To make sure our escape sequence still reaches stdout we pipe it to /dev/tty
+#     # printf "\033]0; lf   $(pwd | sed "s|$HOME|~|")\007" > /dev/tty
+#     printf "\033]0; lf\007" > /dev/tty
+# }}
+# on-cd
 
 cmd open-with &"$@" $fx
 cmd open ${{

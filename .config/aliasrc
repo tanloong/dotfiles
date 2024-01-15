@@ -7,7 +7,8 @@ function fzf_open_with {
         dir="${file%/*}"
         case "$1" in
             cd) cd "$dir" || return;;
-            *) cd "$dir" && "$1" "$file" || return;;
+            # *) cd "$dir" && "$1" "$file" || return;;
+            *) "$1" "$file" || return;;
         esac
     fi
 }
@@ -71,7 +72,7 @@ alias \
 # aliases that precedes with "setsid -f"
 alias \
     deskreen="setsid -f deskreen" \
-	z="setsid -f zathura" \
+	za="setsid -f zathura" \
     xournalpp="setsid -f xournalpp" \
     x="setsid -f xournalpp" \
 	zathura="setsid -f zathura" \

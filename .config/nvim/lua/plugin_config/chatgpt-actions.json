@@ -1,0 +1,12 @@
+{
+    "inline": {
+        "type": "chat",
+        "opts": {
+            "template": "Do what the following square-bracket-quoted prompt requires:\n[[{{input}}]]",
+            "strategy": "append",
+            "params": {
+                "model": "gpt-3.5-turbo"
+            }
+        }
+    }
+}

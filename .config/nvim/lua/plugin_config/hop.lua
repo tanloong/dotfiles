@@ -1,10 +1,11 @@
 #!/usr/bin/env lua
 
 local hop = require('hop')
-hop.setup({ match_mappings = { 'zh', 'zh_sc' } })
-vim.keymap.set({ 'n', 'v', 'o' }, 'ff', function()
-    hop.hint_char1()
-end, { remap = true })
+hop.setup({
+    keys = 'asdghklqwertyuiopzxcvbnmfj;',
+    match_mappings = { 'zh', 'zh_sc' }
+})
+vim.keymap.set({ 'n', 'v', 'o' }, 'ff', "<Cmd>HopChar1MW<CR>")
 
 -- local directions = require('hop.hint').HintDirection
 -- vim.keymap.set({'n','v','o'}, 'f', function()
