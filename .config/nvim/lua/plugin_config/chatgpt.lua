@@ -2,31 +2,6 @@
 
 local keyset = vim.keymap.set
 
--- local function run_with_context()
---     local current_line = vim.api.nvim_get_current_line()
---     local current_line_number = vim.api.nvim_win_get_cursor(0)[1]
---     local extended_prompt = current_line
---         .. ". Insert at line "
---         .. current_line_number
---         .. "."
---     local EditAction = require("chatgpt.flows.actions.edits")
---     local opts = {
---         params = {
---             model = "gpt-3.5-turbo",
---             stop = {
---                 "```",
---             },
---         },
---         template = extended_prompt,
---         variables = {},
---         strategy = "edit",
---         messages = "",
---     }
---     local action = EditAction.new(opts)
---     action:run()
--- end
--- keyset("n", "<F5>", run_with_context)
-
 -- https://github.com/jackMort/ChatGPT.nvim/blob/main/lua/chatgpt/config.lua
 require("chatgpt").setup({
     chat = {
@@ -69,3 +44,4 @@ keyset("n", "<bar>", "<Cmd>ChatGPT<CR>")
 keyset("v", "<bar>", "<Cmd>ChatGPTEditWithInstructions<CR>")
 keyset({ "n", "v" }, "<c-bar>", ":ChatGPTRun<space>")
 keyset("n", "<c-s-bar>", "<Cmd>ChatGPTActAs<CR>")
+keyset("v", "<F5>", "<Cmd>ChatGPTRun inline<CR>")

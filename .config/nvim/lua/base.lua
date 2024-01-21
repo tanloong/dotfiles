@@ -11,7 +11,8 @@ optset.expandtab = true
 optset.shiftwidth = 4
 optset.updatetime = 100
 optset.signcolumn = 'yes'
-optset.mouse = 'nvi'
+-- optset.mouse = 'nvi'
+optset.mouse = ''
 optset.scrolloff = 3
 optset.ignorecase = true
 optset.infercase = true
@@ -37,16 +38,18 @@ optset.wildignore:append { '*aux,*toc,*out' }
 optset.path:append { '**' }
 optset.cursorlineopt = 'screenline'
 optset.termguicolors = true
+optset.diffopt = { "internal", "filler", "closeoff", "followwrap" }
 
 -- Disable netrw
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
+-- vim.g.loaded_netrw = 1
+-- vim.g.loaded_netrwPlugin = 1
 
 vim.cmd([[filetype plugin indent on]])
 vim.cmd([[syntax on]])
 vim.cmd([[iabbrev teh the]])
-vim.g['netrw_winsize'] = 30 -- Change the size of the Netrw window when it creates a split.
-vim.g['netrw_banner'] = 0   -- Hide the banner. To show it temporarily use I inside Netrw.
+vim.g.netrw_winsize = 30 -- Change the size of the Netrw window when it creates a split.
+vim.g.netrw_banner = 0   -- Hide the banner. To show it temporarily use I inside Netrw.
+vim.g.netrw_liststyle = 3
 -- check |netrw-browse-maps| for more mappings
 -- Save files that require root permission
 vim.cmd([[cabbrev w!! execute 'silent! write !sudo tee % >/dev/null' <bar> edit!]])

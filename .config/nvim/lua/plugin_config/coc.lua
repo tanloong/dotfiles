@@ -42,8 +42,10 @@ vim.cmd([[
 keyset("i", "<c-a>", "coc#refresh()", { silent = true, expr = true })
 -- Use `[g` and `]g` to navigate diagnostics
 -- Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
-keyset("n", "[g", "<Plug>(coc-diagnostic-prev)", { silent = true })
-keyset("n", "]g", "<Plug>(coc-diagnostic-next)", { silent = true })
+keyset("n", "[d", "<Plug>(coc-diagnostic-prev)", { silent = true })
+keyset("n", "]d", "<Plug>(coc-diagnostic-next)", { silent = true })
+keyset("n", "[e", "<Plug>(coc-diagnostic-prev-error)", { silent = true })
+keyset("n", "]e", "<Plug>(coc-diagnostic-next-error)", { silent = true })
 -- GoTo code navigation.
 keyset("n", "gd", "<Plug>(coc-definition)", { silent = true })
 keyset("n", "gy", "<Plug>(coc-type-definition)", { silent = true })
@@ -117,9 +119,9 @@ vim.g['coc_global_extensions'] = {
     'coc-json',
     'coc-dictionary',
     'coc-pyright',
-    'coc-pairs',
     'coc-lists',
 }
+-- 'coc-pairs',
 -- 'coc-markdown-preview-enhanced',
 -- 'coc-webview',
 -- 'coc-html',
@@ -160,13 +162,10 @@ end -- }}}
 
 -- coc-git
 -- navigate chunks of current buffer{{{
-keyset('n', "gp", "<Cmd>CocCommand git.prevChunk<CR><Cmd>sleep 100m<CR><Cmd>CocCommand git.chunkInfo<CR>",
+keyset('n', "]g", "<Cmd>CocCommand git.prevChunk<CR><Cmd>sleep 100m<CR><Cmd>CocCommand git.chunkInfo<CR>",
     { silent = true })
-keyset('n', "gn", "<Cmd>CocCommand git.nextChunk<CR><Cmd>sleep 100m<CR><Cmd>CocCommand git.chunkInfo<CR>",
+keyset('n', "[g", "<Cmd>CocCommand git.nextChunk<CR><Cmd>sleep 100m<CR><Cmd>CocCommand git.chunkInfo<CR>",
     { silent = true })
--- navigate conflicts of current buffer
-keyset('n', "[c", "<Plug>(coc-git-prevconflict)", { silent = true })
-keyset('n', "]c", "<Plug>(coc-git-nextconflict)", { silent = true })
 -- show chunk diff at current position
 keyset('n', "gs", "<Plug>(coc-git-chunkinfo)", { silent = true })
 -- show commit contains current position

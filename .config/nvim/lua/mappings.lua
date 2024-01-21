@@ -34,14 +34,10 @@ keyset('n', 'ss', '<Cmd>split<CR>')
 keyset('n', 's/', ':vimgrep //gf %<s-left><s-left><right>')
 keyset('n', 'sn', '<Cmd>cnext<CR>')
 keyset('n', 'sp', '<Cmd>cprevious<CR>')
-keyset('n', '<up>', '<c-y>')
-keyset('n', '<down>', '<c-e>')
-keyset('n', '<left>', '<c-b>')
-keyset('n', '<right>', '<c-f>')
-keyset('n', '<up>', '<Cmd>res +2<CR>')
-keyset('n', '<down>', '<Cmd>res -2<CR>')
-keyset('n', '<left>', '<Cmd>vertical resize-2<CR>')
-keyset('n', '<right>', '<Cmd>vertical resize+2<CR>')
+keyset('n', '<c-up>', '<Cmd>res +2<CR>')
+keyset('n', '<c-down>', '<Cmd>res -2<CR>')
+keyset('n', '<c-left>', '<Cmd>vertical resize-2<CR>')
+keyset('n', '<c-right>', '<Cmd>vertical resize+2<CR>')
 keyset('n', 'te', '<Cmd>tabedit<CR>')
 keyset('n', '/', '/\\v')
 keyset('v', '/', '/\\v')
@@ -110,24 +106,18 @@ keyset('c', '%%', "getcmdtype()==':'? expand('%:h').'/' : '%%'",
 keyset('n', 'd<space>', "<Cmd>let pos=getcurpos()[1:] | %s/\\s\\+$//e | nohlsearch | call cursor(pos)<CR>",
     { desc = [[Remove trailing spaces]] })
 
--- local toggle_boolean = function()
---     local cword = vim.fn.expand("<cword>")
---     local boolean_map = {
---         ["true"] = "false", -- lua, ...
---         ["false"] = "true", -- lua, ...
---         ["True"] = "False",   -- Python
---         ["False"] = "True",   -- Python
---         ["TRUE"] = "FALSE",   -- R
---         ["FALS"] = "TRUE",   -- R
---         ["T"] = "F",          -- R
---         ["F"] = "T",          -- R
---     }
---
---     local val = boolean_map[cword]
---     if val then
---         vim.cmd('normal! ciw' .. val)
---     else
---         print("Error: toggle_boolean got unknown key " .. cword)
---     end
--- end
--- keyset('n', '<leader>t', toggle_boolean)
+local autocmd = vim.api.nvim_create_autocmd
+local augroup = vim.api.nvim_create_augroup
+
+-- autocmd("FileType",
+--     {
+--         pattern = "netrw",
+--         group = augroup("netrw_mapping", { clear = true }),
+--         callback = function()
+--             keyset("n", "H", [[u]], { buffer = true })
+--             keyset("n", "h", [[-]], { buffer = true })
+--             keyset("n", "l", [[<CR>]], { buffer = true })
+--             keyset("n", "L", [[<CR><Cmd>Lexplorer<CR>]], { buffer = true })
+--             keyset("n", "zh", [[gh]], { buffer = true })
+--         end,
+--     })
