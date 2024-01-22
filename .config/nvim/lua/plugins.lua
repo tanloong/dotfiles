@@ -280,66 +280,66 @@ local plugin_specs = {
         event = "VeryLazy",
         config = function() require("plugin_config.markdown_preview") end,
     },
-    {
-        'akinsho/bufferline.nvim', -- {{{
-        version = "*",
-        dependencies = 'nvim-tree/nvim-web-devicons',
-        event = "VeryLazy",
-        config = function()
-            bufferline = require("bufferline")
-            bufferline.setup({
-                options = {
-                    style_preset = bufferline.style_preset.no_italic,
-                    indicator = { style = "none" },
-                    diagnostics = false,
-                    show_buffer_icons = false,
-                    show_close_icon = false,
-                    show_buffer_close_icons = false,
-                    always_show_bufferline = false,
-                    separator_style = { '', '' },
-                    enforce_regular_tabs = false,
-                    tab_size = 0,
-                    themable = true,
-                    show_tab_indicators = false,
-                },
-                highlights = {
-                    -- lua print(vim.inspect(vim.api.nvim_get_hl(0, {name="TabLineFill"})))
-                    fill = { bg = '#DDDDDD', ctermbg = 242, underline = true },
-                    -- lua print(vim.inspect(vim.api.nvim_get_hl(0, {name="TabLine"})))
-                    background = {
-                        bg = '#6C6C6C',
-                        ctermbg = 242,
-                        fg = 'white',
-                        ctermfg = 'white',
-                        underline = true
-                    },
-                    pick_selected = { fg = 'white', bg = 'none', italic = false },
-                    pick = {
-                        bg = '#6C6C6C',
-                        ctermbg = 242,
-                        fg = 'white',
-                        ctermfg = 'white',
-                        underline = true,
-                        italic = false,
-                    },
-                    -- lua print(vim.inspect(vim.api.nvim_get_hl(0, {name="TabLineSel"})))
-                    tab_selected = { bold = true },
-                    -- lua print(vim.inspect(vim.api.nvim_get_hl(0, {name="TabLineSel"})))
-                    buffer_selected = { bold = true },
-                }
-            })
-            keyset("n", "gl", "<Cmd>BufferLineCycleNext<CR>", { silent = true })
-            keyset("n", "gh", "<Cmd>BufferLineCyclePrev<CR>", { silent = true })
-            keyset("n", "gH", "<Cmd>BufferLineGoToBuffer 1<CR>", { silent = true })
-            keyset("n", "gL", "<Cmd>BufferLineGoToBuffer -1<CR>", { silent = true })
-            keyset("n", "<m-H>", "<Cmd>BufferLineMovePrev<CR>", { silent = true })
-            keyset("n", "<m-L>", "<Cmd>BufferLineMoveNext<CR>", { silent = true })
-            keyset("n", "ZP", "<Cmd>BufferLinePick<CR>", { silent = true })
-            keyset("n", "ZO", "<Cmd>BufferLineCloseOthers<CR>", { silent = true })
-            keyset("n", "ZL", "<Cmd>BufferLineCloseRight<CR>", { silent = true })
-            keyset("n", "ZH", "<Cmd>BufferLineCloseLeft<CR>", { silent = true })
-        end, -- }}}
-    },
+    -- {
+    --     'akinsho/bufferline.nvim', -- {{{
+    --     version = "*",
+    --     dependencies = 'nvim-tree/nvim-web-devicons',
+    --     event = "VeryLazy",
+    --     config = function()
+    --         bufferline = require("bufferline")
+    --         bufferline.setup({
+    --             options = {
+    --                 style_preset = bufferline.style_preset.no_italic,
+    --                 indicator = { style = "none" },
+    --                 diagnostics = false,
+    --                 show_buffer_icons = false,
+    --                 show_close_icon = false,
+    --                 show_buffer_close_icons = false,
+    --                 always_show_bufferline = false,
+    --                 separator_style = { '', '' },
+    --                 enforce_regular_tabs = false,
+    --                 tab_size = 0,
+    --                 themable = true,
+    --                 show_tab_indicators = false,
+    --             },
+    --             -- highlights = {
+    --             --     -- lua print(vim.inspect(vim.api.nvim_get_hl(0, {name="TabLineFill"})))
+    --             --     fill = { bg = '#DDDDDD', ctermbg = 242, underline = true },
+    --             --     -- lua print(vim.inspect(vim.api.nvim_get_hl(0, {name="TabLine"})))
+    --             --     background = {
+    --             --         bg = '#6C6C6C',
+    --             --         ctermbg = 242,
+    --             --         fg = 'white',
+    --             --         ctermfg = 'white',
+    --             --         underline = true
+    --             --     },
+    --             --     pick_selected = { fg = 'white', bg = 'none', italic = false },
+    --             --     pick = {
+    --             --         bg = '#6C6C6C',
+    --             --         ctermbg = 242,
+    --             --         fg = 'white',
+    --             --         ctermfg = 'white',
+    --             --         underline = true,
+    --             --         italic = false,
+    --             --     },
+    --             --     -- lua print(vim.inspect(vim.api.nvim_get_hl(0, {name="TabLineSel"})))
+    --             --     tab_selected = { bold = true },
+    --             --     -- lua print(vim.inspect(vim.api.nvim_get_hl(0, {name="TabLineSel"})))
+    --             --     buffer_selected = { bold = true },
+    --             -- }
+    --         })
+    --         keyset("n", "<right>", "<Cmd>BufferLineCycleNext<CR>", { silent = true })
+    --         keyset("n", "<left>", "<Cmd>BufferLineCyclePrev<CR>", { silent = true })
+    --         keyset("n", "gH", "<Cmd>BufferLineGoToBuffer 1<CR>", { silent = true })
+    --         keyset("n", "gL", "<Cmd>BufferLineGoToBuffer -1<CR>", { silent = true })
+    --         keyset("n", "<m-H>", "<Cmd>BufferLineMovePrev<CR>", { silent = true })
+    --         keyset("n", "<m-L>", "<Cmd>BufferLineMoveNext<CR>", { silent = true })
+    --         keyset("n", "ZP", "<Cmd>BufferLinePick<CR>", { silent = true })
+    --         keyset("n", "ZO", "<Cmd>BufferLineCloseOthers<CR>", { silent = true })
+    --         keyset("n", "ZL", "<Cmd>BufferLineCloseRight<CR>", { silent = true })
+    --         keyset("n", "ZH", "<Cmd>BufferLineCloseLeft<CR>", { silent = true })
+    --     end, -- }}}
+    -- },
     {
         "jackMort/ChatGPT.nvim", -- {{{
         event = "VeryLazy",
@@ -351,6 +351,10 @@ local plugin_specs = {
             "nvim-lua/plenary.nvim",
             "nvim-telescope/telescope.nvim"
         }, -- }}}
+    },
+    {
+        "https://github.com/rickhowe/diffchar.vim",
+        event = "VeryLazy",
     },
 }
 

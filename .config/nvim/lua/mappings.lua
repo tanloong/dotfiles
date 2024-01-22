@@ -103,7 +103,7 @@ keyset('i', 'jj', '<right>')
 keyset('i', 'kk', '<left>')
 keyset('c', '%%', "getcmdtype()==':'? expand('%:h').'/' : '%%'",
     { expr = true, desc = [[展开活动缓冲区所在目录]] })
-keyset('n', 'd<space>', "<Cmd>let pos=getcurpos()[1:] | %s/\\s\\+$//e | nohlsearch | call cursor(pos)<CR>",
+keyset('n', 'd<space>', "<Cmd>let pos=getcurpos()[1:] | keeppatterns %s/\\s\\+$//e | nohlsearch | call cursor(pos)<CR>",
     { desc = [[Remove trailing spaces]] })
 
 local autocmd = vim.api.nvim_create_autocmd

@@ -41,8 +41,8 @@ optset.termguicolors = true
 optset.diffopt = { "internal", "filler", "closeoff", "followwrap" }
 
 -- Disable netrw
--- vim.g.loaded_netrw = 1
--- vim.g.loaded_netrwPlugin = 1
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
 
 vim.cmd([[filetype plugin indent on]])
 vim.cmd([[syntax on]])
