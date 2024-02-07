@@ -31,6 +31,7 @@ A,latex-mk,
 ,lxqt-openssh-askpass,"askpass helper for sudo"
 ,trash-cli,"put files in trash"
 ,the_silver_searcher,"code searching tool"
+,rg,""
 ,atool,"A script for managing file archives of various type"
 ,thermald,"control cpu termperature"
 ,profile-cleaner,"profile-cleaner"
@@ -56,7 +57,6 @@ A,latex-mk,
 ,zathura-ps,"Adds ps support to zathura by using the libspectre library"
 ,feh,"Fast and light imlib2-based image viewer"
 ,neovim,"a tidier vim with some useful features"
-,nvim-packer-git,"A use-package inspired plugin manager for Neovim."
 ,mpv,"is the patrician's choice video player."
 ,brave-bin,"is an elegant browser with built-in adblocking, tor and other features."
 ,pamixer,"is a command-line audio interface."
@@ -71,7 +71,6 @@ A,latex-mk,
 ,gnuplot,"Plotting package which outputs to X11, PostScript, PNG, GIF, and others"
 ,pdftk,"a command-line tool for working with PDFs"
 ,btop,"A monitor of system resources, bpytop ported to C++"
-,js-beautify,"Beautify JavaScript/JSON (jsbeautifier.org)"
 ,bash-language-server,"Bash language server implementation based on Tree Sitter and its grammar for Bash"
 ,lua-language-server,
 ,dmidecode,"get serial number of the computer"
@@ -119,11 +118,9 @@ A,htop-vim,"a process viewer with vim-like keybinding"
 ,bashtop,
 A,deskreen,"Turns any device with a web browser to a second screen for your computer"
 A,xsv,"index, slice, analyze, split, and join CSV files"
-,icalingua++,"A third-party QQ client"
 ,xdotool,"Command-line X11 automation tool, for vim-slime plugin"
 ,castget,"download podcasts"
 A,com.qq.weixin.deepin,"WeChat"
-A,nodejs-xml2json," Converts XML to JSON"
 ,libxft,"enable color emoji in suckless software without crashes"
 G,dmenu,https://gitee.com/tanloong/dmenu.git
 G,dwm,https://gitee.com/tanloong/dwm.git
@@ -141,7 +138,6 @@ P,autopep8,"Python code formatter"
 ,jdk-openjdk,'OpenJDK Java 18 development kit'
 ,twine,"Collection of utilities for interacting with PyPI"
 A,baidunetdisk-bin,""
-A,nvim-packer-git,"A use-package inspired plugin manager for Neovim."
 ,aspell,"A spell checker designed to eventually replace Ispell"
 ,aspell-en,"English dictionary for aspell"
 ,libreoffice-extension-texmaths,"A LaTeX equation editor for LibreOffice"
@@ -157,8 +153,6 @@ A,python-codecov, "Report uploader for Codecov"
 ,python-nltk,"Natural language processing in Python"
 ,python-jedi,"richer tab completion in Python shell"
 ,python-pip,"The PyPA recommended tool for installing Python packages"
-,python-dill,"Serialize all of python"
-,python-pipreqs,"Pip requirements.txt generator"
 ,mypy,"Optional static typing for Python 2 and 3"
 A,sunloginclient,"sudo systemctl enable runsunloginclient.service"
 ,pcmanfm,"Extremely fast and lightweight file manager"
@@ -168,15 +162,12 @@ A,linuxqq,"official QQ"
 ,python-pynvim,"Python client to neovim"
 A,pip-autoremove,"Remove a package and its unused dependencies"
 ,python-pyqt6,""
-,python-docs,"Offline Python documentation: /usr/share/doc/python/html/index.html"
-,kdeconnect,"Connect Linux and Android: https://wiki.archlinuxcn.org/wiki/KDE#KDE_Connect, https://kdeconnect.kde.org/download.html"
 A,ttf-smiley-sans-bin,""
 ,miller,'Name-indexed data processing tool'
 ,flameshot,
 ,imwheel,
 ,man-db,"manual page"
 ,python-virtualenvwrapper,
-,systemsettings,"KDE system settings"
 ,brightnessctl,
 A,aliyunpan-go,
 ,datamash,

@@ -17,18 +17,18 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 local plugin_specs = {
-    {
-        'https://gitee.com/tanloong/auto-save.nvim.git',
-        -- cond = function()
-        --     local bufnr = vim.api.nvim_get_current_buf()
-        --     return not string.find(vim.api.nvim_buf_get_name(bufnr), "interlaced.*%.txt$")
-        -- end,
-        ft = "python",
-        event = "VeryLazy",
-        config = function()
-            require("plugin_config.autosave")
-        end
-    },
+    -- {
+    --     'https://gitee.com/tanloong/auto-save.nvim.git', -- {{{
+    --     -- cond = function()
+    --     --     local bufnr = vim.api.nvim_get_current_buf()
+    --     --     return not string.find(vim.api.nvim_buf_get_name(bufnr), "interlaced.*%.txt$")
+    --     -- end,
+    --     ft = "python",
+    --     event = "VeryLazy",
+    --     config = function()
+    --         require("plugin_config.autosave")
+    --     end -- }}}
+    -- },
     {
         'https://github.com/neoclide/coc.nvim.git',
         branch = 'release',
@@ -226,52 +226,11 @@ local plugin_specs = {
     },
     {
         'https://github.com/lilydjwg/fcitx.vim',
-        event = "VeryLazy"
+        event = "VeryLazy",
+        config = function()
+            vim.g.fcitx5_remote = "fcitx5_remote"
+        end,
     },
-    -- {
-    --     "https://github.com/askfiy/visual_studio_code",
-    --     priority = 100,
-    --     config = function()
-    --         require("visual_studio_code").setup({ -- {{{
-    --             -- `dark` or `light`
-    --             mode = "dark",
-    --             -- Whether to load all color schemes
-    --             preset = true,
-    --             -- Whether to enable background transparency
-    --             transparent = false,
-    --             -- Whether to apply the adapted plugin
-    --             expands = {
-    --                 hop = true,
-    --                 dbui = true,
-    --                 lazy = true,
-    --                 aerial = true,
-    --                 null_ls = true,
-    --                 nvim_cmp = true,
-    --                 gitsigns = true,
-    --                 which_key = true,
-    --                 nvim_tree = true,
-    --                 lspconfig = true,
-    --                 telescope = true,
-    --                 bufferline = true,
-    --                 nvim_navic = true,
-    --                 nvim_notify = true,
-    --                 vim_illuminate = true,
-    --                 nvim_treesitter = true,
-    --                 nvim_ts_rainbow = true,
-    --                 nvim_scrollview = true,
-    --                 nvim_ts_rainbow2 = true,
-    --                 indent_blankline = true,
-    --                 vim_visual_multi = true,
-    --             },
-    --             hooks = {
-    --                 before = function(conf, colors, utils) end,
-    --                 after = function(conf, colors, utils) end,
-    --             },
-    --         }) -- }}}
-    --         vim.opt.termguicolors = true
-    --         vim.cmd([[colorscheme visual_studio_code]])
-    --     end,
-    -- },
     {
         "iamcco/markdown-preview.nvim",
         cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
@@ -340,6 +299,22 @@ local plugin_specs = {
     --         keyset("n", "ZH", "<Cmd>BufferLineCloseLeft<CR>", { silent = true })
     --     end, -- }}}
     -- },
+    {
+        'nvim-telescope/telescope.nvim',
+        tag = '0.1.5',
+        dependencies = { 'nvim-lua/plenary.nvim' },
+        config = function()
+            require("telescope").setup {
+                defaults = {
+                    mappings = { i = { ["<C-u>"] = false }, },
+                }
+            }
+            local builtin = require('telescope.builtin')
+            vim.keymap.set('n', '<leader>b', builtin.find_files, {})
+            vim.keymap.set('n', '<leader>g', builtin.live_grep, {})
+            vim.keymap.set('n', '<leader>h', builtin.help_tags, {})
+        end
+    },
     {
         "jackMort/ChatGPT.nvim", -- {{{
         event = "VeryLazy",

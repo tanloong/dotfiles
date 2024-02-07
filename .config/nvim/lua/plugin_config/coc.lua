@@ -98,10 +98,6 @@ keyset("i", "<C-b>",
     'coc#float#has_scroll() ? "<c-r>=coc#float#scroll(0)<cr>" : "<Left>"', opts)
 keyset("v", "<C-f>", 'coc#float#has_scroll() ? coc#float#scroll(1) : "<C-f>"', opts)
 keyset("v", "<C-b>", 'coc#float#has_scroll() ? coc#float#scroll(0) : "<C-b>"', opts)
--- Use CTRL-S for selections ranges.
--- Requires 'textDocument/selectionRange' support of language server.
-keyset("n", "<C-s>", "<Plug>(coc-range-select)", { silent = true })
-keyset("x", "<C-s>", "<Plug>(coc-range-select)", { silent = true })
 -- vim.cmd([[set statusline=%<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P]])
 vim.cmd([[set statusline=%<%f\ %h%m%{coc#status()}%{get(b:,'coc_current_function','')}%r%=%-14.(%l,%c%V%)\ %p%%]])
 -- Add `:Format` command to format current buffer.
@@ -119,8 +115,8 @@ vim.g['coc_global_extensions'] = {
     'coc-json',
     'coc-dictionary',
     'coc-pyright',
-    'coc-lists',
 }
+-- 'coc-lists',
 -- 'coc-pairs',
 -- 'coc-markdown-preview-enhanced',
 -- 'coc-webview',
@@ -177,4 +173,4 @@ keyset("n", "gm", "<Cmd>CocCommand git.chunkStage<CR>")
 keyset("n", "gM", "<Cmd>CocCommand git.chunkUnstage<CR>")
 keyset("n", "gG", "<Cmd>CocCommand git.chunkUndo<CR>") -- }}}
 -- coc-lists
-keyset("n", "<leader>b", "<Cmd>CocList files<CR>")
+-- keyset("n", "<leader>b", "<Cmd>CocList files<CR>")

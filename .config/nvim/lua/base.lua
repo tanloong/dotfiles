@@ -4,8 +4,9 @@ local optset = vim.opt
 
 optset.backspace = 'start,eol,indent'
 optset.background = 'dark'
-optset.number = true
-optset.relativenumber = false
+optset.number = false
+optset.relativenumber = true
+optset.numberwidth = 1
 optset.tabstop = 4
 optset.expandtab = true
 optset.shiftwidth = 4
