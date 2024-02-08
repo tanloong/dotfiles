@@ -40,6 +40,7 @@ optset.path:append { '**' }
 optset.cursorlineopt = 'screenline'
 optset.termguicolors = true
 optset.diffopt = { "internal", "filler", "closeoff", "followwrap" }
+optset.jumpoptions = "stack"
 
 -- Disable netrw
 vim.g.loaded_netrw = 1

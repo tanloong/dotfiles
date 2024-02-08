@@ -26,6 +26,11 @@ autocmd("TermClose", {
         vim.api.nvim_buf_delete(buf, { force = true })
     end
 }) -- }}}
+autocmd("FocusLost", {
+    pattern = "*",
+    group = augroup("save_on_focus_lost", { clear = true }),
+    command = "silent! w",
+})
 
 local function start_hl()
     if vim.v.hlsearch == 1 then return end
@@ -55,7 +60,7 @@ local function preview_pair(direction)
     vim.cmd([[tabprevious]])
     vim_zh_re = py_zh_re:gsub("%(%?:", "%%("):gsub("%(%?(<?)([!=])([^)]+)%)", "(%3)@%1%2")
     vim_en_re = py_en_re:gsub("%(%?i[^)]*%)", "\\c"):gsub("\\b", "%%(<|>)"):gsub("%(%?(<?)([!=])([^)]+)%)", "(%3)@%1%2")
-    :gsub("%(%?:([^|)]+)[^)]*%)", "%1")
+        :gsub("%(%?:([^|)]+)[^)]*%)", "%1")
 
     start_hl()
     vim.cmd("/\\v" .. vim_zh_re .. "|" .. vim_en_re)

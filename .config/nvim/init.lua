@@ -1,6 +1,6 @@
-require('base')
+require('basics')
 require('highlights')
-require('mappings')
+require('keymaps')
 require('skeletons')
 require('commands')
 require('autocmds')
