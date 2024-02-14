@@ -48,7 +48,6 @@ alias \
     ..="cd ../.." \
     lt="du -sh * | sort -h" \
     ka="killall" \
-    gh="history 0 | grep" \
     cd-="cd -" \
     sc="shellcheck" \
     v='$EDITOR' \
@@ -68,6 +67,8 @@ alias \
     j="jupyter" \
     jt="jupyter nbconvert --to script" \
     jn="jupyter-notebook" \
+
+    # gh="history 0 | grep" \
 
 # aliases that precedes with "setsid -f"
 alias \

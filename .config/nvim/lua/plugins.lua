@@ -321,7 +321,8 @@ local plugin_specs = {
                   let c = nr2char(getchar(0))
                   return (c =~ a:pat) ? '' : c
                 endfunc
-                cabbrev <expr> h (getcmdtype() == ':' && getcmdpos() == 2 ? 'Telescope help_tags<cr><c-r>=Eatchar(" ")<cr>' : 'h')]])
+                cabbrev <expr> h (getcmdtype() == ':' && getcmdpos() == 2 ? 'Telescope help_tags<cr><c-r>=Eatchar(" ")<cr>' : 'h')
+                ]])
         end
     },
     {

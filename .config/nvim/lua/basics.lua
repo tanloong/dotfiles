@@ -35,6 +35,7 @@ optset.fillchars = { fold = '─' }
 optset.listchars = { trail = '●' }
 optset.clipboard:prepend { 'unnamed,unnamedplus' }
 optset.dictionary:append { vim.env.HOME .. "/.local/share/BNC-40thousand.txt" }
+optset.thesaurus:append {vim.env.HOME .. "/.local/share/WordNet-thesaurus.txt"}
 optset.wildignore:append { '*aux,*toc,*out' }
 optset.path:append { '**' }
 optset.cursorlineopt = 'screenline'
