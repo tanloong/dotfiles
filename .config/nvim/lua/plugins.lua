@@ -313,6 +313,15 @@ local plugin_specs = {
             vim.keymap.set('n', '<leader>b', builtin.find_files, {})
             vim.keymap.set('n', '<leader>g', builtin.live_grep, {})
             vim.keymap.set('n', '<leader>h', builtin.help_tags, {})
+
+            vim.cmd(
+                [[
+                " https://stackoverflow.com/questions/11858927/preventing-trailing-whitespace-when-using-vim-abbreviations
+                func! Eatchar(pat)
+                  let c = nr2char(getchar(0))
+                  return (c =~ a:pat) ? '' : c
+                endfunc
+                cabbrev <expr> h (getcmdtype() == ':' && getcmdpos() == 2 ? 'Telescope help_tags<cr><c-r>=Eatchar(" ")<cr>' : 'h')]])
         end
     },
     {
