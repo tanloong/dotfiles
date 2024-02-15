@@ -155,9 +155,8 @@ function ToggleOutline()
         vim.fn['coc#window#close'](winid)
     end
 end -- }}}
-
--- coc-git
--- navigate chunks of current buffer{{{
+-- coc-git{{{
+-- navigate chunks of current buffer
 keyset('n', "]g", "<Cmd>CocCommand git.prevChunk<CR><Cmd>sleep 100m<CR><Cmd>CocCommand git.chunkInfo<CR>",
     { silent = true })
 keyset('n', "[g", "<Cmd>CocCommand git.nextChunk<CR><Cmd>sleep 100m<CR><Cmd>CocCommand git.chunkInfo<CR>",

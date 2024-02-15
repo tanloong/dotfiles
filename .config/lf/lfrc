@@ -122,7 +122,7 @@ cmd open-with &"$@" $fx
 cmd open ${{
     test -L "$f" && f=$(readlink -f "$f")
     case $(file --mime-type "$f" --brief --dereference) in
-        text/*|application/json|application/javascript|application/x-dosexec|application/csv|inode/x-empty) $EDITOR "$fx";;
+        text/*|application/csv|application/json|application/x-subrip|inode/x-empty|application/javascript|application/x-dosexec) $EDITOR "$fx";;
         audio/*) mpv --audio-display=no "$fx" ;;
         video/*|image/gif) setsid -f mpv "$fx" -quiet >/dev/null 2>&1 ;;
         application/pdf|image/vnd.djvu) setsid -f "$PDFVIEWER" "$fx" >/dev/null 2>&1 ;;
