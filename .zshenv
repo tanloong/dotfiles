@@ -28,7 +28,7 @@ export OPENAI_API_HOST=$(cat $HOME/.config/openai/OPENAI_API_HOST 2> /dev/null |
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
 # fzf
-export FZF_DEFAULT_COMMAND='rg --path-to-ignore "$HOME/.ignore" --file'
+export FZF_DEFAULT_COMMAND='rg --ignore-file "$HOME/.ignore" --files'
 export FZF_DEFAULT_OPTS='--tiebreak=end,chunk --bind=ctrl-z:ignore,btab:up,tab:down --cycle --keep-right --info=inline-right --layout=reverse --tabstop=1 --exit-0 --select-1'
 export _ZO_FZF_OPTS='--scheme=path --tiebreak=end,chunk --bind=ctrl-z:ignore,btab:up,tab:down --cycle --keep-right --info=inline-right --layout=reverse --tabstop=1 --exit-0 --select-1'
 

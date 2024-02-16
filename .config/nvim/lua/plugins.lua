@@ -305,24 +305,39 @@ local plugin_specs = {
         dependencies = { 'nvim-lua/plenary.nvim' },
         config = function()
             local builtin = require('telescope.builtin')
-            require("telescope").setup {
+            local actions = require("telescope.actions")
+            require("telescope").setup({
                 defaults = {
                     preview = false,
+                    sorting_strategy = "ascending",
+                    layout_strategy = "horizontal",
+                    layout_config = {
+                        horizontal = { prompt_position = "top" },
+                        width = { padding = 0 },
+                        height = { padding = 0 },
+                    },
                     mappings = {
                         i = {
+                            ["<esc>"] = actions.close,
                             ["<c-u>"] = false,
-                            ["<esc>"] = require('telescope.actions').close,
+                            ["<c-j>"] = actions.move_selection_next,
+                            ["<c-k>"] = actions.move_selection_previous,
                         },
                     },
-                }
-            }
+                    results_title = false,
+                    borderchars = {
+                        prompt = { " ", " ", " ", " ", " ", " ", " ", " " },
+                        results = { " ", " ", " ", " ", " ", " ", " ", " " },
+                        preview = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
+                    },
+                },
+            })
             keyset('n', '<leader>b', builtin.find_files, {})
             keyset('n', '<leader>g', builtin.live_grep, {})
             keyset('n', '<leader>h', builtin.help_tags, {})
-            keyset('n', '<c-/>', builtin.current_buffer_fuzzy_find, {})
+            keyset('n', '<c-/>', function() builtin.current_buffer_fuzzy_find({ skip_empty_lines = true }) end, {})
 
-            vim.cmd(
-                [[
+            vim.cmd([[
                 " https://stackoverflow.com/questions/11858927/preventing-trailing-whitespace-when-using-vim-abbreviations
                 func! Eatchar(pat)
                   let c = nr2char(getchar(0))
