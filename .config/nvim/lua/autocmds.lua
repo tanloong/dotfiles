@@ -10,14 +10,14 @@ autocmd("FileType",
         group = augroup("format_options", { clear = true }),
         command = [[set formatoptions-=ro]]
     }) -- }}}
--- {{{ basic config for terminal buffer
+-- {{{ basic config for terminal buffer https://github.com/neovim/neovim/issues/14986
 autocmd("TermOpen",
     {
         pattern = "*",
         group = augroup("config_for_terminal_buf", { clear = true }),
         command = [[setlocal norelativenumber nonumber | setlocal statusline=channel:\ %{&channel}]]
     }) -- }}}
--- {{{ don't show [Process exited] in finished terminal
+-- {{{ skip [Process exited] in finished terminal
 autocmd("TermClose", {
     pattern = "*",
     group = augroup("term_close", { clear = true }),
@@ -26,11 +26,12 @@ autocmd("TermClose", {
         vim.api.nvim_buf_delete(buf, { force = true })
     end
 }) -- }}}
-autocmd("FocusLost", {
+-- {{{ auto save
+autocmd({ "FocusLost", "InsertLeave" }, {
     pattern = "*",
-    group = augroup("save_on_focus_lost", { clear = true }),
-    command = "silent! w",
-})
+    group = augroup("auto save", { clear = true }),
+    command = "silent! wa",
+}) -- }}}
 
 local function start_hl()
     if vim.v.hlsearch == 1 then return end

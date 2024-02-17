@@ -9,7 +9,7 @@ basename="${1%.*}"
 case "${*}" in
 	*.tex|*.sil|*.typ|*.m[dse]|*.[rR]md|*.txt|*.mom|*.[0-9])
         setsid -f xdg-open "$basename".pdf >/dev/null 2>&1 ;;
-    *.srt)
+    *.srt|*.ass)
         setsid -f mpv "$basename".mp4 > /dev/null 2>&1 ;;
 	*.html) setsid -f "$BROWSER" "$basename".html >/dev/null 2>&1 ;;
 	*.sent) setsid -f sent "$1" >/dev/null 2>&1 ;;

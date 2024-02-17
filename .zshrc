@@ -1,6 +1,3 @@
-#####################
-# zsh-newuser-install
-#####################
 HISTFILE=~/.histfile
 HISTSIZE=1000
 SAVEHIST=1000
@@ -12,9 +9,6 @@ setopt share_history
 # vi mode
 bindkey -v
 
-#############
-# compinstall
-#############
 zstyle :compinstall filename '/home/tan/.zshrc'
 
 autoload -U mcd
@@ -46,9 +40,12 @@ source $HOME/.config/aliasrc
 # functions
 fpath=($HOME/.local/share/zsh_functions/ $fpath)
 
-# display the last folder of the current working directory, but shorten the homedir to ~
+# $PS1 {{{
+# '%F{green}%n%f:%B%F{#005fff}%1~%f%b$ '
+#   - display the last folder of the current working directory, but shorten the
+#     homedir to ~
 PS1='%F{green}%n%f:%B%F{#005fff}%1~%f%b$ '
-
+# }}}
 # Warn about nested lf instances
 [ -n "$LF_LEVEL" ] && PS1="${PS1%' '}""($LF_LEVEL) "
 
@@ -58,7 +55,7 @@ source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zs
 # Remove mode switching delay.
 KEYTIMEOUT=1
 
-# Change cursor shape for different vi modes.
+# Change cursor shape for different vi modes {{{
 function zle-keymap-select {
 if [[ ${KEYMAP} == vicmd ]]   ||
 [[ $1 = 'block' ]]; then
@@ -71,11 +68,11 @@ elif [[ ${KEYMAP} == main ]]  ||
 echo -ne '\e[5 q'
 fi}
 zle -N zle-keymap-select
-
-# Use beam shape cursor on startup.
+# }}}
+# Use beam shape cursor on startup {{{
 _fix_cursor() { echo -ne '\e[5 q' }
 precmd_functions+=(_fix_cursor)
-
+# }}}
 bindkey '^u' backward-kill-line
 bindkey '^w' backward-kill-word
 bindkey '^h' backward-delete-char
