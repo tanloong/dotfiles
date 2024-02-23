@@ -119,6 +119,7 @@ local plugin_specs = {
     {
         'https://gitee.com/mirrors/vimtex.git',
         -- cmd = { 'VimtexCompile' },
+        ft = "tex",
         config = function() require('plugin_config.vimtex') end
     }, -- }}}
     -- hop {{{
@@ -359,9 +360,12 @@ local plugin_specs = {
                 },
             })
             keyset('n', '<leader>b', builtin.find_files, {})
+            keyset('n', '<leader><leader>', builtin.buffers, {})
             keyset('n', '<leader>g', builtin.live_grep, {})
+            keyset('n', '<leader>*', builtin.grep_string, {})
             keyset('n', '<leader>h', builtin.help_tags, {})
             keyset('n', '<c-/>', function() builtin.current_buffer_fuzzy_find({ skip_empty_lines = true }) end, {})
+            keyset('n', '<leader>/', function() builtin.find_files({ cwd = vim.fn.stdpath('config'), follow = true }) end, {})
 
             vim.cmd([[
                 " https://stackoverflow.com/questions/11858927/preventing-trailing-whitespace-when-using-vim-abbreviations

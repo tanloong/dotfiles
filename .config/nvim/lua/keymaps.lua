@@ -10,10 +10,8 @@ keyset('n', 'g9', 'g$')
 -- overridden by bufferline mappings
 -- keyset('n', 'gh', 'gT')
 -- keyset('n', 'gl', 'gt')
-keyset('n', 'j', 'gj')
-keyset('n', 'k', 'gk')
-keyset('n', 'gk', 'k')
-keyset('n', 'gj', 'j')
+keyset('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
+keyset('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 keyset('n', 'S', ':!')
 keyset('n', 'M', 'J')
 keyset('n', 'ga', '<Cmd>tabnew<CR><Cmd>term lazygit<CR>i')
@@ -58,7 +56,7 @@ keyset('n', 'Y', function() vim.fn.setreg('+', vim.trim(vim.api.nvim_get_current
 keyset('n', 'zl', "1z=")
 
 -- jumping between a normal buffer and a neovim terminal
-keyset('t', ';', '<c-\\><c-N>')
+keyset('t', '<esc><esc>', '<c-\\><c-n>')
 keyset('t', '<c-h>', '<c-\\><c-N><c-w>h')
 keyset('t', '<c-j>', '<c-\\><c-N><c-w>j')
 keyset('t', '<c-k>', '<c-\\><c-N><c-w>k')
