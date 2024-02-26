@@ -1,47 +1,47 @@
 #!/usr/bin/env lua
 
-local optset = vim.opt
+local opt = vim.opt
 
-optset.backspace = 'start,eol,indent'
-optset.background = 'dark'
-optset.number = false
-optset.relativenumber = true
-optset.numberwidth = 1
-optset.tabstop = 4
-optset.expandtab = true
-optset.shiftwidth = 4
-optset.updatetime = 100
-optset.signcolumn = 'yes'
+opt.backspace = 'start,eol,indent'
+opt.background = 'dark'
+opt.number = false
+opt.relativenumber = true
+opt.numberwidth = 1
+opt.tabstop = 4
+opt.expandtab = true
+opt.shiftwidth = 4
+opt.updatetime = 100
+opt.signcolumn = 'yes'
 -- optset.mouse = 'nvi'
-optset.mouse = ''
-optset.scrolloff = 3
-optset.ignorecase = true
-optset.infercase = true
-optset.smartcase = true
-optset.wrap = true
-optset.wrapscan = true
-optset.linebreak = true
-optset.swapfile = false
-optset.laststatus = 2
-optset.matchpairs = '<:>,(:),{:},[:]'
-optset.foldmethod = 'marker'
-optset.spelllang = 'en,cjk'
-optset.complete = '.,w,b,u,t,i,k'
-optset.guicursor = { 'i:ver1,v:block-inverse,a:blinkon0' }
-optset.pumheight = 7
-optset.backup = false
-optset.nrformats = 'octal'
-optset.fillchars = { fold = '─' }
-optset.listchars = { trail = '●' }
-optset.clipboard:prepend { 'unnamed,unnamedplus' }
-optset.dictionary:append { vim.env.HOME .. "/.local/share/BNC-40thousand.txt" }
-optset.thesaurus:append {vim.env.HOME .. "/.local/share/WordNet-thesaurus.txt"}
-optset.wildignore:append { '*aux,*toc,*out' }
-optset.path:append { '**' }
-optset.cursorlineopt = 'screenline'
-optset.termguicolors = true
-optset.diffopt = { "internal", "filler", "closeoff", "followwrap" }
-optset.jumpoptions = "stack"
+opt.mouse = ''
+opt.scrolloff = 3
+opt.ignorecase = true
+opt.infercase = true
+opt.smartcase = true
+opt.wrap = true
+opt.wrapscan = true
+opt.linebreak = true
+opt.swapfile = false
+opt.laststatus = 2
+opt.matchpairs = '<:>,(:),{:},[:]'
+opt.foldmethod = 'marker'
+opt.spelllang = 'en,cjk'
+opt.complete = '.,w,b,u,t,i,k'
+opt.guicursor = { 'i:ver1,v:block-inverse,a:blinkon0' }
+opt.pumheight = 7
+opt.backup = false
+opt.nrformats = 'octal'
+opt.fillchars = { fold = '─' }
+opt.listchars = { trail = '●' }
+opt.clipboard:prepend { 'unnamed,unnamedplus' }
+opt.dictionary:append { vim.env.HOME .. "/.local/share/BNC-40thousand.txt" }
+opt.thesaurus:append {vim.env.HOME .. "/.local/share/WordNet-thesaurus.txt"}
+opt.wildignore:append { '*aux,*toc,*out' }
+opt.path:append { '**' }
+opt.cursorlineopt = 'screenline'
+opt.termguicolors = true
+opt.diffopt = { "internal", "filler", "closeoff", "followwrap" }
+opt.jumpoptions = "stack"
 
 -- Disable netrw
 vim.g.loaded_netrw = 1

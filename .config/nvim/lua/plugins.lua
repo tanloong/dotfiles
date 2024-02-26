@@ -17,7 +17,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 local plugin_specs = {
-    -- auto-save.nvim {{{
+    -- auto-save.nvim
     -- {
     --     'https://gitee.com/tanloong/auto-save.nvim.git',
     --     -- cond = function()
@@ -29,8 +29,8 @@ local plugin_specs = {
     --     config = function()
     --         require("plugin_config.autosave")
     --     end
-    -- }, -- }}}
-    -- CoC {{{
+    -- },
+    -- CoC
     {
         'https://github.com/neoclide/coc.nvim.git',
         branch = 'release',
@@ -40,40 +40,40 @@ local plugin_specs = {
             return not string.find(vim.api.nvim_buf_get_name(bufnr), "interlaced.*%.txt$")
         end,
         config = function() require('plugin_config.coc') end
-    }, -- }}}
-    -- vim-surround {{{
+    },
+    -- vim-surround
     {
         'https://gitee.com/tanloong/vim-surround.git',
         event = "VeryLazy",
         config = function() vim.keymap.set('x', 's', '<Plug>VSurround') end
-    }, -- }}}
-    -- Comment {{{
+    },
+    -- Comment
     {
         'https://github.com/numToStr/Comment.nvim',
         event = "VeryLazy",
         config = function() require('plugin_config.comment') end
-    }, -- }}}
-    -- vim-markdown-toc {{{
+    },
+    -- vim-markdown-toc
     {
         'https://gitee.com/lovealone72/vim-markdown-toc.git',
         ft = { 'markdown' },
         event = "VeryLazy",
         config = function() require('plugin_config.vim_markdown_toc') end
-    }, -- }}}
-    -- vim-table-mode {{{
+    },
+    -- vim-table-mode
     {
         'https://gitee.com/yaozhijin/vim-table-mode.git',
         ft = { 'markdown' },
         event = "VeryLazy",
         config = function() require('plugin_config.vim_table_mode') end
-    }, -- }}}
-    -- vim-slime {{{
+    },
+    -- vim-slime
     -- {
     --     'https://gitee.com/tanloong/vim-slime',
     --     event = "VeryLazy",
     --     config = function() require('plugin_config.vim_slime') end
-    -- },}}}
-    -- Iron {{{
+    -- },
+    -- Iron
     {
         'Vigemus/iron.nvim',
         config = function()
@@ -114,21 +114,21 @@ local plugin_specs = {
             vim.keymap.set('n', '<space>rf', '<cmd>IronFocus<cr>')
             vim.keymap.set('n', '<space>rh', '<cmd>IronHide<cr>')
         end
-    }, -- }}}
-    -- vimtex {{{
+    },
+    -- vimtex
     {
         'https://gitee.com/mirrors/vimtex.git',
         -- cmd = { 'VimtexCompile' },
         ft = "tex",
         config = function() require('plugin_config.vimtex') end
-    }, -- }}}
-    -- hop {{{
+    },
+    -- hop
     {
         'https://github.com/smoka7/hop.nvim',
         event = "VeryLazy",
         config = function() require('plugin_config.hop') end
-    }, -- }}}
-    -- tree-sitter {{{
+    },
+    -- tree-sitter
     {
         'nvim-treesitter/nvim-treesitter',
         run = ':TSUpdate',
@@ -140,15 +140,15 @@ local plugin_specs = {
         dependencies = "nvim-treesitter/nvim-treesitter",
         event = "VeryLazy",
         config = function() require('plugin_config.nvim_treesitter_textobjects') end,
-    }, -- }}}
-    -- wilefire.nvim {{{
+    },
+    -- wilefire.nvim
     {
         "https://github.com/SUSTech-data/wildfire.nvim",
         dependencies = "nvim-treesitter/nvim-treesitter",
         event = "VeryLazy",
         config = function() require('plugin_config.wildfire') end,
-    }, -- }}}
-    -- indent-blankline {{{
+    },
+    -- indent-blankline
     {
         'lukas-reineke/indent-blankline.nvim',
         main = "ibl",
@@ -157,21 +157,21 @@ local plugin_specs = {
             hl(0, "IblIndent", { ctermbg = 'none', ctermfg = 'darkgray', fg = '#3A3A3A' })
             require("ibl").setup({ scope = { enabled = false } })
         end
-    }, -- }}}
-    -- nvim-align {{{
+    },
+    -- nvim-align
     {
         'https://gitee.com/tanloong/nvim-align.git',
         event = "VeryLazy",
-    }, -- }}}
-    -- toggleterm {{{
+    },
+    -- toggleterm
     {
         "https://github.com/tanloong/toggleterm.nvim",
         branch = "skip-toggle",
         -- "https://github.com/akinsho/toggleterm.nvim",
         event = "VeryLazy",
         config = function() require('plugin_config.toggleterm') end
-    }, -- }}}
-    -- lf.nvim {{{
+    },
+    -- lf.nvim
     {
         "https://github.com/tanloong/lf.nvim",
         branch = "fix-wrong-number-of-arguments-to-insert",
@@ -179,8 +179,8 @@ local plugin_specs = {
         config = function() require('plugin_config.lf_nvim') end,
         event = "VeryLazy",
         dependencies = { "toggleterm.nvim" }
-    }, -- }}}
-    -- neo-tree {{{
+    },
+    -- neo-tree
     -- {
     --     "nvim-neo-tree/neo-tree.nvim",
     --     branch = "v3.x",
@@ -194,14 +194,14 @@ local plugin_specs = {
     --     config = function()
     --         require("plugin_config.neo_tree")
     --     end,
-    -- }, -- }}}
-    -- boole {{{
+    -- },
+    -- boole
     {
         "nat-418/boole.nvim",
         event = "VeryLazy",
         config = function() require('plugin_config.boole_nvim') end,
-    }, -- }}}
-    -- hlsearch {{{
+    },
+    -- hlsearch
     {
         -- 'nvimdev/hlsearch.nvim',
         dir = '/home/tan/projects/hlsearch.nvim/',
@@ -213,8 +213,8 @@ local plugin_specs = {
             local bufnr = vim.api.nvim_get_current_buf()
             return not string.find(vim.api.nvim_buf_get_name(bufnr), "interlaced.*%.txt$")
         end,
-    }, -- }}}
-    -- interlaced {{{
+    },
+    -- interlaced
     {
         dir = '~/projects/interlaced.nvim',
         ft = "text",
@@ -240,22 +240,22 @@ local plugin_specs = {
             end
             require("interlaced").setup(opts)
         end,
-    }, -- }}}
-    -- typst.vim {{{
+    },
+    -- typst.vim
     {
         'kaarmu/typst.vim',
         ft = { 'typst' },
         event = "VeryLazy",
-    }, -- }}}
-    -- fcitx.vim {{{
+    },
+    -- fcitx.vim
     {
         'https://github.com/lilydjwg/fcitx.vim',
         event = "VeryLazy",
         config = function()
             vim.g.fcitx5_remote = "fcitx5_remote"
         end,
-    }, -- }}}
-    -- markdown-preview {{{
+    },
+    -- markdown-preview
     {
         "iamcco/markdown-preview.nvim",
         cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
@@ -263,8 +263,8 @@ local plugin_specs = {
         build = function() vim.fn["mkdp#util#install"]() end,
         event = "VeryLazy",
         config = function() require("plugin_config.markdown_preview") end,
-    }, -- }}}
-    -- bufferline {{{
+    },
+    -- bufferline
     -- {
     --     'akinsho/bufferline.nvim',
     --     version = "*",
@@ -324,61 +324,16 @@ local plugin_specs = {
     --         keyset("n", "ZL", "<Cmd>BufferLineCloseRight<CR>", { silent = true })
     --         keyset("n", "ZH", "<Cmd>BufferLineCloseLeft<CR>", { silent = true })
     --     end,
-    -- }, -- }}}
-    -- Telescope {{{
+    -- },
+    -- Telescope
     {
         'nvim-telescope/telescope.nvim',
         tag = '0.1.5',
         dependencies = { 'nvim-lua/plenary.nvim' },
-        config = function()
-            local builtin = require('telescope.builtin')
-            local actions = require("telescope.actions")
-            require("telescope").setup({
-                defaults = {
-                    preview = false,
-                    sorting_strategy = "ascending",
-                    layout_strategy = "horizontal",
-                    layout_config = {
-                        horizontal = { prompt_position = "top" },
-                        width = { padding = 0 },
-                        height = { padding = 0 },
-                    },
-                    mappings = {
-                        i = {
-                            ["<esc>"] = actions.close,
-                            ["<c-u>"] = false,
-                            ["<c-j>"] = actions.move_selection_next,
-                            ["<c-k>"] = actions.move_selection_previous,
-                        },
-                    },
-                    results_title = false,
-                    borderchars = {
-                        prompt = { " ", " ", " ", " ", " ", " ", " ", " " },
-                        results = { " ", " ", " ", " ", " ", " ", " ", " " },
-                        preview = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
-                    },
-                },
-            })
-            keyset('n', '<leader>b', builtin.find_files, {})
-            keyset('n', '<leader><leader>', builtin.buffers, {})
-            keyset('n', '<leader>g', builtin.live_grep, {})
-            keyset('n', '<leader>*', builtin.grep_string, {})
-            keyset('n', '<leader>h', builtin.help_tags, {})
-            keyset('n', '<c-/>', function() builtin.current_buffer_fuzzy_find({ skip_empty_lines = true }) end, {})
-            keyset('n', '<leader>/', function() builtin.find_files({ cwd = vim.fn.stdpath('config'), follow = true }) end, {})
+        config = function() require("plugin_config.telescope_nvim") end,
+    },
 
-            vim.cmd([[
-                " https://stackoverflow.com/questions/11858927/preventing-trailing-whitespace-when-using-vim-abbreviations
-                func! Eatchar(pat)
-                  let c = nr2char(getchar(0))
-                  return (c =~ a:pat) ? '' : c
-                endfunc
-                cabbrev <expr> h (getcmdtype() == ':' && getcmdline() == 'h' ? 'Telescope help_tags<cr><c-r>=Eatchar(" ")<cr>' : 'h')
-                cabbrev <expr> Man (getcmdtype() == ':' && getcmdline() == 'Man' ? 'Telescope man_pages<cr><c-r>=Eatchar(" ")<cr>' : 'h')
-                ]])
-        end
-    }, -- }}}
-    -- ChatGPT {{{
+    -- ChatGPT
     {
         "jackMort/ChatGPT.nvim",
         event = "VeryLazy",
@@ -390,12 +345,12 @@ local plugin_specs = {
             "nvim-lua/plenary.nvim",
             "nvim-telescope/telescope.nvim"
         },
-    }, -- }}}
-    -- diffchar {{{
+    },
+    -- diffchar
     {
         "https://github.com/rickhowe/diffchar.vim",
         event = "VeryLazy",
-    }, -- }}}
+    },
 }
 
 -- configuration for lazy itself.
