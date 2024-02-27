@@ -776,6 +776,10 @@ snippet p "print something"
 print(${1:${VISUAL}})
 endsnippet
 
+snippet l "log something"
+logging.${1:info}(f"$2")
+endsnippet
+
 snippet b "print something" b
 breakpoint()
 endsnippet
