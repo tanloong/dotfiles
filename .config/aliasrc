@@ -51,7 +51,6 @@ alias \
     cd-="cd -" \
     sc="shellcheck" \
     v='$EDITOR' \
-    vim='$EDITOR' \
     va='$EDITOR $HOME/.config/aliasrc' \
     vb='$EDITOR $HOME/.${SHELL##*/}rc' \
     ve='$EDITOR $HOME/.${SHELL##*/}env' \
