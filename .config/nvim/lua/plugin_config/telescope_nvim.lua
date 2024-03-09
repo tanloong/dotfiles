@@ -30,8 +30,8 @@ telescope.setup({
     },
 })
 
-keyset('n', '<leader>b', builtin.find_files, {})
-keyset('n', '<leader><leader>', builtin.buffers, {})
+keyset('n', '<leader>b', builtin.buffers, {})
+keyset('n', '<leader><leader>', builtin.find_files, {})
 keyset('n', '<leader>g', builtin.live_grep, {})
 keyset('n', '<leader>*', builtin.grep_string, {})
 keyset('n', '<leader>h', builtin.help_tags, {})

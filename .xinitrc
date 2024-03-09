@@ -19,6 +19,7 @@ remap 2> /dev/null
 killall $TERMINAL > /dev/null 2>&1 || :
 setsid -f $TERMINAL
 goldendict &
-"/home/tan/software/Clash for Windows-0.20.25-x64-linux/cfw" &
-exec startdwm.sh
+# "/home/tan/software/Clash for Windows-0.20.25-x64-linux/cfw" &
+# exec startdwm.sh
+exec dwm
 # exec i3

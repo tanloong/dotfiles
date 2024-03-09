@@ -1,5 +1,7 @@
 #!/usr/bin/env lua
+
 local keyset = vim.keymap.set
+
 keyset({ 'n', 'v', 'o' }, 'K', '5gk')
 keyset({ 'n', 'v', 'o' }, 'J', '5gj')
 keyset({ 'n', 'v', 'o' }, 'H', '5h')
@@ -15,6 +17,7 @@ keyset({ 'n', 'v' }, 'j', 'gj')
 keyset({ 'n', 'v' }, 'gk', 'k')
 keyset({ 'n', 'v' }, 'gj', 'j')
 keyset('n', 'S', ':!')
+keyset('n', 'sS', ':%!')
 keyset('n', 'M', 'J')
 keyset('n', 'ga', '<Cmd>tabnew<CR><Cmd>term lazygit<CR>i')
 -- keyset('n', 'ga', '<Cmd>tabe<CR><Cmd>term gitui<CR>i')

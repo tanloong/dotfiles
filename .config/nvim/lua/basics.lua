@@ -42,6 +42,8 @@ opt.cursorlineopt = 'screenline'
 opt.termguicolors = true
 opt.diffopt = { "internal", "filler", "closeoff", "followwrap" }
 opt.jumpoptions = "stack"
+opt.grepprg = "rg --vimgrep --smart-case $*"
+opt.grepformat = "%f:%l:%c:%m,%f:%l:%m,%f:%l%m,%f  %l%m"
 
 -- Disable netrw
 vim.g.loaded_netrw = 1

@@ -31,6 +31,14 @@ else
     export EDITOR="vim"; alias vv='vim $HOME/.vim/vimrc'
 fi
 
+function nq {
+    if [ $# -eq 0 ]; then
+        echo "usage: nq <pattern>"
+        return
+    fi
+    nvim -q <(rg --vimgrep --smart-case "$@")
+}
+
 # These common commands are just too long! Abbreviate them.
 alias \
     dl="trash" \

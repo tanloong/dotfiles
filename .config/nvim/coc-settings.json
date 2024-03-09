@@ -131,5 +131,6 @@
     "notification.disabledProgressSources": [
         "*"
     ],
-    "tabnine.filetypes": ["python", "lua", "sh", "c"]
+    "tabnine.filetypes": ["python", "lua", "sh", "c"],
+    "tabnine.priority": 40
 }
