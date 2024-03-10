@@ -36,7 +36,6 @@ A,latex-mk,
 ,thermald,"control cpu termperature"
 ,profile-cleaner,"profile-cleaner"
 ,xournalpp,"handwriting notetaking software with PDF annotation support"
-,picom,"a compositor for X11"
 ,moreutils,"A growing collection of the unix tools that nobody thought to write thirty years ago"
 ,texlive-basic,
 ,texlive-bin,
@@ -66,7 +65,6 @@ A,latex-mk,
 ,unzip-natspec,"unzips .zip archives with non-latin filenames."
 ,xclip,"allows for copying and pasting from the command line."
 ,fzf,"is a fuzzy finder tool."
-,octave,"a high-level interpreted language, primarily intended for numerical computations"
 ,openblas,"replacement for blas, which is used by octave and R to produce dramatic speed increases for many common computations"
 ,gnuplot,"Plotting package which outputs to X11, PostScript, PNG, GIF, and others"
 ,pdftk,"a command-line tool for working with PDFs"
@@ -78,12 +76,12 @@ A,latex-mk,
 ,bash-completion,"Programmable completion for the bash shell"
 ,zsh,
 ,zsh-syntax-highlighting,
+,zsh-autosuggestions,
 ,android-file-transfer,"Android MTP client with minimalistic UI, e.g. `aft-mtp-mount, aft-mtp-cli`"
 ,android-udev,"needed when aft-mtp-mount returns 'no device found'"
 ,gnome-bluetooth,"provide `bluetooth-sendto` in CLI"
 ,blueman,"GTK+ Bluetooth manager"
 ,bluez-utils,"Development and debugging utilities for the bluetooth protocol stack"
-,crow-translate,"terminal translator"
 ,wudao-dict-git,"The command line version of Youdao Dictionary, supporting English-Chinese mutual search and online search"
 ,lazygit,"simple terminal UI for git commands"
 ,wqy-zenhei,"font"
@@ -95,7 +93,6 @@ A,latex-mk,
 ,csvkit,"A suite of utilities for converting to and working with CSV"
 ,shotcut,"Qt based Video Editor"
 ,nltk-data,"Corpora, grammars and other linguistic data for NLTK"
-,ipython,"An enhanced Interactive Python shell"
 ,gnome-shell-pomodoro,"A time management utility for GNOME based on the pomodoro technique"
 ,bilili,"bilibili video downloader"
 ,you-get,"YouTube video downloader"

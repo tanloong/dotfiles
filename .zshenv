@@ -32,8 +32,8 @@ export FZF_DEFAULT_COMMAND='rg --ignore-file "$HOME/.ignore" --files'
 export FZF_DEFAULT_OPTS='--tiebreak=end,chunk --bind=ctrl-z:ignore,btab:up,tab:down --cycle --keep-right --info=inline-right --layout=reverse --tabstop=1 --exit-0 --select-1'
 export _ZO_FZF_OPTS='--scheme=path --tiebreak=end,chunk --bind=ctrl-z:ignore,btab:up,tab:down --cycle --keep-right --info=inline-right --layout=reverse --tabstop=1 --exit-0 --select-1'
 
-export http_proxy=127.0.0.1:7890
-export https_proxy=127.0.0.1:7890
+# export http_proxy=127.0.0.1:7890
+# export https_proxy=127.0.0.1:7890
 
 # display icons properly for CJK environment in Lf: https://github.com/gokcehan/lf/issues/583
 export RUNEWIDTH_EASTASIAN=0

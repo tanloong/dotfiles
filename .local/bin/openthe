@@ -13,7 +13,8 @@ case "$app" in
             *)
                 $TERMINAL;
         esac;;
-    browser) brave --proxy-server=127.0.0.1:7890;;
+    # browser) brave --proxy-server=127.0.0.1:7890;;
+    browser) brave ;;
     dictionary) goldendict;;
     keepassx) togglethe.sh keepassxc;;
     screenshot-noclip)

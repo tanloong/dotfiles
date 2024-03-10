@@ -27,7 +27,7 @@ autocmd("TermClose", {
     end
 }) -- }}}
 -- {{{ auto save
-autocmd({ "FocusLost", "InsertLeave" }, {
+autocmd({ "FocusLost", "InsertLeave", "BufLeave" }, {
     pattern = "*",
     group = augroup("auto save", { clear = true }),
     command = "silent! wa",

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-function fzf_open_with {
+function fzf_with {
     file="$(fzf --reverse)"
     # in case you press <Esc> and fzf returns zero length of string
     if [ -n "$file" ]; then
@@ -13,11 +13,11 @@ function fzf_open_with {
     fi
 }
 alias \
-    fcd="fzf_open_with cd" \
-    fv='fzf_open_with $EDITOR' \
-    fz='fzf_open_with $PDFVIEWER' \
-    fr='fzf_open_with $FILE_MANAGER' \
-    fs="fzf_open_with bluetooth-sendto" \
+    fcd="fzf_with cd" \
+    fv='fzf_with $EDITOR' \
+    fz='fzf_with $PDFVIEWER' \
+    fr='fzf_with $FILE_MANAGER' \
+    fs="fzf_with bluetooth-sendto" \
 
 # Colorize commands when possible.
 alias \
