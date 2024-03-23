@@ -59,7 +59,8 @@ keyset('n', '<leader>S', [[<cmd>exec "silent!! zeal " .. expand("<cword>")<cr>]]
 keyset('v', '<leader>S', [[:<c-u>exec "silent!! zeal " .. DT#get_visual_selection()<cr>]])
 keyset('n', '<leader>K', [[<cmd>exec "silent!! goldendict " .. expand("<cword>")<cr>]])
 keyset('v', '<leader>K', [[:<c-u>exec "silent!! goldendict " .. DT#get_visual_selection()<cr>]])
-
+keyset('n', '<leader>b', [[<cmd>ls<cr>:b<space>]])
+keyset('n', '<leader>e', [[<cmd>exec empty(filter(getwininfo(), 'v:val.quickfix')) ? 'copen' : 'cclose'<cr>]])
 keyset('n', 'Y', function() vim.fn.setreg('+', vim.trim(vim.api.nvim_get_current_line())) end)
 keyset('n', 'zl', "1z=")
 

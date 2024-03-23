@@ -15,9 +15,14 @@ function! DT#chicount() range
 endfunc
 
 function! DT#get_visual_selection()
+    " https://stackoverflow.com/questions/1533565/how-to-get-visually-selected-text-in-vimscript/6271254#6271254
     " Why is this not a built-in Vim script function?!
     let [line_start, column_start] = getpos("'<")[1:2]
-    let [line_end, column_end] = getpos("'>")[1:2]
+    let [line_end, column_end] = getpos("'>")[1:2] " column_end can be v:maxcol if V
+    " if multibyte char at '>
+    if column_end > getcharpos("'>")[2]
+        let column_end = min([column_end + 2, v:maxcol])
+    endif
     let lines = getline(line_start, line_end)
     if len(lines) == 0
         return ''

@@ -246,6 +246,9 @@ local plugin_specs = {
         'kaarmu/typst.vim',
         ft = { 'typst' },
         event = "VeryLazy",
+        config = function()
+         vim.g.typst_auto_open_quickfix = false
+        end,
     },
     -- fcitx.vim
     {
