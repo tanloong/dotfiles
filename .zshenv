@@ -39,4 +39,4 @@ export _ZO_FZF_OPTS='--scheme=path --tiebreak=end,chunk --bind=ctrl-z:ignore,bta
 export RUNEWIDTH_EASTASIAN=0
 
 # source LS_COLORS
-[ -f $HOME/.local/share/ls-colors.sh ] && source $HOME/.local/share/ls-colors.sh
+[ -f $HOME/.local/share/ls-colors.txt ] && export LS_COLORS=$(cat $HOME/.local/share/ls-colors.txt)

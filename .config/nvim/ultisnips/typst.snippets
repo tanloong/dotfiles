@@ -70,6 +70,9 @@ image("$1")
 caption: [<<>>]
 ) <<>>
 endsnippet
+snippet "([a-zA-Z0-9_])\[" "array.at()" irA
+`!p snip.rv = match.group(1)`.at($0)<<>>
+endsnippet
 
 priority 200
 # math snippets begin

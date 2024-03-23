@@ -117,9 +117,19 @@ endsnippet
 snippet '^def' "define constants" rA
 #define $0
 endsnippet
+
 snippet p "print something"
 printf("$1\n"$2);$0
 endsnippet
+
+snippet pri "printf(..)" b
+printf("$1"${2/..*/, /}$2);
+endsnippet
+
+snippet pln "printf(..\n)" b
+printf("$1\n"${2/..*/, /}$2);
+endsnippet
+
 snippet s "scanf something"
 scanf("$1",&$2);$0
 endsnippet

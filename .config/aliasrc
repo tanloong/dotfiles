@@ -4,7 +4,8 @@ function fzf_with {
     file="$(fzf --reverse)"
     # in case you press <Esc> and fzf returns zero length of string
     if [ -n "$file" ]; then
-        dir="${file%/*}"
+        abspath=$(readlink -f "$file")
+        dir="${abspath%/*}"
         case "$1" in
             cd) cd "$dir" || return;;
             # *) cd "$dir" && "$1" "$file" || return;;
