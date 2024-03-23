@@ -55,8 +55,11 @@ keyset('n', 'dib', '<Cmd>%d<cr>')
 keyset('n', 'yib', '<Cmd>%y<cr>')
 keyset('n', 'cib', 'ggcG')
 -- keyset('n', '<enter>', 'i<enter><esc>')
--- keyset('n', '<tab>', "<Cmd>exe 'silent!!goldendict ' .. expand('<cword>')<cr>")
-keyset('v', '<tab>', ":w <Home>silent<End> !xargs goldendict<cr>")
+keyset('n', '<leader>S', [[<cmd>exec "silent!! zeal " .. expand("<cword>")<cr>]])
+keyset('v', '<leader>S', [[:<c-u>exec "silent!! zeal " .. DT#get_visual_selection()<cr>]])
+keyset('n', '<leader>K', [[<cmd>exec "silent!! goldendict " .. expand("<cword>")<cr>]])
+keyset('v', '<leader>K', [[:<c-u>exec "silent!! goldendict " .. DT#get_visual_selection()<cr>]])
+
 keyset('n', 'Y', function() vim.fn.setreg('+', vim.trim(vim.api.nvim_get_current_line())) end)
 keyset('n', 'zl', "1z=")
 
