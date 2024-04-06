@@ -50,19 +50,10 @@ map b :backup; unselect
 map cw rename_edit # new rename
 map cx %chmod +x $fx
 map cX %chmod -x $fx
-map gcc cd ~/.config
-map gcr cd ~/.config/ranger
 map gcl cd ~/.config/lf
 map gcv cd ~/.config/nvim
-map gcz cd ~/.config/zathura
-map gsd cd ~/software/dwm/
-map gss cd ~/software
-map gst cd ~/software/st/
-map gsl cd ~/software/slstatus/
 map glb cd ~/.local/bin
 map gls cd ~/.local/share
-map gpd cd ~/projects/dotfiles
-map gpn cd ~/projects/dotfiles/.config/nvim/lua/
 map ga $lazygit
 map gib :git_branch
 map gis ${{clear; git status; read -p "press any key to continue" -n 1}}

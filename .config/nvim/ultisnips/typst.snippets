@@ -14,10 +14,20 @@ endglobal
 
 priority 100
 snippet ,a "bold" wA
-*$1* <<>>
+*$1*`!p
+if t[2] and t[2][0] not in [':', ',', '.', '?', '-', ' ']:
+	snip.rv = ' '
+else:
+	snip.rv = ''
+`${2:<<>>}
 endsnippet
 snippet ,i "italics" wA
-_$1_ <<>>
+_$1_`!p
+if t[2] and t[2][0] not in [':', ',', '.', '?', '-', ' ']:
+	snip.rv = ' '
+else:
+	snip.rv = ''
+`${2:<<>>}
 endsnippet
 snippet ,c "inline raw text" wA
 #$0
@@ -28,6 +38,14 @@ snippet ,` "code blocks" bA
 \`\`\`
 
 <<>>
+endsnippet
+snippet ,l "link" wA
+#link("$1")[<<>>]`!p
+if t[2] and t[2][0] not in [':', ',', '.', '?', '-', ' ']:
+	snip.rv = ' '
+else:
+	snip.rv = ''
+`${2:<<>>}
 endsnippet
 snippet ,1 "Section" bA
 = $1
@@ -70,7 +88,7 @@ image("$1")
 caption: [<<>>]
 ) <<>>
 endsnippet
-snippet "([a-zA-Z0-9_])\[" "array.at()" irA
+snippet "([a-zA-Z0-9_])\[" "array.at()" ir
 `!p snip.rv = match.group(1)`.at($0)<<>>
 endsnippet
 

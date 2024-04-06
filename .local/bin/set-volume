@@ -3,11 +3,11 @@ set -euo pipefail
 IFS=$'\n\t'
 
 flag="$1"
-coefficient=5 # 每次调整 5%
+delta=5 # 每次调整 5%
 
 case "$flag" in
-    1) pamixer --unmute --increase "$coefficient" --allow-boost;;
-    -1) pamixer --decrease "$coefficient" --allow-boost;;
+    1) pamixer --unmute --increase "$delta" --allow-boost;;
+    -1) pamixer --decrease "$delta" --allow-boost;;
     *) pamixer --toggle-mute;;
 esac
 

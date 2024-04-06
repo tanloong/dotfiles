@@ -1,4 +1,4 @@
-function! DT#chicount() range
+function! DT#wczh() range
 	let save = @z
 	silent exec 'normal! gv"zy'
 	let text = @z

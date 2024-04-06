@@ -52,6 +52,9 @@ set --global --export _ZO_FZF_OPTS '--scheme=path --tiebreak=end,chunk --bind=ct
 # display icons properly for CJK environment in Lf: https://github.com/gokcehan/lf/issues/583
 set --global --export RUNEWIDTH_EASTASIAN 0
 
+bind --mode default \ce edit_command_buffer
+bind --mode insert \ce edit_command_buffer
+
 # source LS_COLORS
 # [ -f $HOME/.local/share/ls-colors.sh ] && source $HOME/.local/share/ls-colors.sh
 
@@ -137,7 +140,7 @@ alias x="setsid -f xournalpp"
 alias zathura="setsid -f zathura"
 alias rstudio="setsid -f rstudio-bin"
 alias spyder="setsid -f spyder"
-alias wechat="setsid -f wechat-uos"
+alias wechat="setsid -f wechat-universal"
 alias QQ="setsid -f linuxqq"
 alias et="setsid -f et"
 alias wps="setsid -f wps"

@@ -95,7 +95,7 @@
   <scanPopupAltMode>0</scanPopupAltMode>
   <scanPopupAltModeSecs>3</scanPopupAltModeSecs>
   <ignoreOwnClipboardChanges>0</ignoreOwnClipboardChanges>
-  <scanToMainWindow>0</scanToMainWindow>
+  <scanToMainWindow>1</scanToMainWindow>
   <ignoreDiacritics>0</ignoreDiacritics>
   <showScanFlag>0</showScanFlag>
   <scanPopupUseUIAutomation>1</scanPopupUseUIAutomation>

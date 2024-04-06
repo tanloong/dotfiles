@@ -103,9 +103,6 @@ endsnippet
 snippet ,c "$()" wA
 "\$($0)"<<>>
 endsnippet
-snippet "([a-zA-Z0-9_]+)\[" "array" irA
-\${`!p snip.rv = match.group(1)`[$0]}<<>>
-endsnippet
 # autocmd Filetype sh inoremap ,c ``<Esc>i
 # autocmd Filetype sh inoremap ,1 !
 # autocmd Filetype sh inoremap ,2 @

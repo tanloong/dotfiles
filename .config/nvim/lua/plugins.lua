@@ -87,6 +87,7 @@ local plugin_specs = {
                         sh     = { command = { "bash" } },
                         python = { command = { "python" } },
                         r      = { command = { "R" } },
+                        rmd    = { command = { "R" } },
                         lua    = { command = { "lua" } },
                     },
                     repl_open_cmd = require('iron.view').split.horizontal.botright(0.35)
@@ -247,7 +248,8 @@ local plugin_specs = {
         ft = { 'typst' },
         event = "VeryLazy",
         config = function()
-         vim.g.typst_auto_open_quickfix = false
+            vim.g.typst_auto_open_quickfix = false
+            vim.g.typst_syntax_highlight = false
         end,
     },
     -- fcitx.vim
@@ -337,17 +339,41 @@ local plugin_specs = {
     },
 
     -- ChatGPT
+    -- {
+    --     "jackMort/ChatGPT.nvim",
+    --     event = "VeryLazy",
+    --     config = function()
+    --         require("plugin_config.chatgpt")
+    --     end,
+    --     dependencies = {
+    --         "MunifTanjim/nui.nvim",
+    --         "nvim-lua/plenary.nvim",
+    --         "nvim-telescope/telescope.nvim"
+    --     },
+    -- },
     {
-        "jackMort/ChatGPT.nvim",
+        -- "robitx/gp.nvim",
+        "https://github.com/XXiaoA/gp.nvim",
+        config = function()
+            require("plugin_config.gp_nvim")
+        end,
+        event = "VeryLazy",
+    },
+    {
+        -- use this to map jk to search placeholder
+        "max397574/better-escape.nvim",
         event = "VeryLazy",
         config = function()
-            require("plugin_config.chatgpt")
+            require("better_escape").setup({
+                mapping = { "jk" },
+                timeout = vim.o.timeoutlen,
+                clear_empty_lines = false,
+                -- insert mode mapping
+                keys = '<Esc>/<<>><CR>:set nohlsearch<CR>"_c4<right>',
+            })
+            -- normal mode mapping
+            keyset('n', '<SPACE><SPACE>', '/<<>><CR>:set nohlsearch<CR>"_c4<right>')
         end,
-        dependencies = {
-            "MunifTanjim/nui.nvim",
-            "nvim-lua/plenary.nvim",
-            "nvim-telescope/telescope.nvim"
-        },
     },
     -- diffchar
     {

@@ -17,7 +17,7 @@ require("chatgpt").setup({
             cycle_modes = "<C-f>",
             next_message = "<C-j>",
             prev_message = "<C-k>",
-            select_session = "<Space>",
+            select_session = "<cr>",
             rename_session = "cw",
             delete_session = "dd",
             draft_message = "<C-r>",
