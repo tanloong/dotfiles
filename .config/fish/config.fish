@@ -7,8 +7,11 @@ function fish_prompt
     set_color green
     echo -n "$(whoami)":
     set_color 005fff
-    echo -n $(prompt_pwd)
+    echo -n $(basename $(prompt_pwd))
     set_color normal
+    if set -q LF_LEVEL
+        echo -n "($LF_LEVEL) "
+    end
     echo -n '$ '
 end
 
@@ -29,17 +32,18 @@ set --global --export PATH $PATH $STANFORD_TREGEX_HOME $STANFORD_PARSER_HOME
 set --global --export NLTK_DATA $HOME/software/nltk_data/
 set --global --export TESSDATA_PREFIX /usr/share/tessdata/
 set --global --export SUDO_ASKPASS /usr/bin/lxqt-openssh-askpass
-set --global --export CDPATH $HOME $HOME/university/ $HOME/software $HOME/projects $HOME/docx
-set --global --export CDPATH $CDPATH $HOME/university/this-year/current-semester
-set --global --export CDPATH $CDPATH $HOME/projects/.shangwai/
+# set --global --export CDPATH $HOME $HOME/university/ $HOME/software $HOME/projects $HOME/docx
+# set --global --export CDPATH $CDPATH $HOME/projects/.shangwai/
 set --global --export TERMINAL "terminal.sh"
 set --global --export PDFVIEWER "zathura"
 set --global --export BROWSER "brave"
 set --global --export FILE_MANAGER "lf"
 set --global --export WORKON_HOME ~/.virtualenvs
-set --global --export OPENAI_API_KEY $(cat $HOME/.config/openai/OPENAI_API_KEY 2> /dev/null || echo "")
-set --global --export OPENAI_API_BASE $(cat $HOME/.config/openai/OPENAI_API_BASE 2> /dev/null || echo "")
-set --global --export OPENAI_API_HOST $(cat $HOME/.config/openai/OPENAI_API_HOST 2> /dev/null || echo "")
+set --global --export OPENAI_API_KEY $(cat $HOME/.config/api_keys/OPENAI_API_KEY 2> /dev/null || echo "")
+set --global --export OPENAI_API_BASE $(cat $HOME/.config/api_keys/OPENAI_API_BASE 2> /dev/null || echo "")
+set --global --export OPENAI_API_HOST $(cat $HOME/.config/api_keys/OPENAI_API_HOST 2> /dev/null || echo "")
+set --global --export GROQ_API_KEY $(cat $HOME/.config/api_keys/GROQ_API_KEY 2> /dev/null || echo "")
+set --global --export GROQ_API_BASE $(cat $HOME/.config/api_keys/GROQ_API_BASE 2> /dev/null || echo "")
 
 # colored GCC warnings and errors
 set --global --export GCC_COLORS 'error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
@@ -131,6 +135,33 @@ alias setvirtualenvproject="vf connect"
 alias j="jupyter"
 alias jt="jupyter nbconvert --to script"
 alias jn="jupyter-notebook"
+
+function activate
+    set --function current_dir (pwd)
+    set --function home_home (dirname (realpath $HOME))
+    set --function venv_path ""
+
+    # Recursive search for .venv directory
+    while test -n $current_dir -a $home_home != $current_dir
+        if test -e $current_dir/.venv
+            set --function venv_path (realpath $current_dir/.venv)
+            break
+        end
+        set --function current_dir (dirname $current_dir)
+    end
+
+    if test -n $venv_path
+        # Check if the path is valid
+        if test -d $venv_path
+            # Execute the activate.fish script
+            source $venv_path/bin/activate.fish
+        else
+            echo "Found .venv at $venv_path, but it is not a valid directory"
+        end
+    else
+        echo "Could not find .venv directory"
+    end
+end
 
 # aliases that precedes with "setsid -f"
 alias deskreen="setsid -f deskreen"

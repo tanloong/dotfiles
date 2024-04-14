@@ -1,2 +1,4 @@
--- for vim-slime
-vim.b['slime_cell_delimiter'] = "##"
+#!/usr/bin/env lua
+
+vim.opt.tabstop = 2
+vim.opt.shiftwidth = 2

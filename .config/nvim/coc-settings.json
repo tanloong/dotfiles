@@ -137,5 +137,6 @@
         "sh",
         "c",
         "typst"
-    ]
+    ],
+    "tabnine.priority": 60
 }
