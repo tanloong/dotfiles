@@ -1,9 +1,9 @@
 function fish_greeting; end
 function fish_mode_prompt; end
 function fish_prompt
-    if set -q VIRTUAL_ENV
-        echo -n -s "(" (basename "$VIRTUAL_ENV") ")" " "
-    end
+    # if set -q VIRTUAL_ENV
+    #     echo -n -s "(" (basename "$VIRTUAL_ENV") ")" " "
+    # end
     set_color green
     echo -n "$(whoami)":
     set_color 005fff

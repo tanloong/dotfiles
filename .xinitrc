@@ -13,13 +13,13 @@ feh --bg-scale /home/tan/.local/share/wallpapers/brad-huchteman-stone-mountain.r
 # picom -c > /dev/null 2>&1 &
 flameshot & > /dev/null 2>&1
 
-fcitx5 > /dev/null 2>&1 &
+fcitx5 --replace > /dev/null 2>&1 &
+# ibus-daemon -rxRd
 
 remap 2> /dev/null
 killall $TERMINAL > /dev/null 2>&1 || :
 setsid -f $TERMINAL
 goldendict &
-# "/home/tan/software/Clash for Windows-0.20.25-x64-linux/cfw" &
+eval $(dbus-launch --sh-syntax --exit-with-session)
 # exec startdwm.sh
 exec dwm
-# exec i3
