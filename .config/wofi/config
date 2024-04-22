@@ -1,11 +1,12 @@
+mode=run
 width=45%
 exec_search=false
 matching=contains
 insensitive=false
 lines=8
-key_up=Control_L-k
-key_down=Control_L-j
-key_left=Control_L-h
-key_right=Control_L-l
+key_up=Control-k
+key_down=Control-j
+key_left=Control-h
+key_right=Control-l
 key_pgup=comma
 key_pgdn=period

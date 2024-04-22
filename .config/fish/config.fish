@@ -36,7 +36,7 @@ set --global --export SUDO_ASKPASS /usr/bin/lxqt-openssh-askpass
 # set --global --export CDPATH $CDPATH $HOME/projects/.shangwai/
 set --global --export TERMINAL "terminal.sh"
 set --global --export PDFVIEWER "zathura"
-set --global --export BROWSER "brave"
+set --global --export BROWSER "browser.sh"
 set --global --export FILE_MANAGER "lf"
 set --global --export WORKON_HOME ~/.virtualenvs
 set --global --export OPENAI_API_KEY $(cat $HOME/.config/api_keys/OPENAI_API_KEY 2> /dev/null || echo "")
@@ -44,6 +44,15 @@ set --global --export OPENAI_API_BASE $(cat $HOME/.config/api_keys/OPENAI_API_BA
 set --global --export OPENAI_API_HOST $(cat $HOME/.config/api_keys/OPENAI_API_HOST 2> /dev/null || echo "")
 set --global --export GROQ_API_KEY $(cat $HOME/.config/api_keys/GROQ_API_KEY 2> /dev/null || echo "")
 set --global --export GROQ_API_BASE $(cat $HOME/.config/api_keys/GROQ_API_BASE 2> /dev/null || echo "")
+
+# scaling
+# set --global --export GDK_SCALE 1.25
+# set --global --export GDK_DPI_SCALE 0.8
+# set --global --export QT_AUTO_SCREEN_SET_FACTOR 0
+# set --global --export QT_SCALE_FACTOR 1.25
+# if [ "$XDG_SESSION_TYPE"="wayland" ]
+#     set --global --export QT_QPA_PLATFORM wayland
+# end
 
 # colored GCC warnings and errors
 set --global --export GCC_COLORS 'error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'

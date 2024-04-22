@@ -8,13 +8,12 @@ case "$app" in
     terminal)
         case $XDG_SESSION_TYPE in
             'wayland')
-                # foot;;
                 $TERMINAL;;
             *)
                 $TERMINAL;
         esac;;
     # browser) brave --proxy-server=127.0.0.1:7890;;
-    browser) brave ;;
+    browser) $BROWSER ;;
     dictionary) goldendict;;
     keepassx) togglethe.sh keepassxc;;
     screenshot-noclip)
@@ -39,7 +38,14 @@ case "$app" in
         # "/opt/apps/com.qq.weixin.deepin/files/run.sh" -f %f;;
         # "/usr/bin/wechat";;
     qq) notify-send --urgency low "Opening QQ..." -t 400
-        linuxqq;;
+        case $XDG_SESSION_TYPE in
+            'wayland')
+              # linuxqq \
+              # --enable-features=UseOzonePlatform,waylandWindowDecorations \
+              # --ozone-platform=wayland --no-sandbox;;
+              linuxqq;;
+            *) linuxqq;;
+        esac;;
     office) libreoffice;;
     phone) scrcpy --stay-awake --video-bit-rate=1M --max-size 1200;;
     sharing) ;; # blueman-manager) blueman-manager;;
@@ -59,8 +65,7 @@ case "$app" in
         esac;;
     screenkey) togglethe.sh screenkey -s small --persist --opacity 1 ;;
     tip) dir_tip='/home/tan/.local/share/tip-pictures'
-         togglethe.sh sxiv "$dir_tip"/wubi*;;
+         togglethe.sh sxiv "$dir_tip"/huma*;;
     control-center) systemsettings;;
     filemanager) togglethe.sh pcmanfm;;
-    sun) sunloginremote;;
 esac

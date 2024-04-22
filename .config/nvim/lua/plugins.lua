@@ -255,7 +255,7 @@ local plugin_specs = {
   -- fcitx.vim
   {
     'https://github.com/lilydjwg/fcitx.vim',
-    enabled = false,
+    enabled = true,
     event = "VeryLazy",
     config = function()
       vim.g.fcitx5_remote = "fcitx5-remote"
@@ -264,6 +264,7 @@ local plugin_specs = {
   -- im-select
   {
     "keaising/im-select.nvim",
+    enabled = false,
     event = "VeryLazy",
     config = function()
       require("im_select").setup({

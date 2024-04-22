@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+IFS=$'\n\t'
+
+# xset -b
+# export LANG=zh_CN.UTF-8
+# export LANGUAGE=zh_CN:en_US
+# [ -f ~/.Xresources ] && xrdb -merge -I$HOME ~/.Xresources
+#
+waybar &
+#
+dunst &
+# # blueman-applet &
+nm-applet &
+swaybg -i "$HOME/.local/share/wallpapers/brad-huchteman-stone-mountain.resized.jpg" --mode fill &
+# flameshot & > /dev/null 2>&1
+#
+fcitx5 --replace -d > /dev/null 2>&1 &
+#
+# remap 2> /dev/null
+xremap "$HOME/.config/xremap.yml" &
+# goldendict &
+openthe terminal &

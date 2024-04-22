@@ -14,3 +14,13 @@ for filename in $files; do
     mkdir -p "${destination%/*}" || :
     ln --verbose --force --symbolic "$filename" "$destination"
 done
+
+# make custom table for fcitx5
+idir="$curr_path"/.local/share/fcitx5/table
+for file in "$idir"/*.txt; do
+  destination="$HOME/"${file/#*dotfiles\/}
+  destination="${destination/.txt/.dict}"
+  if [ ! -f "$destination" ] || [ "$destination" -ot "$file" ]; then
+    libime_tabledict "$file" "$destination"
+  fi
+done
