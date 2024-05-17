@@ -50,6 +50,7 @@ local plugin_specs = {
   -- Comment
   {
     'https://github.com/numToStr/Comment.nvim',
+    enabled = vim.fn.has("nvim-0.10") == 0,
     event = "VeryLazy",
     config = function() require('plugin_config.comment') end
   },
@@ -86,9 +87,10 @@ local plugin_specs = {
           repl_definition = {
             sh     = { command = { "bash" } },
             python = { command = { "python" } },
+            lua    = { command = { "lua" } },
+            php    = { command = { "php", "-a" } },
             r      = { command = { "R" } },
             rmd    = { command = { "R" } },
-            lua    = { command = { "lua" } },
           },
           repl_open_cmd = require('iron.view').split.horizontal.botright(0.35)
         },
@@ -153,6 +155,7 @@ local plugin_specs = {
   {
     'lukas-reineke/indent-blankline.nvim',
     main = "ibl",
+    version = vim.fn.has("nvim-0.10") == 1 and "v3.6.0" or "v3.5.4" ,
     event = "VeryLazy",
     config = function()
       hl(0, "IblIndent", { ctermbg = 'none', ctermfg = 'darkgray', fg = '#3A3A3A' })
@@ -228,17 +231,8 @@ local plugin_specs = {
           NavigateDown = "J",
           NavigateUp = "K",
         },
-
         setup_mappings_now = false,
       }
-      local bufnr = vim.api.nvim_get_current_buf()
-      -- automatically enable mappings for *interlaced.txt files, or
-      -- otherwise you need to run "MapInterlaced" manually to enable
-      -- them
-      local is_interlaced_file = (vim.api.nvim_buf_get_name(bufnr)):find("interlaced%.txt$")
-      if is_interlaced_file then
-        opts["setup_mappings_now"] = true
-      end
       require("interlaced").setup(opts)
     end,
   },
@@ -375,25 +369,25 @@ local plugin_specs = {
   -- Telescope
   {
     'nvim-telescope/telescope.nvim',
-    tag = '0.1.5',
+    -- version = '*',
     dependencies = { 'nvim-lua/plenary.nvim' },
     config = function() require("plugin_config.telescope_nvim") end,
   },
 
   -- ChatGPT.nvim
-  {
-    "jackMort/ChatGPT.nvim",
-    enabled = false,
-    event = "VeryLazy",
-    config = function()
-      require("plugin_config.chatgpt")
-    end,
-    dependencies = {
-      "MunifTanjim/nui.nvim",
-      "nvim-lua/plenary.nvim",
-      "nvim-telescope/telescope.nvim"
-    },
-  },
+  -- {
+  --   "jackMort/ChatGPT.nvim",
+  --   enabled = false,
+  --   event = "VeryLazy",
+  --   config = function()
+  --     require("plugin_config.chatgpt")
+  --   end,
+  --   dependencies = {
+  --     "MunifTanjim/nui.nvim",
+  --     "nvim-lua/plenary.nvim",
+  --     "nvim-telescope/telescope.nvim"
+  --   },
+  -- },
   {
     "robitx/gp.nvim",
     config = function()

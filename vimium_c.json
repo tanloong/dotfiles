@@ -1,11 +1,11 @@
 {
 	"name": "Vimium C",
-	"@time": "2022/12/11 15:46:54",
-	"time": 1670744814911,
+	"@time": "2024/5/6 22:54:24",
+	"time": 1715007264752,
 	"environment": {
-		"extension": "1.99.5",
+		"extension": "1.99.994",
 		"platform": "linux",
-		"chromium": "108"
+		"chromium": 124
 	},
 	"keyLayout": 2,
 	"keyMappings": [
@@ -26,7 +26,9 @@
 		"map l scrollToRight",
 		"map <c-s-j> zoomOut",
 		"map <c-s-k> zoomIn",
-		"map <c-s-space> zoomReset"
+		"map <c-s-space> zoomReset",
+		"map <c-s-o> closeOtherTabs",
+		""
 	],
 	"searchUrl": "https://www.bing.com/search?q=$s",
 	"vimSync": true

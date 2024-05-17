@@ -15,7 +15,7 @@ endglobal
 priority 100
 snippet ,a "bold" wA
 *$1*`!p
-if t[2] and t[2][0] not in [':', ',', '.', '?', '-', ' ']:
+if t[2] and t[2][0] not in [',', '.', '?', '-', ' ', '，', '、', '；', '。']:
 	snip.rv = ' '
 else:
 	snip.rv = ''
@@ -23,7 +23,7 @@ else:
 endsnippet
 snippet ,i "italics" wA
 _$1_`!p
-if t[2] and t[2][0] not in [':', ',', '.', '?', '-', ' ']:
+if t[2] and t[2][0] not in [',', '.', '?', '-', ' ', '，', '、', '；', '。']:
 	snip.rv = ' '
 else:
 	snip.rv = ''
@@ -41,7 +41,7 @@ snippet ,` "code blocks" bA
 endsnippet
 snippet ,l "link" wA
 #link("$1")[<<>>]`!p
-if t[2] and t[2][0] not in [':', ',', '.', '?', '-', ' ']:
+if t[2] and t[2][0] not in [',', '.', '?', '-', ' ', '，', '、', '；', '。']:
 	snip.rv = ' '
 else:
 	snip.rv = ''
@@ -96,7 +96,7 @@ priority 200
 # math snippets begin
 snippet $$ "inline math" iA
 $$1$`!p
-if t[2] and t[2][0] not in [',', '.', '?', '-', ' ']:
+if t[2] and t[2][0] not in [',', '.', '?', '-', ' ', '，', '、', '；', '。']:
 	snip.rv = ' '
 else:
 	snip.rv = ''
@@ -104,7 +104,7 @@ else:
 endsnippet
 snippet ￥￥ "inline math" iA
 $$1$`!p
-if t[2] and t[2][0] not in [',', '.', '?', '-', ' ']:
+if t[2] and t[2][0] not in [',', '.', '?', '-', ' ', '，', '、', '；', '。']:
 	snip.rv = ' '
 else:
 	snip.rv = ''
@@ -112,7 +112,7 @@ else:
 endsnippet
 snippet mm "inline math" wA
 $$1$`!p
-if t[2] and t[2][0] not in [',', '.', '?', '-', ' ']:
+if t[2] and t[2][0] not in [',', '.', '?', '-', ' ', '，', '、', '；', '。']:
 	snip.rv = ' '
 else:
 	snip.rv = ''

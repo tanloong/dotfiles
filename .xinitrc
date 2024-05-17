@@ -20,6 +20,5 @@ remap 2> /dev/null
 killall $TERMINAL > /dev/null 2>&1 || :
 setsid -f $TERMINAL
 goldendict &
-eval $(dbus-launch --sh-syntax --exit-with-session)
 # exec startdwm.sh
 exec dwm

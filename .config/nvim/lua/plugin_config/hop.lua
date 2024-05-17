@@ -3,7 +3,7 @@
 local hop = require('hop')
 hop.setup({
     keys = 'asdghklqwertyuiopzxcvbnmfj;',
-    match_mappings = { 'zh', 'zh_sc' }
+    match_mappings = { 'zh', 'zh_huma' }
 })
 vim.keymap.set({ 'n', 'v', 'o' }, 'f', "<Cmd>HopChar1MW<CR>")
 

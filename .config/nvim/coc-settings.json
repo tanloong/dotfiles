@@ -1,4 +1,5 @@
 {
+    "inlayHint.enable": false,
     "suggest.noselect": true,
     "suggest.enablePreselect": false,
     "coc.preferences.extensionUpdateCheck": "never",
@@ -105,6 +106,7 @@
     "outline.autoWidth": true,
     "outline.keepWindow": false,
     "tree.key.activeFilter": "f",
+    "html.completion.attributeDefaultValue": "empty",
     "markdown-preview-enhanced.scrollSync": false,
     "explorer.position": "floating",
     "explorer.keyMappings.global": {
@@ -133,6 +135,7 @@
     ],
     "tabnine.filetypes": [
         "python",
+        "markdown",
         "lua",
         "sh",
         "c",

@@ -6,7 +6,7 @@ import vim
 # Set g:ultisnips_php_scalar_types to 1 if you'd like to enable PHP 7's scalar types for return values
 def isPHPScalarTypesEnabled():
 	isEnabled = vim.eval("get(g:, 'ultisnips_php_scalar_types', 0)") == "1"
-	return isEnabled or re.match('<\?php\s+declare\(strict_types=[01]\);', '\n'.join(vim.current.window.buffer))
+	return isEnabled or re.match(r'<\?php\s+declare\(strict_types=[01]\);', '\n'.join(vim.current.window.buffer))
 endglobal
 
 ## Snippets from SnipMate, taken from
@@ -64,17 +64,23 @@ public function set${1/\w+\s*/\u$0/}(${4:${2/(void|string|int|integer|double|flo
 }
 endsnippet
 
+# snippet pub "Public function" b
+# /**
+#  * ${3:undocumented function}
+#  *
+#  * @return ${4:void}
+#  */
+# public function ${1:name}(${2:$param})
+# {
+# 	${VISUAL}${5:return null;}
+# }
+# $0
+# endsnippet
+
 snippet pub "Public function" b
-/**
- * ${3:undocumented function}
- *
- * @return ${4:void}
- */
-public function ${1:name}(${2:$param})
-{
-	${VISUAL}${5:return null;}
+public function $0(<<>>) {
+	<<>>
 }
-$0
 endsnippet
 
 snippet pro "Protected function" b
@@ -164,22 +170,28 @@ if m:
 `};
 endsnippet
 
+# snippet class "Class declaration template" b
+# <?php
+#
+# namespace ${1:`!p
+# relpath = os.path.relpath(path)
+# m = re.search(r'[A-Z].+(?=/)', relpath)
+# if m:
+# 	snip.rv = m.group().replace('/', '\\')
+# `};
+#
+# /**
+#  * Class ${1:`!p snip.rv=snip.basename`}
+#  * @author ${2:`!v g:snips_author`}
+#  */
+# class $1
+# {
+# }
+# endsnippet
+
 snippet class "Class declaration template" b
-<?php
-
-namespace ${1:`!p
-relpath = os.path.relpath(path)
-m = re.search(r'[A-Z].+(?=/)', relpath)
-if m:
-	snip.rv = m.group().replace('/', '\\')
-`};
-
-/**
- * Class ${1:`!p snip.rv=snip.basename`}
- * @author ${2:`!v g:snips_author`}
- */
-class $1
-{
+class $0 {
+  <<>>
 }
 endsnippet
 
@@ -281,6 +293,94 @@ snip.rv = re.match(r'.*(?=\.)', fn).group()
 		${0:${VISUAL}}
 	}
 }
+endsnippet
+
+snippet ,, "$" wA
+$
+endsnippet
+
+snippet p "print line" b
+print_r($0 . "\n");
+endsnippet
+
+snippet e "echo line" b
+echo $0, PHP_EOL;
+endsnippet
+
+snippet if "if" b
+if ($0) {
+    <<>>
+}
+endsnippet
+
+snippet else "else"
+else {
+    $0
+}
+endsnippet
+
+snippet elseif "elseif"
+elseif {
+    $0
+}
+endsnippet
+
+snippet switch "switch" b
+switch ($0) {
+    case <<>>:
+        <<>>
+        break;
+	<<>>
+    default:
+        <<>>
+}
+endsnippet
+
+snippet case "case" b
+case $0:
+    <<>>
+    break;
+endsnippet
+snippet while "while" b
+while ($0) {
+    <<>>
+};
+endsnippet
+
+snippet do "do" b
+do {
+    $0
+} while (<<>>);
+endsnippet
+
+snippet for "for" b
+for ($0; <<>>; <<>>) {
+    <<>>
+}
+endsnippet
+
+snippet foreach "foreach" b
+foreach ($0 as <<>>) {
+    <<>>
+}
+endsnippet
+
+snippet func "function" b
+function $0(<<>>) {
+    <<>>
+}
+endsnippet
+
+snippet EOF "EOF" w
+<<<EOF
+$0
+EOF;
+endsnippet
+
+snippet 'EOF' "'EOF'" w
+<<<'EOF'
+$0
+EOF;
 endsnippet
 
 # :vim:ft=snippets:

@@ -106,6 +106,7 @@ keyset('v', '.', ':normal .<CR>',
     { desc = [[Perform dot commands over visual blocks]] })
 keyset('v', 'p', 'P',
     { desc = [[keep what I am pasting]] })
+keyset({'n' , 'v'}, "<leader>d", [["_d]])
 -- keyset('i', '<c-l>', '<c-g>u<Esc>[s1z=`]a<c-g>u',
 --     { desc = [[Spell checking on the fly]] })
 keyset('c', '%%', "getcmdtype()==':'? expand('%:h').'/' : '%%'",

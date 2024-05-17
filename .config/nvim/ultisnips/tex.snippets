@@ -314,7 +314,7 @@ endsnippet
 
 snippet $$ "inline math" iA
 $ $1 $`!p
-if t[2] and t[2][0] not in [',', '.', '?', '-', ' ']:
+if t[2] and t[2][0] not in [',', '.', '?', '-', ' ', '，', '、', '；', '。']:
 	snip.rv = ' '
 else:
 	snip.rv = ''
@@ -323,7 +323,7 @@ endsnippet
 
 snippet ￥￥ "inline math" iA
 $ $1 $`!p
-if t[2] and t[2][0] not in [',', '.', '?', '-', ' ']:
+if t[2] and t[2][0] not in [',', '.', '?', '-', ' ', '，', '、', '；', '。']:
 	snip.rv = ' '
 else:
 	snip.rv = ''
@@ -332,7 +332,7 @@ endsnippet
 
 snippet "(^|[^a-zA-Z0-9])mm" "inline math" irA
 `!p snip.rv=match.group(1)`$ $1 $`!p
-if t[2] and t[2][0] not in [',', '.', '?', '-', ' ']:
+if t[2] and t[2][0] not in [',', '.', '?', '-', ' ', '，', '、', '；', '。']:
     snip.rv = ' '
 else:
     snip.rv = ''
