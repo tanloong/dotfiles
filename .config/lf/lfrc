@@ -87,6 +87,8 @@ map <c-z> $ kill -STOP $PPID
 map <c-n> newfold
 map <enter> open
 map za set hidden!
+map ] move-parent down
+map [ move-parent up
 
 # set mouse true
 # map <m-1> open
@@ -113,6 +115,11 @@ map za set hidden!
 #     printf "\033]0; lf\007" > /dev/tty
 # }}
 # on-cd
+
+cmd move-parent &{{
+    dironly="setlocal '$(dirname "$PWD")' dironly"
+    lf -remote "send $id :updir; $dironly true; $1; $dironly false; open"
+}}
 
 cmd open-with &"$@" $fx
 cmd open ${{
