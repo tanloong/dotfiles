@@ -56,9 +56,11 @@ keyset('n', 'yib', '<Cmd>%y<cr>')
 keyset('n', 'cib', 'ggcG')
 -- keyset('n', '<enter>', 'i<enter><esc>')
 keyset('n', '<leader>S', [[<cmd>exec "silent!! zeal " .. expand("<cword>") .. " &"<cr>]])
-keyset('v', '<leader>S', [[:<c-u>exec "silent!! zeal " .. DT#get_visual_selection() .. " &"<cr>]])
+keyset('v', '<leader>S',
+  [[:<c-u>exec "silent!! zeal " .. getregion(getpos("'<"), getpos("'>"), {"type": "v"})[0] .. " &"<cr>]])
 keyset('n', '<leader>K', [[<cmd>exec "silent!! goldendict " .. expand("<cword>") .. " &"<cr>]])
-keyset('v', '<leader>K', [[:<c-u>exec "silent!! goldendict " .. DT#get_visual_selection() .. " &"<cr>]])
+keyset('v', '<leader>K',
+  [[:<c-u>exec "silent!! goldendict " .. getregion(getpos("'<"), getpos("'>"), {"type": "v"})[0] .. " &"<cr>]])
 -- keyset('n', '<tab>', [[<cmd>exec "silent!! goldendict " .. expand("<cword>") .. " &"<cr>]])
 -- keyset('v', '<tab>', [[:<c-u>exec "silent!! goldendict " .. DT#get_visual_selection() .. " &"<cr>]])
 keyset('n', '<leader>b', [[<cmd>ls<cr>:b<space>]])
