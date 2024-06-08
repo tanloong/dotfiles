@@ -56,7 +56,7 @@ local plugin_specs = {
   },
   -- vim-markdown-toc
   {
-    'https://gitee.com/lovealone72/vim-markdown-toc.git',
+    'https://github.com/mzlogin/vim-markdown-toc',
     ft = { 'markdown' },
     event = "VeryLazy",
     config = function() require('plugin_config.vim_markdown_toc') end
@@ -155,7 +155,7 @@ local plugin_specs = {
   {
     'lukas-reineke/indent-blankline.nvim',
     main = "ibl",
-    version = vim.fn.has("nvim-0.10") == 1 and "v3.6.0" or "v3.5.4" ,
+    version = vim.fn.has("nvim-0.10") == 1 and "v3.6.0" or "v3.5.4",
     event = "VeryLazy",
     config = function()
       hl(0, "IblIndent", { ctermbg = 'none', ctermfg = 'darkgray', fg = '#3A3A3A' })
@@ -209,6 +209,7 @@ local plugin_specs = {
   {
     -- 'nvimdev/hlsearch.nvim',
     dir = '/home/tan/projects/hlsearch.nvim/',
+    enabled = false,
     event = "BufRead",
     config = function()
       require('hlsearch').setup()

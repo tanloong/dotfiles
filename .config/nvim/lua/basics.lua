@@ -12,8 +12,8 @@ opt.expandtab = true
 opt.shiftwidth = 4
 opt.updatetime = 100
 opt.signcolumn = 'yes'
-opt.mouse = 'nvi'
--- opt.mouse = ''
+-- opt.mouse = 'nvi'
+opt.mouse = ''
 opt.scrolloff = 3
 opt.ignorecase = true
 opt.infercase = true
@@ -33,9 +33,26 @@ opt.backup = false
 opt.nrformats = 'octal'
 opt.fillchars = { fold = '─' }
 opt.listchars = { trail = '●' }
+-- if vim.fn.has("nvim-0.10") == 1 then
+--   vim.g.clipboard = {
+--     name = 'OSC 52',
+--     copy = {
+--       ['+'] = require('vim.ui.clipboard.osc52').copy('+'),
+--       ['*'] = require('vim.ui.clipboard.osc52').copy('*'),
+--       ['"'] = require('vim.ui.clipboard.osc52').copy('"'),
+--     },
+--     paste = {
+--       ['+'] = require('vim.ui.clipboard.osc52').paste('+'),
+--       ['*'] = require('vim.ui.clipboard.osc52').paste('*'),
+--       ['"'] = require('vim.ui.clipboard.osc52').paste('"'),
+--     },
+--   }
+-- else
+--   opt.clipboard:prepend { 'unnamed,unnamedplus' }
+-- end
 opt.clipboard:prepend { 'unnamed,unnamedplus' }
 opt.dictionary:append { vim.env.HOME .. "/.local/share/BNC-40thousand.txt" }
-opt.thesaurus:append {vim.env.HOME .. "/.local/share/WordNet-thesaurus.txt"}
+opt.thesaurus:append { vim.env.HOME .. "/.local/share/WordNet-thesaurus.txt" }
 opt.wildignore:append { '*aux,*toc,*out' }
 opt.path:append { '**' }
 opt.cursorlineopt = 'line'

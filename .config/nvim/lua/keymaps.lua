@@ -47,13 +47,6 @@ keyset('n', '/', '/\\v')
 keyset('v', '/', '/\\v')
 keyset('n', '?', '?\\v')
 keyset('v', '?', '?\\v')
-keyset('n', 'vil', '0v$h')
-keyset('n', 'dil', '0D')
-keyset('n', 'yil', '0y$')
-keyset('n', 'vib', 'ggVG')
-keyset('n', 'dib', '<Cmd>%d<cr>')
-keyset('n', 'yib', '<Cmd>%y<cr>')
-keyset('n', 'cib', 'ggcG')
 -- keyset('n', '<enter>', 'i<enter><esc>')
 keyset('n', '<leader>S', [[<cmd>exec "silent!! zeal " .. expand("<cword>") .. " &"<cr>]])
 keyset('v', '<leader>S',
@@ -65,9 +58,9 @@ keyset('v', '<leader>K',
 -- keyset('v', '<tab>', [[:<c-u>exec "silent!! goldendict " .. DT#get_visual_selection() .. " &"<cr>]])
 keyset('n', '<leader>b', [[<cmd>ls<cr>:b<space>]])
 keyset('n', '<leader>e', [[<cmd>exec empty(filter(getwininfo(), 'v:val.quickfix')) ? 'copen' : 'cclose'<cr>]])
-keyset('n', 'Y', function() vim.fn.setreg('+', vim.trim(vim.api.nvim_get_current_line())) end)
 keyset('n', 'zl', "1z=")
 
+-- NAVIGATION
 -- jumping between a normal buffer and a neovim terminal
 keyset('t', '<esc><esc>', '<c-\\><c-n>')
 keyset('t', '<c-h>', '<c-\\><c-N><c-w>h')
@@ -86,10 +79,11 @@ keyset('n', '<c-h>', '<c-\\><c-N><c-w>h')
 keyset('n', '<c-j>', '<c-\\><c-N><c-w>j')
 keyset('n', '<c-k>', '<c-\\><c-N><c-w>k')
 keyset('n', '<c-l>', '<c-\\><c-N><c-w>l')
-keyset('n', 'sh', '<c-w>h')
-keyset('n', 'sl', '<c-w>l')
-keyset('n', 'sj', '<c-w>j')
-keyset('n', 'sk', '<c-w>k')
+-- keyset('n', 'sh', '<c-w>h')
+-- keyset('n', 'sl', '<c-w>l')
+-- keyset('n', 'sj', '<c-w>j')
+-- keyset('n', 'sk', '<c-w>k')
+
 -- resize terminals
 keyset('t', '<c-up>', '<c-\\><c-N><Cmd>res +2|startinsert<CR>')
 keyset('t', '<c-down>', '<c-\\><c-N><Cmd>res -2|startinsert<CR>')
@@ -99,25 +93,37 @@ keyset('t', '<c-right>', '<c-\\><c-N><Cmd>vertical resize+2|startinsert<CR>')
 keyset('t', '<c-q>', '<c-\\><c-N><Cmd>exit<CR>')
 
 keyset('n', 'gug', '<Cmd>s/\\v<(.)(\\w*)/\\u\\1\\L\\2/g | nohlsearch<CR>',
-    { desc = [[To Turn One Line Into Title Caps, Make Every First Letter Of A Word Uppercase]] })
+  { desc = [[To Turn One Line Into Title Caps, Make Every First Letter Of A Word Uppercase]] })
 keyset('n', '<LEADER><F5>', '<Cmd>w! | !compiler "%"<CR>',
-    { desc = [[Compile document, be it groff/LaTeX/markdown/etc.]] })
+  { desc = [[Compile document, be it groff/LaTeX/markdown/etc.]] })
 keyset('n', 'go', '<Cmd>silent!!opout "%"<CR>',
-    { desc = [[Open corresponding .pdf/.html or preview]] })
+  { desc = [[Open corresponding .pdf/.html or preview]] })
 keyset('v', '.', ':normal .<CR>',
-    { desc = [[Perform dot commands over visual blocks]] })
+  { desc = [[Perform dot commands over visual blocks]] })
 keyset('v', 'p', 'P',
-    { desc = [[keep what I am pasting]] })
-keyset({'n' , 'v'}, "<leader>d", [["_d]])
+  { desc = [[keep what I am pasting]] })
+keyset({ 'n', 'v' }, "<leader>d", [["_d]])
 -- keyset('i', '<c-l>', '<c-g>u<Esc>[s1z=`]a<c-g>u',
 --     { desc = [[Spell checking on the fly]] })
 keyset('c', '%%', "getcmdtype()==':'? expand('%:h').'/' : '%%'",
-    { expr = true, desc = [[展开活动缓冲区所在目录]] })
+  { expr = true, desc = [[展开活动缓冲区所在目录]] })
 keyset('n', 'd<space>', "<Cmd>let pos=getcurpos()[1:] | keeppatterns %s/\\s\\+$//e | nohlsearch | call cursor(pos)<CR>",
-    { desc = [[Remove trailing spaces]] })
+  { desc = [[Remove trailing spaces]] })
 
-local autocmd = vim.api.nvim_create_autocmd
-local augroup = vim.api.nvim_create_augroup
+-- TEXT OBJECTS
+-- "in line" (entire line sans white-space; cursor at beginning--ie, ^)
+keyset({'x', 'o'}, 'il', ':<c-u>normal! g_v^<cr>', {silent = true})
+-- "around line" (entire line sans trailing newline; cursor at beginning--ie, 0)
+keyset({'x', 'o'}, 'al', ':<c-u>normal! $v0<cr>', {silent = true})
+-- "in document" (from first line to last; cursor at top--ie, gg)
+keyset({'x', 'o'}, 'ib', ':<c-u>normal! GVgg<cr>', {silent = true})
+-- "in indentation" (indentation level sans any surrounding empty lines)
+keyset({'x', 'o'}, 'ii', '<cmd>call textobject#inIndentation()<cr>', {silent = true})
+-- "around indentation" (indentation level and any surrounding empty lines)
+keyset({'x', 'o'}, 'ai', '<cmd>call textobject#aroundIndentation()<cr>', {silent = true})
+
+-- local autocmd = vim.api.nvim_create_autocmd
+-- local augroup = vim.api.nvim_create_augroup
 
 -- autocmd("FileType",
 --     {

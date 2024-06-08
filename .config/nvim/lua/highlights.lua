@@ -4,7 +4,7 @@ local hl = vim.api.nvim_set_hl
 
 hl(0, 'Visual', { ctermbg = 'lightgray', ctermfg = 'black', bg = 'lightgray', fg = 'black' })
 hl(0, 'Conceal', { ctermbg = 'none', ctermfg = 'none', bg = 'none', fg = 'none' })
-hl(0, 'MatchParen', { ctermbg = 'none', ctermfg = 'green', bg = 'none', fg = 'lightgreen', bold = true })
+-- hl(0, 'MatchParen', { ctermbg = 'none', ctermfg = 'green', bg = 'none', fg = 'lightgreen', bold = true })
 hl(0, 'Pmenu', { ctermbg = 236, ctermfg = 'none', bg = '#303030', fg = 'none' })
 hl(0, 'PmenuSel', { ctermbg = 24, ctermfg = 'none', bg = '#005F87', fg = 'none' })
 hl(0, 'Folded', { link = "Comment" })

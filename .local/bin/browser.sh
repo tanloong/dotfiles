@@ -3,4 +3,5 @@ set -euo pipefail
 IFS=$'\n\t'
 
 # chromium --enable-features=UseOzonePlatform --ozone-platform=wayland
-chromium
+# chromium
+brave

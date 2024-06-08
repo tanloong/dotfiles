@@ -20,7 +20,7 @@ local config = {
   chat_topic_gen_prompt = "Summarize the topic of our conversation above"
       .. " in two or three words. Respond only with those words.",
   -- chat topic model (string with model name or table with model name and parameters)
-  chat_topic_gen_model = "gpt-3.5-turbo-1106",
+  chat_topic_gen_model = "gpt-3.5-turbo",
   -- chat_topic_gen_model = "mixtral-8x7b-32768",
   -- explicitly confirm deletion of a chat file
   chat_confirm_delete = false,
@@ -103,7 +103,7 @@ local config = {
       chat = true,
       command = true,
       -- string with model name or table with model name and parameters
-      model = { model = "gpt-3.5-turbo-1106", temperature = 1.1, top_p = 1 },
+      model = { model = "gpt-3.5-turbo", temperature = 1.1, top_p = 1 },
       -- system prompt (use this to specify the persona/role of the AI)
       system_prompt = "You are a general AI assistant.\n\n"
           .. "The user provided the additional info about how they would like you to respond:\n\n"
@@ -164,7 +164,7 @@ local config = {
     -- :GpTranslator
     Translator = function(gp, params)
       local agent = gp.get_command_agent()
-      local chat_system_prompt = "You are a Translator, please translate between English and Chinese."
+      local chat_system_prompt = "Act as a Translator, translate between English and Chinese. Your response should contain only the translation text."
       gp.cmd.ChatNew(params, agent.model, chat_system_prompt)
     end,
 
