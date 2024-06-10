@@ -135,6 +135,7 @@ local plugin_specs = {
   {
     'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate',
+    commit = '5a8e9644',
     config = function() require('plugin_config.nvim_treesitter') end,
     event = "VeryLazy"
   },
@@ -399,6 +400,7 @@ local plugin_specs = {
   {
     -- use this to map jk to search placeholder
     "max397574/better-escape.nvim",
+    version = "1.0.0",
     event = "VeryLazy",
     config = function()
       require("better_escape").setup({
