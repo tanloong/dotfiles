@@ -35,7 +35,7 @@ local config = {
   -- default search term when using :GpChatFinder
   chat_finder_pattern = "",
   -- if true, finished ChatResponder won't move the cursor to the end of the buffer
-  chat_free_cursor = true,
+  chat_free_cursor = false,
 
   -- how to display GpChatToggle or GpContext: popup / split / vsplit / tabnew
   toggle_target = "popup",
@@ -164,10 +164,17 @@ local config = {
     -- :GpTranslator
     Translator = function(gp, params)
       local agent = gp.get_command_agent()
-      local chat_system_prompt = "Act as a Translator, translate between English and Chinese. Your response should contain only the translation text."
+      local chat_system_prompt =
+      "Act as a Translator, translate between English and Chinese. Your response should contain only the translation text."
       gp.cmd.ChatNew(params, agent.model, chat_system_prompt)
     end,
-
+    -- :GpProofread
+    Proofread = function(gp, params)
+      local agent = gp.get_command_agent()
+      local chat_system_prompt =
+      "I want you act as a proofreader. I will provide you texts and I would like you to review them for any spelling, grammar, or punctuation errors. Once you have finished reviewing the text, provide me with any necessary corrections or suggestions for improve the text."
+      gp.cmd.ChatNew(params, agent.model, chat_system_prompt)
+    end,
     -- :GpUnitTests
     UnitTests = function(gp, params)
       local template = "I have the following code from {{filename}}:\n\n"

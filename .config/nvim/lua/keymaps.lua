@@ -59,6 +59,7 @@ keyset('v', '<leader>K',
 keyset('n', '<leader>b', [[<cmd>ls<cr>:b<space>]])
 keyset('n', '<leader>e', [[<cmd>exec empty(filter(getwininfo(), 'v:val.quickfix')) ? 'copen' : 'cclose'<cr>]])
 keyset('n', 'zl', "1z=")
+keyset('i', '<c-q>', '<c-k>')
 
 -- NAVIGATION
 -- jumping between a normal buffer and a neovim terminal

@@ -33,6 +33,7 @@ local plugin_specs = {
   -- CoC
   {
     'https://github.com/neoclide/coc.nvim.git',
+    enabled = true,
     branch = 'release',
     -- don't load coc.nvim on "interlaced" filetype
     cond = function()
@@ -131,7 +132,7 @@ local plugin_specs = {
     event = "VeryLazy",
     config = function() require('plugin_config.hop') end
   },
-  -- tree-sitter
+  -- tree-sitter 
   {
     'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate',
@@ -418,6 +419,29 @@ local plugin_specs = {
   {
     "https://github.com/rickhowe/diffchar.vim",
     event = "VeryLazy",
+  },
+  {
+  "neovim/nvim-lspconfig",
+  enabled = false,
+  event = { "BufRead", "BufNewFile" },
+  config = function() 
+    require("plugin_config.lsp")
+  end,
+},
+  {
+    "hrsh7th/nvim-cmp",
+    enabled = false,
+    event = "VeryLazy",
+    dependencies = {
+      "hrsh7th/cmp-nvim-lsp",
+      "onsails/lspkind-nvim",
+      "hrsh7th/cmp-path",
+      "hrsh7th/cmp-buffer",
+      "quangnguyen30192/cmp-nvim-ultisnips",
+    },
+    config = function()
+      require("plugin_config.nvim_cmp")
+    end,
   },
 }
 

@@ -1,149 +1,159 @@
 {
-    "inlayHint.enable": false,
-    "suggest.noselect": true,
-    "suggest.enablePreselect": false,
-    "suggest.floatConfig": {"border": true},
-    "diagnostic.floatConfig": {"border": true},
-    "signature.floatConfig": {"border": true},
-    "hover.floatConfig": {"border": true},
-    "coc.preferences.extensionUpdateCheck": "never",
-    "coc.preferences.formatOnSave": false,
-    "suggest.defaultSortMethod": "none",
-    "diagnostic.enable": true,
-    "diagnostic.errorSign": "❌",
-    "diagnostic.warningSign": "⚠️",
-    "diagnostic.infoSign": "🛈",
-    "diagnostic.hintSign": "💡",
-    "diagnostic.displayByAle": false,
-    "diagnostic.refreshOnInsertMode": false,
-    "diagnostic.checkCurrentLine": true,
-    "diagnostic.virtualText": false,
-    "diagnostic.virtualTextPrefix": " ❯❯❯ ",
-    "diagnostic.enableMessage": "jump",
-    "diagnostic.messageTarget": "float",
-    "git.showCommitInFloating": true,
-    "git.addedSign.hlGroup": "DiffAdd",
-    "git.changedSign.hlGroup": "DiffChange",
-    "git.removedSign.hlGroup": "DiffDelete",
-    "git.topRemovedSign.hlGroup": "DiffDelete",
-    "git.changeRemovedSign.hlGroup": "DiffDelete",
-    "git.changedSign.text": "┃",
-    "git.addedSign.text": "┃",
-    "git.removedSign.text": "▁",
-    "git.topRemovedSign.text": "▔",
-    "git.changeRemovedSign.text": "≃",
-    "languageserver": {
-        "bash": {
-            "command": "bash-language-server",
-            "args": [
-                "start"
-            ],
-            "filetypes": [
-                "sh"
-            ]
-        }
+  "inlayHint.enable": false,
+  "suggest.noselect": true,
+  "suggest.enablePreselect": false,
+  "suggest.floatConfig": {
+    "border": true
+  },
+  "diagnostic.floatConfig": {
+    "border": true
+  },
+  "signature.floatConfig": {
+    "border": true
+  },
+  "hover.floatConfig": {
+    "border": true
+  },
+  "coc.preferences.extensionUpdateCheck": "never",
+  "coc.preferences.formatOnSave": false,
+  "suggest.defaultSortMethod": "none",
+  "diagnostic.enable": true,
+  "diagnostic.errorSign": "❌",
+  "diagnostic.warningSign": "⚠️",
+  "diagnostic.infoSign": "🛈",
+  "diagnostic.hintSign": "💡",
+  "diagnostic.displayByAle": false,
+  "diagnostic.refreshOnInsertMode": false,
+  "diagnostic.checkCurrentLine": true,
+  "diagnostic.virtualText": false,
+  "diagnostic.virtualTextPrefix": " ❯❯❯ ",
+  "diagnostic.enableMessage": "jump",
+  "diagnostic.messageTarget": "float",
+  "git.showCommitInFloating": true,
+  "git.addedSign.hlGroup": "DiffAdd",
+  "git.changedSign.hlGroup": "DiffChange",
+  "git.removedSign.hlGroup": "DiffDelete",
+  "git.topRemovedSign.hlGroup": "DiffDelete",
+  "git.changeRemovedSign.hlGroup": "DiffDelete",
+  "git.changedSign.text": "┃",
+  "git.addedSign.text": "┃",
+  "git.removedSign.text": "▁",
+  "git.topRemovedSign.text": "▔",
+  "git.changeRemovedSign.text": "≃",
+  "languageserver": {
+    "bash": {
+      "command": "bash-language-server",
+      "args": [
+        "start"
+      ],
+      "filetypes": [
+        "sh"
+      ]
     },
-    "git.enableGutters": true,
-    "git.conflict.incoming.hlGroup": "None",
-    "git.conflict.current.hlGroup": "None",
-    "python.linting.ruffEnabled": true,
-    "python.formatting.provider": "ruff",
-    "pyright.organizeimports.provider": "ruff",
-    "pyright.inlayHints.functionReturnTypes": true,
-    "pyright.inlayHints.variableTypes": false,
-    "python.formatting.autopep8Args": [
-        "--max-line-length",
-        "97"
-    ],
-    "python.formatting.blackArgs": [
-        "--line-length",
-        "97",
-        "--preview"
-    ],
-    "diagnostic.level": "hint",
-    "snippets.ultisnips.directories": [
-        "$HOME/.config/nvim/ultisnips"
-    ],
-    "sumneko-lua.locale": "en-us",
-    "sumneko-lua.enableNvimLuaDev": true,
-    "sumneko-lua.checkUpdate": false,
-    "Lua.workspace.checkThirdParty": false,
-    "Lua.hint.arrayIndex": "Disable",
-    "Lua.diagnostics.neededFileStatus": {
-        "lowercase-global": "None"
-    },
-    "suggest.completionItemKindLabels": {
-        "constructor": "ﬥ",
-        "keyword": "",
-        "variable": "",
-        "value": "",
-        "operator": "Ψ",
-        "function": "ƒ",
-        "reference": "渚",
-        "constant": "",
-        "method": "",
-        "struct": "פּ",
-        "class": "",
-        "interface": "",
-        "text": "",
-        "enum": "",
-        "enumMember": "",
-        "module": "",
-        "color": "",
-        "property": "",
-        "field": "料",
-        "unit": "",
-        "event": "鬒",
-        "file": "",
-        "folder": "",
-        "snippet": "",
-        "typeParameter": "",
-        "default": " "
-    },
-    "java.format.onType.enabled": false,
-    "coc.source.dictionary.priority": 1,
-    "coc.source.around.priority": 50,
-    "coc.source.buffer.priority": 50,
-    "coc.source.file.priority": 50,
-    "snippets.priority": 99,
-    "outline.sortBy": "position",
-    "outline.autoWidth": true,
-    "outline.keepWindow": false,
-    "tree.key.activeFilter": "f",
-    "html.completion.attributeDefaultValue": "empty",
-    "markdown-preview-enhanced.scrollSync": false,
-    "explorer.position": "floating",
-    "explorer.keyMappings.global": {
-        "J": [
-            "wait",
-            "normal:5j"
-        ],
-        "K": [
-            "wait",
-            "normal:5k"
-        ],
-        "<space>": [
-            "toggleSelection"
-        ],
-        "u": [
-            "clearCopyOrCut"
-        ]
-    },
-    "workspace.ignoredFolders": [
-        "$HOME",
-        "$HOME/.cargo/**",
-        "$HOME/.rustup/**"
-    ],
-    "notification.disabledProgressSources": [
-        "*"
-    ],
-    "tabnine.filetypes": [
-        "python",
-        "markdown",
-        "lua",
-        "sh",
-        "c",
+    "tinymist": {
+      "command": "tinymist",
+      "filetypes": [
         "typst"
+      ],
+      "settings": {
+        "exportPdf": "never",
+        "semanticTokens": "disable",
+        "formatterMode": "typstyle"
+      }
+    }
+  },
+  "git.enableGutters": true,
+  "git.conflict.incoming.hlGroup": "None",
+  "git.conflict.current.hlGroup": "None",
+  "python.linting.ruffEnabled": true,
+  "python.formatting.provider": "ruff",
+  "pyright.organizeimports.provider": "ruff",
+  "pyright.inlayHints.functionReturnTypes": true,
+  "pyright.inlayHints.variableTypes": false,
+  "python.formatting.autopep8Args": [
+    "--max-line-length",
+    "97"
+  ],
+  "python.formatting.blackArgs": [
+    "--line-length",
+    "97",
+    "--preview"
+  ],
+  "diagnostic.level": "hint",
+  "snippets.ultisnips.directories": [
+    "$HOME/.config/nvim/ultisnips"
+  ],
+  "sumneko-lua.locale": "en-us",
+  "sumneko-lua.enableNvimLuaDev": true,
+  "sumneko-lua.checkUpdate": false,
+  "Lua.workspace.checkThirdParty": false,
+  "Lua.hint.arrayIndex": "Disable",
+  "Lua.diagnostics.neededFileStatus": {
+    "lowercase-global": "None"
+  },
+  "suggest.completionItemKindLabels": {
+    "constructor": "ﬥ",
+    "keyword": "",
+    "variable": "",
+    "value": "",
+    "operator": "Ψ",
+    "function": "ƒ",
+    "reference": "渚",
+    "constant": "",
+    "method": "",
+    "struct": "פּ",
+    "class": "",
+    "interface": "",
+    "text": "",
+    "enum": "",
+    "enumMember": "",
+    "module": "",
+    "color": "",
+    "property": "",
+    "field": "料",
+    "unit": "",
+    "event": "鬒",
+    "file": "",
+    "folder": "",
+    "snippet": "",
+    "typeParameter": "",
+    "default": " "
+  },
+  "java.format.onType.enabled": false,
+  "coc.source.dictionary.priority": 1,
+  "coc.source.around.priority": 50,
+  "coc.source.buffer.priority": 50,
+  "coc.source.file.priority": 50,
+  "snippets.priority": 99,
+  "outline.sortBy": "position",
+  "outline.autoWidth": true,
+  "outline.keepWindow": false,
+  "tree.key.activeFilter": "f",
+  "html.completion.attributeDefaultValue": "empty",
+  "markdown-preview-enhanced.scrollSync": false,
+  "explorer.position": "floating",
+  "explorer.keyMappings.global": {
+    "J": [
+      "wait",
+      "normal:5j"
     ],
-    "tabnine.priority": 60
+    "K": [
+      "wait",
+      "normal:5k"
+    ],
+    "<space>": [
+      "toggleSelection"
+    ],
+    "u": [
+      "clearCopyOrCut"
+    ]
+  },
+  "workspace.ignoredFolders": [
+    "$HOME",
+    "$HOME/.cargo/**",
+    "$HOME/.rustup/**"
+  ],
+  "notification.disabledProgressSources": [
+    "*"
+  ]
 }

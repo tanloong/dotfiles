@@ -33,6 +33,7 @@ opt.backup = false
 opt.nrformats = 'octal'
 opt.fillchars = { fold = '─' }
 opt.listchars = { trail = '●' }
+opt.exrc = true
 -- if vim.fn.has("nvim-0.10") == 1 then
 --   vim.g.clipboard = {
 --     name = 'OSC 52',
@@ -55,6 +56,7 @@ opt.dictionary:append { vim.env.HOME .. "/.local/share/BNC-40thousand.txt" }
 opt.thesaurus:append { vim.env.HOME .. "/.local/share/WordNet-thesaurus.txt" }
 opt.wildignore:append { '*aux,*toc,*out' }
 opt.path:append { '**' }
+opt.cursorline = false
 opt.cursorlineopt = 'line'
 opt.termguicolors = true
 opt.diffopt = { "internal", "filler", "closeoff", "followwrap" }
