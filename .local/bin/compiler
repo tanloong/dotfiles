@@ -22,21 +22,22 @@ textype() { \
 }
 
 case "$ext" in
-    sh) bash "$file";;
+  sh) bash "$file";;
 	py) python "$file" ;;
 	[rR]md) Rscript -e "rmarkdown::render('$file', quiet=TRUE)" ;;
 	tex) textype "$file" ;;
-    typ) typst compile "$file";;
-    ppt) soffice --headless --convert-to pdf "$file" ;;
-    docx|doc) soffice --headless --convert-to pdf "$file" ;;
-    xlsx|xls) soffice --headless --convert-to csv "$file" ;;
-    csv) soffice --headless --convert-to xlsx --infilter=csv:44,34,76 "$file";;
-    lua) lua "$file";;
-    js) node "$file";;
-    html) "$BROWSER" "$file";;
-    caj) caj2pdf convert "$file";;
+  typ) typst compile "$file";;
+  ppt) soffice --headless --convert-to pdf "$file" ;;
+  docx|doc) soffice --headless --convert-to pdf "$file" ;;
+  xlsx|xls) soffice --headless --convert-to csv "$file" ;;
+  csv) soffice --headless --convert-to xlsx --infilter=csv:44,34,76 "$file";;
+  lua) lua "$file";;
+  js) node "$file";;
+  html) "$BROWSER" "$file";;
+  caj) caj2pdf convert "$file";;
 	[0-9]) preconv "$file" | refer -PS -e | groff -mandoc -T pdf > "$base".pdf ;;
 	rs) cargo run ;;
+  ui) pyside6-uic "$file" -o "$base"_ui.py ;;
 	sass) sassc -a "$file" "$base.css" ;;
 	scad) openscad -o "$base".stl "$file" ;;
 	sent) setsid -f sent "$file" 2>/dev/null ;;

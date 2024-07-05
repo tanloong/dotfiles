@@ -35,6 +35,7 @@ local plugin_specs = {
     'https://github.com/neoclide/coc.nvim.git',
     enabled = true,
     branch = 'release',
+    event = "VeryLazy",
     -- don't load coc.nvim on "interlaced" filetype
     cond = function()
       local bufnr = vim.api.nvim_get_current_buf()
@@ -132,11 +133,10 @@ local plugin_specs = {
     event = "VeryLazy",
     config = function() require('plugin_config.hop') end
   },
-  -- tree-sitter 
+  -- tree-sitter
   {
     'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate',
-    commit = '5a8e9644',
     config = function() require('plugin_config.nvim_treesitter') end,
     event = "VeryLazy"
   },
@@ -373,8 +373,14 @@ local plugin_specs = {
   {
     'nvim-telescope/telescope.nvim',
     -- version = '*',
+    enabled = true,
     dependencies = { 'nvim-lua/plenary.nvim' },
     config = function() require("plugin_config.telescope_nvim") end,
+  },
+  {
+    "ibhagwan/fzf-lua",
+    enabled = false,
+    config = function() require("plugin_config.fzf_lua") end,
   },
 
   -- ChatGPT.nvim
@@ -421,13 +427,13 @@ local plugin_specs = {
     event = "VeryLazy",
   },
   {
-  "neovim/nvim-lspconfig",
-  enabled = false,
-  event = { "BufRead", "BufNewFile" },
-  config = function() 
-    require("plugin_config.lsp")
-  end,
-},
+    "neovim/nvim-lspconfig",
+    enabled = false,
+    event = { "BufRead", "BufNewFile" },
+    config = function()
+      require("plugin_config.lsp")
+    end,
+  },
   {
     "hrsh7th/nvim-cmp",
     enabled = false,

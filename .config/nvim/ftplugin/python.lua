@@ -1,4 +1,4 @@
 -- for vim-slime
 vim.b['slime_cell_delimiter'] = "##"
-vim.o.tabstop = 4
-vim.o.shiftwidth = 4
+vim.b.tabstop = 4
+vim.b.shiftwidth = 4

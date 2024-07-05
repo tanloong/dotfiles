@@ -28,7 +28,7 @@ snippet ddate "年月日" w
 endsnippet
 
 snippet dmy "6 April 1988" w
-`!v strftime("%e %B %Y")`
+`!v trim(strftime("%e %B %Y"), " ")`
 endsnippet
 
 snippet diso "ISO format datetime" w
