@@ -4,4 +4,4 @@ IFS=$'\n\t'
 
 # chromium --enable-features=UseOzonePlatform --ozone-platform=wayland
 # chromium
-brave
+brave "$@"

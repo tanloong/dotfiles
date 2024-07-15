@@ -4,8 +4,8 @@ local opt = vim.opt
 
 opt.backspace = 'start,eol,indent'
 opt.background = 'dark'
-opt.number = false
-opt.relativenumber = true
+opt.number = true
+opt.relativenumber = false
 opt.numberwidth = 1
 opt.tabstop = 2
 opt.shiftwidth = 2
@@ -56,13 +56,14 @@ opt.dictionary:append { vim.env.HOME .. "/.local/share/BNC-40thousand.txt" }
 opt.thesaurus:append { vim.env.HOME .. "/.local/share/WordNet-thesaurus.txt" }
 opt.wildignore:append { '*aux,*toc,*out' }
 opt.path:append { '**' }
-opt.cursorline = false
+opt.cursorline = true
 opt.cursorlineopt = 'line'
 opt.termguicolors = true
 opt.diffopt = { "internal", "filler", "closeoff", "followwrap" }
 opt.jumpoptions = "view"
 opt.grepprg = "rg --vimgrep --smart-case $*"
 opt.grepformat = "%f:%l:%c:%m,%f:%l:%m,%f:%l%m,%f  %l%m"
+-- opt.showcmd = false
 
 -- Disable netrw
 vim.g.loaded_netrw = 1

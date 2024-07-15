@@ -1,10 +1,14 @@
 #!/usr/bin/env lua
 
 local config = {
-  openai_api_key = os.getenv("OPENAI_API_KEY"),
-  openai_api_endpoint = os.getenv("OPENAI_API_BASE") .. "/chat/completions",
-  -- openai_api_key = os.getenv("GROQ_API_KEY"),
-  -- openai_api_endpoint = os.getenv("GROQ_API_BASE") .. "/chat/completions",
+  providers = {
+    deepseek = {
+      secret = "sk-0723accaa8114871911d68e76349e684",
+      endpoint = "https://api.deepseek.com/chat/completions",
+    },
+  },
+  -- openai_api_key = os.getenv("OPENAI_API_KEY"),
+  -- openai_api_endpoint = os.getenv("OPENAI_API_BASE") .. "/chat/completions",
   -- optional curl parameters (for proxy, etc.)
   -- curl_params = { "--proxy", "http://X.X.X.X:XXXX" }
   curl_params = {},
@@ -20,7 +24,8 @@ local config = {
   chat_topic_gen_prompt = "Summarize the topic of our conversation above"
       .. " in two or three words. Respond only with those words.",
   -- chat topic model (string with model name or table with model name and parameters)
-  chat_topic_gen_model = "gpt-3.5-turbo",
+  -- chat_topic_gen_model = "gpt-3.5-turbo",
+  chat_topic_gen_model = "deepseek-chat",
   -- chat_topic_gen_model = "mixtral-8x7b-32768",
   -- explicitly confirm deletion of a chat file
   chat_confirm_delete = false,
@@ -35,7 +40,7 @@ local config = {
   -- default search term when using :GpChatFinder
   chat_finder_pattern = "",
   -- if true, finished ChatResponder won't move the cursor to the end of the buffer
-  chat_free_cursor = false,
+  chat_free_cursor = true,
 
   -- how to display GpChatToggle or GpContext: popup / split / vsplit / tabnew
   toggle_target = "popup",
@@ -84,26 +89,13 @@ local config = {
 
   agents = {
     {
-      name = "Groq",
-      chat = true,
-      command = false,
-      -- string with model name or table with model name and parameters
-      model = { model = "mixtral-8x7b-32768", temperature = 1.1, top_p = 1 },
-      -- system prompt (use this to specify the persona/role of the AI)
-      system_prompt = "You are a general AI assistant.\n\n"
-          .. "The user provided the additional info about how they would like you to respond:\n\n"
-          .. "- If you're unsure don't guess and say you don't know instead.\n"
-          .. "- Think deeply and carefully from first principles step by step.\n"
-          .. "- Use Socratic method to improve your thinking and coding skills.\n"
-          .. "- Don't elide any code from your output if the answer requires coding.\n"
-          .. "- Take a deep breath; You've got this!\n",
-    },
-    {
-      name = "ChatGPT3-5",
+      name = "DeepSeek",
       chat = true,
       command = true,
+      provider = "deepseek",
       -- string with model name or table with model name and parameters
-      model = { model = "gpt-3.5-turbo", temperature = 1.1, top_p = 1 },
+      -- model = { model = "gpt-3.5-turbo", temperature = 1.1, top_p = 1 },
+      model = { model = "deepseek-chat", temperature = 1.1, top_p = 1 },
       -- system prompt (use this to specify the persona/role of the AI)
       system_prompt = "You are a general AI assistant.\n\n"
           .. "The user provided the additional info about how they would like you to respond:\n\n"
