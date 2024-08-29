@@ -2,5 +2,5 @@
 set -euo pipefail
 IFS=$'\n\t'
 
-kitty --single-instance
+kitty --single-instance "$@"
 # st

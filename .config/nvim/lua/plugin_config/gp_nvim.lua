@@ -3,12 +3,14 @@
 local config = {
   providers = {
     deepseek = {
-      secret = "sk-0723accaa8114871911d68e76349e684",
+      secret = "...",
       endpoint = "https://api.deepseek.com/chat/completions",
     },
+    openai = {
+      secret = os.getenv("OPENAI_API_KEY"),
+      endpoint = os.getenv("OPENAI_API_BASE") .. "/chat/completions",
+    },
   },
-  -- openai_api_key = os.getenv("OPENAI_API_KEY"),
-  -- openai_api_endpoint = os.getenv("OPENAI_API_BASE") .. "/chat/completions",
   -- optional curl parameters (for proxy, etc.)
   -- curl_params = { "--proxy", "http://X.X.X.X:XXXX" }
   curl_params = {},
@@ -24,8 +26,7 @@ local config = {
   chat_topic_gen_prompt = "Summarize the topic of our conversation above"
       .. " in two or three words. Respond only with those words.",
   -- chat topic model (string with model name or table with model name and parameters)
-  -- chat_topic_gen_model = "gpt-3.5-turbo",
-  chat_topic_gen_model = "deepseek-chat",
+  chat_topic_gen_model = "gpt-3.5-turbo",
   -- chat_topic_gen_model = "mixtral-8x7b-32768",
   -- explicitly confirm deletion of a chat file
   chat_confirm_delete = false,
@@ -105,6 +106,7 @@ local config = {
           .. "- Zoom out first to see the big picture and then zoom in to details.\n"
           .. "- Use Socratic method to improve your thinking and coding skills.\n"
           .. "- Don't elide any code from your output if the answer requires coding.\n"
+          .. "- Don't give your thinking process and just give the direct answer.\n"
           .. "- Take a deep breath; You've got this!\n",
     },
   },
@@ -155,10 +157,12 @@ local config = {
 
     -- :GpTranslator
     Translator = function(gp, params)
-      local agent = gp.get_command_agent()
       local chat_system_prompt =
       "Act as a Translator, translate between English and Chinese. Your response should contain only the translation text."
-      gp.cmd.ChatNew(params, agent.model, chat_system_prompt)
+      gp.cmd.ChatNew(params, chat_system_prompt)
+      -- -- you can also create a chat with a specific fixed agent like this:
+      -- local agent = gp.get_chat_agent("ChatGPT4o")
+      -- gp.cmd.ChatNew(params, chat_system_prompt, agent)
     end,
     -- :GpProofread
     Proofread = function(gp, params)
@@ -185,6 +189,7 @@ local config = {
       gp.Prompt(params, gp.Target.popup, nil, agent.model, template, agent.system_prompt)
     end,
   },
+  zindex = 49,
 }
 require("gp").setup(config)
 

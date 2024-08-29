@@ -776,8 +776,12 @@ snippet p "print something"
 print(${1:${VISUAL}})
 endsnippet
 
+snippet pp "pprint something"
+pprint(${1:${VISUAL}})
+endsnippet
+
 snippet pf "print f-string"
-print(f"\{${1:${VISUAL}}\}")
+print(f"$2\{${1:${VISUAL}}\}$3")
 endsnippet
 
 snippet l "log something"

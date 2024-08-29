@@ -180,3 +180,7 @@ A,aliyunpan-go,
 ,v2raya,""
 A,tinymist-bin,"Typst language service"
 A,deepin-wine-quarkclouddrive,"夸克网盘"
+# zed start
+# zed has platform requirements: https://zed.dev/docs/system-requirements
+zed,"zed editor"
+# zed end

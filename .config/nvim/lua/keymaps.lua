@@ -1,6 +1,7 @@
 #!/usr/bin/env lua
 
 local keyset = vim.keymap.set
+local hl = vim.api.nvim_set_hl
 
 keyset({ 'n', 'v', 'o' }, 'K', '5gk')
 keyset({ 'n', 'v', 'o' }, 'J', '5gj')
@@ -20,6 +21,7 @@ keyset('n', 'S', ':!')
 keyset('n', 'sS', ':%!')
 keyset('n', 'M', 'J')
 keyset('n', 'ga', '<Cmd>tabnew<CR><Cmd>term lazygit<CR>i')
+keyset('n', 'gA', '<Cmd>tabnew<CR><Cmd>term gitui<CR>i')
 -- keyset('n', 'ga', '<Cmd>tabe<CR><Cmd>term gitui<CR>i')
 keyset('n', 'gf', 'gF')
 keyset('n', '>', '>>')
@@ -31,7 +33,7 @@ keyset('n', '<c-s>', '<Cmd>w<CR>')
 keyset('n', 'ZW', '<Cmd>bd<CR>')
 keyset('n', '<SPACE>e', '<Cmd>set spell!<bar>set spell?<CR>')
 keyset('n', 'g<CR>', '<Cmd>set hlsearch!<bar>set hlsearch?<CR>')
-keyset('n', '<F4>', '<Cmd>q!<CR>')
+-- keyset('n', '<F4>', '<Cmd>q!<CR>')
 keyset('n', 's', '<nop>')
 keyset('n', 'sv', '<Cmd>vsplit<CR>')
 keyset('n', 'ss', '<Cmd>split<CR>')
@@ -113,15 +115,17 @@ keyset('n', 'd<space>', "<Cmd>let pos=getcurpos()[1:] | keeppatterns %s/\\s\\+$/
 
 -- TEXT OBJECTS
 -- "in line" (entire line sans white-space; cursor at beginning--ie, ^)
-keyset({'x', 'o'}, 'il', ':<c-u>normal! g_v^<cr>', {silent = true})
+keyset({ 'x', 'o' }, 'il', ':<c-u>normal! g_v^<cr>', { silent = true })
 -- "around line" (entire line sans trailing newline; cursor at beginning--ie, 0)
-keyset({'x', 'o'}, 'al', ':<c-u>normal! $v0<cr>', {silent = true})
+keyset({ 'x', 'o' }, 'al', ':<c-u>normal! $v0<cr>', { silent = true })
 -- "in document" (from first line to last; cursor at top--ie, gg)
-keyset({'x', 'o'}, 'ib', ':<c-u>normal! GVgg<cr>', {silent = true})
+keyset({ 'x', 'o' }, 'ib', ':<c-u>normal! GVgg<cr>', { silent = true })
 -- "in indentation" (indentation level sans any surrounding empty lines)
-keyset({'x', 'o'}, 'ii', '<cmd>call textobject#inIndentation()<cr>', {silent = true})
+keyset({ 'x', 'o' }, 'ii', '<cmd>call textobject#inIndentation()<cr>', { silent = true })
 -- "around indentation" (indentation level and any surrounding empty lines)
-keyset({'x', 'o'}, 'ai', '<cmd>call textobject#aroundIndentation()<cr>', {silent = true})
+keyset({ 'x', 'o' }, 'ai', '<cmd>call textobject#aroundIndentation()<cr>', { silent = true })
+-- "in _"
+keyset({ 'x', 'o' }, 'i_', ':<c-u>normal! T_vt_<cr>', { silent = true })
 
 -- local autocmd = vim.api.nvim_create_autocmd
 -- local augroup = vim.api.nvim_create_augroup
@@ -138,3 +142,10 @@ keyset({'x', 'o'}, 'ai', '<cmd>call textobject#aroundIndentation()<cr>', {silent
 --             keyset("n", "zh", [[gh]], { buffer = true })
 --         end,
 --     })
+
+hl(0, 'MarkLine', { bg = 'darkred', fg = 'gray', ctermbg = 9, ctermfg = 15 })
+local function markline()
+  vim.api.nvim_buf_add_highlight(vim.fn.bufnr('%'), 0, 'MarkLine', (vim.fn.line('.') - 1), 0, -1)
+end
+keyset('n', 'm.', markline)
+keyset('n', 'm<bs>', function() vim.api.nvim_buf_clear_namespace(vim.fn.bufnr('%'), 0, 0, -1) end)

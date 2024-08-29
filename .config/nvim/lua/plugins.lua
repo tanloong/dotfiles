@@ -398,7 +398,7 @@ local plugin_specs = {
   --   },
   -- },
   {
-    "robitx/gp.nvim",
+    "https://github.com/robitx/gp.nvim",
     config = function()
       require("plugin_config.gp_nvim")
     end,
