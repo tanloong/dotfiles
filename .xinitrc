@@ -13,7 +13,7 @@ nm-applet &
 
 # For awesome: comment out this line, the wallpaper is handled in ~/.config/awesome/default/theme.lua
 # For dwm: uncomment this line
-feh --bg-scale /home/tan/.local/share/wallpapers/brad-huchteman-stone-mountain.resized.jpg
+# feh --bg-scale /home/tan/.local/share/wallpapers/brad-huchteman-stone-mountain.resized.jpg
 
 # picom -c > /dev/null 2>&1 &
 flameshot & > /dev/null 2>&1
@@ -34,5 +34,5 @@ if [ -d /etc/X11/xinit/xinitrc.d ] ; then
 fi
 
 # exec startdwm.sh
-exec dwm
-# exec awesome
+# exec dwm
+exec awesome
