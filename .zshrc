@@ -95,4 +95,6 @@ add-zsh-hook -Uz chpwd osc7
 stty -ixon
 export STANFORD_PARSER_HOME="/home/tan/.local/share/stanford-parser-full-2020-11-17"
 export STANFORD_TREGEX_HOME="/home/tan/.local/share/stanford-tregex-2020-11-17"
+export JAVA_HOME="/home/tan/.local/share/jdk8u372-b07"
+export PATH=$PATH:"/home/tan/.local/share/jdk8u372-b07/bin"
 eval "$(zoxide init zsh)"
