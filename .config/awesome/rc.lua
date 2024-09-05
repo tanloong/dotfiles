@@ -17,6 +17,7 @@ local beautiful = require("beautiful")
 local naughty = require("naughty")
 local menubar = require("menubar")
 local hotkeys_popup = require("awful.hotkeys_popup")
+local dpi = require("beautiful.xresources").apply_dpi
 -- Enable hotkeys help widget for VIM and other apps
 -- when client with a matching name is opened:
 require("awful.hotkeys_popup.keys")
@@ -71,10 +72,10 @@ Super = "Mod4"
 -- Table of layouts to cover with awful.layout.inc, order matters.
 awful.layout.layouts = {
   awful.layout.suit.max,
-  awful.layout.suit.max.fullscreen,
   awful.layout.suit.tile,
   awful.layout.suit.floating,
-  awful.layout.suit.magnifier,
+  -- awful.layout.suit.magnifier,
+  -- awful.layout.suit.max.fullscreen,
   -- awful.layout.suit.tile.left,
   -- awful.layout.suit.tile.bottom,
   -- awful.layout.suit.tile.top,
@@ -87,6 +88,9 @@ awful.layout.layouts = {
   -- awful.layout.suit.corner.sw,
   -- awful.layout.suit.corner.se,
 }
+awful.layout.suit.max.name = "[M]"
+awful.layout.suit.tile.name = "[]="
+awful.layout.suit.floating.name = "><>"
 -- }}}
 
 -- {{{ Menu
@@ -115,11 +119,33 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 -- }}}
 
 -- Keyboard map indicator and switcher
-mykeyboardlayout = awful.widget.keyboardlayout()
+-- mykeyboardlayout = awful.widget.keyboardlayout()
 
 -- {{{ Wibar
 -- Create a textclock widget
-mytextclock = wibox.widget.textclock()
+
+-- {wifi_essid, "%s", "wlan0"},
+-- { separator, "|",           NULL },
+
+-- {battery_perc, "电量%s", "BAT0"},
+-- {battery_state, "%s", "BAT0"},
+-- { separator, "|",           NULL },
+
+-- // {disk_free, "硬盘%s", "/"},
+-- {disk_free, "~ %s", "/home/tan"},
+-- { separator, "|",           NULL },
+
+-- // /home/tan/dotfiles/.local/bin/sb-volume-arch" },
+-- // {vol_perc, "音量%s", "/dev/mixer"},
+-- // { separator, "|",           NULL },
+
+-- {ram_free, "内存%s", NULL},
+-- { separator, "|",           NULL },
+
+-- // { cpu_perc, "⚡ %s%%",           NULL },
+-- // { separator, "|",           NULL },
+
+mytextclock = wibox.widget.textclock("%m-%d %u %H:%M")
 
 -- Create a wibox for each screen and add it
 local taglist_buttons = gears.table.join(
@@ -208,7 +234,7 @@ awful.screen.connect_for_each_screen(function(s)
   }
 
   -- Create the wibox
-  s.mywibox = awful.wibar({ position = "bottom", screen = s })
+  s.mywibox = awful.wibar({ position = "bottom", screen = s , height = dpi(16) })
 
   -- Add widgets to the wibox
   s.mywibox:setup {
@@ -217,15 +243,15 @@ awful.screen.connect_for_each_screen(function(s)
       layout = wibox.layout.fixed.horizontal,
       mylauncher,
       s.mytaglist,
-      s.mypromptbox,
+      -- s.mypromptbox,
+      s.mylayoutbox,
     },
     s.mytasklist, -- Middle widget
     {             -- Right widgets
       layout = wibox.layout.fixed.horizontal,
-      mykeyboardlayout,
+      -- mykeyboardlayout,
       wibox.widget.systray(),
       mytextclock,
-      s.mylayoutbox,
     },
   }
 end)
@@ -310,6 +336,7 @@ globalkeys = gears.table.join(
       c.maximized_horizontal = false
       c.maximized_vertical = false
       c.floating = false
+      c.border_width = beautiful.border_width
     end
     awful.layout.set(awful.layout.suit.tile)
   end, { description = "tile layout", group = "client" }),
@@ -319,6 +346,7 @@ globalkeys = gears.table.join(
       c.maximized = false
       c.maximized_horizontal = false
       c.maximized_vertical = false
+      c.border_width = beautiful.border_width
     end
     awful.layout.set(awful.layout.suit.floating)
   end, { description = "floating layout", group = "client" }),
@@ -327,17 +355,11 @@ globalkeys = gears.table.join(
       for c in client_iterate(function() return true end) do
         c.fullscreen = false
         c.floating = false
+        c.border_width = 0
       end
       awful.layout.set(awful.layout.suit.max)
     end,
     { description = "(un)maximize", group = "client" }),
-  awful.key({ Alt, }, "minus",
-    function(c)
-      -- The client currently has the input focus, so it cannot be
-      -- minimized, since minimized clients can't have the focus.
-      c.minimized = true
-    end,
-    { description = "minimize", group = "client" }),
   awful.key({ Alt, }, "equal",
     function()
       local c = awful.client.restore()
@@ -355,32 +377,35 @@ globalkeys = gears.table.join(
   awful.key({}, "XF86AudioLowerVolume", function() awful.spawn.with_shell("/home/tan/.local/bin/set-volume -1") end),
   awful.key({}, "XF86AudioMute", function() awful.spawn.with_shell("/home/tan/.local/bin/set-volume 0") end),
   awful.key({}, "XF86Suspend", function() awful.spawn.with_shell("/home/tan/.local/bin/suspend.sh") end),
-  awful.key({}, "Print", function() awful.spawn.with_shell(openthe.." screenshot-clip") end),
-  awful.key({ "Shift" }, "Print", function() awful.spawn.with_shell(openthe.." screenshot-noclip") end),
-  awful.key({ Super }, "e", function() awful.spawn.with_shell(openthe.." filemanager") end,
+  awful.key({}, "Print", function() awful.spawn.with_shell(openthe .. " screenshot-clip") end),
+  awful.key({ "Shift" }, "Print", function() awful.spawn.with_shell(openthe .. " screenshot-noclip") end),
+  awful.key({ Super }, "e", function() awful.spawn.with_shell(openthe .. " filemanager") end,
     { description = "filemanager", group = "launcher" }),
-  awful.key({ Super }, "r", function() awful.spawn.with_shell(openthe.." screenkey") end,
+  awful.key({ Super }, "r", function() awful.spawn.with_shell(openthe .. " screenkey") end,
     { description = "screenkey", group = "launcher" }),
-  awful.key({ Super }, "q", function() awful.spawn.with_shell(openthe.." qq") end,
+  awful.key({ Super }, "q", function() awful.spawn.with_shell(openthe .. " qq") end,
     { description = "qq", group = "launcher" }),
-  awful.key({ Super }, "a", function() awful.spawn.with_shell(openthe.." wechat") end,
+  awful.key({ Super }, "a", function() awful.spawn.with_shell(openthe .. " wechat") end,
     { description = "wechat", group = "launcher" }),
-  awful.key({ Super }, "p", function() awful.spawn.with_shell(openthe.." keepassx") end,
+  awful.key({ Super }, "p", function() awful.spawn.with_shell(openthe .. " keepassx") end,
     { description = "password", group = "launcher" }),
-  awful.key({ Super }, "c", function() awful.spawn.with_shell(openthe.." office") end,
+  awful.key({ Super }, "c", function() awful.spawn.with_shell(openthe .. " office") end,
     { description = "office", group = "launcher" }),
-  awful.key({ Super }, "space", function() awful.spawn.with_shell(openthe.." dictionary") end,
+  awful.key({ Super }, "space", function() awful.spawn.with_shell(openthe .. " dictionary") end,
     { description = "dictionary", group = "launcher" }),
-  awful.key({ Alt }, "d", function() awful.spawn.with_shell(openthe.." menu") end,
+  awful.key({ Alt }, "d", function() awful.spawn.with_shell(openthe .. " menu") end,
     { description = "menu", group = "launcher" }),
   awful.key({ Super }, "m", function() awful.spawn.with_shell("/home/tan/.local/bin/change-wallpaper") end,
     { description = "wallpaper", group = "launcher" }),
   awful.key({ Alt }, "e", function() awful.spawn.with_shell("/home/tan/.local/bin/numlock.sh") end,
     { description = "numlock", group = "launcher" }),
-  awful.key({ Super }, "x", function() awful.spawn.with_shell(openthe.." browser") end,
+  awful.key({ Super }, "x", function() awful.spawn.with_shell(openthe .. " browser") end,
     { description = "browser", group = "launcher" }),
-  awful.key({ Super }, "z", function() awful.spawn.with_shell(openthe.." terminal") end,
-    { description = "terminal", group = "launcher" })
+  awful.key({ Super }, "z", function() awful.spawn.with_shell(openthe .. " terminal") end,
+    { description = "terminal", group = "launcher" }),
+  awful.key({ Alt }, "b", function()
+    mouse.screen.mywibox.visible = not mouse.screen.mywibox.visible
+  end)
 
 -- awful.key({ Alt, }, "space", function() awful.layout.inc(1) end,
 --   { description = "select next", group = "layout" }),
@@ -417,7 +442,14 @@ clientkeys = gears.table.join(
     c.floating = not c.floating
   end, { description = "toggle floating", group = "client" }),
   awful.key({ Alt, }, "Return", function(c) c:swap(awful.client.getmaster()) end,
-    { description = "move to master", group = "client" })
+    { description = "move to master", group = "client" }),
+  awful.key({ Alt, }, "minus",
+    function(c)
+      -- The client currently has the input focus, so it cannot be
+      -- minimized, since minimized clients can't have the focus.
+      c.minimized = true
+    end,
+    { description = "minimize", group = "client" })
 -- awful.key({ Alt, }, "o", function(c) c:move_to_screen() end,
 --   { description = "move to screen", group = "client" }),
 -- awful.key({ Alt, }, "t", function(c) c.ontop = not c.ontop end,
@@ -593,30 +625,30 @@ client.connect_signal("request::titlebars", function(c)
     end)
   )
 
-  awful.titlebar(c):setup {
-    { -- Left
-      awful.titlebar.widget.iconwidget(c),
-      buttons = buttons,
-      layout  = wibox.layout.fixed.horizontal
-    },
-    {   -- Middle
-      { -- Title
-        align  = "center",
-        widget = awful.titlebar.widget.titlewidget(c)
-      },
-      buttons = buttons,
-      layout  = wibox.layout.flex.horizontal
-    },
-    { -- Right
-      awful.titlebar.widget.floatingbutton(c),
-      awful.titlebar.widget.maximizedbutton(c),
-      awful.titlebar.widget.stickybutton(c),
-      awful.titlebar.widget.ontopbutton(c),
-      awful.titlebar.widget.closebutton(c),
-      layout = wibox.layout.fixed.horizontal()
-    },
-    layout = wibox.layout.align.horizontal
-  }
+  -- awful.titlebar(c):setup {
+  --   { -- Left
+  --     awful.titlebar.widget.iconwidget(c),
+  --     buttons = buttons,
+  --     layout  = wibox.layout.fixed.horizontal
+  --   },
+  --   {   -- Middle
+  --     { -- Title
+  --       align  = "center",
+  --       widget = awful.titlebar.widget.titlewidget(c)
+  --     },
+  --     buttons = buttons,
+  --     layout  = wibox.layout.flex.horizontal
+  --   },
+  --   { -- Right
+  --     awful.titlebar.widget.floatingbutton(c),
+  --     awful.titlebar.widget.maximizedbutton(c),
+  --     awful.titlebar.widget.stickybutton(c),
+  --     awful.titlebar.widget.ontopbutton(c),
+  --     awful.titlebar.widget.closebutton(c),
+  --     layout = wibox.layout.fixed.horizontal()
+  --   },
+  --   layout = wibox.layout.align.horizontal
+  -- }
 end)
 
 -- Enable sloppy focus, so that focus follows mouse.
@@ -630,7 +662,7 @@ local function set_border(c)
   local s = awful.screen.focused()
   if c.maximized
       or (#s.tiled_clients == 1 and not c.floating)
-      or (s.selected_tag and s.selected_tag.layout.name == 'max')
+      or (s.selected_tag and s.selected_tag.layout.name == awful.layout.suit.max.name)
   then
     c.border_width = 0
   else

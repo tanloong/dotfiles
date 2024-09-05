@@ -12,33 +12,33 @@ local themes_path = gfs.get_themes_dir()
 local theme = {}
 
 -- theme.font          = "sans 18"
-theme.font = "Cousine Nerd Font Mono 8"
+theme.font = "Cousine Nerd Font Mono 11"
 
--- static const char col_white[] = "#FFFFFF";
--- static const char col_black[] = "#000000";
--- static const char col_gray1[] = "#222222";
--- static const char col_gray2[] = "#444444";
--- static const char col_gray3[] = "#bbbbbb";
--- static const char col_gray4[] = "#eeeeee";
--- static const char col_cyan[] = "#005577";
--- static const char col_blue[] = "#000066";
--- static const char col_yellow[] = "#FFFF00";
+col_white = "#FFFFFF"
+col_black = "#000000"
+col_gray1 = "#222222"
+col_gray2 = "#444444"
+col_gray3 = "#bbbbbb"
+col_gray4 = "#eeeeee"
+col_cyan = "#005577"
+col_blue = "#000066"
+col_yellow = "#FFFF00"
 
-theme.bg_normal     = "#222222"
-theme.bg_focus      = "#535d6c"
-theme.bg_urgent     = "#ff0000"
-theme.bg_minimize   = "#444444"
+theme.bg_normal     = col_black
+theme.bg_focus      = col_white
+theme.bg_urgent     = col_white
+theme.bg_minimize   = col_gray2
 theme.bg_systray    = theme.bg_normal
 
-theme.fg_normal     = "#aaaaaa"
-theme.fg_focus      = "#ffffff"
-theme.fg_urgent     = "#ffffff"
-theme.fg_minimize   = "#ffffff"
+theme.fg_normal     = col_white
+theme.fg_focus      = col_black
+theme.fg_urgent     = col_black
+theme.fg_minimize   = col_black
 
 theme.useless_gap   = dpi(0)
-theme.border_width  = dpi(1)
-theme.border_normal = "#000000"
-theme.border_focus  = "#535d6c"
+theme.border_width  = dpi(2)
+theme.border_normal = col_black
+theme.border_focus  = col_yellow
 theme.border_marked = "#91231c"
 
 -- There are other variable sets
@@ -52,16 +52,24 @@ theme.border_marked = "#91231c"
 -- prompt_[fg|bg|fg_cursor|bg_cursor|font]
 -- hotkeys_[bg|fg|border_width|border_color|shape|opacity|modifiers_fg|label_bg|label_fg|group_margin|font|description_font]
 -- Example:
---theme.taglist_bg_focus = "#ff0000"
+theme.taglist_bg_focus = col_cyan
+theme.taglist_fg_focus = col_white
+theme.taglist_bg_occupied = col_black
+theme.taglist_fg_occupied = col_white
+theme.taglist_spacing = dpi(2)
+
+theme.taglist_disable_icon = true
+theme.tasklist_disable_icon = true
+theme.layoutlist_disable_icon = true
 
 -- Generate taglist squares:
-local taglist_square_size = dpi(4)
-theme.taglist_squares_sel = theme_assets.taglist_squares_sel(
-    taglist_square_size, theme.fg_normal
-)
-theme.taglist_squares_unsel = theme_assets.taglist_squares_unsel(
-    taglist_square_size, theme.fg_normal
-)
+-- local taglist_square_size = dpi(4)
+-- theme.taglist_squares_sel = theme_assets.taglist_squares_sel(
+--     taglist_square_size, theme.fg_normal
+-- )
+-- theme.taglist_squares_unsel = theme_assets.taglist_squares_unsel(
+--     taglist_square_size, theme.fg_normal
+-- )
 
 -- Variables set for theming notifications:
 -- notification_font
@@ -81,53 +89,8 @@ theme.menu_width  = dpi(100)
 -- beautiful.variable in your rc.lua
 --theme.bg_widget = "#cc0000"
 
--- Define the image to load
--- theme.titlebar_close_button_normal = themes_path.."default/titlebar/close_normal.png"
--- theme.titlebar_close_button_focus  = themes_path.."default/titlebar/close_focus.png"
---
--- theme.titlebar_minimize_button_normal = themes_path.."default/titlebar/minimize_normal.png"
--- theme.titlebar_minimize_button_focus  = themes_path.."default/titlebar/minimize_focus.png"
---
--- theme.titlebar_ontop_button_normal_inactive = themes_path.."default/titlebar/ontop_normal_inactive.png"
--- theme.titlebar_ontop_button_focus_inactive  = themes_path.."default/titlebar/ontop_focus_inactive.png"
--- theme.titlebar_ontop_button_normal_active = themes_path.."default/titlebar/ontop_normal_active.png"
--- theme.titlebar_ontop_button_focus_active  = themes_path.."default/titlebar/ontop_focus_active.png"
---
--- theme.titlebar_sticky_button_normal_inactive = themes_path.."default/titlebar/sticky_normal_inactive.png"
--- theme.titlebar_sticky_button_focus_inactive  = themes_path.."default/titlebar/sticky_focus_inactive.png"
--- theme.titlebar_sticky_button_normal_active = themes_path.."default/titlebar/sticky_normal_active.png"
--- theme.titlebar_sticky_button_focus_active  = themes_path.."default/titlebar/sticky_focus_active.png"
---
--- theme.titlebar_floating_button_normal_inactive = themes_path.."default/titlebar/floating_normal_inactive.png"
--- theme.titlebar_floating_button_focus_inactive  = themes_path.."default/titlebar/floating_focus_inactive.png"
--- theme.titlebar_floating_button_normal_active = themes_path.."default/titlebar/floating_normal_active.png"
--- theme.titlebar_floating_button_focus_active  = themes_path.."default/titlebar/floating_focus_active.png"
---
--- theme.titlebar_maximized_button_normal_inactive = themes_path.."default/titlebar/maximized_normal_inactive.png"
--- theme.titlebar_maximized_button_focus_inactive  = themes_path.."default/titlebar/maximized_focus_inactive.png"
--- theme.titlebar_maximized_button_normal_active = themes_path.."default/titlebar/maximized_normal_active.png"
--- theme.titlebar_maximized_button_focus_active  = themes_path.."default/titlebar/maximized_focus_active.png"
-
 -- theme.wallpaper = themes_path.."default/background.png"
 theme.wallpaper = "/home/tan/.local/share/wallpapers/brad-huchteman-stone-mountain.resized.jpg"
-
--- You can use your own layout icons like this:
--- theme.layout_fairh = themes_path.."default/layouts/fairhw.png"
--- theme.layout_fairv = themes_path.."default/layouts/fairvw.png"
--- theme.layout_floating  = themes_path.."default/layouts/floatingw.png"
--- theme.layout_magnifier = themes_path.."default/layouts/magnifierw.png"
--- theme.layout_max = themes_path.."default/layouts/maxw.png"
--- theme.layout_fullscreen = themes_path.."default/layouts/fullscreenw.png"
--- theme.layout_tilebottom = themes_path.."default/layouts/tilebottomw.png"
--- theme.layout_tileleft   = themes_path.."default/layouts/tileleftw.png"
--- theme.layout_tile = themes_path.."default/layouts/tilew.png"
--- theme.layout_tiletop = themes_path.."default/layouts/tiletopw.png"
--- theme.layout_spiral  = themes_path.."default/layouts/spiralw.png"
--- theme.layout_dwindle = themes_path.."default/layouts/dwindlew.png"
--- theme.layout_cornernw = themes_path.."default/layouts/cornernww.png"
--- theme.layout_cornerne = themes_path.."default/layouts/cornernew.png"
--- theme.layout_cornersw = themes_path.."default/layouts/cornersww.png"
--- theme.layout_cornerse = themes_path.."default/layouts/cornersew.png"
 
 -- Generate Awesome icon:
 theme.awesome_icon = theme_assets.awesome_icon(
@@ -140,4 +103,4 @@ theme.icon_theme = nil
 
 return theme
 
--- vim: filetype=lua:expandtab:shiftwidth=4:tabstop=8:softtabstop=4:textwidth=80
+-- vim: filetype=lua:expandtab:shiftwidth=2:tabstop=2:softtabstop=2:textwidth=80
