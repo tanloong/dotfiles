@@ -111,13 +111,16 @@ endsnippet
 snippet '(\S+)\*\*([\d.]+)([^\d.])' "exponentiation, need #include <math.h>" wrA
 pow(`!p snip.rv=match.group(1)`,`!p snip.rv=match.group(2)`)`!p snip.rv=match.group(3)`$0
 endsnippet
-snippet '^inc' "include header files" rA
+snippet i "include header files" b
 #include $0
 endsnippet
-snippet '^def' "define constants" rA
+snippet def "define constants" b
 #define $0
 endsnippet
 
+snippet .. "->" iA
+->
+endsnippet
 snippet p "print something"
 printf("$1\n"$2);$0
 endsnippet

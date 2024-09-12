@@ -58,4 +58,7 @@
     open_commit_editor: Some(( code: Char('e'), modifiers: "CONTROL")),
 
     file_find: Some(( code: Char('/'), modifiers: "")), // in Files tab
+    log_find: Some(( code: Char('/'), modifiers: "")), // in Files tab
+
+    // exit: Some(( code: Char('q'), modifiers: ""))
 )

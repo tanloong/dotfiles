@@ -8,6 +8,7 @@ pcall(require, "luarocks.loader")
 local gears = require("gears")
 local awful = require("awful")
 local client_iterate = require("awful.client").iterate
+local dpi = require("beautiful.xresources").apply_dpi
 require("awful.autofocus")
 -- Widget and layout library
 local wibox = require("wibox")
@@ -17,10 +18,11 @@ local beautiful = require("beautiful")
 local naughty = require("naughty")
 local menubar = require("menubar")
 local hotkeys_popup = require("awful.hotkeys_popup")
-local dpi = require("beautiful.xresources").apply_dpi
 -- Enable hotkeys help widget for VIM and other apps
 -- when client with a matching name is opened:
 require("awful.hotkeys_popup.keys")
+-- Popin
+local poppin = require("poppin")
 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
@@ -99,8 +101,8 @@ myawesomemenu = {
   -- { "hotkeys",     function() hotkeys_popup.show_help(nil, awful.screen.focused()) end },
   -- { "manual",      terminal .. " -e man awesome" },
   { "edit config", editor_cmd .. " " .. awesome.conffile },
-  { "restart",     awesome.restart },
-  { "quit",        function() awesome.quit() end },
+  { "restart", awesome.restart },
+  { "quit", function() awesome.quit() end },
 }
 
 mymainmenu = awful.menu({
@@ -160,9 +162,9 @@ local taglist_buttons = gears.table.join(
     if client.focus then
       client.focus:toggle_tag(t)
     end
-  end),
-  awful.button({}, 4, function(t) awful.tag.viewnext(t.screen) end),
-  awful.button({}, 5, function(t) awful.tag.viewprev(t.screen) end)
+  end)
+-- awful.button({}, 4, function(t) awful.tag.viewnext(t.screen) end),
+-- awful.button({}, 5, function(t) awful.tag.viewprev(t.screen) end)
 )
 
 local tasklist_buttons = gears.table.join(
@@ -170,11 +172,7 @@ local tasklist_buttons = gears.table.join(
     if c == client.focus then
       c.minimized = true
     else
-      c:emit_signal(
-        "request::activate",
-        "tasklist",
-        { raise = true }
-      )
+      c:emit_signal("request::activate", "tasklist", { raise = true })
     end
   end),
   awful.button({}, 3, function()
@@ -216,25 +214,25 @@ awful.screen.connect_for_each_screen(function(s)
   s.mylayoutbox = awful.widget.layoutbox(s)
   s.mylayoutbox:buttons(gears.table.join(
     awful.button({}, 1, function() awful.layout.inc(1) end),
-    awful.button({}, 3, function() awful.layout.inc(-1) end),
-    awful.button({}, 4, function() awful.layout.inc(1) end),
-    awful.button({}, 5, function() awful.layout.inc(-1) end)))
+    awful.button({}, 3, function() awful.layout.inc(-1) end)))
+  -- awful.button({}, 4, function() awful.layout.inc(1) end),
+  -- awful.button({}, 5, function() awful.layout.inc(-1) end)))
   -- Create a taglist widget
   s.mytaglist = awful.widget.taglist {
-    screen  = s,
-    filter  = awful.widget.taglist.filter.noempty,
+    screen = s,
+    filter = awful.widget.taglist.filter.noempty,
     buttons = taglist_buttons
   }
 
   -- Create a tasklist widget
   s.mytasklist = awful.widget.tasklist {
-    screen  = s,
-    filter  = awful.widget.tasklist.filter.currenttags,
+    screen = s,
+    filter = awful.widget.tasklist.filter.currenttags,
     buttons = tasklist_buttons
   }
 
   -- Create the wibox
-  s.mywibox = awful.wibar({ position = "bottom", screen = s , height = dpi(16) })
+  s.mywibox = awful.wibar({ position = "bottom", screen = s, height = dpi(15) })
 
   -- Add widgets to the wibox
   s.mywibox:setup {
@@ -258,11 +256,11 @@ end)
 -- }}}
 
 -- {{{ Mouse bindings
-root.buttons(gears.table.join(
-  awful.button({}, 3, function() mymainmenu:toggle() end),
-  awful.button({}, 4, awful.tag.viewnext),
-  awful.button({}, 5, awful.tag.viewprev)
-))
+-- root.buttons(gears.table.join(
+--   awful.button({}, 3, function() mymainmenu:toggle() end)
+-- awful.button({}, 4, awful.tag.viewnext),
+-- awful.button({}, 5, awful.tag.viewprev)
+-- ))
 -- }}}
 
 -- {{{ Key bindings
@@ -405,7 +403,11 @@ globalkeys = gears.table.join(
     { description = "terminal", group = "launcher" }),
   awful.key({ Alt }, "b", function()
     mouse.screen.mywibox.visible = not mouse.screen.mywibox.visible
-  end)
+  end),
+  awful.key({ Alt }, "n", function()
+      poppin.pop("scratch", terminal, "center", {width = dpi(800), height = dpi(400) })
+    end,
+    { description = "scratch", group = "poppin" })
 
 -- awful.key({ Alt, }, "space", function() awful.layout.inc(1) end,
 --   { description = "select next", group = "layout" }),
@@ -543,15 +545,15 @@ awful.rules.rules = {
   {
     rule = {},
     properties = {
-      border_width         = beautiful.border_width,
-      border_color         = beautiful.border_normal,
-      focus                = awful.client.focus.filter,
-      raise                = true,
-      keys                 = clientkeys,
-      buttons              = clientbuttons,
-      screen               = awful.screen.preferred,
-      placement            = awful.placement.no_overlap + awful.placement.no_offscreen,
-      maximized_vertical   = false,
+      border_width = beautiful.border_width,
+      border_color = beautiful.border_normal,
+      focus = awful.client.focus.filter,
+      raise = true,
+      keys = clientkeys,
+      buttons = clientbuttons,
+      screen = awful.screen.preferred,
+      placement = awful.placement.no_overlap + awful.placement.no_offscreen,
+      maximized_vertical = false,
       maximized_horizontal = false,
     }
   },

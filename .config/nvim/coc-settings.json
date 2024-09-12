@@ -65,7 +65,10 @@
   "git.enableGutters": true,
   "git.conflict.incoming.hlGroup": "None",
   "git.conflict.current.hlGroup": "None",
-  "git.floatConfig": {"border": true, "rounded": false},
+  "git.floatConfig": {
+    "border": true,
+    "rounded": false
+  },
   "python.linting.ruffEnabled": true,
   "semanticTokens.enable": false,
   "python.formatting.provider": "ruff",
@@ -93,6 +96,14 @@
   "Lua.diagnostics.neededFileStatus": {
     "lowercase-global": "None"
   },
+  "Lua.format.defaultConfig": {
+    "quote_style": "double",
+    "align_call_args": "false",
+    "align_function_params": "false",
+    "align_continuous_assign_statement": "false",
+    "align_continuous_rect_table_field": "false",
+    "align_array_table": "false"
+  },
   "suggest.completionItemKindLabels": {
     "constructor": "ﬥ",
     "keyword": "",
@@ -100,7 +111,7 @@
     "value": "",
     "operator": "Ψ",
     "function": "ƒ",
-    "reference": "渚",
+    "reference": "",
     "constant": "",
     "method": "",
     "struct": "פּ",
@@ -112,9 +123,9 @@
     "module": "",
     "color": "",
     "property": "",
-    "field": "料",
+    "field": "",
     "unit": "",
-    "event": "鬒",
+    "event": "",
     "file": "",
     "folder": "",
     "snippet": "",

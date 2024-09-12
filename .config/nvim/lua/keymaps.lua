@@ -62,6 +62,10 @@ keyset('n', '<leader>b', [[<cmd>ls<cr>:b<space>]])
 keyset('n', '<leader>e', [[<cmd>exec empty(filter(getwininfo(), 'v:val.quickfix')) ? 'copen' : 'cclose'<cr>]])
 keyset('n', 'zl', "1z=")
 keyset('i', '<c-q>', '<c-k>')
+-- execute current line as shell command
+keyset('n', '<leader>x', [[<cmd>exec "r!" .. getline(".")<cr>]])
+keyset('v', '<leader>x',
+  [[:<c-u>exec "r!" .. getregion(getpos("'<"), getpos("'>"), {"type": "v"})[0] <cr>]])
 
 -- NAVIGATION
 -- jumping between a normal buffer and a neovim terminal

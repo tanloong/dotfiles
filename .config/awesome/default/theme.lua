@@ -24,21 +24,21 @@ col_cyan = "#005577"
 col_blue = "#000066"
 col_yellow = "#FFFF00"
 
-theme.bg_normal     = col_black
-theme.bg_focus      = col_white
-theme.bg_urgent     = col_white
-theme.bg_minimize   = col_gray2
-theme.bg_systray    = theme.bg_normal
+theme.bg_normal = col_black
+theme.bg_focus = col_white
+theme.bg_urgent = col_white
+theme.bg_minimize = col_gray2
+theme.bg_systray = theme.bg_normal
 
-theme.fg_normal     = col_white
-theme.fg_focus      = col_black
-theme.fg_urgent     = col_black
-theme.fg_minimize   = col_black
+theme.fg_normal = col_white
+theme.fg_focus = col_black
+theme.fg_urgent = col_black
+theme.fg_minimize = col_black
 
-theme.useless_gap   = dpi(0)
-theme.border_width  = dpi(2)
+theme.useless_gap = dpi(0)
+theme.border_width = dpi(2)
 theme.border_normal = col_black
-theme.border_focus  = col_yellow
+theme.border_focus = col_yellow
 theme.border_marked = "#91231c"
 
 -- There are other variable sets
@@ -59,8 +59,9 @@ theme.taglist_fg_occupied = col_white
 theme.taglist_spacing = dpi(2)
 
 theme.taglist_disable_icon = true
-theme.tasklist_disable_icon = true
 theme.layoutlist_disable_icon = true
+theme.tasklist_disable_task_name = true
+theme.tasklist_plain_task_name = true
 
 -- Generate taglist squares:
 -- local taglist_square_size = dpi(4)
@@ -80,9 +81,9 @@ theme.layoutlist_disable_icon = true
 -- Variables set for theming the menu:
 -- menu_[bg|fg]_[normal|focus]
 -- menu_[border_color|border_width]
-theme.menu_submenu_icon = themes_path.."default/submenu.png"
+theme.menu_submenu_icon = themes_path .. "default/submenu.png"
 theme.menu_height = dpi(15)
-theme.menu_width  = dpi(100)
+theme.menu_width = dpi(100)
 
 -- You can add as many variables as
 -- you wish and access them by using
@@ -94,7 +95,7 @@ theme.wallpaper = "/home/tan/.local/share/wallpapers/brad-huchteman-stone-mounta
 
 -- Generate Awesome icon:
 theme.awesome_icon = theme_assets.awesome_icon(
-    theme.menu_height, theme.bg_focus, theme.fg_focus
+  theme.menu_height, theme.bg_focus, theme.fg_focus
 )
 
 -- Define the icon theme for application icons. If not set then the icons

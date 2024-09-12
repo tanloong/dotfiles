@@ -146,23 +146,21 @@ alias jt="jupyter nbconvert --to script"
 alias jn="jupyter-notebook"
 
 function activate
-    set --function current_dir (pwd)
-    set --function home_home (dirname (realpath $HOME))
+    set --function cwd (pwd)
+    set --function home (dirname (realpath $HOME))
     set --function venv_path ""
 
-    # Recursive search for .venv directory
-    while test -n $current_dir -a $home_home != $current_dir
-        if test -e $current_dir/.venv
-            set --function venv_path (realpath $current_dir/.venv)
+    # Recursive search upward for .venv directory
+    while test -n $cwd -a $home != $cwd
+        if test -e $cwd/.venv
+            set --function venv_path (realpath $cwd/.venv)
             break
         end
-        set --function current_dir (dirname $current_dir)
+        set --function cwd (dirname $cwd)
     end
 
     if test -n $venv_path
-        # Check if the path is valid
         if test -d $venv_path
-            # Execute the activate.fish script
             source $venv_path/bin/activate.fish
         else
             echo "Found .venv at $venv_path, but it is not a valid directory"
