@@ -130,8 +130,8 @@ alias jr='$EDITOR $HOME/docx/memorandum/journal.md'
 alias wr='cd $HOME/workspace/writing'
 alias neofetch='neofetch --config $HOME/.config/neofetch.conf'
 alias myclip='xclip -rmlastnl -sel clipboard'
-alias wk="vf activate"
-alias deactivate="vf deactivate"
+#alias wk="vf activate"
+#alias deactivate="vf deactivate"
 alias mkvirtualenv="vf new"
 alias mktmpenv="vf tmp"
 alias rmvirtualenv="vf rm"
@@ -169,6 +169,8 @@ function activate
         echo "Could not find .venv directory"
     end
 end
+alias va="activate"
+alias vd="deactivate"
 
 # aliases that precedes with "setsid -f"
 alias deskreen="setsid -f deskreen"

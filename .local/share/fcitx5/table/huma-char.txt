@@ -37612,11 +37612,13 @@ gwfv 䐨
 ;ss ……
 ;d 、
 ;f “
-;ff " 
-;ff “
+;f ‘
+;ff "
+;ff '
 ;g ”
+;g ’
 ;gg "
-;gg ”
+;gg '
 ;h 『
 ;j 』
 ;k ￥

@@ -24,3 +24,5 @@
 	quotepath = false
 [pull]
 	rebase = true
+[branch]
+	sort = -committerdate

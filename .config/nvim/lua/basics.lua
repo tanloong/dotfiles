@@ -64,6 +64,7 @@ opt.jumpoptions = "view"
 opt.grepprg = "rg --vimgrep --smart-case $*"
 opt.grepformat = "%f:%l:%c:%m,%f:%l:%m,%f:%l%m,%f  %l%m"
 -- opt.showcmd = false
+opt.undofile = true
 
 -- Disable netrw
 vim.g.loaded_netrw = 1
