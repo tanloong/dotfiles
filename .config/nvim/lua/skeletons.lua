@@ -1,7 +1,7 @@
 #!/usr/bin/env lua
 local autocmd = vim.api.nvim_create_autocmd
 local augroup = vim.api.nvim_create_augroup
-local before = "silent 0r ~/.config/nvim/skeleton/"
+local before = "silent keepalt 0r ~/.config/nvim/skeleton/"
 local after = " | :normal G"
 
 autocmd("BufNewFile",
