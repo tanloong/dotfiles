@@ -1,0 +1,46 @@
+color listfocus black white bold
+color listfocus_unread black white bold
+color hint-separator white blue
+color hint-key white blue
+show-title-bar no
+show-keymap-hint yes
+reload-threads 10
+text-width 72
+refresh-on-startup yes
+confirm-exit yes
+goto-next-feed no
+# bind-key ^o open-in-browser
+unbind-key SPACE
+unbind-key ,
+unbind-key g
+unbind-key K
+unbind-key J
+unbind-key ENTER
+unbind-key Q
+unbind-key o
+bind-key f pagedown
+bind-key b pageup
+bind-key d halfpagedown
+bind-key u halfpageup
+bind-key e down
+bind-key y up
+bind-key ESC quit
+bind-key q quit
+bind-key h quit articlelist
+bind-key h quit article
+bind-key ^Q hard-quit
+bind-key l open
+bind-key j next
+bind-key k prev
+bind-key j down article
+bind-key k up article
+bind-key g home
+bind-key G end
+bind-key o sort
+bind-key [ prev-feed
+bind-key ] next-feed
+bind-key SPACE macro-prefix
+bind-key E enqueue article
+macro e pipe-to "nvim -c 'nnoremap q <cmd>quit!<cr>'";
+# pager "nvim -c 'nnoremap q <cmd>quit!<cr>' %f"
+# pager "less %f"

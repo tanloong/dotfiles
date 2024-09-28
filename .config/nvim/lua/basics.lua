@@ -22,7 +22,7 @@ opt.wrap = true
 opt.wrapscan = true
 opt.linebreak = true
 opt.swapfile = false
-opt.laststatus = 2
+opt.laststatus = 3
 opt.matchpairs = '<:>,(:),{:},[:]'
 opt.foldmethod = 'marker'
 opt.spelllang = 'en,cjk'
@@ -65,6 +65,7 @@ opt.grepprg = "rg --vimgrep --smart-case $*"
 opt.grepformat = "%f:%l:%c:%m,%f:%l:%m,%f:%l%m,%f  %l%m"
 -- opt.showcmd = false
 opt.undofile = true
+-- opt.iskeyword = "@,48-57,192-255" -- remove _ from the default
 
 -- Disable netrw
 vim.g.loaded_netrw = 1

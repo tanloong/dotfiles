@@ -58,7 +58,7 @@ set --global --export OPENAI_API_HOST $(cat $HOME/.config/api_keys/OPENAI_API_HO
 set --global --export GCC_COLORS 'error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
 # fzf
-set --global --export FZF_DEFAULT_COMMAND 'rg --ignore-file "$HOME/.ignore" --files'
+set --global --export FZF_DEFAULT_COMMAND 'rg --ignore-file "$HOME/.ignore" --files --hidden -L'
 set --global --export FZF_DEFAULT_OPTS '--tiebreak=end,chunk --bind=ctrl-z:ignore,btab:up,tab:down --cycle --keep-right --info=inline-right --layout=reverse --tabstop=1 --exit-0 --select-1'
 set --global --export _ZO_FZF_OPTS '--scheme=path --tiebreak=end,chunk --bind=ctrl-z:ignore,btab:up,tab:down --cycle --keep-right --info=inline-right --layout=reverse --tabstop=1 --exit-0 --select-1'
 
@@ -70,15 +70,6 @@ bind --mode insert \ce edit_command_buffer
 
 # source LS_COLORS
 # [ -f $HOME/.local/share/ls-colors.sh ] && source $HOME/.local/share/ls-colors.sh
-
-# Use neovim for vim if present.
-if command -v nvim > /dev/null
-    set --global --export EDITOR "nvim"
-    alias vv='$FILE_MANAGER $HOME/.config/nvim/lua'
-else
-    set --global --export EDITOR "vim"
-    alias vv='vim $HOME/.vim/vimrc'
-end
 
 function fzf_with
     set file "$(fzf --reverse)"
@@ -98,6 +89,16 @@ function fv; fzf_with "$EDITOR"; end
 function fcd; fzf_with cd; end
 function fz; fzf_with "$PDFVIEWER"; end
 function fr; fzf_with "$FILE_MANAGER"; end
+
+# Use neovim for vim if present.
+if command -v nvim > /dev/null
+    set --global --export EDITOR "nvim"
+    alias vv='cd $HOME/projects/dotfiles/; fv; cd -'
+else
+    set --global --export EDITOR "vim"
+    alias vv='vim $HOME/.vim/vimrc'
+end
+alias mm='cd $HOME/docx/memorandum/; fv; cd -'
 
 function nq
     if test (count $argv) -eq 0
@@ -125,7 +126,6 @@ alias cd-="cd -"
 alias sc="shellcheck"
 alias v='$EDITOR'
 alias ga="lazygit"
-alias mm='$EDITOR -X $HOME/docx/memorandum/Linux.md'
 alias jr='$EDITOR $HOME/docx/memorandum/journal.md'
 alias wr='cd $HOME/workspace/writing'
 alias neofetch='neofetch --config $HOME/.config/neofetch.conf'
@@ -144,6 +144,9 @@ alias setvirtualenvproject="vf connect"
 alias j="jupyter"
 alias jt="jupyter nbconvert --to script"
 alias jn="jupyter-notebook"
+if test -n (command -v newsboat)
+  alias n="newsboat"
+end
 
 function activate
     set --function cwd (pwd)

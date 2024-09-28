@@ -91,6 +91,7 @@
   "sumneko-lua.locale": "en-us",
   "sumneko-lua.enableNvimLuaDev": true,
   "sumneko-lua.checkUpdate": false,
+  "Lua.runtime.version": "Lua 5.1",
   "Lua.workspace.checkThirdParty": false,
   "Lua.hint.arrayIndex": "Disable",
   "Lua.diagnostics.neededFileStatus": {
@@ -162,6 +163,11 @@
     ]
   },
   "workspace.ignoredFolders": [
+    "$HOME",
+    "$HOME/.cargo/**",
+    "$HOME/.rustup/**"
+  ],
+  "rust-analyzer.files.excludeDirs": [
     "$HOME",
     "$HOME/.cargo/**",
     "$HOME/.rustup/**"

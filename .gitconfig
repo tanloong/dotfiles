@@ -26,3 +26,5 @@
 	rebase = true
 [branch]
 	sort = -committerdate
+[column]
+	ui = column,nodense
