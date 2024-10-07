@@ -132,9 +132,12 @@ keyset({ "x", "o" }, "ai", "<cmd>call textobject#aroundIndentation()<cr>", { sil
 keyset({ "x", "o" }, "i_", ":<c-u>normal! T_vt_<cr>", { silent = true })
 
 -- convert unicode_escape to unicode
--- select '\u1234' and type '<leader>c'
+-- select '\u21bb' and type '<leader>c'
 keyset("v", "<leader>c",
   [[:<c-u>'<,'>!python -c "import sys; print(sys.stdin.read().encode().decode('unicode_escape'), end='')"<cr>]])
+-- run Vim expressions, insert output on the next line
+keyset("n", "+", [[:let _p = getpos(".") | put =<c-r>=escape(getline('.'), '"|')<cr> | call setpos(".", _p)<cr>]])
+keyset("v", "+", [[:<c-u>let _p = getpos(".") | put =<c-r>=escape(getregion(getpos("'<"), getpos("'>"), {"type": "v"})[0], '"|')<cr> | call setpos(".", _p)<cr>]])
 
 -- local autocmd = vim.api.nvim_create_autocmd
 -- local augroup = vim.api.nvim_create_augroup

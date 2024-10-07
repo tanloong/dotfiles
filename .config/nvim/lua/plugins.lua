@@ -146,7 +146,7 @@ local plugin_specs = {
     event = "VeryLazy",
     config = function() require('plugin_config.nvim_treesitter_textobjects') end,
   },
-  -- wilefire.nvim
+  -- wildfire.nvim
   {
     "https://github.com/SUSTech-data/wildfire.nvim",
     dependencies = "nvim-treesitter/nvim-treesitter",
@@ -235,6 +235,7 @@ local plugin_specs = {
           NavigateUp = "K",
         },
         setup_mappings_now = false,
+        auto_save = false,
       }
       require("interlaced").setup(opts)
     end,
