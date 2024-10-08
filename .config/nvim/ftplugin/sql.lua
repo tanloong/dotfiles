@@ -1,3 +1,3 @@
 #!/usr/bin/env lua
 
-vim.opt.commentstring = "-- %s"
+vim.bo.commentstring = "-- %s"

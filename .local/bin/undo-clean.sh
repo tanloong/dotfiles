@@ -2,7 +2,7 @@
 set -euo pipefail
 IFS=$'\n\t'
 
-# cleans unused vim undofile 
+# cleans unused vim undofile
 # This script assumes that you store undofile in a seperated directory
 
 UNDO_PATH="$HOME/.local/state/nvim/undo/"
@@ -19,24 +19,26 @@ if [ $# -gt 2 ]; then
   printhelp
 fi
 
-case "$1" in
-    "" ) ;;
-    *[!0-9]* ) 
-      echo "$1 is not a number!"
-      printhelp ;; 
-    * ) THRESHOLD=$1 ;;
-esac
+if [ $# -ge 1 ]; then
+  if ! [[ "$1" =~ ^[0-9]+$ ]]; then
+    echo "$1 is not an integer!"
+    printhelp
+  else
+    THRESHOLD=$1
+  fi
+fi
 
-if [ $# -eq 2 ] && [ -n "$2" ]
-then
-    if [ -d "$2" ]
-    then
-        UNDO_PATH=$2
+if [ $# -eq 2 ] && [ -n "$2" ]; then
+    if [ -d "$2" ]; then
+        UNDO_PATH="$2"
     else
         echo "$2 is not a directory!"
         printhelp
     fi
 fi
+
+echo "THRESHOLD=$THRESHOLD"
+echo "UNDO_PATH=$UNDO_PATH"
 
 find "$UNDO_PATH" -mtime "+$THRESHOLD" -print -delete | tee "$REMOVE_LOG"
 

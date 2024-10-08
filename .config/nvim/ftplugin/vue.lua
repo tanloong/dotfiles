@@ -1,3 +1,3 @@
 #!/usr/bin/env lua
 
-vim.o.commentstring = '//%s'
+vim.bo.commentstring = '//%s'
