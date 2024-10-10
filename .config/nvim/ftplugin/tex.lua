@@ -1,4 +1,4 @@
-vim.bo.conceallevel=0
+vim.wo.conceallevel=0
 vim.keymap.set('n', '<LEADER><F5>', '<Cmd>VimtexCompile<CR>', {buffer=true})
 -- call matchadd('Conceal','\$',9999,-1,{'conceal':'$'})
 -- don't hide dollar sign 
