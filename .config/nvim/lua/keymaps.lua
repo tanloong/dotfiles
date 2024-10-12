@@ -10,6 +10,8 @@ keyset({ "n", "v", "o" }, "L", "5l")
 keyset({ "n", "v", "o" }, "Q", "@q")
 keyset({ "n", "v", "o" }, "9", "$")
 keyset("n", "g9", "g$")
+keyset("n", "gp", "<cmd>.copy .<cr>", { desc = "copy current line below" })
+keyset("n", "gP", "<cmd>.copy -<cr>", { desc = "copy current line above" })
 -- overridden by bufferline mappings
 -- keyset('n', 'gh', 'gT')
 -- keyset('n', 'gl', 'gt')
@@ -62,10 +64,6 @@ keyset("n", "<leader>b", [[<cmd>ls<cr>:b<space>]])
 keyset("n", "<leader>e", [[<cmd>exec empty(filter(getwininfo(), 'v:val.quickfix')) ? 'copen' : 'cclose'<cr>]])
 keyset("n", "zl", "1z=")
 keyset("i", "<c-q>", "<c-k>")
--- execute current line as shell command
-keyset("n", "<leader>x", [[<cmd>let _p = getpos(".") | exec "r!" .. getline(".") | call setpos(".", _p)<cr>]])
-keyset("v", "<leader>x",
-  [[:<c-u>let _p = getpos(".") | exec "r!" .. getregion(getpos("'<"), getpos("'>"), {"type": "v"})[0] | call setpos(".", _p)<cr>]])
 
 -- NAVIGATION
 -- jumping between a normal buffer and a neovim terminal
@@ -103,19 +101,18 @@ keyset("n", "gug", "<Cmd>s/\\v<(.)(\\w*)/\\u\\1\\L\\2/g | nohlsearch<CR>",
   { desc = [[To Turn One Line Into Title Caps, Make Every First Letter Of A Word Uppercase]] })
 keyset("n", "<LEADER><F5>", '<Cmd>w! | !compiler "%"<CR>',
   { desc = [[Compile document, be it groff/LaTeX/markdown/etc.]] })
-keyset("n", "go", '<Cmd>silent!!opout "%"<CR>',
-  { desc = [[Open corresponding .pdf/.html or preview]] })
-keyset("v", ".", ":normal .<CR>",
-  { desc = [[Perform dot commands over visual blocks]] })
-keyset("v", "p", "P",
-  { desc = [[keep what I am pasting]] })
+keyset("n", "go", '<Cmd>silent!!opout "%"<CR>', { desc = [[Open corresponding .pdf/.html or preview]] })
+keyset("v", ".", ":normal .<CR>", { desc = [[Perform dot commands over visual blocks]] })
+keyset("v", "p", "P", { desc = [[keep what I am pasting]] })
 keyset({ "n", "v" }, "<leader>d", [["_d]])
 -- keyset('i', '<c-l>', '<c-g>u<Esc>[s1z=`]a<c-g>u',
 --     { desc = [[Spell checking on the fly]] })
 keyset("c", "%%", "getcmdtype()==':'? expand('%:h').'/' : '%%'",
   { expr = true, desc = [[展开活动缓冲区所在目录]] })
-keyset("n", "d<space>", "<Cmd>let pos=getcurpos()[1:] | keeppatterns %s/\\s\\+$//e | nohlsearch | call cursor(pos)<CR>",
+keyset("n", "d<space>", [[<cmd>let _p=getcurpos() | keeppatterns %s/\v\s+$//e | nohlsearch | call setpos(".", _p)<cr>]],
   { desc = [[Remove trailing spaces]] })
+keyset("n", "d<enter>", [[<cmd>let _p=getcurpos() | keeppatterns %s/\v\n{3,}/\r\r/e | nohlsearch | call setpos(".", _p)<cr>]],
+  { desc = "squeeze empty lines" })
 
 -- TEXT OBJECTS
 -- "in line" (entire line sans white-space; cursor at beginning--ie, ^)
@@ -135,9 +132,20 @@ keyset({ "x", "o" }, "i_", ":<c-u>normal! T_vt_<cr>", { silent = true })
 -- select '\u21bb' and type '<leader>c'
 keyset("v", "<leader>c",
   [[:<c-u>'<,'>!python -c "import sys; print(sys.stdin.read().encode().decode('unicode_escape'), end='')"<cr>]])
--- run Vim expressions, insert output on the next line
-keyset("n", "+", [[:let _p = getpos(".") | put =eval(getline('.')) | call setpos(".", _p)<cr>]])
-keyset("v", "+", [[:<c-u>let _p = getpos(".") | put =<c-r>=escape(getregion(getpos("'<"), getpos("'>"), {"type": "v"})[0], '"|')<cr> | call setpos(".", _p)<cr>]])
+
+keyset("n", "+",
+  [[<cmd>let _p = getcurpos() | put =eval(getline(_p[1])) | call setpos(".", _p)<cr>]],
+  { desc = [[run Vim expressions, insert output below]] })
+keyset("v", "+",
+  [[:<c-u>let _p = getcurpos() | put =<c-r>=escape(getregion(getpos("'<"), getpos("'>"), {"type": "v"})[0], '"|')<cr> | call setpos(".", _p)<cr>]],
+  { desc = [[run Vim expressions, insert output below]] })
+
+keyset("n", "<leader>x",
+  [[<cmd>let _p = getcurpos() | put ='' | exec "r!" .. escape(getline(_p[1]), "%!#") | if getline(line(".")+1) != '' | put ='' | endif | call setpos(".", _p)<cr>]],
+  { desc = [[execute current line as shell command]] })
+keyset("v", "<leader>x",
+  [[:<c-u>let _p = getcurpos() | put ='' | exec "r!" .. escape(getregion(getpos("'<"), getpos("'>"), {"type": "v"})[0], "%!#") | if getline(line(".")+1) != '' | put ='' | endif | call setpos(".", _p)<cr>]],
+  { desc = [[execute current line as shell command]] })
 
 -- local autocmd = vim.api.nvim_create_autocmd
 -- local augroup = vim.api.nvim_create_augroup
