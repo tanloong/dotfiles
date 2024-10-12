@@ -127,6 +127,9 @@ keyset({ "x", "o" }, "ii", "<cmd>call textobject#inIndentation()<cr>", { silent 
 keyset({ "x", "o" }, "ai", "<cmd>call textobject#aroundIndentation()<cr>", { silent = true })
 -- "in _"
 keyset({ "x", "o" }, "i_", ":<c-u>normal! T_vt_<cr>", { silent = true })
+-- "next paragraph"
+-- keyset({ "x", "o" }, "anp", ":<c-u>normal! }V}ge<cr>", { silent = true })
+-- keyset({ "x", "o" }, "app", ":<c-u>normal! {V{w<cr>", { silent = true })
 
 -- convert unicode_escape to unicode
 -- select '\u21bb' and type '<leader>c'
@@ -146,6 +149,8 @@ keyset("n", "<leader>x",
 keyset("v", "<leader>x",
   [[:<c-u>let _p = getcurpos() | put ='' | exec "r!" .. escape(getregion(getpos("'<"), getpos("'>"), {"type": "v"})[0], "%!#") | if getline(line(".")+1) != '' | put ='' | endif | call setpos(".", _p)<cr>]],
   { desc = [[execute current line as shell command]] })
+keyset("n", "dalp", [[<cmd>let _p=getcurpos() | exec "normal! }dap" | call setpos(".", _p)<cr>]], { silent = true })
+keyset("n", "dahp", [[<cmd>let _p=getcurpos() | exec "normal! {{dap" | call setpos(".", _p)<cr>]], { silent = true })
 
 -- local autocmd = vim.api.nvim_create_autocmd
 -- local augroup = vim.api.nvim_create_augroup
