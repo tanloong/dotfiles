@@ -40,8 +40,6 @@ keyset("n", "s", "<nop>")
 keyset("n", "sv", "<Cmd>vsplit<CR>")
 keyset("n", "ss", "<Cmd>split<CR>")
 keyset("n", "s/", ":vimgrep //gf %<s-left><s-left><right>")
-keyset("n", "]q", "<Cmd>cnext<CR>")
-keyset("n", "[q", "<Cmd>cprevious<CR>")
 keyset("n", "<c-up>", "<Cmd>res +2<CR>")
 keyset("n", "<c-down>", "<Cmd>res -2<CR>")
 keyset("n", "<c-left>", "<Cmd>vertical resize-2<CR>")
@@ -127,9 +125,16 @@ keyset({ "x", "o" }, "ii", "<cmd>call textobject#inIndentation()<cr>", { silent 
 keyset({ "x", "o" }, "ai", "<cmd>call textobject#aroundIndentation()<cr>", { silent = true })
 -- "in _"
 keyset({ "x", "o" }, "i_", ":<c-u>normal! T_vt_<cr>", { silent = true })
--- "next paragraph"
--- keyset({ "x", "o" }, "anp", ":<c-u>normal! }V}ge<cr>", { silent = true })
--- keyset({ "x", "o" }, "app", ":<c-u>normal! {V{w<cr>", { silent = true })
+
+-- SQUARE BRACKETS
+keyset("n", "]q", "<Cmd>cnext<CR>")
+keyset("n", "[q", "<Cmd>cprevious<CR>")
+keyset("n", "[<space>", [[<cmd>put!=nr2char(10)|']+<cr>]])
+keyset("n", "]<space>", [[<cmd>put =nr2char(10)|'[-<cr>]])
+keyset("n", "[e", [[<cmd>.move--<cr>]])
+keyset("n", "]e", [[<cmd>.move+<cr>]])
+keyset("x", "[e", [[:<c-u>'<,'>move'<--<cr>gv]])
+keyset("x", "]e", [[:<c-u>'<,'>move'>+<cr>gv]])
 
 -- convert unicode_escape to unicode
 -- select '\u21bb' and type '<leader>c'
@@ -143,14 +148,17 @@ keyset("v", "+",
   [[:<c-u>let _p = getcurpos() | put =<c-r>=escape(getregion(getpos("'<"), getpos("'>"), {"type": "v"})[0], '"|')<cr> | call setpos(".", _p)<cr>]],
   { desc = [[run Vim expressions, insert output below]] })
 
-keyset("n", "<leader>x",
-  [[<cmd>let _p = getcurpos() | put ='' | exec "r!" .. escape(getline(_p[1]), "%!#") | if getline(line(".")+1) != '' | put ='' | endif | call setpos(".", _p)<cr>]],
+keyset("i", "<c-g><c-g>",
+  [[<esc><cmd>silent let _p = getcurpos() | put ='' | exec "r!" .. escape(getline(_p[1]), "%!#") | if getline(line(".")+1) != '' | put ='' | endif | call setpos(".", _p) | redraw<cr>]],
   { desc = [[execute current line as shell command]] })
-keyset("v", "<leader>x",
-  [[:<c-u>let _p = getcurpos() | put ='' | exec "r!" .. escape(getregion(getpos("'<"), getpos("'>"), {"type": "v"})[0], "%!#") | if getline(line(".")+1) != '' | put ='' | endif | call setpos(".", _p)<cr>]],
+keyset("n", "<c-g><c-g>",
+  [[<cmd>silent let _p = getcurpos() | put ='' | exec "r!" .. escape(getline(_p[1]), "%!#") | if getline(line(".")+1) != '' | put ='' | endif | call setpos(".", _p) | redraw<cr>]],
   { desc = [[execute current line as shell command]] })
-keyset("n", "dalp", [[<cmd>let _p=getcurpos() | exec "normal! }dap" | call setpos(".", _p)<cr>]], { silent = true })
-keyset("n", "dahp", [[<cmd>let _p=getcurpos() | exec "normal! {{dap" | call setpos(".", _p)<cr>]], { silent = true })
+keyset("v", "<c-g><c-g>",
+  [[:<c-u>silent let _p = getcurpos() | put ='' | exec "r!" .. escape(getregion(getpos("'<"), getpos("'>"), {"type": "v"})[0], "%!#") | if getline(line(".")+1) != '' | put ='' | endif | call setpos(".", _p) | redraw<cr>]],
+  { desc = [[execute current line as shell command]] })
+keyset("n", "dlp", [[<cmd>let _p=getcurpos() | exec "normal! }dap" | call setpos(".", _p)<cr>]], { silent = true })
+keyset("n", "dhp", [[<cmd>let _p=getcurpos() | exec "normal! {{dap" | call setpos(".", _p)<cr>]], { silent = true })
 
 -- local autocmd = vim.api.nvim_create_autocmd
 -- local augroup = vim.api.nvim_create_augroup
