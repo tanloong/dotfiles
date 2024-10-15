@@ -49,8 +49,12 @@ case "$app" in
     office) libreoffice;;
     phone) scrcpy --stay-awake --video-bit-rate=1M --max-size 1200;;
     sharing) ;; # blueman-manager) blueman-manager;;
-    sun) sudo systemctl start runsunloginclient && sunloginclient ;;
-    todesk) sudo systemctl start todeskd && todesk ;;
+    sun)
+      systemctl is-active --quiet runsunloginclient || sudo systemctl start runsunloginclient
+      sunloginclient ;;
+    todesk)
+      systemctl is-active --quiet todeskd || sudo systemctl start todeskd 
+      todesk ;;
     menu)
         case $XDG_SESSION_TYPE in
             'wayland') wofi --show run;;

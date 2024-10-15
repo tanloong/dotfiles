@@ -31,7 +31,7 @@ keyset("n", "<", "<<")
 keyset("n", "<c-p>", ":%s///g<Left><Left>")
 keyset("v", "<c-p>", ":s///g<Left><Left>")
 keyset("n", "<c-q>", "<Cmd>q!<CR>")
-keyset("n", "<c-s>", "<Cmd>w<CR>")
+keyset({"n", "i"}, "<c-s>", "<Cmd>w<CR>")
 keyset("n", "ZW", "<Cmd>bd<CR>")
 keyset("n", "<SPACE>e", "<Cmd>set spell!<bar>set spell?<CR>")
 keyset("n", "g<CR>", "<Cmd>set hlsearch!<bar>set hlsearch?<CR>")
@@ -131,10 +131,10 @@ keyset("n", "]q", "<Cmd>cnext<CR>")
 keyset("n", "[q", "<Cmd>cprevious<CR>")
 keyset("n", "[<space>", [[<cmd>put!=nr2char(10)|']+<cr>]])
 keyset("n", "]<space>", [[<cmd>put =nr2char(10)|'[-<cr>]])
-keyset("n", "[e", [[<cmd>.move--<cr>]])
-keyset("n", "]e", [[<cmd>.move+<cr>]])
-keyset("x", "[e", [[:<c-u>'<,'>move'<--<cr>gv]])
-keyset("x", "]e", [[:<c-u>'<,'>move'>+<cr>gv]])
+-- keyset("n", "[e", [[<cmd>.move--<cr>]])
+-- keyset("n", "]e", [[<cmd>.move+<cr>]])
+-- keyset("x", "[e", [[:<c-u>'<,'>move'<--<cr>gv]])
+-- keyset("x", "]e", [[:<c-u>'<,'>move'>+<cr>gv]])
 
 -- convert unicode_escape to unicode
 -- select '\u21bb' and type '<leader>c'
@@ -142,20 +142,20 @@ keyset("v", "<leader>c",
   [[:<c-u>'<,'>!python -c "import sys; print(sys.stdin.read().encode().decode('unicode_escape'), end='')"<cr>]])
 
 keyset("n", "+",
-  [[<cmd>let _p = getcurpos() | put =eval(getline(_p[1])) | call setpos(".", _p)<cr>]],
+  [[<cmd>let _p = getcurpos() | put =eval(getline(_p[1])) | call setpos(".", _p) | redraw<cr>]],
   { desc = [[run Vim expressions, insert output below]] })
 keyset("v", "+",
-  [[:<c-u>let _p = getcurpos() | put =<c-r>=escape(getregion(getpos("'<"), getpos("'>"), {"type": "v"})[0], '"|')<cr> | call setpos(".", _p)<cr>]],
+  [[:<c-u>let _p = getcurpos() | put =<c-r>=escape(getregion(getpos("'<"), getpos("'>"), {"type": "v"})[0], '"|')<cr> | call setpos(".", _p) | redraw<cr>]],
   { desc = [[run Vim expressions, insert output below]] })
 
 keyset("i", "<c-g><c-g>",
-  [[<esc><cmd>silent let _p = getcurpos() | put ='' | exec "r!" .. escape(getline(_p[1]), "%!#") | if getline(line(".")+1) != '' | put ='' | endif | call setpos(".", _p) | redraw<cr>]],
+  [[<esc><cmd>silent let _p = getcurpos() | put ='' | exec "r!" .. escape(getline(_p[1]), "%!#") | if getline(line(".")+1) != '' | put ='' | else | let _b = nvim_get_current_buf() | while line(".")+2 <= line("$") && getline(line(".")+2) == '' | call deletebufline(_b, line(".")+2) | endwhile | endif | call setpos(".", _p) | redraw<cr>]],
   { desc = [[execute current line as shell command]] })
 keyset("n", "<c-g><c-g>",
-  [[<cmd>silent let _p = getcurpos() | put ='' | exec "r!" .. escape(getline(_p[1]), "%!#") | if getline(line(".")+1) != '' | put ='' | endif | call setpos(".", _p) | redraw<cr>]],
+  [[<cmd>silent let _p = getcurpos() | put ='' | exec "r!" .. escape(getline(_p[1]), "%!#") | if getline(line(".")+1) != '' | put ='' | else | let _b = nvim_get_current_buf() | while line(".")+2 <= line("$") && getline(line(".")+2) == '' | call deletebufline(_b, line(".")+2) | endwhile | endif | call setpos(".", _p) | redraw<cr>]],
   { desc = [[execute current line as shell command]] })
 keyset("v", "<c-g><c-g>",
-  [[:<c-u>silent let _p = getcurpos() | put ='' | exec "r!" .. escape(getregion(getpos("'<"), getpos("'>"), {"type": "v"})[0], "%!#") | if getline(line(".")+1) != '' | put ='' | endif | call setpos(".", _p) | redraw<cr>]],
+  [[:<c-u>silent let _p = getcurpos() | put ='' | exec "r!" .. escape(getregion(getpos("'<"), getpos("'>"), {"type": "v"})[0], "%!#") | if getline(line(".")+1) != '' | put ='' | else | let _b = nvim_get_current_buf() | while line(".")+2 <= line("$") && getline(line(".")+2) == '' | call deletebufline(_b, line(".")+2) | endwhile | endif | call setpos(".", _p) | redraw<cr>]],
   { desc = [[execute current line as shell command]] })
 keyset("n", "dlp", [[<cmd>let _p=getcurpos() | exec "normal! }dap" | call setpos(".", _p)<cr>]], { silent = true })
 keyset("n", "dhp", [[<cmd>let _p=getcurpos() | exec "normal! {{dap" | call setpos(".", _p)<cr>]], { silent = true })

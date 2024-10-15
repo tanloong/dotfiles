@@ -52,7 +52,7 @@ opt.exrc = true
 --   opt.clipboard:prepend { 'unnamed,unnamedplus' }
 -- end
 opt.clipboard:prepend { 'unnamed,unnamedplus' }
-opt.dictionary:append { vim.env.HOME .. "/.local/share/BNC-40thousand.txt" }
+opt.dictionary:append { vim.env.HOME .. "/.local/share/words.txt" }
 opt.thesaurus:append { vim.env.HOME .. "/.local/share/WordNet-thesaurus.txt" }
 opt.wildignore:append { '*aux,*toc,*out' }
 opt.path:append { '**' }

@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+IFS=$'\n\t'
+
+app="$1"
+
+case "$app" in
+    sun)
+      sudo systemctl stop runsunloginclient
+      pgrep --full sunloginclient | xargs sudo kill -9;;
+    todesk)
+      sudo systemctl stop todeskd
+      pgrep --full todesk | xargs sudo kill -9;;
+esac
