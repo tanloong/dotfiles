@@ -27,4 +27,4 @@
 [branch]
 	sort = -committerdate
 [column]
-	ui = column,nodense
+	ui = column,dense
