@@ -12,7 +12,9 @@ files=$(find "$curr_path" -type f | grep -vE "(\.git/|\.gitignore|$curr_path/[^.
 for filename in $files; do
     destination="$HOME/"${filename/#*dotfiles\/}
     mkdir -p "${destination%/*}" || :
-    ln --verbose --force --symbolic "$filename" "$destination"
+    if [ ! -L "$destination" ]; then
+      ln --verbose --force --symbolic "$filename" "$destination"
+    fi
 done
 
 # make custom table for fcitx5
@@ -22,5 +24,6 @@ for file in "$idir"/*.txt; do
   destination="${destination/.txt/.dict}"
   if [ ! -f "$destination" ] || [ "$destination" -ot "$file" ]; then
     libime_tabledict "$file" "$destination"
+    echo "[Fcitx5] Generated $destination"
   fi
 done

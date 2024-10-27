@@ -1,4 +1,4 @@
-function! DT#wczh() range
+func! DT#wczh() range
 	let save = @z
 	silent exec 'normal! gv"zy'
 	let text = @z
@@ -12,4 +12,10 @@ function! DT#wczh() range
 	endfor
 	echo "Count of Chinese charasters is:"
 	echo cc
+endfunc
+
+" https://stackoverflow.com/questions/11858927/preventing-trailing-whitespace-when-using-vim-abbreviations
+func! DT#Eatchar(pat)
+  let c = nr2char(getchar(0))
+  return (c =~ a:pat) ? '' : c
 endfunc

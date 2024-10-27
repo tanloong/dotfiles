@@ -53,15 +53,10 @@ keyset("n", "<leader>m",
   end, {})
 
 vim.cmd([[
-    " https://stackoverflow.com/questions/11858927/preventing-trailing-whitespace-when-using-vim-abbreviations
-    func! Eatchar(pat)
-      let c = nr2char(getchar(0))
-      return (c =~ a:pat) ? '' : c
-    endfunc
     cabbrev <expr> h (getcmdtype() == ':' && getcmdline() == 'h' ?
-                     \ 'Telescope help_tags<cr><c-r>=Eatchar(" ")<cr>'
+                     \ 'Telescope help_tags<cr><c-r>=DT#Eatchar(" ")<cr>'
                      \: 'h')
     cabbrev <expr> Man (getcmdtype() == ':' && getcmdline() == 'Man' ?
-                       \ 'Telescope man_pages<cr><c-r>=Eatchar(" ")<cr>'
+                       \ 'Telescope man_pages<cr><c-r>=DT#Eatchar(" ")<cr>'
                        \: 'h')
     ]])

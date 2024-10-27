@@ -228,9 +228,9 @@ local plugin_specs = {
     config = function()
       opts = {
         mappings = {
-          JoinUp = ",",
+          PushUp = ",",
           SplitAtCursor = "d",
-          JoinDown = "D",
+          PushDown = "D",
           NavigateDown = "J",
           NavigateUp = "K",
         },

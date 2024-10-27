@@ -1,7 +1,3 @@
 require('basics')
-require('highlights')
 require('keymaps')
-require('skeletons')
-require('commands')
-require('autocmds')
 require('plugins')

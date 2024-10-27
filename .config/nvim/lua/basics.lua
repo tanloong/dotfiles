@@ -73,15 +73,10 @@ vim.g.loaded_netrwPlugin = 1
 
 vim.cmd([[filetype plugin indent on]])
 vim.cmd([[syntax on]])
-vim.cmd([[iabbrev teh the]])
-vim.cmd([[iabbrev NOne None]])
-vim.cmd([[iabbrev slef self]])
 vim.g.netrw_winsize = 30 -- Change the size of the Netrw window when it creates a split.
 vim.g.netrw_banner = 0   -- Hide the banner. To show it temporarily use I inside Netrw.
 vim.g.netrw_liststyle = 3
 -- check |netrw-browse-maps| for more mappings
--- Save files that require root permission
-vim.cmd([[cabbrev w!! execute 'silent! write !sudo tee % >/dev/null' <bar> edit!]])
 vim.cmd([[
 if &term =~ '256color'
     " disable Background Color Erase (BCE) so that color schemes

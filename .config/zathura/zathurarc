@@ -5,11 +5,11 @@
 # display status bar and vertical scrolling bar
     set guioptions sv
 set selection-clipboard clipboard
-set sandbox none
 set statusbar-basename true
 set scroll-step 40
 set zoom-step 10
 set incremental-search false
+set database sqlite
 
 map b toggle_statusbar
 map r reload
