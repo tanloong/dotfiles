@@ -1,15 +1,14 @@
 {
 	"name": "Vimium C",
-	"@time": "2024/5/6 22:54:24",
-	"time": 1715007264752,
+	"@time": "2024/11/9 04:56:51",
+	"time": 1731099411247,
 	"environment": {
-		"extension": "1.99.994",
+		"extension": "2.11.3",
 		"platform": "linux",
-		"chromium": 124
+		"chromium": 130
 	},
 	"keyLayout": 2,
 	"keyMappings": [
-		"#!no-check",
 		"map u scrollPageUp",
 		"map d scrollPageDown",
 		"map <c-u> goBack",
@@ -22,12 +21,10 @@
 		"map , scrollToLeft",
 		"map . scrollToRight",
 		"map ; scrollToRight",
-		"# map h scrollToLeft",
-		"# map l scrollToRight",
 		"map <c-s-j> zoomOut",
 		"map <c-s-k> zoomIn",
 		"map <c-s-space> zoomReset",
-		"map <c-s-o> closeOtherTabs",
+		"map <c-o> closeOtherTabs",
 		""
 	],
 	"searchUrl": "https://www.bing.com/search?q=$s",

@@ -34,6 +34,7 @@ opt.nrformats = 'octal'
 opt.fillchars = { fold = '─' }
 opt.listchars = { trail = '●' }
 opt.exrc = true
+opt.modeline = false
 -- if vim.fn.has("nvim-0.10") == 1 then
 --   vim.g.clipboard = {
 --     name = 'OSC 52',
@@ -66,6 +67,7 @@ opt.grepformat = "%f:%l:%c:%m,%f:%l:%m,%f:%l%m,%f  %l%m"
 -- opt.showcmd = false
 opt.undofile = true
 -- opt.iskeyword = "@,48-57,192-255" -- remove _ from the default
+opt.exrc = true
 
 -- Disable netrw
 vim.g.loaded_netrw = 1

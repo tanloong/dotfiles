@@ -3,27 +3,25 @@
 IFS=$'\n\t '
 
 # This script makes symbolic links between config files and their corresponding
-# destinations. Note that it will override existing destination files.
+# destinations under $HOME. Note that existent destination files will be
+# overridden.
 
 curr_path=$(cd $(dirname $0) && pwd)
 
+huma_char="$curr_path"/.local/share/fcitx5/table/huma-char.txt
+huma_lua="$curr_path"/.local/share/nvim/lazy/hop.nvim/lua/hop/mappings/zh_huma.lua
+# If huma_char is newer than huma_lua
+if [ "$(stat -c %Y "$huma_char")" -gt "$(stat -c %Y "$huma_lua")" ]; then
+  gawk -f "$curr_path"/huma2hop.gawk -- "$huma_char" > "$huma_lua"
+fi
+
 # skip .git/, .gitignore, and $curr_path/[^.]+
-files=$(find "$curr_path" -type f | grep -vE "(\.git/|\.gitignore|$curr_path/[^.])")
+files=$(find "$curr_path" -type f | grep -vE "(\.git/|\.gitignore|\.nvim\.lua|$curr_path/[^.])")
 for filename in $files; do
     destination="$HOME/"${filename/#*dotfiles\/}
     mkdir -p "${destination%/*}" || :
-    if [ ! -L "$destination" ]; then
+    # If the destination is not symbolically linked to the filename
+    if [ ! -L "$destination" ] || [ ! "$(readlink -f "$destination")" == "$(readlink -f "$filename")" ] ; then
       ln --verbose --force --symbolic "$filename" "$destination"
     fi
-done
-
-# make custom table for fcitx5
-idir="$curr_path"/.local/share/fcitx5/table
-for file in "$idir"/*.txt; do
-  destination="$HOME/"${file/#*dotfiles\/}
-  destination="${destination/.txt/.dict}"
-  if [ ! -f "$destination" ] || [ "$destination" -ot "$file" ]; then
-    libime_tabledict "$file" "$destination"
-    echo "[Fcitx5] Generated $destination"
-  fi
 done

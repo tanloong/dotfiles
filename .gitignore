@@ -15,3 +15,4 @@ temp
 .vim/coc-settings.json
 
 .config/awesome/**/*.png
+.local/share/nvim/lazy/hop.nvim/lua/hop/mappings

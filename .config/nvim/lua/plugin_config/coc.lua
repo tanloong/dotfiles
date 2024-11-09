@@ -99,9 +99,9 @@ keyset("i", "<C-b>",
 keyset("v", "<C-f>", 'coc#float#has_scroll() ? coc#float#scroll(1) : "<C-f>"', opts)
 keyset("v", "<C-b>", 'coc#float#has_scroll() ? coc#float#scroll(0) : "<C-b>"', opts)
 -- vim.cmd([[set statusline=%<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P]])
-vim.cmd([[set statusline=%<%f\ %h%m%{coc#status()}%{get(b:,'coc_current_function','')}%r%=%-14.(%l,%c%V%)\ %p%%]])
+vim.cmd([[set statusline+=\ %{coc#status()}]])
 -- Add `:Format` command to format current buffer.
-api.nvim_create_user_command("Format", "call CocAction('format')", {})
+api.nvim_create_user_command("Format", "call CocActionAsync('format')", {})
 -- " Add `:Fold` command to fold current buffer.
 api.nvim_create_user_command("Fold", "call CocAction('fold', <f-args>)", { nargs = '?' })
 -- Add `:OR` command for organize imports of the current buffer.

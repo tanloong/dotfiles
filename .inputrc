@@ -2,9 +2,13 @@ set bell-style none
 set editing-mode vi
 set vi-ins-mode-string \1\e[6 q\2
 set vi-cmd-mode-string \1\e[2 q\2
-set show-mode-in-prompt on # 在左侧显示 mode 信息
+set show-mode-in-prompt off # 在左侧显示 mode 信息
 # The double tab can be changed to a single tab by setting
 set show-all-if-unmodified on
+# insert a # character when the # command (“insert comment”) is issued. For the
+# shell, this comments out the current line but inserts it into the history for
+# later recall and editing
+set comment-begin #
 
 ######################
 # Color files by types

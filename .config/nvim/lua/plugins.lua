@@ -32,43 +32,43 @@ local plugin_specs = {
   -- },
   -- CoC
   {
-    'https://github.com/neoclide/coc.nvim.git',
+    "https://github.com/neoclide/coc.nvim.git",
     enabled = true,
-    branch = 'release',
+    branch = "release",
     event = "VeryLazy",
     -- don't load coc.nvim on "interlaced" filetype
     cond = function()
       local bufnr = vim.api.nvim_get_current_buf()
       return not string.find(vim.api.nvim_buf_get_name(bufnr), "interlaced.*%.txt$")
     end,
-    config = function() require('plugin_config.coc') end
+    config = function() require("plugin_config.coc") end
   },
   -- vim-surround
   {
-    'https://gitee.com/tanloong/vim-surround.git',
+    "https://gitee.com/tanloong/vim-surround.git",
     event = "VeryLazy",
-    config = function() vim.keymap.set('x', 's', '<Plug>VSurround') end
+    config = function() vim.keymap.set("x", "s", "<Plug>VSurround") end
   },
   -- Comment
   {
-    'https://github.com/numToStr/Comment.nvim',
+    "https://github.com/numToStr/Comment.nvim",
     enabled = vim.fn.has("nvim-0.10") == 0,
     event = "VeryLazy",
-    config = function() require('plugin_config.comment') end
+    config = function() require("plugin_config.comment") end
   },
   -- vim-markdown-toc
   {
-    'https://github.com/mzlogin/vim-markdown-toc',
-    ft = { 'markdown' },
+    "https://github.com/mzlogin/vim-markdown-toc",
+    ft = { "markdown" },
     event = "VeryLazy",
-    config = function() require('plugin_config.vim_markdown_toc') end
+    config = function() require("plugin_config.vim_markdown_toc") end
   },
   -- vim-table-mode
   {
-    'https://gitee.com/yaozhijin/vim-table-mode.git',
-    ft = { 'markdown' },
+    "https://gitee.com/yaozhijin/vim-table-mode.git",
+    ft = { "markdown" },
     event = "VeryLazy",
-    config = function() require('plugin_config.vim_table_mode') end
+    config = function() require("plugin_config.vim_table_mode") end
   },
   -- vim-slime
   -- {
@@ -78,7 +78,7 @@ local plugin_specs = {
   -- },
   -- Iron
   {
-    'Vigemus/iron.nvim',
+    "Vigemus/iron.nvim",
     config = function()
       local iron = require("iron.core")
 
@@ -87,14 +87,14 @@ local plugin_specs = {
           -- Whether a repl should be discarded or not
           scratch_repl = true,
           repl_definition = {
-            sh     = { command = { "bash" } },
+            sh = { command = { "bash" } },
             python = { command = { "python" } },
-            lua    = { command = { "lua" } },
-            php    = { command = { "php", "-a" } },
-            r      = { command = { "R" } },
-            rmd    = { command = { "R" } },
+            lua = { command = { "lua" } },
+            php = { command = { "php", "-a" } },
+            r = { command = { "R" } },
+            rmd = { command = { "R" } },
           },
-          repl_open_cmd = require('iron.view').split.horizontal.botright(0.35)
+          repl_open_cmd = require("iron.view").split.horizontal.botright(0.35)
         },
         keymaps = {
           send_motion = "<space>sc",
@@ -114,59 +114,59 @@ local plugin_specs = {
         highlight = { italic = false },
         ignore_blank_lines = true,
       }
-      vim.keymap.set('n', '<space>rs', '<cmd>IronRepl<cr>')
-      vim.keymap.set('n', '<space>rr', '<cmd>IronRestart<cr>')
-      vim.keymap.set('n', '<space>rf', '<cmd>IronFocus<cr>')
-      vim.keymap.set('n', '<space>rh', '<cmd>IronHide<cr>')
+      vim.keymap.set("n", "<space>rs", "<cmd>IronRepl<cr>")
+      vim.keymap.set("n", "<space>rr", "<cmd>IronRestart<cr>")
+      vim.keymap.set("n", "<space>rf", "<cmd>IronFocus<cr>")
+      vim.keymap.set("n", "<space>rh", "<cmd>IronHide<cr>")
     end
   },
   -- vimtex
   {
-    'https://gitee.com/mirrors/vimtex.git',
+    "https://gitee.com/mirrors/vimtex.git",
     -- cmd = { 'VimtexCompile' },
     ft = "tex",
-    config = function() require('plugin_config.vimtex') end
+    config = function() require("plugin_config.vimtex") end
   },
   -- hop
   {
-    'https://github.com/smoka7/hop.nvim',
+    "https://github.com/smoka7/hop.nvim",
     event = "VeryLazy",
-    config = function() require('plugin_config.hop') end
+    config = function() require("plugin_config.hop") end
   },
   -- tree-sitter
   {
-    'nvim-treesitter/nvim-treesitter',
-    run = ':TSUpdate',
-    config = function() require('plugin_config.nvim_treesitter') end,
+    "nvim-treesitter/nvim-treesitter",
+    run = ":TSUpdate",
+    config = function() require("plugin_config.nvim_treesitter") end,
     event = "VeryLazy"
   },
   {
     "nvim-treesitter/nvim-treesitter-textobjects",
     dependencies = "nvim-treesitter/nvim-treesitter",
     event = "VeryLazy",
-    config = function() require('plugin_config.nvim_treesitter_textobjects') end,
+    config = function() require("plugin_config.nvim_treesitter_textobjects") end,
   },
   -- wildfire.nvim
   {
     "https://github.com/SUSTech-data/wildfire.nvim",
     dependencies = "nvim-treesitter/nvim-treesitter",
     event = "VeryLazy",
-    config = function() require('plugin_config.wildfire') end,
+    config = function() require("plugin_config.wildfire") end,
   },
   -- indent-blankline
   {
-    'lukas-reineke/indent-blankline.nvim',
+    "lukas-reineke/indent-blankline.nvim",
     main = "ibl",
     version = vim.fn.has("nvim-0.10") == 1 and "v3.6.0" or "v3.5.4",
     event = "VeryLazy",
     config = function()
-      hl(0, "IblIndent", { ctermbg = 'none', ctermfg = 'darkgray', fg = '#3A3A3A' })
+      hl(0, "IblIndent", { ctermbg = "none", ctermfg = "darkgray", fg = "#3A3A3A" })
       require("ibl").setup({ scope = { enabled = false } })
     end
   },
   -- nvim-align
   {
-    'https://gitee.com/tanloong/nvim-align.git',
+    "https://gitee.com/tanloong/nvim-align.git",
     event = "VeryLazy",
   },
   -- toggleterm
@@ -175,14 +175,14 @@ local plugin_specs = {
     branch = "skip-toggle",
     -- "https://github.com/akinsho/toggleterm.nvim",
     event = "VeryLazy",
-    config = function() require('plugin_config.toggleterm') end
+    config = function() require("plugin_config.toggleterm") end
   },
   -- lf.nvim
   {
     "https://github.com/tanloong/lf.nvim",
     branch = "fix-wrong-number-of-arguments-to-insert",
     -- "https://github.com/lmburns/lf.nvim",
-    config = function() require('plugin_config.lf_nvim') end,
+    config = function() require("plugin_config.lf_nvim") end,
     event = "VeryLazy",
     dependencies = { "toggleterm.nvim" }
   },
@@ -205,16 +205,16 @@ local plugin_specs = {
   {
     "nat-418/boole.nvim",
     event = "VeryLazy",
-    config = function() require('plugin_config.boole_nvim') end,
+    config = function() require("plugin_config.boole_nvim") end,
   },
   -- hlsearch
   {
     -- 'nvimdev/hlsearch.nvim',
-    dir = '/home/tan/projects/hlsearch.nvim/',
+    dir = "/home/tan/projects/hlsearch.nvim/",
     enabled = false,
     event = "BufRead",
     config = function()
-      require('hlsearch').setup()
+      require("hlsearch").setup()
     end,
     cond = function()
       local bufnr = vim.api.nvim_get_current_buf()
@@ -223,7 +223,7 @@ local plugin_specs = {
   },
   -- interlaced
   {
-    dir = '~/projects/interlaced.nvim',
+    dir = "~/projects/interlaced.nvim",
     ft = "text",
     config = function()
       opts = {
@@ -242,8 +242,8 @@ local plugin_specs = {
   },
   -- typst.vim
   {
-    'kaarmu/typst.vim',
-    ft = { 'typst' },
+    "kaarmu/typst.vim",
+    ft = { "typst" },
     event = "VeryLazy",
     config = function()
       vim.g.typst_auto_open_quickfix = false
@@ -252,7 +252,7 @@ local plugin_specs = {
   },
   -- fcitx.vim
   {
-    'https://github.com/lilydjwg/fcitx.vim',
+    "https://github.com/lilydjwg/fcitx.vim",
     enabled = true,
     event = "VeryLazy",
     config = function()
@@ -372,10 +372,10 @@ local plugin_specs = {
   -- },
   -- Telescope
   {
-    'nvim-telescope/telescope.nvim',
+    "nvim-telescope/telescope.nvim",
     -- version = '*',
     enabled = true,
-    dependencies = { 'nvim-lua/plenary.nvim' },
+    dependencies = { "nvim-lua/plenary.nvim" },
     config = function() require("plugin_config.telescope_nvim") end,
   },
   {
@@ -419,7 +419,7 @@ local plugin_specs = {
         keys = '<Esc>/<<>><CR>:set nohlsearch<CR>"_c4<right>',
       })
       -- normal mode mapping
-      keyset('n', '<SPACE><SPACE>', '/<<>><CR>:set nohlsearch<CR>"_c4<right>')
+      keyset("n", "<SPACE><SPACE>", '/<<>><CR>:set nohlsearch<CR>"_c4<right>')
     end,
   },
   -- diffchar
@@ -431,9 +431,7 @@ local plugin_specs = {
     "neovim/nvim-lspconfig",
     enabled = false,
     event = { "BufRead", "BufNewFile" },
-    config = function()
-      require("plugin_config.lsp")
-    end,
+    config = function() require("plugin_config.lsp") end,
   },
   {
     "hrsh7th/nvim-cmp",
@@ -446,9 +444,13 @@ local plugin_specs = {
       "hrsh7th/cmp-buffer",
       "quangnguyen30192/cmp-nvim-ultisnips",
     },
-    config = function()
-      require("plugin_config.nvim_cmp")
-    end,
+    config = function() require("plugin_config.nvim_cmp") end,
+  },
+  {
+    "https://github.com/tpope/vim-fugitive",
+    -- see ../plugin/autocmds.lua for InGitRepo
+    event = "User InGitRepo",
+    config = function() require("plugin_config.vim_fugitive") end
   },
 }
 

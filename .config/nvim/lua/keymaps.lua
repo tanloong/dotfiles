@@ -10,8 +10,8 @@ keyset({ "n", "v", "o" }, "L", "5l")
 keyset({ "n", "v", "o" }, "Q", "@q")
 keyset({ "n", "v", "o" }, "9", "$")
 keyset("n", "g9", "g$")
-keyset("n", "gp", "<cmd>.copy .<cr>", { desc = "copy current line below" })
-keyset("n", "gP", "<cmd>.copy -<cr>", { desc = "copy current line above" })
+keyset("n", "gp", "<cmd>.copy .<cr>", { desc = "copy current line to below" })
+keyset("n", "gP", "<cmd>.copy -<cr>", { desc = "copy current line to above" })
 -- overridden by bufferline mappings
 -- keyset('n', 'gh', 'gT')
 -- keyset('n', 'gl', 'gt')
@@ -22,8 +22,8 @@ keyset({ "n", "v" }, "gj", "j")
 keyset("n", "S", ":!")
 keyset("n", "sS", ":%!")
 keyset({ "n", "v" }, "M", "J")
-keyset("n", "ga", "<Cmd>tabnew<CR><Cmd>term lazygit<CR>i")
-keyset("n", "gA", "<Cmd>tabnew<CR><Cmd>term gitui<CR>i")
+keyset("n", "ga", "<Cmd>tabnew | term lazygit<CR>i")
+keyset("n", "gA", "<Cmd>tabnew | term gitui<CR>i")
 -- keyset('n', 'ga', '<Cmd>tabe<CR><Cmd>term gitui<CR>i')
 keyset("n", "gf", "gF")
 keyset("n", ">", ">>")
@@ -59,9 +59,15 @@ keyset("v", "<leader>K",
 -- keyset('n', '<tab>', [[<cmd>exec "silent!! goldendict " .. expand("<cword>") .. " &"<cr>]])
 -- keyset('v', '<tab>', [[:<c-u>exec "silent!! goldendict " .. DT#get_visual_selection() .. " &"<cr>]])
 keyset("n", "<leader>b", [[<cmd>ls<cr>:b<space>]])
+-- Toggle quickfix window
 keyset("n", "<leader>e", [[<cmd>exec empty(filter(getwininfo(), 'v:val.quickfix')) ? 'copen' : 'cclose'<cr>]])
+-- Correct bad spell word under cursor
 keyset("n", "zl", "1z=")
 keyset("i", "<c-q>", "<c-k>")
+-- Insert a newline at cursor without entering insert mode
+keyset("n", "<c-enter>", [[<cmd>set nohlsearch | keeppatterns s/\%#/\r/<cr>]])
+-- Visual select the just pasted text by p/P
+keyset("n", "gV", "`[v`]")
 
 -- NAVIGATION
 -- jumping between a normal buffer and a neovim terminal
@@ -79,12 +85,12 @@ keyset({"i", "n"}, "<c-j>", "<c-\\><c-N><c-w>j")
 keyset({"i", "n"}, "<c-k>", "<c-\\><c-N><c-w>k")
 keyset({"i", "n"}, "<c-l>", "<c-\\><c-N><c-w>l")
 
--- resize terminals
+-- Resize terminals
 keyset("t", "<c-up>", "<c-\\><c-N><Cmd>res +2|startinsert<CR>")
 keyset("t", "<c-down>", "<c-\\><c-N><Cmd>res -2|startinsert<CR>")
 keyset("t", "<c-left>", "<c-\\><c-N><Cmd>vertical resize-2|startinsert<CR>")
 keyset("t", "<c-right>", "<c-\\><c-N><Cmd>vertical resize+2|startinsert<CR>")
--- destroy terminals
+-- Destroy terminals
 keyset("t", "<c-q>", "<c-\\><c-N><Cmd>exit<CR>")
 
 keyset("n", "gug", "<Cmd>s/\\v<(.)(\\w*)/\\u\\1\\L\\2/g | nohlsearch<CR>",
@@ -92,8 +98,8 @@ keyset("n", "gug", "<Cmd>s/\\v<(.)(\\w*)/\\u\\1\\L\\2/g | nohlsearch<CR>",
 keyset("n", "<LEADER><F5>", '<Cmd>w! | !compiler "%"<CR>',
   { desc = [[Compile document, be it groff/LaTeX/markdown/etc.]] })
 keyset("n", "go", '<Cmd>silent!!opout "%"<CR>', { desc = [[Open corresponding .pdf/.html or preview]] })
-keyset("v", ".", ":normal .<CR>", { desc = [[Perform dot commands over visual blocks]] })
-keyset("v", "p", "P", { desc = [[keep what I am pasting]] })
+keyset("v", ".", "<cmd>normal .<cr>", { desc = [[Perform dot commands over visual blocks]] })
+keyset("v", "p", "P", { desc = [[keep what I am pasting, don't pollute my register]] })
 keyset({ "n", "v" }, "<leader>d", [["_d]])
 -- keyset('i', '<c-l>', '<c-g>u<Esc>[s1z=`]a<c-g>u',
 --     { desc = [[Spell checking on the fly]] })

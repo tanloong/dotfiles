@@ -32,17 +32,22 @@ telescope.setup({
 
 keyset("n", "<leader>b", builtin.buffers, {})
 keyset("n", "<leader><leader>", builtin.find_files, {})
-keyset("n", "<leader>g", builtin.live_grep, {})
+keyset("n", "<leader>G", builtin.live_grep, {})
 keyset("n", "<leader>*", builtin.grep_string, {})
 keyset("n", "<leader>h", builtin.help_tags, {})
 keyset("n", "<c-/>",
   function()
     builtin.current_buffer_fuzzy_find({ skip_empty_lines = true })
   end, {})
-keyset("n", "<leader>/",
+keyset("n", "<leader>v",
   function()
+    local dotdir = "~/projects/dotfiles/"
+    local chunk, _ = loadfile(vim.fs.joinpath(dotdir, ".nvim.lua"))
+    if chunk ~= nil then
+      chunk()
+    end
     builtin.find_files({
-      cwd = vim.fs.dirname(vim.fs.dirname(vim.fn.resolve(vim.fn.stdpath("config") .. "/init.lua"))),
+      cwd = dotdir,
       follow = true,
       hidden = true
     })

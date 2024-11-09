@@ -1,11 +1,34 @@
 KeyCode=abcdefghijklmnopqrstuvwxyz;
-Length=4
-Pinyin=@
+码长=4
 [Rule]
 e2=p11+p12+p21+p22
 e3=p11+p21+p31+p32
 a4=p11+p21+p31+n11
-[Data]
+[数据]
+mefl 大模型
+mssf 大语言模型
+lgxo 敬香
+nnwd 巨鳄
+oliu 暴红
+yklm 上海外国语大学
+drkm 中国海洋大学
+gkex 句法复杂度
+mesw 二语
+mszw 二语习得
+mswj 二语写作
+wdls Wordless
+blks BLKSerene
+pyth Python
+linu Linux
+arch Arch Linux
+nsca NeoSCA
+late LaTeX
+typs Typst
+tanl tanloong
+spxm 语料库语言学
+spxt 语料库研究院
+fflc 天下苦
+ngaa 有声书
 u 的
 f 一
 o 是
@@ -18442,6 +18465,7 @@ vhna 改成
 rwqh 管教
 ibrj 纸巾
 bhyw 好受
+slkw 访学
 slkw 力学
 vqsl 气力
 vftj 飘零
@@ -34830,6 +34854,8 @@ auop 牌照
 llmu 多达
 eiki 见义勇为
 xkqn 香港特别行政区
+xkqn 应物
+xqdp 应物兄
 jflu 伊丽莎白
 dbsg 史诗
 mzia 奇幻
@@ -55623,7 +55649,6 @@ gkcv 去尾
 orwe 日资
 xrxh 反季
 ehlz 松蘑
-spxy 试音
 uext 挖角
 prxo 坚厚
 xtip 袅绕
@@ -94692,6 +94717,7 @@ rehi 笔杆子
 kgea 洋槐
 jius 全盘托出
 olch 早生贵子
+olch 暴火
 qumb 食指大动
 gdrs 死无对证
 tlmg 哀莫大于心死
@@ -106468,6 +106494,7 @@ jhfi 任性妄为
 jvxh 何以解忧
 jocc 信息爆炸
 wcyj 决不罢休
+wcyj 德不配位
 wfks 凉开水
 ddjq 别无他物
 nlzg 卖方市场
@@ -108634,6 +108661,7 @@ tzzp 衣锦夜行
 adfy 表里一致
 ssqj 评论界
 spxy 语料库
+spxy 试音
 zlly 豆芽菜
 owqg 贝鲁特
 ofxe 财政危机
@@ -124744,7 +124772,6 @@ njxk 现代科学
 jvuj 领导集体
 jjwj 伦家
 hhxd 卷积
-late 蒋欣
 jvsw 华谊
 kdax 台版
 mbsa 网讯
@@ -148716,7 +148743,6 @@ lqkz 千河
 tscv 三尾
 jxzc 你变
 tupq 我舅
-mswj 石家
 yvze 肖某
 xdmp 程远
 bmgw 面壳
@@ -152378,7 +152404,6 @@ mwzj 辉夜
 oqhx 最懒
 bpgm 张美
 ajsa 闪讯
-nsca 十局
 zojj 铅价
 nrvh 布胖
 kmzm 沪铜
@@ -157632,6 +157657,7 @@ kudn 洁白无瑕
 ryxx 第四季度
 wxax 完整版
 dldu 哆啦
+ddae 哆啦A梦
 icjj 商业价值
 ojkt 财付通
 qzus 男歌手
@@ -171535,7 +171561,6 @@ fjfk 亡命天涯
 grqk 京东物流
 jjjv 令人佩服
 jusp 伸手党
-jukc 你的酒馆对我打了烊
 jojz 值几个钱
 jjqu 做俯卧撑
 jjkx 偶像派
@@ -174055,7 +174080,7 @@ keke 学术水平
 keqj 学术造假
 wmeo 室内机
 ronj 对影成三人
-yhkh 小公举
+yhkh 四喜丸子
 gcgs 就业培训
 gwgd 就往死里
 ghff 就怕万一
@@ -177033,7 +177058,6 @@ fjvk 骨传导
 fmyi 骨肉至亲
 gjnv 高位截肢
 gsqy 高频考点
-zewj 魔术家
 zynl 麻醉医生
 zydj 麻雀虽小五脏俱全
 ncrq 黄焖鸡米饭
@@ -200221,7 +200245,9 @@ gwfv 䐨
 ;u ~
 ;i ——
 ;o 〖
+;oo .
 ;p 〗
+;pp ,
 ;a ！
 ;aa !
 ;aa ！
@@ -200230,11 +200256,13 @@ gwfv 䐨
 ;ss ……
 ;d 、
 ;f “
-;ff " 
-;ff “
+;f ‘
+;ff "
+;ff '
 ;g ”
+;g ’
 ;gg "
-;gg ”
+;gg '
 ;h 『
 ;j 』
 ;k ￥
@@ -200249,6 +200277,8 @@ gwfv 䐨
 ;cc ]
 ;cc 】
 ;v 《
+;vv 〈
 ;b 》
+;bb 〉
 ;n 「
 ;m 」
