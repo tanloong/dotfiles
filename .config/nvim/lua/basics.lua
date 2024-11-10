@@ -67,7 +67,7 @@ opt.grepformat = "%f:%l:%c:%m,%f:%l:%m,%f:%l%m,%f  %l%m"
 -- opt.showcmd = false
 opt.undofile = true
 -- opt.iskeyword = "@,48-57,192-255" -- remove _ from the default
-opt.exrc = true
+opt.exrc = true -- auto load .nvim.lua file under cwd
 
 -- Disable netrw
 vim.g.loaded_netrw = 1

@@ -10,8 +10,7 @@ curr_path=$(cd $(dirname $0) && pwd)
 
 huma_char="$curr_path"/.local/share/fcitx5/table/huma-char.txt
 huma_lua="$curr_path"/.local/share/nvim/lazy/hop.nvim/lua/hop/mappings/zh_huma.lua
-# If huma_char is newer than huma_lua
-if [ "$(stat -c %Y "$huma_char")" -gt "$(stat -c %Y "$huma_lua")" ]; then
+if [ "$huma_char" -nt "$huma_lua" ]; then
   gawk -f "$curr_path"/huma2hop.gawk -- "$huma_char" > "$huma_lua"
 fi
 

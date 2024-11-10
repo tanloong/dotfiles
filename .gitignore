@@ -15,4 +15,7 @@ temp
 .vim/coc-settings.json
 
 .config/awesome/**/*.png
+.config/aliyunpan/aliyunpan_config.json
 .local/share/nvim/lazy/hop.nvim/lua/hop/mappings
+*.sha1sum
+*.sha256sum
