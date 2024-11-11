@@ -5,6 +5,18 @@ e2=p11+p12+p21+p22
 e3=p11+p21+p31+p32
 a4=p11+p21+p31+n11
 [数据]
+ehfq 核心开发者
+lins 林纳斯
+lins Linus Torvalds
+lins 林纳斯·托瓦兹
+lins Linus Benedict Torvalds
+linx Linux
+mwgf 码农高天
+ggfm 高天
+bram Bram Moolenaar
+skmw 谢益辉
+isrq 统计之都
+tfvh 阮一峰
 lmma 英专
 reil 东李新苑
 mefl 大模型
@@ -24,8 +36,10 @@ mszw 二语习得
 mswj 二语写作
 wdls Wordless
 blks BLKSerene
+blks 叶磊
+dnmm 叶磊
+dnmm BLKSerene
 pyth Python
-linu Linux
 arch Arch Linux
 nsca NeoSCA
 late LaTeX
@@ -118471,7 +118485,6 @@ wtbh 怎么好
 vojq 这是什么意思
 rfwy 第一页
 nklk 有能耐
-ggfm 高天
 ddxf 吕后
 yqdg 曲中
 jjzy 价值链
@@ -141737,7 +141750,6 @@ kkgq 染着
 jxml 你两
 wgwf 凌宇
 jxdj 你哈
-tfvh 岳峰
 aicf 秦飞
 yxel 小舞
 avbf 静姐
