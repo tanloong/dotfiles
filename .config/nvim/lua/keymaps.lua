@@ -32,7 +32,7 @@ keyset("n", "<c-p>", ":%s///g<Left><Left>")
 keyset("v", "<c-p>", ":s///g<Left><Left>")
 keyset("n", "<c-q>", "<Cmd>q!<CR>")
 keyset({"n", "i"}, "<c-s>", "<Cmd>w<CR>")
-keyset("n", "ZW", "<cmd>bd #<cr>") -- remove alternate file from buffer list
+keyset("n", "ZW", "<cmd>bd<cr>")
 keyset("n", "<SPACE>e", "<Cmd>set spell!<bar>set spell?<CR>")
 keyset("n", "g<CR>", "<Cmd>set hlsearch!<bar>set hlsearch?<CR>")
 -- keyset('n', '<F4>', '<Cmd>q!<CR>')

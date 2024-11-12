@@ -4,8 +4,9 @@ local autocmd = vim.api.nvim_create_autocmd
 local augroup = vim.api.nvim_create_augroup
 local vim_fs = vim.fs
 
-local script_parent = vim_fs.dirname(vim.fn.expand("%:p"))
-local fcitx5_path = vim_fs.joinpath(script_parent, ".local", "share", "fcitx5")
+local script_parent = debug.getinfo(1, "S").source:sub(2, -1) -- 获取此脚本所在路径并去掉其开头的@
+script_parent = vim_fs.dirname(script_parent)
+local fcitx5_path = vim_fs.joinpath(vim.fn.fnamemodify(script_parent, ":p"), ".local", "share", "fcitx5")
 
 autocmd("BufWritePost", {
   pattern = { fcitx5_path .. "/table/*.txt", fcitx5_path .. "/inputmethod/*.conf" },

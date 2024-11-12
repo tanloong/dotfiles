@@ -5,6 +5,7 @@ e2=p11+p12+p21+p22
 e3=p11+p21+p31+p32
 a4=p11+p21+p31+n11
 [数据]
+fynp 下载
 ehfq 核心开发者
 lins 林纳斯
 lins Linus Torvalds
@@ -11936,7 +11937,6 @@ lzj 萃
 hcwo 恨不得
 esd 枷
 phi 籽
-fynp 下载
 fikb 一流
 ulwf 描写
 oqhu 最怕

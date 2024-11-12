@@ -12,6 +12,7 @@ keycode  44 = j J Down j
 keycode  45 = k K Up k
 keycode  46 = l L Right l
 keycode  53 = x X BackSpace x
+keycode  31 = i I BackSpace i
 keycode  40 = d D Delete d
 keycode  37 = Control_L Control_L Control_L Control_L
 keycode  49 = asciitilde grave asciitilde asciitilde
