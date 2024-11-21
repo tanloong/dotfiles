@@ -59,36 +59,26 @@ while $1 do
 end
 endsnippet
 
-snippet if "if statement" b
-if $1 then
+snippet "(=\s*)function\(\)" "x = function()" rA
+`!p snip.rv=match.group(1)`function($1)
 	$0
 end
 endsnippet
 
-snippet ife "if/else statement" b
-if $1 then
-	$2
-else
+snippet "^(\s*)if\s" "if statement" rA
+`!p snip.rv=match.group(1)`if $1 then
 	$0
 end
 endsnippet
 
-snippet eif "if/elseif statement" b
-if $1 then
-	$2
-elseif $3 then
+snippet "^(\s*)else\s" "if/else statement" rA
+`!p snip.rv=match.group(1)`else
 	$0
-end
 endsnippet
 
-snippet eife "if/elseif/else statement" b
-if $1 then
-	$2
-elseif $3 then
-	$4
-else
+snippet "^(\s*)eliseif\s" "if/elseif statement" rA
+`!p snip.rv=match.group(1)`elseif $3 then
 	$0
-end
 endsnippet
 
 snippet pcall "pcall statement" b
@@ -100,15 +90,15 @@ ${3:else
 }end
 endsnippet
 
-snippet local "local x = 1"
-local ${1:x} = ${0:1}
+snippet "^(\s*)local\s" "local x = 1" bA
+`!p snip.rv=match.group(1)`local $1 = $0
 endsnippet
 
 # =====================
 # Custom snippets start
 # =====================
 snippet p "print something"
-print(${1:${VISUAL}})
+vim.print(${1:${VISUAL}})
 endsnippet
 
 snippet ,, "_" iA

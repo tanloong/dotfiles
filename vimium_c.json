@@ -1,20 +1,21 @@
 {
 	"name": "Vimium C",
-	"@time": "2024/11/9 04:56:51",
-	"time": 1731099411247,
+	"@time": "2024/11/19 06:31:01",
+	"time": 1731969061064,
 	"environment": {
 		"extension": "2.11.3",
 		"platform": "linux",
-		"chromium": 130
+		"chromium": 131
 	},
 	"keyLayout": 2,
 	"keyMappings": [
+		"#!no-check",
 		"map u scrollPageUp",
 		"map d scrollPageDown",
 		"map <c-u> goBack",
 		"map <c-r> goForward",
-		"map gh previousTab",
-		"map gl nextTab",
+		"#map gh previousTab",
+		"#map gl nextTab",
 		"unmap x",
 		"map q removeTab",
 		"map g9 lastTab",
@@ -25,8 +26,11 @@
 		"map <c-s-k> zoomIn",
 		"map <c-s-space> zoomReset",
 		"map <c-o> closeOtherTabs",
+		"map gh closeTabsOnLeft",
+		"map gl closeTabsOnRight",
+		"map < moveTabLeft",
+		"map > moveTabRight",
 		""
 	],
-	"searchUrl": "https://www.bing.com/search?q=$s",
 	"vimSync": true
 }

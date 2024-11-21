@@ -225,17 +225,24 @@ local plugin_specs = {
   {
     dir = "~/projects/interlaced.nvim",
     ft = "text",
+    branch = "dev",
+    event = "VeryLazy",
     config = function()
       opts = {
         mappings = {
           PushUp = ",",
-          SplitAtCursor = "d",
+          PushUpPair = "<",
+          PullUp = ".",
+          PullUpPair = ">",
+          PushDownRightPart = "d",
           PushDown = "D",
           NavigateDown = "J",
-          NavigateUp = "K",
+          NavigateUp = "K"
         },
         setup_mappings_now = false,
+        separators = { ["1"] = "", ["2"] = " " },
         auto_save = false,
+        lang_num = 2,
       }
       require("interlaced").setup(opts)
     end,
@@ -399,7 +406,8 @@ local plugin_specs = {
   --   },
   -- },
   {
-    "https://github.com/robitx/gp.nvim",
+    -- "https://github.com/robitx/gp.nvim",
+    dir = "/home/tan/.local/share/nvim/lazy/gp.nvim",
     config = function()
       require("plugin_config.gp_nvim")
     end,

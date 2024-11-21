@@ -5,6 +5,9 @@ e2=p11+p12+p21+p22
 e3=p11+p21+p31+p32
 a4=p11+p21+p31+n11
 [数据]
+srvw 译文
+pmlr 默菲
+svtl 谭龙
 fynp 下载
 ehfq 核心开发者
 lins 林纳斯
@@ -20161,7 +20164,6 @@ vbvi 腼腆
 tyfk 补救
 zoln 躲藏
 elnp 穿戴
-srvw 译文
 mdov 大明
 tsrq 三七
 ujqq 换位思考
@@ -36119,6 +36121,7 @@ xjou 庸人自扰
 oifa 赔礼
 kuxh 过意
 nphf 匹夫
+nphf 戴夫
 avca 青灯
 jnnp 从现在起
 zscc 身居
@@ -146448,7 +146451,6 @@ djjx 哈你
 hhsu 卷边
 nwps 王路
 qojt 都傻
-pmlr 米菲
 fixb 一急
 egok 干时
 dees 吃穷

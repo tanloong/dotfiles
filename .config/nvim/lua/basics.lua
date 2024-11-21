@@ -56,9 +56,10 @@ opt.clipboard:prepend { 'unnamed,unnamedplus' }
 opt.dictionary:append { vim.env.HOME .. "/.local/share/words.txt" }
 opt.thesaurus:append { vim.env.HOME .. "/.local/share/WordNet-thesaurus.txt" }
 opt.wildignore:append { '*aux,*toc,*out' }
+opt.wildignorecase = true -- ignore case when completing file names and directories in cmd-line
 opt.path:append { '**' }
 opt.cursorline = true
-opt.cursorlineopt = 'line'
+opt.cursorlineopt = 'screenline'
 opt.termguicolors = true
 opt.diffopt = { "internal", "filler", "closeoff", "followwrap" }
 opt.jumpoptions = "view"
