@@ -452,6 +452,11 @@ local plugin_specs = {
     event = "User InGitRepo",
     config = function() require("plugin_config.vim_fugitive") end
   },
+  {
+    "https://github.com/inkarkat/vim-mark",
+    event = "VeryLazy",
+    dependencies = { "https://github.com/inkarkat/vim-ingo-library" }
+  },
 }
 
 -- configuration for lazy itself.

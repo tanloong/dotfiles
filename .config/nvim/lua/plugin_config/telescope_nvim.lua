@@ -33,7 +33,7 @@ telescope.setup({
 keyset("n", "<leader>b", builtin.buffers, {})
 keyset("n", "<leader><leader>", builtin.find_files, {})
 keyset("n", "<leader>G", builtin.live_grep, {})
-keyset("n", "<leader>*", builtin.grep_string, {})
+-- keyset("n", "<leader>*", builtin.grep_string, {})
 keyset("n", "<leader>h", builtin.help_tags, {})
 keyset("n", "<c-/>",
   function()
@@ -52,10 +52,10 @@ keyset("n", "<leader>v",
       hidden = true
     })
   end, {})
-keyset("n", "<leader>m",
-  function()
-    builtin.find_files({ cwd = "~/docx/memorandum/", follow = true })
-  end, {})
+-- keyset("n", "<leader>m",
+--   function()
+--     builtin.find_files({ cwd = "~/docx/memorandum/", follow = true })
+--   end, {})
 
 vim.cmd([[
     cabbrev <expr> h (getcmdtype() == ':' && getcmdline() == 'h' ?
