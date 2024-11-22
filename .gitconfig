@@ -1,8 +1,6 @@
 [user]
 	name = Tan Long
 	email = tanloong@foxmail.com
-[credential]
-	helper = store
 [alias]
     a = add
     b = branch
@@ -28,3 +26,7 @@
 	sort = -committerdate
 [column]
 	ui = column,dense
+[credential]
+	helper = store
+[credential "https://github.com"]
+	useHttpPath = true
