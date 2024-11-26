@@ -32,9 +32,8 @@ local plugin_specs = {
   -- },
   -- CoC
   {
-    -- "https://github.com/neoclide/coc.nvim.git",
-    "https://gitee.com/linuor/coc.nvim",
-    enabled = true,
+    "https://github.com/neoclide/coc.nvim.git",
+    enabled = false,
     branch = "release",
     event = "VeryLazy",
     -- don't load coc.nvim on "interlaced" filetype
@@ -395,9 +394,9 @@ local plugin_specs = {
   },
   {
     "neovim/nvim-lspconfig",
-    enabled = false,
-    event = { "BufRead", "BufNewFile" },
-    config = function() require "plugin_config.lsp" end,
+    enabled = true,
+    event = { "BufReadPre", "BufNewFile" },
+    config = function() require("plugin_config.lsp") end,
   },
   {
     "hrsh7th/nvim-cmp",

@@ -70,7 +70,7 @@ local custom_attach = function(client, bufnr)
     end,
   })
 
-  -- The blow command will highlight the current variable and its usages in the buffer.
+  -- The below command will highlight the current variable and its usages in the buffer.
   if client.server_capabilities.document_highlight then
     for _, cgroup in ipairs{
       'LspReferenceRead',
@@ -102,34 +102,18 @@ local custom_attach = function(client, bufnr)
 end
 
 local capabilities = lsp.protocol.make_client_capabilities()
-capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
+-- capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 local lspconfig = require("lspconfig")
 
-if executable("pylyzer") then
-  lspconfig.pylyzer.setup {
+if executable("pyright") then
+  lspconfig.pyright.setup {
     on_attach = custom_attach,
-    flags = {
-      debounce_text_changes = 200,
-    },
     capabilities = capabilities,
   }
 else
-  vim.notify("pylsp not found!", vim.log.levels.WARN, { title = "Nvim-config" })
-end
-
--- set up vim-language-server
-if executable("vim-language-server") then
-  lspconfig.vimls.setup {
-    on_attach = custom_attach,
-    flags = {
-      debounce_text_changes = 500,
-    },
-    capabilities = capabilities,
-  }
-else
-  vim.notify("vim-language-server not found!", vim.log.levels.WARN, { title = "Nvim-config" })
+  vim.notify("pyright not found!", vim.log.levels.WARN, { title = "Nvim-config" })
 end
 
 -- set up bash-language-server
@@ -140,9 +124,9 @@ if executable("bash-language-server") then
   }
 end
 
+-- settings for lua-language-server can be found on https://luals.github.io/wiki/settings/
 if executable("lua-language-server") then
-  -- settings for lua-language-server can be found on https://github.com/sumneko/lua-language-server/wiki/Settings .
-  lspconfig.sumneko_lua.setup {
+  lspconfig.lua_ls.setup {
     on_attach = custom_attach,
     settings = {
       Lua = {
@@ -150,21 +134,9 @@ if executable("lua-language-server") then
           -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
           version = "LuaJIT",
         },
-        diagnostics = {
-          -- Get the language server to recognize the `vim` global
-          globals = { "vim" },
-        },
-        workspace = {
-          -- Make the server aware of Neovim runtime files,
-          -- see also https://github.com/sumneko/lua-language-server/wiki/Libraries#link-to-workspace .
-          -- Lua-dev.nvim also has similar settings for sumneko lua, https://github.com/folke/lua-dev.nvim/blob/main/lua/lua-dev/sumneko.lua .
-          library = {
-            fn.stdpath("data") .. "/site/pack/packer/opt/emmylua-nvim",
-            fn.stdpath("config"),
-          },
-          maxPreload = 2000,
-          preloadFileSize = 50000,
-        },
+        hint = {
+          enable = true
+        }
       },
     },
     capabilities = capabilities,
@@ -185,8 +157,5 @@ vim.diagnostic.config {
   severity_sort = true,
 }
 
-
 -- Change border of documentation hover window, See https://github.com/neovim/neovim/pull/13998.
-lsp.handlers["textDocument/hover"] = lsp.with(vim.lsp.handlers.hover, {
-  border = "rounded",
-})
+lsp.handlers["textDocument/hover"] = lsp.with(vim.lsp.handlers.hover, { border = "single", })
