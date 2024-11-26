@@ -245,6 +245,10 @@ local plugin_specs = {
         lang_num = 2,
       }
       require("interlaced").setup(opts)
+      keyset("n", "ma", "<cmd>ItMatchAdd<cr>", { buffer = true, noremap = true, nowait = true })
+      keyset("v", "ma", ":ItMatchAddVisual<cr>", { buffer = true, noremap = true, nowait = true })
+      keyset("n", "mt", "<cmd>ItMatchToggle<cr>", { buffer = true, noremap = true, nowait = true })
+      keyset("n", "qm", "<cmd>ItListMatches<cr>", { buffer = true, noremap = true, nowait = true })
     end,
   },
   -- typst.vim

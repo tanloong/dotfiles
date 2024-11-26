@@ -129,10 +129,10 @@ keyset("n", "]q", "<Cmd>cnext<CR>")
 keyset("n", "[q", "<Cmd>cprevious<CR>")
 keyset("n", "[<space>", [[<cmd>put!=nr2char(10)|']+<cr>]])
 keyset("n", "]<space>", [[<cmd>put =nr2char(10)|'[-<cr>]])
--- keyset("n", "[e", [[<cmd>.move--<cr>]])
--- keyset("n", "]e", [[<cmd>.move+<cr>]])
--- keyset("x", "[e", [[:<c-u>'<,'>move'<--<cr>gv]])
--- keyset("x", "]e", [[:<c-u>'<,'>move'>+<cr>gv]])
+keyset("n", "[x", [[<cmd>.move--<cr>]])
+keyset("n", "]x", [[<cmd>.move+<cr>]])
+keyset("x", "[x", [[:<c-u>'<,'>move'<--<cr>gv]])
+keyset("x", "]x", [[:<c-u>'<,'>move'>+<cr>gv]])
 
 -- convert unicode_escape to unicode
 -- select '\u21bb' and type '<leader>c'
@@ -146,8 +146,9 @@ keyset("v", "+",
   [[:<c-u>let _p = getcurpos() | put =<c-r>=escape(getregion(getpos("'<"), getpos("'>"), {"type": "v"})[0], '"|')<cr> | call setpos(".", _p) | redraw<cr>]],
   { desc = [[run Vim expressions, insert output below]] })
 
+  -- %!# is special chars in fish
 keyset("i", "<c-g><c-g>",
-  [[<esc><cmd>silent let _p = getcurpos() | put ='' | exec "r!" .. escape(getline(_p[1]), "%!#") | if getline(line(".")+1) != '' | put ='' | else | let _b = nvim_get_current_buf() | while line(".")+2 <= line("$") && getline(line(".")+2) == '' | call deletebufline(_b, line(".")+2) | endwhile | endif | call setpos(".", _p) | redraw<cr>]],
+  [[<esc><cmd>silent let _p = getcurpos() | put ='' | exec "r" .. escape(getline(_p[1]), "%!#") | if getline(line(".")+1) != '' | put ='' | else | let _b = nvim_get_current_buf() | while line(".")+2 <= line("$") && getline(line(".")+2) == '' | call deletebufline(_b, line(".")+2) | endwhile | endif | call setpos(".", _p) | redraw<cr>]],
   { desc = [[execute current line as shell command]] })
 keyset("n", "<c-g><c-g>",
   [[<cmd>silent let _p = getcurpos() | put ='' | exec "r!" .. escape(getline(_p[1]), "%!#") | if getline(line(".")+1) != '' | put ='' | else | let _b = nvim_get_current_buf() | while line(".")+2 <= line("$") && getline(line(".")+2) == '' | call deletebufline(_b, line(".")+2) | endwhile | endif | call setpos(".", _p) | redraw<cr>]],

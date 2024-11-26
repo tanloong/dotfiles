@@ -5,6 +5,10 @@ local actions = require("telescope.actions")
 
 telescope.setup({
   defaults = {
+    prompt_prefix = " ",
+    selection_caret = "▌ ",
+    entry_prefix = "  ",
+    border = true,
     preview = false,
     sorting_strategy = "ascending",
     layout_strategy = "horizontal",
@@ -65,3 +69,8 @@ vim.cmd([[
                        \ 'Telescope man_pages<cr><c-r>=DT#Eatchar(" ")<cr>'
                        \: 'h')
     ]])
+
+local hl = vim.api.nvim_set_hl
+hl(0, "TelescopeSelection", { fg = "#eeeeee", bg = "#303030" })
+hl(0, "TelescopeSelectionCaret", { fg = "#d7005f", bg = "#303030" })
+hl(0, "TelescopeMatching", { fg = "#ffc978" })
