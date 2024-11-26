@@ -15,7 +15,7 @@ function fish_prompt
     echo -n '$ '
 end
 
-set --global --export LANG zh_CN.UTF-8
+#set --global --export LANG zh_CN.UTF-8
 set --global --export LANG en_US.UTF-8
 set --global --export LANGUAGE zh_CN:en_US
 set --global --export ALIYUNPAN_CONFIG_DIR $HOME/.config/aliyunpan
@@ -183,7 +183,7 @@ alias x="setsid -f xournalpp"
 alias zathura="setsid -f zathura"
 alias rstudio="setsid -f rstudio-bin"
 alias spyder="setsid -f spyder"
-alias wechat="setsid -f wechat-universal"
+alias wechat="setsid -f wechat"
 alias QQ="setsid -f linuxqq"
 alias et="setsid -f et"
 alias wps="setsid -f wps"
