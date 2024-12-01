@@ -4,7 +4,7 @@ local api = vim.api
 local hi = api.nvim_set_hl
 
 hi(0, 'CocMenuSel', { link = 'PmenuSel' })
-hi(0, 'CocPumSearch', { ctermfg = 'yellow' })
+hi(0, 'CocPumSearch', { ctermfg = 'yellow' , fg = '#ffc978' })
 -- hi(0, 'CocInlayHint', { ctermbg = 'none', ctermfg = 'darkgray' })
 hi(0, 'CocHintVirtualText', { ctermbg = 'none', ctermfg = 'darkgray' })
 hi(0, 'CocErrorFloat', { ctermbg = 'none', ctermfg = 'red' })

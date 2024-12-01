@@ -228,28 +228,41 @@ local plugin_specs = {
     branch = "dev",
     event = "VeryLazy",
     config = function()
+        local mt = require("interlaced.match")
+        local rpst = require("interlaced.reposition")
+        local it = require("interlaced")
       opts = {
         mappings = {
-          PushUp = ",",
-          PushUpPair = "<",
-          PullUp = ".",
-          PullUpPair = ">",
-          PushDownRightPart = "d",
-          PushDown = "D",
-          NavigateDown = "J",
-          NavigateUp = "K"
+            [","] = rpst.cmd.PushUp,
+            ["<"] = rpst.cmd.PushUpPair,
+            ["."] = rpst.cmd.PullBelow,
+            [">"] = rpst.cmd.PullBelowPair,
+            ["d"] = rpst.cmd.PushDownRightPart,
+            ["D"] = rpst.cmd.PushDown,
+            ["J"] = rpst.cmd.NavigateDown,
+            ["K"] = rpst.cmd.NavigateUp,
+            ["md"] = it.cmd.Dump,
+            ["ml"] = it.cmd.Load,
+            ["gn"] = rpst.cmd.NextUnaligned,
+            ["gN"] = rpst.cmd.PrevUnaligned,
+            ["mt"] = mt.cmd.MatchToggle,
+            ["ma"] = mt.cmd.MatchAdd,
+            ["m;"] = mt.cmd.ListMatches,
         },
         setup_mappings_now = false,
         separators = { ["1"] = "", ["2"] = " " },
         auto_save = false,
         lang_num = 2,
+        enable_keybindings_hook = function()
+          -- disable coc to avoid lag on :w
+          if vim.g.did_coc_loaded ~= nil then vim.cmd([[CocDisable]]) end
+          -- disable the undo history saving, which is time-consuming and causes lag
+          vim.opt_local.undofile = false
+          require("interlaced").cmd.Load()
+        end,
       }
       require("interlaced").setup(opts)
-      keyset("n", "ma", "<cmd>ItMatchAdd<cr>", { buffer = true, noremap = true, nowait = true })
-      keyset("v", "ma", ":ItMatchAddVisual<cr>", { buffer = true, noremap = true, nowait = true })
-      keyset("n", "mt", "<cmd>ItMatchToggle<cr>", { buffer = true, noremap = true, nowait = true })
-      keyset("n", "qm", "<cmd>ItListMatches<cr>", { buffer = true, noremap = true, nowait = true })
-    end,
+    end
   },
   -- typst.vim
   {
@@ -286,13 +299,6 @@ local plugin_specs = {
         --               "xkb:us::eng" for ibus
         -- You can use `im-select` or `fcitx5-remote -n` to get the IM's name
         default_im_select = "keyboard-us",
-
-        -- Can be binary's name or binary's full path,
-        -- e.g. 'im-select' or '/usr/local/bin/im-select'
-        -- For Windows/WSL, default: "im-select.exe"
-        -- For macOS, default: "im-select"
-        -- For Linux, default: "fcitx5-remote" or "fcitx-remote" or "ibus"
-        default_command = "fcitx5-remote",
 
         -- Restore the default input method state when the following events are triggered
         set_default_events = { "VimEnter", "InsertLeave", "CmdlineLeave" },

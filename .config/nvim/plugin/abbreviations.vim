@@ -3,6 +3,7 @@ abbreviate NOne None
 abbreviate slef self
 abbreviate udpate update
 abbreviate wnat want
+abbreviate wnats wants
 abbreviate mian main
 abbreviate reutrn return
 abbreviate parnet parent

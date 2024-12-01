@@ -31,7 +31,8 @@ case "$ext" in
   docx|doc) soffice --headless --convert-to pdf "$file" ;;
   xlsx|xls) soffice --headless --convert-to csv "$file" ;;
   csv) soffice --headless --convert-to xlsx --infilter=csv:44,34,76 "$file";;
-  lua) lua "$file";;
+  # lua) lua "$file";;
+  lua) nvim -l "$file";;
   js) node "$file";;
   html) "$BROWSER" "$file";;
   caj) caj2pdf convert "$file";;

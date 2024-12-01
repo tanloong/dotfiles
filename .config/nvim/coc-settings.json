@@ -106,7 +106,9 @@
     "align_function_params": "false",
     "align_continuous_assign_statement": "false",
     "align_continuous_rect_table_field": "false",
-    "align_array_table": "false"
+    "align_array_table": "false",
+    "call_arg_parentheses": "remove",
+    "trailing_table_separator": "smart"
   },
   "suggest.completionItemKindLabels": {
     "constructor": "ﬥ",

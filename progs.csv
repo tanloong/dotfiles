@@ -186,3 +186,4 @@ zed,"zed editor"
 ,awesome-git,"awesomeWM"
 ,kitty,
 ,lux-dl,"video downloader"
+U,"https://github.com/mrcjkb/vimcats.git","generate vimdoc from lua annotation"
