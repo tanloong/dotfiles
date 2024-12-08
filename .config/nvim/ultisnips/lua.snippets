@@ -53,31 +53,31 @@ repeat
 until $0
 endsnippet
 
-snippet "^(\s*)while\s" "while loop" rA
+snippet "^(\s*)while\s" "while loop" r
 `!p snip.rv=match.group(1)`while $1 do
 	<<>>
 end
 endsnippet
 
-snippet "(=\s*)function\(\)" "x = function()" rA
+snippet "(=\s*)function\(\)" "x = function()" r
 `!p snip.rv=match.group(1)`function($1)
 	<<>>
 end
 endsnippet
 
-snippet "^(\s*)if\s" "if statement" rA
-`!p snip.rv=match.group(1)`if $1 then
+snippet if "if statement" b
+if $0 then
 	<<>>
 end
 endsnippet
 
-snippet "^(\s*)else\s" "if/else statement" rA
-`!p snip.rv=match.group(1)`else
-	<<>>
+snippet else "if/else statement" b
+else
+	$0
 endsnippet
 
-snippet "^(\s*)eliseif\s" "if/elseif statement" rA
-`!p snip.rv=match.group(1)`elseif $3 then
+snippet eliseif "if/elseif statement" b
+elseif $0 then
 	<<>>
 endsnippet
 
@@ -90,8 +90,8 @@ ${3:else
 }end
 endsnippet
 
-snippet "^(\s*)local\s" "local x = 1" bA
-`!p snip.rv=match.group(1)`local $1 = $0
+snippet local "local x = 1" b
+local $1 = $0
 endsnippet
 
 # =====================

@@ -107,8 +107,7 @@
     "align_continuous_assign_statement": "false",
     "align_continuous_rect_table_field": "false",
     "align_array_table": "false",
-    "call_arg_parentheses": "remove",
-    "trailing_table_separator": "smart"
+    "call_arg_parentheses": "remove"
   },
   "suggest.completionItemKindLabels": {
     "constructor": "ﬥ",

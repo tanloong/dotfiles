@@ -5,6 +5,9 @@ e2=p11+p12+p21+p22
 e3=p11+p21+p31+p32
 a4=p11+p21+p31+n11
 [数据]
+osks 智谱清言
+odsc 智谱
+ufsa 提示词
 jlwd 命名实体识别
 srvw 译文
 pmlr 默菲
@@ -26,6 +29,7 @@ lmma 英专
 reil 东李新苑
 mefl 大模型
 mssf 大语言模型
+lnpu 生成式
 lgxo 敬香
 nnwd 巨鳄
 oliu 暴红

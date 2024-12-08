@@ -3,16 +3,16 @@
 local keyset = vim.keymap.set
 local hl = vim.api.nvim_set_hl
 
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+local lazypath = vim.fn.stdpath "data" .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
-  vim.fn.system({
+  vim.fn.system {
     "git",
     "clone",
     "--filter=blob:none",
     "https://github.com/folke/lazy.nvim.git",
     "--branch=stable", -- latest stable release
     lazypath,
-  })
+  }
 end
 vim.opt.rtp:prepend(lazypath)
 
@@ -41,7 +41,7 @@ local plugin_specs = {
       local bufnr = vim.api.nvim_get_current_buf()
       return not string.find(vim.api.nvim_buf_get_name(bufnr), "interlaced.*%.txt$")
     end,
-    config = function() require("plugin_config.coc") end
+    config = function() require "plugin_config.coc" end
   },
   -- vim-surround
   {
@@ -52,23 +52,23 @@ local plugin_specs = {
   -- Comment
   {
     "https://github.com/numToStr/Comment.nvim",
-    enabled = vim.fn.has("nvim-0.10") == 0,
+    enabled = vim.fn.has "nvim-0.10" == 0,
     event = "VeryLazy",
-    config = function() require("plugin_config.comment") end
+    config = function() require "plugin_config.comment" end
   },
   -- vim-markdown-toc
   {
     "https://github.com/mzlogin/vim-markdown-toc",
     ft = { "markdown" },
     event = "VeryLazy",
-    config = function() require("plugin_config.vim_markdown_toc") end
+    config = function() require "plugin_config.vim_markdown_toc" end
   },
   -- vim-table-mode
   {
     "https://gitee.com/yaozhijin/vim-table-mode.git",
     ft = { "markdown" },
     event = "VeryLazy",
-    config = function() require("plugin_config.vim_table_mode") end
+    config = function() require "plugin_config.vim_table_mode" end
   },
   -- vim-slime
   -- {
@@ -80,7 +80,7 @@ local plugin_specs = {
   {
     "Vigemus/iron.nvim",
     config = function()
-      local iron = require("iron.core")
+      local iron = require "iron.core"
 
       iron.setup {
         config = {
@@ -94,7 +94,7 @@ local plugin_specs = {
             r = { command = { "R" } },
             rmd = { command = { "R" } },
           },
-          repl_open_cmd = require("iron.view").split.horizontal.botright(0.35)
+          repl_open_cmd = require "iron.view".split.horizontal.botright(0.35)
         },
         keymaps = {
           send_motion = "<space>sc",
@@ -125,43 +125,43 @@ local plugin_specs = {
     "https://gitee.com/mirrors/vimtex.git",
     -- cmd = { 'VimtexCompile' },
     ft = "tex",
-    config = function() require("plugin_config.vimtex") end
+    config = function() require "plugin_config.vimtex" end
   },
   -- hop
   {
     "https://github.com/smoka7/hop.nvim",
     event = "VeryLazy",
-    config = function() require("plugin_config.hop") end
+    config = function() require "plugin_config.hop" end
   },
   -- tree-sitter
   {
     "nvim-treesitter/nvim-treesitter",
     run = ":TSUpdate",
-    config = function() require("plugin_config.nvim_treesitter") end,
+    config = function() require "plugin_config.nvim_treesitter" end,
     event = "VeryLazy"
   },
   {
     "nvim-treesitter/nvim-treesitter-textobjects",
     dependencies = "nvim-treesitter/nvim-treesitter",
     event = "VeryLazy",
-    config = function() require("plugin_config.nvim_treesitter_textobjects") end,
+    config = function() require "plugin_config.nvim_treesitter_textobjects" end,
   },
   -- wildfire.nvim
   {
     "https://github.com/SUSTech-data/wildfire.nvim",
     dependencies = "nvim-treesitter/nvim-treesitter",
     event = "VeryLazy",
-    config = function() require("plugin_config.wildfire") end,
+    config = function() require "plugin_config.wildfire" end,
   },
   -- indent-blankline
   {
     "lukas-reineke/indent-blankline.nvim",
     main = "ibl",
-    version = vim.fn.has("nvim-0.10") == 1 and "v3.6.0" or "v3.5.4",
+    version = vim.fn.has "nvim-0.10" == 1 and "v3.6.0" or "v3.5.4",
     event = "VeryLazy",
     config = function()
       hl(0, "IblIndent", { ctermbg = "none", ctermfg = "darkgray", fg = "#3A3A3A" })
-      require("ibl").setup({ scope = { enabled = false } })
+      require "ibl".setup { scope = { enabled = false } }
     end
   },
   -- nvim-align
@@ -175,14 +175,14 @@ local plugin_specs = {
     branch = "skip-toggle",
     -- "https://github.com/akinsho/toggleterm.nvim",
     event = "VeryLazy",
-    config = function() require("plugin_config.toggleterm") end
+    config = function() require "plugin_config.toggleterm" end
   },
   -- lf.nvim
   {
     "https://github.com/tanloong/lf.nvim",
     branch = "fix-wrong-number-of-arguments-to-insert",
     -- "https://github.com/lmburns/lf.nvim",
-    config = function() require("plugin_config.lf_nvim") end,
+    config = function() require "plugin_config.lf_nvim" end,
     event = "VeryLazy",
     dependencies = { "toggleterm.nvim" }
   },
@@ -205,7 +205,7 @@ local plugin_specs = {
   {
     "nat-418/boole.nvim",
     event = "VeryLazy",
-    config = function() require("plugin_config.boole_nvim") end,
+    config = function() require "plugin_config.boole_nvim" end,
   },
   -- hlsearch
   {
@@ -214,7 +214,7 @@ local plugin_specs = {
     enabled = false,
     event = "BufRead",
     config = function()
-      require("hlsearch").setup()
+      require "hlsearch".setup()
     end,
     cond = function()
       local bufnr = vim.api.nvim_get_current_buf()
@@ -228,26 +228,27 @@ local plugin_specs = {
     branch = "dev",
     event = "VeryLazy",
     config = function()
-        local mt = require("interlaced.match")
-        local rpst = require("interlaced.reposition")
-        local it = require("interlaced")
+      local mt = require "interlaced.match"
+      local rpst = require "interlaced.reposition"
+      local it = require "interlaced"
       opts = {
-        mappings = {
-            [","] = rpst.cmd.PushUp,
-            ["<"] = rpst.cmd.PushUpPair,
-            ["."] = rpst.cmd.PullBelow,
-            [">"] = rpst.cmd.PullBelowPair,
-            ["d"] = rpst.cmd.PushDownRightPart,
-            ["D"] = rpst.cmd.PushDown,
-            ["J"] = rpst.cmd.NavigateDown,
-            ["K"] = rpst.cmd.NavigateUp,
-            ["md"] = it.cmd.Dump,
-            ["ml"] = it.cmd.Load,
-            ["gn"] = rpst.cmd.NextUnaligned,
-            ["gN"] = rpst.cmd.PrevUnaligned,
-            ["mt"] = mt.cmd.MatchToggle,
-            ["ma"] = mt.cmd.MatchAdd,
-            ["m;"] = mt.cmd.ListMatches,
+        keymaps = {
+          { "n", ",", rpst.cmd.PushUp, { noremap = true, buffer = true, nowait = true } },
+          { "n", "<", rpst.cmd.PushUpPair, { noremap = true, buffer = true, nowait = true } },
+          { "n", ".", rpst.cmd.PullBelow, { noremap = true, buffer = true, nowait = true } },
+          { "n", ">", rpst.cmd.PullBelowPair, { noremap = true, buffer = true, nowait = true } },
+          { "n", "d", rpst.cmd.PushDownRightPart, { noremap = true, buffer = true, nowait = true } },
+          { "n", "D", rpst.cmd.PushDown, { noremap = true, buffer = true, nowait = true } },
+          { "n", "J", rpst.cmd.NavigateDown, { noremap = true, buffer = true, nowait = true } },
+          { "n", "K", rpst.cmd.NavigateUp, { noremap = true, buffer = true, nowait = true } },
+          { "n", "md", it.cmd.Dump, { noremap = true, buffer = true, nowait = true } },
+          { "n", "ml", it.cmd.Load, { noremap = true, buffer = true, nowait = true } },
+          { "n", "gn", rpst.cmd.NextUnaligned, { noremap = true, buffer = true, nowait = true } },
+          { "n", "gN", rpst.cmd.PrevUnaligned, { noremap = true, buffer = true, nowait = true } },
+          { "n", "mt", mt.cmd.MatchToggle, { noremap = true, buffer = true, nowait = true } },
+          { "n", "m;", mt.cmd.ListMatches, { noremap = true, buffer = true, nowait = true } },
+          { "n", "ma", mt.cmd.MatchAdd, { noremap = true, buffer = true, nowait = true } },
+          { "v", "ma", mt.cmd.MatchAddVisual, { noremap = true, buffer = true, nowait = true } },
         },
         setup_mappings_now = false,
         separators = { ["1"] = "", ["2"] = " " },
@@ -255,13 +256,13 @@ local plugin_specs = {
         lang_num = 2,
         enable_keybindings_hook = function()
           -- disable coc to avoid lag on :w
-          if vim.g.did_coc_loaded ~= nil then vim.cmd([[CocDisable]]) end
+          if vim.g.did_coc_loaded ~= nil then vim.cmd [[CocDisable]] end
           -- disable the undo history saving, which is time-consuming and causes lag
           vim.opt_local.undofile = false
-          require("interlaced").cmd.Load()
+          require "interlaced".cmd.Load()
         end,
       }
-      require("interlaced").setup(opts)
+      require "interlaced".setup(opts)
     end
   },
   -- typst.vim
@@ -289,7 +290,7 @@ local plugin_specs = {
     enabled = false,
     event = "VeryLazy",
     config = function()
-      require("im_select").setup({
+      require "im_select".setup {
         -- IM will be set to `default_im_select` in `normal` mode
         -- For Windows/WSL, default: "1033", aka: English US Keyboard
         -- For macOS, default: "com.apple.keylayout.ABC", aka: US
@@ -314,7 +315,7 @@ local plugin_specs = {
 
         -- Async run `default_command` to switch IM or not
         async_switch_im = true
-      })
+      }
     end,
   },
   -- markdown-preview
@@ -324,7 +325,7 @@ local plugin_specs = {
     ft = { "markdown" },
     build = function() vim.fn["mkdp#util#install"]() end,
     event = "VeryLazy",
-    config = function() require("plugin_config.markdown_preview") end,
+    config = function() require "plugin_config.markdown_preview" end,
   },
   -- bufferline
   -- {
@@ -392,13 +393,19 @@ local plugin_specs = {
     "nvim-telescope/telescope.nvim",
     -- version = '*',
     enabled = true,
+    event = "VeryLazy",
     dependencies = { "nvim-lua/plenary.nvim" },
-    config = function() require("plugin_config.telescope_nvim") end,
+    config = function() require "plugin_config.telescope_nvim" end,
+  },
+  {
+    "nvim-telescope/telescope-fzf-native.nvim",
+    dependencies = { "nvim-telescope/telescope.nvim" },
+    build = "make"
   },
   {
     "ibhagwan/fzf-lua",
     enabled = false,
-    config = function() require("plugin_config.fzf_lua") end,
+    config = function() require "plugin_config.fzf_lua" end,
   },
 
   -- ChatGPT.nvim
@@ -416,10 +423,10 @@ local plugin_specs = {
   --   },
   -- },
   {
-    -- "https://github.com/robitx/gp.nvim",
-    dir = "/home/tan/.local/share/nvim/lazy/gp.nvim",
+    "https://github.com/robitx/gp.nvim",
+    -- dir = "/home/tan/.local/share/nvim/lazy/gp.nvim",
     config = function()
-      require("plugin_config.gp_nvim")
+      require "plugin_config.gp_nvim"
     end,
     event = "VeryLazy",
   },
@@ -429,13 +436,13 @@ local plugin_specs = {
     version = "1.0.0",
     event = "VeryLazy",
     config = function()
-      require("better_escape").setup({
+      require "better_escape".setup {
         mapping = { "jk" },
         timeout = vim.o.timeoutlen,
         clear_empty_lines = false,
         -- insert mode mapping
         keys = '<Esc>/<<>><CR>:set nohlsearch<CR>"_c4<right>',
-      })
+      }
       -- normal mode mapping
       keyset("n", "<SPACE><SPACE>", '/<<>><CR>:set nohlsearch<CR>"_c4<right>')
     end,
@@ -449,7 +456,7 @@ local plugin_specs = {
     "neovim/nvim-lspconfig",
     enabled = false,
     event = { "BufRead", "BufNewFile" },
-    config = function() require("plugin_config.lsp") end,
+    config = function() require "plugin_config.lsp" end,
   },
   {
     "hrsh7th/nvim-cmp",
@@ -462,13 +469,13 @@ local plugin_specs = {
       "hrsh7th/cmp-buffer",
       "quangnguyen30192/cmp-nvim-ultisnips",
     },
-    config = function() require("plugin_config.nvim_cmp") end,
+    config = function() require "plugin_config.nvim_cmp" end,
   },
   {
     "https://github.com/tpope/vim-fugitive",
     -- see ../plugin/autocmds.lua for InGitRepo
     event = "User InGitRepo",
-    config = function() require("plugin_config.vim_fugitive") end
+    config = function() require "plugin_config.vim_fugitive" end
   },
 }
 
@@ -481,4 +488,4 @@ local lazy_opts = {
   },
 }
 
-require("lazy").setup(plugin_specs, lazy_opts)
+require "lazy".setup(plugin_specs, lazy_opts)

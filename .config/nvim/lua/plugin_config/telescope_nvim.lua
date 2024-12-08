@@ -33,6 +33,7 @@ telescope.setup({
     },
   },
 })
+require('telescope').load_extension('fzf')
 
 keyset("n", "<leader>b", builtin.buffers, {})
 keyset("n", "<leader><leader>", builtin.find_files, {})
@@ -42,6 +43,16 @@ keyset("n", "<leader>h", builtin.help_tags, {})
 keyset("n", "<c-/>",
   function()
     builtin.current_buffer_fuzzy_find({ skip_empty_lines = true })
+  end, {})
+keyset("n", "<leader>C",
+  function()
+    local cwd = "~/docx/corpus/BNC/02BNC_txt"
+    builtin.live_grep({
+      cwd = cwd,
+      follow = true,
+      hidden = true,
+      disable_coordinates = true,
+    })
   end, {})
 keyset("n", "<leader>v",
   function()

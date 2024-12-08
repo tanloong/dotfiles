@@ -42,6 +42,8 @@ set --global --export WORKON_HOME ~/.virtualenvs
 set --global --export OPENAI_API_KEY $(cat $HOME/.config/api_keys/OPENAI_API_KEY 2> /dev/null || echo "")
 set --global --export OPENAI_API_BASE $(cat $HOME/.config/api_keys/OPENAI_API_BASE 2> /dev/null || echo "")
 set --global --export OPENAI_API_HOST $(cat $HOME/.config/api_keys/OPENAI_API_HOST 2> /dev/null || echo "")
+set --global --export ZHIPU_API_KEY $(cat $HOME/.config/api_keys/ZHIPU_API_KEY 2> /dev/null || echo "")
+set --global --export ZHIPU_API_BASE $(cat $HOME/.config/api_keys/ZHIPU_API_BASE 2> /dev/null || echo "")
 # set --global --export GROQ_API_KEY $(cat $HOME/.config/api_keys/GROQ_API_KEY 2> /dev/null || echo "")
 # set --global --export GROQ_API_BASE $(cat $HOME/.config/api_keys/GROQ_API_BASE 2> /dev/null || echo "")
 
