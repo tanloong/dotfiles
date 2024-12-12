@@ -66,6 +66,7 @@ local plugin_specs = {
   -- vim-table-mode
   {
     "https://gitee.com/yaozhijin/vim-table-mode.git",
+    enabled = false,
     ft = { "markdown" },
     event = "VeryLazy",
     config = function() require "plugin_config.vim_table_mode" end
@@ -239,6 +240,7 @@ local plugin_specs = {
           { "n", ">", rpst.cmd.PullBelowPair, { noremap = true, buffer = true, nowait = true } },
           { "n", "d", rpst.cmd.PushDownRightPart, { noremap = true, buffer = true, nowait = true } },
           { "n", "D", rpst.cmd.PushDown, { noremap = true, buffer = true, nowait = true } },
+          { "n", "s", rpst.cmd.LeaveAlone, { noremap = true, buffer = true, nowait = true } },
           { "n", "J", rpst.cmd.NavigateDown, { noremap = true, buffer = true, nowait = true } },
           { "n", "K", rpst.cmd.NavigateUp, { noremap = true, buffer = true, nowait = true } },
           { "n", "md", it.cmd.Dump, { noremap = true, buffer = true, nowait = true } },

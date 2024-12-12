@@ -187,3 +187,5 @@ zed,"zed editor"
 ,kitty,
 ,lux-dl,"video downloader"
 U,"https://github.com/mrcjkb/vimcats.git","generate vimdoc from lua annotation"
+,feeluown-bilibili,"音乐播放器，B站源"
+A,feishu-bin,"飞书"
