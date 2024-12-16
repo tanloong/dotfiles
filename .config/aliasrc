@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 function fzf_with {
-    file="$(fzf --reverse)"
+    file="$(fzf --reverse --query "$2")"
     # in case you press <Esc> and fzf returns zero length of string
     if [ -n "$file" ]; then
         abspath=$(readlink -f "$file")
@@ -13,12 +13,21 @@ function fzf_with {
         esac
     fi
 }
-alias \
-    fcd="fzf_with cd" \
-    fv='fzf_with $EDITOR' \
-    fz='fzf_with $PDFVIEWER' \
-    fr='fzf_with $FILE_MANAGER' \
-    fs="fzf_with bluetooth-sendto" \
+
+function fcd { fzf_with cd "$@" 
+}
+function fv {
+fzf_with "$EDITOR" "$@"
+}
+function fz {
+fzf_with "$PDFVIEWER" "$@"
+}
+function fr {
+fzf_with "$FILE_MANAGER" "$@"
+}
+function fs {
+fzf_with bluetooth-sendto "$@"
+}
 
 # Colorize commands when possible.
 alias \

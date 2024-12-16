@@ -261,6 +261,11 @@ local plugin_specs = {
           if vim.g.did_coc_loaded ~= nil then vim.cmd [[CocDisable]] end
           -- disable the undo history saving, which is time-consuming and causes lag
           vim.opt_local.undofile = false
+          vim.cmd.nunmap("j")
+          vim.cmd.nunmap("k")
+          vim.cmd.nunmap("gj")
+          vim.cmd.nunmap("gk")
+          vim.opt_local.undolevels = 3
           require "interlaced".cmd.Load()
         end,
       }

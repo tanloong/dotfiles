@@ -74,7 +74,7 @@ bind --mode insert \ce edit_command_buffer
 # [ -f $HOME/.local/share/ls-colors.sh ] && source $HOME/.local/share/ls-colors.sh
 
 function fzf_with
-    set file "$(fzf --reverse)"
+    set file "$(fzf --reverse --query "$argv[2]")"
     if test -e "$file";
         set --function abspath $(readlink -f "$file")
         set --function dir "$(path dirname $abspath)"
@@ -87,10 +87,10 @@ function fzf_with
     end
 end
 
-function fv; fzf_with "$EDITOR"; end
-function fcd; fzf_with cd; end
-function fz; fzf_with "$PDFVIEWER"; end
-function fr; fzf_with "$FILE_MANAGER"; end
+function fv; fzf_with "$EDITOR" "$argv[1]"; end
+function fcd; fzf_with cd "$argv[1]"; end
+function fz; fzf_with "$PDFVIEWER" "$argv[1]"; end
+function fr; fzf_with "$FILE_MANAGER" "$argv[1]"; end
 
 # Use neovim for vim if present.
 if command -v nvim > /dev/null
