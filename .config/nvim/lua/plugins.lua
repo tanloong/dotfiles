@@ -241,6 +241,10 @@ local plugin_specs = {
           { "n", "d", rpst.cmd.PushDownRightPart, { noremap = true, buffer = true, nowait = true } },
           { "n", "D", rpst.cmd.PushDown, { noremap = true, buffer = true, nowait = true } },
           { "n", "s", rpst.cmd.LeaveAlone, { noremap = true, buffer = true, nowait = true } },
+          { "n", "[e", rpst.cmd.SwapWithAbove, { noremap = true, buffer = true, nowait = true } },
+          { "n", "]e", rpst.cmd.SwapWithBelow, { noremap = true, buffer = true, nowait = true } },
+          { "n", "u", rpst.cmd.Undo, { noremap = true, buffer = true, nowait = true } },
+          { "n", "<C-r>", rpst.cmd.Redo, { noremap = true, buffer = true, nowait = true } },
           { "n", "J", rpst.cmd.NavigateDown, { noremap = true, buffer = true, nowait = true } },
           { "n", "K", rpst.cmd.NavigateUp, { noremap = true, buffer = true, nowait = true } },
           { "n", "md", it.cmd.Dump, { noremap = true, buffer = true, nowait = true } },
@@ -261,11 +265,11 @@ local plugin_specs = {
           if vim.g.did_coc_loaded ~= nil then vim.cmd [[CocDisable]] end
           -- disable the undo history saving, which is time-consuming and causes lag
           vim.opt_local.undofile = false
-          vim.cmd.nunmap("j")
-          vim.cmd.nunmap("k")
-          vim.cmd.nunmap("gj")
-          vim.cmd.nunmap("gk")
-          vim.opt_local.undolevels = 3
+          pcall(vim.cmd.nunmap, "j")
+          pcall(vim.cmd.nunmap, "k")
+          pcall(vim.cmd.nunmap, "gj")
+          pcall(vim.cmd.nunmap, "gk")
+          vim.opt_local.undolevels = -1
           require "interlaced".cmd.Load()
         end,
       }

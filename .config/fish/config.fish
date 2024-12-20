@@ -95,12 +95,20 @@ function fr; fzf_with "$FILE_MANAGER" "$argv[1]"; end
 # Use neovim for vim if present.
 if command -v nvim > /dev/null
     set --global --export EDITOR "nvim"
-    alias vv='cd $HOME/projects/dotfiles/; fv; cd -'
+    function vv
+      cd $HOME/projects/dotfiles/
+      fzf_with "$EDITOR" "$argv[1]"
+      cd -
+    end
 else
     set --global --export EDITOR "vim"
     alias vv='vim $HOME/.vim/vimrc'
 end
-alias mm='cd $HOME/docx/memorandum/; fv; cd -'
+function mm
+  cd $HOME/docx/memorandum/
+  fzf_with "$EDITOR" "$argv[1]"
+  cd -
+end
 
 function nq
     if test (count $argv) -eq 0
