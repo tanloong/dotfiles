@@ -181,6 +181,7 @@ local plugin_specs = {
   -- lf.nvim
   {
     "https://github.com/tanloong/lf.nvim",
+    enabled = true,
     branch = "fix-wrong-number-of-arguments-to-insert",
     -- "https://github.com/lmburns/lf.nvim",
     config = function() require "plugin_config.lf_nvim" end,
@@ -232,29 +233,30 @@ local plugin_specs = {
       local mt = require "interlaced.match"
       local rpst = require "interlaced.reposition"
       local it = require "interlaced"
+      local opt = { noremap = true, buffer = true, nowait = true }
       opts = {
         keymaps = {
-          { "n", ",", rpst.cmd.PushUp, { noremap = true, buffer = true, nowait = true } },
-          { "n", "<", rpst.cmd.PushUpPair, { noremap = true, buffer = true, nowait = true } },
-          { "n", ".", rpst.cmd.PullBelow, { noremap = true, buffer = true, nowait = true } },
-          { "n", ">", rpst.cmd.PullBelowPair, { noremap = true, buffer = true, nowait = true } },
-          { "n", "d", rpst.cmd.PushDownRightPart, { noremap = true, buffer = true, nowait = true } },
-          { "n", "D", rpst.cmd.PushDown, { noremap = true, buffer = true, nowait = true } },
-          { "n", "s", rpst.cmd.LeaveAlone, { noremap = true, buffer = true, nowait = true } },
-          { "n", "[e", rpst.cmd.SwapWithAbove, { noremap = true, buffer = true, nowait = true } },
-          { "n", "]e", rpst.cmd.SwapWithBelow, { noremap = true, buffer = true, nowait = true } },
-          { "n", "u", rpst.cmd.Undo, { noremap = true, buffer = true, nowait = true } },
-          { "n", "<C-r>", rpst.cmd.Redo, { noremap = true, buffer = true, nowait = true } },
-          { "n", "J", rpst.cmd.NavigateDown, { noremap = true, buffer = true, nowait = true } },
-          { "n", "K", rpst.cmd.NavigateUp, { noremap = true, buffer = true, nowait = true } },
-          { "n", "md", it.cmd.Dump, { noremap = true, buffer = true, nowait = true } },
-          { "n", "ml", it.cmd.Load, { noremap = true, buffer = true, nowait = true } },
-          { "n", "gn", rpst.cmd.NextUnaligned, { noremap = true, buffer = true, nowait = true } },
-          { "n", "gN", rpst.cmd.PrevUnaligned, { noremap = true, buffer = true, nowait = true } },
-          { "n", "mt", mt.cmd.MatchToggle, { noremap = true, buffer = true, nowait = true } },
-          { "n", "m;", mt.cmd.ListMatches, { noremap = true, buffer = true, nowait = true } },
-          { "n", "ma", mt.cmd.MatchAdd, { noremap = true, buffer = true, nowait = true } },
-          { "v", "ma", mt.cmd.MatchAddVisual, { noremap = true, buffer = true, nowait = true } },
+          { "n", ",", rpst.cmd.PushUp, opt },
+          { "n", "<", rpst.cmd.PushUpPair, opt },
+          { "n", ".", rpst.cmd.PullBelow, opt },
+          { "n", ">", rpst.cmd.PullBelowPair, opt },
+          { "n", "d", rpst.cmd.PushDownRightPart, opt },
+          { "n", "D", rpst.cmd.PushDown, opt },
+          { "n", "s", rpst.cmd.LeaveAlone, opt },
+          { "n", "[e", rpst.cmd.SwapWithAbove, opt },
+          { "n", "]e", rpst.cmd.SwapWithBelow, opt },
+          { "n", "u", rpst.cmd.Undo, opt },
+          { "n", "<C-r>", rpst.cmd.Redo, opt },
+          { "n", "J", rpst.cmd.NavigateDown, opt },
+          { "n", "K", rpst.cmd.NavigateUp, opt },
+          { "n", "md", it.cmd.Dump, opt },
+          { "n", "ml", it.cmd.Load, opt },
+          { "n", "gn", rpst.cmd.NextUnaligned, opt },
+          { "n", "gN", rpst.cmd.PrevUnaligned, opt },
+          { "n", "mt", mt.cmd.MatchToggle, opt },
+          { "n", "m;", mt.cmd.ListMatches, opt },
+          { "n", "ma", mt.cmd.MatchAdd, opt },
+          { "v", "ma", mt.cmd.MatchAddVisual, opt },
         },
         setup_mappings_now = false,
         separators = { ["1"] = "", ["2"] = " " },
@@ -488,6 +490,19 @@ local plugin_specs = {
     event = "User InGitRepo",
     config = function() require "plugin_config.vim_fugitive" end
   },
+  {
+    "https://github.com/stevearc/oil.nvim",
+    enabled = false,
+    event = "VeryLazy",
+    config = function()
+      require "oil".setup {
+        columns = { "size", "mtime" },
+        float = { border = "single", },
+      }
+      keyset("n", "zh", require "oil".toggle_hidden)
+      keyset("n", "tt", require "oil".toggle_float)
+    end
+  }
 }
 
 -- configuration for lazy itself.
