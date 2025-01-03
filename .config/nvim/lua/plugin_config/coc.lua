@@ -10,6 +10,7 @@ hi(0, 'CocHintVirtualText', { ctermbg = 'none', ctermfg = 'darkgray' })
 hi(0, 'CocErrorFloat', { ctermbg = 'none', ctermfg = 'red' })
 
 keyset('n', '<leader>c', ':CocCommand<space>')
+
 -- Use tab for trigger completion with characters ahead and navigate.
 -- NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
 -- other plugin before putting this into your config.
@@ -34,12 +35,13 @@ vim.cmd([[
       return !col || getline('.')[col - 1]  =~# '\s'
     endfunction
   ]])
--- function _G.check_back_space()
--- local col = vim.fn.col('.') - 1
--- return col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') ~= nil
--- end
+function _G.check_back_space()
+local col = vim.fn.col('.') - 1
+return col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') ~= nil
+end
+
 -- Use <c-a> to trigger completion
-keyset("i", "<c-a>", "coc#refresh()", { silent = true, expr = true })
+-- keyset("i", "<c-a>", "coc#refresh()", { silent = true, expr = true })
 -- Use `[g` and `]g` to navigate diagnostics
 -- Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
 keyset("n", "[d", "<Plug>(coc-diagnostic-prev)", { silent = true })

@@ -238,6 +238,7 @@ local plugin_specs = {
         keymaps = {
           { "n", ",", rpst.cmd.PushUp, opt },
           { "n", "<", rpst.cmd.PushUpPair, opt },
+          { "n", "e", rpst.cmd.PushUpLeftPart, opt },
           { "n", ".", rpst.cmd.PullBelow, opt },
           { "n", ">", rpst.cmd.PullBelowPair, opt },
           { "n", "d", rpst.cmd.PushDownRightPart, opt },
@@ -260,7 +261,6 @@ local plugin_specs = {
         },
         setup_mappings_now = false,
         separators = { ["1"] = "", ["2"] = " " },
-        auto_save = false,
         lang_num = 2,
         enable_keybindings_hook = function()
           -- disable coc to avoid lag on :w
@@ -272,7 +272,11 @@ local plugin_specs = {
           pcall(vim.cmd.nunmap, "gj")
           pcall(vim.cmd.nunmap, "gk")
           vim.opt_local.undolevels = -1
+          vim.opt_local.signcolumn = "no"
+          vim.opt_local.relativenumber = false
+          vim.opt_local.number = false
           require "interlaced".cmd.Load()
+          require "interlaced".ShowChunkNr()
         end,
       }
       require "interlaced".setup(opts)
@@ -502,7 +506,60 @@ local plugin_specs = {
       keyset("n", "zh", require "oil".toggle_hidden)
       keyset("n", "tt", require "oil".toggle_float)
     end
-  }
+  },
+  {
+    "codota/tabnine-nvim",
+    enabled = false,
+    build = "./dl_binaries.sh",
+    event = "VeryLazy",
+    config = function()
+      require "tabnine".setup {
+        disable_auto_comment = true,
+        accept_keymap = "<c-a>",
+        dismiss_keymap = "<C-]>",
+        debounce_ms = 500,
+        suggestion_color = { gui = "#808080", cterm = 244 },
+        exclude_filetypes = { "TelescopePrompt", "NvimTree" },
+        log_file_path = nil, -- absolute path to Tabnine log file
+        ignore_certificate_errors = false,
+      }
+    end
+  },
+  {
+    "monkoose/neocodeium",
+    enabled = false,
+    event = "VeryLazy",
+    config = function()
+      local neocodeium = require "neocodeium"
+      neocodeium.setup()
+      vim.keymap.set("i", "<Tab>", neocodeium.accept_line)
+    end,
+  },
+  {
+    "luozhiya/fittencode.nvim",
+    event = "VeryLazy",
+    config = function()
+      require "fittencode".setup {
+        action = {
+          identify_programming_language = {
+            -- Identify programming language of the current buffer
+            -- * Unnamed buffer
+            -- * Buffer without file extension
+            -- * Buffer no filetype detected
+            identify_buffer = false,
+          },
+        },
+        keymaps = {
+          inline = {
+            ["<c-Tab>"] = "accept_all_suggestions",
+            ["<c-Right>"] = "accept_word",
+            ["<s-Right>"] = "accept_char",
+            ["<right>"] = "accept_line",
+            ["<c-a>"] = "triggering_completion",
+          },
+        }, }
+    end,
+  },
 }
 
 -- configuration for lazy itself.

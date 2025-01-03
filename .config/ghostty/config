@@ -1,0 +1,11 @@
+background = 000000
+foreground = ffffff
+font-family = "Cousine Nerd Font Mono"
+font-family-bold      = "Cousine Bold Nerd Font Complete Mono"
+font-family-italic    = "Cousine Italic Nerd Font Complete Mono"
+font-family-bold-italic = "Cousine Bold Italic Nerd Font Complete Mono"
+font-family = "WenQuanYi Zen Hei"
+font-size = 13
+cursor-style-blink = false
+shell-integration-features = "no-cursor,title,sudo"
+mouse-hide-while-typing = true

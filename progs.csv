@@ -106,7 +106,7 @@ A,latex-mk,
 ,xmlstarlet,"A set of tools to transform, query, validate, and edit XML documents"
 A,radian,"A 21 century R console"
 A,ttf-wps-fonts,"fonts used by WPS"
-A,ttf-ms-win10-auto-zh_cn,"windows10 simple Chinese fonts."
+A,ttf-ms-win11-auto-zh_cn,"windows11 simple Chinese fonts."
 A,wps-office,"wps"
 ,libnotify,"notify-send"
 ,dunst,"notification server"

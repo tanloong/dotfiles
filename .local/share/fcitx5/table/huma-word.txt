@@ -5,12 +5,32 @@ e2=p11+p12+p21+p22
 e3=p11+p21+p31+p32
 a4=p11+p21+p31+n11
 [数据]
+szfs 谢顿
+xrsi 小鸡词典
+xake 章北海
+xgix 庄颜
+qtls 老番茄
+ofoo 影视飓风
+qpbk 老师好我叫何同学
+ylyd 逻辑
+ylyd 罗辑
+bcsp 面壁计划
+bcqo 面壁者
+xdhx 程心
+bfov 云天明
+ukjk 执剑
+unkk 热辣滚烫
+jbel 你好李焕英
+eclm 李焕英
+kkal 九九六
+onhb 早八
+ierh 童年回忆
 tycf 陆小飞
 tycf Xiaofei Lu
 xucc 广播剧
 imhq 商单
 osks 智谱清言
-odsc 智谱
+odsh 智谱
 ufsa 提示词
 jlwd 命名实体识别
 srvw 译文
@@ -33,6 +53,7 @@ lmma 英专
 reil 东李新苑
 mefl 大模型
 mssf 大语言模型
+mref 大圆模型
 lnpu 生成式
 lgxo 敬香
 nnwd 巨鳄
@@ -42,6 +63,7 @@ yklm 上海外国语大学
 yfly 上外
 avly 北外
 drkm 中国海洋大学
+dkkg 中海洋
 kemd 海大
 gkex 句法复杂度
 mesw 二语
@@ -6176,7 +6198,6 @@ xmo 庵
 eouq 查看
 cnth 不在乎
 ybhk 小女孩
-ylyd 逻辑
 mlwe 两次
 wtcy 农业
 eyrq 也算
@@ -44665,7 +44686,6 @@ xtue 解控
 ymgv 小狼毫
 rcld 双飞燕
 xreo 反查
-hkur 公摊
 ldzz 生无可恋
 zuic 可持续发展
 jpke 化粪池
@@ -90604,6 +90624,7 @@ ddwf 器宇
 yhom 乳臭
 afcc 病虫
 hkur 公投
+hkur 公摊
 wymj 军内
 mbmj 网内
 lytl 外需
