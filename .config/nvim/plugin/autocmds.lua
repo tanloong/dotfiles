@@ -2,6 +2,7 @@
 
 local autocmd = vim.api.nvim_create_autocmd
 local augroup = vim.api.nvim_create_augroup
+local keyset = vim.keymap.set
 
 -- {{{ don't auto-insert comment char on linebreak
 autocmd("FileType",
@@ -20,12 +21,12 @@ autocmd("TermOpen",
 
 -- {{{ skip [Process exited] in finished terminal
 autocmd("TermClose", {
-    pattern = "*",
-    group = augroup("term_close", { clear = true }),
-    callback = function()
-        local buf = tonumber(vim.fn.expand("<abuf>"))
-        vim.api.nvim_buf_delete(buf, { force = true })
-    end
+  pattern = "*",
+  group = augroup("term_close", { clear = true }),
+  callback = function()
+    local buf = tonumber(vim.fn.expand "<abuf>")
+    vim.api.nvim_buf_delete(buf, { force = true })
+  end
 }) -- }}}
 
 -- {{{ auto save
@@ -51,8 +52,9 @@ local function check_git_repo()
     return true -- removes autocmd after lazy loading git related plugins
   end
 end
-vim.api.nvim_create_autocmd({ "VimEnter", "DirChanged" }, { callback = function() vim.schedule(check_git_repo) end })-- }}}
+vim.api.nvim_create_autocmd({ "VimEnter", "DirChanged" }, { callback = function() vim.schedule(check_git_repo) end }) -- }}}
 
 -- au("BufEnter", { pattern = "term://*", command = 'startinsert' })
 -- Output is followed if cursor is on the last line.
 -- au("BufLeave", { pattern = "term://*", command = 'normal G' })
+

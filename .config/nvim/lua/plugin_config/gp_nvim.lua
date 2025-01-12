@@ -253,7 +253,7 @@ local config = {
       chat = true,
       command = true,
       -- string with model name or table with model name and parameters
-      model = { model = "glm-4-plus", temperature = 1, top_p = 1 },
+      model = { model = "glm-4-flash", temperature = 1, top_p = 1 },
       -- system prompt (use this to specify the persona/role of the AI)
       system_prompt = [[你是全世界最先进的人工智能助手]],
     },

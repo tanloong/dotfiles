@@ -181,5 +181,6 @@
   ],
   "tabnine.disable_file_regex": [
     "bangzhanxitong"
-  ]
+  ],
+  "snippets.ultisnips.pythonPrompt": false
 }
