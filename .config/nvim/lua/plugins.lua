@@ -212,7 +212,7 @@ local plugin_specs = {
   -- hlsearch
   {
     -- 'nvimdev/hlsearch.nvim',
-    dir = "/home/tan/projects/hlsearch.nvim/",
+    dir = "/home/usr/projects/hlsearch.nvim/",
     enabled = false,
     event = "BufRead",
     config = function()
@@ -246,8 +246,8 @@ local plugin_specs = {
           { "n", "s", rpst.cmd.LeaveAlone, opt },
           { "n", "[e", rpst.cmd.SwapWithAbove, opt },
           { "n", "]e", rpst.cmd.SwapWithBelow, opt },
-          { "n", "u", rpst.cmd.Undo, opt },
-          { "n", "<C-r>", rpst.cmd.Redo, opt },
+          { "n", "U", rpst.cmd.Undo, opt },
+          { "n", "R", rpst.cmd.Redo, opt },
           { "n", "J", rpst.cmd.NavigateDown, opt },
           { "n", "K", rpst.cmd.NavigateUp, opt },
           { "n", "md", it.cmd.Dump, opt },
@@ -271,7 +271,7 @@ local plugin_specs = {
           pcall(vim.cmd.nunmap, "k")
           pcall(vim.cmd.nunmap, "gj")
           pcall(vim.cmd.nunmap, "gk")
-          vim.opt_local.undolevels = -1
+          -- vim.opt_local.undolevels = -1
           vim.opt_local.signcolumn = "no"
           vim.opt_local.relativenumber = false
           vim.opt_local.number = false
@@ -441,7 +441,7 @@ local plugin_specs = {
   -- },
   {
     "https://github.com/robitx/gp.nvim",
-    -- dir = "/home/tan/.local/share/nvim/lazy/gp.nvim",
+    -- dir = "/home/usr/.local/share/nvim/lazy/gp.nvim",
     config = function()
       require "plugin_config.gp_nvim"
     end,
@@ -573,7 +573,7 @@ local plugin_specs = {
         require "fittencode".accept_all_suggestions()
         require "fittencode".triggering_completion()
       end)
-      keyset("i", "<tab>", function()
+      keyset("i", "<right>", function()
         require "fittencode".accept_line()
         require "fittencode".triggering_completion()
       end)
@@ -675,7 +675,7 @@ local plugin_specs = {
     end
   },
   {
-    dir = "/home/tan/projects/bite/",
+    dir = "/home/usr/projects/bite/",
     event = "VeryLazy",
     build = "<cmd>UpdateRemotePlugins<cr>",
     config = function()

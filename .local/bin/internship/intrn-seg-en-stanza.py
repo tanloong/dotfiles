@@ -19,7 +19,7 @@ def main():
 
     nlp = stanza.Pipeline(
         lang="en",
-        dir="/home/tan/software/stanza_resources",
+        dir="/home/usr/software/stanza_resources",
         processors="tokenize",
         download_method=None,
     )

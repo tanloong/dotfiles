@@ -33,7 +33,7 @@ def main(theinput, output):
     suffix = "_tree"
     nlp = stanza.Pipeline(
         "en",
-        dir="/home/tan/software/stanza_resources",
+        dir="/home/usr/software/stanza_resources",
         processors="tokenize,pos,constituency",
         tokenize_pretokenized=False,
         use_gpu=True,

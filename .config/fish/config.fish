@@ -20,14 +20,14 @@ set --global --export LANG en_US.UTF-8
 set --global --export LANGUAGE zh_CN:en_US
 set --global --export ALIYUNPAN_CONFIG_DIR $HOME/.config/aliyunpan
 set --global --export CORENLP_HOME $HOME/software/stanford-corenlp-4.5.1/
-set --global --export STANFORD_PARSER_HOME "/home/tan/.local/share/stanford-parser-full-2020-11-17"
-set --global --export STANFORD_TREGEX_HOME "/home/tan/.local/share/stanford-tregex-2020-11-17"
-set --global --export JAVA_HOME "/home/tan/.local/share/jdk8u372-b07"
-set --global --export PATH $PATH "/home/tan/.local/share/jdk8u372-b07/bin"
+set --global --export STANFORD_PARSER_HOME "/home/usr/.local/share/stanford-parser-full-2020-11-17"
+set --global --export STANFORD_TREGEX_HOME "/home/usr/.local/share/stanford-tregex-2020-11-17"
+set --global --export JAVA_HOME "/home/usr/.local/share/jdk8u372-b07"
+set --global --export PATH $PATH "/home/usr/.local/share/jdk8u372-b07/bin"
 set --global --export PATH $PATH $HOME/.local/bin
 set --global --export PATH $PATH $HOME/.local/bin/data-science-utils
 set --global --export PATH $PATH $HOME/.local/bin/internship
-set --global --export PATH $PATH /home/tan/software/rasp3os/scripts
+set --global --export PATH $PATH /home/usr/software/rasp3os/scripts
 set --global --export PATH $PATH $STANFORD_TREGEX_HOME $STANFORD_PARSER_HOME
 set --global --export NLTK_DATA $HOME/software/nltk_data/
 set --global --export TESSDATA_PREFIX /usr/share/tessdata/

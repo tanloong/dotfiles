@@ -15,15 +15,15 @@ font pango:Cousine Nerd Font Mono 12
 
 gaps bottom 17
 
-bindsym XF86AudioRaiseVolume exec --no-startup-id /home/tan/.local/bin/vol-up
-bindsym XF86AudioLowerVolume exec --no-startup-id /home/tan/.local/bin/vol-down
-bindsym XF86AudioMute exec --no-startup-id /home/tan/.local/bin/vol-toggle
-bindsym XF86AudioMicMute exec --no-startup-id /home/tan/.local/bin/vol-toggle
-bindsym XF86MonBrightnessUp exec --no-startup-id /home/tan/.local/bin/brightness 1
-bindsym XF86MonBrightnessDown exec --no-startup-id /home/tan/.local/bin/brightness -1
+bindsym XF86AudioRaiseVolume exec --no-startup-id /home/usr/.local/bin/vol-up
+bindsym XF86AudioLowerVolume exec --no-startup-id /home/usr/.local/bin/vol-down
+bindsym XF86AudioMute exec --no-startup-id /home/usr/.local/bin/vol-toggle
+bindsym XF86AudioMicMute exec --no-startup-id /home/usr/.local/bin/vol-toggle
+bindsym XF86MonBrightnessUp exec --no-startup-id /home/usr/.local/bin/brightness 1
+bindsym XF86MonBrightnessDown exec --no-startup-id /home/usr/.local/bin/brightness -1
 
 # 按 PrtSc 打开截屏软件
-bindsym Print exec --no-startup-id /home/tan/.local/bin/open-screenshot
+bindsym Print exec --no-startup-id /home/usr/.local/bin/open-screenshot
 
 # 隐藏窗口和重新打开窗口
 bindsym $mod+minus move scratchpad
@@ -32,17 +32,17 @@ bindsym $mod+n scratchpad show
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
-bindsym Mod4+z exec /home/tan/.local/bin/open-terminal
-bindsym Mod4+x exec /home/tan/.local/bin/open-browser
-bindsym Mod4+c exec /home/tan/.local/bin/open-office
-bindsym Mod4+b exec /home/tan/.local/bin/open-blueman-manager
-bindsym Mod4+space exec /home/tan/.local/bin/open-dictionary
-bindsym Mod4+s exec /home/tan/.local/bin/open-control-center
-bindsym Mod4+r exec /home/tan/.local/bin/open-screenkey
+bindsym Mod4+z exec /home/usr/.local/bin/open-terminal
+bindsym Mod4+x exec /home/usr/.local/bin/open-browser
+bindsym Mod4+c exec /home/usr/.local/bin/open-office
+bindsym Mod4+b exec /home/usr/.local/bin/open-blueman-manager
+bindsym Mod4+space exec /home/usr/.local/bin/open-dictionary
+bindsym Mod4+s exec /home/usr/.local/bin/open-control-center
+bindsym Mod4+r exec /home/usr/.local/bin/open-screenkey
 # kill focused window
 bindsym $mod+q kill
 # start dmenu (a program launcher)
-bindsym $mod+d exec /home/tan/local/bin/open-dmenu
+bindsym $mod+d exec /home/usr/local/bin/open-dmenu
 
 # change focus
 bindsym $mod+h focus left
@@ -167,8 +167,8 @@ bindsym $mod+r mode "resize"
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 # bar {
-#         status_command i3status --config /home/tan/.config/i3status/config
+#         status_command i3status --config /home/usr/.config/i3status/config
 # }
 
-exec_always --no-startup-id /home/tan/.config/polybar/launch-polybar.sh
+exec_always --no-startup-id /home/usr/.config/polybar/launch-polybar.sh
 new_window pixel 0

@@ -29,7 +29,7 @@ case "$app" in
             *) flameshot gui --clipboard;;
         esac;;
     ladder) notify-send --urgency low "Opening Clash..." -t 1000
-            "/home/tan/software/Clash for Windows-0.20.25-x64-linux/cfw";;
+            "/home/usr/software/Clash for Windows-0.20.25-x64-linux/cfw";;
     netdisk) notify-send --urgency low "Opening 百度网盘..." -t 1000
             /usr/lib/baidunetdisk/baidunetdisk --no-sandbox %U;;
     wechat) notify-send --urgency low "Opening WeChat..." -t 1000
@@ -66,7 +66,7 @@ case "$app" in
             dmenu_run -i -l ${dmenulines} -m ${dmenumon} -fn "${dmenufont}" -nb ${col_gray1} -nf ${col_gray3} -sb ${col_cyan} -sf ${col_gray4};;
         esac;;
     screenkey) togglethe.sh screenkey -s small --persist --opacity 1 ;;
-    tip) dir_tip='/home/tan/.local/share/tip-pictures'
+    tip) dir_tip='/home/usr/.local/share/tip-pictures'
          togglethe.sh sxiv "$dir_tip"/huma*;;
     control-center) systemsettings;;
     filemanager) togglethe.sh pcmanfm;;

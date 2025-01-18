@@ -91,7 +91,7 @@ theme.menu_width = dpi(100)
 --theme.bg_widget = "#cc0000"
 
 -- theme.wallpaper = themes_path.."default/background.png"
-theme.wallpaper = "/home/tan/.local/share/wallpapers/brad-huchteman-stone-mountain.resized.jpg"
+theme.wallpaper = "/home/usr/.local/share/wallpapers/brad-huchteman-stone-mountain.resized.jpg"
 
 -- Generate Awesome icon:
 theme.awesome_icon = theme_assets.awesome_icon(
