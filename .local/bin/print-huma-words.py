@@ -8,7 +8,7 @@ from pathlib import Path
 输出位置为stdout。
 """
 
-p = "/home/tan/projects/dotfiles/.local/share/fcitx5/table/huma-word.txt"
+p = "/home/usr/projects/dotfiles/.local/share/fcitx5/table/huma-word.txt"
 
 content = Path(p).read_text(encoding="utf8")
 d = {}

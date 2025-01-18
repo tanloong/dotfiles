@@ -1,12 +1,12 @@
 [Up First]
 url=https://feeds.npr.org/510318/podcast.xml
-spool=/home/tan/media/audio/podcast
+spool=/home/usr/media/audio/podcast
 filename=%(channel_title)-%(date)-%(title).mp3
 [Planet Money]
 url=https://feeds.npr.org/510289/podcast.xml
-spool=/home/tan/media/audio/podcast
+spool=/home/usr/media/audio/podcast
 filename=%(channel_title)-%(date)-%(title).mp3
 [Attribution]
 url=https://attribution.libsyn.com/rss
-spool=/home/tan/media/audio/podcast
+spool=/home/usr/media/audio/podcast
 filename=%(channel_title)-%(date)-%(title).mp3

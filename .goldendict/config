@@ -1,14 +1,14 @@
 <config>
  <paths>
-  <path recursive="0">/home/tan/software/goldendict/LDOCE</path>
-  <path recursive="0">/home/tan/software/goldendict/新世纪汉英大词典</path>
-  <path recursive="0">/home/tan/software/goldendict/新世纪英汉大词典</path>
-  <path recursive="0">/home/tan/software/goldendict/语言学与应用语言学百科全书词典</path>
-  <path recursive="0">/home/tan/software/goldendict/朗文英语写作活用词典英汉双解</path>
-  <path recursive="0">/home/tan/software/goldendict/简明英汉字典增强版</path>
-  <path recursive="0">/home/tan/software</path>
-  <path recursive="0">/home/tan/software</path>
-  <path recursive="1">/home/tan/software/goldendict/LDOCE6</path>
+  <path recursive="0">/home/usr/software/goldendict/LDOCE</path>
+  <path recursive="0">/home/usr/software/goldendict/新世纪汉英大词典</path>
+  <path recursive="0">/home/usr/software/goldendict/新世纪英汉大词典</path>
+  <path recursive="0">/home/usr/software/goldendict/语言学与应用语言学百科全书词典</path>
+  <path recursive="0">/home/usr/software/goldendict/朗文英语写作活用词典英汉双解</path>
+  <path recursive="0">/home/usr/software/goldendict/简明英汉字典增强版</path>
+  <path recursive="0">/home/usr/software</path>
+  <path recursive="0">/home/usr/software</path>
+  <path recursive="1">/home/usr/software/goldendict/LDOCE6</path>
  </paths>
  <sounddirs/>
  <dictionaryOrder name="" id="0">

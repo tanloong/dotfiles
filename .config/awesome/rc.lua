@@ -55,13 +55,13 @@ end
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
-beautiful.init("/home/tan/.config/awesome/default/theme.lua")
+beautiful.init("/home/usr/.config/awesome/default/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
 terminal = "terminal.sh"
 editor = os.getenv("EDITOR") or "nano"
 editor_cmd = terminal .. " -e " .. editor
-openthe = "/home/tan/.local/bin/openthe"
+openthe = "/home/usr/.local/bin/openthe"
 
 -- Default modkey.
 -- Usually, Mod4 is the key with a logo between Control and Alt.
@@ -134,10 +134,10 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 -- { separator, "|",           NULL },
 
 -- // {disk_free, "硬盘%s", "/"},
--- {disk_free, "~ %s", "/home/tan"},
+-- {disk_free, "~ %s", "/home/usr"},
 -- { separator, "|",           NULL },
 
--- // /home/tan/dotfiles/.local/bin/sb-volume-arch" },
+-- // /home/usr/dotfiles/.local/bin/sb-volume-arch" },
 -- // {vol_perc, "音量%s", "/dev/mixer"},
 -- // { separator, "|",           NULL },
 
@@ -371,10 +371,10 @@ globalkeys = gears.table.join(
     { description = "restore minimized", group = "client" }),
   awful.key({}, "XF86MonBrightnessUp", function() awful.spawn.with_shell("brightnessctl set +10%") end),
   awful.key({}, "XF86MonBrightnessDown", function() awful.spawn.with_shell("brightnessctl set 10%-") end),
-  awful.key({}, "XF86AudioRaiseVolume", function() awful.spawn.with_shell("/home/tan/.local/bin/set-volume 1") end),
-  awful.key({}, "XF86AudioLowerVolume", function() awful.spawn.with_shell("/home/tan/.local/bin/set-volume -1") end),
-  awful.key({}, "XF86AudioMute", function() awful.spawn.with_shell("/home/tan/.local/bin/set-volume 0") end),
-  awful.key({}, "XF86Suspend", function() awful.spawn.with_shell("/home/tan/.local/bin/suspend.sh") end),
+  awful.key({}, "XF86AudioRaiseVolume", function() awful.spawn.with_shell("/home/usr/.local/bin/set-volume 1") end),
+  awful.key({}, "XF86AudioLowerVolume", function() awful.spawn.with_shell("/home/usr/.local/bin/set-volume -1") end),
+  awful.key({}, "XF86AudioMute", function() awful.spawn.with_shell("/home/usr/.local/bin/set-volume 0") end),
+  awful.key({}, "XF86Suspend", function() awful.spawn.with_shell("/home/usr/.local/bin/suspend.sh") end),
   awful.key({}, "Print", function() awful.spawn.with_shell(openthe .. " screenshot-clip") end),
   awful.key({ "Shift" }, "Print", function() awful.spawn.with_shell(openthe .. " screenshot-noclip") end),
   awful.key({ Super }, "e", function() awful.spawn.with_shell(openthe .. " filemanager") end,
@@ -393,9 +393,9 @@ globalkeys = gears.table.join(
     { description = "dictionary", group = "launcher" }),
   awful.key({ Alt }, "d", function() awful.spawn.with_shell(openthe .. " menu") end,
     { description = "menu", group = "launcher" }),
-  awful.key({ Super }, "m", function() awful.spawn.with_shell("/home/tan/.local/bin/change-wallpaper") end,
+  awful.key({ Super }, "m", function() awful.spawn.with_shell("/home/usr/.local/bin/change-wallpaper") end,
     { description = "wallpaper", group = "launcher" }),
-  awful.key({ Alt }, "e", function() awful.spawn.with_shell("/home/tan/.local/bin/numlock.sh") end,
+  awful.key({ Alt }, "e", function() awful.spawn.with_shell("/home/usr/.local/bin/numlock.sh") end,
     { description = "numlock", group = "launcher" }),
   awful.key({ Super }, "x", function() awful.spawn.with_shell(openthe .. " browser") end,
     { description = "browser", group = "launcher" }),

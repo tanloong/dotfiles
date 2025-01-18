@@ -22,7 +22,7 @@ def tagging(nlp, text, sep):
 @click.argument("text", type=str)  # 必选
 @click.option("--separator", "-s", type=str, default="/")
 @click.option(
-    "--resources", "-r", type=str, default="/home/tan/software/stanza_resources"
+    "--resources", "-r", type=str, default="/home/usr/software/stanza_resources"
 )
 @click.option("--language", "-l", type=str, default="en")
 #  def run(text, resources, language):

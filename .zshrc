@@ -9,7 +9,7 @@ setopt share_history
 # vi mode
 bindkey -v
 
-zstyle :compinstall filename '/home/tan/.zshrc'
+zstyle :compinstall filename '/home/usr/.zshrc'
 
 autoload -U mcd
 autoload -U zmv
@@ -93,8 +93,8 @@ print -n "\e]7;file://${HOSTNAME}${uri}\e\\"
 }
 add-zsh-hook -Uz chpwd osc7
 stty -ixon
-export STANFORD_PARSER_HOME="/home/tan/.local/share/stanford-parser-full-2020-11-17"
-export STANFORD_TREGEX_HOME="/home/tan/.local/share/stanford-tregex-2020-11-17"
-export JAVA_HOME="/home/tan/.local/share/jdk8u372-b07"
-export PATH=$PATH:"/home/tan/.local/share/jdk8u372-b07/bin"
+export STANFORD_PARSER_HOME="/home/usr/.local/share/stanford-parser-full-2020-11-17"
+export STANFORD_TREGEX_HOME="/home/usr/.local/share/stanford-tregex-2020-11-17"
+export JAVA_HOME="/home/usr/.local/share/jdk8u372-b07"
+export PATH=$PATH:"/home/usr/.local/share/jdk8u372-b07/bin"
 eval "$(zoxide init zsh)"
