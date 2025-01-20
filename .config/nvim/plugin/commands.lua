@@ -13,11 +13,12 @@ c("Cr", [[let @+ = expand('%:.')]], { force = true })
 c("Rm", function(args)
   local bufnr = vim_api.nvim_get_current_buf()
   local fname = vim_api.nvim_buf_get_name(bufnr)
-  if vim.bo[bufnr].buftype == "" then
+  vim_api.nvim_buf_delete(bufnr, { force = args.bang })
+  local yes = vim.fn.confirm("Delete it from your disk?", "&Yes\n&No\n&Cancel")
+  if yes == 1 then
     local ok, err = os.remove(fname)
     assert(args.bang or ok, err)
   end
-  vim_api.nvim_buf_delete(bufnr, { force = args.bang })
 end, { bang = true })
 
 
