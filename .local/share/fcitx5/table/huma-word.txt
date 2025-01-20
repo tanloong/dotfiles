@@ -5,6 +5,7 @@ e2=p11+p12+p21+p22
 e3=p11+p21+p31+p32
 a4=p11+p21+p31+n11
 [数据]
+hkhi 孩子
 ktib 通义
 kila 通义千问
 kibm 通义灵码
@@ -3739,7 +3740,6 @@ mqjd 奋斗
 xdtu 和我
 sobi 讽
 teq 霜
-hkhi 孩子
 udjw 操作
 grot 就算是
 gmun 美的
