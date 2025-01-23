@@ -33,6 +33,7 @@ case "$ext" in
   csv) soffice --headless --convert-to xlsx --infilter=csv:44,34,76 "$file";;
   # lua) lua "$file";;
   lua) nvim -l "$file";;
+  vim) nvim --clean --headless -S "$file" -c 'quit';;
   js) node "$file";;
   html) "$BROWSER" "$file";;
   caj) caj2pdf convert "$file";;

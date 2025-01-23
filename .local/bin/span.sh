@@ -1,12 +1,14 @@
 #!/bin/bash
 
 # XYZZY:
-# MjAyNS0wMS0xMiAwMzowMDowMAo=
-# MjAyNS0wMS0xMyAxNzo0MDowMAo=
-# MjAyNS0wMS0xNSAwMzo1MzowMAo=
-# MjAyNS0wMS0xNyAxMTo0MDowMAo=
-# MjAyNS0wMS0xNyAyMjowMDowMAo=
-# MjAyNS0wMS0xOCAwMTowMDowMAo=
+# MjAyNS0wMS0xMiAwMzowMAo=
+# MjAyNS0wMS0xMyAxNzo0MAo=
+# MjAyNS0wMS0xNSAwMzo1Mwo=
+# MjAyNS0wMS0xNyAxMTo0MAo=
+# MjAyNS0wMS0xNyAyMjowMAo=
+# MjAyNS0wMS0xOCAwMTowMAo=
+# MjAyNS0wMS0yMCAyMzowMAo=
+# MjAyNS0wMS0yMyAwMTo0Mgo=
 # END
 
 # 编码时间戳
@@ -62,7 +64,7 @@ query() {
 
             # 计算时间差（小时）
             diff_hours=$(echo "scale=2; ($current_epoch - $prev_epoch) / 3600" | bc)
-            echo "Difference between $prev_time and $timestamp: $diff_hours hours"
+            printf "%s—%s: %6.2f hours\n" "$prev_time" "$timestamp" "$diff_hours"
         fi
         prev_time="$timestamp"
     done
@@ -89,7 +91,7 @@ default_action() {
 
     # 计算时间差（小时）
     diff_hours=$(echo "scale=2; ($current_epoch - $last_epoch) / 3600" | bc)
-    echo "Time since last registered timestamp ($last_time): $diff_hours hours"
+    printf "%s—now: %6.2f hours\n" "$last_time" "$diff_hours"
 }
 
 # 主逻辑

@@ -5,6 +5,11 @@ e2=p11+p12+p21+p22
 e3=p11+p21+p31+p32
 a4=p11+p21+p31+n11
 [数据]
+ovsn 自然语言处理
+ovss 自然语言
+qizy 思维链
+veud 脑机接口
+okje 智能体
 hkhi 孩子
 ktib 通义
 kila 通义千问
@@ -18,7 +23,7 @@ yjsn 轮询
 uiqr 拉取
 oazu 时间戳
 szfs 谢顿
-xrsi 小鸡词典
+yrsi 小鸡词典
 xake 章北海
 xgix 庄颜
 qtls 老番茄
@@ -45,6 +50,7 @@ osks 智谱清言
 odsh 智谱
 ufsa 提示词
 jlwd 命名实体识别
+jlwj 命名实体
 srvw 译文
 pmlr 默菲
 svtl 谭龙
@@ -33634,6 +33640,7 @@ rijd 之命
 bdai 如春
 btrt 娇笑
 ydxj 战鹰
+ezkg 柯洁
 pndc 墨索里尼
 lxhh 蕙质兰心
 fvjv 亚文化
@@ -98598,7 +98605,6 @@ dgax 吐艳
 ekdl 根深叶茂
 wthi 定子
 kqbe 汗牛充栋
-lmkr 莽汉
 tidd 补给品
 qqci 告老还乡
 yeks 软水

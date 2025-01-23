@@ -19,3 +19,4 @@ temp
 .local/share/nvim/lazy/hop.nvim/lua/hop/mappings
 *.sha1sum
 *.sha256sum
+.config/fcitx5/table/zrm.conf
