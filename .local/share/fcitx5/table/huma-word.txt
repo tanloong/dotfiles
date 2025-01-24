@@ -5,6 +5,8 @@ e2=p11+p12+p21+p22
 e3=p11+p21+p31+p32
 a4=p11+p21+p31+n11
 [数据]
+doxn 中州韵
+lxqx 菜鸟教程
 ovsn 自然语言处理
 ovss 自然语言
 qizy 思维链
