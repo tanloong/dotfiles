@@ -3,24 +3,29 @@
 local vim_api = vim.api
 local c = vim.api.nvim_create_user_command
 
-c("Mv", 'let @s=expand("%")|f <args>|w<bang>|call delete(@s)',
-  { force = true, nargs = 1, bang = true, complete = "file" })
+c("Mv", function(a)
+  local bufnr = vim_api.nvim_get_current_buf()
+  local oldpath = vim_api.nvim_buf_get_name(bufnr)
+  vim.cmd(string.format("saveas%s %s", a.bang and "!" or "", a.args))
+  vim.cmd [[bd #]]
+  local ok, err = os.remove(oldpath)
+  assert(a.bang or ok, err)
+end, { force = true, nargs = 1, bang = true, complete = "file" })
 c("Cp", [[let @+ = expand('%:p')]], { force = true })
 c("Cd", [[let @+ = expand('%:p:h')]], { force = true })
 c("Ct", [[let @+ = expand('%:t')]], { force = true })
 c("Cr", [[let @+ = expand('%:.')]], { force = true })
 -- https://github.com/mfussenegger/dotfiles/blob/a28b73904fe3e57459c3f32e6fac8bba95133c62/vim/dot-config/nvim/commands.lua#L3C1-L11C22
-c("Rm", function(args)
+c("Rm", function(a)
   local bufnr = vim_api.nvim_get_current_buf()
   local fname = vim_api.nvim_buf_get_name(bufnr)
-  vim_api.nvim_buf_delete(bufnr, { force = args.bang })
-  local yes = vim.fn.confirm("Delete it from your disk?", "&Yes\n&No\n&Cancel")
+  vim_api.nvim_buf_delete(bufnr, { force = a.bang })
+  local yes = vim.fn.confirm("The deletion can't be undone, are you sure?", "&Yes\n&No\n&Cancel")
   if yes == 1 then
     local ok, err = os.remove(fname)
-    assert(args.bang or ok, err)
+    assert(a.bang or ok, err)
   end
 end, { bang = true })
-
 
 local function execlua(buf)
   local lines = vim_api.nvim_buf_get_lines(buf, 0, -1, true)

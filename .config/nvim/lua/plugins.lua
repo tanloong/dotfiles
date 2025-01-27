@@ -556,8 +556,9 @@ local plugin_specs = {
         },
         keymaps = {
           inline = {
+            ["<Tab>"] = "accept_all_suggestions",
             ["<c-Right>"] = "accept_word",
-            ["<s-Right>"] = "accept_char",
+            ["<s-Right>"] = "accept_line",
             ["<c-a>"] = "triggering_completion",
           },
         }, }
@@ -567,14 +568,6 @@ local plugin_specs = {
       end)
       keyset({ "i", "n" }, "<c-tab>", function()
         require "fittencode".enable_completions { enable = true }
-        require "fittencode".triggering_completion()
-      end)
-      keyset("i", "<tab>", function()
-        require "fittencode".accept_all_suggestions()
-        require "fittencode".triggering_completion()
-      end)
-      keyset("i", "<right>", function()
-        require "fittencode".accept_line()
         require "fittencode".triggering_completion()
       end)
     end,
