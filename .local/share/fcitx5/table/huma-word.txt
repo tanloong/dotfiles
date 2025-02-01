@@ -5,6 +5,12 @@ e2=p11+p12+p21+p22
 e3=p11+p21+p31+p32
 a4=p11+p21+p31+n11
 [数据]
+atfs 表示
+eggp 平均句长
+gjpc 句长
+swss 语步
+sjmp 论元
+enja 构念
 eury 樊振东
 wtuf 定段
 lcvm 蒋炎岩
@@ -2768,7 +2774,6 @@ mpw 顽
 xhsd 意识
 cbsm 不出
 vxx 脆
-atfs 表示
 vlvy 岁月
 uuqu 推进
 gmrn 美国
@@ -200328,11 +200333,11 @@ gwfv 䐨
 ;ss ……
 ;d 、
 ;f “
-;f ‘
+;f ’
 ;ff "
 ;ff '
 ;g ”
-;g ’
+;g ‘
 ;gg "
 ;gg '
 ;h 『
