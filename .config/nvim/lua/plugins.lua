@@ -236,28 +236,28 @@ local plugin_specs = {
       local opt = { noremap = true, buffer = true, nowait = true }
       opts = {
         keymaps = {
-          { "n", ",", rpst.cmd.PushUp, opt },
-          { "n", "<", rpst.cmd.PushUpPair, opt },
-          { "n", "e", rpst.cmd.PushUpLeftPart, opt },
-          { "n", ".", rpst.cmd.PullBelow, opt },
-          { "n", ">", rpst.cmd.PullBelowPair, opt },
-          { "n", "d", rpst.cmd.PushDownRightPart, opt },
-          { "n", "D", rpst.cmd.PushDown, opt },
-          { "n", "s", rpst.cmd.LeaveAlone, opt },
-          { "n", "[e", rpst.cmd.SwapWithAbove, opt },
-          { "n", "]e", rpst.cmd.SwapWithBelow, opt },
-          { "n", "U", rpst.cmd.Undo, opt },
-          { "n", "R", rpst.cmd.Redo, opt },
-          { "n", "J", rpst.cmd.NavigateDown, opt },
-          { "n", "K", rpst.cmd.NavigateUp, opt },
-          { "n", "md", it.cmd.Dump, opt },
-          { "n", "ml", it.cmd.Load, opt },
-          { "n", "gn", rpst.cmd.NextUnaligned, opt },
-          { "n", "gN", rpst.cmd.PrevUnaligned, opt },
-          { "n", "mt", mt.cmd.MatchToggle, opt },
-          { "n", "m;", mt.cmd.ListMatches, opt },
-          { "n", "ma", mt.cmd.MatchAdd, opt },
-          { "v", "ma", mt.cmd.MatchAddVisual, opt },
+          { "n", ",", rpst.cmd.push_up, opt },
+          { "n", "<", rpst.cmd.push_up_pair, opt },
+          { "n", "e", rpst.cmd.push_up_left_part, opt },
+          { "n", ".", rpst.cmd.pull_below, opt },
+          { "n", ">", rpst.cmd.pull_below_pair, opt },
+          { "n", "d", rpst.cmd.push_down_right_part, opt },
+          { "n", "D", rpst.cmd.push_down, opt },
+          { "n", "s", rpst.cmd.leave_alone, opt },
+          { "n", "[e", rpst.cmd.swap_with_above, opt },
+          { "n", "]e", rpst.cmd.swap_with_below, opt },
+          { "n", "U", rpst.cmd.undo, opt },
+          { "n", "R", rpst.cmd.redo, opt },
+          { "n", "J", rpst.cmd.navigate_down, opt },
+          { "n", "K", rpst.cmd.navigate_up, opt },
+          { "n", "md", it.cmd.dump, opt },
+          { "n", "ml", it.cmd.load, opt },
+          { "n", "gn", rpst.cmd.next_unaligned, opt },
+          { "n", "gN", rpst.cmd.prev_unaligned, opt },
+          { "n", "mt", mt.cmd.match_toggle, opt },
+          { "n", "m;", mt.cmd.list_matches, opt },
+          { "n", "ma", mt.cmd.match_add, opt },
+          { "v", "ma", mt.cmd.match_add_visual, opt },
         },
         setup_mappings_now = false,
         separators = { ["1"] = "", ["2"] = " " },
@@ -275,7 +275,7 @@ local plugin_specs = {
           vim.opt_local.signcolumn = "no"
           vim.opt_local.relativenumber = false
           vim.opt_local.number = false
-          require "interlaced".cmd.Load()
+          require "interlaced".cmd.load()
           require "interlaced".ShowChunkNr()
         end,
       }
