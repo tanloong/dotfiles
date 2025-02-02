@@ -92,19 +92,19 @@ snippet "`([^`]+)`" "calculate" ir
 `!p snip.rv = eval(match.group(1))`
 endsnippet
 
-snippet lrp "()" iA
+snippet lrb "()" iA
 ($0)
 endsnippet
 
-snippet lrb "[]" iA
-[$0]
+snippet lr' "''" iA
+'$0'
 endsnippet
 
-snippet lrq "double quote" iA
+snippet lr" "double quote" iA
 "$0"
 endsnippet
 
-snippet lrc "{}" iA
+snippet lrB "{}" iA
 {$0}
 endsnippet
 

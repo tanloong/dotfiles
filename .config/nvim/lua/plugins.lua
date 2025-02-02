@@ -267,10 +267,10 @@ local plugin_specs = {
           if vim.g.did_coc_loaded ~= nil then vim.cmd [[CocDisable]] end
           -- disable the undo history saving, which is time-consuming and causes lag
           vim.opt_local.undofile = false
-          pcall(vim.cmd.nunmap, "j")
-          pcall(vim.cmd.nunmap, "k")
-          pcall(vim.cmd.nunmap, "gj")
-          pcall(vim.cmd.nunmap, "gk")
+          -- pcall(vim.cmd.nunmap, "j")
+          -- pcall(vim.cmd.nunmap, "k")
+          -- pcall(vim.cmd.nunmap, "gj")
+          -- pcall(vim.cmd.nunmap, "gk")
           -- vim.opt_local.undolevels = -1
           vim.opt_local.signcolumn = "no"
           vim.opt_local.relativenumber = false
