@@ -5,6 +5,9 @@ e2=p11+p12+p21+p22
 e3=p11+p21+p31+p32
 a4=p11+p21+p31+n11
 [数据]
+ehkq 李洱
+wvko 宾西法尼亚洲
+wvkf 宾西法尼亚
 atfs 表示
 eggp 平均句长
 gjpc 句长
@@ -141946,7 +141949,6 @@ xkmp 应元
 ppzz 超哥
 slzn 许雅钧
 ekmz 敏奇
-ehkq 李浩
 htiu 兰红
 nrmp 布套
 uadl 打呀

@@ -6,10 +6,10 @@ local hi = api.nvim_set_hl
 hi(0, 'CocMenuSel', { link = 'PmenuSel' })
 hi(0, 'CocPumSearch', { ctermfg = 'yellow' , fg = '#ffc978' })
 -- hi(0, 'CocInlayHint', { ctermbg = 'none', ctermfg = 'darkgray' })
-hi(0, 'CocHintVirtualText', { ctermbg = 'none', ctermfg = 'darkgray' })
-hi(0, 'CocErrorFloat', { ctermbg = 'none', ctermfg = 'red' })
+hi(0, "CocHintVirtualText", { ctermbg = "none", ctermfg = "darkgray" })
+hi(0, "CocErrorFloat", { ctermbg = "none", ctermfg = "red" })
 
-keyset('n', '<leader>c', ':CocCommand<space>')
+keyset("n", "<leader>c", ":CocCommand<space>")
 
 -- Use tab for trigger completion with characters ahead and navigate.
 -- NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
@@ -48,32 +48,34 @@ keyset("n", "[d", "<Plug>(coc-diagnostic-prev)", { silent = true })
 keyset("n", "]d", "<Plug>(coc-diagnostic-next)", { silent = true })
 keyset("n", "[e", "<Plug>(coc-diagnostic-prev-error)", { silent = true })
 keyset("n", "]e", "<Plug>(coc-diagnostic-next-error)", { silent = true })
+-- show diagnostics of current position
+keyset("n", "<M-\\>", "<Plug>(coc-diagnostic-info)", { noremap = true, silent = true })
 -- GoTo code navigation.
 keyset("n", "gd", "<Plug>(coc-definition)", { silent = true })
 keyset("n", "gy", "<Plug>(coc-type-definition)", { silent = true })
 -- keymap("n", "gi", "<Plug>(coc-implementation)", { silent = true })
 keyset("n", "gr", "<Plug>(coc-references)", { silent = true })
 -- Show documentation in preview window.
-keyset("n", "<leader>s", '<CMD>lua _G.show_docs()<CR>', { silent = true })
+keyset("n", "<leader>s", "<CMD>lua _G.show_docs()<CR>", { silent = true })
 function _G.show_docs()
-    local cw = vim.fn.expand('<cword>')
-    if vim.fn.index({ 'vim', 'help' }, vim.bo.filetype) >= 0 then
-        api.nvim_command('h ' .. cw)
-    elseif api.nvim_eval('coc#rpc#ready()') then
-        vim.fn.CocActionAsync('doHover')
-    else
-        api.nvim_command('!' .. vim.o.keywordprg .. ' ' .. cw)
-    end
+  local cw = vim.fn.expand "<cword>"
+  if vim.fn.index({ "vim", "help" }, vim.bo.filetype) >= 0 then
+    api.nvim_command("h " .. cw)
+  elseif api.nvim_eval "coc#rpc#ready()" then
+    vim.fn.CocActionAsync "doHover"
+  else
+    api.nvim_command("!" .. vim.o.keywordprg .. " " .. cw)
+  end
 end
 
 -- Highlight the symbol and its references when holding the cursor.
 api.nvim_create_augroup("CocGroup", {})
 api.nvim_create_autocmd("CursorHold", {
-    group = "CocGroup",
-    command = "silent call CocActionAsync('highlight')",
-    desc = "Highlight symbol under cursor on CursorHold"
+  group = "CocGroup",
+  command = "silent call CocActionAsync('highlight')",
+  desc = "Highlight symbol under cursor on CursorHold"
 })
-api.nvim_set_hl(0, 'CocHighlightText', { ctermbg = 237, bg = '#3A3A3A' })
+api.nvim_set_hl(0, "CocHighlightText", { ctermbg = 237, bg = "#3A3A3A" })
 -- api.nvim_set_hl(0, 'CocHighlightText', { ctermfg='LightMagenta' })
 
 -- Symbol renaming.
@@ -95,28 +97,28 @@ opts = { silent = true, nowait = true, expr = true }
 keyset("n", "<C-f>", 'coc#float#has_scroll() ? coc#float#scroll(1) : "<C-f>"', opts)
 keyset("n", "<C-b>", 'coc#float#has_scroll() ? coc#float#scroll(0) : "<C-b>"', opts)
 keyset("i", "<C-f>",
-    'coc#float#has_scroll() ? "<c-r>=coc#float#scroll(1)<cr>" : "<Right>"', opts)
+  'coc#float#has_scroll() ? "<c-r>=coc#float#scroll(1)<cr>" : "<Right>"', opts)
 keyset("i", "<C-b>",
-    'coc#float#has_scroll() ? "<c-r>=coc#float#scroll(0)<cr>" : "<Left>"', opts)
+  'coc#float#has_scroll() ? "<c-r>=coc#float#scroll(0)<cr>" : "<Left>"', opts)
 keyset("v", "<C-f>", 'coc#float#has_scroll() ? coc#float#scroll(1) : "<C-f>"', opts)
 keyset("v", "<C-b>", 'coc#float#has_scroll() ? coc#float#scroll(0) : "<C-b>"', opts)
 -- vim.cmd([[set statusline=%<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P]])
-vim.cmd([[set statusline+=\ %{coc#status()}]])
+vim.cmd [[set statusline+=\ %{coc#status()}]]
 -- Add `:Format` command to format current buffer.
 api.nvim_create_user_command("Format", "call CocActionAsync('format')", {})
 -- " Add `:Fold` command to fold current buffer.
-api.nvim_create_user_command("Fold", "call CocAction('fold', <f-args>)", { nargs = '?' })
+api.nvim_create_user_command("Fold", "call CocAction('fold', <f-args>)", { nargs = "?" })
 -- Add `:OR` command for organize imports of the current buffer.
 api.nvim_create_user_command("OR", "call CocActionAsync('runCommand', 'editor.action.organizeImport')", {})
 
 -- coc-extensions{{{
-vim.g['coc_global_extensions'] = {
-    'coc-git',
-    'coc-snippets',
-    'coc-sumneko-lua',
-    'coc-json',
-    'coc-dictionary',
-    'coc-pyright',
+vim.g["coc_global_extensions"] = {
+  "coc-git",
+  "coc-snippets",
+  "coc-sumneko-lua",
+  "coc-json",
+  "coc-dictionary",
+  "coc-pyright",
 }
 -- 'coc-lists',
 -- 'coc-pairs',
@@ -140,36 +142,37 @@ vim.g['coc_global_extensions'] = {
 -- }}}
 -- coc-snippets{{{
 -- Use <C-o> for trigger snippet expand.
-keyset('i', '<c-o>', '<Plug>(coc-snippets-expand)')
+keyset("i", "<c-o>", "<Plug>(coc-snippets-expand)")
 -- Use <C-j> for jump to next placeholder, it's default of coc.nvim
-vim.g['coc_snippet_next'] = '<c-j>'
+vim.g["coc_snippet_next"] = "<c-j>"
 -- Use <C-k> for jump to previous placeholder, it's default of coc.nvim
-vim.g['coc_snippet_prev'] = '<c-k>'
+vim.g["coc_snippet_prev"] = "<c-k>"
 -- }}}
 -- coc-outline{{{
-api.nvim_set_keymap('n', 'so', ':lua ToggleOutline()<CR>', { silent = true, nowait = true })
+api.nvim_set_keymap("n", "so", ":lua ToggleOutline()<CR>", { silent = true, nowait = true })
 
 function ToggleOutline()
-    local winid = vim.fn['coc#window#find']('cocViewId', 'OUTLINE')
-    if winid == -1 then
-        vim.fn['CocActionAsync']('showOutline', 0)
-    else
-        vim.fn['coc#window#close'](winid)
-    end
+  local winid = vim.fn["coc#window#find"]("cocViewId", "OUTLINE")
+  if winid == -1 then
+    vim.fn["CocActionAsync"]("showOutline", 0)
+  else
+    vim.fn["coc#window#close"](winid)
+  end
 end -- }}}
+
 -- coc-git{{{
 -- navigate chunks of current buffer
-keyset('n', "]g", "<Cmd>CocCommand git.prevChunk<CR><Cmd>sleep 100m<CR><Cmd>CocCommand git.chunkInfo<CR>",
-    { silent = true })
-keyset('n', "[g", "<Cmd>CocCommand git.nextChunk<CR><Cmd>sleep 100m<CR><Cmd>CocCommand git.chunkInfo<CR>",
-    { silent = true })
+keyset("n", "]g", "<Cmd>CocCommand git.prevChunk<CR><Cmd>sleep 100m<CR><Cmd>CocCommand git.chunkInfo<CR>",
+  { silent = true })
+keyset("n", "[g", "<Cmd>CocCommand git.nextChunk<CR><Cmd>sleep 100m<CR><Cmd>CocCommand git.chunkInfo<CR>",
+  { silent = true })
 -- show chunk diff at current position
-keyset('n', "gs", "<Plug>(coc-git-chunkinfo)", { silent = true })
+keyset("n", "gs", "<Plug>(coc-git-chunkinfo)", { silent = true })
 -- show commit contains current position
-keyset('n', "gS", "<Plug>(coc-git-commit)", { silent = true })
+keyset("n", "gS", "<Plug>(coc-git-commit)", { silent = true })
 -- create text object for git chunks
-keyset({ 'o', 'x' }, "ig", "<Plug>(coc-git-chunk-inner)", { silent = true })
-keyset({ 'o', 'x' }, "ag", "<Plug>(coc-git-chunk-outer)", { silent = true })
+keyset({ "o", "x" }, "ig", "<Plug>(coc-git-chunk-inner)", { silent = true })
+keyset({ "o", "x" }, "ag", "<Plug>(coc-git-chunk-outer)", { silent = true })
 keyset("n", "gm", "<Cmd>CocCommand git.chunkStage<CR>")
 keyset("n", "gM", "<Cmd>CocCommand git.chunkUnstage<CR>")
 keyset("n", "gG", "<Cmd>CocCommand git.chunkUndo<CR>") -- }}}
