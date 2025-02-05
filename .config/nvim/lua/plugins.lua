@@ -407,6 +407,7 @@ local plugin_specs = {
           },
         },
       },
+      {'saghen/blink.cmp'},
     },
     event = { "BufReadPre", "BufNewFile" },
     config = function() require("plugin_config.lsp") end,
@@ -444,6 +445,15 @@ local plugin_specs = {
       nerd_font_variant = 'mono'
     },
 
+    completion = {
+      list = {
+        selection = {
+          -- don't auto select the first item, do preview on selection
+          preselect = false, auto_insert = true
+        }
+      }
+    },
+
     -- Default list of enabled providers defined so that you can extend it
     -- elsewhere in your config, without redefining it, due to `opts_extend`
     sources = {
@@ -451,6 +461,12 @@ local plugin_specs = {
     },
   },
   opts_extend = { "sources.default" }
+},
+{
+  "https://github.com/nvimdev/phoenix.nvim",
+  enabled = false,
+  event = "VeryLazy",
+  config = function() require("plugin_config.phoenix") end,
 },
   {
     "hrsh7th/nvim-cmp",
