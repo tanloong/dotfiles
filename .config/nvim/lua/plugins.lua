@@ -32,7 +32,8 @@ local plugin_specs = {
   -- },
   -- CoC
   {
-    "https://github.com/neoclide/coc.nvim.git",
+    -- "https://github.com/neoclide/coc.nvim.git",
+"https://gitee.com/linuor/coc.nvim",
     enabled = true,
     branch = "release",
     event = "VeryLazy",
@@ -559,7 +560,6 @@ local plugin_specs = {
             ["<Tab>"] = "accept_all_suggestions",
             ["<c-Right>"] = "accept_word",
             ["<s-Right>"] = "accept_line",
-            ["<c-a>"] = "triggering_completion",
           },
         }, }
       keyset({ "i", "n" }, "<s-tab>", function()
