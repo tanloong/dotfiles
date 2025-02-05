@@ -31,7 +31,7 @@ keyset("n", "<", "<<")
 keyset("n", "<c-p>", ":%s///g<Left><Left>")
 keyset("v", "<c-p>", ":s///g<Left><Left>")
 keyset("n", "<c-q>", "<Cmd>q!<CR>")
-keyset({"n", "i"}, "<c-s>", "<Cmd>w<CR>")
+keyset({ "n", "i" }, "<c-s>", "<Cmd>w<CR>")
 keyset("n", "ZW", "<cmd>bd<cr>")
 keyset("n", "<SPACE>e", "<Cmd>set spell!<bar>set spell?<CR>")
 keyset("n", "g<CR>", "<Cmd>set hlsearch!<bar>set hlsearch?<CR>")
@@ -69,6 +69,74 @@ keyset("n", "<c-enter>", [[<cmd>set nohlsearch | keeppatterns s/\%#/\r/<cr>]])
 -- Visual select the just pasted text by p/P
 keyset("n", "gV", "`[v`]")
 
+-- web search
+keyset("n", "gX", function()
+  vim.ui.open(("https://bing.com/search?q=%s"):format(vim.fn.expand "<cword>"))
+end)
+keyset("x", "gX", function()
+  local lines = vim.fn.getregion(vim.fn.getpos ".", vim.fn.getpos "v", { type = vim.fn.mode() })
+  vim.ui.open(("https://bing.com/search?q=%s"):format(vim.trim(table.concat(lines, " "))))
+  vim.api.nvim_input "<esc>"
+end)
+
+keyset("n", "gs", function()
+  local bufnr = vim.api.nvim_create_buf(false, false)
+  vim.bo[bufnr].buftype = "prompt"
+  vim.bo[bufnr].bufhidden = "wipe"
+  -- vim.fn.prompt_setprompt(bufnr, "➤ ")
+  local width = math.floor(vim.o.columns * 0.5)
+  local winid = vim.api.nvim_open_win(bufnr, true, {
+    relative = "editor",
+    row = 5,
+    width = width,
+    height = 4,
+    col = math.floor(vim.o.columns / 2) - math.floor(width / 2),
+    border = "single",
+    title = "Bing Search",
+    title_pos = "center",
+  })
+  vim.cmd.startinsert()
+  vim.wo[winid].number = false
+  vim.wo[winid].scl = "no"
+  vim.wo[winid].lcs = "trail: "
+  vim.wo[winid].wrap = true
+  vim.fn.prompt_setcallback(bufnr, function(text)
+    vim.ui.open(("https://bing.com/search?q=%s"):format(vim.trim(text)))
+    vim.api.nvim_win_close(winid, true)
+  end)
+  vim.keymap.set({ "n" }, "<esc>", function()
+    pcall(vim.api.nvim_win_close, winid, true)
+  end, { buffer = bufnr })
+end)
+keyset("i", "<C-a>", "<Esc>^i")
+keyset("i", "<CR>", function()
+  if tonumber(vim.fn.pumvisible()) == 1 then
+    return "<C-y>"
+  end
+  local line = vim.api.nvim_get_current_line()
+  local col = vim.api.nvim_win_get_cursor(0)[2]
+  local before = line:sub(col, col)
+  local after = line:sub(col + 1, col + 1)
+  local t = {
+    ["("] = ")",
+    ["["] = "]",
+    ["{"] = "}",
+  }
+  if not t[before] then
+    return "<CR>"
+  elseif t[before] == after then
+    return "<CR><ESC>O"
+  end
+end, { expr = true })
+
+keyset("i", "<C-e>", function()
+  if vim.fn.pumvisible() == 1 then
+    return "<C-e>"
+  else
+    return "<End>"
+  end
+end, { expr = true })
+
 -- NAVIGATION
 -- jumping between a normal buffer and a neovim terminal
 keyset("t", "<esc><esc>", "<c-\\><c-n>")
@@ -80,10 +148,10 @@ keyset("t", "<c-v><c-j>", "<c-j>")
 keyset("t", "<c-v><c-k>", "<c-k>")
 keyset("t", "<c-v><c-h>", "<c-h>")
 keyset("t", "<c-v><c-l>", "<c-l>")
-keyset({"i", "n"}, "<c-h>", "<c-\\><c-N><c-w>h")
-keyset({"i", "n"}, "<c-j>", "<c-\\><c-N><c-w>j")
-keyset({"i", "n"}, "<c-k>", "<c-\\><c-N><c-w>k")
-keyset({"i", "n"}, "<c-l>", "<c-\\><c-N><c-w>l")
+keyset({ "i", "n" }, "<c-h>", "<c-\\><c-N><c-w>h")
+keyset({ "i", "n" }, "<c-j>", "<c-\\><c-N><c-w>j")
+keyset({ "i", "n" }, "<c-k>", "<c-\\><c-N><c-w>k")
+keyset({ "i", "n" }, "<c-l>", "<c-\\><c-N><c-w>l")
 
 -- Resize terminals
 keyset("t", "<c-up>", "<c-\\><c-N><Cmd>res +2|startinsert<CR>")
@@ -107,7 +175,8 @@ keyset("c", "%%", "getcmdtype()==':'? expand('%:h').'/' : '%%'",
   { expr = true, desc = [[展开活动缓冲区所在目录]] })
 keyset("n", "d<space>", [[<cmd>let _p=getcurpos() | keeppatterns %s/\v\s+$//e | nohlsearch | call setpos(".", _p)<cr>]],
   { desc = [[Remove trailing spaces]] })
-keyset("n", "d<enter>", [[<cmd>let _p=getcurpos() | keeppatterns %s/\v\n{3,}/\r\r/e | nohlsearch | call setpos(".", _p)<cr>]],
+keyset("n", "d<enter>",
+  [[<cmd>let _p=getcurpos() | keeppatterns %s/\v\n{3,}/\r\r/e | nohlsearch | call setpos(".", _p)<cr>]],
   { desc = "squeeze empty lines" })
 
 -- TEXT OBJECTS
@@ -146,7 +215,7 @@ keyset("v", "+",
   [[:<c-u>let _p = getcurpos() | put =<c-r>=escape(getregion(getpos("'<"), getpos("'>"), {"type": "v"})[0], '"|')<cr> | call setpos(".", _p) | redraw<cr>]],
   { desc = [[run Vim expressions, insert output below]] })
 
-  -- %!# is special chars in fish
+-- %!# is special chars in fish
 keyset("i", "<c-g><c-g>",
   [[<esc><cmd>silent let _p = getcurpos() | put ='' | exec "r" .. escape(getline(_p[1]), "%!#") | if getline(line(".")+1) != '' | put ='' | else | let _b = nvim_get_current_buf() | while line(".")+2 <= line("$") && getline(line(".")+2) == '' | call deletebufline(_b, line(".")+2) | endwhile | endif | call setpos(".", _p) | redraw<cr>]],
   { desc = [[execute current line as shell command]] })
@@ -177,7 +246,7 @@ keyset("n", "dP", [[<cmd>let _p=getcurpos() | exec "normal! {{dap" | call setpos
 
 hl(0, "MarkLine", { bg = "darkred", fg = "gray", ctermbg = 9, ctermfg = 15 })
 local function markline()
-  vim.api.nvim_buf_add_highlight(vim.fn.bufnr("%"), 0, "MarkLine", (vim.fn.line(".") - 1), 0, -1)
+  vim.api.nvim_buf_add_highlight(vim.fn.bufnr "%", 0, "MarkLine", (vim.fn.line "." - 1), 0, -1)
 end
 keyset("n", "m.", markline)
-keyset("n", "m<bs>", function() vim.api.nvim_buf_clear_namespace(vim.fn.bufnr("%"), 0, 0, -1) end)
+keyset("n", "m<bs>", function() vim.api.nvim_buf_clear_namespace(vim.fn.bufnr "%", 0, 0, -1) end)

@@ -167,9 +167,9 @@ keyset("n", "]g", "<Cmd>CocCommand git.prevChunk<CR><Cmd>sleep 100m<CR><Cmd>CocC
 keyset("n", "[g", "<Cmd>CocCommand git.nextChunk<CR><Cmd>sleep 100m<CR><Cmd>CocCommand git.chunkInfo<CR>",
   { silent = true })
 -- show chunk diff at current position
-keyset("n", "gs", "<Plug>(coc-git-chunkinfo)", { silent = true })
+-- keyset("n", "gs", "<Plug>(coc-git-chunkinfo)", { silent = true })
 -- show commit contains current position
-keyset("n", "gS", "<Plug>(coc-git-commit)", { silent = true })
+-- keyset("n", "gS", "<Plug>(coc-git-commit)", { silent = true })
 -- create text object for git chunks
 keyset({ "o", "x" }, "ig", "<Plug>(coc-git-chunk-inner)", { silent = true })
 keyset({ "o", "x" }, "ag", "<Plug>(coc-git-chunk-outer)", { silent = true })
