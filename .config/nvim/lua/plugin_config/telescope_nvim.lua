@@ -73,9 +73,9 @@ keyset("n", "<leader>m",
   end, {})
 
 vim.cmd([[
-    cabbrev <expr> h (getcmdtype() == ':' && getcmdline() == 'h' ?
-                     \ 'Telescope help_tags<cr><c-r>=DT#Eatchar(" ")<cr>'
-                     \: 'h')
+    " cabbrev <expr> h (getcmdtype() == ':' && getcmdline() == 'h' ?
+    "                \ 'Telescope help_tags<cr><c-r>=DT#Eatchar(" ")<cr>'
+    "                \: 'h')
     cabbrev <expr> Man (getcmdtype() == ':' && getcmdline() == 'Man' ?
                        \ 'Telescope man_pages<cr><c-r>=DT#Eatchar(" ")<cr>'
                        \: 'h')
