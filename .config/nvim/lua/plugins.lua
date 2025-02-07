@@ -414,10 +414,10 @@ local plugin_specs = {
     -- config = function() require("lspconfig").lua_ls.setup {} end,
   },
 {
-  'https://2git.xyz/saghen/blink.cmp',
+  'saghen/blink.cmp',
   enabled = true,
   -- optional: provides snippets for the snippet source
-  dependencies = 'https://2git.xyz/rafamadriz/friendly-snippets',
+  dependencies = 'rafamadriz/friendly-snippets',
 
   -- use a release tag to download pre-built binaries
   version = '*',
