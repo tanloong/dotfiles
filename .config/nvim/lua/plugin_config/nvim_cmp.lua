@@ -11,21 +11,21 @@ cmp.setup {
     end,
   },
   mapping = cmp.mapping.preset.insert {
-    ["<Tab>"] = function(fallback)
+    ["<C-n>"] = function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
       else
         fallback()
       end
     end,
-    ["<S-Tab>"] = function(fallback)
+    ["<C-p>"] = function(fallback)
       if cmp.visible() then
         cmp.select_prev_item()
       else
         fallback()
       end
     end,
-    ["<CR>"] = cmp.mapping.confirm { select = true },
+    ["<C-y>"] = cmp.mapping.confirm { cmp.ConfirmBehavior.Insert, select = false },
     ["<C-e>"] = cmp.mapping.abort(),
     -- ["<Esc>"] = cmp.mapping.close(),
     ["<C-d>"] = cmp.mapping.scroll_docs(-4),
@@ -37,6 +37,7 @@ cmp.setup {
     { name = "path" }, -- for path completion
     { name = "buffer", keyword_length = 2 }, -- for buffer word completion
     { name = "emoji", insert = true }, -- emoji completion
+     { name = "fittencode", group_index = 1},
   },
   completion = {
     keyword_length = 1,
