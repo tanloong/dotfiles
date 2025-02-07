@@ -395,6 +395,8 @@ local plugin_specs = {
   {
     "neovim/nvim-lspconfig",
     enabled = true,
+    event = { "BufReadPre", "BufNewFile" },
+    config = function() require("plugin_config.lsp") end,
     dependencies = {
       {
         "folke/lazydev.nvim",
@@ -409,9 +411,6 @@ local plugin_specs = {
       },
       {'saghen/blink.cmp'},
     },
-    event = { "BufReadPre", "BufNewFile" },
-    config = function() require("plugin_config.lsp") end,
-    -- config = function() require("lspconfig").lua_ls.setup {} end,
   },
 {
   'saghen/blink.cmp',
@@ -487,12 +486,16 @@ local plugin_specs = {
             identify_buffer = false,
           },
         },
+        source_completion = {
+          enable = false,
+          engine = "blink",
+        },
         inline_completion = {
-          enable = true,
+          enable = false,
           auto_triggering_completion = true,
           disable_completion_within_the_line = false,
         },
-        completion_mode = "inline",
+        completion_mode = "source",
         keymaps = {
           inline = {
             ["<Tab>"] = "accept_all_suggestions",
