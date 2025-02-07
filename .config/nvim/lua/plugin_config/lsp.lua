@@ -145,16 +145,19 @@ if executable("lua-language-server") then
 end
 
 -- Change diagnostic signs.
-fn.sign_define("DiagnosticSignError", { text = "✗", texthl = "DiagnosticSignError" })
-fn.sign_define("DiagnosticSignWarn", { text = "!", texthl = "DiagnosticSignWarn" })
-fn.sign_define("DiagnosticSignInformation", { text = "", texthl = "DiagnosticSignInfo" })
-fn.sign_define("DiagnosticSignHint", { text = "", texthl = "DiagnosticSignHint" })
+-- fn.sign_define("DiagnosticSignError", { text = "●", texthl = "DiagnosticSignError" })
+-- fn.sign_define("DiagnosticSignWarn", { text = "●", texthl = "DiagnosticSignWarn" })
+-- fn.sign_define("DiagnosticSignInformation", { text = "●", texthl = "DiagnosticSignInfo" })
+-- fn.sign_define("DiagnosticSignHint", { text = "●", texthl = "DiagnosticSignHint" })
 
+local i = '●'
 -- global config for diagnostic
 vim.diagnostic.config {
   underline = false,
   virtual_text = false,
-  signs = true,
+  signs = {
+    text = { i, i, i, i },
+  },
   severity_sort = true,
 }
 
