@@ -1,0 +1,2 @@
+blink.cmp should be able to complete words from 'dictionary'
+fittencode.nvim should show completion by blink.cmp
