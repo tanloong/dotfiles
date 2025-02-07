@@ -42,12 +42,12 @@ au("CmdwinEnter",
     command = [[normal! k]]
   }) -- }}}
 
-au("TextYankPost", {
-  group = group,
-  callback = function()
-    vim.highlight.on_yank { higroup = "IncSearch", timeout = 200 }
-  end,
-})
+-- au("TextYankPost", {
+--   group = group,
+--   callback = function()
+--     vim.highlight.on_yank { higroup = "IncSearch", timeout = 200 }
+--   end,
+-- })
 
 -- InGitRepo{{{
 -- https://github.com/wbthomason/packer.nvim/discussions/534#discussioncomment-2747491

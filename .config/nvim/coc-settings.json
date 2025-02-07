@@ -88,6 +88,7 @@
   "snippets.ultisnips.directories": [
     "$HOME/.config/nvim/ultisnips"
   ],
+  "snippets.ultisnips.pythonPrompt": false,
   "sumneko-lua.locale": "en-us",
   "sumneko-lua.enableNvimLuaDev": true,
   "sumneko-lua.checkUpdate": false,
@@ -181,6 +182,5 @@
   ],
   "tabnine.disable_file_regex": [
     "bangzhanxitong"
-  ],
-  "snippets.ultisnips.pythonPrompt": false
+  ]
 }
