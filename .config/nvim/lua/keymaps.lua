@@ -50,11 +50,11 @@ keyset("v", "/", "/\\v")
 keyset("n", "?", "?\\v")
 keyset("v", "?", "?\\v")
 -- keyset('n', '<enter>', 'i<enter><esc>')
-keyset("n", "<leader>S", [[<cmd>exec "silent!! zeal " .. expand("<cword>") .. " &"<cr>]])
-keyset("v", "<leader>S",
+keyset("n", "gz", [[<cmd>exec "silent!! zeal " .. expand("<cword>") .. " &"<cr>]])
+keyset("v", "gz",
   [[:<c-u>exec "silent!! zeal " .. getregion(getpos("'<"), getpos("'>"), {"type": "v"})[0] .. " &"<cr>]])
-keyset("n", "<leader>K", [[<cmd>exec "silent!! goldendict " .. expand("<cword>") .. " &"<cr>]])
-keyset("v", "<leader>K",
+keyset("n", "gk", [[<cmd>exec "silent!! goldendict " .. expand("<cword>") .. " &"<cr>]])
+keyset("v", "gk",
   [[:<c-u>exec "silent!! goldendict " .. getregion(getpos("'<"), getpos("'>"), {"type": "v"})[0] .. " &"<cr>]])
 -- keyset('n', '<tab>', [[<cmd>exec "silent!! goldendict " .. expand("<cword>") .. " &"<cr>]])
 -- keyset('v', '<tab>', [[:<c-u>exec "silent!! goldendict " .. DT#get_visual_selection() .. " &"<cr>]])
@@ -72,10 +72,12 @@ keyset("n", "gV", "`[v`]")
 -- web search
 keyset("n", "gX", function()
   vim.ui.open(("https://bing.com/search?q=%s"):format(vim.fn.expand "<cword>"))
+  -- vim.ui.open(("https://metaso.cn?q=%s"):format(vim.fn.expand "<cword>"))
 end)
 keyset("x", "gX", function()
   local lines = vim.fn.getregion(vim.fn.getpos ".", vim.fn.getpos "v", { type = vim.fn.mode() })
   vim.ui.open(("https://bing.com/search?q=%s"):format(vim.trim(table.concat(lines, " "))))
+  -- vim.ui.open(("https://metaso.cn?q=%s"):format(vim.trim(table.concat(lines, " "))))
   vim.api.nvim_input "<esc>"
 end)
 
@@ -102,13 +104,14 @@ keyset("n", "gs", function()
   vim.wo[winid].wrap = true
   vim.fn.prompt_setcallback(bufnr, function(text)
     vim.ui.open(("https://bing.com/search?q=%s"):format(vim.trim(text)))
+    -- vim.ui.open(("https://metaso.cn?q=%s"):format(vim.trim(text)))
     vim.api.nvim_win_close(winid, true)
   end)
   vim.keymap.set({ "n" }, "<esc>", function()
     pcall(vim.api.nvim_win_close, winid, true)
   end, { buffer = bufnr })
 end)
-keyset("i", "<C-a>", "<Esc>^i")
+-- keyset("i", "<C-a>", "<Esc>^i")
 keyset("i", "<CR>", function()
   if tonumber(vim.fn.pumvisible()) == 1 then
     return "<C-y>"
@@ -129,13 +132,13 @@ keyset("i", "<CR>", function()
   end
 end, { expr = true })
 
-keyset("i", "<C-e>", function()
-  if vim.fn.pumvisible() == 1 then
-    return "<C-e>"
-  else
-    return "<End>"
-  end
-end, { expr = true })
+-- keyset("i", "<C-e>", function()
+--   if vim.fn.pumvisible() == 1 then
+--     return "<C-e>"
+--   else
+--     return "<End>"
+--   end
+-- end, { expr = true })
 
 -- NAVIGATION
 -- jumping between a normal buffer and a neovim terminal

@@ -18,11 +18,11 @@ local ext_skeleton = {
 }
 
 for ext, filename in pairs(ext_skeleton) do
-  local group_name = "skeleton_" .. ext
+  local group_name = ("skeleton_%s"):format(ext)
   autocmd("BufNewFile", {
     pattern = "*." .. ext,
     group = augroup(group_name, { clear = true }),
-    command = "silent keepalt 0r ~/.config/nvim/skeleton/" .. filename .. " | :normal G"
+    command = ("silent keepalt 0r ~/.config/nvim/skeleton/%s | :normal G"):format(filename)
   })
 end
 
