@@ -33,7 +33,7 @@ local plugin_specs = {
   -- CoC
   {
     -- "https://github.com/neoclide/coc.nvim.git",
-"https://gitee.com/linuor/coc.nvim",
+    "https://gitee.com/linuor/coc.nvim",
     enabled = true,
     branch = "release",
     event = "VeryLazy",
@@ -235,7 +235,7 @@ local plugin_specs = {
       local rpst = require "interlaced.reposition"
       local it = require "interlaced"
       local opt = { noremap = true, buffer = true, nowait = true }
-      opts = {
+      vim.g.interlaced = {
         keymaps = {
           { "n", ",", rpst.cmd.push_up, opt },
           { "n", "<", rpst.cmd.push_up_pair, opt },
@@ -280,7 +280,6 @@ local plugin_specs = {
           require "interlaced".ShowChunkNr()
         end,
       }
-      require "interlaced".setup(opts)
     end
   },
   -- typst.vim

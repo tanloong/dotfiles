@@ -1,28 +1,27 @@
 #!/usr/bin/env lua
 
-local autocmd = vim.api.nvim_create_autocmd
-local augroup = vim.api.nvim_create_augroup
-local keyset = vim.keymap.set
+local au = vim.api.nvim_create_autocmd
+local group = vim.api.nvim_create_augroup("TlGroup", { clear = true })
 
 -- {{{ don't auto-insert comment char on linebreak
-autocmd("FileType",
+au("FileType",
   {
     pattern = "*",
-    group = augroup("format_options", { clear = true }),
+    group = group,
     command = [[set formatoptions-=ro]]
   }) -- }}}
 -- {{{ basic config for terminal buffer https://github.com/neovim/neovim/issues/14986
-autocmd("TermOpen",
+au("TermOpen",
   {
     pattern = "*",
-    group = augroup("config_for_terminal_buf", { clear = true }),
+    group = group,
     command = [[setlocal norelativenumber nonumber | setlocal statusline=channel:\ %{&channel}]]
   }) -- }}}
 
 -- {{{ skip [Process exited] in finished terminal
-autocmd("TermClose", {
+au("TermClose", {
   pattern = "*",
-  group = augroup("term_close", { clear = true }),
+  group = group,
   callback = function()
     local buf = tonumber(vim.fn.expand "<abuf>")
     vim.api.nvim_buf_delete(buf, { force = true })
@@ -30,18 +29,25 @@ autocmd("TermClose", {
 }) -- }}}
 
 -- {{{ auto save
-autocmd({ "FocusLost", "BufLeave" }, {
+au({ "FocusLost", "BufLeave" }, {
   pattern = "*",
-  group = augroup("auto save", { clear = true }),
+  group = group,
   command = "silent! w",
 }) -- }}}
 
--- {{{ q/, q:
-autocmd("CmdwinEnter",
+-- {{{ q/, q: -- cursor_up_when_entering_cmdwin
+au("CmdwinEnter",
   {
-    group = augroup("cursor_up_when_entering_cmdwin", { clear = true }),
+    group = group,
     command = [[normal! k]]
   }) -- }}}
+
+au("TextYankPost", {
+  group = group,
+  callback = function()
+    vim.highlight.on_yank { higroup = "IncSearch", timeout = 200 }
+  end,
+})
 
 -- InGitRepo{{{
 -- https://github.com/wbthomason/packer.nvim/discussions/534#discussioncomment-2747491
@@ -57,4 +63,3 @@ vim.api.nvim_create_autocmd({ "VimEnter", "DirChanged" }, { callback = function(
 -- au("BufEnter", { pattern = "term://*", command = 'startinsert' })
 -- Output is followed if cursor is on the last line.
 -- au("BufLeave", { pattern = "term://*", command = 'normal G' })
-
