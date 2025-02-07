@@ -417,7 +417,7 @@ local plugin_specs = {
   'saghen/blink.cmp',
   enabled = true,
   -- optional: provides snippets for the snippet source
-  dependencies = 'rafamadriz/friendly-snippets',
+  dependencies = {'rafamadriz/friendly-snippets', 'luozhiya/fittencode.nvim'},
 
   -- use a release tag to download pre-built binaries
   version = '*',
@@ -434,17 +434,6 @@ local plugin_specs = {
     -- 'enter' for mappings similar to 'super-tab' but with 'enter' to accept
     -- See the full "keymap" documentation for information on defining your own keymap.
     keymap = { preset = 'default' },
-
-    appearance = {
-      -- Sets the fallback highlight groups to nvim-cmp's highlight groups
-      -- Useful for when your theme doesn't support blink.cmp
-      -- Will be removed in a future release
-      use_nvim_cmp_as_default = true,
-      -- Set to 'mono' for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
-      -- Adjusts spacing to ensure icons are aligned
-      nerd_font_variant = 'mono'
-    },
-
     completion = {
       list = {
         selection = {
@@ -453,9 +442,6 @@ local plugin_specs = {
         }
       }
     },
-
-    -- Default list of enabled providers defined so that you can extend it
-    -- elsewhere in your config, without redefining it, due to `opts_extend`
     sources = {
       default = { 'lsp', 'path', 'snippets', 'buffer' },
     },
@@ -503,14 +489,16 @@ local plugin_specs = {
         },
         inline_completion = {
           enable = true,
-          auto_triggering_completion = false,
+          auto_triggering_completion = true,
           disable_completion_within_the_line = false,
         },
+        completion_mode = "inline",
         keymaps = {
           inline = {
             ["<Tab>"] = "accept_all_suggestions",
             ["<c-Right>"] = "accept_word",
             ["<s-Right>"] = "accept_line",
+            ['<A-\\>'] = 'triggering_completion',
           },
         }, }
       keyset({ "i", "n" }, "<s-tab>", function()
