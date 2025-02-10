@@ -55,7 +55,7 @@ A,latex-mk,
 ,zathura-pdf-mupdf,"PDF support for Zathura (MuPDF backend) (Supports PDF, ePub, and OpenXPS)"
 ,zathura-ps,"Adds ps support to zathura by using the libspectre library"
 ,feh,"Fast and light imlib2-based image viewer"
-,neovim,"a tidier vim with some useful features"
+,neovim-git,""
 ,mpv,"is the patrician's choice video player."
 ,brave-bin,"is an elegant browser with built-in adblocking, tor and other features."
 ,pamixer,"is a command-line audio interface."

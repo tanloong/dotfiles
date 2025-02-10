@@ -179,7 +179,7 @@ keyset("c", "%%", "getcmdtype()==':'? expand('%:h').'/' : '%%'",
 keyset("n", "d<space>", [[<cmd>let _p=getcurpos() | keeppatterns %s/\v\s+$//e | nohlsearch | call setpos(".", _p)<cr>]],
   { desc = [[Remove trailing spaces]] })
 keyset("n", "d<enter>",
-  [[<cmd>let _p=getcurpos() | keeppatterns %s/\v\n{3,}/\r\r/e | nohlsearch | call setpos(".", _p)<cr>]],
+  [[<cmd>let _p=getcurpos() | keeppatterns %s/\v\n{3,}/\r\r/e | call setpos(".", _p)<cr>]],
   { desc = "squeeze empty lines" })
 
 -- TEXT OBJECTS

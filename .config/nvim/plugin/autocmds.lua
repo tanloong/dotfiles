@@ -19,14 +19,17 @@ au("TermOpen",
   }) -- }}}
 
 -- {{{ skip [Process exited] in finished terminal
-au("TermClose", {
-  pattern = "*",
-  group = group,
-  callback = function()
-    local buf = tonumber(vim.fn.expand "<abuf>")
-    vim.api.nvim_buf_delete(buf, { force = true })
-  end
-}) -- }}}
+if vim.fn.has "nvim-0.11" == 0 then
+  au("TermClose", {
+    pattern = "*",
+    group = group,
+    callback = function()
+      local buf = tonumber(vim.fn.expand "<abuf>")
+      vim.api.nvim_buf_delete(buf, { force = true })
+    end
+  })
+end
+-- }}}
 
 -- {{{ auto save
 au({ "FocusLost", "BufLeave" }, {
