@@ -50,11 +50,11 @@ keyset("v", "/", "/\\v")
 keyset("n", "?", "?\\v")
 keyset("v", "?", "?\\v")
 -- keyset('n', '<enter>', 'i<enter><esc>')
-keyset("n", "gz", [[<cmd>exec "silent!! zeal " .. expand("<cword>") .. " &"<cr>]])
-keyset("v", "gz",
+keyset("n", "gZ", [[<cmd>exec "silent!! zeal " .. expand("<cword>") .. " &"<cr>]])
+keyset("v", "gZ",
   [[:<c-u>exec "silent!! zeal " .. getregion(getpos("'<"), getpos("'>"), {"type": "v"})[0] .. " &"<cr>]])
-keyset("n", "gk", [[<cmd>exec "silent!! goldendict " .. expand("<cword>") .. " &"<cr>]])
-keyset("v", "gk",
+keyset("n", "gK", [[<cmd>exec "silent!! goldendict " .. expand("<cword>") .. " &"<cr>]])
+keyset("v", "gK",
   [[:<c-u>exec "silent!! goldendict " .. getregion(getpos("'<"), getpos("'>"), {"type": "v"})[0] .. " &"<cr>]])
 -- keyset('n', '<tab>', [[<cmd>exec "silent!! goldendict " .. expand("<cword>") .. " &"<cr>]])
 -- keyset('v', '<tab>', [[:<c-u>exec "silent!! goldendict " .. DT#get_visual_selection() .. " &"<cr>]])
@@ -219,15 +219,6 @@ keyset("v", "+",
   { desc = [[run Vim expressions, insert output below]] })
 
 -- %!# is special chars in fish
-keyset("i", "<c-g><c-g>",
-  [[<esc><cmd>silent let _p = getcurpos() | put ='' | exec "r" .. escape(getline(_p[1]), "%!#") | if getline(line(".")+1) != '' | put ='' | else | let _b = nvim_get_current_buf() | while line(".")+2 <= line("$") && getline(line(".")+2) == '' | call deletebufline(_b, line(".")+2) | endwhile | endif | call setpos(".", _p) | redraw<cr>]],
-  { desc = [[execute current line as shell command]] })
-keyset("n", "<c-g><c-g>",
-  [[<cmd>silent let _p = getcurpos() | put ='' | exec "r!" .. escape(getline(_p[1]), "%!#") | if getline(line(".")+1) != '' | put ='' | else | let _b = nvim_get_current_buf() | while line(".")+2 <= line("$") && getline(line(".")+2) == '' | call deletebufline(_b, line(".")+2) | endwhile | endif | call setpos(".", _p) | redraw<cr>]],
-  { desc = [[execute current line as shell command]] })
-keyset("v", "<c-g><c-g>",
-  [[:<c-u>silent let _p = getcurpos() | put ='' | exec "r!" .. escape(getregion(getpos("'<"), getpos("'>"), {"type": "v"})[0], "%!#") | if getline(line(".")+1) != '' | put ='' | else | let _b = nvim_get_current_buf() | while line(".")+2 <= line("$") && getline(line(".")+2) == '' | call deletebufline(_b, line(".")+2) | endwhile | endif | call setpos(".", _p) | redraw<cr>]],
-  { desc = [[execute current line as shell command]] })
 keyset("n", "dp", [[<cmd>let _p=getcurpos() | exec "normal! }dap" | call setpos(".", _p)<cr>]], { silent = true })
 keyset("n", "dP", [[<cmd>let _p=getcurpos() | exec "normal! {{dap" | call setpos(".", _p)<cr>]], { silent = true })
 
