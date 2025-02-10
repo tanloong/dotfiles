@@ -64,14 +64,6 @@ local plugin_specs = {
     event = "VeryLazy",
     config = function() require "plugin_config.vim_markdown_toc" end
   },
-  -- vim-table-mode
-  {
-    "https://gitee.com/yaozhijin/vim-table-mode.git",
-    enabled = false,
-    ft = { "markdown" },
-    event = "VeryLazy",
-    config = function() require "plugin_config.vim_table_mode" end
-  },
   -- vim-slime
   -- {
   --     'https://gitee.com/tanloong/vim-slime',
@@ -210,20 +202,6 @@ local plugin_specs = {
     event = "VeryLazy",
     config = function() require "plugin_config.boole_nvim" end,
   },
-  -- hlsearch
-  {
-    -- 'nvimdev/hlsearch.nvim',
-    dir = "/home/usr/projects/hlsearch.nvim/",
-    enabled = false,
-    event = "BufRead",
-    config = function()
-      require "hlsearch".setup()
-    end,
-    cond = function()
-      local bufnr = vim.api.nvim_get_current_buf()
-      return not string.find(vim.api.nvim_buf_get_name(bufnr), "interlaced.*%.txt$")
-    end,
-  },
   -- interlaced
   {
     dir = "~/projects/interlaced.nvim",
@@ -300,40 +278,6 @@ local plugin_specs = {
     config = function()
       vim.g.fcitx5_remote = "fcitx5-remote"
     end
-  },
-  -- im-select
-  {
-    "keaising/im-select.nvim",
-    enabled = false,
-    event = "VeryLazy",
-    config = function()
-      require "im_select".setup {
-        -- IM will be set to `default_im_select` in `normal` mode
-        -- For Windows/WSL, default: "1033", aka: English US Keyboard
-        -- For macOS, default: "com.apple.keylayout.ABC", aka: US
-        -- For Linux, default:
-        --               "keyboard-us" for Fcitx5
-        --               "1" for Fcitx
-        --               "xkb:us::eng" for ibus
-        -- You can use `im-select` or `fcitx5-remote -n` to get the IM's name
-        default_im_select = "keyboard-us",
-
-        -- Restore the default input method state when the following events are triggered
-        set_default_events = { "VimEnter", "InsertLeave", "CmdlineLeave" },
-
-        -- Restore the previous used input method state when the following events
-        -- are triggered, if you don't want to restore previous used im in Insert mode,
-        -- e.g. deprecated `disable_auto_restore = 1`, just let it empty
-        -- as `set_previous_events = {}`
-        set_previous_events = { "InsertEnter", "CmdlineEnter" },
-
-        -- Show notification about how to install executable binary when binary missed
-        keep_quiet_on_no_binary = false,
-
-        -- Async run `default_command` to switch IM or not
-        async_switch_im = true
-      }
-    end,
   },
   -- markdown-preview
   {
@@ -419,26 +363,7 @@ local plugin_specs = {
     dependencies = { "nvim-telescope/telescope.nvim" },
     build = "make"
   },
-  {
-    "ibhagwan/fzf-lua",
-    enabled = false,
-    config = function() require "plugin_config.fzf_lua" end,
-  },
 
-  -- ChatGPT.nvim
-  -- {
-  --   "jackMort/ChatGPT.nvim",
-  --   enabled = false,
-  --   event = "VeryLazy",
-  --   config = function()
-  --     require("plugin_config.chatgpt")
-  --   end,
-  --   dependencies = {
-  --     "MunifTanjim/nui.nvim",
-  --     "nvim-lua/plenary.nvim",
-  --     "nvim-telescope/telescope.nvim"
-  --   },
-  -- },
   {
     "https://github.com/robitx/gp.nvim",
     -- dir = "/home/usr/.local/share/nvim/lazy/gp.nvim",
@@ -495,47 +420,6 @@ local plugin_specs = {
     config = function() require "plugin_config.vim_fugitive" end
   },
   {
-    "https://github.com/stevearc/oil.nvim",
-    enabled = false,
-    event = "VeryLazy",
-    config = function()
-      require "oil".setup {
-        columns = { "size", "mtime" },
-        float = { border = "single", },
-      }
-      keyset("n", "zh", require "oil".toggle_hidden)
-      keyset("n", "tt", require "oil".toggle_float)
-    end
-  },
-  {
-    "codota/tabnine-nvim",
-    enabled = false,
-    build = "./dl_binaries.sh",
-    event = "VeryLazy",
-    config = function()
-      require "tabnine".setup {
-        disable_auto_comment = true,
-        accept_keymap = "<c-a>",
-        dismiss_keymap = "<C-]>",
-        debounce_ms = 500,
-        suggestion_color = { gui = "#808080", cterm = 244 },
-        exclude_filetypes = { "TelescopePrompt", "NvimTree" },
-        log_file_path = nil, -- absolute path to Tabnine log file
-        ignore_certificate_errors = false,
-      }
-    end
-  },
-  {
-    "monkoose/neocodeium",
-    enabled = false,
-    event = "VeryLazy",
-    config = function()
-      local neocodeium = require "neocodeium"
-      neocodeium.setup()
-      vim.keymap.set("i", "<Tab>", neocodeium.accept_line)
-    end,
-  },
-  {
     "luozhiya/fittencode.nvim",
     event = "VeryLazy",
     config = function()
@@ -570,15 +454,6 @@ local plugin_specs = {
         require "fittencode".triggering_completion()
       end)
     end,
-  },
-  {
-    "subnut/nvim-ghost.nvim",
-    enabled = false,
-    event = "VeryLazy",
-    config = function()
-      -- vim.g.nvim_ghost_autostart = 0
-      -- vim.g.nvim_ghost_super_quiet = 1 -- suppress all messages
-    end
   },
   {
     "glacambre/firenvim",
@@ -682,6 +557,134 @@ local plugin_specs = {
       require "term"
     end,
   },
+
+  ----------------------------------- DISABLED -----------------------------------{{{
+
+  {
+    "codota/tabnine-nvim",
+    enabled = false,
+    build = "./dl_binaries.sh",
+    event = "VeryLazy",
+    config = function()
+      require "tabnine".setup {
+        disable_auto_comment = true,
+        accept_keymap = "<c-a>",
+        dismiss_keymap = "<C-]>",
+        debounce_ms = 500,
+        suggestion_color = { gui = "#808080", cterm = 244 },
+        exclude_filetypes = { "TelescopePrompt", "NvimTree" },
+        log_file_path = nil, -- absolute path to Tabnine log file
+        ignore_certificate_errors = false,
+      }
+    end
+  },
+  -- vim-table-mode
+  {
+    "https://gitee.com/yaozhijin/vim-table-mode.git",
+    enabled = false,
+    ft = { "markdown" },
+    event = "VeryLazy",
+    config = function() require "plugin_config.vim_table_mode" end
+  },
+  -- hlsearch
+  {
+    -- 'nvimdev/hlsearch.nvim',
+    dir = "/home/usr/projects/hlsearch.nvim/",
+    enabled = false,
+    event = "BufRead",
+    config = function()
+      require "hlsearch".setup()
+    end,
+    cond = function()
+      local bufnr = vim.api.nvim_get_current_buf()
+      return not string.find(vim.api.nvim_buf_get_name(bufnr), "interlaced.*%.txt$")
+    end,
+  },
+  -- im-select
+  {
+    "keaising/im-select.nvim",
+    enabled = false,
+    event = "VeryLazy",
+    config = function()
+      require "im_select".setup {
+        -- IM will be set to `default_im_select` in `normal` mode
+        -- For Windows/WSL, default: "1033", aka: English US Keyboard
+        -- For macOS, default: "com.apple.keylayout.ABC", aka: US
+        -- For Linux, default:
+        --               "keyboard-us" for Fcitx5
+        --               "1" for Fcitx
+        --               "xkb:us::eng" for ibus
+        -- You can use `im-select` or `fcitx5-remote -n` to get the IM's name
+        default_im_select = "keyboard-us",
+
+        -- Restore the default input method state when the following events are triggered
+        set_default_events = { "VimEnter", "InsertLeave", "CmdlineLeave" },
+
+        -- Restore the previous used input method state when the following events
+        -- are triggered, if you don't want to restore previous used im in Insert mode,
+        -- e.g. deprecated `disable_auto_restore = 1`, just let it empty
+        -- as `set_previous_events = {}`
+        set_previous_events = { "InsertEnter", "CmdlineEnter" },
+
+        -- Show notification about how to install executable binary when binary missed
+        keep_quiet_on_no_binary = false,
+
+        -- Async run `default_command` to switch IM or not
+        async_switch_im = true
+      }
+    end,
+  },
+  {
+    "ibhagwan/fzf-lua",
+    enabled = false,
+    config = function() require "plugin_config.fzf_lua" end,
+  },
+  -- ChatGPT.nvim
+  {
+    "jackMort/ChatGPT.nvim",
+    enabled = false,
+    event = "VeryLazy",
+    config = function()
+      require "plugin_config.chatgpt"
+    end,
+    dependencies = {
+      "MunifTanjim/nui.nvim",
+      "nvim-lua/plenary.nvim",
+      "nvim-telescope/telescope.nvim"
+    },
+  },
+  {
+    "https://github.com/stevearc/oil.nvim",
+    enabled = false,
+    event = "VeryLazy",
+    config = function()
+      require "oil".setup {
+        columns = { "size", "mtime" },
+        float = { border = "single", },
+      }
+      keyset("n", "zh", require "oil".toggle_hidden)
+      keyset("n", "tt", require "oil".toggle_float)
+    end
+  },
+  {
+    "subnut/nvim-ghost.nvim",
+    enabled = false,
+    event = "VeryLazy",
+    config = function()
+      -- vim.g.nvim_ghost_autostart = 0
+      -- vim.g.nvim_ghost_super_quiet = 1 -- suppress all messages
+    end
+  },
+  {
+    "monkoose/neocodeium",
+    enabled = false,
+    event = "VeryLazy",
+    config = function()
+      local neocodeium = require "neocodeium"
+      neocodeium.setup()
+      vim.keymap.set("i", "<Tab>", neocodeium.accept_line)
+    end,
+  },-- }}}
 }
 
 -- configuration for lazy itself.
