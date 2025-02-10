@@ -667,13 +667,21 @@ local plugin_specs = {
     end
   },
   {
-    dir = "/home/usr/projects/bite/",
-    event = "VeryLazy",
+    dir = "/home/usr/projects/bite.nvim/",
+    -- event = "VeryLazy",
+    cmd = "B",
     build = "<cmd>UpdateRemotePlugins<cr>",
     config = function()
       require "bite"
     end,
-  }
+  },
+  {
+    dir = "/home/usr/projects/term.nvim/",
+    cmd = "Term",
+    config = function()
+      require "term"
+    end,
+  },
 }
 
 -- configuration for lazy itself.
