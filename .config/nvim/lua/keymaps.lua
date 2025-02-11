@@ -199,8 +199,6 @@ keyset({ "x", "o" }, "i_", ":<c-u>normal! T_vt_<cr>", { silent = true })
 -- SQUARE BRACKETS
 keyset("n", "]q", "<Cmd>cnext<CR>")
 keyset("n", "[q", "<Cmd>cprevious<CR>")
-keyset("n", "[<space>", [[<cmd>put!=nr2char(10)|']+<cr>]])
-keyset("n", "]<space>", [[<cmd>put =nr2char(10)|'[-<cr>]])
 keyset("n", "[x", [[<cmd>.move--<cr>]])
 keyset("n", "]x", [[<cmd>.move+<cr>]])
 keyset("x", "[x", [[:<c-u>'<,'>move'<--<cr>gv]])
