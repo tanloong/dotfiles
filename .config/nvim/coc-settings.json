@@ -2,8 +2,9 @@
   "inlayHint.enable": false,
   "suggest.noselect": true,
   "suggest.enablePreselect": false,
+  "suggest.defaultSortMethod": "none",
   "suggest.floatConfig": {
-    "border": true
+    "border": false
   },
   "diagnostic.floatConfig": {
     "border": true
@@ -16,7 +17,6 @@
   },
   "coc.preferences.extensionUpdateCheck": "never",
   "coc.preferences.formatOnSave": false,
-  "suggest.defaultSortMethod": "none",
   "diagnostic.enable": true,
   "diagnostic.errorSign": "●",
   "diagnostic.warningSign": "●",
@@ -95,7 +95,7 @@
   "Lua.hover.enable": true,
   "Lua.hover.viewString": false,
   "Lua.semantic.enable": false,
-  "Lua.runtime.version": "Lua 5.1",
+  "Lua.runtime.version": "LuaJIT",
   "Lua.workspace.checkThirdParty": false,
   "Lua.hint.arrayIndex": "Disable",
   "Lua.diagnostics.neededFileStatus": {
