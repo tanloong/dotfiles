@@ -27,6 +27,7 @@ opt.matchpairs = '<:>,(:),{:},[:]'
 opt.foldmethod = 'marker'
 opt.spelllang = 'en,cjk'
 opt.complete = '.,w,b,u,t,i,k'
+opt.completeopt = 'menu,preview,fuzzy,noselect'
 opt.guicursor = { 'i:ver1,v:block-inverse,a:blinkon0' }
 opt.pumheight = 7
 opt.backup = false

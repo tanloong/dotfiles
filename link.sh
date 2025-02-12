@@ -8,10 +8,11 @@ IFS=$'\n\t '
 
 curr_path=$(cd $(dirname $0) && pwd)
 
+# Generate hop.nvim mappings for huma
 huma_char="$curr_path"/.local/share/fcitx5/table/huma-char.txt
-huma_lua="$curr_path"/.local/share/nvim/lazy/hop.nvim/lua/hop/mappings/zh_huma.lua
-if [ "$huma_char" -nt "$huma_lua" ]; then
-  gawk -f "$curr_path"/huma2hop.gawk -- "$huma_char" > "$huma_lua"
+huma_hop="$curr_path"/.local/share/nvim/lazy/hop.nvim/lua/hop/mappings/zh_huma.lua
+if [ "$huma_char" -nt "$huma_hop" ]; then
+  gawk -f "$curr_path"/huma2hop.gawk -- "$huma_char" > "$huma_hop"
 fi
 
 # skip .git/, .gitignore, and $curr_path/[^.]+

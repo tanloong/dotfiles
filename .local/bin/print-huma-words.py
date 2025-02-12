@@ -8,9 +8,9 @@ from pathlib import Path
 输出位置为stdout。
 """
 
-p = "/home/usr/projects/dotfiles/.local/share/fcitx5/table/huma-word.txt"
+p = "~/projects/dotfiles/.local/share/fcitx5/table/huma-word.txt"
 
-content = Path(p).read_text(encoding="utf8")
+content = Path(p).expanduser().read_text(encoding="utf8")
 d = {}
 for line in content.splitlines():
     if not line.strip():
