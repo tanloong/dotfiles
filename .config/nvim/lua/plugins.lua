@@ -560,6 +560,7 @@ local plugin_specs = {
 
   ----------------------------------- DISABLED -----------------------------------{{{
 
+  { "https://github.com/meznaric/key-analyzer.nvim", enabled = false, cmd = "KeyAnalyzer", opts = {} },
   {
     "codota/tabnine-nvim",
     enabled = false,
@@ -684,7 +685,7 @@ local plugin_specs = {
       neocodeium.setup()
       vim.keymap.set("i", "<Tab>", neocodeium.accept_line)
     end,
-  },-- }}}
+  }, -- }}}
 }
 
 -- configuration for lazy itself.
