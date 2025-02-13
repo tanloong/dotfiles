@@ -1,87 +1,88 @@
 #!/usr/bin/env lua
 
-local keyset = vim.keymap.set
-local hl = vim.api.nvim_set_hl
+local map = vim.keymap.set
+local api = vim.api
+local hi = vim.api.nvim_set_hl
 
-keyset({ "n", "v", "o" }, "K", "5gk")
-keyset({ "n", "v", "o" }, "J", "5gj")
-keyset({ "n", "v", "o" }, "H", "5h")
-keyset({ "n", "v", "o" }, "L", "5l")
-keyset({ "n", "v", "o" }, "Q", "@q")
-keyset({ "n", "v", "o" }, "9", "$")
-keyset("n", "g9", "g$")
-keyset("n", "gp", "<cmd>.copy .<cr>", { desc = "copy current line to below" })
-keyset("n", "gP", "<cmd>.copy -<cr>", { desc = "copy current line to above" })
+map({ "n", "v", "o" }, "K", "5gk")
+map({ "n", "v", "o" }, "J", "5gj")
+map({ "n", "v", "o" }, "H", "5h")
+map({ "n", "v", "o" }, "L", "5l")
+map({ "n", "v", "o" }, "Q", "@q")
+map({ "n", "v", "o" }, "9", "$")
+map("n", "g9", "g$")
+map("n", "gp", "<cmd>.copy .<cr>", { desc = "copy current line to below" })
+map("n", "gP", "<cmd>.copy -<cr>", { desc = "copy current line to above" })
 -- overridden by bufferline mappings
 -- keyset('n', 'gh', 'gT')
 -- keyset('n', 'gl', 'gt')
-keyset({ "n", "v" }, "k", "gk")
-keyset({ "n", "v" }, "j", "gj")
-keyset({ "n", "v" }, "gk", "k")
-keyset({ "n", "v" }, "gj", "j")
-keyset("n", "S", ":!")
-keyset("n", "sS", ":%!")
-keyset({ "n", "v" }, "M", "J")
-keyset("n", "ga", "<Cmd>tabnew | term lazygit<CR>i")
-keyset("n", "gA", "<Cmd>tabnew | term gitui<CR>i")
+map({ "n", "v" }, "k", "gk")
+map({ "n", "v" }, "j", "gj")
+map({ "n", "v" }, "gk", "k")
+map({ "n", "v" }, "gj", "j")
+map("n", "S", ":!")
+map("n", "sS", ":%!")
+map({ "n", "v" }, "M", "J")
+map("n", "ga", "<Cmd>tabnew | term lazygit<CR>i")
+map("n", "gA", "<Cmd>tabnew | term gitui<CR>i")
 -- keyset('n', 'ga', '<Cmd>tabe<CR><Cmd>term gitui<CR>i')
-keyset("n", "gf", "gF")
-keyset("n", ">", ">>")
-keyset("n", "<", "<<")
-keyset("n", "<c-p>", ":%s///g<Left><Left>")
-keyset("v", "<c-p>", ":s///g<Left><Left>")
-keyset("n", "<c-q>", "<Cmd>q!<CR>")
-keyset({ "n", "i" }, "<c-s>", "<Cmd>w<CR>")
-keyset("n", "ZW", "<cmd>bd<cr>")
-keyset("n", "<SPACE>e", "<Cmd>set spell!<bar>set spell?<CR>")
-keyset("n", "g<CR>", "<Cmd>set hlsearch!<bar>set hlsearch?<CR>")
+map("n", "gf", "gF")
+map("n", ">", ">>")
+map("n", "<", "<<")
+map("n", "<c-p>", ":%s///g<Left><Left>")
+map("v", "<c-p>", ":s///g<Left><Left>")
+map("n", "<c-q>", "<Cmd>q!<CR>")
+map({ "n", "i" }, "<c-s>", "<Cmd>w<CR>")
+map("n", "ZW", "<cmd>bd<cr>")
+map("n", "<SPACE>e", "<Cmd>set spell!<bar>set spell?<CR>")
+map("n", "g<CR>", "<Cmd>set hlsearch!<bar>set hlsearch?<CR>")
 -- keyset('n', '<F4>', '<Cmd>q!<CR>')
-keyset("n", "s", "<nop>")
-keyset("n", "sv", "<Cmd>vsplit<CR>")
-keyset("n", "ss", "<Cmd>split<CR>")
-keyset("n", "s/", ":vimgrep //gf %<s-left><s-left><right>")
-keyset("n", "<c-up>", "<Cmd>res +2<CR>")
-keyset("n", "<c-down>", "<Cmd>res -2<CR>")
-keyset("n", "<c-left>", "<Cmd>vertical resize-2<CR>")
-keyset("n", "<c-right>", "<Cmd>vertical resize+2<CR>")
-keyset("n", "te", "<Cmd>tabedit<CR>")
-keyset("n", "/", "/\\v")
-keyset("v", "/", "/\\v")
-keyset("n", "?", "?\\v")
-keyset("v", "?", "?\\v")
+map("n", "s", "<nop>")
+map("n", "sv", "<Cmd>vsplit<CR>")
+map("n", "ss", "<Cmd>split<CR>")
+map("n", "s/", ":vimgrep //gf %<s-left><s-left><right>")
+map("n", "<c-up>", "<Cmd>res +2<CR>")
+map("n", "<c-down>", "<Cmd>res -2<CR>")
+map("n", "<c-left>", "<Cmd>vertical resize-2<CR>")
+map("n", "<c-right>", "<Cmd>vertical resize+2<CR>")
+map("n", "te", "<Cmd>tabedit<CR>")
+map("n", "/", "/\\v")
+map("v", "/", "/\\v")
+map("n", "?", "?\\v")
+map("v", "?", "?\\v")
 -- keyset('n', '<enter>', 'i<enter><esc>')
-keyset("n", "gZ", [[<cmd>exec "silent!! zeal " .. expand("<cword>") .. " &"<cr>]])
-keyset("v", "gZ",
+map("n", "gZ", [[<cmd>exec "silent!! zeal " .. expand("<cword>") .. " &"<cr>]])
+map("v", "gZ",
   [[:<c-u>exec "silent!! zeal " .. getregion(getpos("'<"), getpos("'>"), {"type": "v"})[0] .. " &"<cr>]])
-keyset("n", "gK", [[<cmd>exec "silent!! goldendict " .. expand("<cword>") .. " &"<cr>]])
-keyset("v", "gK",
+map("n", "gK", [[<cmd>exec "silent!! goldendict " .. expand("<cword>") .. " &"<cr>]])
+map("v", "gK",
   [[:<c-u>exec "silent!! goldendict " .. getregion(getpos("'<"), getpos("'>"), {"type": "v"})[0] .. " &"<cr>]])
 -- keyset('n', '<tab>', [[<cmd>exec "silent!! goldendict " .. expand("<cword>") .. " &"<cr>]])
 -- keyset('v', '<tab>', [[:<c-u>exec "silent!! goldendict " .. DT#get_visual_selection() .. " &"<cr>]])
-keyset("n", "<leader>b", [[<cmd>ls<cr>:b<space>]])
+map("n", "<leader>b", [[<cmd>ls<cr>:b<space>]])
 -- Toggle quickfix window
-keyset("n", "<leader>e", [[<cmd>exec empty(filter(getwininfo(), 'v:val.quickfix')) ? 'copen' : 'cclose'<cr>]])
+map("n", "<leader>e", [[<cmd>exec empty(filter(getwininfo(), 'v:val.quickfix')) ? 'copen' : 'cclose'<cr>]])
 -- Correct bad spell word under cursor
-keyset("n", "zl", "1z=")
-keyset("i", "<c-q>", "<c-k>")
+map("n", "zl", "1z=")
+map("i", "<c-q>", "<c-k>")
 -- Insert a newline at cursor without entering insert mode
-keyset("n", "<c-enter>", [[<cmd>set nohlsearch | keeppatterns s/\%#/\r/<cr>]])
+map("n", "<c-enter>", [[<cmd>set nohlsearch | keeppatterns s/\%#/\r/<cr>]])
 -- Visual select the just pasted text by p/P
-keyset("n", "gV", "`[v`]")
+map("n", "gV", "`[v`]")
 
 -- web search
-keyset("n", "gX", function()
+map("n", "gX", function()
   vim.ui.open(("https://bing.com/search?q=%s"):format(vim.fn.expand "<cword>"))
   -- vim.ui.open(("https://metaso.cn?q=%s"):format(vim.fn.expand "<cword>"))
 end)
-keyset("x", "gX", function()
+map("x", "gX", function()
   local lines = vim.fn.getregion(vim.fn.getpos ".", vim.fn.getpos "v", { type = vim.fn.mode() })
   vim.ui.open(("https://bing.com/search?q=%s"):format(vim.trim(table.concat(lines, " "))))
   -- vim.ui.open(("https://metaso.cn?q=%s"):format(vim.trim(table.concat(lines, " "))))
   vim.api.nvim_input "<esc>"
 end)
 
-keyset("n", "gs", function()
+map("n", "gs", function()
   local bufnr = vim.api.nvim_create_buf(false, false)
   vim.bo[bufnr].buftype = "prompt"
   vim.bo[bufnr].bufhidden = "wipe"
@@ -112,7 +113,7 @@ keyset("n", "gs", function()
   end, { buffer = bufnr })
 end)
 -- keyset("i", "<C-a>", "<Esc>^i")
-keyset("i", "<CR>", function()
+map("i", "<CR>", function()
   if tonumber(vim.fn.pumvisible()) == 1 then
     return "<C-y>"
   end
@@ -142,113 +143,168 @@ end, { expr = true })
 
 -- NAVIGATION
 -- jumping between a normal buffer and a neovim terminal
-keyset("t", "<esc><esc>", "<c-\\><c-n>")
-keyset("t", "<c-h>", "<c-\\><c-N><c-w>h")
-keyset("t", "<c-j>", "<c-\\><c-N><c-w>j")
-keyset("t", "<c-k>", "<c-\\><c-N><c-w>k")
-keyset("t", "<c-l>", "<c-\\><c-N><c-w>l")
-keyset("t", "<c-v><c-j>", "<c-j>")
-keyset("t", "<c-v><c-k>", "<c-k>")
-keyset("t", "<c-v><c-h>", "<c-h>")
-keyset("t", "<c-v><c-l>", "<c-l>")
-keyset({ "i", "n" }, "<c-h>", "<c-\\><c-N><c-w>h")
-keyset({ "i", "n" }, "<c-j>", "<c-\\><c-N><c-w>j")
-keyset({ "i", "n" }, "<c-k>", "<c-\\><c-N><c-w>k")
-keyset({ "i", "n" }, "<c-l>", "<c-\\><c-N><c-w>l")
+map("t", "<esc><esc>", "<c-\\><c-n>")
+map("t", "<c-h>", "<c-\\><c-N><c-w>h")
+map("t", "<c-j>", "<c-\\><c-N><c-w>j")
+map("t", "<c-k>", "<c-\\><c-N><c-w>k")
+map("t", "<c-l>", "<c-\\><c-N><c-w>l")
+map("t", "<c-v><c-j>", "<c-j>")
+map("t", "<c-v><c-k>", "<c-k>")
+map("t", "<c-v><c-h>", "<c-h>")
+map("t", "<c-v><c-l>", "<c-l>")
+map({ "i", "n" }, "<c-h>", "<c-\\><c-N><c-w>h")
+map({ "i", "n" }, "<c-j>", "<c-\\><c-N><c-w>j")
+map({ "i", "n" }, "<c-k>", "<c-\\><c-N><c-w>k")
+map({ "i", "n" }, "<c-l>", "<c-\\><c-N><c-w>l")
 
 -- Resize terminals
-keyset("t", "<c-up>", "<c-\\><c-N><Cmd>res +2|startinsert<CR>")
-keyset("t", "<c-down>", "<c-\\><c-N><Cmd>res -2|startinsert<CR>")
-keyset("t", "<c-left>", "<c-\\><c-N><Cmd>vertical resize-2|startinsert<CR>")
-keyset("t", "<c-right>", "<c-\\><c-N><Cmd>vertical resize+2|startinsert<CR>")
+map("t", "<c-up>", "<c-\\><c-N><Cmd>res +2|startinsert<CR>")
+map("t", "<c-down>", "<c-\\><c-N><Cmd>res -2|startinsert<CR>")
+map("t", "<c-left>", "<c-\\><c-N><Cmd>vertical resize-2|startinsert<CR>")
+map("t", "<c-right>", "<c-\\><c-N><Cmd>vertical resize+2|startinsert<CR>")
 -- Destroy terminals
-keyset("t", "<c-q>", "<c-\\><c-N><Cmd>exit<CR>")
+map("t", "<c-q>", "<c-\\><c-N><Cmd>exit<CR>")
 
-keyset("n", "gug", "<Cmd>s/\\v<(.)(\\w*)/\\u\\1\\L\\2/g | nohlsearch<CR>",
+map("n", "gug", "<Cmd>s/\\v<(.)(\\w*)/\\u\\1\\L\\2/g | nohlsearch<CR>",
   { desc = [[To Turn One Line Into Title Caps, Make Every First Letter Of A Word Uppercase]] })
-keyset("n", "<LEADER><F5>", '<Cmd>w! | !compiler "%"<CR>',
+map("n", "<LEADER><F5>", '<Cmd>w! | !compiler "%"<CR>',
   { desc = [[Compile document, be it groff/LaTeX/markdown/etc.]] })
-keyset("n", "go", '<Cmd>silent!!opout "%"<CR>', { desc = [[Open corresponding .pdf/.html or preview]] })
-keyset("v", ".", "<cmd>normal .<cr>", { desc = [[Perform dot commands over visual blocks]] })
-keyset("v", "p", "P", { desc = [[keep what I am pasting, don't pollute my register]] })
-keyset({ "n", "v" }, "<leader>d", [["_d]])
+map("n", "go", '<Cmd>silent!!opout "%"<CR>', { desc = [[Open corresponding .pdf/.html or preview]] })
+map("v", ".", "<cmd>normal .<cr>", { desc = [[Perform dot commands over visual blocks]] })
+map("v", "p", "P", { desc = [[keep what I am pasting, don't pollute my register]] })
+map({ "n", "v" }, "<leader>d", [["_d]])
 -- keyset('i', '<c-l>', '<c-g>u<Esc>[s1z=`]a<c-g>u',
 --     { desc = [[Spell checking on the fly]] })
-keyset("c", "%%", "getcmdtype()==':'? expand('%:h').'/' : '%%'",
+map("c", "%%", "getcmdtype()==':'? expand('%:h').'/' : '%%'",
   { expr = true, desc = [[展开活动缓冲区所在目录]] })
-keyset("n", "d<space>", [[<cmd>let _p=getcurpos() | keeppatterns %s/\v\s+$//e | nohlsearch | call setpos(".", _p)<cr>]],
+map("n", "d<space>", [[<cmd>let _p=getcurpos() | keeppatterns %s/\v\s+$//e | nohlsearch | call setpos(".", _p)<cr>]],
   { desc = [[Remove trailing spaces]] })
-keyset("n", "d<enter>",
+map("n", "d<enter>",
   [[<cmd>let _p=getcurpos() | keeppatterns %s/\v\n{3,}/\r\r/e | call setpos(".", _p)<cr>]],
   { desc = "squeeze empty lines" })
 
 -- TEXT OBJECTS
 -- "in line" (entire line sans white-space; cursor at beginning--ie, ^)
-keyset({ "x", "o" }, "il", ":<c-u>normal! g_v^<cr>", { silent = true })
+map({ "x", "o" }, "il", ":<c-u>normal! g_v^<cr>", { silent = true })
 -- "around line" (entire line sans trailing newline; cursor at beginning--ie, 0)
-keyset({ "x", "o" }, "al", ":<c-u>normal! $v0<cr>", { silent = true })
+map({ "x", "o" }, "al", ":<c-u>normal! $v0<cr>", { silent = true })
 -- "in document" (from first line to last; cursor at top--ie, gg)
-keyset({ "x", "o" }, "ib", ":<c-u>normal! GVgg<cr>", { silent = true })
+map({ "x", "o" }, "ib", ":<c-u>normal! GVgg<cr>", { silent = true })
 -- "in indentation" (indentation level sans any surrounding empty lines)
-keyset({ "x", "o" }, "ii", "<cmd>call textobject#inIndentation()<cr>", { silent = true })
+map({ "x", "o" }, "ii", "<cmd>call textobject#inIndentation()<cr>", { silent = true })
 -- "around indentation" (indentation level and any surrounding empty lines)
-keyset({ "x", "o" }, "ai", "<cmd>call textobject#aroundIndentation()<cr>", { silent = true })
+map({ "x", "o" }, "ai", "<cmd>call textobject#aroundIndentation()<cr>", { silent = true })
 -- "in _"
-keyset({ "x", "o" }, "i_", ":<c-u>normal! T_vt_<cr>", { silent = true })
+map({ "x", "o" }, "i_", ":<c-u>normal! T_vt_<cr>", { silent = true })
 
 -- SQUARE BRACKETS
-keyset("n", "]q", "<Cmd>cnext<CR>")
-keyset("n", "[q", "<Cmd>cprevious<CR>")
-keyset("n", "[x", [[<cmd>.move--<cr>]])
-keyset("n", "]x", [[<cmd>.move+<cr>]])
-keyset("x", "[x", [[:<c-u>'<,'>move'<--<cr>gv]])
-keyset("x", "]x", [[:<c-u>'<,'>move'>+<cr>gv]])
+map("n", "]q", "<Cmd>cnext<CR>")
+map("n", "[q", "<Cmd>cprevious<CR>")
+map("n", "[x", [[<cmd>.move--<cr>]])
+map("n", "]x", [[<cmd>.move+<cr>]])
+map("x", "[x", [[:<c-u>'<,'>move'<--<cr>gv]])
+map("x", "]x", [[:<c-u>'<,'>move'>+<cr>gv]])
 
 -- convert unicode_escape to unicode
 -- select '\u21bb' and type '<leader>c'
-keyset("v", "<leader>c",
+map("v", "<leader>c",
   [[:<c-u>'<,'>!python -c "import sys; print(sys.stdin.read().encode().decode('unicode_escape'), end='')"<cr>]])
 
-keyset("n", "+",
+map("n", "+",
   [[<cmd>let _p = getcurpos() | put =eval(getline(_p[1])) | call setpos(".", _p) | redraw<cr>]],
   { desc = [[run Vim expressions, insert output below]] })
-keyset("v", "+",
+map("v", "+",
   [[:<c-u>let _p = getcurpos() | put =<c-r>=escape(getregion(getpos("'<"), getpos("'>"), {"type": "v"})[0], '"|')<cr> | call setpos(".", _p) | redraw<cr>]],
   { desc = [[run Vim expressions, insert output below]] })
 
-keyset("i", "<c-g><c-g>",
+map("i", "<c-g><c-g>",
   [[<esc><cmd>silent let _p = getcurpos() | put ='' | exec "r" .. escape(getline(_p[1]), "%!#") | if getline(line(".")+1) != '' | put ='' | else | let _b = nvim_get_current_buf() | while line(".")+2 <= line("$") && getline(line(".")+2) == '' | call deletebufline(_b, line(".")+2) | endwhile | endif | call setpos(".", _p) | redraw<cr>]],
   { desc = [[execute current line as shell command]] })
-keyset("n", "<c-g><c-g>",
+map("n", "<c-g><c-g>",
   [[<cmd>silent let _p = getcurpos() | put ='' | exec "r!" .. escape(getline(_p[1]), "%!#") | if getline(line(".")+1) != '' | put ='' | else | let _b = nvim_get_current_buf() | while line(".")+2 <= line("$") && getline(line(".")+2) == '' | call deletebufline(_b, line(".")+2) | endwhile | endif | call setpos(".", _p) | redraw<cr>]],
   { desc = [[execute current line as shell command]] })
-keyset("v", "<c-g><c-g>",
+map("v", "<c-g><c-g>",
   [[:<c-u>silent let _p = getcurpos() | put ='' | exec "r!" .. escape(getregion(getpos("'<"), getpos("'>"), {"type": "v"})[0], "%!#") | if getline(line(".")+1) != '' | put ='' | else | let _b = nvim_get_current_buf() | while line(".")+2 <= line("$") && getline(line(".")+2) == '' | call deletebufline(_b, line(".")+2) | endwhile | endif | call setpos(".", _p) | redraw<cr>]],
   { desc = [[execute current line as shell command]] })
 
 -- %!# is special chars in fish
-keyset("n", "dp", [[<cmd>let _p=getcurpos() | exec "normal! }dap" | call setpos(".", _p)<cr>]], { silent = true })
-keyset("n", "dP", [[<cmd>let _p=getcurpos() | exec "normal! {{dap" | call setpos(".", _p)<cr>]], { silent = true })
+map("n", "dp", [[<cmd>let _p=getcurpos() | exec "normal! }dap" | call setpos(".", _p)<cr>]], { silent = true })
+map("n", "dP", [[<cmd>let _p=getcurpos() | exec "normal! {{dap" | call setpos(".", _p)<cr>]], { silent = true })
 
--- local autocmd = vim.api.nvim_create_autocmd
--- local augroup = vim.api.nvim_create_augroup
-
--- autocmd("FileType",
---     {
---         pattern = "netrw",
---         group = augroup("netrw_mapping", { clear = true }),
---         callback = function()
---             keyset("n", "H", [[u]], { buffer = true })
---             keyset("n", "h", [[-]], { buffer = true })
---             keyset("n", "l", [[<CR>]], { buffer = true })
---             keyset("n", "L", [[<CR><Cmd>Lexplorer<CR>]], { buffer = true })
---             keyset("n", "zh", [[gh]], { buffer = true })
---         end,
---     })
-
-hl(0, "MarkLine", { bg = "darkred", fg = "gray", ctermbg = 9, ctermfg = 15 })
+hi(0, "MarkLine", { bg = "darkred", fg = "gray", ctermbg = 9, ctermfg = 15 })
 local function markline()
   vim.api.nvim_buf_add_highlight(vim.fn.bufnr "%", 0, "MarkLine", (vim.fn.line "." - 1), 0, -1)
 end
-keyset("n", "m.", markline)
-keyset("n", "m<bs>", function() vim.api.nvim_buf_clear_namespace(vim.fn.bufnr "%", 0, 0, -1) end)
+map("n", "m.", markline)
+map("n", "m<bs>", function() vim.api.nvim_buf_clear_namespace(vim.fn.bufnr "%", 0, 0, -1) end)
+
+----------------------------------- COMMENT ------------------------------------
+---This func is copied from neovim/runtime/lua/vim/_comment.lua
+local function get_commentstring(ref_position)
+  local buf_cs = vim.bo.commentstring
+  local ts_parser = vim.treesitter.get_parser(0, "", { error = false })
+  if not ts_parser then return buf_cs end
+  local row, col = ref_position[1] - 1, ref_position[2]
+  local ref_range = { row, col, row, col + 1 }
+  local ts_cs, res_level = nil, 0
+  local function traverse(lang_tree, level)
+    if not lang_tree:contains(ref_range) then return end
+    local lang = lang_tree:lang()
+    local filetypes = vim.treesitter.language.get_filetypes(lang)
+    for _, ft in ipairs(filetypes) do
+      local cur_cs = vim.filetype.get_option(ft, "commentstring")
+      if cur_cs ~= "" and level > res_level then ts_cs = cur_cs end
+    end
+    for _, child_lang_tree in pairs(lang_tree:children()) do traverse(child_lang_tree, level + 1) end
+  end
+  traverse(ts_parser, 1)
+  return ts_cs or buf_cs
+end
+local function comment_end()
+  local line = vim.api.nvim_get_current_line()
+  local row = vim.api.nvim_win_get_cursor(0)[1]
+  local commentstring = get_commentstring { row, 0 }
+  local comment = commentstring:gsub("%%s", "")
+  local index = commentstring:find "%%s"
+  if line:find "%S" then
+    comment = " " .. comment
+    index = index + 1
+  end
+  vim.api.nvim_buf_set_lines(0, row - 1, row, false, { line .. comment })
+  vim.api.nvim_win_set_cursor(0, { row, #line + index - 2 })
+  vim.api.nvim_feedkeys("a", "n", false)
+end
+local function comment_above()
+  local line = vim.api.nvim_get_current_line()
+  local row = vim.api.nvim_win_get_cursor(0)[1]
+  local commentstring = get_commentstring { row, 0 }
+  local comment = commentstring:gsub("%%s", "")
+  local index = commentstring:find "%%s"
+  local blank_chars = (line:find "%S" or #line + 1) - 1
+  local blank = line:sub(1, blank_chars)
+  vim.api.nvim_buf_set_lines(0, row - 1, row - 1, true, { blank .. comment })
+  vim.api.nvim_win_set_cursor(0, { row, #blank + index - 2 })
+  vim.api.nvim_feedkeys("a", "n", false)
+end
+local function comment_below()
+  local row = vim.api.nvim_win_get_cursor(0)[1]
+  -- 如果当前行为最后一行，则仍然取用当前行的缩进
+  local total_lines = vim.api.nvim_buf_line_count(0)
+  local line
+  if row == total_lines then
+    line = vim.api.nvim_buf_get_lines(0, row - 1, row, true)[1]
+  else
+    line = vim.api.nvim_buf_get_lines(0, row, row + 1, true)[1]
+  end
+  local commentstring = get_commentstring { row, 0 }
+  local comment = commentstring:gsub("%%s", "")
+  local index = commentstring:find "%%s"
+  local blank_chars = (line:find "%S" or #line + 1) - 1
+  local blank = line:sub(1, blank_chars)
+  vim.api.nvim_buf_set_lines(0, row, row, true, { blank .. comment })
+  vim.api.nvim_win_set_cursor(0, { row + 1, #blank + index - 2 })
+  vim.api.nvim_feedkeys("a", "n", false)
+end
+vim.keymap.set("n", "gcA", comment_end)
+vim.keymap.set("n", "gcO", comment_above)
+vim.keymap.set("n", "gco", comment_below)

@@ -52,7 +52,8 @@ keyset("n", "]d", "<Plug>(coc-diagnostic-next)", { silent = true })
 keyset("n", "[e", "<Plug>(coc-diagnostic-prev-error)", { silent = true })
 keyset("n", "]e", "<Plug>(coc-diagnostic-next-error)", { silent = true })
 -- show diagnostics of current position
-keyset("n", "<M-\\>", "<Plug>(coc-diagnostic-info)", { noremap = true, silent = true })
+-- :help CTRL-W_d-default
+keyset("n", "<C-W>d", "<Plug>(coc-diagnostic-info)", { noremap = true, silent = true })
 -- GoTo code navigation.
 keyset("n", "gd", "<Plug>(coc-definition)", { silent = true })
 keyset("n", "gy", "<Plug>(coc-type-definition)", { silent = true })
