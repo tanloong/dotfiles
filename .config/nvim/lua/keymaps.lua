@@ -13,9 +13,6 @@ map({ "n", "v", "o" }, "9", "$")
 map("n", "g9", "g$")
 map("n", "gp", "<cmd>.copy .<cr>", { desc = "copy current line to below" })
 map("n", "gP", "<cmd>.copy -<cr>", { desc = "copy current line to above" })
--- overridden by bufferline mappings
--- keyset('n', 'gh', 'gT')
--- keyset('n', 'gl', 'gt')
 map({ "n", "v" }, "k", "gk")
 map({ "n", "v" }, "j", "gj")
 map({ "n", "v" }, "gk", "k")
@@ -27,8 +24,6 @@ map("n", "ga", "<Cmd>tabnew | term lazygit<CR>i")
 map("n", "gA", "<Cmd>tabnew | term gitui<CR>i")
 -- keyset('n', 'ga', '<Cmd>tabe<CR><Cmd>term gitui<CR>i')
 map("n", "gf", "gF")
-map("n", ">", ">>")
-map("n", "<", "<<")
 map("n", "<c-p>", ":%s///g<Left><Left>")
 map("v", "<c-p>", ":s///g<Left><Left>")
 map("n", "<c-q>", "<Cmd>q!<CR>")
@@ -36,7 +31,6 @@ map({ "n", "i" }, "<c-s>", "<Cmd>w<CR>")
 map("n", "ZW", "<cmd>bd<cr>")
 map("n", "<SPACE>e", "<Cmd>set spell!<bar>set spell?<CR>")
 map("n", "g<CR>", "<Cmd>set hlsearch!<bar>set hlsearch?<CR>")
--- keyset('n', '<F4>', '<Cmd>q!<CR>')
 map("n", "s", "<nop>")
 map("n", "sv", "<Cmd>vsplit<CR>")
 map("n", "ss", "<Cmd>split<CR>")
@@ -79,16 +73,16 @@ map("x", "gX", function()
   local lines = vim.fn.getregion(vim.fn.getpos ".", vim.fn.getpos "v", { type = vim.fn.mode() })
   vim.ui.open(("https://bing.com/search?q=%s"):format(vim.trim(table.concat(lines, " "))))
   -- vim.ui.open(("https://metaso.cn?q=%s"):format(vim.trim(table.concat(lines, " "))))
-  vim.api.nvim_input "<esc>"
+  api.nvim_input "<esc>"
 end)
 
 map("n", "gs", function()
-  local bufnr = vim.api.nvim_create_buf(false, false)
+  local bufnr = api.nvim_create_buf(false, false)
   vim.bo[bufnr].buftype = "prompt"
   vim.bo[bufnr].bufhidden = "wipe"
   -- vim.fn.prompt_setprompt(bufnr, "➤ ")
   local width = math.floor(vim.o.columns * 0.5)
-  local winid = vim.api.nvim_open_win(bufnr, true, {
+  local winid = api.nvim_open_win(bufnr, true, {
     relative = "editor",
     row = 5,
     width = width,
@@ -106,10 +100,10 @@ map("n", "gs", function()
   vim.fn.prompt_setcallback(bufnr, function(text)
     vim.ui.open(("https://bing.com/search?q=%s"):format(vim.trim(text)))
     -- vim.ui.open(("https://metaso.cn?q=%s"):format(vim.trim(text)))
-    vim.api.nvim_win_close(winid, true)
+    api.nvim_win_close(winid, true)
   end)
-  vim.keymap.set({ "n" }, "<esc>", function()
-    pcall(vim.api.nvim_win_close, winid, true)
+  map({ "n" }, "<esc>", function()
+    pcall(api.nvim_win_close, winid, true)
   end, { buffer = bufnr })
 end)
 -- keyset("i", "<C-a>", "<Esc>^i")
@@ -117,8 +111,8 @@ map("i", "<CR>", function()
   if tonumber(vim.fn.pumvisible()) == 1 then
     return "<C-y>"
   end
-  local line = vim.api.nvim_get_current_line()
-  local col = vim.api.nvim_win_get_cursor(0)[2]
+  local line = api.nvim_get_current_line()
+  local col = api.nvim_win_get_cursor(0)[2]
   local before = line:sub(col, col)
   local after = line:sub(col + 1, col + 1)
   local t = {
@@ -218,7 +212,7 @@ map("v", "+",
   { desc = [[run Vim expressions, insert output below]] })
 
 map("i", "<c-g><c-g>",
-  [[<esc><cmd>silent let _p = getcurpos() | put ='' | exec "r" .. escape(getline(_p[1]), "%!#") | if getline(line(".")+1) != '' | put ='' | else | let _b = nvim_get_current_buf() | while line(".")+2 <= line("$") && getline(line(".")+2) == '' | call deletebufline(_b, line(".")+2) | endwhile | endif | call setpos(".", _p) | redraw<cr>]],
+  [[<esc><cmd>silent let _p = getcurpos() | put ='' | exec "r!" .. escape(getline(_p[1]), "%!#") | if getline(line(".")+1) != '' | put ='' | else | let _b = nvim_get_current_buf() | while line(".")+2 <= line("$") && getline(line(".")+2) == '' | call deletebufline(_b, line(".")+2) | endwhile | endif | call setpos(".", _p) | redraw<cr>]],
   { desc = [[execute current line as shell command]] })
 map("n", "<c-g><c-g>",
   [[<cmd>silent let _p = getcurpos() | put ='' | exec "r!" .. escape(getline(_p[1]), "%!#") | if getline(line(".")+1) != '' | put ='' | else | let _b = nvim_get_current_buf() | while line(".")+2 <= line("$") && getline(line(".")+2) == '' | call deletebufline(_b, line(".")+2) | endwhile | endif | call setpos(".", _p) | redraw<cr>]],
@@ -233,10 +227,10 @@ map("n", "dP", [[<cmd>let _p=getcurpos() | exec "normal! {{dap" | call setpos(".
 
 hi(0, "MarkLine", { bg = "darkred", fg = "gray", ctermbg = 9, ctermfg = 15 })
 local function markline()
-  vim.api.nvim_buf_add_highlight(vim.fn.bufnr "%", 0, "MarkLine", (vim.fn.line "." - 1), 0, -1)
+  api.nvim_buf_add_highlight(vim.fn.bufnr "%", 0, "MarkLine", (vim.fn.line "." - 1), 0, -1)
 end
 map("n", "m.", markline)
-map("n", "m<bs>", function() vim.api.nvim_buf_clear_namespace(vim.fn.bufnr "%", 0, 0, -1) end)
+map("n", "m<bs>", function() api.nvim_buf_clear_namespace(vim.fn.bufnr "%", 0, 0, -1) end)
 
 ----------------------------------- COMMENT ------------------------------------
 ---This func is copied from neovim/runtime/lua/vim/_comment.lua
@@ -261,8 +255,8 @@ local function get_commentstring(ref_position)
   return ts_cs or buf_cs
 end
 local function comment_end()
-  local line = vim.api.nvim_get_current_line()
-  local row = vim.api.nvim_win_get_cursor(0)[1]
+  local line = api.nvim_get_current_line()
+  local row = api.nvim_win_get_cursor(0)[1]
   local commentstring = get_commentstring { row, 0 }
   local comment = commentstring:gsub("%%s", "")
   local index = commentstring:find "%%s"
@@ -270,41 +264,56 @@ local function comment_end()
     comment = " " .. comment
     index = index + 1
   end
-  vim.api.nvim_buf_set_lines(0, row - 1, row, false, { line .. comment })
-  vim.api.nvim_win_set_cursor(0, { row, #line + index - 2 })
-  vim.api.nvim_feedkeys("a", "n", false)
+  api.nvim_buf_set_lines(0, row - 1, row, false, { line .. comment })
+  api.nvim_win_set_cursor(0, { row, #line + index - 2 })
+  api.nvim_feedkeys("a", "n", false)
 end
 local function comment_above()
-  local line = vim.api.nvim_get_current_line()
-  local row = vim.api.nvim_win_get_cursor(0)[1]
+  local line = api.nvim_get_current_line()
+  local row = api.nvim_win_get_cursor(0)[1]
   local commentstring = get_commentstring { row, 0 }
   local comment = commentstring:gsub("%%s", "")
   local index = commentstring:find "%%s"
   local blank_chars = (line:find "%S" or #line + 1) - 1
   local blank = line:sub(1, blank_chars)
-  vim.api.nvim_buf_set_lines(0, row - 1, row - 1, true, { blank .. comment })
-  vim.api.nvim_win_set_cursor(0, { row, #blank + index - 2 })
-  vim.api.nvim_feedkeys("a", "n", false)
+  api.nvim_buf_set_lines(0, row - 1, row - 1, true, { blank .. comment })
+  api.nvim_win_set_cursor(0, { row, #blank + index - 2 })
+  api.nvim_feedkeys("a", "n", false)
+end
+---@param line string
+---@param cs string
+local comment_check = function(line, cs)
+  -- Structure of 'commentstring': <left part> <%s> <right part>
+  local left, right = cs:match "^(.-)%%s(.-)$"
+  local l_esc, r_esc = vim.pesc(left), vim.pesc(right)
+  -- Commented line has the following structure:
+  -- <whitespace> <trimmed left> <anything> <trimmed right> <whitespace>
+  local regex = "^%s-" .. vim.trim(l_esc) .. ".*" .. vim.trim(r_esc) .. "%s-$"
+  return line:find(regex) ~= nil
 end
 local function comment_below()
-  local row = vim.api.nvim_win_get_cursor(0)[1]
-  -- 如果当前行为最后一行，则仍然取用当前行的缩进
-  local total_lines = vim.api.nvim_buf_line_count(0)
+  -- 如果当前行是注释或当前行是最后一行或下一行是空行，使用当前行的缩进
+  -- 如果当前行不是注释且下一行非空，使用下一行的缩进
+  local row = api.nvim_win_get_cursor(0)[1]
+  local line_above = api.nvim_buf_get_lines(0, row - 1, row, false)[1]
+  local line_below = api.nvim_buf_get_lines(0, row, row + 1, false)[1]
   local line
-  if row == total_lines then
-    line = vim.api.nvim_buf_get_lines(0, row - 1, row, true)[1]
-  else
-    line = vim.api.nvim_buf_get_lines(0, row, row + 1, true)[1]
-  end
   local commentstring = get_commentstring { row, 0 }
+  local is_comment = comment_check(line_above, commentstring)
+  if is_comment or line_below == nil or #line_below == 0 then
+    line = line_above
+  else
+    line = line_below
+  end
+
   local comment = commentstring:gsub("%%s", "")
   local index = commentstring:find "%%s"
   local blank_chars = (line:find "%S" or #line + 1) - 1
   local blank = line:sub(1, blank_chars)
-  vim.api.nvim_buf_set_lines(0, row, row, true, { blank .. comment })
-  vim.api.nvim_win_set_cursor(0, { row + 1, #blank + index - 2 })
-  vim.api.nvim_feedkeys("a", "n", false)
+  api.nvim_buf_set_lines(0, row, row, true, { blank .. comment })
+  api.nvim_win_set_cursor(0, { row + 1, #blank + index - 2 })
+  api.nvim_feedkeys("a", "n", false)
 end
-vim.keymap.set("n", "gcA", comment_end)
-vim.keymap.set("n", "gcO", comment_above)
-vim.keymap.set("n", "gco", comment_below)
+map("n", "gcA", comment_end)
+map("n", "gcO", comment_above)
+map("n", "gco", comment_below)

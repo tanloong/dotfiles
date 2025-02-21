@@ -14,6 +14,10 @@ function fish_prompt
     end
     echo -n '$ '
 end
+function fish_command_not_found
+  # dont check for a missing package on unknown command, which is slow
+  echo "fish: command not found"
+end
 
 #set --global --export LANG zh_CN.UTF-8
 set --global --export LANG en_US.UTF-8
