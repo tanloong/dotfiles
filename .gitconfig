@@ -30,3 +30,5 @@
 	helper = store
 [credential "https://github.com"]
 	useHttpPath = true
+[log]
+	date = iso8601

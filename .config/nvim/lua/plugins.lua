@@ -462,7 +462,7 @@ local plugin_specs = {
     -- Explanation: https://github.com/folke/lazy.nvim/discussions/463#discussioncomment-4819297
     lazy = not vim.g.started_by_firenvim,
     module = false,
-    build = ":call firenvim#install(0)<cr>",
+    build = ":call firenvim#install(0)",
     config = function()
       vim.g.firenvim_config = {
         globalSettings = { alt = "all" },
