@@ -352,7 +352,6 @@ local plugin_specs = {
   -- Telescope
   {
     "nvim-telescope/telescope.nvim",
-    -- version = '*',
     enabled = true,
     event = "VeryLazy",
     dependencies = { "nvim-lua/plenary.nvim" },

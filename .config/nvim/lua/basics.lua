@@ -70,10 +70,6 @@ opt.grepformat = "%f:%l:%c:%m,%f:%l:%m,%f:%l%m,%f  %l%m"
 opt.undofile = true
 -- opt.iskeyword = "@,48-57,192-255" -- remove _ from the default
 
--- Disable netrw
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
-
 vim.cmd([[filetype plugin indent on]])
 vim.cmd([[syntax on]])
 vim.g.netrw_winsize = 30 -- Change the size of the Netrw window when it creates a split.
@@ -88,8 +84,6 @@ if &term =~ '256color'
     set t_ut=
 endif
 ]])
-vim.cmd([[packadd! matchit]])
-vim.b['batch_words'] = 'begin:end'
 vim.g['python_host_skip_check'] = 1
 vim.g['python_host_prog'] = '/usr/bin/python'
 vim.g['python3_host_skip_check'] = 1
