@@ -559,7 +559,15 @@ local plugin_specs = {
   },
 
   ----------------------------------- DISABLED -----------------------------------{{{
-
+  {
+    "folke/snacks.nvim",
+    enabled = false,
+    priority = 1000,
+    lazy = false,
+    opts = {
+      image = { enabled = true },
+    },
+  },
   { "https://github.com/meznaric/key-analyzer.nvim", enabled = false, cmd = "KeyAnalyzer", opts = {} },
   {
     "codota/tabnine-nvim",

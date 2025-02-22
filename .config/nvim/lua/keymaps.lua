@@ -19,6 +19,8 @@ map({ "n", "v" }, "gk", "k")
 map({ "n", "v" }, "gj", "j")
 map("n", "S", ":!")
 map("n", "sS", ":%!")
+map("n", ">", ">>")
+map("n", "<", "<<")
 map({ "n", "v" }, "M", "J")
 map("n", "ga", "<Cmd>tabnew | term lazygit<CR>i")
 map("n", "gA", "<Cmd>tabnew | term gitui<CR>i")
@@ -254,6 +256,18 @@ local function get_commentstring(ref_position)
   traverse(ts_parser, 1)
   return ts_cs or buf_cs
 end
+---@param line string
+---@param cs string
+---@return boolean
+local comment_check = function(line, cs)
+  -- Structure of 'commentstring': <left part> <%s> <right part>
+  local left, right = cs:match "^(.-)%%s(.-)$"
+  local l_esc, r_esc = vim.pesc(left), vim.pesc(right)
+  -- Commented line has the following structure:
+  -- <whitespace> <trimmed left> <anything> <trimmed right> <whitespace>
+  local regex = "^%s-" .. vim.trim(l_esc) .. ".*" .. vim.trim(r_esc) .. "%s-$"
+  return line:find(regex) ~= nil
+end
 local function comment_end()
   local line = api.nvim_get_current_line()
   local row = api.nvim_win_get_cursor(0)[1]
@@ -268,10 +282,20 @@ local function comment_end()
   api.nvim_win_set_cursor(0, { row, #line + index - 2 })
   api.nvim_feedkeys("a", "n", false)
 end
+---如果光标行是注释或光标行是第一行或上一行是空行，使用光标行的缩进
+---如果光标行不是注释且上一行非空，使用下一行的缩进
 local function comment_above()
-  local line = api.nvim_get_current_line()
   local row = api.nvim_win_get_cursor(0)[1]
+  local line_cursor = api.nvim_buf_get_lines(0, row - 1, row, false)[1]
+  local line_above = api.nvim_buf_get_lines(0, row - 2, row - 1, false)[1]
+  local line
   local commentstring = get_commentstring { row, 0 }
+  local is_comment = comment_check(line_cursor, commentstring)
+  if is_comment or line_above == nil or #line_above == 0 then
+    line = line_cursor
+  else
+    line = line_above
+  end
   local comment = commentstring:gsub("%%s", "")
   local index = commentstring:find "%%s"
   local blank_chars = (line:find "%S" or #line + 1) - 1
@@ -280,32 +304,20 @@ local function comment_above()
   api.nvim_win_set_cursor(0, { row, #blank + index - 2 })
   api.nvim_feedkeys("a", "n", false)
 end
----@param line string
----@param cs string
-local comment_check = function(line, cs)
-  -- Structure of 'commentstring': <left part> <%s> <right part>
-  local left, right = cs:match "^(.-)%%s(.-)$"
-  local l_esc, r_esc = vim.pesc(left), vim.pesc(right)
-  -- Commented line has the following structure:
-  -- <whitespace> <trimmed left> <anything> <trimmed right> <whitespace>
-  local regex = "^%s-" .. vim.trim(l_esc) .. ".*" .. vim.trim(r_esc) .. "%s-$"
-  return line:find(regex) ~= nil
-end
+---如果光标行是注释或光标行是最后一行或下一行是空行，使用光标行的缩进
+---如果光标行不是注释且下一行非空，使用下一行的缩进
 local function comment_below()
-  -- 如果当前行是注释或当前行是最后一行或下一行是空行，使用当前行的缩进
-  -- 如果当前行不是注释且下一行非空，使用下一行的缩进
   local row = api.nvim_win_get_cursor(0)[1]
-  local line_above = api.nvim_buf_get_lines(0, row - 1, row, false)[1]
+  local line_cursor = api.nvim_buf_get_lines(0, row - 1, row, false)[1]
   local line_below = api.nvim_buf_get_lines(0, row, row + 1, false)[1]
   local line
   local commentstring = get_commentstring { row, 0 }
-  local is_comment = comment_check(line_above, commentstring)
+  local is_comment = comment_check(line_cursor, commentstring)
   if is_comment or line_below == nil or #line_below == 0 then
-    line = line_above
+    line = line_cursor
   else
     line = line_below
   end
-
   local comment = commentstring:gsub("%%s", "")
   local index = commentstring:find "%%s"
   local blank_chars = (line:find "%S" or #line + 1) - 1

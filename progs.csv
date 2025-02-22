@@ -99,7 +99,7 @@ A,latex-mk,
 ,clang,""
 ,network-manager-applet,"Applet for managing network connections"
 ,polkit-gnome,"get authorization for NetworkManager"
-,goldendict-ng-git,"Feature-rich dictionary lookup program"
+,goldendict-ng,"Feature-rich dictionary lookup program"
 ,wget,"Network utility to retrieve files from the Web"
 ,pandoc,""
 ,pandoc-crossref,""
