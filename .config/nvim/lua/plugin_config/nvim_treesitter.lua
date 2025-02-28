@@ -15,9 +15,7 @@ require 'nvim-treesitter.configs'.setup {
         additional_vim_regex_highlighting = false,
         disable = function(lang, buf)
             for _, value in ipairs({'latex', 'csv'}) do
-                if lang == value then
-                    return true
-                end
+                if lang == value then return true end
             end
             local max_filesize = 100 * 1024 -- 100 KB
             local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))

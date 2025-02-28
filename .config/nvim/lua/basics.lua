@@ -20,6 +20,7 @@ opt.infercase = true
 opt.smartcase = true
 opt.wrap = true
 opt.wrapscan = true
+
 opt.linebreak = true
 opt.swapfile = false
 opt.laststatus = 2
@@ -27,7 +28,11 @@ opt.matchpairs = '<:>,(:),{:},[:]'
 opt.foldmethod = 'marker'
 opt.spelllang = 'en,cjk'
 opt.complete = '.,w,b,u,t,i,k'
-opt.completeopt = 'menu,preview,fuzzy,noselect'
+if vim.fn.has("nvim-0.11") == 1 then
+  opt.completeopt = 'menu,preview,fuzzy,noselect'
+else
+  opt.completeopt = 'menu,preview,noselect'
+end
 opt.guicursor = { 'i:ver1,v:block-inverse,a:blinkon0' }
 opt.pumheight = 7
 opt.backup = false
@@ -36,6 +41,7 @@ opt.fillchars = { fold = '─' }
 opt.listchars = { trail = '●' }
 opt.exrc = true -- auto load .nvim.lua file under cwd
 opt.modeline = false
+
 -- if vim.fn.has("nvim-0.10") == 1 then
 --   vim.g.clipboard = {
 --     name = 'OSC 52',
@@ -84,7 +90,3 @@ if &term =~ '256color'
     set t_ut=
 endif
 ]])
-vim.g['python_host_skip_check'] = 1
-vim.g['python_host_prog'] = '/usr/bin/python'
-vim.g['python3_host_skip_check'] = 1
-vim.g['python3_host_prog'] = '/usr/bin/python3'

@@ -161,7 +161,7 @@ map("t", "<c-right>", "<c-\\><c-N><Cmd>vertical resize+2|startinsert<CR>")
 -- Destroy terminals
 map("t", "<c-q>", "<c-\\><c-N><Cmd>exit<CR>")
 
-map("n", "gug", "<Cmd>s/\\v<(.)(\\w*)/\\u\\1\\L\\2/g | nohlsearch<CR>",
+map("n", "gug", "<Cmd>keeppatterns s/\\v<(.)(\\w*)/\\u\\1\\L\\2/g<CR>",
   { desc = [[To Turn One Line Into Title Caps, Make Every First Letter Of A Word Uppercase]] })
 map("n", "<LEADER><F5>", '<Cmd>w! | !compiler "%"<CR>',
   { desc = [[Compile document, be it groff/LaTeX/markdown/etc.]] })
