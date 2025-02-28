@@ -1,4 +1,4 @@
-function fish_greeting; end
+set -U fish_greeting
 function fish_mode_prompt; end
 function fish_prompt
     # if set -q VIRTUAL_ENV
@@ -15,8 +15,7 @@ function fish_prompt
     echo -n '$ '
 end
 function fish_command_not_found
-  # dont check for a missing package on unknown command, which is slow
-  echo "fish: command not found"
+    __fish_default_command_not_found_handler $argv[1]
 end
 
 #set --global --export LANG zh_CN.UTF-8
@@ -27,12 +26,16 @@ set --global --export CORENLP_HOME $HOME/software/stanford-corenlp-4.5.1/
 set --global --export STANFORD_PARSER_HOME "/home/usr/.local/share/stanford-parser-full-2020-11-17"
 set --global --export STANFORD_TREGEX_HOME "/home/usr/.local/share/stanford-tregex-2020-11-17"
 set --global --export JAVA_HOME "/home/usr/.local/share/jdk8u372-b07"
-set --global --export PATH $PATH "/home/usr/.local/share/jdk8u372-b07/bin"
-set --global --export PATH $PATH $HOME/.local/bin
-set --global --export PATH $PATH $HOME/.local/bin/data-science-utils
-set --global --export PATH $PATH $HOME/.local/bin/internship
-set --global --export PATH $PATH /home/usr/software/rasp3os/scripts
-set --global --export PATH $PATH $STANFORD_TREGEX_HOME $STANFORD_PARSER_HOME
+
+fish_add_path --path \
+  "/home/usr/.local/share/jdk8u372-b07/bin" \
+  $HOME/.local/bin \
+  $HOME/.local/bin/data-science-utils \
+  $HOME/.local/bin/internship \
+  $HOME/software/rasp3os/scripts \
+  $STANFORD_TREGEX_HOME \
+  $STANFORD_PARSER_HOME
+
 set --global --export NLTK_DATA $HOME/software/nltk_data/
 set --global --export TESSDATA_PREFIX /usr/share/tessdata/
 set --global --export SUDO_ASKPASS /usr/bin/lxqt-openssh-askpass
