@@ -416,7 +416,8 @@ local plugin_specs = {
   'saghen/blink.cmp',
   enabled = true,
   -- optional: provides snippets for the snippet source
-  dependencies = {'rafamadriz/friendly-snippets', 'luozhiya/fittencode.nvim'},
+  dependencies = {'rafamadriz/friendly-snippets', 'luozhiya/fittencode.nvim',
+ 'Kaiser-Yang/blink-cmp-dictionary', },
 
   -- use a release tag to download pre-built binaries
   version = '*',
@@ -442,9 +443,22 @@ local plugin_specs = {
       }
     },
     sources = {
-      default = { 'lsp', 'path', 'snippets', 'buffer' },
-    },
+      default = { 'dictionary', 'lsp', 'path', 'snippets', 'buffer' },
+
+providers = {
+                dictionary = {
+                    module = 'blink-cmp-dictionary',
+                    name = 'Dict',
+                    -- Make sure this is at least 2.
+                    -- 3 is recommended
+                    min_keyword_length = 3,
+                    max_items = 4,
+                    opts = {
+                      dictionary_files = {vim.api.nvim_get_option_value("dictionary", {})},
+                    },
+    },},
   },
+},
   opts_extend = { "sources.default" }
 },
 {
