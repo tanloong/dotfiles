@@ -5,6 +5,8 @@ e2=p11+p12+p21+p22
 e3=p11+p21+p31+p32
 a4=p11+p21+p31+n11
 [数据]
+kyzz 泽连斯基
+ylgz 罗翔
 ameo 状态机
 ngxp 欧亨利
 xhom 意映

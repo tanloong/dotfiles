@@ -1,6 +1,6 @@
 {
   "inlayHint.enable": false,
-  "suggest.noselect": true,
+  "suggest.noselect": false,
   "suggest.enablePreselect": false,
   "suggest.defaultSortMethod": "none",
   "suggest.floatConfig": {
