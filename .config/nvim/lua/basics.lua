@@ -29,9 +29,9 @@ opt.foldmethod = 'marker'
 opt.spelllang = 'en,cjk'
 opt.complete = '.,w,b,u,t,i,k'
 if vim.fn.has("nvim-0.11") == 1 then
-  opt.completeopt = 'menu,preview,fuzzy,noselect'
+  opt.completeopt = 'menu,preview,fuzzy'
 else
-  opt.completeopt = 'menu,preview,noselect'
+  opt.completeopt = 'menu,preview'
 end
 opt.guicursor = { 'i:ver1,v:block-inverse,a:blinkon0' }
 opt.pumheight = 7

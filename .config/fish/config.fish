@@ -74,8 +74,8 @@ set --global --export _ZO_FZF_OPTS '--scheme=path --tiebreak=end,chunk --bind=ct
 # display icons properly for CJK environment in Lf: https://github.com/gokcehan/lf/issues/583
 set --global --export RUNEWIDTH_EASTASIAN 0
 
-bind --mode default \ce edit_command_buffer
-bind --mode insert \ce edit_command_buffer
+bind --mode default ctrl-e edit_command_buffer
+bind --mode insert ctrl-e edit_command_buffer
 
 # source LS_COLORS
 # [ -f $HOME/.local/share/ls-colors.sh ] && source $HOME/.local/share/ls-colors.sh
