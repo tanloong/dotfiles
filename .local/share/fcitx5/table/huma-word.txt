@@ -5,6 +5,7 @@ e2=p11+p12+p21+p22
 e3=p11+p21+p31+p32
 a4=p11+p21+p31+n11
 [数据]
+tjjq 附件
 kyzz 泽连斯基
 ylgz 罗翔
 ameo 状态机
@@ -16,13 +17,14 @@ hcrn 喜剧之王
 jkiz 付航
 owsy 晚言
 ehkq 李洱
-wvko 宾西法尼亚洲
+wvko 宾西法尼亚州
 wvkf 宾西法尼亚
 atfs 表示
 eggp 平均句长
 gjpc 句长
 swss 语步
 sjmp 论元
+enpu 构式
 enja 构念
 eury 樊振东
 wtuf 定段
@@ -25729,7 +25731,6 @@ xhzj 后半夜
 qhqh 思思
 ckfm 不能再
 ixs 竦
-tjjq 附件
 kwld 深重
 agm 奘
 vmi 肽

@@ -29,7 +29,7 @@ opt.foldmethod = 'marker'
 opt.spelllang = 'en,cjk'
 opt.complete = '.,w,b,u,t,i,k'
 if vim.fn.has("nvim-0.11") == 1 then
-  opt.completeopt = 'menu,preview,fuzzy'
+  opt.completeopt = 'menu,menuone,popup,fuzzy'
 else
   opt.completeopt = 'menu,preview'
 end
@@ -41,6 +41,8 @@ opt.fillchars = { fold = '─' }
 opt.listchars = { trail = '●' }
 opt.exrc = true -- auto load .nvim.lua file under cwd
 opt.modeline = false
+-- I: don't show introductory message on startup
+opt.shortmess = 'ltToOCFI'
 
 -- if vim.fn.has("nvim-0.10") == 1 then
 --   vim.g.clipboard = {

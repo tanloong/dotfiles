@@ -29,7 +29,7 @@ map("n", "gf", "gF")
 map("n", "<c-p>", ":%s///g<Left><Left>")
 map("v", "<c-p>", ":s///g<Left><Left>")
 map("n", "<c-q>", "<Cmd>q!<CR>")
-map({ "n", "i" }, "<c-s>", "<Cmd>w<CR>")
+map("n", "<c-s>", "<Cmd>w<CR>")
 map("n", "ZW", "<cmd>bd<cr>")
 map("n", "<SPACE>e", "<Cmd>set spell!<bar>set spell?<CR>")
 map("n", "g<CR>", "<Cmd>set hlsearch!<bar>set hlsearch?<CR>")
@@ -91,7 +91,7 @@ map("n", "gs", function()
     height = 4,
     col = math.floor(vim.o.columns / 2) - math.floor(width / 2),
     border = "single",
-    title = "Bing Search",
+    title = "Search",
     title_pos = "center",
   })
   vim.cmd.startinsert()
@@ -122,12 +122,20 @@ map("i", "<CR>", function()
     ["["] = "]",
     ["{"] = "}",
   }
-  if not t[before] then
-    return "<CR>"
-  elseif t[before] == after then
+  if t[before] and t[before] == after then
     return "<CR><ESC>O"
   end
+  return "<CR>"
 end, { expr = true })
+map("i", "<c-s>", function()
+  local row, col = unpack(vim.api.nvim_win_get_cursor(0))
+  local line = vim.api.nvim_get_current_line()
+  local offset = line:sub(col + 1):find "[%])}>]"
+  if offset == nil then
+    return
+  end
+  vim.api.nvim_win_set_cursor(0, { row, col + offset })
+end, { desc = "Jump out of brackets" })
 
 -- keyset("i", "<C-e>", function()
 --   if vim.fn.pumvisible() == 1 then
