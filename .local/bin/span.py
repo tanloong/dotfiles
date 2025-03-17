@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 
 import argparse
+import os
 from collections import defaultdict
 from datetime import datetime, timedelta
-import os
 from pathlib import Path
 from unicodedata import east_asian_width as _east_asian_width
 
@@ -78,7 +78,7 @@ def add_record(args):
 
 # 生成周报
 # 生成全报
-def viz():
+def viz_bar():
     import sqlite3
 
     import matplotlib.pyplot as plt
@@ -110,6 +110,40 @@ def viz():
     plt.show()
     # plt.savefig("viz.png")
     # print("已生成历史时段分布: viz.png")
+
+
+def viz_boxplot():
+    import sqlite3
+
+    import matplotlib.pyplot as plt
+
+    plt.rcParams["font.sans-serif"] = ["SimSun"]
+    plt.rcParams["axes.unicode_minus"] = False
+
+    conn = sqlite3.connect(DATABASE)
+    c = conn.cursor()
+
+    c.execute("""SELECT timestamp FROM records ORDER BY timestamp DESC""")
+    records = [datetime.fromisoformat(row[0]) for row in c.fetchall()]
+
+    # 计算时间间隔
+    intervals = []
+    hour = timedelta(hours=1)
+    for i in range(1, len(records)):
+        delta = records[i - 1] - records[i]
+        intervals.append(delta / hour)
+    plt.boxplot(intervals, showfliers=False)
+    # plt.yticks(range(0, int(max(intervals)), 2))
+    plt.grid(True, axis='y', linestyle='--', alpha=0.7)
+
+    plt.show()
+
+
+def viz(args):
+    if args.bar:
+        viz_bar()
+    elif args.boxplot:
+        viz_boxplot()
 
 
 # 频率统计
@@ -283,9 +317,12 @@ def main():
     add_parser.add_argument("-n", "--note", default="", help="附加备注")
     add_parser.set_defaults(func=add_record)
 
-    # 生成报告命令
-    viz_parser = subparsers.add_parser("viz", help="绘制柱状图")
-    viz_parser.set_defaults(func=lambda _: viz())
+    # 可视化命令
+    viz_parser = subparsers.add_parser("viz", help="可视化")
+    group = viz_parser.add_mutually_exclusive_group(required=True)
+    group.add_argument("--bar", action="store_true", help="条形图")
+    group.add_argument("--boxplot", action="store_true", help="直方图")
+    viz_parser.set_defaults(func=lambda _: viz(args))
 
     # 查看统计命令
     stat_parser = subparsers.add_parser("stats", help="月度统计")

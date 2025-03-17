@@ -1,1 +1,1 @@
-setl autoindent = 1
+setl autoindent=1
