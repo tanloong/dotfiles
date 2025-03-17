@@ -18,7 +18,7 @@ local config = {
   -- optional curl parameters (for proxy, etc.)
   -- curl_params = { "--proxy", "http://X.X.X.X:XXXX" }
   curl_params = {},
-  chat_template = require("gp.defaults").short_chat_template,
+  chat_template = require "gp.defaults".short_chat_template,
   -- chat user prompt prefix
   chat_user_prefix = "🗨:",
   -- chat assistant prompt prefix (static string or a table {static, template})

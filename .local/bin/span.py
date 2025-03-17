@@ -3,7 +3,9 @@
 import argparse
 from collections import defaultdict
 from datetime import datetime, timedelta
+import os
 from pathlib import Path
+from unicodedata import east_asian_width as _east_asian_width
 
 DATABASE = Path("~/.config/span.db").expanduser()
 
@@ -103,10 +105,11 @@ def viz():
     plt.title("历史时段分布")
     plt.xlabel("时段")
     plt.ylabel("次数")
-    plt.xticks(rotation=45)
+    plt.xticks(rotation=30)
     plt.tight_layout()
-    plt.savefig("viz.png")
-    print("已生成历史时段分布: viz.png")
+    plt.show()
+    # plt.savefig("viz.png")
+    # print("已生成历史时段分布: viz.png")
 
 
 # 频率统计
@@ -179,15 +182,26 @@ def show_rank():
         def format_time(seconds):
             hours, remainder = divmod(seconds, 3600)
             minutes, seconds = divmod(remainder, 60)
-            return f"{int(hours)}小时{int(minutes)}分钟"
+            return f"{int(hours):02}小时{int(minutes):02}分钟"
 
         print(f"{format_time(current_seconds)} ({rank}/{len(intervals) + 1})")
 
+        def get_east_asin_width_count(s: str) -> int:
+            ret = 0
+            for c in s:
+                if _east_asian_width(c) in "FWA":
+                    ret += 2
+                else:
+                    ret += 1
+            return ret
+
         def print_bar(n1, n2, title):
             progress = min(n1 / n2, 1.0)
-            bar_length = 50
+            first_part = f"{title} {progress * 100:.1f}%"
+            bar_length = min(os.get_terminal_size().columns - get_east_asin_width_count(first_part) - 3, 30)
             filled = int(progress * bar_length)
-            print(f"{title} {progress * 100:.1f}% [{'#' * filled}{'-' * (bar_length - filled)}]")
+            second_part = f"[{'#' * filled}{'-' * (bar_length - filled)}]"
+            print(f"{first_part} {second_part}")
 
         # 进度条显示
         print_bar(current_seconds, next_interval, f"距下一间隔 ({format_time(next_interval)})")
