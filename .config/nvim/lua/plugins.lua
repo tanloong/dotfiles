@@ -334,80 +334,94 @@ local plugin_specs = {
     event = "VeryLazy",
   },
   {
+    "https://github.com/folke/lazydev.nvim",
+    ft = "lua", -- only load on lua files
+    opts = {
+      library = {
+        -- See the configuration section for more details
+        -- Load luvit types when the `vim.uv` word is found
+        { path = "${3rd}/luv/library", words = { "vim%.uv" } },
+      },
+    },
+  },
+  {
     "neovim/nvim-lspconfig",
-    enabled = true,
+    enabled = false,
     event = { "BufReadPre", "BufNewFile" },
-    config = function() require("plugin_config.lsp") end,
+    config = function() require "plugin_config.lsp" end,
     dependencies = {
-      {
-        "folke/lazydev.nvim",
-        ft = "lua", -- only load on lua files
-        opts = {
-          library = {
-            -- See the configuration section for more details
-            -- Load luvit types when the `vim.uv` word is found
-            { path = "${3rd}/luv/library", words = { "vim%.uv" } },
+      { "folke/lazydev.nvim", },
+      { "saghen/blink.cmp" },
+    },
+  },
+  {
+    "saghen/blink.cmp",
+    enabled = true,
+    -- optional: provides snippets for the snippet source
+    dependencies = { "rafamadriz/friendly-snippets", "luozhiya/fittencode.nvim",
+      "Kaiser-Yang/blink-cmp-dictionary", },
+
+    -- use a release tag to download pre-built binaries
+    version = "*",
+    -- AND/OR build from source, requires nightly: https://rust-lang.github.io/rustup/concepts/channels.html#working-with-nightly-rust
+    -- build = 'cargo build --release',
+    -- If you use nix, you can build from source using latest nightly rust with:
+    -- build = 'nix run .#build-plugin',
+
+    ---@module 'blink.cmp'
+    ---@type blink.cmp.Config
+    opts = {
+      -- 'default' for mappings similar to built-in completion
+      -- 'super-tab' for mappings similar to vscode (tab to accept, arrow keys to navigate)
+      -- 'enter' for mappings similar to 'super-tab' but with 'enter' to accept
+      -- See the full "keymap" documentation for information on defining your own keymap.
+      keymap = { preset = "default" },
+      completion = {
+        list = {
+          selection = {
+            -- don't auto select the first item, do preview on selection
+            preselect = true,
+            auto_insert = true
+          }
+        },
+        menu = {
+          draw = {
+            columns = { { "label" }, { "kind" } },
+          }
+        }
+      },
+      sources = {
+        default = { "lazydev", "lsp", "snippets", "buffer", "path", "dictionary" },
+        providers = {
+          lazydev = {
+            name = "LazyDev",
+            module = "lazydev.integrations.blink",
+            -- make lazydev completions top priority (see `:h blink.cmp`)
+            score_offset = 100,
+          },
+          dictionary = {
+            module = "blink-cmp-dictionary",
+            name = "Dict",
+            -- Make sure this is at least 2.
+            -- 3 is recommended
+            min_keyword_length = 3,
+            max_items = 4,
+            opts = {
+              dictionary_files = { vim.api.nvim_get_option_value("dictionary", {}) },
+            },
+            score_offset = -50,
           },
         },
       },
-      {'saghen/blink.cmp'},
     },
+    opts_extend = { "sources.default" }
   },
-{
-  'saghen/blink.cmp',
-  enabled = true,
-  -- optional: provides snippets for the snippet source
-  dependencies = {'rafamadriz/friendly-snippets', 'luozhiya/fittencode.nvim',
- 'Kaiser-Yang/blink-cmp-dictionary', },
-
-  -- use a release tag to download pre-built binaries
-  version = '*',
-  -- AND/OR build from source, requires nightly: https://rust-lang.github.io/rustup/concepts/channels.html#working-with-nightly-rust
-  -- build = 'cargo build --release',
-  -- If you use nix, you can build from source using latest nightly rust with:
-  -- build = 'nix run .#build-plugin',
-
-  ---@module 'blink.cmp'
-  ---@type blink.cmp.Config
-  opts = {
-    -- 'default' for mappings similar to built-in completion
-    -- 'super-tab' for mappings similar to vscode (tab to accept, arrow keys to navigate)
-    -- 'enter' for mappings similar to 'super-tab' but with 'enter' to accept
-    -- See the full "keymap" documentation for information on defining your own keymap.
-    keymap = { preset = 'default' },
-    completion = {
-      list = {
-        selection = {
-          -- don't auto select the first item, do preview on selection
-          preselect = false, auto_insert = true
-        }
-      }
-    },
-    sources = {
-      default = { 'dictionary', 'lsp', 'path', 'snippets', 'buffer' },
-
-providers = {
-                dictionary = {
-                    module = 'blink-cmp-dictionary',
-                    name = 'Dict',
-                    -- Make sure this is at least 2.
-                    -- 3 is recommended
-                    min_keyword_length = 3,
-                    max_items = 4,
-                    opts = {
-                      dictionary_files = {vim.api.nvim_get_option_value("dictionary", {})},
-                    },
-    },},
+  {
+    "https://github.com/nvimdev/phoenix.nvim",
+    enabled = false,
+    event = "VeryLazy",
+    config = function() require "plugin_config.phoenix" end,
   },
-},
-  opts_extend = { "sources.default" }
-},
-{
-  "https://github.com/nvimdev/phoenix.nvim",
-  enabled = false,
-  event = "VeryLazy",
-  config = function() require("plugin_config.phoenix") end,
-},
   {
     "hrsh7th/nvim-cmp",
     enabled = false,
@@ -456,7 +470,7 @@ providers = {
             ["<Tab>"] = "accept_all_suggestions",
             ["<c-Right>"] = "accept_word",
             ["<s-Right>"] = "accept_line",
-            ['<A-\\>'] = 'triggering_completion',
+            ["<A-\\>"] = "triggering_completion",
           },
         }, }
       keyset({ "i", "n" }, "<s-tab>", function()
