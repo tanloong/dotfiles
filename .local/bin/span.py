@@ -134,7 +134,7 @@ def viz_boxplot():
         intervals.append(delta / hour)
     plt.boxplot(intervals, showfliers=False)
     # plt.yticks(range(0, int(max(intervals)), 2))
-    plt.grid(True, axis='y', linestyle='--', alpha=0.7)
+    plt.grid(True, axis="y", linestyle="--", alpha=0.7)
 
     plt.show()
 
@@ -293,6 +293,8 @@ def delete_records():
 
         print(f"成功删除 {c.rowcount} 条记录")
 
+    except KeyboardInterrupt:
+        pass
     except ValueError:
         print("错误：请输入有效的ID范围，如 '1-3,5'")
     except Exception as e:
