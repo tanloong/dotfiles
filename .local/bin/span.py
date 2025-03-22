@@ -303,12 +303,34 @@ def delete_records():
         conn.close()
 
 
+def print_intervals():
+    import sqlite3
+
+    conn = sqlite3.connect(DATABASE)
+    c = conn.cursor()
+
+    # 获取所有记录的时间戳
+    c.execute("""SELECT timestamp FROM records ORDER BY timestamp DESC""")
+    records = [datetime.fromisoformat(row[0]) for row in c.fetchall()]
+
+    if not records:
+        print("暂无记录")
+        return
+
+    for i in range(1, len(records)):
+        delta = records[i - 1] - records[i]
+        print(f"{delta / timedelta(hours=1):.2f}小时")
+
+
 # 命令行界面
 def main():
     init_db()
 
     parser = argparse.ArgumentParser(description="习惯追踪管理器")
     subparsers = parser.add_subparsers()
+
+    intervals_parser = subparsers.add_parser("intervals")
+    intervals_parser.set_defaults(func=lambda _: print_intervals())
 
     add_parser = subparsers.add_parser("add")
     add_parser.add_argument(

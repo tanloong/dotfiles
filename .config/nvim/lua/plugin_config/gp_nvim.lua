@@ -6,9 +6,9 @@ local config = {
       secret = "...",
       endpoint = "https://api.deepseek.com/chat/completions",
     },
-    openai = {
-      secret = os.getenv "OPENAI_API_KEY",
-      endpoint = os.getenv "OPENAI_API_BASE" .. "/chat/completions",
+    chatanywhere = {
+      secret = os.getenv "CHATANYWHERE_API_KEY",
+      endpoint = os.getenv "CHATANYWHERE_API_BASE" .. "/chat/completions",
     },
     zhipu = {
       secret = os.getenv "ZHIPU_API_KEY",
@@ -95,7 +95,7 @@ local config = {
   agents = {
     {
       provider = "zhipu",
-      name = "智谱",
+      name = "glm-4-flash",
       chat = true,
       command = true,
       -- string with model name or table with model name and parameters
@@ -104,8 +104,28 @@ local config = {
       system_prompt = [[你是全世界最先进的人工智能助手]],
     },
     {
-      provider = "openai",
-      name = "ChatGPT4o-mini",
+      provider = "chatanywhere",
+      name = "deepseek-v3",
+      chat = true,
+      command = true,
+      -- string with model name or table with model name and parameters
+      model = { model = "deepseek-v3", temperature = 1.1, top_p = 1 },
+      -- system prompt (use this to specify the persona/role of the AI)
+      system_prompt = "",
+    },
+    {
+      provider = "chatanywhere",
+      name = "deepseek-r1",
+      chat = true,
+      command = true,
+      -- string with model name or table with model name and parameters
+      model = { model = "deepseek-r1", temperature = 1.1, top_p = 1 },
+      -- system prompt (use this to specify the persona/role of the AI)
+      system_prompt = "",
+    },
+    {
+      provider = "chatanywhere",
+      name = "gpt-4o-mini",
       chat = true,
       command = true,
       -- string with model name or table with model name and parameters
