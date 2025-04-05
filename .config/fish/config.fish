@@ -34,7 +34,8 @@ fish_add_path --path \
   $HOME/.local/bin/internship \
   $HOME/software/rasp3os/scripts \
   $STANFORD_TREGEX_HOME \
-  $STANFORD_PARSER_HOME
+  $STANFORD_PARSER_HOME \
+  "/home/usr/work/wpz/scripts/"
 
 set --global --export NLTK_DATA $HOME/software/nltk_data/
 set --global --export TESSDATA_PREFIX /usr/share/tessdata/

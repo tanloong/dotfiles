@@ -115,6 +115,69 @@ endsnippet
 snippet ,f "=" wA
 = $0
 endsnippet
+
+snippet rf "wpz reference" w
+B`!v strftime("%Y%m%d")`
+endsnippet
+snippet em "email metadata" w
+---
+subject: $0
+date: 
+cc: anne deng <anne@wpzline.com>; Ricky <wpze@wpzline.com>; Michael <wpzm@wpzline.com>
+from:
+to1:
+---
+endsnippet
+
+snippet dappol "DAP 询价起运港" w
+Dear team,
+Hope you are well!
+We have a new $0CL inquiry and need your best rate, please kindly check the info below:
+
+POL: <<>>
+POD: <<>>
+Container type: <<>>
+Weight: <<>>
+Incoterm: DAP
+
+Please advise us about the rates including the ocean freight, shipping schedule and local charge at POL etc.
+endsnippet
+
+snippet dappod "DAP 询价目的港" w
+Dear team,
+Hope you are well!
+We have a new $0CL inquiry and need your best rate, please kindly check the info below:
+
+POL: <<>>
+POD: please advise the nearest port from the delivery address.
+Delivery address: <<>>
+Incoterm: DAP
+Commodity: <<>>
+HS code: <<>>
+Weight: <<>>
+Measurement: <<>>
+Container type: <<>>
+
+Please advise us about the rates, including the trucking fee and local charge at POD etc.
+endsnippet
+
+snippet ddppod "DDP 询价目的港" w
+Dear team,
+Good day!
+We have a new inquiry and need your best rates
+
+POD: Please advise the nearest port from the delivery address
+Delivery address: $0
+Commodity: <<>>
+HS code: <<>>
+Weight: <<>>
+Incoterm: DDP
+Value: <<>>
+Cargo ready date: <<>>
+
+Please advise the rates including the trucking fee, custom clearance fee and tax&duties fee etc.
+endsnippet
+
 # ===================
 # Custom snippets end
 # ===================

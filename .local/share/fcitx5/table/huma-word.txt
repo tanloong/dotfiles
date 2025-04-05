@@ -5,6 +5,35 @@ e2=p11+p12+p21+p22
 e3=p11+p21+p31+p32
 a4=p11+p21+p31+n11
 [数据]
+oylt 曼萨
+olci 曼萨尼约
+uxhq 换单
+hqav 单背
+rrav 双背
+kbto 海运费
+snjj 询价
+klke 港杂
+mden 大柜
+yxen 小柜
+mphq 套单
+aunp 适载
+jvjp 货代
+oalh 电放
+uohq 提单
+agen 装柜
+uoen 提柜
+qren 取柜
+uzhm 报关
+saij 订舱
+ajkh 卸货港
+qukl 目的港
+pbkl 起运港
+abkl 装运港
+ajkl 装货港
+rehq 箱单
+jboa 货好时间
+jvbh 货好
+ihaf 船公司
 layl 方乙酩
 vmhk 西太普泽
 vmhk 西太普泽国际物流有限公司
@@ -27180,7 +27209,6 @@ hpiu 分红
 hvhf 前夫
 ejab 见效
 addf 问号
-uzhm 报关
 przs 紧身
 ukuh 搅拌
 eklr 根深蒂固
@@ -27726,7 +27754,6 @@ cbbc 不灵
 tdoh 衰败
 wauc 割据
 ehzh 李斯
-uohq 提单
 fsqi 正眼
 rmaf 因病
 ndka 理清
@@ -59026,7 +59053,6 @@ dzur 无可挽回
 pxvg 踮脚
 nutf 左丘
 fjfx 社会福利
-bujv 建华
 ycsd 车架
 xbjc 争做
 jugw 入彀
@@ -71566,7 +71592,6 @@ sjnp 认栽
 lfrp 世事难料
 maup 专挑
 chtv 火雨
-snjj 询价
 zagp 魔域
 uojx 巩俐
 szba 谢娜
@@ -96651,7 +96676,6 @@ yfxj 督府
 vsqe 山果
 atmf 帮同
 tbgz 雪坑
-jvjp 货代
 xfmd 厦大
 pzui 超链接
 xtue 应用技术
@@ -200616,12 +200640,12 @@ gwfv 䐨
 /sbu ᵤ
 /sbv ᵥ
 /sbx ₓ
+/sx ×
+/sx ÷
+/sx ±
 /sx ≤
 /sx ≥
 /sx ≠
-/sx ÷
-/sx ±
-/sx ×
 /sx ∈
 /sx ∏
 /sx ∑

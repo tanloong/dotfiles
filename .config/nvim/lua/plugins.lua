@@ -143,6 +143,7 @@ local plugin_specs = {
   -- wildfire.nvim
   {
     "https://github.com/SUSTech-data/wildfire.nvim",
+    enabled = false,
     dependencies = "nvim-treesitter/nvim-treesitter",
     event = "VeryLazy",
     config = function() require "plugin_config.wildfire" end,
@@ -495,7 +496,6 @@ local plugin_specs = {
       require "term"
     end,
   },
-
   ----------------------------------- DISABLED -----------------------------------{{{
   {
     "folke/snacks.nvim",
@@ -602,15 +602,34 @@ local plugin_specs = {
   },
   {
     "https://github.com/stevearc/oil.nvim",
-    enabled = false,
-    event = "VeryLazy",
+    enabled = true,
+    lazy = false,
     config = function()
       require "oil".setup {
         columns = { "size", "mtime" },
         float = { border = "single", },
+        keymaps = {
+          ["g?"] = { "actions.show_help", mode = "n" },
+          ["<c-l>"] = "actions.select",
+          -- ["<C-s>"] = { "actions.select", opts = { vertical = true } },
+          -- ["<C-s>"] = { "actions.select", opts = { vertical = true } },
+          -- ["<C-h>"] = { "actions.select", opts = { horizontal = true } },
+          ["<C-t>"] = { "actions.select", opts = { tab = true } },
+          ["<C-p>"] = "actions.preview",
+          ["<C-c>"] = { "actions.close", mode = "n" },
+          ["R"] = "actions.refresh",
+          ["<c-h>"] = { "actions.parent", mode = "n" },
+          ["_"] = { "actions.open_cwd", mode = "n" },
+          ["`"] = { "actions.cd", mode = "n" },
+          ["~"] = { "actions.cd", opts = { scope = "tab" }, mode = "n" },
+          ["gs"] = { "actions.change_sort", mode = "n" },
+          ["gx"] = "actions.open_external",
+          ["zh"] = { "actions.toggle_hidden", mode = "n" },
+          ["g\\"] = { "actions.toggle_trash", mode = "n" },
+        },
+        use_default_keymaps = false,
       }
-      keyset("n", "zh", require "oil".toggle_hidden)
-      keyset("n", "tt", require "oil".toggle_float)
+      keyset("n", "<c-h>", "<CMD>Oil<CR>", { desc = "Open parent directory" })
     end
   },
   {

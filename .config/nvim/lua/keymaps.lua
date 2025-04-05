@@ -29,8 +29,7 @@ map("n", "gf", "gF")
 map("n", "<c-p>", ":%s///g<Left><Left>")
 map("v", "<c-p>", ":s///g<Left><Left>")
 map("n", "<c-q>", "<Cmd>q!<CR>")
-map("n", "<c-s>", "<Cmd>w<CR>")
-map("n", "ZW", "<cmd>bd<cr>")
+map({ "n", "i" }, "<c-s>", "<Cmd>w<CR>")
 map("n", "<SPACE>e", "<Cmd>set spell!<bar>set spell?<CR>")
 map("n", "g<CR>", "<Cmd>set hlsearch!<bar>set hlsearch?<CR>")
 map("n", "s", "<nop>")
@@ -68,7 +67,7 @@ map("n", "gV", "`[v`]")
 
 -- web search
 map("n", "gX", function()
-  vim.ui.open(("https://bing.com/search?q=%s"):format(vim.fn.expand "<cword>"))
+  vim.ui.open(("https://bing.com/search?q=%s&form=QBLH"):format(vim.fn.expand "<cword>"))
   -- vim.ui.open(("https://metaso.cn?q=%s"):format(vim.fn.expand "<cword>"))
 end)
 map("x", "gX", function()
@@ -100,7 +99,7 @@ map("n", "gs", function()
   vim.wo[winid].lcs = "trail: "
   vim.wo[winid].wrap = true
   vim.fn.prompt_setcallback(bufnr, function(text)
-    vim.ui.open(("https://bing.com/search?q=%s"):format(vim.trim(text)))
+    vim.ui.open(("https://bing.com/search?q=%s&form=QBLH"):format(vim.trim(text)))
     -- vim.ui.open(("https://metaso.cn?q=%s"):format(vim.trim(text)))
     api.nvim_win_close(winid, true)
   end)
@@ -148,18 +147,18 @@ end, { desc = "Jump out of brackets" })
 -- NAVIGATION
 -- jumping between a normal buffer and a neovim terminal
 map("t", "<esc><esc>", "<c-\\><c-n>")
-map("t", "<c-h>", "<c-\\><c-N><c-w>h")
+-- map("t", "<c-h>", "<c-\\><c-N><c-w>h")
 map("t", "<c-j>", "<c-\\><c-N><c-w>j")
 map("t", "<c-k>", "<c-\\><c-N><c-w>k")
-map("t", "<c-l>", "<c-\\><c-N><c-w>l")
+-- map("t", "<c-l>", "<c-\\><c-N><c-w>l")
 map("t", "<c-v><c-j>", "<c-j>")
 map("t", "<c-v><c-k>", "<c-k>")
-map("t", "<c-v><c-h>", "<c-h>")
-map("t", "<c-v><c-l>", "<c-l>")
-map({ "i", "n" }, "<c-h>", "<c-\\><c-N><c-w>h")
+-- map("t", "<c-v><c-h>", "<c-h>")
+-- map("t", "<c-v><c-l>", "<c-l>")
+-- map({ "i", "n" }, "<c-h>", "<c-\\><c-N><c-w>h")
 map({ "i", "n" }, "<c-j>", "<c-\\><c-N><c-w>j")
 map({ "i", "n" }, "<c-k>", "<c-\\><c-N><c-w>k")
-map({ "i", "n" }, "<c-l>", "<c-\\><c-N><c-w>l")
+-- map({ "i", "n" }, "<c-l>", "<c-\\><c-N><c-w>l")
 
 -- Resize terminals
 map("t", "<c-up>", "<c-\\><c-N><Cmd>res +2|startinsert<CR>")
@@ -337,3 +336,32 @@ end
 map("n", "gcA", comment_end)
 map("n", "gcO", comment_above)
 map("n", "gco", comment_below)
+
+--- Map |gx| to call |vim.ui.open| on the <cfile> at cursor.
+local function do_open(uri)
+  local cmd, err = vim.ui.open(uri)
+  local rv = cmd and cmd:wait(1000) or nil
+  if cmd and rv and rv.code ~= 0 and rv.code ~= 124 then
+    err = ("vim.ui.open: command failed (%d): %s"):format(rv.code, vim.inspect(cmd.cmd))
+  end
+  return err
+end
+local gx_desc =
+"Opens filepath or URI under cursor with the system handler (file explorer, web browser, …)"
+vim.keymap.set({ "n" }, "gx", function()
+  for _, url in ipairs(require "vim.ui"._get_urls()) do
+    local err = do_open(url)
+    if err then
+      vim.notify(err, vim.log.levels.ERROR)
+    end
+  end
+end, { desc = gx_desc })
+vim.keymap.set({ "x" }, "gx", function()
+  local lines =
+      vim.fn.getregion(vim.fn.getpos ".", vim.fn.getpos "v", { type = vim.fn.mode() })
+  -- Trim whitespace on each line and concatenate.
+  local err = do_open(table.concat(vim.iter(lines):map(vim.trim):totable()))
+  if err then
+    vim.notify(err, vim.log.levels.ERROR)
+  end
+end, { desc = gx_desc })
