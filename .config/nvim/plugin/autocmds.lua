@@ -15,7 +15,7 @@ au("TermOpen",
   {
     pattern = "*",
     group = group,
-    command = [[setlocal norelativenumber nonumber | setlocal statusline=channel:\ %{&channel}]]
+    command = [[setlocal statusline=channel:\ %{&channel}]]
   }) -- }}}
 
 -- {{{ auto save

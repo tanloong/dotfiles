@@ -326,7 +326,7 @@ def print_intervals():
 def main():
     init_db()
 
-    parser = argparse.ArgumentParser(description="习惯追踪管理器")
+    parser = argparse.ArgumentParser()
     subparsers = parser.add_subparsers()
 
     intervals_parser = subparsers.add_parser("intervals")

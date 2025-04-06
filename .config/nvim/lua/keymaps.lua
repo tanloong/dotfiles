@@ -99,7 +99,7 @@ map("n", "gs", function()
   vim.wo[winid].lcs = "trail: "
   vim.wo[winid].wrap = true
   vim.fn.prompt_setcallback(bufnr, function(text)
-    vim.ui.open(("https://bing.com/search?q=%s&form=QBLH"):format(vim.trim(text)))
+    vim.ui.open(("https://cn.bing.com/search?q=%s&form=QBLH"):format(vim.trim(text)))
     -- vim.ui.open(("https://metaso.cn?q=%s"):format(vim.trim(text)))
     api.nvim_win_close(winid, true)
   end)
@@ -126,7 +126,7 @@ map("i", "<CR>", function()
   end
   return "<CR>"
 end, { expr = true })
-map("i", "<c-s>", function()
+map("i", "<c-l>", function()
   local row, col = unpack(vim.api.nvim_win_get_cursor(0))
   local line = vim.api.nvim_get_current_line()
   local offset = line:sub(col + 1):find "[%])}>]"
