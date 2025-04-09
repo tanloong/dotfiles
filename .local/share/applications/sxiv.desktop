@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=sxiv
+Exec=sxiv %U
+Terminal=false
+Type=Application
+StartupWMClass=sxiv
+Comment=sxiv

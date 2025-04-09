@@ -5,6 +5,17 @@ e2=p11+p12+p21+p22
 e3=p11+p21+p31+p32
 a4=p11+p21+p31+n11
 [数据]
+iozh 船期
+utaa 托书
+nfmu 威达
+wuwz 实报实销
+qhhq 具备
+qhhq 联单
+ddld 品名
+hcjv 普货
+wrjf 免箱使
+rejf 箱使
+zjmf 金奈
 oylt 曼萨
 olci 曼萨尼约
 uxhq 换单
@@ -5007,7 +5018,6 @@ bci 妓
 zhas 勘
 tuyw 我爱
 rha 篷
-qhhq 具备
 ntja 骄傲
 jteg 什么样
 nsys 十四
@@ -49808,7 +49818,6 @@ ycvy 醐
 jcqo 创业者
 xjmj 府内
 ovin 盟约
-ddld 品名
 jtjt 侏儒
 zjmp 金狮
 kskv 水漂

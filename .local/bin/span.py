@@ -2,7 +2,9 @@
 
 import argparse
 import os
+import sqlite3
 from collections import defaultdict
+from contextlib import contextmanager
 from datetime import datetime, timedelta
 from pathlib import Path
 from unicodedata import east_asian_width as _east_asian_width
@@ -12,19 +14,14 @@ DATABASE = Path("~/.config/span.db").expanduser()
 
 # 数据库初始化
 def init_db():
-    import sqlite3
-
-    conn = sqlite3.connect(DATABASE)
-    c = conn.cursor()
-    c.execute("""CREATE TABLE IF NOT EXISTS records
-                 (id INTEGER PRIMARY KEY AUTOINCREMENT,
-                  timestamp DATETIME,
-                  note TEXT)""")
-    c.execute("""CREATE TABLE IF NOT EXISTS config
-                 (key TEXT PRIMARY KEY,
-                  value TEXT)""")
-    conn.commit()
-    conn.close()
+    with db_connection() as c:
+        c.execute("""CREATE TABLE IF NOT EXISTS records
+                     (id INTEGER PRIMARY KEY AUTOINCREMENT,
+                      timestamp DATETIME,
+                      note TEXT)""")
+        c.execute("""CREATE TABLE IF NOT EXISTS config
+                     (key TEXT PRIMARY KEY,
+                      value TEXT)""")
 
 
 # 记录新事件（支持手动指定时间）
@@ -148,27 +145,23 @@ def viz(args):
 
 # 频率统计
 def show_statistics():
-    import sqlite3
+    with db_connection() as c:
+        # 本月数据
+        c.execute(
+            """SELECT COUNT(*) FROM records
+                    WHERE strftime('%Y-%m', timestamp) = ?""",
+            (datetime.now().strftime("%Y-%m"),),
+        )
+        current_month = c.fetchone()[0]
 
-    conn = sqlite3.connect(DATABASE)
-    c = conn.cursor()
-
-    # 本月数据
-    c.execute(
-        """SELECT COUNT(*) FROM records
-                WHERE strftime('%Y-%m', timestamp) = ?""",
-        (datetime.now().strftime("%Y-%m"),),
-    )
-    current_month = c.fetchone()[0]
-
-    # 上月数据
-    last_month = (datetime.now() - timedelta(days=30)).strftime("%Y-%m")
-    c.execute(
-        """SELECT COUNT(*) FROM records
-                WHERE strftime('%Y-%m', timestamp) = ?""",
-        (last_month,),
-    )
-    prev_month = c.fetchone()[0]
+        # 上月数据
+        last_month = (datetime.now() - timedelta(days=30)).strftime("%Y-%m")
+        c.execute(
+            """SELECT COUNT(*) FROM records
+                    WHERE strftime('%Y-%m', timestamp) = ?""",
+            (last_month,),
+        )
+        prev_month = c.fetchone()[0]
 
     print(f"\n本月次数: {current_month}")
     print(f"上月次数: {prev_month}")
@@ -254,7 +247,6 @@ def delete_records():
 
     conn = sqlite3.connect(DATABASE)
     c = conn.cursor()
-
     try:
         # 打印所有记录
         c.execute("""SELECT id, timestamp FROM records ORDER BY timestamp""")
@@ -304,14 +296,10 @@ def delete_records():
 
 
 def print_intervals():
-    import sqlite3
-
-    conn = sqlite3.connect(DATABASE)
-    c = conn.cursor()
-
-    # 获取所有记录的时间戳
-    c.execute("""SELECT timestamp FROM records ORDER BY timestamp DESC""")
-    records = [datetime.fromisoformat(row[0]) for row in c.fetchall()]
+    with db_connection() as c:
+        # 获取所有记录的时间戳
+        c.execute("""SELECT timestamp FROM records ORDER BY timestamp DESC""")
+        records = [datetime.fromisoformat(row[0]) for row in c.fetchall()]
 
     if not records:
         print("暂无记录")
@@ -320,6 +308,56 @@ def print_intervals():
     for i in range(1, len(records)):
         delta = records[i - 1] - records[i]
         print(f"{delta / timedelta(hours=1):.2f}小时")
+
+
+@contextmanager
+def db_connection():
+    """数据库连接上下文管理器"""
+    conn = sqlite3.connect(DATABASE)
+    try:
+        yield conn.cursor()
+        conn.commit()
+    finally:
+        conn.close()
+
+
+def get_records():
+    """获取按时间倒序排列的记录"""
+    with db_connection() as c:
+        c.execute("SELECT timestamp FROM records ORDER BY timestamp DESC")
+        return [datetime.fromisoformat(row[0]) for row in c.fetchall()]
+
+
+def list_intervals():
+    records = get_records()
+    if len(records) < 2:
+        print("记录不足，无法计算间隔")
+        return
+
+    intervals = []
+    for i in range(1, len(records)):
+        delta = records[i - 1] - records[i]
+        intervals.append((records[i - 1], records[i], delta))
+
+    # 按间隔时长降序排序
+    intervals.sort(key=lambda x: x[2], reverse=True)
+
+    # 表格输出
+    headers = ["开始时间", "结束时间", "间隔时长"]
+    col_width = [25, 25, 15]
+
+    # 表头
+    header = "".join(f"{h:<{w}}" for h, w in zip(headers, col_width))
+    print(f"\n{header}\n{'=' * (sum(col_width))}")
+
+    # 数据行
+    for start, end, delta in intervals:
+        row = [
+            start.strftime("%Y-%m-%d %H:%M"),
+            end.strftime("%Y-%m-%d %H:%M"),
+            f"{delta.total_seconds() / 3600:.2f}小时",
+        ]
+        print("".join(f"{cell:<{w}}" for cell, w in zip(row, col_width)))
 
 
 # 命令行界面
@@ -359,6 +397,8 @@ def main():
     # 在命令行解析中添加delete命令
     delete_parser = subparsers.add_parser("delete", help="删除记录")
     delete_parser.set_defaults(func=lambda _: delete_records())
+
+    subparsers.add_parser("list").set_defaults(func=lambda _: list_intervals())
 
     args = parser.parse_args()
     if hasattr(args, "func"):

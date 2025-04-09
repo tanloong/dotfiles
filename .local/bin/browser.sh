@@ -4,4 +4,5 @@ IFS=$'\n\t'
 
 # chromium --enable-features=UseOzonePlatform --ozone-platform=wayland
 # brave "$@"
-chromium "$@"
+# chromium "$@"
+firefox "$@"
