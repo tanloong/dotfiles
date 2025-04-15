@@ -5,7 +5,7 @@ require "oil".setup {
   float = { border = "single", },
   keymaps = {
     ["g?"] = { "actions.show_help", mode = "n" },
-    ["<c-l>"] = "actions.select",
+    ["l"] = "actions.select",
     -- ["<C-s>"] = { "actions.select", opts = { vertical = true } },
     -- ["<C-s>"] = { "actions.select", opts = { vertical = true } },
     -- ["<C-h>"] = { "actions.select", opts = { horizontal = true } },
@@ -13,7 +13,7 @@ require "oil".setup {
     ["<C-p>"] = "actions.preview",
     ["<C-c>"] = { "actions.close", mode = "n" },
     ["R"] = "actions.refresh",
-    ["<c-h>"] = { "actions.parent", mode = "n" },
+    ["h"] = { "actions.parent", mode = "n" },
     ["_"] = { "actions.open_cwd", mode = "n" },
     ["`"] = { "actions.cd", mode = "n" },
     ["~"] = { "actions.cd", opts = { scope = "tab" }, mode = "n" },
@@ -32,4 +32,4 @@ require "oil".setup {
   },
   use_default_keymaps = false,
 }
-vim.keymap.set("n", "<c-h>", "<CMD>Oil<CR>", { desc = "Open parent directory" })
+vim.keymap.set("n", "<c-h>", require("oil").open_float, { desc = "Open parent directory" })

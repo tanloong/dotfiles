@@ -125,12 +125,28 @@ local config = {
     },
     {
       provider = "chatanywhere",
-      name = "gpt-4o-mini",
+      name = "gpt-4.1-mini",
       chat = true,
       command = true,
       -- string with model name or table with model name and parameters
-      model = { model = "gpt-4o-mini", temperature = 1.1, top_p = 1 },
+      model = { model = "gpt-4.1-mini", temperature = 1.1, top_p = 1 },
       -- system prompt (use this to specify the persona/role of the AI)
+      system_prompt = "你是一个有用的AI",
+    },
+    {
+      provider = "chatanywhere",
+      name = "gpt-4.1-nano",
+      chat = true,
+      command = true,
+      model = { model = "gpt-4.1-nano", temperature = 1.1, top_p = 1 },
+      system_prompt = "你是一个有用的AI",
+    },
+    {
+      provider = "chatanywhere",
+      name = "gpt-4o-mini",
+      chat = true,
+      command = true,
+      model = { model = "gpt-4o-mini", temperature = 1.1, top_p = 1 },
       system_prompt = "你是一个有用的AI",
     },
     {

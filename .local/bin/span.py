@@ -129,7 +129,7 @@ def viz_boxplot():
     for i in range(1, len(records)):
         delta = records[i - 1] - records[i]
         intervals.append(delta / hour)
-    plt.boxplot(intervals, showfliers=False)
+    plt.boxplot(intervals, showfliers=False, whis=float("inf"))
     # plt.yticks(range(0, int(max(intervals)), 2))
     plt.grid(True, axis="y", linestyle="--", alpha=0.7)
 
