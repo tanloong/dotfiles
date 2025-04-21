@@ -2,10 +2,6 @@
 
 local config = {
   providers = {
-    deepseek = {
-      secret = "...",
-      endpoint = "https://api.deepseek.com/chat/completions",
-    },
     chatanywhere = {
       secret = os.getenv "CHATANYWHERE_API_KEY",
       endpoint = os.getenv "CHATANYWHERE_API_BASE" .. "/chat/completions",
@@ -13,6 +9,92 @@ local config = {
     zhipu = {
       secret = os.getenv "ZHIPU_API_KEY",
       endpoint = os.getenv "ZHIPU_API_BASE" .. "/chat/completions",
+    },
+    github = {
+      secret = os.getenv "GITHUB_TOKEN",
+      endpoint = "https://models.github.ai/inference/chat/completions",
+    },
+  },
+  agents = {
+    {
+      provider = "zhipu",
+      name = "glm-4-flash",
+      chat = true,
+      command = true,
+      -- string with model name or table with model name and parameters
+      model = { model = "glm-4-flash", temperature = 1, top_p = 1 },
+      -- system prompt (use this to specify the persona/role of the AI)
+      system_prompt = [[你是全世界最先进的人工智能助手]],
+    },
+    {
+      provider = "chatanywhere",
+      name = "deepseek-v3(chatanywhere)",
+      chat = true,
+      command = true,
+      -- string with model name or table with model name and parameters
+      model = { model = "deepseek-v3", temperature = 1.1, top_p = 1 },
+      -- system prompt (use this to specify the persona/role of the AI)
+      system_prompt = "",
+    },
+    {
+      provider = "chatanywhere",
+      name = "deepseek-r1(chatanywhere)",
+      chat = true,
+      command = true,
+      -- string with model name or table with model name and parameters
+      model = { model = "deepseek-r1", temperature = 1.1, top_p = 1 },
+      -- system prompt (use this to specify the persona/role of the AI)
+      system_prompt = "",
+    },
+    {
+      provider = "chatanywhere",
+      name = "gpt-4.1-mini(chatanywhere)",
+      chat = true,
+      command = true,
+      -- string with model name or table with model name and parameters
+      model = { model = "gpt-4.1-mini", temperature = 1.1, top_p = 1 },
+      -- system prompt (use this to specify the persona/role of the AI)
+      system_prompt = "你是一个有用的AI",
+    },
+    {
+      provider = "chatanywhere",
+      name = "gpt-4.1-nano(chatanywhere)",
+      chat = true,
+      command = true,
+      model = { model = "gpt-4.1-nano", temperature = 1.1, top_p = 1 },
+      system_prompt = "你是一个有用的AI",
+    },
+    {
+      provider = "chatanywhere",
+      name = "gpt-4o-mini(chatanywhere)",
+      chat = true,
+      command = true,
+      model = { model = "gpt-4o-mini", temperature = 1.1, top_p = 1 },
+      system_prompt = "你是一个有用的AI",
+    },
+    {
+      provider = "github",
+      name = "deepseek-v3-0324(github)",
+      chat = true,
+      command = true,
+      model = { model = "deepseek/DeepSeek-V3-0324", temperature = 1.1, top_p = 1 },
+      system_prompt = "You are helpful",
+    },
+    {
+      provider = "github",
+      name = "gpt-4.1-mini(github)",
+      chat = true,
+      command = true,
+      model = { model = "openai/gpt-4.1-mini", temperature = 1.1, top_p = 1 },
+      system_prompt = "You are helpful",
+    },
+    {
+      provider = "github",
+      name = "gpt-4.1(github)",
+      chat = true,
+      command = true,
+      model = { model = "openai/gpt-4.1", temperature = 1.1, top_p = 1 },
+      system_prompt = "You are helpful",
     },
   },
   -- optional curl parameters (for proxy, etc.)
@@ -92,75 +174,6 @@ local config = {
       .. "\n\nRespond exclusively with the snippet that should be prepended before the selection above.",
   template_command = "{{command}}",
 
-  agents = {
-    {
-      provider = "zhipu",
-      name = "glm-4-flash",
-      chat = true,
-      command = true,
-      -- string with model name or table with model name and parameters
-      model = { model = "glm-4-flash", temperature = 1, top_p = 1 },
-      -- system prompt (use this to specify the persona/role of the AI)
-      system_prompt = [[你是全世界最先进的人工智能助手]],
-    },
-    {
-      provider = "chatanywhere",
-      name = "deepseek-v3",
-      chat = true,
-      command = true,
-      -- string with model name or table with model name and parameters
-      model = { model = "deepseek-v3", temperature = 1.1, top_p = 1 },
-      -- system prompt (use this to specify the persona/role of the AI)
-      system_prompt = "",
-    },
-    {
-      provider = "chatanywhere",
-      name = "deepseek-r1",
-      chat = true,
-      command = true,
-      -- string with model name or table with model name and parameters
-      model = { model = "deepseek-r1", temperature = 1.1, top_p = 1 },
-      -- system prompt (use this to specify the persona/role of the AI)
-      system_prompt = "",
-    },
-    {
-      provider = "chatanywhere",
-      name = "gpt-4.1-mini",
-      chat = true,
-      command = true,
-      -- string with model name or table with model name and parameters
-      model = { model = "gpt-4.1-mini", temperature = 1.1, top_p = 1 },
-      -- system prompt (use this to specify the persona/role of the AI)
-      system_prompt = "你是一个有用的AI",
-    },
-    {
-      provider = "chatanywhere",
-      name = "gpt-4.1-nano",
-      chat = true,
-      command = true,
-      model = { model = "gpt-4.1-nano", temperature = 1.1, top_p = 1 },
-      system_prompt = "你是一个有用的AI",
-    },
-    {
-      provider = "chatanywhere",
-      name = "gpt-4o-mini",
-      chat = true,
-      command = true,
-      model = { model = "gpt-4o-mini", temperature = 1.1, top_p = 1 },
-      system_prompt = "你是一个有用的AI",
-    },
-    {
-      provider = "deepseek",
-      name = "DeepSeek",
-      chat = true,
-      command = true,
-      -- string with model name or table with model name and parameters
-      -- model = { model = "gpt-3.5-turbo", temperature = 1.1, top_p = 1 },
-      model = { model = "deepseek-chat", temperature = 1.1, top_p = 1 },
-      -- system prompt (use this to specify the persona/role of the AI)
-      system_prompt = "You are a general AI assistant.\n\n"
-    },
-  },
 
   hooks = {
     InspectPlugin = function(plugin, params)

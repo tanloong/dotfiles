@@ -26,6 +26,7 @@ set --global --export CORENLP_HOME $HOME/software/stanford-corenlp-4.5.1/
 set --global --export STANFORD_PARSER_HOME "/home/usr/.local/share/stanford-parser-full-2020-11-17"
 set --global --export STANFORD_TREGEX_HOME "/home/usr/.local/share/stanford-tregex-2020-11-17"
 set --global --export JAVA_HOME "/home/usr/.local/share/jdk8u372-b07"
+set --global --export MANPAGER "nvim +Man!"
 
 fish_add_path --path \
   "/home/usr/.local/share/jdk8u372-b07/bin" \
@@ -47,13 +48,8 @@ set --global --export PDFVIEWER "zathura"
 set --global --export BROWSER "browser.sh"
 set --global --export FILE_MANAGER "lf"
 set --global --export WORKON_HOME ~/.virtualenvs
-set --global --export CHATANYWHERE_API_KEY $(cat $HOME/.config/api_keys/CHATANYWHERE_API_KEY 2> /dev/null || echo "")
-set --global --export CHATANYWHERE_API_BASE $(cat $HOME/.config/api_keys/CHATANYWHERE_API_BASE 2> /dev/null || echo "")
-set --global --export CHATANYWHERE_API_HOST $(cat $HOME/.config/api_keys/CHATANYWHERE_API_HOST 2> /dev/null || echo "")
-set --global --export ZHIPU_API_KEY $(cat $HOME/.config/api_keys/ZHIPU_API_KEY 2> /dev/null || echo "")
-set --global --export ZHIPU_API_BASE $(cat $HOME/.config/api_keys/ZHIPU_API_BASE 2> /dev/null || echo "")
-# set --global --export GROQ_API_KEY $(cat $HOME/.config/api_keys/GROQ_API_KEY 2> /dev/null || echo "")
-# set --global --export GROQ_API_BASE $(cat $HOME/.config/api_keys/GROQ_API_BASE 2> /dev/null || echo "")
+
+for file in $HOME/.config/api_keys/*; set --global --export (basename $file) (cat $file); end
 
 # scaling
 # set --global --export GDK_SCALE 1.25

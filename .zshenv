@@ -20,11 +20,7 @@ export PDFVIEWER="zathura"
 export BROWSER="browser.sh"
 export FILE_MANAGER="lf"
 export WORKON_HOME=~/.virtualenvs
-export OPENAI_API_KEY=$(cat $HOME/.config/api_keys/OPENAI_API_KEY 2> /dev/null || echo "")
-export OPENAI_API_BASE=$(cat $HOME/.config/api_keys/OPENAI_API_BASE 2> /dev/null || echo "")
-export OPENAI_API_HOST=$(cat $HOME/.config/api_keys/OPENAI_API_HOST 2> /dev/null || echo "")
-# export GROQ_API_KEY=$(cat $HOME/.config/api_keys/GROQ_API_KEY 2> /dev/null || echo "")
-# export GROQ_API_BASE=$(cat $HOME/.config/api_keys/GROQ_API_BASE 2> /dev/null || echo "")
+for file in $HOME/.config/api_keys/*; do export $(basename $file)=$(cat $file); done
 
 # colored GCC warnings and errors
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'

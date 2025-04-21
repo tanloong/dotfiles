@@ -25,12 +25,12 @@ au({ "FocusLost", "BufLeave" }, {
   command = "silent! w",
 }) -- }}}
 
--- {{{ q/, q: -- cursor_up_when_entering_cmdwin
-au("CmdwinEnter",
-  {
-    group = group,
-    command = [[normal! k]]
-  }) -- }}}
+-- -- {{{ q/, q: -- cursor_up_when_entering_cmdwin
+-- au("CmdwinEnter",
+--   {
+--     group = group,
+--     command = [[normal! k]]
+--   }) -- }}}
 
 -- au("TextYankPost", {
 --   group = group,
