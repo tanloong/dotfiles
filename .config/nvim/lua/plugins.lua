@@ -386,7 +386,8 @@ local plugin_specs = {
         },
         menu = {
           draw = {
-            columns = { { "label" }, { "kind" } },
+            -- columns = { { "label" }, { "kind" } },
+            columns = { { "label" } },
           }
         }
       },
