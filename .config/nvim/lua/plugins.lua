@@ -129,9 +129,9 @@ local plugin_specs = {
   },
   -- indent-blankline
   {
-    "lukas-reineke/indent-blankline.nvim",
+    "https://github.com/lukas-reineke/indent-blankline.nvim",
     main = "ibl",
-    version = vim.fn.has "nvim-0.10" == 1 and "v3.6.0" or "v3.5.4",
+    version = "v3.6.0",
     event = "VeryLazy",
     config = function()
       hl(0, "IblIndent", { ctermbg = "none", ctermfg = "darkgray", fg = "#3A3A3A" })
@@ -161,21 +161,6 @@ local plugin_specs = {
     event = "VeryLazy",
     dependencies = { "toggleterm.nvim" }
   },
-  -- neo-tree
-  -- {
-  --     "nvim-neo-tree/neo-tree.nvim",
-  --     branch = "v3.x",
-  --     dependencies = {
-  --         "nvim-lua/plenary.nvim",
-  --         "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
-  --         "MunifTanjim/nui.nvim",
-  --         -- "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
-  --     },
-  --     event = "VeryLazy",
-  --     config = function()
-  --         require("plugin_config.neo_tree")
-  --     end,
-  -- },
   -- boole
   {
     "nat-418/boole.nvim",
@@ -245,6 +230,7 @@ local plugin_specs = {
   {
     "kaarmu/typst.vim",
     ft = { "typst" },
+    enabled = false,
     event = "VeryLazy",
     config = function()
       vim.g.typst_auto_open_quickfix = false
@@ -315,6 +301,7 @@ local plugin_specs = {
   },
   {
     "https://github.com/folke/lazydev.nvim",
+    enabled = false,
     ft = "lua", -- only load on lua files
     opts = {
       library = {
@@ -524,6 +511,7 @@ local plugin_specs = {
   {
     dir = "/home/usr/projects/bite.nvim/",
     -- event = "VeryLazy",
+    enabled = false,
     cmd = "B",
     build = "<cmd>UpdateRemotePlugins<cr>",
     config = function()
@@ -532,6 +520,7 @@ local plugin_specs = {
   },
   {
     dir = "/home/usr/projects/term.nvim/",
+    enabled = false,
     cmd = "Term",
     config = function()
       require "term"
