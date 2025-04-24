@@ -17,19 +17,6 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 local plugin_specs = {
-  -- auto-save.nvim
-  -- {
-  --     'https://gitee.com/tanloong/auto-save.nvim.git',
-  --     -- cond = function()
-  --     --     local bufnr = vim.api.nvim_get_current_buf()
-  --     --     return not string.find(vim.api.nvim_buf_get_name(bufnr), "interlaced.*%.txt$")
-  --     -- end,
-  --     ft = "python",
-  --     event = "VeryLazy",
-  --     config = function()
-  --         require("plugin_config.autosave")
-  --     end
-  -- },
   -- CoC
   {
     "https://github.com/neoclide/coc.nvim.git",
@@ -48,13 +35,6 @@ local plugin_specs = {
     "https://gitee.com/tanloong/vim-surround.git",
     event = "VeryLazy",
     config = function() vim.keymap.set("x", "s", "<Plug>VSurround") end
-  },
-  -- Comment
-  {
-    "https://github.com/numToStr/Comment.nvim",
-    enabled = vim.fn.has "nvim-0.10" == 0,
-    event = "VeryLazy",
-    config = function() require "plugin_config.comment" end
   },
   -- vim-markdown-toc
   {
@@ -406,25 +386,6 @@ local plugin_specs = {
       },
     },
     opts_extend = { "sources.default" }
-  },
-  {
-    "https://github.com/nvimdev/phoenix.nvim",
-    enabled = false,
-    event = "VeryLazy",
-    config = function() require "plugin_config.phoenix" end,
-  },
-  {
-    "hrsh7th/nvim-cmp",
-    enabled = false,
-    event = "VeryLazy",
-    dependencies = {
-      "hrsh7th/cmp-nvim-lsp",
-      "onsails/lspkind-nvim",
-      "hrsh7th/cmp-path",
-      "hrsh7th/cmp-buffer",
-      "quangnguyen30192/cmp-nvim-ultisnips",
-    },
-    config = function() require "plugin_config.nvim_cmp" end,
   },
   {
     "https://github.com/tpope/vim-fugitive",
