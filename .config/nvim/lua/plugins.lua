@@ -345,16 +345,6 @@ local plugin_specs = {
     },
   },
   {
-    "neovim/nvim-lspconfig",
-    enabled = false,
-    event = { "BufReadPre", "BufNewFile" },
-    config = function() require "plugin_config.lsp" end,
-    dependencies = {
-      { "folke/lazydev.nvim", },
-      { "saghen/blink.cmp" },
-    },
-  },
-  {
     "saghen/blink.cmp",
     enabled = true,
     -- optional: provides snippets for the snippet source
