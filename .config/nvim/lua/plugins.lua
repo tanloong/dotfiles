@@ -258,6 +258,7 @@ local plugin_specs = {
           require "interlaced".cmd.load()
           require "interlaced".ShowChunkNr()
         end,
+        sound_feedback = true,
       }
     end
   },

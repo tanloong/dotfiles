@@ -9,8 +9,8 @@ map({ "n", "v", "o" }, "J", "5gj")
 map({ "n", "v", "o" }, "H", "5h")
 map({ "n", "v", "o" }, "L", "5l")
 map({ "n", "v", "o" }, "Q", "@q")
-map({ "n", "v", "o" }, "9", "$")
-map("n", "g9", "g$")
+-- map({ "n", "v", "o" }, "9", "$")
+-- map("n", "g9", "g$")
 map("n", "gp", "<cmd>.copy .<cr>", { desc = "copy current line to below" })
 map("n", "gP", "<cmd>.copy -<cr>", { desc = "copy current line to above" })
 map({ "n", "v" }, "k", "gk")
@@ -29,7 +29,7 @@ map("n", "gf", "gF")
 map("n", "<c-p>", ":%s///g<Left><Left>")
 map("v", "<c-p>", ":s///g<Left><Left>")
 map("n", "<c-q>", "<Cmd>q!<CR>")
-map({ "n", "i" }, "<c-s>", "<Cmd>w<CR>")
+map("n", "<c-s>", "<Cmd>w<CR>")
 map("n", "<SPACE>e", "<Cmd>set spell!<bar>set spell?<CR>")
 map("n", "g<CR>", "<Cmd>set hlsearch!<bar>set hlsearch?<CR>")
 map("n", "s", "<nop>")
@@ -61,7 +61,7 @@ map("n", "<leader>e", [[<cmd>exec empty(filter(getwininfo(), 'v:val.quickfix')) 
 map("n", "zl", "1z=")
 map("i", "<c-q>", "<c-k>")
 -- Insert a newline at cursor without entering insert mode
-map("n", "<c-enter>", [[<cmd>set nohlsearch | keeppatterns s/\%#/\r/<cr>]])
+map("n", "<c-enter>", [[i<nl><esc>]])
 -- Visual select the just pasted text by p/P
 map("n", "gV", "`[v`]")
 
@@ -81,13 +81,16 @@ map("n", "gs", function()
   local bufnr = api.nvim_create_buf(false, false)
   vim.bo[bufnr].buftype = "prompt"
   vim.bo[bufnr].bufhidden = "wipe"
-  -- vim.fn.prompt_setprompt(bufnr, "➤ ")
-  local width = math.floor(vim.o.columns * 0.5)
+  vim.fn.prompt_setprompt(bufnr, "")
+  api.nvim_buf_set_extmark(bufnr, api.nvim_create_namespace('WebSearch'), 0, 0, {
+    line_hl_group = 'String',
+  })
+  local width = math.floor(vim.o.columns * 0.6)
   local winid = api.nvim_open_win(bufnr, true, {
     relative = "editor",
-    row = 5,
+    row = math.floor(vim.o.lines / 3),
     width = width,
-    height = 4,
+    height = 1,
     col = math.floor(vim.o.columns / 2) - math.floor(width / 2),
     border = "single",
     title = "Search",
@@ -98,6 +101,8 @@ map("n", "gs", function()
   vim.wo[winid].scl = "no"
   vim.wo[winid].lcs = "trail: "
   vim.wo[winid].wrap = true
+  vim.wo[winid].signcolumn = "no"
+  vim.wo[winid].cursorline = false
   vim.fn.prompt_setcallback(bufnr, function(text)
     vim.ui.open(("https://cn.bing.com/search?q=%s&form=QBLH"):format(vim.trim(text)))
     -- vim.ui.open(("https://metaso.cn?q=%s"):format(vim.trim(text)))
@@ -173,7 +178,6 @@ map("n", "gug", "<Cmd>keeppatterns s/\\v<(.)(\\w*)/\\u\\1\\L\\2/g<CR>",
 map("n", "<LEADER><F5>", '<Cmd>w! | !compiler "%"<CR>',
   { desc = [[Compile document, be it groff/LaTeX/markdown/etc.]] })
 map("n", "go", '<Cmd>silent!!opout "%"<CR>', { desc = [[Open corresponding .pdf/.html or preview]] })
-map("v", ".", "<cmd>normal .<cr>", { desc = [[Perform dot commands over visual blocks]] })
 map("v", "p", "P", { desc = [[keep what I am pasting, don't pollute my register]] })
 map({ "n", "v" }, "<leader>d", [["_d]])
 -- keyset('i', '<c-l>', '<c-g>u<Esc>[s1z=`]a<c-g>u',
@@ -201,8 +205,8 @@ map({ "x", "o" }, "ai", "<cmd>call textobject#aroundIndentation()<cr>", { silent
 map({ "x", "o" }, "i_", ":<c-u>normal! T_vt_<cr>", { silent = true })
 
 -- SQUARE BRACKETS
-map("n", "]q", "<Cmd>cnext<CR>")
-map("n", "[q", "<Cmd>cprevious<CR>")
+-- map("n", "]q", "<Cmd>cnext<CR>")
+-- map("n", "[q", "<Cmd>cprevious<CR>")
 map("n", "[x", [[<cmd>.move--<cr>]])
 map("n", "]x", [[<cmd>.move+<cr>]])
 map("x", "[x", [[:<c-u>'<,'>move'<--<cr>gv]])
