@@ -1,0 +1,20 @@
+{
+    "name": "personal-snippets",
+    "contributes": {
+        "snippets": [
+            {
+                "language": [
+                    "plaintext",
+                    "markdown",
+                    "tex",
+                    "html",
+                    "global",
+                    "all"
+                ],
+                "path": "./global.json"
+            }
+        ]
+    }
+}
+
+

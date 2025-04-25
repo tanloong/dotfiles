@@ -3,6 +3,7 @@
 local hi = vim.api.nvim_set_hl
 
 hi(0, "Visual", { ctermbg = "lightgray", ctermfg = "black", bg = "lightgray", fg = "black" })
+hi(0, "SnippetTabstop", {ctermfg = 0, ctermbg=15, bg="NvimDarkGrey4"})
 hi(0, "Conceal", { ctermbg = "none", ctermfg = "none", bg = "none", fg = "none" })
 -- hl(0, 'MatchParen', { ctermbg = 'none', ctermfg = 'green', bg = 'none', fg = 'lightgreen', bold = true })
 hi(0, "NonText", { fg = "#1A8FFF", ctermfg = 12 })
