@@ -1,0 +1,13 @@
+{
+    "print()": {
+      "prefix": "p",
+      "body": ["print($0)"],
+      "description": "print()"
+    },
+    "print(f'')": {
+      "prefix": "pf",
+      "body": ["print(f\"$0\")"],
+      "description": "print(f\"\")"
+    }
+}
+

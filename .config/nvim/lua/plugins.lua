@@ -173,36 +173,32 @@ local plugin_specs = {
     dir = "~/projects/interlaced.nvim",
     ft = "text",
     branch = "dev",
-    event = "VeryLazy",
+    cmd = "Interlaced",
     config = function()
-      local mt = require "interlaced.match"
-      local rpst = require "interlaced.reposition"
-      local it = require "interlaced"
-      local opt = { noremap = true, buffer = true, nowait = true }
       vim.g.interlaced = {
         keymaps = {
-          { "n", ",", rpst.cmd.push_up, opt },
-          { "n", "<", rpst.cmd.push_up_pair, opt },
-          { "n", "e", rpst.cmd.push_up_left_part, opt },
-          { "n", ".", rpst.cmd.pull_below, opt },
-          { "n", ">", rpst.cmd.pull_below_pair, opt },
-          { "n", "d", rpst.cmd.push_down_right_part, opt },
-          { "n", "D", rpst.cmd.push_down, opt },
-          { "n", "s", rpst.cmd.leave_alone, opt },
-          { "n", "[e", rpst.cmd.swap_with_above, opt },
-          { "n", "]e", rpst.cmd.swap_with_below, opt },
-          { "n", "U", rpst.cmd.undo, opt },
-          { "n", "R", rpst.cmd.redo, opt },
-          { "n", "J", rpst.cmd.navigate_down, opt },
-          { "n", "K", rpst.cmd.navigate_up, opt },
-          { "n", "md", it.cmd.dump, opt },
-          { "n", "ml", it.cmd.load, opt },
-          { "n", "gn", rpst.cmd.next_unaligned, opt },
-          { "n", "gN", rpst.cmd.prev_unaligned, opt },
-          { "n", "mt", mt.cmd.match_toggle, opt },
-          { "n", "m;", mt.cmd.list_matches, opt },
-          { "n", "ma", mt.cmd.match_add, opt },
-          { "v", "ma", mt.cmd.match_add_visual, opt },
+          { "n", ",",  "push_up" },
+          { "n", "<",  "push_up_pair" },
+          { "n", "e",  "push_up_left_part" },
+          { "n", ".",  "pull_below" },
+          { "n", ">",  "pull_below_pair" },
+          { "n", "d",  "push_down_right_part" },
+          { "n", "D",  "push_down" },
+          { "n", "s",  "leave_alone" },
+          { "n", "[e", "swap_with_above" },
+          { "n", "]e", "swap_with_below" },
+          { "n", "U",  "undo" },
+          { "n", "R",  "redo" },
+          { "n", "J",  "navigate_down" },
+          { "n", "K",  "navigate_up" },
+          { "n", "md", "dump" },
+          { "n", "ml", "load" },
+          { "n", "gn", "next_unaligned" },
+          { "n", "gN", "prev_unaligned" },
+          { "n", "mt", "match_toggle" },
+          { "n", "m;", "list_matches" },
+          { "n", "ma", "match_add" },
+          { "v", "ma", "match_add_visual" },
         },
         setup_mappings_now = false,
         separators = { ["1"] = "", ["2"] = " " },
@@ -220,11 +216,12 @@ local plugin_specs = {
           vim.opt_local.signcolumn = "no"
           vim.opt_local.relativenumber = false
           vim.opt_local.number = false
-          require "interlaced".cmd.load()
+          require "interlaced".action.load()
           require "interlaced".ShowChunkNr()
         end,
         sound_feedback = true,
       }
+      require("interlaced")
     end
   },
   -- typst.vim
@@ -302,7 +299,7 @@ local plugin_specs = {
   },
   {
     "https://github.com/folke/lazydev.nvim",
-    enabled = false,
+    enabled = true,
     ft = "lua", -- only load on lua files
     opts = {
       library = {
@@ -311,6 +308,29 @@ local plugin_specs = {
         { path = "${3rd}/luv/library", words = { "vim%.uv" } },
       },
     },
+  },
+  {
+    "https://github.com/nvimdev/guard.nvim",
+    event = "VeryLazy",
+    config = function()
+      vim.g.guard_config = {
+        -- format on write to buffer
+        fmt_on_save = false,
+        -- use lsp if no formatter was defined for this filetype
+        lsp_as_default_formatter = true,
+        -- whether or not to save the buffer after formatting
+        save_on_fmt = false,
+        -- automatic linting
+        auto_lint = false,
+        -- how frequently can linters be called
+        lint_interval = 500
+      }
+
+      local ft = require('guard.filetype')
+      ft('python'):fmt({ cmd = 'ruff', args = { 'format', '--line-length', '112' } })
+      ft('c,cpp'):fmt({ cmd = 'clang-format', stdin = true, ignore_patterns = { 'neovim', 'vim' } })
+      keyset("n", "<leader>f", "<Cmd>Guard fmt<CR>")
+    end
   },
   {
     "saghen/blink.cmp",
@@ -333,7 +353,10 @@ local plugin_specs = {
       -- 'super-tab' for mappings similar to vscode (tab to accept, arrow keys to navigate)
       -- 'enter' for mappings similar to 'super-tab' but with 'enter' to accept
       -- See the full "keymap" documentation for information on defining your own keymap.
-      keymap = { preset = "default" },
+      keymap = {
+        preset = "default",
+        ['<C-y>'] = { 'accept', 'fallback' }
+      },
       completion = {
         list = {
           selection = {
@@ -350,15 +373,14 @@ local plugin_specs = {
         }
       },
       sources = {
-        -- default = { "lazydev", "lsp", "snippets", "buffer", "path", "dictionary" },
-        default = { "lsp", "snippets", "buffer", "path", "dictionary" },
+        default = { "lazydev", "lsp", "snippets", "buffer", "path", "dictionary" },
         providers = {
-          -- lazydev = {
-          --   name = "LazyDev",
-          --   module = "lazydev.integrations.blink",
-          --   -- make lazydev completions top priority (see `:h blink.cmp`)
-          --   score_offset = 100,
-          -- },
+          lazydev = {
+            name = "LazyDev",
+            module = "lazydev.integrations.blink",
+            -- make lazydev completions top priority (see `:h blink.cmp`)
+            score_offset = 100,
+          },
           dictionary = {
             module = "blink-cmp-dictionary",
             name = "Dict",
@@ -631,7 +653,7 @@ local plugin_specs = {
     enabled = true,
     lazy = false,
     config = function()
-      require "plugin_config.oil" 
+      require "plugin_config.oil"
     end
   },
   {

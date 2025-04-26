@@ -12,7 +12,9 @@
                     "all"
                 ],
                 "path": "./global.json"
-            }
+            },
+            { "language": [ "python" ], "path": "./python.json" },
+            { "language": [ "lua" ], "path": "./lua.json" }
         ]
     }
 }
