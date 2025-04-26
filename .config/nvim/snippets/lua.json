@@ -1,0 +1,9 @@
+{
+    "vim.print()": {
+      "prefix": "p",
+      "body": ["vim.print($0)"],
+      "description": "vim.print()"
+    }
+}
+
+

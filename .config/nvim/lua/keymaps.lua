@@ -112,6 +112,7 @@ map("n", "gs", function()
     pcall(api.nvim_win_close, winid, true)
   end, { buffer = bufnr })
 end)
+
 -- keyset("i", "<C-a>", "<Esc>^i")
 map("i", "<CR>", function()
   if tonumber(vim.fn.pumvisible()) == 1 then
@@ -369,3 +370,5 @@ vim.keymap.set({ "x" }, "gx", function()
     vim.notify(err, vim.log.levels.ERROR)
   end
 end, { desc = gx_desc })
+
+map("n", "<leader>s", vim.lsp.buf.hover)

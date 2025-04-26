@@ -1,7 +1,7 @@
 {
-    "": {
+    "26 April 2025": {
       "prefix": "dmy",
       "body": ["${CURRENT_DATE} ${CURRENT_MONTH_NAME} ${CURRENT_YEAR}"],
-      "description": ""
+      "description": "26 April 2025"
     }
 }
