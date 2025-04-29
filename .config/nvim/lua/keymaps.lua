@@ -370,5 +370,3 @@ vim.keymap.set({ "x" }, "gx", function()
     vim.notify(err, vim.log.levels.ERROR)
   end
 end, { desc = gx_desc })
-
-map("n", "<leader>s", vim.lsp.buf.hover)

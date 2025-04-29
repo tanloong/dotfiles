@@ -334,7 +334,7 @@ local plugin_specs = {
   },
   {
     "saghen/blink.cmp",
-    enabled = true,
+    enabled = false,
     -- optional: provides snippets for the snippet source
     dependencies = { "rafamadriz/friendly-snippets", "luozhiya/fittencode.nvim",
       "Kaiser-Yang/blink-cmp-dictionary", },
