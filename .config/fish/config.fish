@@ -25,11 +25,9 @@ set --global --export ALIYUNPAN_CONFIG_DIR $HOME/.config/aliyunpan
 set --global --export CORENLP_HOME $HOME/software/stanford-corenlp-4.5.1/
 set --global --export STANFORD_PARSER_HOME "/home/usr/.local/share/stanford-parser-full-2020-11-17"
 set --global --export STANFORD_TREGEX_HOME "/home/usr/.local/share/stanford-tregex-2020-11-17"
-set --global --export JAVA_HOME "/home/usr/.local/share/jdk8u372-b07"
 set --global --export MANPAGER "nvim +Man!"
 
 fish_add_path --path \
-  "/home/usr/.local/share/jdk8u372-b07/bin" \
   $HOME/.local/bin \
   $HOME/.local/bin/data-science-utils \
   $HOME/.local/bin/internship \
@@ -37,6 +35,9 @@ fish_add_path --path \
   $STANFORD_TREGEX_HOME \
   $STANFORD_PARSER_HOME \
   "/home/usr/work/wpz/scripts/"
+
+# set --global --export JAVA_HOME "/home/usr/.local/share/jdk8u372-b07"
+# fish_add_path --path "/home/usr/.local/share/jdk8u372-b07/bin"
 
 set --global --export NLTK_DATA $HOME/software/nltk_data/
 set --global --export TESSDATA_PREFIX /usr/share/tessdata/
@@ -220,6 +221,23 @@ alias grep="grep --color"
 alias mkd="mkdir -pv"
 alias ls='ls -hN --color=auto --group-directories-first'
 alias diff='diff --color=auto'
+
+function _pd
+  if test (pwd) = /home/usr/projects/cpython
+    echo "./python"
+  else
+    echo "/home/usr/projects/cpython/python"
+  end
+end
+function _pm
+  echo (_pd) "-m"
+end
+function _pu
+  echo (_pm) "unittest"
+end
+abbr --add pd --position command --function _pd
+abbr --add pm --position command --function _pm
+abbr --add pu --position command --function _pu
 
 set fish_cursor_default block
 set fish_cursor_insert line

@@ -11,12 +11,13 @@
     d = diff # diff unstaged changes
     dc = diff --cached # diff staged changes
     last = diff HEAD^ # diff last committed change
-    l = log --graph --date=short
+    l = log
     pl = pull
     ps = push
     r = remote -v
     s = status
     t = tag -n # see tags with <n> lines of each tag message
+    cp = cherry-pick
 [core]
 	longpaths = true
 	quotepath = false
@@ -32,3 +33,8 @@
 	useHttpPath = true
 [log]
 	date = iso8601
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true

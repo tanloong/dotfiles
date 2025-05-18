@@ -9,7 +9,7 @@ set shellopts '-eu'
 set filesep "\n"
 set ifs "\n"
 set info size:time
-set hiddenfiles '.*:*.aux:*.nav:*.toc:*.out:*.bbl:*.blg:*.snm:*.synctex.gz:*(busy):__pycache__'
+# set hiddenfiles ''
 # TODO: convert to fish syntax, but indeed I have been into the single panel layout and thus previewer is never used
 # $lf -remote "send $id set previewer ${XDG_CONFIG_HOME:-$HOME/.config}/lf/previewer.sh"
 set incfilter # filter 时跟随按键来动态显示

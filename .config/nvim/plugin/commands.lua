@@ -1,11 +1,11 @@
 #!/usr/bin/env lua
 
-local vim_api = vim.api
+local api = vim.api
 local c = vim.api.nvim_create_user_command
 
 c("Mv", function(a)
-  local bufnr = vim_api.nvim_get_current_buf()
-  local oldpath = vim_api.nvim_buf_get_name(bufnr)
+  local bufnr = api.nvim_get_current_buf()
+  local oldpath = api.nvim_buf_get_name(bufnr)
   vim.cmd(string.format("saveas%s %s", a.bang and "!" or "", a.args))
   vim.cmd [[bd #]]
   local ok, err = os.remove(oldpath)
@@ -16,9 +16,9 @@ c("Yd", [[let @+ = expand('%:p:h')]], { force = true, desc = "Yank dirname" })
 c("Yb", [[let @+ = expand('%:t')]], { force = true, desc = "Yank basename" })
 -- https://github.com/mfussenegger/dotfiles/blob/a28b73904fe3e57459c3f32e6fac8bba95133c62/vim/dot-config/nvim/commands.lua#L3C1-L11C22
 c("Rm", function(a)
-  local bufnr = vim_api.nvim_get_current_buf()
-  local fname = vim_api.nvim_buf_get_name(bufnr)
-  vim_api.nvim_buf_delete(bufnr, { force = a.bang })
+  local bufnr = api.nvim_get_current_buf()
+  local fname = api.nvim_buf_get_name(bufnr)
+  api.nvim_buf_delete(bufnr, { force = a.bang })
   local yes = vim.fn.confirm("The deletion can't be undone, are you sure?", "&Yes\n&No\n&Cancel")
   if yes == 1 then
     local ok, err = os.remove(fname)
@@ -27,7 +27,7 @@ c("Rm", function(a)
 end, { bang = true })
 
 local function execlua(buf)
-  local lines = vim_api.nvim_buf_get_lines(buf, 0, -1, true)
+  local lines = api.nvim_buf_get_lines(buf, 0, -1, true)
   local code = table.concat(lines, "\n")
   local fn, err = loadstring(code)
   if fn then
@@ -40,7 +40,7 @@ local function execlua(buf)
   end
 end
 local function execpython(buf)
-  local lines = vim_api.nvim_buf_get_lines(buf, 0, -1, true)
+  local lines = api.nvim_buf_get_lines(buf, 0, -1, true)
   local code = table.concat(lines, "\n")
   local handle
   local stdout = vim.uv.new_pipe(false)
@@ -79,7 +79,7 @@ local function execpython(buf)
   end)
 end
 local function execc(buf)
-  local lines = vim_api.nvim_buf_get_lines(buf, 0, -1, true)
+  local lines = api.nvim_buf_get_lines(buf, 0, -1, true)
   local code = table.concat(lines, "\n")
   local executable = vim.fn.tempname()
   local filename = executable .. ".c"
@@ -164,12 +164,12 @@ local function execc(buf)
   end)
 end
 local function create_scratch(args, ft, ext, execfunc)
-  local srcbuf = vim_api.nvim_get_current_buf()
+  local srcbuf = api.nvim_get_current_buf()
   vim.cmd.split()
-  local bufnr = vim_api.nvim_create_buf(true, true)
-  vim_api.nvim_buf_set_name(bufnr, "scratch" .. tostring(bufnr) .. ext)
+  local bufnr = api.nvim_create_buf(true, true)
+  api.nvim_buf_set_name(bufnr, "scratch" .. tostring(bufnr) .. ext)
   if args.range ~= 0 then
-    local lines = vim_api.nvim_buf_get_lines(srcbuf, args.line1 - 1, args.line2, true)
+    local lines = api.nvim_buf_get_lines(srcbuf, args.line1 - 1, args.line2, true)
     local indent = math.huge
     for _, line in ipairs(lines) do
       indent = math.min(line:find "[^ ]" or math.huge, indent)
@@ -179,14 +179,14 @@ local function create_scratch(args, ft, ext, execfunc)
         lines[i] = line:sub(indent)
       end
     end
-    vim_api.nvim_buf_set_lines(bufnr, 0, -1, true, lines)
+    api.nvim_buf_set_lines(bufnr, 0, -1, true, lines)
     vim.bo[bufnr].modified = false
   end
   vim.bo[bufnr].buftype = "acwrite"
   vim.bo[bufnr].bufhidden = "wipe"
   vim.bo[bufnr].filetype = ft
-  vim_api.nvim_set_current_buf(bufnr)
-  vim_api.nvim_create_autocmd("BufWriteCmd", {
+  api.nvim_set_current_buf(bufnr)
+  api.nvim_create_autocmd("BufWriteCmd", {
     buffer = bufnr,
     callback = function(write_args)
       vim.bo[write_args.buf].modified = false
@@ -197,3 +197,56 @@ end
 c("Lua", function(args) create_scratch(args, "lua", ".lua", execlua) end, { range = "%" })
 c("Py", function(args) create_scratch(args, "python", ".py", execpython) end, { range = "%" })
 c("C", function(args) create_scratch(args, "c", ".c", execc) end, { range = "%" })
+
+------------------------------- Python unittest --------------------------------
+local function find_nearest_class(bufnr, start_line)
+  for l = start_line, 1, -1 do
+    local line = api.nvim_buf_get_lines(bufnr, l - 1, l, false)[1]
+    local class_name = line:match('^%s*class%s+([%w_]+)')
+    if class_name then return class_name end
+  end
+  return nil
+end
+local function find_nearest_function(bufnr, start_line)
+  for l = start_line, 1, -1 do
+    local line = api.nvim_buf_get_lines(bufnr, l - 1, l, false)[1]
+    local func_name = line:match('^%s*def%s+([%w_]+)')
+    if func_name then return func_name end
+  end
+  return nil
+end
+function copy_test_path()
+  local bufnr = api.nvim_get_current_buf()
+  local ft = vim.bo[bufnr].filetype
+  if ft ~= 'python' then
+    vim.notify("':Yu' 命令只能在 Python 文件中使用", vim.log.levels.WARN)
+    return
+  end
+  local row = api.nvim_win_get_cursor(0)[1]
+  local filepath = api.nvim_buf_get_name(bufnr)
+  if filepath == '' then
+    vim.notify("缓冲区没有关联文件", vim.log.levels.WARN)
+    return
+  end
+
+  local cwd = vim.uv.cwd()
+  local rel_path = filepath:gsub('^' .. cwd .. '/', '')
+  local module_path = rel_path:gsub('.py$', ''):gsub('/', '.')
+  local class_name = find_nearest_class(bufnr, row)
+  local func_name = find_nearest_function(bufnr, row)
+
+  if not class_name and not func_name then
+    vim.notify("未找到类或函数定义", vim.log.levels.WARN)
+    return
+  end
+  local test_path = (("%s.%s.%s"):format(module_path, class_name, func_name))
+  local interpreter = vim.fs.joinpath(cwd, "python")
+  if not vim.fn.executable(interpreter) then interpreter = "python" end
+  local command = (("%s -m unittest %s<CR>"):format(interpreter, test_path))
+  vim.cmd("botright split term://fish | startinsert")
+  api.nvim_input(command)
+  api.nvim_input("<c-\\><c-n>G")
+end
+c('Pt', copy_test_path, {
+  desc = 'Run python unittest on where cursor at (python -m unittest module.path.ClassName.test_name)'
+})

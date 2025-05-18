@@ -4,7 +4,8 @@ set vi-ins-mode-string \1\e[6 q\2
 set vi-cmd-mode-string \1\e[2 q\2
 set show-mode-in-prompt off # 在左侧显示 mode 信息
 # The double tab can be changed to a single tab by setting
-set show-all-if-unmodified on
+# set show-all-if-unmodified on
+# set sort-completion-matches off
 # insert a # character when the # command (“insert comment”) is issued. For the
 # shell, this comments out the current line but inserts it into the history for
 # later recall and editing
@@ -23,3 +24,9 @@ set mark-symlinked-directories On
 set colored-completion-prefix On
 # Color the common prefix in menu-complete
 set menu-complete-display-prefix On
+
+set colored-completion-prefix off
+set colored-stats off
+set completion-query-items 0
+set page-completions off
+set completion-display-width 0

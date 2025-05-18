@@ -10,12 +10,24 @@ local config = {
       secret = os.getenv "ZHIPU_API_KEY",
       endpoint = os.getenv "ZHIPU_API_BASE" .. "/chat/completions",
     },
+   ollama = {
+      endpoint = "http://localhost:11434/v1/chat/completions",
+    },
     github = {
       secret = os.getenv "GITHUB_TOKEN",
       endpoint = "https://models.github.ai/inference/chat/completions",
     },
   },
   agents = {
+    {
+      provider = "ollama",
+      name = "llama2-uncensored:latest(ollama)",
+      chat = true,
+      command = true,
+      -- string with model name or table with model name and parameters
+      model = { model = "llama2-uncensored:latest", temperature = 1, top_p = 1 },
+      system_prompt = [[you are useful]],
+    },
     {
       provider = "zhipu",
       name = "glm-4-flash",

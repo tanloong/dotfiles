@@ -55,6 +55,7 @@ local plugin_specs = {
     "Vigemus/iron.nvim",
     config = function()
       local iron = require "iron.core"
+      local common = require "iron.fts.common"
 
       iron.setup {
         config = {
@@ -62,7 +63,10 @@ local plugin_specs = {
           scratch_repl = true,
           repl_definition = {
             sh = { command = { "bash" } },
-            python = { command = { "python" } },
+            python = { command = { "python" },
+            format = common.bracketed_paste_python,
+            block_dividers = { "# %%", "#%%" },
+          },
             lua = { command = { "lua" } },
             php = { command = { "php", "-a" } },
             r = { command = { "R" } },
@@ -84,6 +88,8 @@ local plugin_specs = {
           interrupt = "<space>s<space>",
           exit = "<space>sq",
           clear = "<space>cl",
+          send_code_block = "<space>sb",
+          send_code_block_and_move = "<space>sn",
         },
         highlight = { italic = false },
         ignore_blank_lines = true,
