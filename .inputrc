@@ -27,6 +27,6 @@ set menu-complete-display-prefix On
 
 set colored-completion-prefix off
 set colored-stats off
-set completion-query-items 0
+set completion-query-items 100
 set page-completions off
 set completion-display-width 0

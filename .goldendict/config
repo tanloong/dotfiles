@@ -84,6 +84,7 @@
  <preferences>
   <interfaceLanguage></interfaceLanguage>
   <interfaceFont></interfaceFont>
+  <interfaceFontSize>0</interfaceFontSize>
   <customFonts monospace="" sans-serif="" serif="" standard=""/>
   <displayStyle></displayStyle>
   <interfaceStyle></interfaceStyle>
@@ -104,7 +105,6 @@
   <darkReaderMode>0</darkReaderMode>
   <zoomFactor>1.3</zoomFactor>
   <helpZoomFactor>1</helpZoomFactor>
-  <wordsZoomLevel>0</wordsZoomLevel>
   <enableMainWindowHotkey>0</enableMainWindowHotkey>
   <mainWindowHotkey>Ctrl+F11, Ctrl+F11</mainWindowHotkey>
   <enableClipboardHotkey>1</enableClipboardHotkey>
@@ -177,8 +177,8 @@
  </preferences>
  <lastMainGroupId>0</lastMainGroupId>
  <lastPopupGroupId>0</lastPopupGroupId>
- <popupWindowState>AAAA/wAAAAH9AAAAAAAAAAAAAAAAAAAABAAAAAQAAAAIAAAACPwAAAABAAAAAQAAAAEAAAAaAGQAaQBjAHQAaQBvAG4AYQByAHkAQgBhAHIDAAAAAP////8AAAAAAAAAAA==</popupWindowState>
- <popupWindowGeometry>AdnQywADAAAAAAAAAAAAFAAAAiwAAAGmAAAAAAAAABQAAAIsAAABpgAAAAAAAAAAB4AAAAAAAAAAFAAAAiwAAAGm</popupWindowGeometry>
+ <popupWindowState2>AAAA/wAAAAD9AAAAAAAAAAAAAAAAAAAABAAAAAQAAAAIAAAACPwAAAADAAAAAQAAAAEAAAAkAHAAbwBwAHUAcABOAGEAdgBnAGkAYQB0AGkAbwBuAEIAYQByAwAAAAD/////AAAAAAAAAAAAAAACAAAAAgAAABwAcABvAHAAdQBwAFMAZQBhAHIAYwBoAEIAYQByAQAAAAD/////AAAAAAAAAAAAAAAYAHAAbwBwAHUAcABUAG8AbwBsAEIAYQByAQAAAAD/////AAAAAAAAAAAAAAACAAAAAQAAABoAZABpAGMAdABpAG8AbgBhAHIAeQBCAGEAcgEAAAAA/////wAAAAAAAAAA</popupWindowState2>
+ <popupWindowGeometry2>AdnQywADAAAAAAABAAAAGQAAAPcAAAGoAAAAAQAAABkAAAD3AAABqAAAAAAAAAAABM0AAAABAAAAGQAAAPcAAAGo</popupWindowGeometry2>
  <pinPopupWindow>0</pinPopupWindow>
  <popupWindowAlwaysOnTop>0</popupWindowAlwaysOnTop>
  <mainWindowState>AAAA/wAAAAD9AAAAAgAAAAAAAAAAAAAAAPwCAAAAAfsAAAAUAHMAZQBhAHIAYwBoAFAAYQBuAGUAAAAAAP////8AAACIAP///wAAAAEAAADMAAACaPwCAAAAA/sAAAASAGQAaQBjAHQAcwBQAGEAbgBlAQAAADwAAADKAAAAYgD////7AAAAGgBmAGEAdgBvAHIAaQB0AGUAcwBQAGEAbgBlAQAAAQwAAADIAAAAYgD////7AAAAFgBoAGkAcwB0AG8AcgB5AFAAYQBuAGUBAAAB2gAAAMoAAABiAP///wAAA/sAAAJoAAAABAAAAAQAAAAIAAAACPwAAAABAAAAAgAAAAIAAAAUAG4AYQB2AFQAbwBvAGwAYgBhAHIBAAAAAP////8AAAAAAAAAAAAAABoAZABpAGMAdABpAG8AbgBhAHIAeQBCAGEAcgEAAAIe/////wAAAAAAAAAA</mainWindowState>

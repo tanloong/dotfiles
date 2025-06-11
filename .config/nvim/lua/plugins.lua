@@ -1,6 +1,6 @@
 #!/usr/bin/env lua
 
-local keyset = vim.keymap.set
+local map = vim.keymap.set
 local hl = vim.api.nvim_set_hl
 
 local lazypath = vim.fn.stdpath "data" .. "/lazy/lazy.nvim"
@@ -63,10 +63,11 @@ local plugin_specs = {
           scratch_repl = true,
           repl_definition = {
             sh = { command = { "bash" } },
-            python = { command = { "python" },
-            format = common.bracketed_paste_python,
-            block_dividers = { "# %%", "#%%" },
-          },
+            python = {
+              command = { "python" },
+              format = common.bracketed_paste_python,
+              block_dividers = { "# %%", "#%%" },
+            },
             lua = { command = { "lua" } },
             php = { command = { "php", "-a" } },
             r = { command = { "R" } },
@@ -116,6 +117,7 @@ local plugin_specs = {
   -- tree-sitter
   {
     "nvim-treesitter/nvim-treesitter",
+    branch = "main",
     run = ":TSUpdate",
     config = function() require "plugin_config.nvim_treesitter" end,
     event = "VeryLazy"
@@ -183,20 +185,20 @@ local plugin_specs = {
     config = function()
       vim.g.interlaced = {
         keymaps = {
-          { "n", ",",  "push_up" },
-          { "n", "<",  "push_up_pair" },
-          { "n", "e",  "push_up_left_part" },
-          { "n", ".",  "pull_below" },
-          { "n", ">",  "pull_below_pair" },
-          { "n", "d",  "push_down_right_part" },
-          { "n", "D",  "push_down" },
-          { "n", "s",  "leave_alone" },
+          { "n", ",", "push_up" },
+          { "n", "<", "push_up_pair" },
+          { "n", "e", "push_up_left_part" },
+          { "n", ".", "pull_below" },
+          { "n", ">", "pull_below_pair" },
+          { "n", "d", "push_down_right_part" },
+          { "n", "D", "push_down" },
+          { "n", "s", "leave_alone" },
           { "n", "[e", "swap_with_above" },
           { "n", "]e", "swap_with_below" },
-          { "n", "U",  "undo" },
-          { "n", "R",  "redo" },
-          { "n", "J",  "navigate_down" },
-          { "n", "K",  "navigate_up" },
+          { "n", "U", "undo" },
+          { "n", "R", "redo" },
+          { "n", "J", "navigate_down" },
+          { "n", "K", "navigate_up" },
           { "n", "md", "dump" },
           { "n", "ml", "load" },
           { "n", "gn", "next_unaligned" },
@@ -227,7 +229,7 @@ local plugin_specs = {
         end,
         sound_feedback = true,
       }
-      require("interlaced")
+      require "interlaced"
     end
   },
   -- typst.vim
@@ -295,7 +297,7 @@ local plugin_specs = {
         keys = '<Esc>/<<>><CR>:set nohlsearch<CR>"_c4<right>',
       }
       -- normal mode mapping
-      keyset("n", "<SPACE><SPACE>", '/<<>><CR>:set nohlsearch<CR>"_c4<right>')
+      map("n", "<SPACE><SPACE>", '/<<>><CR>:set nohlsearch<CR>"_c4<right>')
     end,
   },
   -- diffchar
@@ -318,6 +320,7 @@ local plugin_specs = {
   {
     "https://github.com/nvimdev/guard.nvim",
     event = "VeryLazy",
+    enabled = false,
     config = function()
       vim.g.guard_config = {
         -- format on write to buffer
@@ -332,10 +335,10 @@ local plugin_specs = {
         lint_interval = 500
       }
 
-      local ft = require('guard.filetype')
-      ft('python'):fmt({ cmd = 'ruff', args = { 'format', '--line-length', '112' } })
-      ft('c,cpp'):fmt({ cmd = 'clang-format', stdin = true, ignore_patterns = { 'neovim', 'vim' } })
-      keyset("n", "<leader>f", "<Cmd>Guard fmt<CR>")
+      local ft = require "guard.filetype"
+      ft "python":fmt { cmd = "ruff", args = { "format", "--line-length", "112" } }
+      ft "c,cpp":fmt { cmd = "clang-format", stdin = true, ignore_patterns = { "neovim", "vim" } }
+      map("n", "<leader>f", "<Cmd>Guard fmt<CR>")
     end
   },
   {
@@ -361,7 +364,7 @@ local plugin_specs = {
       -- See the full "keymap" documentation for information on defining your own keymap.
       keymap = {
         preset = "default",
-        ['<C-y>'] = { 'accept', 'fallback' }
+        ["<C-y>"] = { "accept", "fallback" }
       },
       completion = {
         list = {
@@ -411,7 +414,15 @@ local plugin_specs = {
     config = function() require "plugin_config.vim_fugitive" end
   },
   {
+    "https://github.com/m4xshen/hardtime.nvim",
+    enabled = false,
+    lazy = false,
+    dependencies = { "MunifTanjim/nui.nvim" },
+    opts = {},
+  },
+  {
     "luozhiya/fittencode.nvim",
+    enabled = true,
     event = "VeryLazy",
     config = function()
       require "fittencode".setup {
@@ -426,7 +437,7 @@ local plugin_specs = {
         },
         inline_completion = {
           enable = true,
-          auto_triggering_completion = false,
+          auto_triggering_completion = true,
           disable_completion_within_the_line = false,
         },
         keymaps = {
@@ -436,11 +447,11 @@ local plugin_specs = {
             ["<s-Right>"] = "accept_line",
           },
         }, }
-      keyset({ "i", "n" }, "<s-tab>", function()
+      map({ "i", "n" }, "<s-tab>", function()
         require "fittencode".dismiss_suggestions()
         require "fittencode".enable_completions { enable = false }
       end)
-      keyset({ "i", "n" }, "<c-tab>", function()
+      map({ "i", "n" }, "<c-tab>", function()
         require "fittencode".enable_completions { enable = true }
         require "fittencode".triggering_completion()
       end)
@@ -455,81 +466,7 @@ local plugin_specs = {
     module = false,
     build = ":call firenvim#install(0)",
     config = function()
-      vim.g.firenvim_config = {
-        globalSettings = { alt = "all" },
-        localSettings = {
-          [".*"] = {
-            cmdline = "neovim",
-            content = "text",
-            priority = 0,
-            selector = "textarea",
-            -- don't auto enter neovim on textarea
-            takeover = "never"
-          }
-        }
-      }
-      vim.api.nvim_create_autocmd({ "UIEnter" }, {
-        callback = function(e)
-          local client = vim.api.nvim_get_chan_info(vim.v.event.chan).client
-          if client == nil or client.name ~= "Firenvim" then return end
-
-          -- minimal lines and columns
-          local min_lines = 7
-          local max_lines = 20
-          local min_columns = 80
-          local max_columns = 130
-
-          -- font
-          local default_fontsize = 22
-          local min_fontsize = 14
-          local max_fontsize = 32
-          -- local font_template = "Cousine Nerd Font Mono:h%d,WenQuanYi Zen Hei:h%d"
-          --
-          -- vim.opt.guifont = string.format(font_template, default_fontsize, default_fontsize)
-          vim.opt.guifont = string.format("Cousine Nerd Font Mono,WenQuanYi Zen Hei", default_fontsize, default_fontsize)
-          vim.opt.laststatus = 0
-
-          -- increase font size
-          keyset({ "n", "i" }, "<c-s-k>", function()
-            if not vim.g.started_by_firenvim then return end
-            local font = vim.opt_local.guifont._value
-            local size = tonumber(font:match ":[hw](%d+)")
-            if size >= max_fontsize then return end
-            vim.opt_local.guifont = font:gsub(size, size + 2)
-            vim.opt_local.lines = math.min(math.max(vim.opt_local.lines._value, min_lines), max_lines)
-            vim.opt_local.columns = math.min(math.max(vim.opt_local.columns._value, min_columns), max_columns)
-          end)
-          -- decrease font size
-          keyset({ "n", "i" }, "<c-s-j>", function()
-            if not vim.g.started_by_firenvim then return end
-            local font = vim.opt_local.guifont._value
-            local size = tonumber(font:match ":[hw](%d+)")
-            if size <= min_fontsize then return end
-            vim.opt_local.guifont = font:gsub(size, size - 2)
-            vim.opt_local.lines = math.min(math.max(vim.opt_local.lines._value, min_lines), max_lines)
-            vim.opt_local.columns = math.min(math.max(vim.opt_local.columns._value, min_columns), max_columns)
-          end)
-          -- default font size
-          keyset({ "n", "i" }, "<c-s-space>", function()
-            if not vim.g.started_by_firenvim then return end
-            local font = vim.opt_local.guifont._value
-            local size = tonumber(font:match ":[hw](%d+)")
-            if size == default_fontsize then return end
-            vim.opt_local.guifont = string.format(font_template, default_fontsize, default_fontsize)
-            vim.opt_local.lines = math.min(math.max(vim.opt_local.lines._value, min_lines), max_lines)
-            vim.opt_local.columns = math.min(math.max(vim.opt_local.columns._value, min_columns), max_columns)
-          end)
-          -- Expand textarea as more lines are typed
-          -- ref. https://github.com/glacambre/firenvim/issues/1619
-          vim.api.nvim_create_autocmd({ "TextChanged", "TextChangedI" }, {
-            group = vim.api.nvim_create_augroup("ExpandLinesOnTextChanged", { clear = true }),
-            callback = function(e)
-              local height = vim.api.nvim_win_text_height(0, {}).all
-              if height > vim.o.lines and height < max_lines then vim.o.lines = height end
-            end
-          })
-        end
-      })
+      require "plugin_config.firenvim"
     end
   },
   {

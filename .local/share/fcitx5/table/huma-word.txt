@@ -5,6 +5,10 @@ e2=p11+p12+p21+p22
 e3=p11+p21+p31+p32
 a4=p11+p21+p31+n11
 [数据]
+rdko 回测
+nlgu 协方差
+jvvm 似然
+joxl 优度
 jmkw 何同学
 iozh 船期
 utaa 托书

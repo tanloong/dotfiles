@@ -182,5 +182,6 @@
   ],
   "tabnine.disable_file_regex": [
     "bangzhanxitong"
-  ]
+  ],
+  "sql.formatOptions": {"language": "sqlite", "keywordCase": "upper", "logicalOperatorNewline": "before"}
 }

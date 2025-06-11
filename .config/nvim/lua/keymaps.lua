@@ -135,7 +135,7 @@ end, { expr = true })
 map("i", "<c-l>", function()
   local row, col = unpack(vim.api.nvim_win_get_cursor(0))
   local line = vim.api.nvim_get_current_line()
-  local offset = line:sub(col + 1):find "[%])}>]"
+  local offset = line:sub(col + 1):find "[%]\"')}>]"
   if offset == nil then
     return
   end
