@@ -120,6 +120,7 @@ $env.config = {
   ]
 }
 
+alias c = clear
 alias pt = python
 alias v = nvim
 alias g = git
