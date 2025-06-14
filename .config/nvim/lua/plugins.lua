@@ -118,7 +118,7 @@ local plugin_specs = {
   -- tree-sitter
   {
     "nvim-treesitter/nvim-treesitter",
-    branch = "main",
+    branch = "master",
     run = ":TSUpdate",
     config = function() require "plugin_config.nvim_treesitter" end,
     event = "VeryLazy"
@@ -180,6 +180,7 @@ local plugin_specs = {
   -- interlaced
   {
     dir = "~/projects/interlaced.nvim",
+    enabled = vim.uv.fs_stat("~/projects/interlaced.nvim") and true or false,
     ft = "text",
     branch = "dev",
     cmd = "Interlaced",
@@ -279,7 +280,7 @@ local plugin_specs = {
   {
     "https://github.com/robitx/gp.nvim",
     -- dir = "/home/usr/.local/share/nvim/lazy/gp.nvim",
-    enabled = has("win32") ~= 1,
+    enabled = has "win32" ~= 1,
     config = function()
       require "plugin_config.gp_nvim"
     end,
