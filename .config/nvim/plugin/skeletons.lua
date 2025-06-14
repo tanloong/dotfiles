@@ -2,6 +2,8 @@
 
 local autocmd = vim.api.nvim_create_autocmd
 local augroup = vim.api.nvim_create_augroup
+local joinpath = vim.fs.joinpath
+local has = vim.fn.has
 
 local ext_skeleton = {
   c = "skeleton.c",
@@ -22,12 +24,16 @@ for ext, filename in pairs(ext_skeleton) do
   autocmd("BufNewFile", {
     pattern = "*." .. ext,
     group = augroup(group_name, { clear = true }),
-    command = ("silent keepalt 0r ~/.config/nvim/skeleton/%s | :normal G"):format(filename)
+    command = ("silent keepalt 0r %s | :normal G"):format(
+      joinpath(os.getenv(has "win32" == 1 and "LOCALAPPDATA" or "HOME"),
+        ".config", "nvim", "skeleton", filename))
   })
 end
 
 autocmd("BufNewFile", {
   pattern = "*.tex",
   group = augroup("skeleton_tex", { clear = true }),
-  command = "silent keepalt 0r ~/.config/nvim/skeleton/skeleton.tex | :startinsert!"
+  command = ("silent keepalt 0r %s | :startinsert!"):format(
+    joinpath(os.getenv(has "win32" == 1 and "LOCALAPPDATA" or "HOME"),
+      ".config", "nvim", "skeleton", "skeleton.tex"))
 })
