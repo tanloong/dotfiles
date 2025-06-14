@@ -29,8 +29,14 @@ function Link-File {
 }
 
 
-$scriptDir = Split-Path -Parent $MyInvocation.MyCommand.Path
+$currFolder = Split-Path -Parent $MyInvocation.MyCommand.Path
 Link-File -FROM (Join-Path $winDir ".windows" "profile.ps1") -TO $PROFILE
-Link-File -FROM (Join-Path $scriptDir ".gitconfig") -TO "$env:USERPROFILE\.gitconfig"
-Link-File -FROM (Join-Path $scriptDir ".config" "nvim") -TO "$env:LOCALAPPDATA\nvim"
-Link-File -FROM (Join-Path $scriptDir ".config" "nushell") -TO "$env:APPDATA\nushell"
+Link-File -FROM (Join-Path $currFolder ".gitconfig") -TO "$env:USERPROFILE\.gitconfig"
+Link-File -FROM (Join-Path $currFolder ".config" "nvim") -TO "$env:LOCALAPPDATA\nvim"
+Link-File -FROM (Join-Path $currFolder ".config" "nushell") -TO "$env:APPDATA\nushell"
+
+$huma_char = Join-Path $currFolder ".local/share/fcitx5/table/huma-char.txt"
+$huma_hop = Join-Path $currFolder ".local/share/nvim/lazy/hop.nvim/lua/hop/mappings/zh_huma.lua"
+$gawk_script = Join-Path $currFolder "huma2hop.gawk"
+if ( (Test-Path $huma_char) -and ( (-not (Test-Path $huma_hop)) -or ((Get-Item $huma_char).LastWriteTime -gt (Get-Item $huma_hop).LastWriteTime))) { & gawk -f $gawk_script -- $huma_char > $huma_hop }
+Link-File -FROM $huma_hop -TO (Join-Path $env:LOCALAPPDATA "nvim-data\lazy\hop.nvim\lua\hop\mappings\zh_huma.lua")
