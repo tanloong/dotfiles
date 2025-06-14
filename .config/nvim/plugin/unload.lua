@@ -21,9 +21,9 @@ g.loaded_matchit = 1
 
 g.python_host_skip_check = 1
 g.python3_host_skip_check = 1
-if vim.fn.has "win32" then
+if vim.fn.has "win32" == 1 then
   g.python_host_prog = "C:/Users/Administrator/scoop/apps/python/current/python.exe"
-  g.python3_host_prog = "C:/Users/Administrator/scoop/apps/python/current/python.exe"
+  g.python3_host_prog = "C:/Users/Administrator/scoop/shims/python3.exe"
 else
   g.python_host_prog = "/usr/bin/python"
   g.python3_host_prog = "/usr/bin/python3"

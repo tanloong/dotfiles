@@ -34,6 +34,8 @@ Link-File -FROM (Join-Path $currFolder ".windows" "profile.ps1") -TO $PROFILE
 Link-File -FROM (Join-Path $currFolder ".gitconfig") -TO "$env:USERPROFILE\.gitconfig"
 Link-File -FROM (Join-Path $currFolder ".config" "nvim") -TO "$env:LOCALAPPDATA\nvim"
 Link-File -FROM (Join-Path $currFolder ".config" "nushell") -TO "$env:APPDATA\nushell"
+Link-File -FROM (Join-Path $currFolder ".config" "uv") -TO "$env:APPDATA\uv"
+Link-File -FROm (Join-Path $currFolder ".pip" "pip.conf") -TO "C:\ProgramData\pip\pip.ini"
 
 $huma_char = Join-Path $currFolder ".local/share/fcitx5/table/huma-char.txt"
 $huma_hop = Join-Path $currFolder ".local/share/nvim/lazy/hop.nvim/lua/hop/mappings/zh_huma.lua"
@@ -41,3 +43,12 @@ New-Item -ItemType Directory -Path (Split-Path -Parent $huma_hop) -Force | Out-N
 $gawk_script = Join-Path $currFolder "huma2hop.gawk"
 if ( (Test-Path $huma_char) -and ( (-not (Test-Path $huma_hop)) -or ((Get-Item $huma_char).LastWriteTime -gt (Get-Item $huma_hop).LastWriteTime))) { & gawk -f $gawk_script -- $huma_char > $huma_hop }
 Link-File -FROM $huma_hop -TO (Join-Path $env:LOCALAPPDATA "nvim-data\lazy\hop.nvim\lua\hop\mappings\zh_huma.lua")
+
+
+$pynvimInstalled = pip show pynvim 2>$null
+if (-not $pynvimInstalled) {
+    Write-Host "pynvim not found. Installing..."
+    pip install pynvim
+} else {
+    Write-Host "pynvim is already installed."
+}
