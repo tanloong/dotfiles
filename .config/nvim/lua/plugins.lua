@@ -2,6 +2,7 @@
 
 local map = vim.keymap.set
 local hl = vim.api.nvim_set_hl
+local has = vim.fn.has
 
 local lazypath = vim.fn.stdpath "data" .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
@@ -278,6 +279,7 @@ local plugin_specs = {
   {
     "https://github.com/robitx/gp.nvim",
     -- dir = "/home/usr/.local/share/nvim/lazy/gp.nvim",
+    enabled = has("win32") ~= 1,
     config = function()
       require "plugin_config.gp_nvim"
     end,
