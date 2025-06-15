@@ -120,8 +120,14 @@ $env.config = {
   ]
 }
 
-def --env fzf_with [tool: string, query: string] {
-  let file = (fzf --reverse --query $query)
+def --env fzf_with [tool: string, query?: string] {
+  mut file = ""
+  if ($query | is-empty) {
+    $file = (fzf --reverse) 
+  } else {
+    $file = (fzf --reverse --query $query) 
+  }
+
   if ($file | is-empty) { return }
   if ($file | path exists) {
     let abspath = ($file | path expand)
@@ -132,21 +138,21 @@ def --env fzf_with [tool: string, query: string] {
     }
   }
 }
-def --env fv [query: string] { fzf_with $env.EDITOR $query }
-def --env fcd [query: string] { fzf_with cd $query }
-def --env fz [query: string] { fzf_with $env.PDFVIEWER $query }
-def --env fr [query: string] { fzf_with $env.FILE_MANAGER $query }
+def --env fv [query?: string] { fzf_with $env.EDITOR $query }
+def --env fcd [query?: string] { fzf_with cd $query }
+def --env fz [query?: string] { fzf_with $env.PDFVIEWER $query }
+def --env fr [query?: string] { fzf_with $env.FILE_MANAGER $query }
 
-def --env vv [query: string] {
+def --env vv [query?: string] {
   let pwd = $env.PWD
-  cd $"($env.HOME)/projects/dotfiles/"
+  cd (echo '~' | path expand | path join 'projects' 'dotfiles')
   fzf_with $env.EDITOR $query
   cd $pwd
 }
 
-def --env mm [query: string] {
+def --env mm [query?: string] {
   let pwd = $env.PWD
-  cd $"($env.HOME)/docx/memorandum/"
+  cd (echo '~' | path expand | path join 'docx' 'memorandum')
   fzf_with $env.EDITOR $query
   cd $pwd
 }
@@ -164,7 +170,7 @@ def nq [...pattern: string] {
 
 def activate [] {
     let cwd = ($env.PWD | path expand)
-    let home = ($env.USERPROFILE? | $env.HOME | path expand | path dirname)
+    let home = (echo '~' | path expand)
     mut venv_path = ""
     # Recursive search upward for .venv directory
     mut current_dir = $cwd
@@ -199,4 +205,5 @@ alias c = clear
 alias pt = python
 alias v = nvim
 alias g = git
+alias ga = lazygit
 source ~/.zoxide.nu
