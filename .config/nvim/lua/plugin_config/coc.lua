@@ -117,7 +117,7 @@ api.nvim_create_user_command("OR", "call CocActionAsync('runCommand', 'editor.ac
 -- coc-extensions{{{
 vim.g["coc_global_extensions"] = {
   "coc-git",
-  "coc-sumneko-lua",
+  # "coc-sumneko-lua",
   "coc-json",
   "coc-dictionary",
   "coc-pyright",
