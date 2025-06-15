@@ -77,13 +77,13 @@ map("x", "gX", function()
   api.nvim_input "<esc>"
 end)
 
-map("n", "gs", function()
+local _search = function(_open)
   local bufnr = api.nvim_create_buf(false, false)
   vim.bo[bufnr].buftype = "prompt"
   vim.bo[bufnr].bufhidden = "wipe"
   vim.fn.prompt_setprompt(bufnr, "")
-  api.nvim_buf_set_extmark(bufnr, api.nvim_create_namespace('WebSearch'), 0, 0, {
-    line_hl_group = 'String',
+  api.nvim_buf_set_extmark(bufnr, api.nvim_create_namespace "WebSearch", 0, 0, {
+    line_hl_group = "String",
   })
   local width = math.floor(vim.o.columns * 0.6)
   local winid = api.nvim_open_win(bufnr, true, {
@@ -104,13 +104,23 @@ map("n", "gs", function()
   vim.wo[winid].signcolumn = "no"
   vim.wo[winid].cursorline = false
   vim.fn.prompt_setcallback(bufnr, function(text)
-    vim.ui.open(("https://cn.bing.com/search?q=%s&form=QBLH"):format(vim.trim(text)))
+    _open(text)
     -- vim.ui.open(("https://metaso.cn?q=%s"):format(vim.trim(text)))
     api.nvim_win_close(winid, true)
   end)
   map({ "n" }, "<esc>", function()
     pcall(api.nvim_win_close, winid, true)
   end, { buffer = bufnr })
+end
+
+map("n", "gs", function()
+  _search(function(text) vim.ui.open(("https://cn.bing.com/search?q=%s&form=QBLH"):format(vim.trim(text))) end)
+end)
+
+map("n", "gz", function()
+  _search(
+    function(text) vim.system { "zeal", vim.trim(text) } end
+  )
 end)
 
 -- keyset("i", "<C-a>", "<Esc>^i")

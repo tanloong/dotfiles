@@ -3,17 +3,19 @@
 # version = "0.97.2"
 
 def create_left_prompt [] {
+    let usr = (whoami)
     let dir = match (do --ignore-errors { $env.PWD | path relative-to $nu.home-path }) {
-        null => $env.PWD
+        null => ($env.PWD | basename $in)
         '' => '~'
-        $relative_pwd => ([~ $relative_pwd] | path join)
+        $relative_pwd => ([~ $relative_pwd] | path join | basename $in)
     }
 
-    let path_color = (if (is-admin) { ansi red_bold } else { ansi green_bold })
-    let separator_color = (if (is-admin) { ansi light_red_bold } else { ansi light_green_bold })
-    let path_segment = $"($path_color)($dir)(ansi reset)"
+    let colored_usr = $"(ansi green)($usr)(ansi reset)"
+    let colored_sep = $"(ansi green):(ansi reset)"
+    let colored_dir = $"(ansi '#005fff')($dir)(ansi reset)"
+    let ret = $"($colored_usr)($colored_sep)($colored_dir)"
 
-    $path_segment | str replace --all (char path_sep) $"($separator_color)(char path_sep)($path_color)"
+    $ret
 }
 
 # Use nushell functions to define your right and left prompt
@@ -22,10 +24,14 @@ $env.PROMPT_COMMAND_RIGHT = ""
 
 # The prompt indicators are environmental variables that represent
 # the state of the prompt
-$env.PROMPT_INDICATOR = "$ "
-$env.PROMPT_INDICATOR_VI_INSERT = "$ "
-$env.PROMPT_INDICATOR_VI_NORMAL = "$ "
-$env.PROMPT_MULTILINE_INDICATOR = "... "
+$env.PROMPT_INDICATOR = $"(ansi default)$ (ansi reset)"
+$env.PROMPT_INDICATOR_VI_INSERT = $"(ansi default)$ (ansi reset)"
+$env.PROMPT_INDICATOR_VI_NORMAL = $"(ansi default)$ (ansi reset)"
+$env.PROMPT_MULTILINE_INDICATOR = $"(ansi default)... (ansi reset)"
+
+$env.FZF_DEFAULT_COMMAND = 'rg --ignore-file "$HOME/.ignore" --files --hidden -L'
+$env.FZF_DEFAULT_OPTS = '--tiebreak=end,chunk --bind=ctrl-z:ignore,btab:up,tab:down --cycle --keep-right --info=inline-right --layout=reverse --tabstop=1 --exit-0 --select-1'
+$env._ZO_FZF_OPTS = '--scheme=path --tiebreak=end,chunk --bind=ctrl-z:ignore,btab:up,tab:down --cycle --keep-right --info=inline-right --layout=reverse --tabstop=1 --exit-0 --select-1'
 
 # If you want previously entered commands to have a different prompt from the usual one,
 # you can uncomment one or more of the following lines.

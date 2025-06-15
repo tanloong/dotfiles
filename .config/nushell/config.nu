@@ -120,6 +120,81 @@ $env.config = {
   ]
 }
 
+def --env fzf_with [tool: string, query: string] {
+  let file = (fzf --reverse --query $query)
+  if ($file | is-empty) { return }
+  if ($file | path exists) {
+    let abspath = ($file | path expand)
+    let folder = ($file | path dirname)
+    match $tool {
+      "cd" => { cd $folder }
+      _ => { ^$tool $abspath }
+    }
+  }
+}
+def --env fv [query: string] { fzf_with $env.EDITOR $query }
+def --env fcd [query: string] { fzf_with cd $query }
+def --env fz [query: string] { fzf_with $env.PDFVIEWER $query }
+def --env fr [query: string] { fzf_with $env.FILE_MANAGER $query }
+
+def --env vv [query: string] {
+  let pwd = $env.PWD
+  cd $"($env.HOME)/projects/dotfiles/"
+  fzf_with $env.EDITOR $query
+  cd $pwd
+}
+
+def --env mm [query: string] {
+  let pwd = $env.PWD
+  cd $"($env.HOME)/docx/memorandum/"
+  fzf_with $env.EDITOR $query
+  cd $pwd
+}
+
+def nq [...pattern: string] {
+    if ($pattern | is-empty) {
+        print "usage: nq <pattern>"
+        return
+    }
+    let temp_file = (mktemp | str trim)
+    rg --vimgrep --smart-case ...$pattern | save --force $temp_file
+    nvim -q $temp_file
+    rm $temp_file
+}
+
+def activate [] {
+    let cwd = ($env.PWD | path expand)
+    let home = ($env.USERPROFILE? | $env.HOME | path expand | path dirname)
+    mut venv_path = ""
+    # Recursive search upward for .venv directory
+    mut current_dir = $cwd
+    while ($current_dir != $home and $current_dir != "") {
+        let potential_venv = ($current_dir | path join ".venv")
+        if ($potential_venv | path exists) {
+            $venv_path = ($potential_venv | path expand)
+            break
+        }
+        $current_dir = ($current_dir | path dirname)
+    }
+    if ($venv_path != "") {
+        if ($venv_path | path type) == dir {
+            let activate_script = ($venv_path | path join "bin" "activate.nu")
+            if ($activate_script | path exists) {
+                commandline edit $"overlay use ($activate_script)"
+            } else {
+                print $"Found .venv at ($venv_path), but could not find activate.nu"
+            }
+        } else {
+            print $"Found .venv at ($venv_path), but it is not a valid directory"
+        }
+    } else {
+        print "Could not find .venv directory"
+    }
+}
+
+alias va = activate
+alias vd = overlay hide activate
+
 alias c = clear
 alias pt = python
 alias v = nvim
