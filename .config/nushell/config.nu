@@ -123,9 +123,9 @@ $env.config = {
 def --env fzf_with [tool: string, query?: string] {
   mut file = ""
   if ($query | is-empty) {
-    $file = (fzf --reverse) 
+    $file = (fzf --reverse)
   } else {
-    $file = (fzf --reverse --query $query) 
+    $file = (fzf --reverse --query $query)
   }
 
   if ($file | is-empty) { return }
@@ -184,12 +184,14 @@ def activate [] {
     }
     if ($venv_path != "") {
         if ($venv_path | path type) == dir {
-            let activate_script = ($venv_path | path join "bin" "activate.nu")
-            if ($activate_script | path exists) {
-                commandline edit $"overlay use ($activate_script)"
-            } else {
-                print $"Found .venv at ($venv_path), but could not find activate.nu"
-            }
+            for folder in ["Scripts", "bin"] {
+              let activate_script = ($venv_path | path join $folder "activate.nu")
+                if ($activate_script | path exists) {
+                  commandline edit $"overlay use ($activate_script)"
+                  return
+                }
+              print $"Found .venv at ($venv_path), but could not find activate.nu"
+              }
         } else {
             print $"Found .venv at ($venv_path), but it is not a valid directory"
         }
