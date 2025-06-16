@@ -5,9 +5,9 @@
 def create_left_prompt [] {
     let usr = (whoami)
     let dir = match (do --ignore-errors { $env.PWD | path relative-to $nu.home-path }) {
-        null => ($env.PWD | basename $in)
+        null => ($env.PWD | path basename)
         '' => '~'
-        $relative_pwd => ([~ $relative_pwd] | path join | basename $in)
+        $relative_pwd => ([~ $relative_pwd] | path join | path basename)
     }
 
     let colored_usr = $"(ansi green)($usr)(ansi reset)"

@@ -190,8 +190,8 @@ def activate [] {
                   commandline edit $"overlay use ($activate_script)"
                   return
                 }
-              print $"Found .venv at ($venv_path), but could not find activate.nu"
               }
+              print $"Found .venv at ($venv_path), but could not find activate.nu"
         } else {
             print $"Found .venv at ($venv_path), but it is not a valid directory"
         }
@@ -208,4 +208,5 @@ alias pt = python
 alias v = nvim
 alias g = git
 alias ga = lazygit
+alias r = lf
 source ~/.zoxide.nu

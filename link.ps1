@@ -42,7 +42,7 @@ $huma_char = Join-Path $currFolder ".local/share/fcitx5/table/huma-char.txt"
 $huma_hop = Join-Path $currFolder ".local/share/nvim/lazy/hop.nvim/lua/hop/mappings/zh_huma.lua"
 New-Item -ItemType Directory -Path (Split-Path -Parent $huma_hop) -Force | Out-Null
 $gawk_script = Join-Path $currFolder "huma2hop.gawk"
-if ( (Test-Path $huma_char) -and ( (-not (Test-Path $huma_hop)) -or ((Get-Item $huma_char).LastWriteTime -gt (Get-Item $huma_hop).LastWriteTime))) { & gawk -f $gawk_script -- $huma_char > $huma_hop }
+if ( (Test-Path $huma_char) -and ( (-not (Test-Path $huma_hop)) -or ((Get-Item $huma_char).LastWriteTime -gt (Get-Item $huma_hop).LastWriteTime))) { & gawk -f $gawk_script -- $huma_char | Out-File -FilePath $huma_hop -Encoding utf8 -Force }
 Link-File -FROM $huma_hop -TO (Join-Path $env:LOCALAPPDATA "nvim-data\lazy\hop.nvim\lua\hop\mappings\zh_huma.lua")
 
 # pynvim
