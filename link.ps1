@@ -35,7 +35,12 @@ Link-File -FROM (Join-Path $currFolder ".gitconfig") -TO "$env:USERPROFILE\.gitc
 Link-File -FROM (Join-Path $currFolder ".config" "nvim") -TO "$env:LOCALAPPDATA\nvim"
 Link-File -FROM (Join-Path $currFolder ".config" "nushell") -TO "$env:APPDATA\nushell"
 Link-File -FROM (Join-Path $currFolder ".config" "uv") -TO "$env:APPDATA\uv"
-Link-File -FROm (Join-Path $currFolder ".pip" "pip.conf") -TO "C:\ProgramData\pip\pip.ini"
+Link-File -FROM (Join-Path $currFolder ".pip" "pip.conf") -TO "C:\ProgramData\pip\pip.ini"
+
+# lf
+Link-File -FROM (Join-Path $currFolder ".config" "lf" "icons") -TO "$env:LOCALAPPDATA\lf\icons"
+Link-File -FROM (Join-Path $currFolder ".config" "lf" "lfrc") -TO "$env:LOCALAPPDATA\lf\lfrc"
+Invoke-WebRequest -Uri "https://raw.githubusercontent.com/gokcehan/lf/master/etc/colors.example" -OutFile "$env:LOCALAPPDATA\lf\colors"
 
 # zh_huma.lua
 $huma_char = Join-Path $currFolder ".local/share/fcitx5/table/huma-char.txt"

@@ -16,7 +16,7 @@ if [ "$huma_char" -nt "$huma_hop" ]; then
 fi
 
 # skip .git/, .gitignore, and $curr_folder/[^.]+
-files=$(find "$curr_folder" -type f | grep -vE "(\.git/|\.gitignore|\.nvim\.lua|\.windows|$curr_folder/[^.])")
+files=$(find "$curr_folder" -type f | grep -vE "(\.git/|\.gitignore|\.nvim\.lua|windows|$curr_folder/[^.])")
 for filename in $files; do
     destination="$HOME/"${filename/#*dotfiles\/}
     mkdir -p "${destination%/*}" || :

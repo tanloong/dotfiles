@@ -55,10 +55,10 @@ map gcv cd ~/.config/nvim
 map glb cd ~/.local/bin
 map gls cd ~/.local/share
 map ga $lazygit
-map gib :git_branch
-map gis ${{clear; git status; read -p "press any key to continue" -n 1}}
-map gil ${{clear; git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit}}
-map gip ${{clear; git pull --rebase || true; echo "press ENTER"; read ENTER}}
+map gp $clear; git pull --rebase || true; echo "press ENTER"; read ENTER
+map gs $clear; git status; echo "press ENTER"; read ENTER
+map gl $clear; git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+
 map yy copy
 map yb yank-basename
 map yd yank-dirname
