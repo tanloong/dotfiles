@@ -30,7 +30,7 @@ function Link-File {
 
 
 $currFolder = Split-Path -Parent $MyInvocation.MyCommand.Path
-Link-File -FROM (Join-Path $currFolder ".windows" "profile.ps1") -TO $PROFILE
+Link-File -FROM (Join-Path $currFolder "windows" "profile.ps1") -TO $PROFILE
 Link-File -FROM (Join-Path $currFolder ".gitconfig") -TO "$env:USERPROFILE\.gitconfig"
 Link-File -FROM (Join-Path $currFolder ".config" "nvim") -TO "$env:LOCALAPPDATA\nvim"
 Link-File -FROM (Join-Path $currFolder ".config" "nushell") -TO "$env:APPDATA\nushell"
