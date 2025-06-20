@@ -2,29 +2,6 @@
 #
 # version = "0.97.2"
 
-let zoxide_completer = {|spans|
-    $spans | skip 1 | zoxide query -l ...$in | lines | where {|x| $x != $env.PWD}
-}
-
-let external_completer = {|spans|
-    let expanded_alias = scope aliases
-    | where name == $spans.0
-    | get -i 0.expansion
-
-    let spans = if $expanded_alias != null {
-        $spans
-        | skip 1
-        | prepend ($expanded_alias | split row ' ' | take 1)
-    } else {
-        $spans
-    }
-
-    match $spans.0 {
-        # use zoxide completions for zoxide commands
-        z | zi => $zoxide_completer
-    } | do $in $spans
-}
-
 # The default config record. This is where much of your global configuration is setup.
 $env.config = {
     show_banner: false # true or false to enable or disable the welcome banner at startup
@@ -79,11 +56,6 @@ $env.config = {
         partial: true    # set this to false to prevent partial filling of the prompt
         algorithm: "prefix"    # prefix or fuzzy
         sort: "smart" # "smart" (alphabetical for prefix matching, fuzzy score for fuzzy matching) or "alphabetical"
-        external: {
-            enable: true # set to false to prevent nushell looking into $env.PATH to find more suggestions, `false` recommended for WSL users as this look up may be very slow
-            max_results: 100 # setting it lower can improve completion performance at the cost of omitting some options
-            completer: $external_completer
-        }
         use_ls_colors: true # set this to true to enable file/path/directory completions using LS_COLORS
     }
 

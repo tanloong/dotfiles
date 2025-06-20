@@ -160,6 +160,7 @@ cmd open ${{
         application/*presentation|application/*ms-powerpoint) setsid -f libreoffice "$fx" >/dev/null 2>&1;;
         application/*document|application/msword) setsid -f libreoffice "$fx" >/dev/null 2>&1;;
         application/*sheet|application/vnd.ms-excel) setsid -f libreoffice "$fx" >/dev/null 2>&1;;
+        application/vnd.sqlite3) sqlite3 "$fx" 2> /dev/null ;;
         message/rfc822) setsid -f "$BROWSER" "$fx";;
         *) for f in "$fx"; do setsid -f $OPENER $f >/dev/null 2>&1; done;;
     esac

@@ -40,7 +40,7 @@ Link-File -FROM (Join-Path $currFolder ".pip" "pip.conf") -TO "C:\ProgramData\pi
 # lf
 Link-File -FROM (Join-Path $currFolder ".config" "lf" "icons") -TO "$env:LOCALAPPDATA\lf\icons"
 Link-File -FROM (Join-Path $currFolder ".config" "lf" "lfrc") -TO "$env:LOCALAPPDATA\lf\lfrc"
-Invoke-WebRequest -Uri "https://raw.githubusercontent.com/gokcehan/lf/master/etc/colors.example" -OutFile "$env:LOCALAPPDATA\lf\colors"
+# if (-not (Test-Path "$env:LOCALAPPDATA\lf\colors")) {Invoke-WebRequest -Uri "https://raw.githubusercontent.com/gokcehan/lf/master/etc/colors.example" -OutFile -FilePath "$env:LOCALAPPDATA\lf\colors" -Encoding utf8 -Force}
 
 # zh_huma.lua
 $huma_char = Join-Path $currFolder ".local/share/fcitx5/table/huma-char.txt"
