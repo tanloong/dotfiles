@@ -42,6 +42,9 @@ Link-File -FROM (Join-Path $currFolder ".config" "lf" "icons") -TO "$env:LOCALAP
 Link-File -FROM (Join-Path $currFolder ".config" "lf" "lfrc") -TO "$env:LOCALAPPDATA\lf\lfrc"
 # if (-not (Test-Path "$env:LOCALAPPDATA\lf\colors")) {Invoke-WebRequest -Uri "https://raw.githubusercontent.com/gokcehan/lf/master/etc/colors.example" -OutFile -FilePath "$env:LOCALAPPDATA\lf\colors" -Encoding utf8 -Force}
 
+# gitui
+Link-File -FROM (Join-Path $currFolder ".config" "gitui") -TO "$env:LOCALAPPDATA\gitui"
+
 # zh_huma.lua
 $huma_char = Join-Path $currFolder ".local/share/fcitx5/table/huma-char.txt"
 $huma_hop = Join-Path $currFolder ".local/share/nvim/lazy/hop.nvim/lua/hop/mappings/zh_huma.lua"
