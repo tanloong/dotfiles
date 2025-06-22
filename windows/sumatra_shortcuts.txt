@@ -1,0 +1,81 @@
+# 在 Sumatra 界面点击左上角设置 - 高级选项，把下面的内容粘贴到 Shortcut 小节里
+[
+Cmd = CmdScrollUpHalfPage
+Key = u
+]
+[
+Cmd = CmdScrollDownHalfPage
+Key = d
+]
+[
+  Cmd = CmdScrollUpPage
+  Key = Shift + K
+]
+[
+  Cmd = CmdScrollDownPage
+  Key = Shift + J
+]
+[
+  Cmd = CmdZoomIn
+  Key = Ctrl + Shift + K
+]
+[
+  Cmd = CmdZoomOut
+  Key = Ctrl + Shift + J
+]
+[
+  Cmd = CmdZoomFitWidth
+  Key = s
+]
+[
+  Cmd = CmdZoomFitPage
+  Key = a
+]
+[
+  Cmd = CmdTogglePresentationMode
+  Key = F5
+]
+[
+  Cmd = CmdReloadDocument
+  Key = r
+]
+[
+  Cmd = CmdRotateRight
+  Key = R
+]
+[
+  Cmd = CmdToggleTableOfContents
+  Key = Tab
+]
+[
+  Cmd = CmdToggleLinks
+  Key = f
+]
+[
+  Cmd = CmdGoToPage
+  Key = :
+]
+[
+  Cmd = CmdNextTab
+  Key = t
+]
+[
+  Cmd = CmdPrevTab
+  Key = T
+]
+[
+  Cmd = CmdCloseOtherTabs
+  Key = Ctrl + o
+]
+[
+  Cmd = CmdFindFirst
+  Key = /
+]
+[
+  Cmd = CmdFindNext
+  Key = n
+]
+[
+  Cmd = CmdFindPrev
+  Key = N
+]
