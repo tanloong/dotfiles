@@ -5,6 +5,7 @@ e2=p11+p12+p21+p22
 e3=p11+p21+p31+p32
 a4=p11+p21+p31+n11
 [数据]
+fwex 一字板
 rdko 回测
 nlgu 协方差
 jvvm 似然
