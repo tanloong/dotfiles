@@ -19,14 +19,20 @@ local ext_skeleton = {
   php = "skeleton.php"
 }
 
+local config_folder
+if has "win32" == 1 then
+  config_folder = os.getenv("LOCALAPPDATA")
+else
+  config_folder = joinpath(os.getenv("HOME"), ".config")
+end
+
 for ext, filename in pairs(ext_skeleton) do
   local group_name = ("skeleton_%s"):format(ext)
   autocmd("BufNewFile", {
     pattern = "*." .. ext,
     group = augroup(group_name, { clear = true }),
     command = ("silent keepalt 0r %s | :normal G"):format(
-      joinpath(os.getenv(has "win32" == 1 and "LOCALAPPDATA" or "HOME"),
-        ".config", "nvim", "skeleton", filename))
+      joinpath(config_folder, "nvim", "skeleton", filename))
   })
 end
 
@@ -34,6 +40,5 @@ autocmd("BufNewFile", {
   pattern = "*.tex",
   group = augroup("skeleton_tex", { clear = true }),
   command = ("silent keepalt 0r %s | :startinsert!"):format(
-    joinpath(os.getenv(has "win32" == 1 and "LOCALAPPDATA" or "HOME"),
-      ".config", "nvim", "skeleton", "skeleton.tex"))
+    joinpath(config_folder, "nvim", "skeleton", "skeleton.tex"))
 })
