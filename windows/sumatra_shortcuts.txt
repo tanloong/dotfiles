@@ -52,10 +52,6 @@ Key = d
   Key = f
 ]
 [
-  Cmd = CmdGoToPage
-  Key = :
-]
-[
   Cmd = CmdNextTab
   Key = t
 ]

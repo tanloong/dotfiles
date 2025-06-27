@@ -124,6 +124,7 @@ function nq
     nvim -q (rg --vimgrep --smart-case $argv | psub)
 end
 
+alias lb=libreoffice
 alias dl=trash
 alias c=clear
 alias e=chmod u+x
