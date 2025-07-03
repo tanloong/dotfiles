@@ -21,6 +21,8 @@
 [core]
 	longpaths = true
 	quotepath = false
+  # 禁用跨平台换行符转换
+	autocrlf = true
 [pull]
 	rebase = true
 [branch]

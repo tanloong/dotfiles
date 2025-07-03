@@ -45,8 +45,9 @@ set --global --export SUDO_ASKPASS /usr/bin/lxqt-openssh-askpass
 # set --global --export CDPATH $HOME $HOME/university/ $HOME/software $HOME/projects $HOME/docx
 # set --global --export CDPATH $CDPATH $HOME/projects/.shangwai/
 set --global --export TERMINAL "terminal.sh"
-set --global --export PDFVIEWER "zathura"
+set --global --export PDFVIEWER "pdfviewer.sh"
 set --global --export BROWSER "browser.sh"
+set --global --export OFFICE "office.sh"
 set --global --export FILE_MANAGER "lf"
 set --global --export WORKON_HOME ~/.virtualenvs
 
@@ -170,8 +171,12 @@ function activate
 
     # Recursive search upward for .venv directory
     while test -n $cwd -a $home != $cwd
-        if test -e $cwd/.venv
-            set --function venv_path (realpath $cwd/.venv)
+        if test -e $cwd/.venv/bin
+            set --function venv_path (realpath $cwd/.venv/bin)
+            break
+        end
+        if test -e $cwd/.venv/Scripts
+            set --function venv_path (realpath $cwd/.venv/Scripts)
             break
         end
         set --function cwd (dirname $cwd)
@@ -179,7 +184,7 @@ function activate
 
     if test -n $venv_path
         if test -d $venv_path
-            source $venv_path/bin/activate.fish
+            source $venv_path/activate.fish
         else
             echo "Found .venv at $venv_path, but it is not a valid directory"
         end

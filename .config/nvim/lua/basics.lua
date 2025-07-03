@@ -13,7 +13,7 @@ opt.expandtab = true
 opt.updatetime = 100
 opt.signcolumn = "yes"
 -- opt.mouse = "nvi"
-opt.mouse = ''
+opt.mouse = ""
 opt.scrolloff = 3
 opt.ignorecase = true
 opt.infercase = true
@@ -40,23 +40,36 @@ opt.modeline = false
 -- I: don't show introductory message on startup
 opt.shortmess = "ltToOCFI"
 
--- if vim.fn.has("nvim-0.10") == 1 then
---   vim.g.clipboard = {
---     name = 'OSC 52',
---     copy = {
---       ['+'] = require('vim.ui.clipboard.osc52').copy('+'),
---       ['*'] = require('vim.ui.clipboard.osc52').copy('*'),
---       ['"'] = require('vim.ui.clipboard.osc52').copy('"'),
---     },
---     paste = {
---       ['+'] = require('vim.ui.clipboard.osc52').paste('+'),
---       ['*'] = require('vim.ui.clipboard.osc52').paste('*'),
---       ['"'] = require('vim.ui.clipboard.osc52').paste('"'),
---     },
---   }
--- else
---   opt.clipboard:prepend { 'unnamed,unnamedplus' }
--- end
+if vim.fn.has "wsl" == 1 then
+  vim.g.clipboard = {
+    name = "win32yank-wsl",
+    copy = {
+      ["+"] = "win32yank.exe -i --crlf",
+      ["*"] = "win32yank.exe -i --crlf",
+    },
+    paste = {
+      ["+"] = "win32yank.exe -o --lf",
+      ["*"] = "win32yank.exe -o --lf",
+    },
+    cache_enabled = 0,
+  }
+  --   vim.g.clipboard = {
+  --     name = 'OSC 52',
+  --     copy = {
+  --       ['+'] = require('vim.ui.clipboard.osc52').copy('+'),
+  --       ['*'] = require('vim.ui.clipboard.osc52').copy('*'),
+  --       ['"'] = require('vim.ui.clipboard.osc52').copy('"'),
+  --     },
+  --     paste = {
+  --       ['+'] = require('vim.ui.clipboard.osc52').paste('+'),
+  --       ['*'] = require('vim.ui.clipboard.osc52').paste('*'),
+  --       ['"'] = require('vim.ui.clipboard.osc52').paste('"'),
+  --     },
+  --   }
+  -- else
+  --   opt.clipboard:prepend { 'unnamed,unnamedplus' }
+end
+
 opt.clipboard:prepend { "unnamed,unnamedplus" }
 opt.dictionary:append { vim.env.HOME .. "/.local/share/words.txt" }
 opt.thesaurus:append { vim.env.HOME .. "/.local/share/WordNet-thesaurus.txt" }

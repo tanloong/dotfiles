@@ -11,6 +11,7 @@ curr_folder=$(cd $(dirname $0) && pwd)
 # Generate hop.nvim mappings for huma
 huma_char="$curr_folder"/.local/share/fcitx5/table/huma-char.txt
 huma_hop="$curr_folder"/.local/share/nvim/lazy/hop.nvim/lua/hop/mappings/zh_huma.lua
+mkdir -p $(dirname "$huma_hop")
 if [ "$huma_char" -nt "$huma_hop" ]; then
   gawk -f "$curr_folder"/huma2hop.gawk -- "$huma_char" > "$huma_hop"
 fi
