@@ -40,19 +40,19 @@ opt.modeline = false
 -- I: don't show introductory message on startup
 opt.shortmess = "ltToOCFI"
 
-if vim.fn.has "wsl" == 1 then
-  vim.g.clipboard = {
-    name = "win32yank-wsl",
-    copy = {
-      ["+"] = "win32yank.exe -i --crlf",
-      ["*"] = "win32yank.exe -i --crlf",
-    },
-    paste = {
-      ["+"] = "win32yank.exe -o --lf",
-      ["*"] = "win32yank.exe -o --lf",
-    },
-    cache_enabled = 0,
-  }
+-- if vim.fn.has "wsl" == 1 then
+--   vim.g.clipboard = {
+--     name = "win32yank-wsl",
+--     copy = {
+--       ["+"] = "win32yank.exe -i --crlf",
+--       ["*"] = "win32yank.exe -i --crlf",
+--     },
+--     paste = {
+--       ["+"] = "win32yank.exe -o --lf",
+--       ["*"] = "win32yank.exe -o --lf",
+--     },
+--     cache_enabled = 0,
+--   }
   --   vim.g.clipboard = {
   --     name = 'OSC 52',
   --     copy = {
@@ -68,7 +68,7 @@ if vim.fn.has "wsl" == 1 then
   --   }
   -- else
   --   opt.clipboard:prepend { 'unnamed,unnamedplus' }
-end
+-- end
 
 opt.clipboard:prepend { "unnamed,unnamedplus" }
 opt.dictionary:append { vim.env.HOME .. "/.local/share/words.txt" }
