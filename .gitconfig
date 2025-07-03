@@ -22,7 +22,7 @@
 	longpaths = true
 	quotepath = false
   # 禁用跨平台换行符转换
-	autocrlf = true
+	autocrlf = false
 [pull]
 	rebase = true
 [branch]
