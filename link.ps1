@@ -53,6 +53,12 @@ $gawk_script = Join-Path $currFolder "huma2hop.gawk"
 if ( (Test-Path $huma_char) -and ( (-not (Test-Path $huma_hop)) -or ((Get-Item $huma_char).LastWriteTime -gt (Get-Item $huma_hop).LastWriteTime))) { & gawk -f $gawk_script -- $huma_char | Out-File -FilePath $huma_hop -Encoding utf8 -Force }
 Link-File -FROM $huma_hop -TO (Join-Path $env:LOCALAPPDATA "nvim-data\lazy\hop.nvim\lua\hop\mappings\zh_huma.lua")
 
+# komorebi
+Link-File -FROM (Join-Path $currFolder "windows" "komorebi" "komorebi.json") -TO "$env:USERPROFILE\komorebi.json"
+Link-File -FROM (Join-Path $currFolder "windows" "komorebi" "komorebi.bar.json") -TO "$env:USERPROFILE\komorebi.bar.json"
+Link-File -FROM (Join-Path $currFolder "windows" "komorebi" "komorebi.ahk") -TO "$env:USERPROFILE\komorebi.ahk"
+if (-not (Test-Path (Join-Path -Path $env:USERPROFILE -ChildPath "applications.json"))) { komorebic.exe fetch-asc }
+
 # pynvim
 $pynvimInstalled = pip show pynvim 2>$null
 if (-not $pynvimInstalled) {
@@ -61,3 +67,20 @@ if (-not $pynvimInstalled) {
 } else {
     Write-Host "pynvim is already installed."
 }
+
+# im-select
+$targetPath = Join-Path -Path $env:USERPROFILE -ChildPath "AppData\Local\Microsoft\WindowsApps"
+$filePath = Join-Path -Path $targetPath -ChildPath "im-select.exe"
+$downloadUrl = "https://raw.githubusercontent.com/daipeihust/im-select/master/win/out/x86/im-select.exe"  
+if (-not (Test-Path $filePath)) {
+    Write-Host "im-select.exe 不存在，开始下载..."
+    if (-not (Test-Path $targetPath)) { New-Item -ItemType Directory -Path $targetPath | Out-Null }
+    try {
+        Invoke-WebRequest -Uri $downloadUrl -OutFile $filePath -UseBasicParsing
+        Write-Host "下载完成，文件已保存到 $filePath"
+    }
+    catch {
+        Write-Host "下载失败：$_"
+    }
+}
+
