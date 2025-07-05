@@ -180,7 +180,7 @@ local plugin_specs = {
   -- interlaced
   {
     dir = "~/projects/interlaced.nvim",
-    enabled = vim.uv.fs_stat("~/projects/interlaced.nvim") and true or false,
+    enabled = vim.uv.fs_stat "~/projects/interlaced.nvim" and true or false,
     ft = "text",
     branch = "dev",
     cmd = "Interlaced",
@@ -544,7 +544,7 @@ local plugin_specs = {
   -- im-select
   {
     "keaising/im-select.nvim",
-    enabled = true,
+    enabled = has "wsl" == 1 or has "win32" == 1,
     config = function()
       require "im_select".setup {
         -- IM will be set to `default_im_select` in `normal` mode
@@ -557,7 +557,8 @@ local plugin_specs = {
         -- You can use `im-select` or `fcitx5-remote -n` to get the IM's name
         default_im_select = "1033",
 
-        default_command = "C:/Users/Administrator/AppData/Local/Microsoft/WindowsApps/im-select.exe",
+        default_command = vim.fs.joinpath(has "wsl" == 1 and "/mnt/c" or (has "win32" == 1 and "C:"),
+        "Users/Administrator/AppData/Local/Microsoft/WindowsApps/im-select.exe"),
         set_default_events = { "VimEnter", "FocusGained", "InsertLeave", "CmdlineLeave" },
         -- Restore the previous used input method state when the following events
         -- are triggered, if you don't want to restore previous used im in Insert mode,
