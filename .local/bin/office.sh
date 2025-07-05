@@ -16,7 +16,7 @@ if [ -n "$WSL_DISTRO_NAME" ]; then
       new_args+=("$@")
       
       # 使用msedge.exe打开，并传递所有参数
-      soffice.exe "${new_args[@]}"
+      /mnt/d/software/Libreoffice/program/soffice.exe "${new_args[@]}"
 else
     soffice "$@"
 fi
