@@ -39,8 +39,9 @@ Komorebic(cmd) {
 !+_::Komorebic("resize-axis vertical decrease")
 
 ; Manipulate windows
-!f::Komorebic("toggle-float")
+!+Space::Komorebic("toggle-float")
 !m::Komorebic("toggle-maximize")
+!t::Komorebic("toggle-maximize")
 
 ; Window manager options
 !+r::Komorebic("retile")
@@ -74,7 +75,6 @@ Komorebic(cmd) {
 ; last workspace
 !Esc::Komorebic("focus-last-workspace")
 
-!t::Komorebic("change-layout vertical-stack")
 !Enter::Komorebic("promote")
 
 #Z::Run "WindowsTerminal.exe"

@@ -20,3 +20,5 @@ temp
 *.sha1sum
 *.sha256sum
 .config/fcitx5/table/zrm.conf
+.config/nushell/history.txt
+.config/nvim/lazy-lock.json
