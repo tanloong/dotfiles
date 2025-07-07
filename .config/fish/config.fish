@@ -225,7 +225,7 @@ alias cp="cp -iv"
 alias mv="mv -iv"
 alias grep="grep --color"
 alias mkd="mkdir -pv"
-alias ls='ls -hN --color=auto --group-directories-first'
+alias ls='ls -hN --indicator-style=slash --color=auto --group-directories-first'
 alias diff='diff --color=auto'
 
 function _pd
