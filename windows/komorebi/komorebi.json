@@ -18,8 +18,8 @@
       "b": 0
     },
     "single": {
-      "r": 255,
-      "g": 255,
+      "r": 0,
+      "g": 0,
       "b": 0
     },
     "monocle": {
@@ -36,7 +36,7 @@
   "border_width": 5,
   "border_offset": 0,
   "focus_follows_mouse": "Windows",
-  "mouse_follows_focus": true,
+  "mouse_follows_focus": false,
   "monitors": [
     {
       "workspaces": [

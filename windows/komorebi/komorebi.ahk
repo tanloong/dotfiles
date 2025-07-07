@@ -40,8 +40,8 @@ Komorebic(cmd) {
 
 ; Manipulate windows
 !+Space::Komorebic("toggle-float")
-!m::Komorebic("toggle-maximize")
-!t::Komorebic("toggle-maximize")
+!m::Komorebic("toggle-monocle")
+!t::Komorebic("toggle-monocle")
 
 ; Window manager options
 !+r::Komorebic("retile")
