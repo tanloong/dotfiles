@@ -48,8 +48,6 @@ Komorebic(cmd) {
 !p::Komorebic("toggle-pause")
 
 ; Layouts
-!x::Komorebic("fliptlayout horizontal")
-!y::Komorebic("flip-layout vertical")
 
 ; Workspaces
 !1::Komorebic("focus-workspace 0")
@@ -79,16 +77,19 @@ Komorebic(cmd) {
 
 #Z::Run "WindowsTerminal.exe"
 #X::Run "C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe"
+
 #C::Run "D:\software\Libreoffice\program\soffice.exe"
 #A::Run "D:\Program Files\Tencent\WeChat\WeChat.exe"
 #Q::Run "D:\software\QQ\QQ.exe"
 #P::Run "Keepass.exe"
 
+SetCapsLockState "AlwaysOff" 
 CapsLock::Return
 CapsLock & h::Send "{Left}"
 CapsLock & j::Send "{Down}"
 CapsLock & k::Send "{Up}"
 CapsLock & l::Send "{Right}"
+CapsLock & i::Send "{Backspace}"
 
 ; 将 Ctrl+Space 映射为 Alt+Shift
 ^Space::Send "{CTRL up}{ALT down}{SHIFT down}{SHIFT up}{ALT up}"
