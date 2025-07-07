@@ -85,6 +85,13 @@ Komorebic(cmd) {
 #P::Run "Keepass.exe"
 
 CapsLock::Return
+CapsLock & h::Send "{Left}"
+CapsLock & j::Send "{Down}"
+CapsLock & k::Send "{Up}"
+CapsLock & l::Send "{Right}"
+
+; 将 Ctrl+Space 映射为 Alt+Shift
+^Space::Send "{CTRL up}{ALT down}{SHIFT down}{SHIFT up}{ALT up}"
 
 RShift::\
 \::|
