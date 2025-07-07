@@ -83,6 +83,7 @@ Komorebic(cmd) {
 #Q::Run "D:\software\QQ\QQ.exe"
 #P::Run "Keepass.exe"
 
+SetNumLockState "AlwaysOff" 
 SetCapsLockState "AlwaysOff" 
 CapsLock::Return
 CapsLock & h::Send "{Left}"

@@ -182,7 +182,6 @@ alias g = git
 alias ga = lazygit
 alias r = lf
 alias jobs = job list
-alias fg = job unfreeze
 alias lb = libreoffice
 # alias . = cd ..
 source ~/.zoxide.nu
