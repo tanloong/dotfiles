@@ -39,7 +39,7 @@ Komorebic(cmd) {
 !+_::Komorebic("resize-axis vertical decrease")
 
 ; Manipulate windows
-!+Space::Komorebic("toggle-float")
+!f::Komorebic("toggle-float")
 !m::Komorebic("toggle-monocle")
 !t::Komorebic("toggle-monocle")
 
@@ -92,9 +92,6 @@ CapsLock & k::Send "{Up}"
 CapsLock & l::Send "{Right}"
 CapsLock & i::Send "{Backspace}"
 
-; 将 Ctrl+Space 映射为 Alt+Shift
-^Space::Send "{CTRL up}{ALT down}{SHIFT down}{SHIFT up}{ALT up}"
-
 RShift::\
 \::|
 ; swap ~ and `
@@ -102,3 +99,37 @@ RShift::\
 ~::Send("``")
 ; !V::Send("!{F4}")
 
+; 将 Ctrl+Space 映射为 Alt+Shift
+getIMEMode(hWnd) {
+DetectHiddenWindows True
+ret := SendMessage(
+    0x283,  ; Message : WM_IME_CONTROL
+    0x001,  ; wParam  : IMC_GETCONVERSIONMODE
+    0,      ; lParam  ： (NoArgs)
+    ,       ; Control ： (Window)
+    ; 获取当前输入法的模式
+    "ahk_id " DllCall("imm32\ImmGetDefaultIMEWnd", "Uint", hWnd, "Uint")
+    )
+DetectHiddenWindows False
+return ret
+}
+^Space::
+{
+    try {
+        hWnd := WinGetID("A")
+    } catch Error {
+        ; ^Esc 开始菜单弹窗，卡死在找不到当前窗口
+        return
+    }
+    ; 微软五笔 1025-0
+    ; 英文键盘 1
+    if (getIMEMode(hWnd) == 1) {
+      Send "{CTRL up}{ALT down}{SHIFT down}{SHIFT up}{ALT up}"
+      Sleep 50
+      if (getIMEMode(hWnd) != 1025) {
+        Send "{CTRL up}{SHIFT}"
+      }
+    } else {
+      Send "{CTRL up}{SHIFT}"
+    }
+}
