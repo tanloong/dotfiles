@@ -133,3 +133,6 @@ return ret
       Send "{CTRL up}{SHIFT}"
     }
 }
+
+F11::Run "D:\software\controlmymonitor\ControlMyMonitor.exe /ChangeValue Primary 10 -5"
+F12::Run "D:\software\controlmymonitor\ControlMyMonitor.exe /ChangeValue Primary 10 5"

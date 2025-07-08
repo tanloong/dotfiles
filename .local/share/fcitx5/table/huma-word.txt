@@ -5,6 +5,10 @@ e2=p11+p12+p21+p22
 e3=p11+p21+p31+p32
 a4=p11+p21+p31+n11
 [数据]
+gjzi 封住率
+ggji 封住
+hoex 首板
+yuex 连板
 fwex 一字板
 rdko 回测
 nlgu 协方差
@@ -25437,7 +25441,6 @@ pbwj 归家
 oyto 暖阳
 fyhl 一致性
 fkdl 县里
-ggji 封住
 pxjb 行会
 lwth 带兵
 titi 陪陪
