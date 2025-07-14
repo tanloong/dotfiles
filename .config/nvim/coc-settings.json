@@ -86,7 +86,7 @@
   ],
   "diagnostic.level": "hint",
   "snippets.ultisnips.directories": [
-    "$HOME/.config/nvim/ultisnips"
+    "ultisnips"
   ],
   "snippets.ultisnips.pythonPrompt": false,
   "sumneko-lua.locale": "en-us",

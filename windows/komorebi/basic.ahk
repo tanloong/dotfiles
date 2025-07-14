@@ -9,8 +9,8 @@
 #Q::Run "D:\software\QQ\QQ.exe"
 #P::Run "Keepass.exe"
 
-SetNumLockState "AlwaysOff" 
-SetCapsLockState "AlwaysOff" 
+SetNumLockState "AlwaysOff"
+SetCapsLockState "AlwaysOff"
 CapsLock::Return
 CapsLock & h::Left
 CapsLock & j::Down
@@ -18,11 +18,11 @@ CapsLock & k::Up
 CapsLock & l::Right
 CapsLock & i::Backspace
 
+; `::~
+; ~::``
+
 RShift::\
 \::|
-; swap ~ and `
-`::~
-~::Send("``")
 !V::Send("!{F4}")
 
 ; 将 Ctrl+Space 映射为 Alt+Shift
@@ -62,7 +62,14 @@ return ret
 
 F11::Run "D:\software\controlmymonitor\ControlMyMonitor.exe /ChangeValue Primary 10 -5"
 F12::Run "D:\software\controlmymonitor\ControlMyMonitor.exe /ChangeValue Primary 10 5"
+F9::Run "D:\software\controlmymonitor\ControlMyMonitor.exe /ChangeValue Secondary 10 -5"
+F10::Run "D:\software\controlmymonitor\ControlMyMonitor.exe /ChangeValue Secondary 10 5"
 
 RAlt::Left
 RWin::Down
 RCtrl::Right
+
+; For 61 keyboard
+^$SC01A::Send("``") ; CTRL+[ `
+^SC01A::~ ; CTRL+SHIFT+[ ~
+
