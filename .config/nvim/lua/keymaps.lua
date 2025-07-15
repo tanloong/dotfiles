@@ -143,9 +143,9 @@ map("i", "<CR>", function()
   return "<CR>"
 end, { expr = true })
 map("i", "<c-l>", function()
-  local row, col = unpack(api.nvim_win_get_cursor(0))
-  local line = api.nvim_get_current_line()
-  local offset = line:sub(col + 1):find "[%]\"')}>]"
+  local row, col = unpack(vim.api.nvim_win_get_cursor(0))
+  local line = vim.api.nvim_get_current_line()
+  local offset = line:sub(col + 1):find "[%]\"')}>`]"
   if offset == nil then
     api.nvim_win_set_cursor(0, { row, #line })
     return

@@ -180,7 +180,7 @@ local plugin_specs = {
   -- interlaced
   {
     dir = "~/projects/interlaced.nvim",
-    enabled = vim.uv.fs_stat "~/projects/interlaced.nvim" and true or false,
+    enabled = vim.uv.fs_stat(vim.fs.normalize("~/projects/interlaced.nvim")) and true or false,
     ft = "text",
     branch = "dev",
     cmd = "Interlaced",
