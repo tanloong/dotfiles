@@ -1,15 +1,7 @@
 global !p
+import vim
 def math():
-    row, col = vim.current.window.cursor
-    line = vim.current.buffer[row - 1]
-    left_hand = line[:col - 1]
-    right_hand = line[col:]
-
-    is_enter_math = (left_hand.count('$') % 2 == 1)
-    is_exit_math = (right_hand.count('$') % 2 == 1)
-    if is_enter_math and is_exit_math:
-        return True
-    return False
+	return vim.funcs.luaeval("IsInTypstMath()")
 endglobal
 
 priority 100
