@@ -5,6 +5,7 @@ Set-Alias -Name pt -Value python
 Set-Alias -Name v -Value nvim
 Set-Alias -Name ga -Value lazygit
 Set-Alias -Name g -Value git
+Set-Alias -Name za -Value sumatrapdf
 
 Set-PSReadLineOption -Colors @{
     Command = 'Green'           # 命令（如 Get-Process）
