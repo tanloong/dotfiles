@@ -176,10 +176,6 @@ function activate
             set --function venv_path (realpath $cwd/.venv/bin)
             break
         end
-        if test -e $cwd/.venv/Scripts
-            set --function venv_path (realpath $cwd/.venv/Scripts)
-            break
-        end
         set --function cwd (dirname $cwd)
     end
 
