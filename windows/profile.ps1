@@ -7,6 +7,21 @@ Set-Alias -Name ga -Value lazygit
 Set-Alias -Name g -Value git
 Set-Alias -Name za -Value sumatrapdf
 
+function Invoke-Item-Dot { Invoke-Item -Path . }
+Set-Alias -Name r -Value Invoke-Item-Dot
+
+function Copy-CurrentPathToClipboard {
+    try {
+        $currentPath = Get-Location | Select-Object -ExpandProperty Path
+        $currentPath | Set-Clipboard
+        Write-Output $currentPath
+    }
+    catch {
+        Write-Error "Error: $_"
+    }
+}
+Set-Alias -Name pwdc -Value Copy-CurrentPathToClipboard
+
 Set-PSReadLineOption -Colors @{
     Command = 'Green'           # 命令（如 Get-Process）
 }
