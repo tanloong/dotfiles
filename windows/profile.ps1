@@ -22,6 +22,24 @@ function Copy-CurrentPathToClipboard {
 }
 Set-Alias -Name pwdc -Value Copy-CurrentPathToClipboard
 
+function New-DirectoryAndSetLocation {
+    [CmdletBinding()]
+    param (
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [string]$Path
+    )
+
+    try {
+        $createdDir = New-Item -ItemType Directory -Force -Path $Path
+        Set-Location -Path $createdDir.FullName
+    }
+    catch {
+        Write-Error "Error: $_"
+    }
+}
+Set-Alias -Name mcd -Value New-DirectoryAndSetLocation
+
+
 Set-PSReadLineOption -Colors @{
     Command = 'Green'           # 命令（如 Get-Process）
 }
