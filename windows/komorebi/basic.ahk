@@ -73,3 +73,4 @@ RCtrl::Right
 ^$SC01A::Send("``") ; CTRL+[ `
 ^SC01A::~ ; CTRL+SHIFT+[ ~
 
+Shift & Space::Return
