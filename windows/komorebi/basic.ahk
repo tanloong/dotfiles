@@ -8,6 +8,7 @@
 #A::Run "D:\Program Files\Tencent\WeChat\WeChat.exe"
 #Q::Run "D:\software\QQ\QQ.exe"
 #P::Run "Keepass.exe"
+#F::Run "D:\software\飞书\Feishu\Feishu.exe"
 
 SetNumLockState "AlwaysOff"
 SetCapsLockState "AlwaysOff"

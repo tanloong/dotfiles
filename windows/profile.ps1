@@ -80,7 +80,9 @@ function Activate-Venv {
 }
 
 Set-Alias -Name va -Value Activate-Venv
+Set-Alias -Name 以来 -Value Activate-Venv
 Set-Alias -Name vd -Value deactivate
+Set-Alias -Name 这里 -Value deactivate
 
 ################################################################################
 
