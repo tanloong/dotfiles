@@ -60,10 +60,10 @@ Link-File -FROM (Join-Path $currFolder "windows" "komorebi" "komorebi.ahk") -TO 
 if (-not (Test-Path (Join-Path -Path $env:USERPROFILE -ChildPath "applications.json"))) { komorebic.exe fetch-asc }
 
 # pynvim
-$pynvimInstalled = pip show pynvim 2>$null
+$pynvimInstalled = python -m pip show pynvim 2>$null
 if (-not $pynvimInstalled) {
     Write-Host "pynvim not found. Installing..."
-    pip install pynvim
+    python -m pip install pynvim
 } else {
     Write-Host "pynvim is already installed."
 }

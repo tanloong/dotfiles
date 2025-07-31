@@ -60,7 +60,7 @@ function Activate-Venv {
     # 递归向上查找.venv目录
     while ($true) {
         $scriptsPath = Join-Path $cwd ".venv\Scripts"
-        
+
         if (Test-Path $scriptsPath) {
             $venvPath = (Get-Item $scriptsPath).FullName
             break
@@ -120,7 +120,7 @@ function fcd { Invoke-FzfWith 'cd' }                     # 进入目录
 function fz { Invoke-FzfWith $env:PDFVIEWER }            # 看 pdf
 
 function mm {
-    Push-Location D:\usr\docx\memorandum
+    Push-Location D:\docx\memorandum
     Invoke-FzfWith $env:EDITOR
     Pop-Location
 }
@@ -130,9 +130,11 @@ function nq {
         [Parameter(Mandatory)]
         [string]$Pattern
     )
-    $qflist = rg --vimgrep --smart-case $Pattern | Out-String -NoNewline
+    $tempFile = New-TemporaryFile
+    $qflist = rg --vimgrep --smart-case $Pattern
     if ($qflist) {
-        nvim -q $qflist
+        $qflist | Out-File $tempFile -Encoding UTF8
+        nvim -q $tempFile
     }
 }
 
@@ -150,6 +152,20 @@ function Invoke-Yazi {
 Set-Alias -Name r -Value Invoke-Yazi
 function Invoke-Item-Dot { Invoke-Item -Path . }
 Set-Alias -Name s -Value Invoke-Item-Dot
+
+##################################### prompt ###################################
+
+function prompt {
+    # Get the last component of the current working directory
+    $drv  = (Get-Location).Drive.Name
+    $leaf = Split-Path -Leaf $pwd
+
+    $green  = "`e[92m"
+    $blue = "`e[38;2;0;95;255m"
+    $reset  = "`e[0m"
+
+    "${green}${drv}${reset}:${blue}${leaf}${reset}`$ "
+}
 
 #################################### zoxide ####################################
 
