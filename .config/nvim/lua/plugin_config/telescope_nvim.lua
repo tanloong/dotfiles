@@ -1,9 +1,9 @@
 local keyset = vim.keymap.set
-local telescope = require("telescope")
-local builtin = require("telescope.builtin")
-local actions = require("telescope.actions")
+local telescope = require "telescope"
+local builtin = require "telescope.builtin"
+local actions = require "telescope.actions"
 
-telescope.setup({
+telescope.setup {
   defaults = {
     prompt_prefix = " ",
     selection_caret = "▌ ",
@@ -32,8 +32,8 @@ telescope.setup({
       preview = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
     },
   },
-})
-require('telescope').load_extension('fzf')
+}
+require "telescope".load_extension "fzf"
 
 keyset("n", "<leader>b", builtin.buffers, {})
 keyset("n", "<leader><leader>", builtin.find_files, {})
@@ -42,17 +42,17 @@ keyset("n", "<leader>*", builtin.grep_string, {})
 keyset("n", "<leader>h", builtin.help_tags, {})
 keyset("n", "<c-/>",
   function()
-    builtin.current_buffer_fuzzy_find({ skip_empty_lines = true })
+    builtin.current_buffer_fuzzy_find { skip_empty_lines = true }
   end, {})
 keyset("n", "<leader>C",
   function()
     local cwd = "~/docx/corpus/BNC/02BNC_txt"
-    builtin.live_grep({
+    builtin.live_grep {
       cwd = cwd,
       follow = true,
       hidden = true,
       disable_coordinates = true,
-    })
+    }
   end, {})
 keyset("n", "<leader>v",
   function()
@@ -61,25 +61,28 @@ keyset("n", "<leader>v",
     if chunk ~= nil then
       chunk()
     end
-    builtin.find_files({
+    builtin.find_files {
       cwd = dotdir,
       follow = true,
       hidden = true
-    })
+    }
   end, {})
 keyset("n", "<leader>m",
   function()
-    builtin.find_files({ cwd = "~/docx/memorandum/", follow = true })
+    builtin.find_files {
+      cwd = vim.fs.joinpath(
+        vim.fn.has "win32" == 1 and "D:" or "~",
+        "docx/memorandum/"), follow = true }
   end, {})
 
-vim.cmd([[
+vim.cmd [[
     cabbrev <expr> h (getcmdtype() == ':' && getcmdline() == 'h' ?
                      \ 'Telescope help_tags<cr><c-r>=DT#Eatchar(" ")<cr>'
                      \: 'h')
     cabbrev <expr> Man (getcmdtype() == ':' && getcmdline() == 'Man' ?
                        \ 'Telescope man_pages<cr><c-r>=DT#Eatchar(" ")<cr>'
                        \: 'h')
-    ]])
+    ]]
 
 local hl = vim.api.nvim_set_hl
 hl(0, "TelescopeSelection", { fg = "#eeeeee", bg = "#303030" })

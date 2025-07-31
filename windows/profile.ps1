@@ -1,14 +1,17 @@
 Set-PSReadLineOption -EditMode Vi
 
+if (-not $env:EDITOR)       { $env:EDITOR       = 'nvim' }
+if (-not $env:PDFVIEWER)    { $env:PDFVIEWER    = 'SumatraPDF' }
+if (-not $env:FILE_MANAGER) { $env:FILE_MANAGER = 'lf' }
+
+#################################### alias #####################################
+
 Set-Alias -Name c -Value clear
 Set-Alias -Name pt -Value python
 Set-Alias -Name v -Value nvim
 Set-Alias -Name ga -Value lazygit
 Set-Alias -Name g -Value git
 Set-Alias -Name za -Value sumatrapdf
-
-function Invoke-Item-Dot { Invoke-Item -Path . }
-Set-Alias -Name r -Value Invoke-Item-Dot
 
 function Copy-CurrentPathToClipboard {
     try {
@@ -84,7 +87,71 @@ Set-Alias -Name 以来 -Value Activate-Venv
 Set-Alias -Name vd -Value deactivate
 Set-Alias -Name 这里 -Value deactivate
 
-################################################################################
+##################################### fzf ######################################
+
+# 让 powershell 默认输出 utf8 编码，不然 fzf 会乱码
+# Reference: 
+  # https://reine-ishyanami.github.io/blogs/ops/powershellUtf8.html
+  # https://github.com/junegunn/fzf/pull/3951
+[Console]::OutputEncoding = [System.Text.Encoding]::UTF8
+
+function Invoke-FzfWith {
+    param(
+        [Parameter(Mandatory)]
+        [string]$Opener,
+        [string]$Query = ''
+    )
+
+    $file = fzf --reverse --query $Query
+    if (-not [string]::IsNullOrWhiteSpace($file)) {
+        $file = Resolve-Path $file -ErrorAction Stop
+        $dir  = Split-Path $file -Parent
+        switch ($Opener.ToLower()) {
+            'cd' { Set-Location $dir }
+            default {
+                & $Opener $file
+            }
+        }
+    }
+}
+
+function fv { Invoke-FzfWith $env:EDITOR }               # 编辑
+function fcd { Invoke-FzfWith 'cd' }                     # 进入目录
+function fz { Invoke-FzfWith $env:PDFVIEWER }            # 看 pdf
+
+function mm {
+    Push-Location D:\usr\docx\memorandum
+    Invoke-FzfWith $env:EDITOR
+    Pop-Location
+}
+
+function nq {
+    param(
+        [Parameter(Mandatory)]
+        [string]$Pattern
+    )
+    $qflist = rg --vimgrep --smart-case $Pattern | Out-String -NoNewline
+    if ($qflist) {
+        nvim -q $qflist
+    }
+}
+
+##################################### yazi #####################################
+
+function Invoke-Yazi {
+    $tmp = (New-TemporaryFile).FullName
+    yazi $args --cwd-file="$tmp"
+    $cwd = Get-Content -Path $tmp -Encoding UTF8
+    if (-not [String]::IsNullOrEmpty($cwd) -and $cwd -ne $PWD.Path) {
+        Set-Location -LiteralPath (Resolve-Path -LiteralPath $cwd).Path
+    }
+    Remove-Item -Path $tmp
+}
+Set-Alias -Name r -Value Invoke-Yazi
+function Invoke-Item-Dot { Invoke-Item -Path . }
+Set-Alias -Name s -Value Invoke-Item-Dot
+
+#################################### zoxide ####################################
 
 Set-Alias -Name 可 -Value __zoxide_z
 # zoxide

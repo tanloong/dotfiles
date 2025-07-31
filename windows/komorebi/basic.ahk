@@ -1,7 +1,7 @@
 #Requires AutoHotkey v2.0.2
 #SingleInstance Force
 
-#Z::Run "WindowsTerminal.exe"
+#Z::Run "D:\software\scoop\apps\windows-terminal\current\WindowsTerminal.exe"
 #X::Run "C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe"
 
 #C::Run "D:\software\Libreoffice\program\soffice.exe"
@@ -22,8 +22,9 @@ CapsLock & i::Backspace
 ; `::~
 ; ~::``
 
-RShift::\
-\::|
+; RShift::\
+; \::|
+; |::\
 !V::Send("!{F4}")
 
 ; 将 Ctrl+Space 映射为 Alt+Shift
