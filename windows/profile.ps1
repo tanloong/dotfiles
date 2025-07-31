@@ -167,6 +167,52 @@ function prompt {
     "${green}${drv}${reset}:${blue}${leaf}${reset}`$ "
 }
 
+
+<#
+.SYNOPSIS
+  把文件版本号自动 +1 或初始化为 _v2
+.EXAMPLE
+  Bump-Script .\foo_v3.txt .\bar.log
+  # 结果：foo_v4.txt, bar_v2.log
+#>
+function Bump-Script {
+    [CmdletBinding()]
+    param(
+        [Parameter(Mandatory, ValueFromRemainingArguments)]
+        [ValidateScript({
+            if (-not (Test-Path $_ -PathType Leaf)) {
+                throw "'$_' 不是文件"
+            }
+            $true
+        })]
+        [string[]]$Path
+    )
+
+    foreach ($item in $Path) {
+        $file = Get-Item $item
+        $name = $file.BaseName          # 不含扩展名
+        $ext  = $file.Extension         # 含点
+
+        if ($name -match '_v(\d+)$') {
+            $current = [int]$Matches[1]
+            $newName = $name -replace '_v\d+$', "_v$($current + 1)"
+        } else {
+            $newName = "${name}_v2"
+        }
+
+        $newFull = Join-Path $file.Directory.FullName ($newName + $ext)
+
+        if (Test-Path $newFull) {
+            Write-Warning "已存在 $newFull，跳过 $($file.Name)"
+            continue
+        }
+
+        Rename-Item -LiteralPath $file.FullName -NewName $newFull
+        Write-Host "重命名：$($file.Name)  -->  $(Split-Path $newFull -Leaf)"
+    }
+}
+
+
 #################################### zoxide ####################################
 
 Set-Alias -Name 可 -Value __zoxide_z
