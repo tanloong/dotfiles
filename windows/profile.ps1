@@ -120,8 +120,12 @@ function fcd { Invoke-FzfWith 'cd' }                     # 进入目录
 function fz { Invoke-FzfWith $env:PDFVIEWER }            # 看 pdf
 
 function mm {
+    param(
+        [Parameter(Mandatory)]
+        [string]$Query = ''
+    )
     Push-Location D:\docx\memorandum
-    Invoke-FzfWith $env:EDITOR
+    Invoke-FzfWith $env:EDITOR $Query
     Pop-Location
 }
 

@@ -37,10 +37,8 @@ Link-File -FROM (Join-Path $currFolder ".config" "nushell") -TO "$env:APPDATA\nu
 Link-File -FROM (Join-Path $currFolder ".config" "uv") -TO "$env:APPDATA\uv"
 Link-File -FROM (Join-Path $currFolder ".pip" "pip.conf") -TO "C:\ProgramData\pip\pip.ini"
 
-# lf
-Link-File -FROM (Join-Path $currFolder ".config" "lf" "icons") -TO "$env:LOCALAPPDATA\lf\icons"
-Link-File -FROM (Join-Path $currFolder ".config" "lf" "lfrc") -TO "$env:LOCALAPPDATA\lf\lfrc"
-# if (-not (Test-Path "$env:LOCALAPPDATA\lf\colors")) {Invoke-WebRequest -Uri "https://raw.githubusercontent.com/gokcehan/lf/master/etc/colors.example" -OutFile -FilePath "$env:LOCALAPPDATA\lf\colors" -Encoding utf8 -Force}
+# yazi
+Link-File -FROM (Join-Path $currFolder ".config" "yazi") -TO "$env:APPDATA\yazi\config"
 
 # gitui
 Link-File -FROM (Join-Path $currFolder ".config" "gitui") -TO "$env:APPDATA\gitui"
