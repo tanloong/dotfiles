@@ -144,16 +144,17 @@ function nq {
 
 ##################################### yazi #####################################
 
-function Invoke-Yazi {
-    $tmp = (New-TemporaryFile).FullName
-    yazi $args --cwd-file="$tmp"
-    $cwd = Get-Content -Path $tmp -Encoding UTF8
-    if (-not [String]::IsNullOrEmpty($cwd) -and $cwd -ne $PWD.Path) {
-        Set-Location -LiteralPath (Resolve-Path -LiteralPath $cwd).Path
-    }
-    Remove-Item -Path $tmp
-}
-Set-Alias -Name r -Value Invoke-Yazi
+# function Invoke-Yazi {
+#     $tmp = (New-TemporaryFile).FullName
+#     yazi $args --cwd-file="$tmp"
+#     $cwd = Get-Content -Path $tmp -Encoding UTF8
+#     if (-not [String]::IsNullOrEmpty($cwd) -and $cwd -ne $PWD.Path) {
+#         Set-Location -LiteralPath (Resolve-Path -LiteralPath $cwd).Path
+#     }
+#     Remove-Item -Path $tmp
+# }
+# Set-Alias -Name r -Value Invoke-Yazi
+Set-Alias -Name r -Value yazi
 function Invoke-Item-Dot { Invoke-Item -Path . }
 Set-Alias -Name s -Value Invoke-Item-Dot
 
