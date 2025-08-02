@@ -221,6 +221,10 @@ function Bump-Script {
 #################################### zoxide ####################################
 
 Set-Alias -Name 可 -Value __zoxide_z
+
+
+$Env:GIT_EDITOR = "nvim"
+
 # zoxide
 Invoke-Expression (& { (zoxide init powershell | Out-String) })
 
