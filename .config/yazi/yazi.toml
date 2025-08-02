@@ -17,6 +17,7 @@ rules = [
 
 	# { mime = "application/json", use = "edit" },
 	{ name = "*.json", use = "edit" },
+	{ name = "*.md", use = "edit" },
 
 	# Multiple openers for a single rule
 	{ name = "*.html", use = [ "open", "edit" ] },
