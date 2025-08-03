@@ -450,14 +450,14 @@ local plugin_specs = {
             ["<s-Right>"] = "accept_line",
           },
         }, }
-      map({ "i", "n" }, "<s-tab>", function()
-        require "fittencode".dismiss_suggestions()
-        require "fittencode".enable_completions { enable = false }
-      end)
-      map({ "i", "n" }, "<c-tab>", function()
-        require "fittencode".enable_completions { enable = true }
-        require "fittencode".triggering_completion()
-      end)
+      -- map({ "i", "n" }, "<s-tab>", function()
+      --   require "fittencode".dismiss_suggestions()
+      --   require "fittencode".enable_completions { enable = false }
+      -- end)
+      -- map({ "i", "n" }, "<c-tab>", function()
+      --   require "fittencode".enable_completions { enable = true }
+      --   require "fittencode".triggering_completion()
+      -- end)
     end,
   },
   {

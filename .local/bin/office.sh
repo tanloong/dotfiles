@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -euo pipefail
+# set -euo pipefail
 IFS=$'\n\t'
 
 if [ -n "$WSL_DISTRO_NAME" ]; then
