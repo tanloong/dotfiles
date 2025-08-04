@@ -21,7 +21,8 @@
 [core]
 	longpaths = true
 	quotepath = false
-	autocrlf = input
+  # 禁用跨平台换行符转换
+	autocrlf = false
 	eol = lf
 [pull]
 	rebase = true
@@ -40,3 +41,7 @@
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
+[credential "https://gitee.com"]
+	provider = generic
+[credential "helperselector"]
+	selected = manager

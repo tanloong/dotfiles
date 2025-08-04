@@ -99,6 +99,7 @@ function Invoke-FzfWith {
     param(
         [Parameter(Mandatory)]
         [string]$Opener,
+        [Parameter(Mandatory = $false)]
         [string]$Query = ''
     )
 
@@ -121,7 +122,7 @@ function fz { Invoke-FzfWith $env:PDFVIEWER }            # 看 pdf
 
 function mm {
     param(
-        [Parameter(Mandatory)]
+        [Parameter(Mandatory = $false)]
         [string]$Query = ''
     )
     Push-Location D:\docx\memorandum
