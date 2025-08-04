@@ -124,6 +124,16 @@ function nq
     nvim -q (rg --vimgrep --smart-case $argv | psub)
 end
 
+function r
+	set tmp (mktemp -t "yazi-cwd.XXXXXX")
+	yazi $argv --cwd-file="$tmp"
+	if read -z cwd < "$tmp"; and [ -n "$cwd" ]; and [ "$cwd" != "$PWD" ]
+		builtin cd -- "$cwd"
+	end
+	rm -f -- "$tmp"
+end
+# alias r='$FILE_MANAGER'
+
 alias lb=libreoffice
 alias dl=trash
 alias c=clear
@@ -133,7 +143,6 @@ alias p='sudo pacman'
 alias pt=python
 alias t=tldr
 alias q=exit
-alias r='$FILE_MANAGER'
 alias L="less"
 alias .="cd .."
 alias ..="cd ../.."

@@ -91,39 +91,42 @@ title_error = { fg = "#a85361" }
 [filetype]
 rules = [
 	# directories
-	{ name = "*/", fg = "#1f6f88" },
+	{ name = "*/", fg = "#008787" },
 
 	# executables
-	{ name = "*", is = "exec", fg = "#7e9350" },
+	{ name = "*", is = "exec", fg = "#FF8700" },
 
 	# images
-	{ mime = "image/*", fg = "#c2a05c" },
+	{ mime = "image/*", fg = "#875FAF" },
 
 	# media
-	{ mime = "{audio,video}/*", fg = "#7e9350" },
+	{ mime = "{audio,video}/*", fg = "#AF875F" },
 
 	# archives
 	{ mime = "application/{,g}zip", fg = "#a85361" },
 	{ mime = "application/x-{tar,bzip*,7z-compressed,xz,rar}", fg = "#a85361" },
 
 	# documents
-	{ mime = "application/{pdf,doc,rtf,vnd.*}", fg = "#1f6f88" },
+	{ mime = "application/{doc,rtf,vnd.*}", fg = "#87D787" },
 
 	# scripts and code
-	{ mime = "application/{x-shellscript,x-python,x-ruby,x-javascript}", fg = "#c2a05c" },
-	{ mime = "text/x-{c,c++}", fg = "#1f6f88" },
+	# { mime = "application/{x-shellscript,x-python,x-ruby,x-javascript}", fg = "#c2a05c" },
+	# { mime = "text/x-{c,c++}", fg = "#1f6f88" },
 
 	# config files
-	{ name = "*.json", fg = "#c2a05c" },
+	{ name = "*.json", fg = "#D7AF00" },
 	{ name = "*.yml", fg = "#1f6f88" },
 	{ name = "*.toml", fg = "#9464b6" },
+	{ name = "*.pdf", fg = "#b5b5ff" },
+	{ name = "*.html", fg = "#AF005F" },
+	{ name = "*.lua", fg = "#5FD7FF" },
+	{ name = "*.csv", fg = "#5FD787" },
+	{ name = "*.md", fg = "#FFD700" },
+	{ name = "*.py", fg = "#00D75F" },
 
 	# special files
 	{ name = "*", is = "orphan", bg = "#0a0e14" },
 
 	# dummy files
 	{ name = "*", is = "dummy", bg = "#0a0e14" },
-
-	# fallback
-	{ name = "*/", fg = "#1f6f88" },
 ]
