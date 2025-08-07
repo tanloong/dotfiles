@@ -56,7 +56,9 @@ keyset("n", "<leader>C",
   end, {})
 keyset("n", "<leader>v",
   function()
-    local dotdir = "~/projects/dotfiles/"
+    local dotdir = vim.fs.joinpath(
+        vim.fn.has "win32" == 1 and "D:" or "~",
+        "projects/dotfiles/")
     local chunk, _ = loadfile(vim.fs.joinpath(dotdir, ".nvim.lua"))
     if chunk ~= nil then
       chunk()

@@ -132,6 +132,15 @@ function mm {
     Invoke-FzfWith $env:EDITOR $Query
     Pop-Location
 }
+function vv {
+    param(
+        [Parameter(Mandatory = $false)]
+        [string]$Query = ''
+    )
+    Push-Location D:\projects\dotfiles
+    Invoke-FzfWith $env:EDITOR $Query
+    Pop-Location
+}
 
 function nq {
     param(
