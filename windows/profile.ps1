@@ -90,7 +90,7 @@ Set-Alias -Name 这里 -Value deactivate
 ##################################### fzf ######################################
 
 # 让 powershell 默认输出 utf8 编码，不然 fzf 会乱码
-# Reference: 
+# Reference:
   # https://reine-ishyanami.github.io/blogs/ops/powershellUtf8.html
   # https://github.com/junegunn/fzf/pull/3951
 [Console]::OutputEncoding = [System.Text.Encoding]::UTF8
@@ -116,9 +116,12 @@ function Invoke-FzfWith {
     }
 }
 
-function fv { Invoke-FzfWith $env:EDITOR }               # 编辑
-function fcd { Invoke-FzfWith 'cd' }                     # 进入目录
-function fz { Invoke-FzfWith $env:PDFVIEWER }            # 看 pdf
+function fv {param([Parameter(Mandatory = $false)][string]$Query = '')
+  Invoke-FzfWith $env:EDITOR $Query}
+function fcd {param([Parameter(Mandatory = $false)][string]$Query = '')
+  Invoke-FzfWith 'cd' $Query}
+function fz {param([Parameter(Mandatory = $false)][string]$Query = '')
+  Invoke-FzfWith $env:PDFVIEWER $Query}
 
 function mm {
     param(
@@ -142,6 +145,8 @@ function nq {
         nvim -q $tempFile
     }
 }
+
+##################################### fzf ######################################
 
 $Env:FZF_DEFAULT_COMMAND = "rg --ignore-file `"$Env:USERPROFILE\.ignore`" --files --hidden -L"
 $Env:FZF_DEFAULT_OPTS='--tiebreak=end,chunk --bind=ctrl-z:ignore,btab:up,tab:down --cycle --keep-right --info=inline-right --layout=reverse --tabstop=1 --exit-0 --select-1'
