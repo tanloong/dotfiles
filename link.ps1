@@ -43,6 +43,9 @@ Link-File -FROM (Join-Path $currFolder ".config" "yazi") -TO "$env:APPDATA\yazi\
 # gitui
 Link-File -FROM (Join-Path $currFolder ".config" "gitui") -TO "$env:APPDATA\gitui"
 
+# ripgrep ignore pattern
+Link-File -FROM (Join-Path $currFolder ".ignore") -TO "$env:USERPROFILE\.ignore"
+
 # zh_huma.lua
 $huma_char = Join-Path $currFolder ".local/share/fcitx5/table/huma-char.txt"
 $huma_hop = Join-Path $currFolder ".local/share/nvim/lazy/hop.nvim/lua/hop/mappings/zh_huma.lua"

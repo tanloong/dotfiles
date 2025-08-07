@@ -55,11 +55,16 @@ play = [
 	{ run = 'mpv --force-window %*', orphan = true, for = "windows" },
 	{ run = '''mediainfo "$1"; echo "Press enter to exit"; read _''', block = true, desc = "Show media info", for = "unix" },
 ]
-
+pdf = [
+	{ run = 'zathura "$@"', desc = "PDF viewer", for = "unix" },
+	{ run = 'sumatrapdf.exe %*',   desc = "PDF viewer", for = "windows" },
+]
 [open]
 rules = [
 	# Folder
 	{ name = "*/", use = [ "edit", "open", "reveal" ] },
+	# PDF
+	{ name = "*.pdf", use = [ "pdf" ] },
 	# Text
 	{ mime = "text/*", use = [ "edit", "reveal" ] },
 	# Image

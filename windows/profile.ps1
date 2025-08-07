@@ -143,6 +143,10 @@ function nq {
     }
 }
 
+$Env:FZF_DEFAULT_COMMAND = "rg --ignore-file `"$Env:USERPROFILE\.ignore`" --files --hidden -L"
+$Env:FZF_DEFAULT_OPTS='--tiebreak=end,chunk --bind=ctrl-z:ignore,btab:up,tab:down --cycle --keep-right --info=inline-right --layout=reverse --tabstop=1 --exit-0 --select-1'
+$Env:_ZO_FZF_OPTS='--scheme=path --tiebreak=end,chunk --bind=ctrl-z:ignore,btab:up,tab:down --cycle --keep-right --info=inline-right --layout=reverse --tabstop=1 --exit-0 --select-1'
+
 ##################################### yazi #####################################
 
 function Invoke-Yazi {
