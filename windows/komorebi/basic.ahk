@@ -1,7 +1,7 @@
 #Requires AutoHotkey v2.0.2
 #SingleInstance Force
 
-#Z::Run "D:\software\scoop\apps\windows-terminal\current\WindowsTerminal.exe"
+#Z::Run "wt.exe"
 #X::Run "C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe"
 
 #C::Run "D:\software\Libreoffice\program\soffice.exe"
@@ -75,4 +75,20 @@ RCtrl::Right
 ^$SC01A::Send("``") ; CTRL+[ `
 ^SC01A::~ ; CTRL+SHIFT+[ ~
 
+; 禁用全角半角切换
 Shift & Space::Return
+
+
+; Sctrach pad
+; 需要在 windows terminal 配置好: { "command": { "action": "globalSummon", "name": "_quake", "dropdownDuration": 200, "toggleVisibility": true, "monitor": "any", "desktop": "toCurrent" }, "keys": "alt+n" },
+ToggleScratch() {
+  DetectHiddenWindows True
+; https://github.com/Esgariot/AHK-WindowsTerminal-dropdown/blob/master/src/toggle_windows_terminal.ahk
+if WinExist("ahk_class CASCADIA_HOSTING_WINDOW_CLASS") {
+  Send("!n")
+} else {
+  Run "wt.exe -w _quake"
+}
+  DetectHiddenWindows False
+}
+!n::ToggleScratch
