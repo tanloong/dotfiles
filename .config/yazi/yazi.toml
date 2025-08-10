@@ -59,12 +59,17 @@ pdf = [
 	{ run = 'zathura "$@"', desc = "PDF viewer", for = "unix" },
 	{ run = 'sumatrapdf.exe %*',   desc = "PDF viewer", for = "windows" },
 ]
+sqlite = [
+  { run = 'sqlite3 "$@"', desc = "sqlite", block=true, for = "unix" },
+  { run = 'sqlite3 "%*"', desc = "sqlite", block=true, for = "windows" },
+]
 [open]
 rules = [
 	# Folder
 	{ name = "*/", use = [ "edit", "open", "reveal" ] },
 	# PDF
 	{ name = "*.pdf", use = [ "pdf" ] },
+	{ name = "*.db", use = [ "sqlite" ] },
 	# Text
 	{ mime = "text/*", use = [ "edit", "reveal" ] },
 	# Image

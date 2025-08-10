@@ -80,7 +80,7 @@ Shift & Space::Return
 
 
 ; Sctrach pad
-; 需要在 windows terminal 配置好: { "command": { "action": "globalSummon", "name": "_quake", "dropdownDuration": 200, "toggleVisibility": true, "monitor": "any", "desktop": "toCurrent" }, "keys": "alt+n" },
+; 需要在 windows terminal 配置好: { "command": { "action": "globalSummon", "name": "_quake", "dropdownDuration": 0, "toggleVisibility": true, "monitor": "any", "desktop": "toCurrent" }, "keys": "alt+n" },
 ToggleScratch() {
   DetectHiddenWindows True
 ; https://github.com/Esgariot/AHK-WindowsTerminal-dropdown/blob/master/src/toggle_windows_terminal.ahk

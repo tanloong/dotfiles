@@ -11,3 +11,8 @@ function Linemode:size_and_mtime()
 	local size = self._file:size()
 	return string.format("%s %s", size and ya.readable_size(size) or "", time)
 end
+
+-- https://yazi-rs.github.io/docs/dds/#session.lua
+require("session"):setup {
+	sync_yanked = true,
+}
