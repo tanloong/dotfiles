@@ -5,6 +5,8 @@
 [mgr]
 
 keymap = [
+  {on = [ "t", "z" ], run  = "plugin compress 'zip'", desc = "Archive selected files"},
+  {on = [ "t", "l" ], run  = "plugin compress -l", desc = "Archive selected files (compression level)"},
 	{ on = "<Esc>", run = "escape",             desc = "Exit visual mode, clear selection, or cancel search" },
 	{ on = "<C-[>", run = "escape",             desc = "Exit visual mode, clear selection, or cancel search" },
 	{ on = "w",     run = "quit",               desc = "Quit the process" },
@@ -134,7 +136,7 @@ keymap = [
 	{ on = [ "g", "f" ],       run = "follow",           desc = "Follow hovered symlink" },
 
 	# Tabs
-	{ on = "t", run = "tab_create --current", desc = "Create a new tab with CWD" },
+	{ on = "<C-t>", run = "tab_create --current", desc = "Create a new tab with CWD" },
 
 	{ on = "1", run = "tab_switch 0", desc = "Switch to first tab" },
 	{ on = "2", run = "tab_switch 1", desc = "Switch to second tab" },
