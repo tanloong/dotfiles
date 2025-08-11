@@ -22,3 +22,4 @@ temp
 .config/fcitx5/table/zrm.conf
 .config/nushell/history.txt
 .config/nvim/lazy-lock.json
+.config/yazi/plugins
