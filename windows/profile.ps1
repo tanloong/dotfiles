@@ -13,6 +13,11 @@ Set-Alias -Name ga -Value lazygit
 Set-Alias -Name g -Value git
 Set-Alias -Name za -Value sumatrapdf
 
+function Go-To-Parent-Directory {
+    Set-Location ..
+}
+Set-Alias -Name d -Value Go-To-Parent-Directory
+
 function Copy-CurrentPathToClipboard {
     try {
         $currentPath = Get-Location | Select-Object -ExpandProperty Path
