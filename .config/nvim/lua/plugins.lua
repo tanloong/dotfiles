@@ -179,8 +179,8 @@ local plugin_specs = {
   },
   -- interlaced
   {
-    dir = "~/projects/interlaced.nvim",
-    enabled = vim.uv.fs_stat(vim.fs.normalize("~/projects/interlaced.nvim")) and true or false,
+    "tanloong/interlaced.nvim",
+    enabled = true,
     ft = "text",
     branch = "dev",
     cmd = "Interlaced",

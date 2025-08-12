@@ -182,18 +182,26 @@ function Invoke-Item-Dot { Invoke-Item -Path . }
 Set-Alias -Name s -Value Invoke-Item-Dot
 
 ##################################### prompt ###################################
-
-function prompt {
-    # Get the last component of the current working directory
+# 重新定义 prompt: 先写前缀，再移动光标，再写路经
+function global:prompt {
+    # ---------- 目录提示 ----------
     $drv  = (Get-Location).Drive.Name
     $leaf = Split-Path -Leaf $pwd
-
     $green  = "`e[92m"
-    $blue = "`e[38;2;0;95;255m"
+    $blue   = "`e[38;2;0;95;255m"
     # $blue = "`e[38;2;31;111;136m"
     $reset  = "`e[0m"
+    $promptText = "${green}${drv}${reset}:${blue}${leaf}${reset}`$ "
 
-    "${green}${drv}${reset}:${blue}${leaf}${reset}`$ "
+    # ---------- 固定到最底行 ----------
+    $host.UI.RawUI.CursorPosition = `
+        [System.Management.Automation.Host.Coordinates]::new(
+            0,
+            $host.UI.RawUI.WindowSize.Height - 1
+        )
+
+    # ---------- 输出 ----------
+    "$prefix$promptText"
 }
 
 
