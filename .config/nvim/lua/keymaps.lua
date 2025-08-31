@@ -145,7 +145,7 @@ end, { expr = true })
 map("i", "<c-l>", function()
   local row, col = unpack(vim.api.nvim_win_get_cursor(0))
   local line = vim.api.nvim_get_current_line()
-  local offset = line:sub(col + 1):find "[%]\"')}>`]"
+  local offset = line:sub(col + 1):find "[%]\"'’”)}>`]"
   if offset == nil then
     api.nvim_win_set_cursor(0, { row, #line })
     return
@@ -381,3 +381,6 @@ vim.keymap.set({ "x" }, "gx", function()
     vim.notify(err, vim.log.levels.ERROR)
   end
 end, { desc = gx_desc })
+
+map("n", "gcb", "<Cmd>e ++enc=gbk<CR>")
+map("n", "gcu", "<Cmd>e ++enc=utf-8<CR>")

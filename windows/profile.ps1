@@ -204,6 +204,7 @@ function global:prompt {
     "$prefix$promptText"
 }
 
+#################################### utils #####################################
 
 <#
 .SYNOPSIS
@@ -247,6 +248,7 @@ function Bump-Script {
         Rename-Item -LiteralPath $file.FullName -NewName $newFull
         Write-Host "重命名：$($file.Name)  -->  $(Split-Path $newFull -Leaf)"
     }
+    $newFull | Set-Clipboard
 }
 
 

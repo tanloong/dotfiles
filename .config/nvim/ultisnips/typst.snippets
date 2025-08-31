@@ -32,12 +32,12 @@ snippet ,` "code blocks" bA
 <<>>
 endsnippet
 snippet ,l "link" wA
-#link("$1")[<<>>]`!p
+#link($1)[<<>>]`!p
 if t[2] and t[2][0] not in [',', '.', '?', '-', ' ', '，', '、', '；', '。']:
 	snip.rv = ' '
 else:
 	snip.rv = ''
-`${2:<<>>}
+`${2}
 endsnippet
 snippet "[,，]1" "Section" brA
 = $1

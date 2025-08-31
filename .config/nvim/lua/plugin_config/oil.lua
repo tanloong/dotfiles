@@ -1,4 +1,7 @@
 require "oil".setup {
+  -- Oil will take over directory buffers (e.g. `vim .` or `:e src/`)
+  -- Set to false if you want some other plugin (e.g. netrw) to open when you edit directories.
+  default_file_explorer = false,
   skip_confirm_for_simple_edits = true,
   -- columns = { "size", "mtime" },
   columns = {},
@@ -32,4 +35,4 @@ require "oil".setup {
   },
   use_default_keymaps = false,
 }
-vim.keymap.set("n", "<c-h>", require("oil").open_float, { desc = "Open parent directory" })
+vim.keymap.set("n", "<c-h>", require "oil".open_float, { desc = "Open parent directory" })

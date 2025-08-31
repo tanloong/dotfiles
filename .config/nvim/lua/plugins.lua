@@ -164,7 +164,7 @@ local plugin_specs = {
   -- lf.nvim
   {
     "https://github.com/tanloong/lf.nvim",
-    enabled = true,
+    enabled = false,
     branch = "fix-wrong-number-of-arguments-to-insert",
     -- "https://github.com/lmburns/lf.nvim",
     config = function() require "plugin_config.lf_nvim" end,
@@ -176,6 +176,43 @@ local plugin_specs = {
     "nat-418/boole.nvim",
     event = "VeryLazy",
     config = function() require "plugin_config.boole_nvim" end,
+  },
+  {
+    "mikavilpas/yazi.nvim",
+    version = "*", -- use the latest stable version
+    event = "VeryLazy",
+    dependencies = {
+      { "nvim-lua/plenary.nvim", lazy = true },
+    },
+    keys = {
+      {
+        "<leader>-",
+        mode = { "n", "v" },
+        "<cmd>Yazi<cr>",
+        desc = "Open yazi at the current file",
+      },
+      {
+        "<leader>cw",
+        "<cmd>Yazi cwd<cr>",
+        desc = "Open the file manager in nvim's working directory",
+      },
+      {
+        "tt",
+        "<cmd>Yazi toggle<cr>",
+        desc = "Resume the last yazi session",
+      },
+    },
+    init = function()
+      vim.g.loaded_netrw = 1
+      vim.g.loaded_netrwPlugin = 1
+    end,
+    opts = {
+      -- if you want to open yazi instead of netrw, see below for more info
+      open_for_directories = true,
+      keymaps = {
+        show_help = "<f1>",
+      },
+    },
   },
   -- interlaced
   {
@@ -558,7 +595,7 @@ local plugin_specs = {
         default_im_select = "1033",
 
         default_command = vim.fs.joinpath(has "wsl" == 1 and "/mnt/c" or (has "win32" == 1 and "C:"),
-        "Users/Administrator/AppData/Local/Microsoft/WindowsApps/im-select.exe"),
+          "Users/Administrator/AppData/Local/Microsoft/WindowsApps/im-select.exe"),
         set_default_events = { "VimEnter", "FocusGained", "InsertLeave", "CmdlineLeave" },
         -- Restore the previous used input method state when the following events
         -- are triggered, if you don't want to restore previous used im in Insert mode,
