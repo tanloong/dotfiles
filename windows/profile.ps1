@@ -1,6 +1,8 @@
 Set-PSReadLineOption -EditMode Vi
-
 if (-not $env:EDITOR)       { $env:EDITOR       = 'nvim' }
+if (-not $env:VISUAL)       { $env:VISUAL       = 'nvim' }
+Set-PSReadLineKeyHandler -Key "Ctrl+e" -Function ViEditVisually # CTRL-E enters current line buffer editor
+
 if (-not $env:PDFVIEWER)    { $env:PDFVIEWER    = 'SumatraPDF' }
 if (-not $env:FILE_MANAGER) { $env:FILE_MANAGER = 'lf' }
 
