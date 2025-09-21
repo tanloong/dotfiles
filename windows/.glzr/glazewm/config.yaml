@@ -98,7 +98,7 @@ window_effects:
 window_behavior:
   # New windows are created in this state whenever possible.
   # Allowed values: 'tiling', 'floating'.
-  initial_state: 'tiling'
+  initial_state: 'floating'
 
   # Sets the default options for when a new window is created. This also
   # changes the defaults for when the state change commands, like
@@ -158,6 +158,7 @@ window_rules:
       - window_title: { equals: '微信' }
       - window_title: { equals: 'QQ' }
       - window_title: { regex: 'GoldenDict' }
+      - window_title: { regex: 'Zeal' }
 
 binding_modes:
   # When enabled, the focused window can be resized via arrow keys or HJKL.
