@@ -58,7 +58,11 @@ Link-File -FROM $huma_hop -TO (Join-Path $env:LOCALAPPDATA "nvim-data\lazy\hop.n
 Link-File -FROM (Join-Path $currFolder "windows" "komorebi" "komorebi.json") -TO "$env:USERPROFILE\komorebi.json"
 Link-File -FROM (Join-Path $currFolder "windows" "komorebi" "komorebi.bar.json") -TO "$env:USERPROFILE\komorebi.bar.json"
 Link-File -FROM (Join-Path $currFolder "windows" "komorebi" "komorebi.ahk") -TO "$env:USERPROFILE\komorebi.ahk"
+Link-File -FROM (Join-Path $currFolder "windows" "komorebi" "basic.ahk") -TO "$env:USERPROFILE\basic.ahk"
 if (-not (Test-Path (Join-Path -Path $env:USERPROFILE -ChildPath "applications.json"))) { komorebic.exe fetch-asc }
+
+# glazewm
+Link-File -From (Join-Path $currFolder "windows" ".glzr" "glazewm" "config.yaml") -TO "$env:USERPROFILE\.glzr\glazewm\config.yaml"
 
 # pynvim
 $pynvimInstalled = python -m pip show pynvim 2>$null

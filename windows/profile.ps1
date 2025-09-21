@@ -187,12 +187,21 @@ Set-Alias -Name s -Value Invoke-Item-Dot
 # 重新定义 prompt: 先写前缀，再移动光标，再写路经
 function global:prompt {
     # ---------- 目录提示 ----------
-    $drv  = (Get-Location).Drive.Name
+    $loc = $executionContext.SessionState.Path.CurrentLocation;
+    $drv = (Get-Location).Drive.Name
     $leaf = Split-Path -Leaf $pwd
-    $green  = "`e[92m"
-    $blue   = "`e[38;2;0;95;255m"
-    # $blue = "`e[38;2;31;111;136m"
-    $reset  = "`e[0m"
+    $green = "`e[92m"
+    $blue = "`e[38;2;0;95;255m"
+    $reset = "`e[0m"
+
+    # ---------- 添加终端工作目录设置 ----------
+    # https://learn.microsoft.com/zh-cn/windows/terminal/tutorials/new-tab-same-directory
+    $out = ""
+    if ($loc.Provider.Name -eq "FileSystem") {
+        $out += "$([char]27)]9;9;`"$($loc.ProviderPath)`"$([char]27)\"
+    }
+
+    # ---------- 构建提示文本 ----------
     $promptText = "${green}${drv}${reset}:${blue}${leaf}${reset}`$ "
 
     # ---------- 固定到最底行 ----------
@@ -203,7 +212,7 @@ function global:prompt {
         )
 
     # ---------- 输出 ----------
-    "$prefix$promptText"
+    $out + "$prefix$promptText"
 }
 
 #################################### utils #####################################
