@@ -633,7 +633,7 @@ local plugin_specs = {
   },
   {
     "https://github.com/stevearc/oil.nvim",
-    enabled = true,
+    enabled = false,
     lazy = false,
     config = function()
       require "plugin_config.oil"

@@ -13,6 +13,7 @@ g.neovide_cursor_antialiasing = false
 g.neovide_cursor_animate_in_insert_mode = false
 g.neovide_cursor_animate_command_line = false
 g.neovide_cursor_smooth_blink = false
+g.neovide_scroll_animation_length = 0
 
 vim.opt.guicursor = { "i:block-inverse,v:block-inverse,a:blinkon0" }
-vim.o.guifont = "Cousine Nerd Font Mono,Microsoft YaHei"
+vim.o.guifont = "Cousine Nerd Font Mono,WenQuanYi Zen Hei"

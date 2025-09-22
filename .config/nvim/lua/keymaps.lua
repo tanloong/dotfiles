@@ -13,6 +13,9 @@ map({ "n", "v", "o" }, "9", "$")
 map("n", "g9", "g$")
 map("n", "gp", "<cmd>.copy .<cr>", { desc = "copy current line to below" })
 map("n", "gP", "<cmd>.copy -<cr>", { desc = "copy current line to above" })
+-- comment current line, copy below, uncomment copied line
+map("n", "gcp", "<cmd>let _p=getcurpos() | let _p[1]+=1<cr><cmd>normal gcc<cr><cmd>.copy . | normal gcc<cr><cmd>call setpos('.', _p)<cr>", { desc = "copy current line to above" })
+map("n", "gcP", "<cmd>let _p=getcurpos()<cr><cmd>normal gcc<cr><cmd>.copy - | normal gcc<cr><cmd>call setpos('.', _p)<cr>", { desc = "copy current line to above" })
 map({ "n", "v" }, "k", "gk")
 map({ "n", "v" }, "j", "gj")
 map({ "n", "v" }, "gk", "k")
@@ -83,7 +86,7 @@ local _search = function(_open)
   vim.bo[bufnr].bufhidden = "wipe"
   vim.fn.prompt_setprompt(bufnr, "")
   api.nvim_buf_set_extmark(bufnr, api.nvim_create_namespace "WebSearch", 0, 0, {
-    line_hl_group = "String",
+    line_hl_group = "Normal",
   })
   local width = math.floor(vim.o.columns * 0.6)
   local winid = api.nvim_open_win(bufnr, true, {
@@ -164,23 +167,24 @@ end, { desc = "Jump out of brackets, jump to end of line if not found" })
 -- NAVIGATION
 -- jumping between a normal buffer and a neovim terminal
 -- map("t", "<esc><esc>", "<c-\\><c-n>")
--- map("t", "<c-h>", "<c-\\><c-N><c-w>h")
+map("t", "<c-h>", "<c-\\><c-N><c-w>h")
 map("t", "<c-j>", "<c-\\><c-N><c-w>j")
 map("t", "<c-k>", "<c-\\><c-N><c-w>k")
--- map("t", "<c-l>", "<c-\\><c-N><c-w>l")
+map("t", "<c-l>", "<c-\\><c-N><c-w>l")
 map("t", "<c-v><c-j>", "<c-j>")
 map("t", "<c-v><c-k>", "<c-k>")
 -- map("t", "<c-v><c-h>", "<c-h>")
 -- map("t", "<c-v><c-l>", "<c-l>")
--- map({ "i", "n" }, "<c-h>", "<c-\\><c-N><c-w>h")
-map("t", "<c-w><c-h>", "<c-\\><c-N><c-w><c-h>")
-map("t", "<c-w><c-l>", "<c-\\><c-N><c-w><c-l>")
-map("t", "<c-w><c-j>", "<c-\\><c-N><c-w><c-j>")
-map("t", "<c-w><c-k>", "<c-\\><c-N><c-w><c-k>")
+map("t", "<c-w>H", "<c-\\><c-N><c-w>H")
+map("t", "<c-w>L", "<c-\\><c-N><c-w>L")
+map("t", "<c-w>J", "<c-\\><c-N><c-w>J")
+map("t", "<c-w>K", "<c-\\><c-N><c-w>K")
+map("t", "<c-^>", "<c-\\><c-N><c-^>")
 
-map({ "i", "n" }, "<c-j>", "<c-\\><c-N><c-w>j")
-map({ "i", "n" }, "<c-k>", "<c-\\><c-N><c-w>k")
--- map({ "i", "n" }, "<c-l>", "<c-\\><c-N><c-w>l")
+map({ "n" }, "<c-h>", "<c-\\><c-N><c-w>h")
+map({ "n" }, "<c-j>", "<c-\\><c-N><c-w>j")
+map({ "n" }, "<c-k>", "<c-\\><c-N><c-w>k")
+map({ "n" }, "<c-l>", "<c-\\><c-N><c-w>l")
 
 -- Resize terminals
 map("t", "<c-up>", "<c-\\><c-N><Cmd>res +2|startinsert<CR>")
