@@ -3,7 +3,7 @@
 local api = vim.api
 local c = vim.api.nvim_create_user_command
 
-c("Mv", function(a)
+c("MV", function(a)
   local bufnr = api.nvim_get_current_buf()
   local oldpath = api.nvim_buf_get_name(bufnr)
   vim.cmd(string.format("saveas%s %s", a.bang and "!" or "", a.args))
@@ -11,11 +11,11 @@ c("Mv", function(a)
   local ok, err = os.remove(oldpath)
   assert(a.bang or ok, err)
 end, { force = true, nargs = 1, bang = true, complete = "file" })
-c("Yp", [[let @+ = expand('%:p')]], { force = true,desc = "Yank full path" })
-c("Yd", [[let @+ = expand('%:p:h')]], { force = true, desc = "Yank dirname" })
-c("Yb", [[let @+ = expand('%:t')]], { force = true, desc = "Yank basename" })
+c("YP", [[let @+ = expand('%:p')]], { force = true,desc = "Yank full path" })
+c("YD", [[let @+ = expand('%:p:h')]], { force = true, desc = "Yank dirname" })
+c("YB", [[let @+ = expand('%:t')]], { force = true, desc = "Yank basename" })
 -- https://github.com/mfussenegger/dotfiles/blob/a28b73904fe3e57459c3f32e6fac8bba95133c62/vim/dot-config/nvim/commands.lua#L3C1-L11C22
-c("Rm", function(a)
+c("RM", function(a)
   local bufnr = api.nvim_get_current_buf()
   local fname = api.nvim_buf_get_name(bufnr)
   api.nvim_buf_delete(bufnr, { force = a.bang })

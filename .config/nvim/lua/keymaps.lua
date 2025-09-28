@@ -198,7 +198,6 @@ map("n", "gug", "<Cmd>keeppatterns s/\\v<(.)(\\w*)/\\u\\1\\L\\2/g<CR>",
   { desc = [[To Turn One Line Into Title Caps, Make Every First Letter Of A Word Uppercase]] })
 map("n", "<LEADER><F5>", '<Cmd>w! | !compiler "%"<CR>',
   { desc = [[Compile document, be it groff/LaTeX/markdown/etc.]] })
-map("n", "go", '<Cmd>silent!!opout "%"<CR>', { desc = [[Open corresponding .pdf/.html or preview]] })
 map("v", "p", "P", { desc = [[keep what I am pasting, don't pollute my register]] })
 map({ "n", "v" }, "<leader>d", [["_d]])
 -- keyset('i', '<c-l>', '<c-g>u<Esc>[s1z=`]a<c-g>u',

@@ -36,6 +36,7 @@ Link-File -FROM (Join-Path $currFolder ".config" "nvim") -TO "$env:LOCALAPPDATA\
 Link-File -FROM (Join-Path $currFolder ".config" "nushell") -TO "$env:APPDATA\nushell"
 Link-File -FROM (Join-Path $currFolder ".config" "uv") -TO "$env:APPDATA\uv"
 Link-File -FROM (Join-Path $currFolder ".pip" "pip.conf") -TO "C:\ProgramData\pip\pip.ini"
+Link-File -FROM (Join-Path $currFolder "windows" "opout.bat") -TO "$env:USERPROFILE\AppData\Local\Microsoft\WindowsApps\opout.bat"
 
 # yazi
 Link-File -FROM (Join-Path $currFolder ".config" "yazi") -TO "$env:APPDATA\yazi\config"

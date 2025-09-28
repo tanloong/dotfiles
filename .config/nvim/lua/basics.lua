@@ -1,6 +1,7 @@
 #!/usr/bin/env lua
 
 local opt = vim.opt
+local g = vim.g
 
 opt.backspace = "start,eol,indent"
 opt.background = "dark"
@@ -89,9 +90,10 @@ opt.undofile = true
 
 vim.cmd [[filetype plugin indent on]]
 vim.cmd [[syntax on]]
-vim.g.netrw_winsize = 30 -- Change the size of the Netrw window when it creates a split.
-vim.g.netrw_banner = 0   -- Hide the banner. To show it temporarily use I inside Netrw.
-vim.g.netrw_liststyle = 3
+g.netrw_winsize = 30 -- Change the size of the Netrw window when it creates a split.
+g.netrw_banner = 0   -- Hide the banner. To show it temporarily use I inside Netrw.
+g.netrw_liststyle = 3
+g.netrw_browse_split = 4
 -- check |netrw-browse-maps| for more mappings
 vim.cmd [[
 if &term =~ '256color'

@@ -4,4 +4,7 @@ if has("win32")
   let &shellredir = '2>&1 | %%{ "$_" } | Out-File %s; exit $LastExitCode'
   let &shellpipe  = '2>&1 | %%{ "$_" } | tee %s; exit $LastExitCode'
   set shellquote= shellxquote=
+  nnoremap go <Cmd>silent!!opout.bat "%"<CR>
+else
+  nnoremap go <Cmd>silent!!opout "%"<CR>
 endif

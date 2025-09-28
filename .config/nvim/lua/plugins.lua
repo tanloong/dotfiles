@@ -179,6 +179,7 @@ local plugin_specs = {
   },
   {
     "mikavilpas/yazi.nvim",
+    enabled = false,
     version = "*", -- use the latest stable version
     event = "VeryLazy",
     dependencies = {
