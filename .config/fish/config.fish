@@ -1,21 +1,21 @@
 set -U fish_greeting
 function fish_mode_prompt; end
 function fish_prompt
-    # if set -q VIRTUAL_ENV
-    #     echo -n -s "(" (basename "$VIRTUAL_ENV") ")" " "
-    # end
-    set_color green
-    echo -n "$(whoami)":
-    set_color 005fff
-    echo -n $(basename $(prompt_pwd))
-    set_color normal
-    if set -q LF_LEVEL
-        echo -n "($LF_LEVEL) "
-    end
-    echo -n '$ '
+# if set -q VIRTUAL_ENV
+#     echo -n -s "(" (basename "$VIRTUAL_ENV") ")" " "
+# end
+set_color green
+echo -n "$(whoami)":
+set_color 005fff
+echo -n $(basename $(prompt_pwd))
+set_color normal
+if set -q LF_LEVEL
+echo -n "($LF_LEVEL) "
+end
+echo -n '$ '
 end
 function fish_command_not_found
-    __fish_default_command_not_found_handler $argv[1]
+__fish_default_command_not_found_handler $argv[1]
 end
 
 #set --global --export LANG zh_CN.UTF-8
@@ -25,16 +25,17 @@ set --global --export ALIYUNPAN_CONFIG_DIR $HOME/.config/aliyunpan
 set --global --export CORENLP_HOME $HOME/software/stanford-corenlp-4.5.1/
 set --global --export STANFORD_PARSER_HOME "/home/usr/.local/share/stanford-parser-full-2020-11-17"
 set --global --export STANFORD_TREGEX_HOME "/home/usr/.local/share/stanford-tregex-2020-11-17"
+set --global --export JAVA_HOME "/home/usr/.local/share/jdk8u372-b07"
 set --global --export MANPAGER "nvim +Man!"
 
 fish_add_path --path \
-  $HOME/.local/bin \
-  $HOME/.local/bin/data-science-utils \
-  $HOME/.local/bin/internship \
-  $HOME/software/rasp3os/scripts \
-  $STANFORD_TREGEX_HOME \
-  $STANFORD_PARSER_HOME \
-  "/home/usr/work/wpz/scripts/"
+$HOME/.local/bin \
+$HOME/.local/bin/data-science-utils \
+$HOME/.local/bin/internship \
+$HOME/software/rasp3os/scripts \
+$STANFORD_TREGEX_HOME \
+$STANFORD_PARSER_HOME \
+$HOME/.local/share/jdk8u372-b07/bin
 
 # set --global --export JAVA_HOME "/home/usr/.local/share/jdk8u372-b07"
 # fish_add_path --path "/home/usr/.local/share/jdk8u372-b07/bin"
@@ -80,17 +81,17 @@ bind --mode insert ctrl-e edit_command_buffer
 # [ -f $HOME/.local/share/ls-colors.sh ] && source $HOME/.local/share/ls-colors.sh
 
 function fzf_with
-    set file "$(fzf --reverse --query "$argv[2]")"
-    if test -e "$file";
-        set --function abspath $(readlink -f "$file")
-        set --function dir "$(path dirname $abspath)"
-        switch "$argv[1]"
-            case cd
-                builtin cd "$dir"
-            case '*'
-                "$argv[1]" "$abspath"
-        end
-    end
+set file "$(fzf --reverse --query "$argv[2]")"
+if test -e "$file";
+set --function abspath $(readlink -f "$file")
+set --function dir "$(path dirname $abspath)"
+switch "$argv[1]"
+case cd
+builtin cd "$dir"
+case '*'
+"$argv[1]" "$abspath"
+end
+end
 end
 
 function fv; fzf_with "$EDITOR" "$argv[1]"; end
@@ -100,37 +101,37 @@ function fr; fzf_with "$FILE_MANAGER" "$argv[1]"; end
 
 # Use neovim for vim if present.
 if command -v nvim > /dev/null
-    set --global --export EDITOR "nvim"
-    function vv
-      cd $HOME/projects/dotfiles/
-      fzf_with "$EDITOR" "$argv[1]"
-      cd -
-    end
+set --global --export EDITOR "nvim"
+function vv
+cd $HOME/projects/dotfiles/
+fzf_with "$EDITOR" "$argv[1]"
+cd -
+end
 else
-    set --global --export EDITOR "vim"
-    alias vv='vim $HOME/.vim/vimrc'
+set --global --export EDITOR "vim"
+alias vv='vim $HOME/.vim/vimrc'
 end
 function mm
-  cd $HOME/docx/memorandum/
-  fzf_with "$EDITOR" "$argv[1]"
-  cd -
+cd $HOME/docx/memorandum/
+fzf_with "$EDITOR" "$argv[1]"
+cd -
 end
 
 function nq
-    if test (count $argv) -eq 0
-        echo "usage: nq <pattern>"
-        return
-    end
-    nvim -q (rg --vimgrep --smart-case $argv | psub)
+if test (count $argv) -eq 0
+echo "usage: nq <pattern>"
+return
+end
+nvim -q (rg --vimgrep --smart-case $argv | psub)
 end
 
 function r
-	set tmp (mktemp -t "yazi-cwd.XXXXXX")
-	yazi $argv --cwd-file="$tmp"
-	if read -z cwd < "$tmp"; and [ -n "$cwd" ]; and [ "$cwd" != "$PWD" ]
-		builtin cd -- "$cwd"
-	end
-	rm -f -- "$tmp"
+set tmp (mktemp -t "yazi-cwd.XXXXXX")
+yazi $argv --cwd-file="$tmp"
+if read -z cwd < "$tmp"; and [ -n "$cwd" ]; and [ "$cwd" != "$PWD" ]
+builtin cd -- "$cwd"
+end
+rm -f -- "$tmp"
 end
 # alias r='$FILE_MANAGER'
 
@@ -144,8 +145,7 @@ alias pt=python
 alias t=tldr
 alias q=exit
 alias L="less"
-alias .="cd .."
-alias ..="cd ../.."
+alias d="cd .."
 alias lt="du -sh * | sort -h"
 alias ka="killall"
 alias cd-="cd -"
@@ -171,32 +171,32 @@ alias j="jupyter"
 alias jt="jupyter nbconvert --to script"
 alias jn="jupyter-notebook"
 if test -n (command -v newsboat)
-  alias n="newsboat"
+alias n="newsboat"
 end
 
 function activate
-    set --function cwd (pwd)
-    set --function home (dirname (realpath $HOME))
-    set --function venv_path ""
+set --function cwd (pwd)
+set --function home (dirname (realpath $HOME))
+set --function venv_path ""
 
-    # Recursive search upward for .venv directory
-    while test -n $cwd -a $home != $cwd
-        if test -e $cwd/.venv/bin
-            set --function venv_path (realpath $cwd/.venv/bin)
-            break
-        end
-        set --function cwd (dirname $cwd)
-    end
+# Recursive search upward for .venv directory
+while test -n $cwd -a $home != $cwd
+if test -e $cwd/.venv/bin
+set --function venv_path (realpath $cwd/.venv/bin)
+break
+end
+set --function cwd (dirname $cwd)
+end
 
-    if test -n $venv_path
-        if test -d $venv_path
-            source $venv_path/activate.fish
-        else
-            echo "Found .venv at $venv_path, but it is not a valid directory"
-        end
-    else
-        echo "Could not find .venv directory"
-    end
+if test -n $venv_path
+if test -d $venv_path
+source $venv_path/activate.fish
+else
+echo "Found .venv at $venv_path, but it is not a valid directory"
+end
+else
+echo "Could not find .venv directory"
+end
 end
 alias va="activate"
 alias vd="deactivate"
@@ -235,21 +235,25 @@ alias ls='ls -hN --indicator-style=slash --color=auto --group-directories-first'
 alias diff='diff --color=auto'
 
 function _pd
-  if test (pwd) = /home/usr/projects/cpython
-    echo "./python"
-  else
-    echo "/home/usr/projects/cpython/python"
-  end
+if test (pwd) = /home/usr/projects/cpython
+echo "./python"
+else
+echo "/home/usr/projects/cpython/python"
+end
 end
 function _pm
-  echo (_pd) "-m"
+echo (_pd) "-m"
 end
 function _pu
-  echo (_pm) "unittest"
+echo (_pm) "unittest"
+end
+function _ps
+echo (_pm) "sqlite3"
 end
 abbr --add pd --position command --function _pd
 abbr --add pm --position command --function _pm
 abbr --add pu --position command --function _pu
+abbr --add ps --position command --function _ps
 
 set fish_cursor_default block
 set fish_cursor_insert line
@@ -259,28 +263,28 @@ set fish_cursor_external line
 set fish_cursor_visual block
 
 function mcd
-    set --function newdir '_mcd_command_failed_'
-    if test -d "$argv[1]"       # Dir exists, mention that...
-        echo "$argv[1] exists..."
-        set --function newdir "$argv[1]"
-    else
-        if test -n "$argv[2]"     # We've specified a mode
-            command mkdir -p -m $argv[1] "$argv[2]" && set --function newdir "$argv[2]"
-        else                     # Plain old mkdir
-            command mkdir -p "$argv[1]" && set --function newdir "$argv[1]"
-        end
-    end
-    builtin cd "$newdir"         # No matter what, cd into it
+set --function newdir '_mcd_command_failed_'
+if test -d "$argv[1]"       # Dir exists, mention that...
+echo "$argv[1] exists..."
+set --function newdir "$argv[1]"
+else
+if test -n "$argv[2]"     # We've specified a mode
+command mkdir -p -m $argv[1] "$argv[2]" && set --function newdir "$argv[2]"
+else                     # Plain old mkdir
+command mkdir -p "$argv[1]" && set --function newdir "$argv[1]"
+end
+end
+builtin cd "$newdir"         # No matter what, cd into it
 end
 
 if status is-interactive
-    # Commands to run in interactive sessions can go here
+# Commands to run in interactive sessions can go here
 end
 
 # LS_COLORS
 set --local ls_color_path $HOME/.local/share/ls-colors.txt
 if test -e $ls_color_path
-    set --global --export LS_COLORS $(cat $ls_color_path)
+set --global --export LS_COLORS $(cat $ls_color_path)
 end
 set fish_color_valid_path normal --underline
 set fish_color_command green

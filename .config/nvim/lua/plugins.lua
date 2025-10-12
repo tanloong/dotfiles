@@ -179,7 +179,7 @@ local plugin_specs = {
   },
   {
     "mikavilpas/yazi.nvim",
-    enabled = false,
+    enabled = has "linux" == 1,
     version = "*", -- use the latest stable version
     event = "VeryLazy",
     dependencies = {
@@ -218,7 +218,7 @@ local plugin_specs = {
   -- interlaced
   {
     "tanloong/interlaced.nvim",
-    enabled = true,
+    enabled = false,
     ft = "text",
     branch = "dev",
     cmd = "Interlaced",
