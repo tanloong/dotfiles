@@ -41,37 +41,13 @@ opt.modeline = false
 -- I: don't show introductory message on startup
 opt.shortmess = "ltToOCFI"
 
--- if vim.fn.has "wsl" == 1 then
---   vim.g.clipboard = {
---     name = "win32yank-wsl",
---     copy = {
---       ["+"] = "win32yank.exe -i --crlf",
---       ["*"] = "win32yank.exe -i --crlf",
---     },
---     paste = {
---       ["+"] = "win32yank.exe -o --lf",
---       ["*"] = "win32yank.exe -o --lf",
---     },
---     cache_enabled = 0,
---   }
-  --   vim.g.clipboard = {
-  --     name = 'OSC 52',
-  --     copy = {
-  --       ['+'] = require('vim.ui.clipboard.osc52').copy('+'),
-  --       ['*'] = require('vim.ui.clipboard.osc52').copy('*'),
-  --       ['"'] = require('vim.ui.clipboard.osc52').copy('"'),
-  --     },
-  --     paste = {
-  --       ['+'] = require('vim.ui.clipboard.osc52').paste('+'),
-  --       ['*'] = require('vim.ui.clipboard.osc52').paste('*'),
-  --       ['"'] = require('vim.ui.clipboard.osc52').paste('"'),
-  --     },
-  --   }
-  -- else
-  --   opt.clipboard:prepend { 'unnamed,unnamedplus' }
--- end
-
 opt.clipboard:prepend { "unnamed,unnamedplus" }
+-- vim.api.nvim_create_autocmd('UIEnter', {
+--   callback = function()
+--     vim.o.clipboard = 'unnamedplus'
+--   end,
+-- })
+
 opt.dictionary:append { vim.env.HOME .. "/.local/share/words.txt" }
 opt.thesaurus:append { vim.env.HOME .. "/.local/share/WordNet-thesaurus.txt" }
 opt.wildignore:append { "*aux,*toc,*out" }

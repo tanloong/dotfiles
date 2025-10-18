@@ -27,8 +27,8 @@ if [ -n "$WSL_DISTRO_NAME" ]; then
       msedge.exe "$@"
   fi
 else
-    firefox "$@"
+    # firefox "$@"
   # chromium --enable-features=UseOzonePlatform --ozone-platform=wayland
   # brave "$@"
-  # chromium "$@"
+  chromium "$@"
 fi
