@@ -288,7 +288,7 @@ local plugin_specs = {
   -- fcitx.vim
   {
     "https://github.com/lilydjwg/fcitx.vim",
-    enabled = true,
+    enabled = has "linux" == 1,
     event = "VeryLazy",
     config = function()
       vim.g.fcitx5_remote = "fcitx5-remote"
@@ -599,13 +599,13 @@ local plugin_specs = {
 
         default_command = vim.fs.joinpath(has "wsl" == 1 and "/mnt/c" or (has "win32" == 1 and "C:"),
           "Users/Administrator/AppData/Local/Microsoft/WindowsApps/im-select.exe"),
-        set_default_events = { "VimEnter", "FocusGained", "InsertLeave", "CmdlineLeave" },
+        -- set_default_events = { "VimEnter", "FocusGained", "InsertLeave", "CmdlineLeave" },
+        set_default_events = { "VimEnter", "InsertLeave", "CmdlineLeave",  "CmdlineEnter" },
         -- Restore the previous used input method state when the following events
         -- are triggered, if you don't want to restore previous used im in Insert mode,
         -- e.g. deprecated `disable_auto_restore = 1`, just let it empty
         -- as `set_previous_events = {}`
-        -- set_previous_events = { "InsertEnter", "CmdlineEnter" },
-        set_previous_events = { "InsertEnter", "FocusLost" },
+        set_previous_events = { "InsertEnter" },
 
         -- Show notification about how to install executable binary when binary missed
         keep_quiet_on_no_binary = false,
