@@ -235,10 +235,10 @@ alias ls='ls -hN --indicator-style=slash --color=auto --group-directories-first'
 alias diff='diff --color=auto'
 
 function _pd
-if test (pwd) = /home/usr/projects/cpython
+if test (dirname (pwd)) = /home/usr/projects/cpython
 echo "./python"
 else
-echo "/home/usr/projects/cpython/python"
+echo "/home/usr/projects/cpython/main/python"
 end
 end
 function _pm
