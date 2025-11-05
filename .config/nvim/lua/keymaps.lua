@@ -67,6 +67,7 @@ map("i", "<c-q>", "<c-k>")
 map("n", "<c-enter>", [[i<nl><esc>]])
 -- Visual select the just pasted text by p/P
 map("n", "gV", "`[v`]")
+map("n", "tt", "<Cmd>Lexplore<CR>")
 
 -- web search
 map("n", "gX", function()

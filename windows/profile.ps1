@@ -15,6 +15,7 @@ Set-Alias -Name 要 -Value nvim
 Set-Alias -Name ga -Value lazygit
 Set-Alias -Name g -Value git
 Set-Alias -Name za -Value sumatrapdf
+Set-Alias -Name gg -Value gitui
 
 function Go-To-Parent-Directory {
     Set-Location ..

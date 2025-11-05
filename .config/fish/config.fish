@@ -140,6 +140,7 @@ alias dl=trash
 alias c=clear
 alias e=chmod u+x
 alias g=git
+alias gg=gitui
 alias p='sudo pacman'
 alias pt=python
 alias t=tldr
