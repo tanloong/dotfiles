@@ -45,7 +45,7 @@
 	provider = generic
 [credential "helperselector"]
 	selected = manager
-[http]
-	proxy = http://127.0.0.1:33210
-[https]
-	proxy = http://127.0.0.1:33210
+; [http]
+; 	proxy = http://127.0.0.1:33210
+; [https]
+; 	proxy = http://127.0.0.1:33210
