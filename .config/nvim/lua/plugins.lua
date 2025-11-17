@@ -22,7 +22,7 @@ local plugin_specs = {
   {
     -- "https://github.com/neoclide/coc.nvim.git",
     "https://gitee.com/linuor/coc.nvim",
-    enabled = true,
+    cond = not vim.g.vscode,
     branch = "release",
     event = "VeryLazy",
     -- don't load coc.nvim on "interlaced" filetype
@@ -54,6 +54,7 @@ local plugin_specs = {
   -- Iron
   {
     "Vigemus/iron.nvim",
+    cond = not vim.g.vscode,
     config = function()
       local iron = require "iron.core"
       local common = require "iron.fts.common"
@@ -140,6 +141,7 @@ local plugin_specs = {
   -- indent-blankline
   {
     "https://github.com/lukas-reineke/indent-blankline.nvim",
+    cond = not vim.g.vscode,
     main = "ibl",
     version = "v3.6.0",
     event = "VeryLazy",
@@ -463,7 +465,7 @@ local plugin_specs = {
   },
   {
     "luozhiya/fittencode.nvim",
-    enabled = true,
+    cond = not vim.g.vscode,
     event = "VeryLazy",
     config = function()
       require "fittencode".setup {
