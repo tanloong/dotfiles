@@ -463,9 +463,9 @@ local plugin_specs = {
     dependencies = { "MunifTanjim/nui.nvim" },
     opts = {},
   },
-{ 'nvim-mini/mini.files', cond = not vim.g.vscode, version = false, config = function() 
+{ 'nvim-mini/mini.files', event = "VeryLazy", cond = not vim.g.vscode, version = false, config = function() 
   require("mini.files").setup()
-  map("n", "tt", "<Cmd>lua MiniFiles.open(vim.api.nvim_buf_get_name(0))<CR>")
+  map("n", "<C-t>", function() require("mini.files").open(vim.api.nvim_buf_get_name(0)) end)
   end },
 {
   "obsidian-nvim/obsidian.nvim",
