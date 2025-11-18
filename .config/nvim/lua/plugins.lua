@@ -22,11 +22,12 @@ local plugin_specs = {
   {
     -- "https://github.com/neoclide/coc.nvim.git",
     "https://gitee.com/linuor/coc.nvim",
-    cond = not vim.g.vscode,
     branch = "release",
     event = "VeryLazy",
     -- don't load coc.nvim on "interlaced" filetype
     cond = function()
+      if vim.g.vscode then return false end
+
       local bufnr = vim.api.nvim_get_current_buf()
       return not string.find(vim.api.nvim_buf_get_name(bufnr), "interlaced.*%.txt$")
     end,
@@ -306,7 +307,7 @@ local plugin_specs = {
   -- Telescope
   {
     "nvim-telescope/telescope.nvim",
-    enabled = true,
+    cond = not vim.g.vscode,
     event = "VeryLazy",
     dependencies = { "nvim-lua/plenary.nvim" },
     config = function() require "plugin_config.telescope_nvim" end,
