@@ -17,6 +17,13 @@ Set-Alias -Name g -Value git
 Set-Alias -Name za -Value sumatrapdf
 Set-Alias -Name gg -Value gitui
 
+function RmNvimShada {
+  $ShadaPath = 'C:\Users\Administrator\AppData\Local\nvim-data\shada\main.shada.tmp.X'
+  if (Test-Path $ShadaPath) {
+    Remove-Item $ShadaPath -Force
+      }
+}
+
 function Go-To-Parent-Directory {
     Set-Location ..
 }
