@@ -3,6 +3,7 @@
 local map = vim.keymap.set
 local hl = vim.api.nvim_set_hl
 local has = vim.fn.has
+local vscode = vim.g.vscode
 
 local lazypath = vim.fn.stdpath "data" .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
@@ -26,7 +27,7 @@ local plugin_specs = {
     event = "VeryLazy",
     -- don't load coc.nvim on "interlaced" filetype
     cond = function()
-      if vim.g.vscode then return false end
+      if vscode then return false end
 
       local bufnr = vim.api.nvim_get_current_buf()
       return not string.find(vim.api.nvim_buf_get_name(bufnr), "interlaced.*%.txt$")
@@ -55,7 +56,7 @@ local plugin_specs = {
   -- Iron
   {
     "Vigemus/iron.nvim",
-    cond = not vim.g.vscode,
+    cond = not vscode,
     config = function()
       local iron = require "iron.core"
       local common = require "iron.fts.common"
@@ -142,7 +143,7 @@ local plugin_specs = {
   -- indent-blankline
   {
     "https://github.com/lukas-reineke/indent-blankline.nvim",
-    cond = not vim.g.vscode,
+    cond = not vscode,
     main = "ibl",
     version = "v3.6.0",
     event = "VeryLazy",
@@ -307,7 +308,7 @@ local plugin_specs = {
   -- Telescope
   {
     "nvim-telescope/telescope.nvim",
-    cond = not vim.g.vscode,
+    cond = not vscode,
     event = "VeryLazy",
     dependencies = { "nvim-lua/plenary.nvim" },
     config = function() require "plugin_config.telescope_nvim" end,
@@ -317,7 +318,92 @@ local plugin_specs = {
     dependencies = { "nvim-telescope/telescope.nvim" },
     build = "make"
   },
-
+{
+  "yetone/avante.nvim",
+  -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
+  -- ⚠️ must add this setting! ! !
+  build = vim.fn.has("win32") ~= 0
+      and "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false"
+      or "make",
+  event = "VeryLazy",
+  version = false, -- Never set this value to "*"! Never!
+  ---@module 'avante'
+  ---@type avante.Config
+  opts = {
+    -- add any opts here
+    -- this file can contain specific instructions for your project
+    instructions_file = "avante.md",
+    -- for example
+    provider = "openai",
+    auto_suggestions_provider = "openai",
+    providers = {
+      openai = {endpoint = "https://api.chatanywhere.tech/v1/", model = "deepseek-v3-2-exp"},
+      },
+  },
+  dependencies = {
+    "nvim-lua/plenary.nvim",
+    "MunifTanjim/nui.nvim",
+    --- The below dependencies are optional,
+    "nvim-telescope/telescope.nvim", -- for file_selector provider telescope
+    "hrsh7th/nvim-cmp", -- autocompletion for avante commands and mentions
+    "folke/snacks.nvim", -- for input provider snacks
+    "nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
+    {
+      -- support for image pasting
+      "HakonHarnes/img-clip.nvim",
+      event = "VeryLazy",
+      opts = {
+        -- recommended settings
+        default = {
+          embed_image_as_base64 = false,
+          prompt_for_file_name = false,
+          drag_and_drop = {
+            insert_mode = true,
+          },
+          -- required for Windows users
+          use_absolute_path = true,
+        },
+      },
+    },
+    {
+      -- Make sure to set this up properly if you have lazy=true
+      'MeanderingProgrammer/render-markdown.nvim',
+      opts = {
+        file_types = { "markdown", "Avante" },
+      },
+      ft = { "markdown", "Avante" },
+    },
+  },
+},
+-- {
+--   "olimorris/codecompanion.nvim",
+--   cond = not vscode,
+--   event = "VeryLazy",
+--   opts = {},
+--   dependencies = {
+--     "nvim-lua/plenary.nvim",
+-- "MeanderingProgrammer/render-markdown.nvim",
+-- "echasnovski/mini.diff",
+--   },
+-- },
+-- {
+--   "MeanderingProgrammer/render-markdown.nvim",
+--   cond = not vscode,
+--   event = "VeryLazy",
+--   ft = { "markdown", "codecompanion" }
+-- },
+-- {
+--   "echasnovski/mini.diff",
+--   cond = not vscode,
+--   event = "VeryLazy",
+--   config = function()
+--     local diff = require("mini.diff")
+--     diff.setup({
+--       -- Disabled by default
+--       source = diff.gen_source.none(),
+--     })
+--   end,
+-- },
   {
     "https://github.com/robitx/gp.nvim",
     -- dir = "/home/usr/.local/share/nvim/lazy/gp.nvim",
@@ -464,9 +550,10 @@ local plugin_specs = {
     dependencies = { "MunifTanjim/nui.nvim" },
     opts = {},
   },
-{ 'nvim-mini/mini.files', event = "VeryLazy", cond = not vim.g.vscode, version = false, config = function() 
-  require("mini.files").setup()
-  map("n", "<C-t>", function() require("mini.files").open(vim.api.nvim_buf_get_name(0)) end)
+{ 'nvim-mini/mini.files', event = "VeryLazy", cond = not vscode, version = false, config = function() 
+  local MiniFiles = require("mini.files")
+  MiniFiles.setup()
+  map("n", "<C-t>", function() MiniFiles.open(vim.api.nvim_buf_get_name(0)) end)
 
   -- Set focused directory as current working directory
   local set_cwd = function()
@@ -503,8 +590,33 @@ local plugin_specs = {
   })
   end },
 {
+  "oflisback/obsidian-bridge.nvim",
+  -- cond = not vscode,
+  cond = false,
+  event = {
+    "BufReadPre *.md",
+    "BufNewFile *.md",
+  },
+  lazy = true,
+  dependencies = {
+    "nvim-lua/plenary.nvim",
+  },
+  config  = function()
+    require("obsidian-bridge").setup(
+{
+  obsidian_server_address = "http://127.0.0.1:27123",
+  scroll_sync = false, -- See "Sync of buffer scrolling" section below
+  cert_path = nil, -- See "SSL configuration" section below
+  warnings = true, -- Show misconfiguration warnings
+  picker = "telescope", -- Picker to use with ObsidianBridgePickCommand ("telescope" | "fzf_lua")
+}
+    )
+  end,
+},
+{
   "obsidian-nvim/obsidian.nvim",
-  cond = not vim.g.vscode,
+  cond = not vscode,
+  -- cond = false,
   version = "*", -- recommended, use latest release instead of latest commit
   ft = "markdown",
   -- Replace the above line with this if you only want to load obsidian.nvim for markdown files in your vault:
@@ -518,17 +630,19 @@ local plugin_specs = {
   ---@module 'obsidian'
   ---@type obsidian.config
   opts = {
+legacy_commands = false,
+frontmatter = {enabled = false,},
     workspaces = {
       {
         name = "personal",
-        path = "C:/Users/Administrator/Desktop/Obsidian Vault",
+        path = vim.fn.hostname() == "PC-20250602IQJE" and "D:/docx/Obsidian Vault" or "C:/Users/Administrator/Desktop/Obsidian Vault",
       },
     },
   },
 },
   {
     "luozhiya/fittencode.nvim",
-    cond = not vim.g.vscode,
+    cond = not vscode,
     event = "VeryLazy",
     config = function()
       require "fittencode".setup {
