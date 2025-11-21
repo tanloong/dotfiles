@@ -38,6 +38,7 @@ Link-File -FROM (Join-Path $currFolder ".config" "uv") -TO "$env:APPDATA\uv"
 Link-File -FROM (Join-Path $currFolder ".pip" "pip.conf") -TO "C:\ProgramData\pip\pip.ini"
 Link-File -FROM (Join-Path $currFolder "windows" "opout.bat") -TO "$env:USERPROFILE\AppData\Local\Microsoft\WindowsApps\opout.bat"
 Link-File -FROM (Join-Path $currFolder "windows" "undo-clean.ps1") -TO "$env:USERPROFILE\AppData\Local\Microsoft\WindowsApps\undo-clean.ps1"
+Link-File -FROM (Join-Path $currFolder ".local" "share" "words.txt") -TO (Join-Path $env:HomeDrive $env:HomePath ".local" "share" "words.txt")
 
 # yazi
 Link-File -FROM (Join-Path $currFolder ".config" "yazi") -TO "$env:APPDATA\yazi\config"

@@ -320,6 +320,7 @@ local plugin_specs = {
   },
 {
   "yetone/avante.nvim",
+  enabled = false,
   -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
   -- ⚠️ must add this setting! ! !
   build = vim.fn.has("win32") ~= 0
@@ -407,7 +408,8 @@ local plugin_specs = {
   {
     "https://github.com/robitx/gp.nvim",
     -- dir = "/home/usr/.local/share/nvim/lazy/gp.nvim",
-    enabled = has "win32" ~= 1,
+    -- enabled = has "win32" ~= 1,
+    enabled = not vscode,
     config = function()
       require "plugin_config.gp_nvim"
     end,
@@ -630,7 +632,9 @@ local plugin_specs = {
   ---@module 'obsidian'
   ---@type obsidian.config
   opts = {
+    footer = {enabled = false},
 legacy_commands = false,
+ui = { enable = false },
 frontmatter = {enabled = false,},
     workspaces = {
       {
@@ -654,6 +658,11 @@ frontmatter = {enabled = false,},
             -- * Buffer no filetype detected
             identify_buffer = false,
           },
+        },
+        disable_specific_inline_completion = {
+          -- Disable auto-completion for some specific file suffixes by entering them below
+          -- For example, `suffixes = {'lua', 'cpp'}`
+          suffixes = {"markdown"},
         },
         inline_completion = {
           enable = true,

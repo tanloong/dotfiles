@@ -54,6 +54,15 @@ keyset("n", "<leader>C",
       disable_coordinates = true,
     }
   end, {})
+keyset("n", "<leader>o",
+  function()
+    local dotdir = vim.fn.hostname() == "PC-20250602IQJE" and "D:/docx/Obsidian Vault" or "C:/Users/Administrator/Desktop/Obsidian Vault"
+    builtin.find_files {
+      cwd = dotdir,
+      follow = true,
+      hidden = true
+    }
+  end, {})
 keyset("n", "<leader>v",
   function()
     local dotdir = vim.fs.joinpath(
