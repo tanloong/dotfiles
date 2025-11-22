@@ -153,7 +153,11 @@ function vv {
         [Parameter(Mandatory = $false)]
         [string]$Query = ''
     )
-    Push-Location D:\projects\dotfiles
+    if (Test-Path "C:\Users\Administrator\Desktop\dotfiles") {
+        Set-Location "C:\Users\Administrator\Desktop\dotfiles"
+    } elseif (Test-Path "D:\projects\dotfiles") {
+        Set-Location "D:\projects\dotfiles"
+    }
     Invoke-FzfWith $env:EDITOR $Query
     Pop-Location
 }
