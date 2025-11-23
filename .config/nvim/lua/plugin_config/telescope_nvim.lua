@@ -35,16 +35,16 @@ telescope.setup {
 }
 require "telescope".load_extension "fzf"
 
-keyset("n", "<leader>b", builtin.buffers, {})
-keyset("n", "<leader><leader>", builtin.find_files, {})
-keyset("n", "<leader>G", builtin.live_grep, {})
-keyset("n", "<leader>*", builtin.grep_string, {})
-keyset("n", "<leader>h", builtin.help_tags, {})
-keyset("n", "<c-/>",
+keyset("n", "<space>fb", builtin.buffers, {})
+keyset("n", "<space>fd", builtin.find_files, {})
+keyset("n", "<space>lg", builtin.live_grep, {})
+keyset("n", "<space>gs", builtin.grep_string, {})
+keyset("n", "<space>fh", builtin.help_tags, {})
+keyset("n", "<space>/",
   function()
     builtin.current_buffer_fuzzy_find { skip_empty_lines = true }
   end, {})
-keyset("n", "<leader>C",
+keyset("n", "<space>fc",
   function()
     local cwd = "~/docx/corpus/BNC/02BNC_txt"
     builtin.live_grep {
@@ -54,7 +54,7 @@ keyset("n", "<leader>C",
       disable_coordinates = true,
     }
   end, {})
-keyset("n", "<leader>o",
+keyset("n", "<space>fo",
   function()
     local dotdir = vim.fn.hostname() == "PC-20250602IQJE" and "D:/docx/Obsidian Vault" or "C:/Users/Administrator/Desktop/Obsidian Vault"
     builtin.find_files {
@@ -63,7 +63,7 @@ keyset("n", "<leader>o",
       hidden = true
     }
   end, {})
-keyset("n", "<leader>v",
+keyset("n", "<space>fv",
   function()
     local dotdir = vim.fn.has "win32" == 1 and (vim.fn.hostname() == "XB-20220816OSUK" and [[C:\Users\Administrator\Desktop\dotfiles]] or "D:/projects/dotfiles") or vim.fs.joinpath("~", "projects/dotfiles/")
     local chunk, _ = loadfile(vim.fs.joinpath(dotdir, ".nvim.lua"))
@@ -76,7 +76,7 @@ keyset("n", "<leader>v",
       hidden = true
     }
   end, {})
-keyset("n", "<leader>m",
+keyset("n", "<space>fm",
   function()
     builtin.find_files {
       cwd = vim.fs.joinpath(
