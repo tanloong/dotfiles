@@ -1,7 +1,7 @@
 #!/usr/bin/env lua
 
 local map = vim.keymap.set
-map("n", "<leader>g", ":G<space>")
+map("n", "<leader>g", "<Cmd>G<CR>")
 vim.cmd(
   [[
   cabbrev <expr> g (getcmdtype()==':' && getcmdline() == 'g' ? 'G' : 'g')
