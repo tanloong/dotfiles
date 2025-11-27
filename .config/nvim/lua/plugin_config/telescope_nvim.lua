@@ -37,8 +37,8 @@ require "telescope".load_extension "fzf"
 
 keyset("n", "<space>fb", builtin.buffers, {})
 keyset("n", "<space>fd", builtin.find_files, {})
-keyset("n", "<space>lg", builtin.live_grep, {})
-keyset("n", "<space>gs", builtin.grep_string, {})
+keyset("n", "<space>fl", builtin.live_grep, {})
+keyset("n", "<space>fs", builtin.grep_string, {})
 keyset("n", "<space>fh", builtin.help_tags, {})
 keyset("n", "<space>/",
   function()
