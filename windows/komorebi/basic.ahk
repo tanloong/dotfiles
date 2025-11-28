@@ -5,7 +5,7 @@
 #X::Run "C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe"
 
 #C::Run "D:\software\Libreoffice\program\soffice.exe"
-#A::Run "D:\software\WeChat\WeChat.exe"
+#A::Run "D:\software\Weixin\Weixin.exe"
 #Q::Run "D:\software\QQ\QQ.exe"
 #P::Run "Keepass.exe"
 #F::Run "D:\software\飞书\Feishu\Feishu.exe"
