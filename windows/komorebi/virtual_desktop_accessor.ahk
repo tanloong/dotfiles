@@ -103,18 +103,16 @@ RemoveDesktop(remove_desktop_number, fallback_desktop_number) {
 ; SetDesktopName(0, "It works! 🐱")
 
 DllCall(RegisterPostMessageHookProc, "Ptr", A_ScriptHwnd, "Int", 0x1400 + 30, "Int")
-OnMessage(0x1400 + 30, OnChangeDesktop)
-
-
+; OnMessage(0x1400 + 30, OnChangeDesktop)
 ; OnChangeDesktop(wParam, lParam, msg, hwnd) {
 ;     Critical(1)
 ;     OldDesktop := wParam + 1
 ;     NewDesktop := lParam + 1
-    ; Name := GetDesktopName(NewDesktop - 1)
-
-    ; Use Dbgview.exe to checkout the output debug logs
-    ; OutputDebug("Desktop changed to " Name " from " OldDesktop " to " NewDesktop)
-    ; TraySetIcon(".\Icons\icon" NewDesktop ".ico")
+;     ; Name := GetDesktopName(NewDesktop - 1)
+;
+;     ; Use Dbgview.exe to checkout the output debug logs
+;     ; OutputDebug("Desktop changed to " Name " from " OldDesktop " to " NewDesktop)
+;     ; TraySetIcon(".\Icons\icon" NewDesktop ".ico")
 ; }
 
 ; #^!+1::MoveOrGotoDesktopNumber(0)
