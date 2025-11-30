@@ -93,3 +93,5 @@ if WinExist("ahk_class CASCADIA_HOSTING_WINDOW_CLASS") {
 }
 ; The $ prefix: This is usually only necessary if the script uses the Send function to send the keys that comprise the hotkey itself, which might otherwise cause it to trigger itself. 
 $!n::ToggleScratch
+
+#include "virtual_desktop_accessor.ahk"
