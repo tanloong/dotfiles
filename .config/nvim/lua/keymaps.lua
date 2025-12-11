@@ -57,6 +57,7 @@ map("v", "gK",
   [[:<c-u>exec "silent!! goldendict " .. getregion(getpos("'<"), getpos("'>"), {"type": "v"})[0] .. " &"<cr>]])
 -- keyset('n', '<tab>', [[<cmd>exec "silent!! goldendict " .. expand("<cword>") .. " &"<cr>]])
 -- keyset('v', '<tab>', [[:<c-u>exec "silent!! goldendict " .. DT#get_visual_selection() .. " &"<cr>]])
+map("n", "<space>r", "<cmd>call DT#RunFile()<CR>", {silent = true})
 map("n", "<leader>b", [[<cmd>ls<cr>:b<space>]])
 -- Toggle quickfix window
 map("n", "<leader>e", [[<cmd>exec empty(filter(getwininfo(), 'v:val.quickfix')) ? 'copen' : 'cclose'<cr>]])

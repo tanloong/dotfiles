@@ -7,7 +7,7 @@
 #C::Run "D:\software\Libreoffice\program\soffice.exe"
 #A::Run "D:\software\Weixin\Weixin.exe"
 #Q::Run "D:\software\QQ\QQ.exe"
-#P::Run "Keepass.exe"
+#P::Run "D:\software\KeePassXC\KeePassXC.exe"
 #F::Run "D:\software\飞书\Feishu\Feishu.exe"
 
 SetNumLockState "AlwaysOff"

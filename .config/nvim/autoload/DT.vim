@@ -19,3 +19,19 @@ func! DT#Eatchar(pat)
   let c = nr2char(getchar(0))
   return (c =~ a:pat) ? '' : c
 endfunc
+
+function! DT#RunFile()
+    if &filetype != 'python'
+        echohl WarningMsg
+        echom "当前不是 Python 文件"
+        echohl None
+        return
+    endif
+
+    silent write
+
+    let l:file_path = expand('%:p')
+    rightbelow split
+    execute 'terminal python ' . shellescape(l:file_path)
+    startinsert
+endfunction
