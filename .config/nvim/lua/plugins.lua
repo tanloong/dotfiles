@@ -222,7 +222,7 @@ local plugin_specs = {
   },
   -- interlaced
   {
-    "tanloong/interlaced.nvim",
+    "https://gitee.com/tanloong/interlaced.nvim",
     enabled = false,
     ft = "text",
     branch = "dev",
