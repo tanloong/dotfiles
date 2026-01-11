@@ -56,8 +56,8 @@ local plugin_specs = {
   -- Iron
   {
     "Vigemus/iron.nvim",
-    -- cond = not vscode,
-    cond = false,
+    cond = not vscode,
+    -- cond = false,
     config = function()
       local iron = require "iron.core"
       local common = require "iron.fts.common"
@@ -72,6 +72,7 @@ local plugin_specs = {
               command = { "python" },
               format = common.bracketed_paste_python,
               block_dividers = { "# %%", "#%%" },
+              env = {PYTHON_BASIC_REPL = "1"},
             },
             lua = { command = { "lua" } },
             php = { command = { "php", "-a" } },
@@ -291,7 +292,8 @@ local plugin_specs = {
   -- fcitx.vim
   {
     "https://github.com/lilydjwg/fcitx.vim",
-    enabled = has "linux" == 1,
+    -- enabled = has "linux" == 1,
+    enabled = false,
     event = "VeryLazy",
     config = function()
       vim.g.fcitx5_remote = "fcitx5-remote"
@@ -771,7 +773,8 @@ frontmatter = {enabled = false,},
   -- im-select
   {
     "keaising/im-select.nvim",
-    enabled = has "wsl" == 1 or has "win32" == 1,
+    -- enabled = has "wsl" == 1 or has "win32" == 1,
+    enabled = false,
     config = function()
       require "im_select".setup {
         -- IM will be set to `default_im_select` in `normal` mode

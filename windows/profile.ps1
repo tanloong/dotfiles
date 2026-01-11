@@ -17,6 +17,10 @@ Set-Alias -Name g -Value git
 Set-Alias -Name za -Value sumatrapdf
 Set-Alias -Name gg -Value gitui
 
+function TurnOff-Screen {
+    (Add-Type '[DllImport("user32.dll")]public static extern int SendMessage(int hWnd, int hMsg, int wParam, int lParam);' -Name ScreenApi -Pas)::SendMessage(-1,0x0112,0xF170,2)
+}
+
 function RmNvimShada {
   $ShadaPath = 'C:\Users\Administrator\AppData\Local\nvim-data\shada\main.shada.tmp.X'
   if (Test-Path $ShadaPath) {
