@@ -1,3 +1,15 @@
+function! boyi#get_yestraday(fmt = "%Y%m%d")
+  " 返回早于今天的第一个工作日
+  let l:cand = localtime() - 86400
+  " %w: day of week (0..6); 0 is Sunday
+  let l:weekday = strftime("%w", l:cand)
+  while l:weekday == "0" || l:weekday == "6"
+    let l:cand -= 86400
+    let l:weekday = strftime("%w", l:cand)
+  endwhile
+  return strftime(a:fmt, l:cand)
+endfunction
+
 func! boyi#ths2sql()
 " 2025-12-11 14:30
 "
@@ -5,7 +17,9 @@ func! boyi#ths2sql()
 " 表头为: 证券代码, 证券名称, 首次涨停时间, 最高, 现价
 " 这个脚本用来转换为SQL语句，复制SQL粘贴到曲线程序调试窗口
 "
-  let l:bid_date = input("进场日期:", strftime("%Y%m%d", localtime() - 86400)) " 进场日期，填上一交易日
+  :%delete _
+  :put +
+  let l:bid_date = input("进场日期:", boyi#get_yestraday()) " 进场日期，填上一交易日
   gl /^\s*$/ d | "delete empty lines
   %s/^\s\+//e | "delete leading whitespaces
   v /\v^%(代码|\u\u\d{6})>/ d | "delete irrelevant lines
@@ -40,7 +54,7 @@ function! boyi#normsim(name) abort
     let normalized = substitute(a:name, '博弈', '', 'g')
     let normalized = substitute(normalized, '-号', '一号', 'g')
     let normalized = trim(normalized)
-    
+
     " 处理移除后为空的情况
     if empty(normalized)
         return v:null
@@ -50,11 +64,11 @@ function! boyi#normsim(name) abort
     if normalized =~# '扶'
         return '扶'
     endif
-    
+
     if normalized =~# '共'
         return '共赢'
     endif
-    
+
     if normalized =~# '渭'
         if normalized =~# '十六\|16'
             return '渭16'
@@ -72,7 +86,7 @@ function! boyi#normsim(name) abort
             return '渭三'
         endif
     endif
-    
+
     if normalized =~# '博'
         if normalized =~# '十三\|13'
             return '博13'
@@ -92,35 +106,45 @@ function! boyi#normsim(name) abort
             return '博九'
         endif
     endif
-    
+
     if normalized =~# '主'
         return '主'
     endif
-    
+
     if normalized =~# '淘'
         return '淘'
     endif
-    
+
     if normalized =~# '进取'
         return '进取'
     endif
-    
+
     if normalized =~# '成长'
         return '成长'
     endif
-    
+
     if normalized =~# '稳健'
         return '稳健'
     endif
-    
-    if normalized =~# '智'
-        return '智选'
+
+    if normalized =~# '智\|专享'
+        if normalized =~# '一\|1'
+            return '智选1'
+        elseif normalized =~# '二\|2'
+            return '智选2'
+        elseif normalized =~# '三\|3'
+            return '智选3'
+        elseif normalized =~# '六\|6'
+            return '智选6'
+        elseif normalized =~# '九\|9'
+            return '智选9'
+        endif
     endif
-    
+
     " 未匹配到任何规则
     echohl WarningMsg
     echomsg '警告: 未能标准化产品名 - ' . a:name
     echohl None
-    
+
     return a:name
 endfunction

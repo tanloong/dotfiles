@@ -2,6 +2,7 @@ Set-PSReadLineOption -EditMode Vi
 if (-not $env:EDITOR)       { $env:EDITOR       = 'nvim' }
 if (-not $env:VISUAL)       { $env:VISUAL       = 'nvim' }
 Set-PSReadLineKeyHandler -Key "Ctrl+e" -Function ViEditVisually # CTRL-E enters current line buffer editor
+Set-PSReadLineKeyHandler -Chord Ctrl+w -Function BackwardDeleteWord
 
 if (-not $env:PDFVIEWER)    { $env:PDFVIEWER    = 'SumatraPDF' }
 if (-not $env:FILE_MANAGER) { $env:FILE_MANAGER = 'lf' }
@@ -279,6 +280,15 @@ function Bump-Script {
     $newFull | Set-Clipboard
 }
 
+function cf {
+    param([scriptblock]$sb)
+    $path = [System.IO.Path]::GetTempFileName()
+    & $sb | Out-File -FilePath $path -Encoding utf8
+    return $path
+# process substitution <() as in bash
+# Example usage (mimicking <(ls))
+# diff (cf { ls C:\ }) (cf { ls D:\ })
+}
 
 #################################### zoxide ####################################
 
@@ -289,4 +299,3 @@ $Env:GIT_EDITOR = "nvim"
 
 # zoxide
 Invoke-Expression (& { (zoxide init powershell | Out-String) })
-

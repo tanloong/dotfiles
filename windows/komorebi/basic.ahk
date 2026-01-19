@@ -12,7 +12,7 @@
 
 SetNumLockState "AlwaysOff"
 SetCapsLockState "AlwaysOff"
-CapsLock::Return
+CapsLock::Enter
 CapsLock & h::Left
 CapsLock & j::Down
 CapsLock & k::Up
@@ -95,3 +95,66 @@ if WinExist("ahk_class CASCADIA_HOSTING_WINDOW_CLASS") {
 $!n::ToggleScratch
 
 #include "virtual_desktop_accessor.ahk"
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;Time;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; ================= 热键绑定 =================
+!e::ShowTimePopup()   ; Alt + I
+
+; ================= 主函数 =================
+ShowTimePopup() {
+    ; ---------- 配置 ----------
+    GuiBgColor := "Black"
+    FontColor  := "White"
+    FontSize   := 20
+    FontName   := "Arial"
+    AutoExitMs := 500   ; 1 秒自动退出
+    ; --------------------------
+
+    GetTime() {
+        return FormatTime(, "yyyy-MM-dd HH:mm:ss")
+    }
+
+    ; ---------- 创建 GUI ----------
+    timeGui := Gui()
+    timeGui.Opt("-SysMenu -Caption +ToolWindow +AlwaysOnTop +E0x20")
+    timeGui.BackColor := GuiBgColor
+    timeGui.SetFont("s" FontSize " c" FontColor, FontName)
+
+    txt := timeGui.Add("Text", "vMyText", GetTime())
+
+    ; ---------- 左下角定位（避开任务栏） ----------
+    wa := GetMonitorWorkArea()
+    x := wa.Left + 10
+    y := wa.Bottom - 80
+    timeGui.Show("AutoSize x" x " y" y)
+
+    ; ---------- 自动退出 ----------
+    SetTimer(() => timeGui.Destroy(), -AutoExitMs)
+
+    ; ---------- 消息监听 ----------
+    ; OnMessage(0x100, (_) => timeGui.Destroy()) ; WM_KEYDOWN
+    ; OnMessage(0x202, (_) => timeGui.Destroy()) ; WM_LBUTTONUP
+}
+
+; ================= 工具函数 =================
+GetMonitorWorkArea() {
+    MONITOR_DEFAULTTOPRIMARY := 0x00000001
+    hMonitor := DllCall(
+        "User32\MonitorFromWindow",
+        "Ptr", 0,
+        "UInt", MONITOR_DEFAULTTOPRIMARY,
+        "Ptr"
+    )
+
+    mi := Buffer(40, 0)
+    NumPut("UInt", 40, mi, 0)
+    DllCall("User32\GetMonitorInfoW", "Ptr", hMonitor, "Ptr", mi)
+
+    return {
+        Left:   NumGet(mi, 20, "Int"),
+        Top:    NumGet(mi, 24, "Int"),
+        Right:  NumGet(mi, 28, "Int"),
+        Bottom: NumGet(mi, 32, "Int")
+    }
+}
