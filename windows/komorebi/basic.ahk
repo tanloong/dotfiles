@@ -158,3 +158,19 @@ GetMonitorWorkArea() {
         Bottom: NumGet(mi, 32, "Int")
     }
 }
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;回到桌面并隐藏图标;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+!w::ToggleDesktopIcons()
+
+ToggleDesktopIcons() {
+    Send "^#d"
+    Click "1900 1000"
+    Sleep 100
+    Send "+{F10}"
+    Sleep 200
+    Send "v"
+    Sleep 100
+    Send "{Right}"
+    Send "d"
+}
