@@ -72,6 +72,7 @@
   "python.linting.ruffEnabled": true,
   "semanticTokens.enable": false,
   "python.formatting.provider": "ruff",
+  "pyright.enable": false,
   "pyright.organizeimports.provider": "ruff",
   "pyright.inlayHints.functionReturnTypes": true,
   "pyright.inlayHints.variableTypes": false,
@@ -144,6 +145,7 @@
   "coc.source.buffer.priority": 50,
   "coc.source.file.priority": 50,
   "snippets.priority": 99,
+  "suggest.languageSourcePriority": 100,
   "outline.sortBy": "position",
   "outline.autoWidth": true,
   "outline.keepWindow": false,
@@ -183,5 +185,9 @@
   "tabnine.disable_file_regex": [
     "bangzhanxitong"
   ],
-  "sql.formatOptions": {"language": "sqlite", "keywordCase": "upper", "logicalOperatorNewline": "before"}
+  "sql.formatOptions": {
+    "language": "sqlite",
+    "keywordCase": "upper",
+    "logicalOperatorNewline": "before"
+  }
 }

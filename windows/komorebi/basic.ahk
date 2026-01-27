@@ -165,6 +165,7 @@ GetMonitorWorkArea() {
 
 ToggleDesktopIcons() {
     Send "^#d"
+    Sleep 100
     Click "1900 1000"
     Sleep 100
     Send "+{F10}"

@@ -17,8 +17,6 @@ func! boyi#ths2sql()
 " 表头为: 证券代码, 证券名称, 首次涨停时间, 最高, 现价
 " 这个脚本用来转换为SQL语句，复制SQL粘贴到曲线程序调试窗口
 "
-  :%delete _
-  :put +
   let l:bid_date = input("进场日期:", boyi#get_yestraday()) " 进场日期，填上一交易日
   gl /^\s*$/ d | "delete empty lines
   %s/^\s\+//e | "delete leading whitespaces
@@ -37,7 +35,8 @@ func! boyi#ths2sql()
   1,1/^$/-1 j
 
   %s/__BID_DATE__/\=l:bid_date/g
-  $ ?^$? put=strftime('%Y%m%d', localtime()) . ' 昨日竞价今日上板票，开板后仍按涨停价计算主扶页面曲线:'
+  $ ?^$? put=strftime('%Y%m%d', localtime()) . ' 昨日竞价进场今日上板票，开板后仍按涨停价计算主扶页面曲线:'
+  %s/\v\s+$//
 
   call setcursorcharpos(1, 1)
   call setreg("+", getline(1))

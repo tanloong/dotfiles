@@ -19,6 +19,13 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 local plugin_specs = {
+  {
+    "https://github.com/tanloong/github.nvim",
+    build = function() vim.cmd[[UpdateRemotePlugins]]  end,
+    ft = { "text", "markdown" },
+    config = function() require("bite") end,
+    event = "VeryLazy",
+  },
   -- CoC
   {
     -- "https://github.com/neoclide/coc.nvim.git",

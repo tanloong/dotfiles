@@ -14,8 +14,12 @@ map("n", "g9", "g$")
 map("n", "gp", "<cmd>.copy .<cr>", { desc = "copy current line to below" })
 map("n", "gP", "<cmd>.copy -<cr>", { desc = "copy current line to above" })
 -- comment current line, copy below, uncomment copied line
-map("n", "gcp", "<cmd>let _p=getcurpos() | let _p[1]+=1<cr><cmd>normal gcc<cr><cmd>.copy . | normal gcc<cr><cmd>call setpos('.', _p)<cr>", { desc = "copy current line to above" })
-map("n", "gcP", "<cmd>let _p=getcurpos()<cr><cmd>normal gcc<cr><cmd>.copy - | normal gcc<cr><cmd>call setpos('.', _p)<cr>", { desc = "copy current line to above" })
+map("n", "gcp",
+  "<cmd>let _p=getcurpos() | let _p[1]+=1<cr><cmd>normal gcc<cr><cmd>.copy . | normal gcc<cr><cmd>call setpos('.', _p)<cr>",
+  { desc = "copy current line to above" })
+map("n", "gcP",
+  "<cmd>let _p=getcurpos()<cr><cmd>normal gcc<cr><cmd>.copy - | normal gcc<cr><cmd>call setpos('.', _p)<cr>",
+  { desc = "copy current line to above" })
 map({ "n", "v" }, "k", "gk")
 map({ "n", "v" }, "j", "gj")
 map({ "n", "v" }, "gk", "k")
@@ -57,7 +61,7 @@ map("v", "gK",
   [[:<c-u>exec "silent!! goldendict " .. getregion(getpos("'<"), getpos("'>"), {"type": "v"})[0] .. " &"<cr>]])
 -- keyset('n', '<tab>', [[<cmd>exec "silent!! goldendict " .. expand("<cword>") .. " &"<cr>]])
 -- keyset('v', '<tab>', [[:<c-u>exec "silent!! goldendict " .. DT#get_visual_selection() .. " &"<cr>]])
-map("n", "<space>r", "<cmd>call DT#RunFile()<CR>", {silent = true})
+map("n", "<space>r", "<cmd>call DT#RunFile()<CR>", { silent = true })
 map("n", "<leader>b", [[<cmd>ls<cr>:b<space>]])
 -- Toggle quickfix window
 map("n", "<leader>e", [[<cmd>exec empty(filter(getwininfo(), 'v:val.quickfix')) ? 'copen' : 'cclose'<cr>]])
