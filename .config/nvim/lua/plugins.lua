@@ -65,6 +65,7 @@ local plugin_specs = {
     "Vigemus/iron.nvim",
     cond = not vscode,
     -- cond = false,
+    ft = { "python" },
     config = function()
       local iron = require "iron.core"
       local common = require "iron.fts.common"
