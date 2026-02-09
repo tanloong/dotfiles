@@ -67,9 +67,9 @@ F12::Run "D:\software\controlmymonitor\ControlMyMonitor.exe /ChangeValue Primary
 F9::Run "D:\software\controlmymonitor\ControlMyMonitor.exe /ChangeValue Secondary 10 -5"
 F10::Run "D:\software\controlmymonitor\ControlMyMonitor.exe /ChangeValue Secondary 10 5"
 
-RAlt::Left
-RWin::Down
-RCtrl::Right
+; RAlt::Left
+; RWin::Down
+; RCtrl::Right
 
 ; For 61 keyboard
 ^$SC01A::Send("``") ; CTRL+[ `

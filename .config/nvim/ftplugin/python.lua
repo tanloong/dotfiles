@@ -35,7 +35,7 @@ function copy_test_path()
   end
 
   local cwd = vim.uv.cwd()
-  local rel_path = filepath:gsub('^' .. cwd .. '/', '')
+  local rel_path = vim.fs.normalize(vim.fs.relpath(cwd, filepath))
   local module_path = rel_path:gsub('.py$', ''):gsub('/', '.')
   local class_name = find_nearest_class(bufnr, row)
   local func_name = find_nearest_function(bufnr, row)
@@ -48,7 +48,7 @@ function copy_test_path()
   local interpreter = vim.fs.joinpath(cwd, "python")
   if not vim.fn.executable(interpreter) then interpreter = "python" end
   local command = (("%s -m unittest %s<CR>"):format(interpreter, test_path))
-  vim.cmd("botright split term://fish | startinsert")
+  vim.cmd((("botright split term://%s | startinsert"):format(vim.fn.has "win32" and "pwsh\\ -nologo" or "fish")))
   api.nvim_input(command)
   api.nvim_input("<c-\\><c-n>G")
 end

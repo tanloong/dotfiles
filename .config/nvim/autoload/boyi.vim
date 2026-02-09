@@ -42,7 +42,6 @@ func! boyi#ths2sql()
   call setreg("+", getline(1))
 endfunc
 
-
 " 产品名称标准化函数
 function! boyi#normsim(name) abort
     " 处理空值或无效输入
@@ -89,6 +88,8 @@ function! boyi#normsim(name) abort
     if normalized =~# '博'
         if normalized =~# '十三\|13'
             return '博13'
+        elseif normalized =~# '十七\|17'
+            return '博17'
         elseif normalized =~# '十五\|15'
             return '博15'
         elseif normalized =~# '三\|3'
@@ -135,8 +136,119 @@ function! boyi#normsim(name) abort
             return '智选3'
         elseif normalized =~# '六\|6'
             return '智选6'
+        elseif normalized =~# '八\|8'
+            return '智选8'
         elseif normalized =~# '九\|9'
             return '智选9'
+        endif
+    endif
+
+    " 未匹配到任何规则
+    echohl WarningMsg
+    echomsg '警告: 未能标准化产品名 - ' . a:name
+    echohl None
+
+    return a:name
+endfunction
+
+" 产品名称标准化函数
+function! boyi#norm(name) abort
+    " 处理空值或无效输入
+    if empty(a:name) || a:name ==# 'nan' || a:name ==# 'NaN'
+        return v:null
+    endif
+
+    let normalized = substitute(a:name, '博弈', '', 'g')
+    let normalized = substitute(normalized, '-号', '一号', 'g')
+    let normalized = trim(normalized)
+
+    " 处理移除后为空的情况
+    if empty(normalized)
+        return v:null
+    endif
+
+    " 定义匹配规则
+    if normalized =~# '扶'
+        return '扶摇五号'
+    endif
+
+    if normalized =~# '共'
+        return '共赢二号'
+    endif
+
+    if normalized =~# '渭'
+        if normalized =~# '十六\|16'
+            return '渭16'
+        elseif normalized =~# '11\|十一'
+            return '渭11'
+        elseif normalized =~# '12\|十二'
+            return '渭12'
+        elseif normalized =~# '五\|5'
+            return '渭华翔五号'
+        elseif normalized =~# '八\|8'
+            return '渭华翔八号'
+        elseif normalized =~# '六\|6'
+            return '渭华翔六号'
+        elseif normalized =~# '三\|3'
+            return '渭华翔三号'
+        endif
+    endif
+
+    if normalized =~# '博'
+        if normalized =~# '十三\|13'
+            return '博13'
+        elseif normalized =~# '十七\|17'
+            return '博17'
+        elseif normalized =~# '十五\|15'
+            return '博15'
+        elseif normalized =~# '三\|3'
+            return '博涵三号'
+        elseif normalized =~# '十\|10'
+            return '博10'
+        elseif normalized =~# '一\|1'
+            return '博涵一号'
+        elseif normalized =~# '二\|2'
+            return '博涵二号'
+        elseif normalized =~# '七\|7'
+            return '博涵七号'
+        elseif normalized =~# '九\|9'
+            return '博涵九号'
+        endif
+    endif
+
+    if normalized =~# '主'
+        return '主升一号'
+    endif
+
+    if normalized =~# '淘'
+        return '淘股吧5号'
+    endif
+
+    if normalized =~# '进取'
+        return '进取七号'
+    endif
+
+    if normalized =~# '成长'
+        return '成长一号'
+    endif
+
+    if normalized =~# '稳健'
+        return '稳健一号'
+    endif
+
+    if normalized =~# '智\|专享'
+        if normalized =~# '一\|1'
+            return '智选1号'
+        elseif normalized =~# '二\|2'
+            return '智选2号'
+        elseif normalized =~# '三\|3'
+            return '智选3号'
+        elseif normalized =~# '六\|6'
+            return '智选6号'
+        elseif normalized =~# '八\|8'
+            return '智选8'
+        elseif normalized =~# '九\|9'
+            return '智选9号'
         endif
     endif
 
