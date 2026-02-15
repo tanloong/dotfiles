@@ -91,10 +91,10 @@ title_error = { fg = "#a85361" }
 [filetype]
 rules = [
 	# directories
-	{ name = "*/", fg = "#008787" },
+	{ url = "*/", fg = "#008787" },
 
 	# executables
-	{ name = "*", is = "exec", fg = "#FF8700" },
+	{ url = "*", is = "exec", fg = "#FF8700" },
 
 	# images
 	{ mime = "image/*", fg = "#875FAF" },
@@ -114,19 +114,19 @@ rules = [
 	# { mime = "text/x-{c,c++}", fg = "#1f6f88" },
 
 	# config files
-	{ name = "*.json", fg = "#D7AF00" },
-	{ name = "*.yml", fg = "#1f6f88" },
-	{ name = "*.toml", fg = "#9464b6" },
-	{ name = "*.pdf", fg = "#b5b5ff" },
-	{ name = "*.html", fg = "#AF005F" },
-	{ name = "*.lua", fg = "#5FD7FF" },
-	{ name = "*.csv", fg = "#5FD787" },
-	{ name = "*.md", fg = "#FFD700" },
-	{ name = "*.py", fg = "#00D75F" },
+	{ url = "*.json", fg = "#D7AF00" },
+	{ url = "*.yml", fg = "#1f6f88" },
+	{ url = "*.toml", fg = "#9464b6" },
+	{ url = "*.pdf", fg = "#b5b5ff" },
+	{ url = "*.html", fg = "#AF005F" },
+	{ url = "*.lua", fg = "#5FD7FF" },
+	{ url = "*.csv", fg = "#5FD787" },
+	{ url = "*.md", fg = "#FFD700" },
+	{ url = "*.py", fg = "#00D75F" },
 
 	# special files
-	{ name = "*", is = "orphan", bg = "#0a0e14" },
+	{ url = "*", is = "orphan", bg = "#0a0e14" },
 
 	# dummy files
-	{ name = "*", is = "dummy", bg = "#0a0e14" },
+	{ url = "*", is = "dummy", bg = "#0a0e14" },
 ]
