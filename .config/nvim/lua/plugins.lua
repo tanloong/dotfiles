@@ -200,19 +200,19 @@ local plugin_specs = {
       { "nvim-lua/plenary.nvim", lazy = true },
     },
     keys = {
+      -- {
+      --   "<leader>-",
+      --   mode = { "n", "v" },
+      --   "<cmd>Yazi<cr>",
+      --   desc = "Open yazi at the current file",
+      -- },
+      -- {
+      --   "<leader>cw",
+      --   "<cmd>Yazi cwd<cr>",
+      --   desc = "Open the file manager in nvim's working directory",
+      -- },
       {
-        "<leader>-",
-        mode = { "n", "v" },
-        "<cmd>Yazi<cr>",
-        desc = "Open yazi at the current file",
-      },
-      {
-        "<leader>cw",
-        "<cmd>Yazi cwd<cr>",
-        desc = "Open the file manager in nvim's working directory",
-      },
-      {
-        "tt",
+        "<C-t>",
         "<cmd>Yazi toggle<cr>",
         desc = "Resume the last yazi session",
       },
@@ -563,8 +563,13 @@ local plugin_specs = {
     dependencies = { "MunifTanjim/nui.nvim" },
     opts = {},
   },
-{ 'nvim-mini/mini.files', event = "VeryLazy", cond = not vscode, version = false, config = function() 
-  local MiniFiles = require("mini.files")
+  {
+    "nvim-mini/mini.files",
+    event = "VeryLazy",
+    cond = has "win32" == 1 and not vscode,
+    version = false,
+    config = function()
+      local MiniFiles = require "mini.files"
   MiniFiles.setup()
   map("n", "<C-t>", function() MiniFiles.open(vim.api.nvim_buf_get_name(0)) end)
 
