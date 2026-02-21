@@ -33,7 +33,7 @@ case "$app" in
     netdisk) notify-send --urgency low "Opening 百度网盘..." -t 1000
             /usr/lib/baidunetdisk/baidunetdisk --no-sandbox %U;;
     wechat) notify-send --urgency low "Opening WeChat..." -t 1000
-        wechat.sh ;;
+        wechat ;;
     qq) notify-send --urgency low "Opening QQ..." -t 400
         case $XDG_SESSION_TYPE in
             'wayland')

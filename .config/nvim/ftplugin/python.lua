@@ -7,7 +7,7 @@ local c = vim.api.nvim_create_user_command
 local function find_nearest_class(bufnr, start_line)
   for l = start_line, 1, -1 do
     local line = api.nvim_buf_get_lines(bufnr, l - 1, l, false)[1]
-    local class_name = line:match('^%s*class%s+([%w_]+)')
+    local class_name = line:match('^class%s+([%w_]+)')
     if class_name then return class_name end
   end
   return nil
@@ -15,7 +15,7 @@ end
 local function find_nearest_function(bufnr, start_line)
   for l = start_line, 1, -1 do
     local line = api.nvim_buf_get_lines(bufnr, l - 1, l, false)[1]
-    local func_name = line:match('^%s*def%s+([%w_]+)')
+    local func_name = line:match('^    def%s+([%w_]+)')
     if func_name then return func_name end
   end
   return nil
@@ -48,7 +48,7 @@ function copy_test_path()
   local interpreter = vim.fs.joinpath(cwd, "python")
   if not vim.fn.executable(interpreter) then interpreter = "python" end
   local command = (("%s -m unittest %s<CR>"):format(interpreter, test_path))
-  vim.cmd((("botright split term://%s | startinsert"):format(vim.fn.has "win32" and "pwsh\\ -nologo" or "fish")))
+  vim.cmd((("botright split term://%s | startinsert"):format(vim.fn.has "win32" == 1 and "pwsh\\ -nologo" or "fish")))
   api.nvim_input(command)
   api.nvim_input("<c-\\><c-n>G")
 end
