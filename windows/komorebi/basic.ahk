@@ -72,8 +72,8 @@ F10::Run "D:\software\controlmymonitor\ControlMyMonitor.exe /ChangeValue Seconda
 ; RCtrl::Right
 
 ; For 61 keyboard
-^$SC01A::Send("``") ; CTRL+[ `
-^SC01A::~ ; CTRL+SHIFT+[ ~
+; ^$SC01A::Send("``") ; CTRL+[ `
+; ^SC01A::~ ; CTRL+SHIFT+[ ~
 
 ; 禁用全角半角切换
 Shift & Space::Return
@@ -125,8 +125,8 @@ ShowTimePopup() {
 
     ; ---------- 左下角定位（避开任务栏） ----------
     wa := GetMonitorWorkArea()
-    x := wa.Left + 10
-    y := wa.Bottom - 80
+    x := wa.Right - 350
+    y := wa.Bottom - 180
     timeGui.Show("AutoSize x" x " y" y)
 
     ; ---------- 自动退出 ----------

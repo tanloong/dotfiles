@@ -6,6 +6,7 @@ Set-PSReadLineKeyHandler -Chord Ctrl+w -Function BackwardDeleteWord
 
 if (-not $env:PDFVIEWER)    { $env:PDFVIEWER    = 'SumatraPDF' }
 if (-not $env:FILE_MANAGER) { $env:FILE_MANAGER = 'lf' }
+$env:LESSCHARSET="utf-8"
 
 #################################### alias #####################################
 

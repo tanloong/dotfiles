@@ -42,8 +42,18 @@ func! boyi#ths2sql()
   call setreg("+", getline(1))
 endfunc
 
+function! boyi#add_zhufu_ignore() abort
+  v /\v\d/ d
+  0 put='insert into zhufu_ignore (证券代码, 进场日期) values'
+  2,$ s/\v.*/('&', '__DATE__'),/
+  $ s/,$/;/
+  let s:today_str = input("进场日期:", strftime("%Y%m%d", localtime()))
+  %s/__DATE__/\=s:today_str/g
+  call setreg("+", getline(1, '$'))
+endfunc
+
 " 产品名称标准化函数
-function! boyi#normsim(name) abort
+function! boyi#normsimhold(name) abort
     " 处理空值或无效输入
     if empty(a:name) || a:name ==# 'nan' || a:name ==# 'NaN'
         return v:null
@@ -117,6 +127,114 @@ function! boyi#normsim(name) abort
 
     if normalized =~# '进取'
         return '进取'
+    endif
+
+    if normalized =~# '成长'
+        return '成长'
+    endif
+
+    if normalized =~# '稳健'
+        return '稳健'
+    endif
+
+    if normalized =~# '智\|专享'
+        if normalized =~# '一\|1'
+            return '智选1'
+        elseif normalized =~# '二\|2'
+            return '智选2'
+        elseif normalized =~# '三\|3'
+            return '智选3'
+        elseif normalized =~# '六\|6'
+            return '智选6'
+        elseif normalized =~# '八\|8'
+            return '智选8'
+        elseif normalized =~# '九\|9'
+            return '智选9'
+        endif
+    endif
+
+    " 未匹配到任何规则
+    echohl WarningMsg
+    echomsg '警告: 未能标准化产品名 - ' . a:name
+    echohl None
+
+    return a:name
+endfunction
+
+function! boyi#normsimcurve(name) abort
+    " 处理空值或无效输入
+    if empty(a:name) || a:name ==# 'nan' || a:name ==# 'NaN'
+        return v:null
+    endif
+
+    let normalized = substitute(a:name, '博弈', '', 'g')
+    let normalized = substitute(normalized, '-号', '一号', 'g')
+    let normalized = trim(normalized)
+
+    " 处理移除后为空的情况
+    if empty(normalized)
+        return v:null
+    endif
+
+    " 定义匹配规则
+    if normalized =~# '扶'
+        return '扶摇'
+    endif
+
+    if normalized =~# '共'
+        return '共赢'
+    endif
+
+    if normalized =~# '渭'
+        if normalized =~# '十六\|16'
+            return '渭16'
+        elseif normalized =~# '11\|十一'
+            return '渭11'
+        elseif normalized =~# '12\|十二'
+            return '渭12'
+        elseif normalized =~# '五\|5'
+            return '渭五'
+        elseif normalized =~# '八\|8'
+            return '渭八'
+        elseif normalized =~# '六\|6'
+            return '渭六'
+        elseif normalized =~# '三\|3'
+            return '渭三'
+        endif
+    endif
+
+    if normalized =~# '博'
+        if normalized =~# '十三\|13'
+            return '博13'
+        elseif normalized =~# '十七\|17'
+            return '博17'
+        elseif normalized =~# '十五\|15'
+            return '博15'
+        elseif normalized =~# '三\|3'
+            return '博三'
+        elseif normalized =~# '十\|10'
+            return '博10'
+        elseif normalized =~# '一\|1'
+            return '博一'
+        elseif normalized =~# '二\|2'
+            return '博二'
+        elseif normalized =~# '七\|7'
+            return '博七'
+        elseif normalized =~# '九\|9'
+            return '博九'
+        endif
+    endif
+
+    if normalized =~# '主'
+        return '主升'
+    endif
+
+    if normalized =~# '淘'
+        return '淘'
+    endif
+
+    if normalized =~# '进取'
+        return '进取七'
     endif
 
     if normalized =~# '成长'
@@ -258,4 +376,41 @@ function! boyi#norm(name) abort
     echohl None
 
     return a:name
+endfunction
+
+" 转换迅投委托单的账户名称
+" Example: 渭华翔6号（平安）--> 平安渭六普
+function! boyi#normwithbroker(name) abort
+    " 1. 定义正则表达式
+    " Python: r"^(?P<产品>[^)）]+)[(（](?P<券商>[^ )）]+?)\s*(?P<信用>信用)?(?:股票)?[)）]\s*$"
+    " Vim: 使用 \( \) 进行捕获，\%(...) 进行非捕获，量词需要转义如 \+, \?
+    let l:pattern = '^\([^)）]\+\)[(（]\([^ )）]\{-}\)\s*\(信用\)\?\%(股票\)\?[)）]\s*$'
+
+    let l:match_list = matchlist(a:name, l:pattern)
+
+    " 2. 匹配失败处理
+    if empty(l:match_list)
+        call v:lua.vim.notify('无法定位券商: ' . a:name, v:lua.vim.log.levels.ERROR)
+        return a:name
+    endif
+
+    " matchlist 结果: [全匹配, 产品, 券商, 信用, ...]
+    let l:acnt_raw = l:match_list[1]
+    let l:broker = l:match_list[2]
+    let l:credit = l:match_list[3]
+
+    " 3. 标准化产品名 
+    let l:acnt = boyi#normsimcurve(l:acnt_raw)
+
+    if l:acnt ==# ''
+        call v:lua.vim.notify('无法标准化产品名: ' . a:name, v:lua.vim.log.levels.ERROR)
+        return a:name
+    endif
+
+    " 4. 拼接结果
+    if l:credit ==# '信用'
+        return l:acnt . l:broker . '信'
+    else
+        return l:acnt . l:broker . '普'
+    endif
 endfunction
