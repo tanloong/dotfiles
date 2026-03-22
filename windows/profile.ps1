@@ -1,3 +1,13 @@
+# 自动设置控制台编码为 UTF-8（解决中文乱码）
+try {
+    chcp 65001 | Out-Null  # | Out-Null 隐藏 chcp 命令的输出（只执行，不显示）
+} catch {
+    Write-Host "⚠️ 设置编码失败：$_" -ForegroundColor Red
+}
+
+# 可选：额外设置 PowerShell 自身的输出编码（双重保障）
+$OutputEncoding = [Console]::OutputEncoding = [Console]::InputEncoding = [System.Text.UTF8Encoding]::new()
+
 Set-PSReadLineOption -EditMode Vi
 if (-not $env:EDITOR)       { $env:EDITOR       = 'nvim' }
 if (-not $env:VISUAL)       { $env:VISUAL       = 'nvim' }
