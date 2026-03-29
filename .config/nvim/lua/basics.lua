@@ -56,7 +56,7 @@ opt.path:append { "**" }
 opt.cursorline = true
 opt.cursorlineopt = "screenline"
 opt.termguicolors = true
-opt.diffopt = { "internal", "filler", "closeoff", "followwrap" }
+opt.diffopt = { "internal", "filler", "closeoff", "followwrap", "indent-heuristic", "inline:char" }
 opt.jumpoptions = "view"
 opt.grepprg = "rg --vimgrep --smart-case $*"
 opt.grepformat = "%f:%l:%c:%m,%f:%l:%m,%f:%l%m,%f  %l%m"
