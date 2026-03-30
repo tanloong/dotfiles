@@ -29,8 +29,8 @@ local plugin_specs = {
   },
   -- CoC
   {
-    -- "https://github.com/neoclide/coc.nvim.git",
-    "https://gitee.com/linuor/coc.nvim",
+    "https://github.com/neoclide/coc.nvim.git",
+    -- "https://gitee.com/linuor/coc.nvim",
     branch = "release",
     event = "VeryLazy",
     -- don't load coc.nvim on "interlaced" filetype

@@ -1,4 +1,4 @@
 require('basics')
 require('keymaps')
 require('plugins')
-require('sqlite_nvim')
+require('sqlite_nvim').setup()
