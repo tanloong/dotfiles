@@ -4,7 +4,9 @@ local bin_path = [[sqlite3]]
 
 M.config = {
   databases = {
-    [[D:\usr\boyi\tasks\20251114-委托成交入库\xt.db]]
+    [[D:\usr\boyi\tasks\20251114-委托成交入库\xt.db]],
+    [[D:\usr\boyi\tasks\20251208-每日净值推送\net.db]],
+    [[D:\usr\boyi\tasks\20250728-profit-curve\src\curve\profit.db]],
   },
   current_db_index = 1,
   keymap = "<c-g><c-g>",
@@ -170,6 +172,133 @@ M.switch_database = function(index)
   else
     vim.notify("Invalid database index", vim.log.levels.WARN)
   end
+end
+
+local function create_database_selector_window()
+  vim.cmd("botright split")
+  local bufnr = api.nvim_create_buf(false, true)
+  local win_id = api.nvim_get_current_win()
+
+  local lines = {"# Select Database (Press <Enter> to select, <Esc> to cancel)", ""}
+  for i, db_path in ipairs(M.config.databases) do
+    local marker = (i == M.config.current_db_index) and "* " or "  "
+    table.insert(lines, marker .. i .. ". " .. db_path)
+  end
+
+  api.nvim_buf_set_lines(bufnr, 0, -1, false, lines)
+  api.nvim_buf_set_name(bufnr, "sqlite_nvim://database_selector")
+  api.nvim_set_option_value("filetype", "sqlite_nvim_selector", {buf = bufnr})
+  api.nvim_set_option_value("modifiable", false, {buf = bufnr})
+  api.nvim_set_option_value("buftype", "nofile", {buf = bufnr})
+
+  vim.keymap.set("n", "<CR>", function()
+    local cursor_pos = api.nvim_win_get_cursor(win_id)
+    local line_num = cursor_pos[1]
+    if line_num >= 3 and line_num <= #M.config.databases + 2 then
+      local db_index = line_num - 2
+      M.switch_database(db_index)
+      api.nvim_win_close(win_id, true)
+    end
+  end, {buffer = bufnr, nowait = true})
+
+  vim.keymap.set("n", "<Esc>", function()
+    api.nvim_win_close(win_id, true)
+  end, {buffer = bufnr, nowait = true})
+
+  vim.keymap.set("n", "q", function()
+    api.nvim_win_close(win_id, true)
+  end, {buffer = bufnr, nowait = true})
+
+  return win_id
+end
+
+local function create_database_editor_window()
+  vim.cmd("botright split")
+  local bufnr = api.nvim_create_buf(true, true)
+  local win_id = api.nvim_get_current_win()
+
+  local lines = {"# Edit Database List", "# Add new databases below, delete lines to remove", ""}
+  for _, db_path in ipairs(M.config.databases) do
+    table.insert(lines, db_path)
+  end
+
+  api.nvim_buf_set_lines(bufnr, 0, -1, false, lines)
+  api.nvim_buf_set_name(bufnr, "sqlite_nvim://database_editor")
+  api.nvim_set_option_value("filetype", "sqlite_nvim_editor", {buf = bufnr})
+
+  local original_databases = vim.deepcopy(M.config.databases)
+
+  vim.keymap.set("n", "<CR>", function()
+    local current_lines = api.nvim_buf_get_lines(bufnr, 0, -1, false)
+    local new_databases = {}
+
+    for _, line in ipairs(current_lines) do
+      if line ~= "" and not line:match("^#") then
+        table.insert(new_databases, line)
+      end
+    end
+
+    local added_dbs = {}
+    local removed_dbs = {}
+
+    for _, new_db in ipairs(new_databases) do
+      if not vim.tbl_contains(original_databases, new_db) then
+        table.insert(added_dbs, new_db)
+      end
+    end
+
+    for _, old_db in ipairs(original_databases) do
+      if not vim.tbl_contains(new_databases, old_db) then
+        table.insert(removed_dbs, old_db)
+      end
+    end
+
+    local message = ""
+    if #added_dbs > 0 then
+      message = message .. "Add databases:\n" .. table.concat(added_dbs, "\n")
+    end
+    if #removed_dbs > 0 then
+      if message ~= "" then message = message .. "\n\n" end
+      message = message .. "Remove databases:\n" .. table.concat(removed_dbs, "\n")
+    end
+    if message == "" then
+      message = "No changes detected"
+    end
+
+    vim.ui.input({
+      prompt = "Confirm changes? (y/n)\n\n" .. message,
+      default = "n"
+    }, function(input)
+      if input and input:lower() == "y" then
+        M.config.databases = new_databases
+        if M.config.current_db_index > #new_databases then
+          M.config.current_db_index = 1
+        end
+        vim.notify("Database list updated successfully", vim.log.levels.INFO)
+        api.nvim_win_close(win_id, true)
+      else
+        vim.notify("Changes cancelled", vim.log.levels.WARN)
+      end
+    end)
+  end, {buffer = bufnr, nowait = true})
+
+  vim.keymap.set("n", "<Esc>", function()
+    api.nvim_win_close(win_id, true)
+  end, {buffer = bufnr, nowait = true})
+
+  vim.keymap.set("n", "q", function()
+    api.nvim_win_close(win_id, true)
+  end, {buffer = bufnr, nowait = true})
+
+  return win_id
+end
+
+M.show_database_selector = function()
+  create_database_selector_window()
+end
+
+M.edit_database_list = function()
+  create_database_editor_window()
 end
 
 return M

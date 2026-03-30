@@ -737,6 +737,10 @@ frontmatter = {enabled = false,},
       require "term"
     end,
   },
+  {
+    url = "https://github.com/vim-scripts/dbext.vim",
+    enabled = false,
+},
   ----------------------------------- DISABLED -----------------------------------{{{
   {
     "folke/snacks.nvim",

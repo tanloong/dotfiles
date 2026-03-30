@@ -13,6 +13,7 @@ if (-not $env:EDITOR)       { $env:EDITOR       = 'nvim' }
 if (-not $env:VISUAL)       { $env:VISUAL       = 'nvim' }
 Set-PSReadLineKeyHandler -Key "Ctrl+e" -Function ViEditVisually # CTRL-E enters current line buffer editor
 Set-PSReadLineKeyHandler -Chord Ctrl+w -Function BackwardDeleteWord
+Set-PSReadLineKeyHandler -Chord Ctrl+h -Function BackwardDeleteChar
 
 if (-not $env:PDFVIEWER)    { $env:PDFVIEWER    = 'SumatraPDF' }
 if (-not $env:FILE_MANAGER) { $env:FILE_MANAGER = 'lf' }
