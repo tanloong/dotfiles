@@ -61,15 +61,15 @@ pdf = [
 ]
 sqlite = [
   { run = 'sqlite3 "$@"', desc = "sqlite", block=true, for = "unix" },
-  { run = 'sqlite3 "%*"', desc = "sqlite", block=true, for = "windows" },
+  { run = 'sqlite3 %*', desc = "sqlite", block=true, for = "windows" },
 ]
 [open]
 rules = [
 	# Folder
-	{ name = "*/", use = [ "edit", "open", "reveal" ] },
+	{ url = "*/", use = [ "edit", "open", "reveal" ] },
 	# PDF
-	{ name = "*.pdf", use = [ "pdf" ] },
-	{ name = "*.db", use = [ "sqlite" ] },
+	{ url = "*.pdf", use = [ "pdf" ] },
+	{ url = "*.db", use = [ "sqlite" ] },
 	# Text
 	{ mime = "text/*", use = [ "edit", "reveal" ] },
 	# Image
@@ -84,7 +84,7 @@ rules = [
 	# Empty file
 	{ mime = "inode/empty", use = [ "edit", "reveal" ] },
 	# Fallback
-	{ name = "*", use = [ "open", "reveal" ] },
+	{ url = "*", use = [ "open", "reveal" ] },
 ]
 
 [tasks]
