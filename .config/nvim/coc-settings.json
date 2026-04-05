@@ -69,10 +69,10 @@
     "border": true,
     "rounded": false
   },
-  "python.linting.ruffEnabled": true,
+  "python.linting.ruffEnabled": false,
   "semanticTokens.enable": false,
   "python.formatting.provider": "ruff",
-  "pyright.enable": false,
+  "pyright.enable": true,
   "pyright.organizeimports.provider": "ruff",
   "pyright.inlayHints.functionReturnTypes": true,
   "pyright.inlayHints.variableTypes": false,
@@ -189,5 +189,6 @@
     "language": "sqlite",
     "keywordCase": "upper",
     "logicalOperatorNewline": "before"
-  }
+  },
+  "clangd.path": "~/.config/coc/extensions/coc-clangd-data/install/21.1.8/clangd_21.1.8/bin/clangd"
 }

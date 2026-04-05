@@ -132,6 +132,7 @@ local plugin_specs = {
   -- tree-sitter
   {
     "nvim-treesitter/nvim-treesitter",
+    enabled = false,
     branch = "master",
     run = ":TSUpdate",
     config = function() require "plugin_config.nvim_treesitter" end,
@@ -139,6 +140,7 @@ local plugin_specs = {
   },
   {
     "nvim-treesitter/nvim-treesitter-textobjects",
+    enabled = false,
     dependencies = "nvim-treesitter/nvim-treesitter",
     event = "VeryLazy",
     config = function() require "plugin_config.nvim_treesitter_textobjects" end,
@@ -232,8 +234,10 @@ local plugin_specs = {
   },
   -- interlaced
   {
-    "https://gitee.com/tanloong/interlaced.nvim",
-    enabled = false,
+    -- "https://gitee.com/tanloong/interlaced.nvim",
+    -- enabled = false,
+    dir="/home/usr/projects/interlaced.nvim",
+    enabled =true,
     ft = "text",
     branch = "dev",
     cmd = "Interlaced",
