@@ -1,5 +1,7 @@
 #!/usr/bin/env lua
 
+if vim.fn.has("win32") == 1 then return end
+
 local autocmd = vim.api.nvim_create_autocmd
 local augroup = vim.api.nvim_create_augroup
 local vim_fs = vim.fs

@@ -6,13 +6,20 @@ local hi = vim.api.nvim_set_hl
 
 map({ "n", "v", "o" }, "K", "5gk")
 map({ "n", "v", "o" }, "J", "5gj")
-map({ "n", "v", "o" }, "H", "5h")
-map({ "n", "v", "o" }, "L", "5l")
+-- map({ "n", "v", "o" }, "H", "5h")
+-- map({ "n", "v", "o" }, "L", "5l")
 map({ "n", "v", "o" }, "Q", "@q")
 map({ "n", "v", "o" }, "9", "$")
 map("n", "g9", "g$")
 map("n", "gp", "<cmd>.copy .<cr>", { desc = "copy current line to below" })
 map("n", "gP", "<cmd>.copy -<cr>", { desc = "copy current line to above" })
+-- comment current line, copy below, uncomment copied line
+map("n", "gcp",
+  "<cmd>let _p=getcurpos() | let _p[1]+=1<cr><cmd>normal gcc<cr><cmd>.copy . | normal gcc<cr><cmd>call setpos('.', _p)<cr>",
+  { desc = "copy current line to above" })
+map("n", "gcP",
+  "<cmd>let _p=getcurpos()<cr><cmd>normal gcc<cr><cmd>.copy - | normal gcc<cr><cmd>call setpos('.', _p)<cr>",
+  { desc = "copy current line to above" })
 map({ "n", "v" }, "k", "gk")
 map({ "n", "v" }, "j", "gj")
 map({ "n", "v" }, "gk", "k")
@@ -54,6 +61,7 @@ map("v", "gK",
   [[:<c-u>exec "silent!! goldendict " .. getregion(getpos("'<"), getpos("'>"), {"type": "v"})[0] .. " &"<cr>]])
 -- keyset('n', '<tab>', [[<cmd>exec "silent!! goldendict " .. expand("<cword>") .. " &"<cr>]])
 -- keyset('v', '<tab>', [[:<c-u>exec "silent!! goldendict " .. DT#get_visual_selection() .. " &"<cr>]])
+map("n", "<space>r", "<cmd>call DT#RunFile()<CR>", { silent = true })
 map("n", "<leader>b", [[<cmd>ls<cr>:b<space>]])
 -- Toggle quickfix window
 map("n", "<leader>e", [[<cmd>exec empty(filter(getwininfo(), 'v:val.quickfix')) ? 'copen' : 'cclose'<cr>]])
@@ -64,6 +72,7 @@ map("i", "<c-q>", "<c-k>")
 map("n", "<c-enter>", [[i<nl><esc>]])
 -- Visual select the just pasted text by p/P
 map("n", "gV", "`[v`]")
+map("n", "tt", "<Cmd>Lexplore<CR>")
 
 -- web search
 map("n", "gX", function()
@@ -77,13 +86,13 @@ map("x", "gX", function()
   api.nvim_input "<esc>"
 end)
 
-map("n", "gs", function()
+local _search = function(_open)
   local bufnr = api.nvim_create_buf(false, false)
   vim.bo[bufnr].buftype = "prompt"
   vim.bo[bufnr].bufhidden = "wipe"
   vim.fn.prompt_setprompt(bufnr, "")
-  api.nvim_buf_set_extmark(bufnr, api.nvim_create_namespace('WebSearch'), 0, 0, {
-    line_hl_group = 'String',
+  api.nvim_buf_set_extmark(bufnr, api.nvim_create_namespace "WebSearch", 0, 0, {
+    line_hl_group = "Normal",
   })
   local width = math.floor(vim.o.columns * 0.6)
   local winid = api.nvim_open_win(bufnr, true, {
@@ -104,13 +113,23 @@ map("n", "gs", function()
   vim.wo[winid].signcolumn = "no"
   vim.wo[winid].cursorline = false
   vim.fn.prompt_setcallback(bufnr, function(text)
-    vim.ui.open(("https://cn.bing.com/search?q=%s&form=QBLH"):format(vim.trim(text)))
+    _open(text)
     -- vim.ui.open(("https://metaso.cn?q=%s"):format(vim.trim(text)))
     api.nvim_win_close(winid, true)
   end)
   map({ "n" }, "<esc>", function()
     pcall(api.nvim_win_close, winid, true)
   end, { buffer = bufnr })
+end
+
+map("n", "gs", function()
+  _search(function(text) vim.ui.open(("https://cn.bing.com/search?q=%s&form=QBLH"):format(vim.trim(text))) end)
+end)
+
+map("n", "gz", function()
+  _search(
+    function(text) vim.system { "zeal", vim.trim(text) } end
+  )
 end)
 
 -- keyset("i", "<C-a>", "<Esc>^i")
@@ -135,12 +154,13 @@ end, { expr = true })
 map("i", "<c-l>", function()
   local row, col = unpack(vim.api.nvim_win_get_cursor(0))
   local line = vim.api.nvim_get_current_line()
-  local offset = line:sub(col + 1):find "[%])}>]"
+  local offset = line:sub(col + 1):find "[%]\"'’”)}>`]"
   if offset == nil then
+    api.nvim_win_set_cursor(0, { row, #line })
     return
   end
-  vim.api.nvim_win_set_cursor(0, { row, col + offset })
-end, { desc = "Jump out of brackets" })
+  api.nvim_win_set_cursor(0, { row, col + offset })
+end, { desc = "Jump out of brackets, jump to end of line if not found" })
 
 -- keyset("i", "<C-e>", function()
 --   if vim.fn.pumvisible() == 1 then
@@ -156,15 +176,21 @@ end, { desc = "Jump out of brackets" })
 -- map("t", "<c-h>", "<c-\\><c-N><c-w>h")
 map("t", "<c-j>", "<c-\\><c-N><c-w>j")
 map("t", "<c-k>", "<c-\\><c-N><c-w>k")
--- map("t", "<c-l>", "<c-\\><c-N><c-w>l")
+map("t", "<c-l>", "<c-\\><c-N><c-w>l")
 map("t", "<c-v><c-j>", "<c-j>")
 map("t", "<c-v><c-k>", "<c-k>")
 -- map("t", "<c-v><c-h>", "<c-h>")
 -- map("t", "<c-v><c-l>", "<c-l>")
--- map({ "i", "n" }, "<c-h>", "<c-\\><c-N><c-w>h")
-map({ "i", "n" }, "<c-j>", "<c-\\><c-N><c-w>j")
-map({ "i", "n" }, "<c-k>", "<c-\\><c-N><c-w>k")
--- map({ "i", "n" }, "<c-l>", "<c-\\><c-N><c-w>l")
+-- map("t", "<c-w>H", "<c-\\><c-N><c-w>H")
+-- map("t", "<c-w>L", "<c-\\><c-N><c-w>L")
+-- map("t", "<c-w>J", "<c-\\><c-N><c-w>J")
+-- map("t", "<c-w>K", "<c-\\><c-N><c-w>K")
+map("t", "<c-^>", "<c-\\><c-N><c-^>")
+
+map({ "n" }, "<c-h>", "<c-\\><c-N><c-w>h")
+map({ "n" }, "<c-j>", "<c-\\><c-N><c-w>j")
+map({ "n" }, "<c-k>", "<c-\\><c-N><c-w>k")
+map({ "n" }, "<c-l>", "<c-\\><c-N><c-w>l")
 
 -- Resize terminals
 map("t", "<c-up>", "<c-\\><c-N><Cmd>res +2|startinsert<CR>")
@@ -178,7 +204,6 @@ map("n", "gug", "<Cmd>keeppatterns s/\\v<(.)(\\w*)/\\u\\1\\L\\2/g<CR>",
   { desc = [[To Turn One Line Into Title Caps, Make Every First Letter Of A Word Uppercase]] })
 map("n", "<LEADER><F5>", '<Cmd>w! | !compiler "%"<CR>',
   { desc = [[Compile document, be it groff/LaTeX/markdown/etc.]] })
-map("n", "go", '<Cmd>silent!!opout "%"<CR>', { desc = [[Open corresponding .pdf/.html or preview]] })
 map("v", "p", "P", { desc = [[keep what I am pasting, don't pollute my register]] })
 map({ "n", "v" }, "<leader>d", [["_d]])
 -- keyset('i', '<c-l>', '<c-g>u<Esc>[s1z=`]a<c-g>u',
@@ -236,8 +261,8 @@ map("v", "<c-g><c-g>",
   { desc = [[execute current line as shell command]] })
 
 -- %!# is special chars in fish
-map("n", "dp", [[<cmd>let _p=getcurpos() | exec "normal! }dap" | call setpos(".", _p)<cr>]], { silent = true })
-map("n", "dP", [[<cmd>let _p=getcurpos() | exec "normal! {{dap" | call setpos(".", _p)<cr>]], { silent = true })
+-- map("n", "dp", [[<cmd>let _p=getcurpos() | exec "normal! }dap" | call setpos(".", _p)<cr>]], { silent = true })
+-- map("n", "dP", [[<cmd>let _p=getcurpos() | exec "normal! {{dap" | call setpos(".", _p)<cr>]], { silent = true })
 
 hi(0, "MarkLine", { bg = "darkred", fg = "gray", ctermbg = 9, ctermfg = 15 })
 local function markline()
@@ -372,3 +397,5 @@ vim.keymap.set({ "x" }, "gx", function()
 end, { desc = gx_desc })
 
 map("n", "<leader>s", vim.lsp.buf.hover)
+map("n", "gcb", "<Cmd>e ++enc=gbk<CR>")
+map("n", "gcu", "<Cmd>e ++enc=utf-8<CR>")

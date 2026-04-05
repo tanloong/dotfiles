@@ -1,0 +1,51 @@
+[user]
+	name = Tan Long
+	email = tanloong@foxmail.com
+[alias]
+    a = add
+    b = branch
+    c = commit -m
+    amend = commit --amend # ammend your last commit
+    co = checkout
+    nb = checkout -b # create and switch to a new branch
+    d = diff # diff unstaged changes
+    dc = diff --cached # diff staged changes
+    last = diff HEAD^ # diff last committed change
+    l = log
+    pl = pull
+    ps = push
+    r = remote -v
+    s = status
+    t = tag -n # see tags with <n> lines of each tag message
+    cp = cherry-pick
+[core]
+	longpaths = true
+	quotepath = false
+  # 禁用跨平台换行符转换
+	autocrlf = input
+	eol = lf
+[pull]
+	rebase = true
+[branch]
+	sort = -committerdate
+[column]
+	ui = column,dense
+[credential]
+	helper = store
+[credential "https://github.com"]
+	useHttpPath = true
+[log]
+	date = iso8601
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[credential "https://gitee.com"]
+	provider = generic
+[credential "helperselector"]
+	selected = manager
+; [http]
+; 	proxy = http://127.0.0.1:33210
+; [https]
+; 	proxy = http://127.0.0.1:33210

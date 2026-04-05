@@ -1,0 +1,91 @@
+{
+  "$schema": "https://raw.githubusercontent.com/lgug2z/komorebi/v0.1.37/schema.json",
+  "app_specific_configuration_path": "$Env:USERPROFILE/applications.json",
+  "window_hiding_behaviour": "Cloak",
+  "window_container_behaviour": "Create",
+  "cross_monitor_move_behaviour": "Insert",
+  "default_workspace_padding": 0,
+  "default_container_padding": -1,
+  "border": true,
+  "border_colours": {
+    "unfocused": {
+      "r": 0,
+      "g": 0,
+      "b": 0
+    },
+    "floating": {
+      "r": 255,
+      "g": 255,
+      "b": 0
+    },
+    "single": {
+      "r": 255,
+      "g": 255,
+      "b": 0
+    },
+    "monocle": {
+      "r": 0,
+      "g": 0,
+      "b": 0
+    },
+    "stack": {
+      "r": 255,
+      "g": 255,
+      "b": 0
+    }
+  },
+  "border_width": 5,
+  "border_offset": 0,
+  "focus_follows_mouse": "Windows",
+  "mouse_follows_focus": false,
+  "float_rule_placement": "CenterAndResize",
+  "floating_applications": [
+    {
+      "id": "Zeal",
+      "kind": "Title",
+      "matching_strategy": "Contains"
+    }
+  ],
+  "monitors": [
+    {
+      "workspaces": [
+        {
+          "name": "1",
+          "layout": "VerticalStack"
+        },
+        {
+          "name": "2",
+          "layout": "VerticalStack"
+        },
+        {
+          "name": "3",
+          "layout": "VerticalStack"
+        },
+        {
+          "name": "4",
+          "layout": "VerticalStack"
+        },
+        {
+          "name": "5",
+          "layout": "VerticalStack"
+        },
+        {
+          "name": "6",
+          "layout": "VerticalStack"
+        },
+        {
+          "name": "7",
+          "layout": "VerticalStack"
+        },
+        {
+          "name": "8",
+          "layout": "VerticalStack"
+        },
+        {
+          "name": "9",
+          "layout": "VerticalStack"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+current_path=$(pwd)
+echo -n "$current_path" | xclip -selection clipboard
+echo "$current_path"

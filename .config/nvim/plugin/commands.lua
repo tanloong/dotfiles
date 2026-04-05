@@ -1,24 +1,24 @@
 #!/usr/bin/env lua
 
-local vim_api = vim.api
+local api = vim.api
 local c = vim.api.nvim_create_user_command
 
-c("Mv", function(a)
-  local bufnr = vim_api.nvim_get_current_buf()
-  local oldpath = vim_api.nvim_buf_get_name(bufnr)
+c("MV", function(a)
+  local bufnr = api.nvim_get_current_buf()
+  local oldpath = api.nvim_buf_get_name(bufnr)
   vim.cmd(string.format("saveas%s %s", a.bang and "!" or "", a.args))
   vim.cmd [[bd #]]
   local ok, err = os.remove(oldpath)
   assert(a.bang or ok, err)
 end, { force = true, nargs = 1, bang = true, complete = "file" })
-c("Yp", [[let @+ = expand('%:p')]], { force = true,desc = "Yank full path" })
-c("Yd", [[let @+ = expand('%:p:h')]], { force = true, desc = "Yank dirname" })
-c("Yb", [[let @+ = expand('%:t')]], { force = true, desc = "Yank basename" })
+c("YP", [[let @+ = expand('%:p')]], { force = true,desc = "Yank full path" })
+c("YD", [[let @+ = expand('%:p:h')]], { force = true, desc = "Yank dirname" })
+c("YB", [[let @+ = expand('%:t')]], { force = true, desc = "Yank basename" })
 -- https://github.com/mfussenegger/dotfiles/blob/a28b73904fe3e57459c3f32e6fac8bba95133c62/vim/dot-config/nvim/commands.lua#L3C1-L11C22
-c("Rm", function(a)
-  local bufnr = vim_api.nvim_get_current_buf()
-  local fname = vim_api.nvim_buf_get_name(bufnr)
-  vim_api.nvim_buf_delete(bufnr, { force = a.bang })
+c("RM", function(a)
+  local bufnr = api.nvim_get_current_buf()
+  local fname = api.nvim_buf_get_name(bufnr)
+  api.nvim_buf_delete(bufnr, { force = a.bang })
   local yes = vim.fn.confirm("The deletion can't be undone, are you sure?", "&Yes\n&No\n&Cancel")
   if yes == 1 then
     local ok, err = os.remove(fname)
@@ -27,7 +27,7 @@ c("Rm", function(a)
 end, { bang = true })
 
 local function execlua(buf)
-  local lines = vim_api.nvim_buf_get_lines(buf, 0, -1, true)
+  local lines = api.nvim_buf_get_lines(buf, 0, -1, true)
   local code = table.concat(lines, "\n")
   local fn, err = loadstring(code)
   if fn then
@@ -40,7 +40,7 @@ local function execlua(buf)
   end
 end
 local function execpython(buf)
-  local lines = vim_api.nvim_buf_get_lines(buf, 0, -1, true)
+  local lines = api.nvim_buf_get_lines(buf, 0, -1, true)
   local code = table.concat(lines, "\n")
   local handle
   local stdout = vim.uv.new_pipe(false)
@@ -79,7 +79,7 @@ local function execpython(buf)
   end)
 end
 local function execc(buf)
-  local lines = vim_api.nvim_buf_get_lines(buf, 0, -1, true)
+  local lines = api.nvim_buf_get_lines(buf, 0, -1, true)
   local code = table.concat(lines, "\n")
   local executable = vim.fn.tempname()
   local filename = executable .. ".c"
@@ -164,12 +164,12 @@ local function execc(buf)
   end)
 end
 local function create_scratch(args, ft, ext, execfunc)
-  local srcbuf = vim_api.nvim_get_current_buf()
+  local srcbuf = api.nvim_get_current_buf()
   vim.cmd.split()
-  local bufnr = vim_api.nvim_create_buf(true, true)
-  vim_api.nvim_buf_set_name(bufnr, "scratch" .. tostring(bufnr) .. ext)
+  local bufnr = api.nvim_create_buf(true, true)
+  api.nvim_buf_set_name(bufnr, "scratch" .. tostring(bufnr) .. ext)
   if args.range ~= 0 then
-    local lines = vim_api.nvim_buf_get_lines(srcbuf, args.line1 - 1, args.line2, true)
+    local lines = api.nvim_buf_get_lines(srcbuf, args.line1 - 1, args.line2, true)
     local indent = math.huge
     for _, line in ipairs(lines) do
       indent = math.min(line:find "[^ ]" or math.huge, indent)
@@ -179,14 +179,14 @@ local function create_scratch(args, ft, ext, execfunc)
         lines[i] = line:sub(indent)
       end
     end
-    vim_api.nvim_buf_set_lines(bufnr, 0, -1, true, lines)
+    api.nvim_buf_set_lines(bufnr, 0, -1, true, lines)
     vim.bo[bufnr].modified = false
   end
   vim.bo[bufnr].buftype = "acwrite"
   vim.bo[bufnr].bufhidden = "wipe"
   vim.bo[bufnr].filetype = ft
-  vim_api.nvim_set_current_buf(bufnr)
-  vim_api.nvim_create_autocmd("BufWriteCmd", {
+  api.nvim_set_current_buf(bufnr)
+  api.nvim_create_autocmd("BufWriteCmd", {
     buffer = bufnr,
     callback = function(write_args)
       vim.bo[write_args.buf].modified = false
@@ -197,3 +197,4 @@ end
 c("Lua", function(args) create_scratch(args, "lua", ".lua", execlua) end, { range = "%" })
 c("Py", function(args) create_scratch(args, "python", ".py", execpython) end, { range = "%" })
 c("C", function(args) create_scratch(args, "c", ".c", execc) end, { range = "%" })
+

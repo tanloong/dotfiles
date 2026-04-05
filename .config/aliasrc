@@ -55,6 +55,7 @@ alias \
     c="clear" \
     e="chmod u+x" \
     g="git" \
+    gg="gitui" \
     p="sudo pacman" \
     pt="python" \
     t="tldr" \

@@ -1,15 +1,7 @@
 global !p
+import vim
 def math():
-    row, col = vim.current.window.cursor
-    line = vim.current.buffer[row - 1]
-    left_hand = line[:col - 1]
-    right_hand = line[col:]
-
-    is_enter_math = (left_hand.count('$') % 2 == 1)
-    is_exit_math = (right_hand.count('$') % 2 == 1)
-    if is_enter_math and is_exit_math:
-        return True
-    return False
+	return vim.funcs.luaeval("IsInTypstMath()")
 endglobal
 
 priority 100
@@ -40,12 +32,12 @@ snippet ,` "code blocks" bA
 <<>>
 endsnippet
 snippet ,l "link" wA
-#link("$1")[<<>>]`!p
+#link($1)[<<>>]`!p
 if t[2] and t[2][0] not in [',', '.', '?', '-', ' ', '，', '、', '；', '。']:
 	snip.rv = ' '
 else:
 	snip.rv = ''
-`${2:<<>>}
+`${2}
 endsnippet
 snippet "[,，]1" "Section" brA
 = $1
@@ -111,12 +103,7 @@ else:
 `${2:<<>>}
 endsnippet
 snippet mm "inline math" wA
-$$1$`!p
-if t[2] and t[2][0] not in [',', '.', '?', '-', ' ', '，', '、', '；', '。']:
-	snip.rv = ' '
-else:
-	snip.rv = ''
-`${2:<<>>}
+$$1$ ${2:<<>>}
 endsnippet
 snippet nn "block math" bA
 $ $0 $

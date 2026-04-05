@@ -3,6 +3,7 @@
 .cache
 .npm
 .wine
+.venv
 software
 __pycache__
 weixin

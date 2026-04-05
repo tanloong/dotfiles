@@ -42,5 +42,5 @@ bind-key ] next-feed
 bind-key SPACE macro-prefix
 bind-key E enqueue article
 macro e pipe-to "nvim -c 'nnoremap q <cmd>quit!<cr>'";
-# pager "nvim -c 'nnoremap q <cmd>quit!<cr>' %f"
+pager "nvim -c 'nnoremap q <cmd>quit!<cr>' %f"
 # pager "less %f"

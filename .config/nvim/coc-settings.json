@@ -69,9 +69,10 @@
     "border": true,
     "rounded": false
   },
-  "python.linting.ruffEnabled": true,
+  "python.linting.ruffEnabled": false,
   "semanticTokens.enable": false,
   "python.formatting.provider": "ruff",
+  "pyright.enable": true,
   "pyright.organizeimports.provider": "ruff",
   "pyright.inlayHints.functionReturnTypes": true,
   "pyright.inlayHints.variableTypes": false,
@@ -86,7 +87,7 @@
   ],
   "diagnostic.level": "hint",
   "snippets.ultisnips.directories": [
-    "$HOME/.config/nvim/ultisnips"
+    "ultisnips"
   ],
   "snippets.ultisnips.pythonPrompt": false,
   "sumneko-lua.locale": "en-us",
@@ -144,6 +145,7 @@
   "coc.source.buffer.priority": 50,
   "coc.source.file.priority": 50,
   "snippets.priority": 99,
+  "suggest.languageSourcePriority": 100,
   "outline.sortBy": "position",
   "outline.autoWidth": true,
   "outline.keepWindow": false,
@@ -182,5 +184,11 @@
   ],
   "tabnine.disable_file_regex": [
     "bangzhanxitong"
-  ]
+  ],
+  "sql.formatOptions": {
+    "language": "sqlite",
+    "keywordCase": "upper",
+    "logicalOperatorNewline": "before"
+  },
+  "clangd.path": "~/.config/coc/extensions/coc-clangd-data/install/21.1.8/clangd_21.1.8/bin/clangd"
 }

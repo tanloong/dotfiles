@@ -1,7 +1,9 @@
 #!/usr/bin/env lua
 
-local keyset = vim.keymap.set
+local map = vim.keymap.set
 local hl = vim.api.nvim_set_hl
+local has = vim.fn.has
+local vscode = vim.g.vscode
 
 local lazypath = vim.fn.stdpath "data" .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
@@ -17,14 +19,25 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 local plugin_specs = {
+  {
+    "https://github.com/tanloong/github.nvim",
+    enabled = false,
+    build = function() vim.cmd[[UpdateRemotePlugins]]  end,
+    ft = { "text", "markdown" },
+    config = function() require("bite") end,
+    event = "VeryLazy",
+  },
   -- CoC
   {
-    "https://github.com/neoclide/coc.nvim.git",
+    -- "https://github.com/neoclide/coc.nvim.git",
+    "https://gitee.com/linuor/coc.nvim",
     enabled = false,
     branch = "release",
     event = "VeryLazy",
     -- don't load coc.nvim on "interlaced" filetype
     cond = function()
+      if vscode then return false end
+
       local bufnr = vim.api.nvim_get_current_buf()
       return not string.find(vim.api.nvim_buf_get_name(bufnr), "interlaced.*%.txt$")
     end,
@@ -52,8 +65,12 @@ local plugin_specs = {
   -- Iron
   {
     "Vigemus/iron.nvim",
+    cond = not vscode,
+    -- cond = false,
+    ft = { "python" },
     config = function()
       local iron = require "iron.core"
+      local common = require "iron.fts.common"
 
       iron.setup {
         config = {
@@ -61,7 +78,12 @@ local plugin_specs = {
           scratch_repl = true,
           repl_definition = {
             sh = { command = { "bash" } },
-            python = { command = { "python" } },
+            python = {
+              command = { "python" },
+              format = common.bracketed_paste_python,
+              block_dividers = { "# %%", "#%%" },
+              env = {PYTHON_BASIC_REPL = "1"},
+            },
             lua = { command = { "lua" } },
             php = { command = { "php", "-a" } },
             r = { command = { "R" } },
@@ -83,6 +105,8 @@ local plugin_specs = {
           interrupt = "<space>s<space>",
           exit = "<space>sq",
           clear = "<space>cl",
+          send_code_block = "<space>sb",
+          send_code_block_and_move = "<space>sn",
         },
         highlight = { italic = false },
         ignore_blank_lines = true,
@@ -109,12 +133,15 @@ local plugin_specs = {
   -- tree-sitter
   {
     "nvim-treesitter/nvim-treesitter",
+    enabled = false,
+    branch = "master",
     run = ":TSUpdate",
     config = function() require "plugin_config.nvim_treesitter" end,
     event = "VeryLazy"
   },
   {
     "nvim-treesitter/nvim-treesitter-textobjects",
+    enabled = false,
     dependencies = "nvim-treesitter/nvim-treesitter",
     event = "VeryLazy",
     config = function() require "plugin_config.nvim_treesitter_textobjects" end,
@@ -130,6 +157,7 @@ local plugin_specs = {
   -- indent-blankline
   {
     "https://github.com/lukas-reineke/indent-blankline.nvim",
+    cond = not vscode,
     main = "ibl",
     version = "v3.6.0",
     event = "VeryLazy",
@@ -154,7 +182,7 @@ local plugin_specs = {
   -- lf.nvim
   {
     "https://github.com/tanloong/lf.nvim",
-    enabled = true,
+    enabled = false,
     branch = "fix-wrong-number-of-arguments-to-insert",
     -- "https://github.com/lmburns/lf.nvim",
     config = function() require "plugin_config.lf_nvim" end,
@@ -167,29 +195,70 @@ local plugin_specs = {
     event = "VeryLazy",
     config = function() require "plugin_config.boole_nvim" end,
   },
+  {
+    "mikavilpas/yazi.nvim",
+    enabled = has "linux" == 1,
+    version = "*", -- use the latest stable version
+    event = "VeryLazy",
+    dependencies = {
+      { "nvim-lua/plenary.nvim", lazy = true },
+    },
+    keys = {
+      -- {
+      --   "<leader>-",
+      --   mode = { "n", "v" },
+      --   "<cmd>Yazi<cr>",
+      --   desc = "Open yazi at the current file",
+      -- },
+      -- {
+      --   "<leader>cw",
+      --   "<cmd>Yazi cwd<cr>",
+      --   desc = "Open the file manager in nvim's working directory",
+      -- },
+      {
+        "<C-t>",
+        "<cmd>Yazi toggle<cr>",
+        desc = "Resume the last yazi session",
+      },
+    },
+    init = function()
+      vim.g.loaded_netrw = 1
+      vim.g.loaded_netrwPlugin = 1
+    end,
+    opts = {
+      -- if you want to open yazi instead of netrw, see below for more info
+      open_for_directories = true,
+      keymaps = {
+        show_help = "<f1>",
+      },
+    },
+  },
   -- interlaced
   {
-    dir = "~/projects/interlaced.nvim",
+    -- "https://gitee.com/tanloong/interlaced.nvim",
+    -- enabled = false,
+    dir="/home/usr/projects/interlaced.nvim",
+    enabled =true,
     ft = "text",
     branch = "dev",
     cmd = "Interlaced",
     config = function()
       vim.g.interlaced = {
         keymaps = {
-          { "n", ",",  "push_up" },
-          { "n", "<",  "push_up_pair" },
-          { "n", "e",  "push_up_left_part" },
-          { "n", ".",  "pull_below" },
-          { "n", ">",  "pull_below_pair" },
-          { "n", "d",  "push_down_right_part" },
-          { "n", "D",  "push_down" },
-          { "n", "s",  "leave_alone" },
+          { "n", ",", "push_up" },
+          { "n", "<", "push_up_pair" },
+          { "n", "e", "push_up_left_part" },
+          { "n", ".", "pull_below" },
+          { "n", ">", "pull_below_pair" },
+          { "n", "d", "push_down_right_part" },
+          { "n", "D", "push_down" },
+          { "n", "s", "leave_alone" },
           { "n", "[e", "swap_with_above" },
           { "n", "]e", "swap_with_below" },
-          { "n", "U",  "undo" },
-          { "n", "R",  "redo" },
-          { "n", "J",  "navigate_down" },
-          { "n", "K",  "navigate_up" },
+          { "n", "U", "undo" },
+          { "n", "R", "redo" },
+          { "n", "J", "navigate_down" },
+          { "n", "K", "navigate_up" },
           { "n", "md", "dump" },
           { "n", "ml", "load" },
           { "n", "gn", "next_unaligned" },
@@ -220,7 +289,7 @@ local plugin_specs = {
         end,
         sound_feedback = true,
       }
-      require("interlaced")
+      require "interlaced"
     end
   },
   -- typst.vim
@@ -237,7 +306,8 @@ local plugin_specs = {
   -- fcitx.vim
   {
     "https://github.com/lilydjwg/fcitx.vim",
-    enabled = true,
+    -- enabled = has "linux" == 1,
+    enabled = false,
     event = "VeryLazy",
     config = function()
       vim.g.fcitx5_remote = "fcitx5-remote"
@@ -255,7 +325,7 @@ local plugin_specs = {
   -- Telescope
   {
     "nvim-telescope/telescope.nvim",
-    enabled = true,
+    cond = not vscode,
     event = "VeryLazy",
     dependencies = { "nvim-lua/plenary.nvim" },
     config = function() require "plugin_config.telescope_nvim" end,
@@ -265,10 +335,98 @@ local plugin_specs = {
     dependencies = { "nvim-telescope/telescope.nvim" },
     build = "make"
   },
-
+{
+  "yetone/avante.nvim",
+  enabled = false,
+  -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
+  -- ⚠️ must add this setting! ! !
+  build = vim.fn.has("win32") ~= 0
+      and "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false"
+      or "make",
+  event = "VeryLazy",
+  version = false, -- Never set this value to "*"! Never!
+  ---@module 'avante'
+  ---@type avante.Config
+  opts = {
+    -- add any opts here
+    -- this file can contain specific instructions for your project
+    instructions_file = "avante.md",
+    -- for example
+    provider = "openai",
+    auto_suggestions_provider = "openai",
+    providers = {
+      openai = {endpoint = "https://api.chatanywhere.tech/v1/", model = "deepseek-v3-2-exp"},
+      },
+  },
+  dependencies = {
+    "nvim-lua/plenary.nvim",
+    "MunifTanjim/nui.nvim",
+    --- The below dependencies are optional,
+    "nvim-telescope/telescope.nvim", -- for file_selector provider telescope
+    "hrsh7th/nvim-cmp", -- autocompletion for avante commands and mentions
+    "folke/snacks.nvim", -- for input provider snacks
+    "nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
+    {
+      -- support for image pasting
+      "HakonHarnes/img-clip.nvim",
+      event = "VeryLazy",
+      opts = {
+        -- recommended settings
+        default = {
+          embed_image_as_base64 = false,
+          prompt_for_file_name = false,
+          drag_and_drop = {
+            insert_mode = true,
+          },
+          -- required for Windows users
+          use_absolute_path = true,
+        },
+      },
+    },
+    {
+      -- Make sure to set this up properly if you have lazy=true
+      'MeanderingProgrammer/render-markdown.nvim',
+      opts = {
+        file_types = { "markdown", "Avante" },
+      },
+      ft = { "markdown", "Avante" },
+    },
+  },
+},
+-- {
+--   "olimorris/codecompanion.nvim",
+--   cond = not vscode,
+--   event = "VeryLazy",
+--   opts = {},
+--   dependencies = {
+--     "nvim-lua/plenary.nvim",
+-- "MeanderingProgrammer/render-markdown.nvim",
+-- "echasnovski/mini.diff",
+--   },
+-- },
+-- {
+--   "MeanderingProgrammer/render-markdown.nvim",
+--   cond = not vscode,
+--   event = "VeryLazy",
+--   ft = { "markdown", "codecompanion" }
+-- },
+-- {
+--   "echasnovski/mini.diff",
+--   cond = not vscode,
+--   event = "VeryLazy",
+--   config = function()
+--     local diff = require("mini.diff")
+--     diff.setup({
+--       -- Disabled by default
+--       source = diff.gen_source.none(),
+--     })
+--   end,
+-- },
   {
     "https://github.com/robitx/gp.nvim",
     -- dir = "/home/usr/.local/share/nvim/lazy/gp.nvim",
+    -- enabled = has "win32" ~= 1,
+    enabled = not vscode,
     config = function()
       require "plugin_config.gp_nvim"
     end,
@@ -288,7 +446,7 @@ local plugin_specs = {
         keys = '<Esc>/<<>><CR>:set nohlsearch<CR>"_c4<right>',
       }
       -- normal mode mapping
-      keyset("n", "<SPACE><SPACE>", '/<<>><CR>:set nohlsearch<CR>"_c4<right>')
+      map("n", "<SPACE><SPACE>", '/<<>><CR>:set nohlsearch<CR>"_c4<right>')
     end,
   },
   -- diffchar
@@ -311,6 +469,7 @@ local plugin_specs = {
   {
     "https://github.com/nvimdev/guard.nvim",
     event = "VeryLazy",
+    enabled = false,
     config = function()
       vim.g.guard_config = {
         -- format on write to buffer
@@ -325,10 +484,10 @@ local plugin_specs = {
         lint_interval = 500
       }
 
-      local ft = require('guard.filetype')
-      ft('python'):fmt({ cmd = 'ruff', args = { 'format', '--line-length', '112' } })
-      ft('c,cpp'):fmt({ cmd = 'clang-format', stdin = true, ignore_patterns = { 'neovim', 'vim' } })
-      keyset("n", "<leader>f", "<Cmd>Guard fmt<CR>")
+      local ft = require "guard.filetype"
+      ft "python":fmt { cmd = "ruff", args = { "format", "--line-length", "112" } }
+      ft "c,cpp":fmt { cmd = "clang-format", stdin = true, ignore_patterns = { "neovim", "vim" } }
+      map("n", "<leader>f", "<Cmd>Guard fmt<CR>")
     end
   },
   {
@@ -354,7 +513,7 @@ local plugin_specs = {
       -- See the full "keymap" documentation for information on defining your own keymap.
       keymap = {
         preset = "default",
-        ['<C-y>'] = { 'accept', 'fallback' }
+        ["<C-y>"] = { "accept", "fallback" }
       },
       completion = {
         list = {
@@ -404,7 +563,112 @@ local plugin_specs = {
     config = function() require "plugin_config.vim_fugitive" end
   },
   {
+    "https://github.com/m4xshen/hardtime.nvim",
+    enabled = false,
+    lazy = false,
+    dependencies = { "MunifTanjim/nui.nvim" },
+    opts = {},
+  },
+  {
+    "nvim-mini/mini.files",
+    event = "VeryLazy",
+    cond = has "win32" == 1 and not vscode,
+    version = false,
+    config = function()
+      local MiniFiles = require "mini.files"
+  MiniFiles.setup()
+  map("n", "<C-t>", function() MiniFiles.open(vim.api.nvim_buf_get_name(0)) end)
+
+  -- Set focused directory as current working directory
+  local set_cwd = function()
+    local path = (MiniFiles.get_fs_entry() or {}).path
+    if path == nil then return vim.notify('Cursor is not on valid entry') end
+    vim.fn.chdir(vim.fs.dirname(path))
+  end
+
+  -- Yank in register full path of entry under cursor
+  local yank_path = function()
+    local path = (MiniFiles.get_fs_entry() or {}).path
+    if path == nil then return vim.notify('Cursor is not on valid entry') end
+    vim.fn.setreg(vim.v.register, path)
+  end
+
+  local yank_dir = function()
+    local path = (MiniFiles.get_fs_entry() or {}).path
+    if path == nil then return vim.notify('Cursor is not on valid entry') end
+    vim.fn.setreg(vim.v.register, vim.fs.dirname(path))
+  end
+
+  -- Open path with system default handler (useful for non-text files)
+  local ui_open = function() vim.ui.open(MiniFiles.get_fs_entry().path) end
+
+  vim.api.nvim_create_autocmd('User', {
+    pattern = 'MiniFilesBufferCreate',
+    callback = function(args)
+      local b = args.data.buf_id
+      vim.keymap.set('n', '~', set_cwd,   { buffer = b, desc = 'Set cwd' })
+      vim.keymap.set('n', 'gx', ui_open,   { buffer = b, desc = 'OS open' })
+      vim.keymap.set('n', 'yp', yank_path, { buffer = b, desc = 'Yank path' })
+      vim.keymap.set('n', 'yd', yank_dir, { buffer = b, desc = 'Yank dir' })
+    end,
+  })
+  end },
+{
+  "oflisback/obsidian-bridge.nvim",
+  -- cond = not vscode,
+  cond = false,
+  event = {
+    "BufReadPre *.md",
+    "BufNewFile *.md",
+  },
+  lazy = true,
+  dependencies = {
+    "nvim-lua/plenary.nvim",
+  },
+  config  = function()
+    require("obsidian-bridge").setup(
+{
+  obsidian_server_address = "http://127.0.0.1:27123",
+  scroll_sync = false, -- See "Sync of buffer scrolling" section below
+  cert_path = nil, -- See "SSL configuration" section below
+  warnings = true, -- Show misconfiguration warnings
+  picker = "telescope", -- Picker to use with ObsidianBridgePickCommand ("telescope" | "fzf_lua")
+}
+    )
+  end,
+},
+{
+  "obsidian-nvim/obsidian.nvim",
+  -- cond = not vscode,
+  cond = false,
+  version = "*", -- recommended, use latest release instead of latest commit
+  ft = "markdown",
+  -- Replace the above line with this if you only want to load obsidian.nvim for markdown files in your vault:
+  -- event = {
+  --   -- If you want to use the home shortcut '~' here you need to call 'vim.fn.expand'.
+  --   -- E.g. "BufReadPre " .. vim.fn.expand "~" .. "/my-vault/*.md"
+  --   -- refer to `:h file-pattern` for more examples
+  --   "BufReadPre path/to/my-vault/*.md",
+  --   "BufNewFile path/to/my-vault/*.md",
+  -- },
+  ---@module 'obsidian'
+  ---@type obsidian.config
+  opts = {
+    footer = {enabled = false},
+legacy_commands = false,
+ui = { enable = false },
+frontmatter = {enabled = false,},
+    workspaces = {
+      {
+        name = "personal",
+        path = vim.fn.hostname() == "PC-20250602IQJE" and "D:/docx/Obsidian Vault" or "C:/Users/Administrator/Desktop/Obsidian Vault",
+      },
+    },
+  },
+},
+  {
     "luozhiya/fittencode.nvim",
+    cond = not vscode,
     event = "VeryLazy",
     config = function()
       require "fittencode".setup {
@@ -435,14 +699,14 @@ local plugin_specs = {
             ["<A-\\>"] = "triggering_completion",
           },
         }, }
-      keyset({ "i", "n" }, "<s-tab>", function()
-        require "fittencode".dismiss_suggestions()
-        require "fittencode".enable_completions { enable = false }
-      end)
-      keyset({ "i", "n" }, "<c-tab>", function()
-        require "fittencode".enable_completions { enable = true }
-        require "fittencode".triggering_completion()
-      end)
+      -- map({ "i", "n" }, "<s-tab>", function()
+      --   require "fittencode".dismiss_suggestions()
+      --   require "fittencode".enable_completions { enable = false }
+      -- end)
+      -- map({ "i", "n" }, "<c-tab>", function()
+      --   require "fittencode".enable_completions { enable = true }
+      --   require "fittencode".triggering_completion()
+      -- end)
     end,
   },
   {
@@ -454,81 +718,7 @@ local plugin_specs = {
     module = false,
     build = ":call firenvim#install(0)",
     config = function()
-      vim.g.firenvim_config = {
-        globalSettings = { alt = "all" },
-        localSettings = {
-          [".*"] = {
-            cmdline = "neovim",
-            content = "text",
-            priority = 0,
-            selector = "textarea",
-            -- don't auto enter neovim on textarea
-            takeover = "never"
-          }
-        }
-      }
-      vim.api.nvim_create_autocmd({ "UIEnter" }, {
-        callback = function(e)
-          local client = vim.api.nvim_get_chan_info(vim.v.event.chan).client
-          if client == nil or client.name ~= "Firenvim" then return end
-
-          -- minimal lines and columns
-          local min_lines = 7
-          local max_lines = 20
-          local min_columns = 80
-          local max_columns = 130
-
-          -- font
-          local default_fontsize = 22
-          local min_fontsize = 14
-          local max_fontsize = 32
-          -- local font_template = "Cousine Nerd Font Mono:h%d,WenQuanYi Zen Hei:h%d"
-          --
-          -- vim.opt.guifont = string.format(font_template, default_fontsize, default_fontsize)
-          vim.opt.guifont = string.format("Cousine Nerd Font Mono,WenQuanYi Zen Hei", default_fontsize, default_fontsize)
-          vim.opt.laststatus = 0
-
-          -- increase font size
-          keyset({ "n", "i" }, "<c-s-k>", function()
-            if not vim.g.started_by_firenvim then return end
-            local font = vim.opt_local.guifont._value
-            local size = tonumber(font:match ":[hw](%d+)")
-            if size >= max_fontsize then return end
-            vim.opt_local.guifont = font:gsub(size, size + 2)
-            vim.opt_local.lines = math.min(math.max(vim.opt_local.lines._value, min_lines), max_lines)
-            vim.opt_local.columns = math.min(math.max(vim.opt_local.columns._value, min_columns), max_columns)
-          end)
-          -- decrease font size
-          keyset({ "n", "i" }, "<c-s-j>", function()
-            if not vim.g.started_by_firenvim then return end
-            local font = vim.opt_local.guifont._value
-            local size = tonumber(font:match ":[hw](%d+)")
-            if size <= min_fontsize then return end
-            vim.opt_local.guifont = font:gsub(size, size - 2)
-            vim.opt_local.lines = math.min(math.max(vim.opt_local.lines._value, min_lines), max_lines)
-            vim.opt_local.columns = math.min(math.max(vim.opt_local.columns._value, min_columns), max_columns)
-          end)
-          -- default font size
-          keyset({ "n", "i" }, "<c-s-space>", function()
-            if not vim.g.started_by_firenvim then return end
-            local font = vim.opt_local.guifont._value
-            local size = tonumber(font:match ":[hw](%d+)")
-            if size == default_fontsize then return end
-            vim.opt_local.guifont = string.format(font_template, default_fontsize, default_fontsize)
-            vim.opt_local.lines = math.min(math.max(vim.opt_local.lines._value, min_lines), max_lines)
-            vim.opt_local.columns = math.min(math.max(vim.opt_local.columns._value, min_columns), max_columns)
-          end)
-          -- Expand textarea as more lines are typed
-          -- ref. https://github.com/glacambre/firenvim/issues/1619
-          vim.api.nvim_create_autocmd({ "TextChanged", "TextChangedI" }, {
-            group = vim.api.nvim_create_augroup("ExpandLinesOnTextChanged", { clear = true }),
-            callback = function(e)
-              local height = vim.api.nvim_win_text_height(0, {}).all
-              if height > vim.o.lines and height < max_lines then vim.o.lines = height end
-            end
-          })
-        end
-      })
+      require "plugin_config.firenvim"
     end
   },
   {
@@ -603,8 +793,8 @@ local plugin_specs = {
   -- im-select
   {
     "keaising/im-select.nvim",
+    -- enabled = has "wsl" == 1 or has "win32" == 1,
     enabled = false,
-    event = "VeryLazy",
     config = function()
       require "im_select".setup {
         -- IM will be set to `default_im_select` in `normal` mode
@@ -615,16 +805,17 @@ local plugin_specs = {
         --               "1" for Fcitx
         --               "xkb:us::eng" for ibus
         -- You can use `im-select` or `fcitx5-remote -n` to get the IM's name
-        default_im_select = "keyboard-us",
+        default_im_select = "1033",
 
-        -- Restore the default input method state when the following events are triggered
-        set_default_events = { "VimEnter", "InsertLeave", "CmdlineLeave" },
-
+        default_command = vim.fs.joinpath(has "wsl" == 1 and "/mnt/c" or (has "win32" == 1 and "C:"),
+          "Users/Administrator/AppData/Local/Microsoft/WindowsApps/im-select.exe"),
+        -- set_default_events = { "VimEnter", "FocusGained", "InsertLeave", "CmdlineLeave" },
+        set_default_events = { "VimEnter", "InsertLeave", "CmdlineLeave",  "CmdlineEnter" },
         -- Restore the previous used input method state when the following events
         -- are triggered, if you don't want to restore previous used im in Insert mode,
         -- e.g. deprecated `disable_auto_restore = 1`, just let it empty
         -- as `set_previous_events = {}`
-        set_previous_events = { "InsertEnter", "CmdlineEnter" },
+        set_previous_events = { "InsertEnter" },
 
         -- Show notification about how to install executable binary when binary missed
         keep_quiet_on_no_binary = false,
@@ -655,7 +846,7 @@ local plugin_specs = {
   },
   {
     "https://github.com/stevearc/oil.nvim",
-    enabled = true,
+    enabled = false,
     lazy = false,
     config = function()
       require "plugin_config.oil"

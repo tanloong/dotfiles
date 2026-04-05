@@ -22,7 +22,7 @@ au("TermOpen",
 au({ "FocusLost", "BufLeave" }, {
   pattern = "*",
   group = group,
-  command = "silent! w",
+  command = "silent! update",
 }) -- }}}
 
 -- -- {{{ q/, q: -- cursor_up_when_entering_cmdwin

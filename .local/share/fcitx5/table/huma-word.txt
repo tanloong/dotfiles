@@ -5,10 +5,22 @@ e2=p11+p12+p21+p22
 e3=p11+p21+p31+p32
 a4=p11+p21+p31+n11
 [数据]
+ngzo 环境变量
+xhfl 整型
+pmrn 米筐
+ykex 上过板
+cwex 炸板
+uaex 打板
+awhq 交割单
+ubex 扫板
+fwex 一字板
+rdko 回测
+nlgu 协方差
+jvvm 似然
+joxl 优度
 jmkw 何同学
 iozh 船期
 utaa 托书
-nfmu 威达
 wuwz 实报实销
 qhhq 具备
 qhhq 联单
@@ -20,8 +32,6 @@ zjmf 金奈
 oylt 曼萨
 olci 曼萨尼约
 uxhq 换单
-hqav 单背
-rrav 双背
 kbto 海运费
 snjj 询价
 klke 港杂
@@ -60,7 +70,6 @@ jjnv 众包
 chjd 古登堡
 hcrn 喜剧之王
 jkiz 付航
-owsy 晚言
 ehkq 李洱
 wvko 宾西法尼亚州
 wvkf 宾西法尼亚
@@ -122555,7 +122564,6 @@ ksju 涉入
 kgct 法属
 ojjd 几盒
 phjd 黑盒
-uaex 打板
 avah 背疼
 mgbi 狗娘
 esgv 穷死
@@ -160232,7 +160240,6 @@ tkef 隔海相望
 wthv 徐向前
 klkm 洪洞
 ltmh 多用户
-xhfl 整型
 hpss 分频
 ujkg 工作法
 kvno 江西南昌
