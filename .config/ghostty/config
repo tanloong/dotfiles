@@ -1,11 +1,78 @@
-background = 000000
-foreground = ffffff
-font-family = "Cousine Nerd Font Mono"
-font-family-bold      = "Cousine Bold Nerd Font Complete Mono"
-font-family-italic    = "Cousine Italic Nerd Font Complete Mono"
-font-family-bold-italic = "Cousine Bold Italic Nerd Font Complete Mono"
-font-family = "WenQuanYi Zen Hei"
+# Ghostty Configuration
+# Migrated from Kitty configuration
+# ========================================
+
+# Font settings
+font-family = Cousine Nerd Font Mono
 font-size = 13
+
+# Window appearance
+window-decoration = false
+background = #000000
+cursor-style = block
+
+# CJK font fallback (matching Kitty's symbol_map for Chinese characters)
+font-codepoint-map = U+4E00-U+9FFF,U+3400-U+4DBF,U+20000-U+2A6DF,U+2A700-U+2B73F,U+2B740-U+2B81F,U+2B820-U+2CEAF,U+F900-U+FAFF,U+2F800-U+2FA1F=WenQuanYi Zen Hei
+
+# Disable ligatures when cursor is over them (matching Kitty's disable_ligatures never)
+font-shaping-break = no-cursor
+
+# Cursor settings (matching Kitty's cursor_blink_interval 0)
 cursor-style-blink = false
-shell-integration-features = "no-cursor,title,sudo"
+
+# Mouse settings (matching Kitty's mouse_hide_wait -1)
 mouse-hide-while-typing = true
+
+# Copy on select (matching Kitty's copy_on_select clipboard)
+# Ghostty's default behavior already copies to clipboard on selection
+
+# Audio bell disabled (matching Kitty's enable_audio_bell no)
+# Ghostty has no audio bell by default
+
+# ========================================
+# Key bindings
+# ========================================
+
+# Copy/Paste
+keybind = super+c:copy_to_clipboard
+keybind = shift+insert:paste_from_clipboard
+
+# Window management
+keybind = super+1:new_window
+
+# Font size controls
+keybind = ctrl+shift+j:decrease_font_size 1.0
+keybind = ctrl+shift+k:increase_font_size 1.0
+keybind = ctrl+shift+space:reset_font_size
+
+# Open URL with hints
+keybind = ctrl+shift+o:open_url
+
+# Tab management
+keybind = ctrl+shift+d:new_tab
+keybind = ctrl+shift+t:new_tab
+keybind = ctrl+alt+1:goto_tab 1
+keybind = ctrl+alt+2:goto_tab 2
+keybind = ctrl+alt+3:goto_tab 3
+keybind = ctrl+alt+4:goto_tab 4
+keybind = ctrl+alt+5:goto_tab 5
+keybind = ctrl+alt+6:goto_tab 6
+keybind = ctrl+alt+7:goto_tab 7
+keybind = ctrl+alt+8:goto_tab 8
+keybind = ctrl+alt+9:goto_tab 9
+
+# Tab navigation
+keybind = ctrl+tab:next_tab
+keybind = ctrl+shift+tab:previous_tab
+
+# Special key combinations (make terminal recognize these)
+keybind = ctrl+enter:send_string \x1b[13;5u
+keybind = shift+enter:send_string \x1b[13;2u
+
+# ========================================
+# Adjustments (matching Kitty's modify_font settings)
+# ========================================
+# Kitty had: modify_font underline_position -2, modify_font underline_thickness 120%
+# Ghostty equivalents:
+# adjust-underline-position = -2
+# adjust-underline-thickness = 20%
