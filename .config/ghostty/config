@@ -6,10 +6,39 @@
 font-family = Cousine Nerd Font Mono
 font-size = 13
 
+# Color space: use native sRGB blending to match Kitty's behavior
+# Linux default is "linear-corrected" which can make colors look different
+alpha-blending = native
+
+# Disable minimum contrast adjustment to prevent color shifting
+minimum-contrast = 1
+
 # Window appearance
 window-decoration = false
 background = #000000
 cursor-style = block
+
+# Make bar cursor thicker (applies to insert mode in vim)
+# Positive value increases thickness, supports pixels or percentages
+adjust-cursor-thickness = 2
+
+# Kitty default color palette (matches Kitty's built-in theme)
+palette = 0=#000000
+palette = 8=#767676
+palette = 1=#cc0403
+palette = 9=#f2201f
+palette = 2=#19cb00
+palette = 10=#1fef00
+palette = 3=#cecb00
+palette = 11=#f0f900
+palette = 4=#0d73cc
+palette = 12=#1687f9
+palette = 5=#cb1ed1
+palette = 13=#ef00f6
+palette = 6=#0dcdcd
+palette = 14=#14ffff
+palette = 7=#dddddd
+palette = 15=#ffffff
 
 # CJK font fallback (matching Kitty's symbol_map for Chinese characters)
 font-codepoint-map = U+4E00-U+9FFF,U+3400-U+4DBF,U+20000-U+2A6DF,U+2A700-U+2B73F,U+2B740-U+2B81F,U+2B820-U+2CEAF,U+F900-U+FAFF,U+2F800-U+2FA1F=WenQuanYi Zen Hei
