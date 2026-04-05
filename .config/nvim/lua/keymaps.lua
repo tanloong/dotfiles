@@ -396,5 +396,7 @@ vim.keymap.set({ "x" }, "gx", function()
   end
 end, { desc = gx_desc })
 
+map("n", "<leader>s", vim.lsp.buf.hover)
+map("n", "<leader>f", function() vim.lsp.buf.format({async = true}) end)
 map("n", "gcb", "<Cmd>e ++enc=gbk<CR>")
 map("n", "gcu", "<Cmd>e ++enc=utf-8<CR>")
