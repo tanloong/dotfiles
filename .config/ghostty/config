@@ -22,6 +22,7 @@ cursor-style = block
 # Positive value increases thickness, supports pixels or percentages
 adjust-cursor-thickness = 2
 
+#theme = Nvim Dark
 # Kitty default color palette (matches Kitty's built-in theme)
 palette = 0=#000000
 palette = 8=#767676
@@ -63,40 +64,36 @@ mouse-hide-while-typing = true
 # ========================================
 
 # Copy/Paste
-keybind = super+c:copy_to_clipboard
-keybind = shift+insert:paste_from_clipboard
+keybind = super+c=copy_to_clipboard:mixed
+keybind = shift+insert=paste_from_selection
 
 # Window management
-keybind = super+1:new_window
+keybind = super+1=new_window
 
 # Font size controls
-keybind = ctrl+shift+j:decrease_font_size 1.0
-keybind = ctrl+shift+k:increase_font_size 1.0
-keybind = ctrl+shift+space:reset_font_size
-
-# Open URL with hints
-keybind = ctrl+shift+o:open_url
+keybind = ctrl+shift+j=decrease_font_size:1
+keybind = ctrl+shift+k=increase_font_size:1
+keybind = ctrl+shift+space=reset_font_size
 
 # Tab management
-keybind = ctrl+shift+d:new_tab
-keybind = ctrl+shift+t:new_tab
-keybind = ctrl+alt+1:goto_tab 1
-keybind = ctrl+alt+2:goto_tab 2
-keybind = ctrl+alt+3:goto_tab 3
-keybind = ctrl+alt+4:goto_tab 4
-keybind = ctrl+alt+5:goto_tab 5
-keybind = ctrl+alt+6:goto_tab 6
-keybind = ctrl+alt+7:goto_tab 7
-keybind = ctrl+alt+8:goto_tab 8
-keybind = ctrl+alt+9:goto_tab 9
+keybind = ctrl+shift+t=new_tab
 
 # Tab navigation
-keybind = ctrl+tab:next_tab
-keybind = ctrl+shift+tab:previous_tab
+keybind = ctrl+shift+tab=previous_tab
+keybind = ctrl+tab=next_tab
+keybind = ctrl+alt+1=goto_tab:1
+keybind = ctrl+alt+2=goto_tab:2
+keybind = ctrl+alt+3=goto_tab:3
+keybind = ctrl+alt+4=goto_tab:4
+keybind = ctrl+alt+5=goto_tab:5
+keybind = ctrl+alt+6=goto_tab:6
+keybind = ctrl+alt+7=goto_tab:7
+keybind = ctrl+alt+8=goto_tab:8
+keybind = ctrl+alt+9=last_tab
 
-# Special key combinations (make terminal recognize these)
-keybind = ctrl+enter:send_string \x1b[13;5u
-keybind = shift+enter:send_string \x1b[13;2u
+# Special key combinations
+keybind = ctrl+enter=toggle_fullscreen
+keybind = ctrl+shift+enter=toggle_split_zoom
 
 # ========================================
 # Adjustments (matching Kitty's modify_font settings)
