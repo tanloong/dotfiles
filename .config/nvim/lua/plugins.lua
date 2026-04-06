@@ -235,8 +235,8 @@ local plugin_specs = {
   {
     -- "https://gitee.com/tanloong/interlaced.nvim",
     -- enabled = false,
-    dir="/home/usr/projects/interlaced.nvim",
-    enabled =true,
+    [vim.uv.fs_stat("/home/usr/projects/interlaced.nvim") and "dir" or "url"] = vim.uv.fs_stat("/home/usr/projects/interlaced.nvim") and "/home/usr/projects/interlaced.nvim" or "https://github.com/tanloong/interlaced.nvim",
+    enabled = true,
     ft = "text",
     branch = "dev",
     cmd = "Interlaced",
