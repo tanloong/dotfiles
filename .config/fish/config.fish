@@ -29,6 +29,7 @@ set --global --export JAVA_HOME "/home/usr/.local/share/jdk8u372-b07"
 set --global --export MANPAGER "nvim +Man!"
 
 fish_add_path --path \
+$HOME/.npm-global/bin \
 $HOME/.local/bin \
 $HOME/.local/bin/data-science-utils \
 $HOME/.local/bin/internship \
