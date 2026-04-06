@@ -132,15 +132,14 @@ local plugin_specs = {
   -- tree-sitter
   {
     "nvim-treesitter/nvim-treesitter",
-    enabled = false,
-    branch = "master",
+    branch = "main",
     run = ":TSUpdate",
     config = function() require "plugin_config.nvim_treesitter" end,
     event = "VeryLazy"
   },
   {
     "nvim-treesitter/nvim-treesitter-textobjects",
-    enabled = false,
+    branch = "main",
     dependencies = "nvim-treesitter/nvim-treesitter",
     event = "VeryLazy",
     config = function() require "plugin_config.nvim_treesitter_textobjects" end,
