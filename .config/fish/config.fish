@@ -77,6 +77,9 @@ set --global --export RUNEWIDTH_EASTASIAN 0
 bind --mode default ctrl-e edit_command_buffer
 bind --mode insert ctrl-e edit_command_buffer
 
+# Accept autosuggestion with ctrl-tab (in addition to right arrow)
+bind --mode insert ctrl-i accept-autosuggestion
+
 # source LS_COLORS
 # [ -f $HOME/.local/share/ls-colors.sh ] && source $HOME/.local/share/ls-colors.sh
 
