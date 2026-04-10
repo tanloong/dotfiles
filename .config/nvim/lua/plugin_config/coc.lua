@@ -122,7 +122,7 @@ vim.g["coc_global_extensions"] = {
   "coc-dictionary",
   -- "coc-pyright",
   "@yaegassy/coc-ruff",
-  "@yaegassy/coc-ty",
+  -- "@yaegassy/coc-ty",
 }
 -- 'coc-lists',
 -- 'coc-pairs',

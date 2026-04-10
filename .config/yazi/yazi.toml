@@ -59,6 +59,10 @@ pdf = [
 	{ run = 'zathura "$@"', desc = "PDF viewer", for = "unix" },
 	{ run = 'sumatrapdf.exe %*',   desc = "PDF viewer", for = "windows" },
 ]
+litecli = [
+  { run = 'litecli "$@"', desc = "litecli", block=true, for = "unix" },
+  { run = 'litecli %*', desc = "litecli", block=true, for = "windows" },
+]
 sqlite = [
   { run = 'sqlite3 "$@"', desc = "sqlite", block=true, for = "unix" },
   { run = 'sqlite3 %*', desc = "sqlite", block=true, for = "windows" },
@@ -69,7 +73,7 @@ rules = [
 	{ url = "*/", use = [ "edit", "open", "reveal" ] },
 	# PDF
 	{ url = "*.pdf", use = [ "pdf" ] },
-	{ url = "*.db", use = [ "sqlite" ] },
+	{ url = "*.db", use = [ "litecli", "sqlite" ] },
 	# Text
 	{ mime = "text/*", use = [ "edit", "reveal" ] },
 	# Image

@@ -399,7 +399,7 @@ function! boyi#normwithbroker(name) abort
     let l:broker = l:match_list[2]
     let l:credit = l:match_list[3]
 
-    " 3. 标准化产品名 
+    " 3. 标准化产品名
     let l:acnt = boyi#normsimcurve(l:acnt_raw)
 
     if l:acnt ==# ''

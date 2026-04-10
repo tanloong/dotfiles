@@ -82,6 +82,7 @@ Set-PSReadLineOption -Colors @{
 
 Set-PSReadLineKeyHandler -Key Ctrl+W -Function BackwardDeleteWord
 Set-PSReadLineKeyHandler -Key Ctrl+D -Function DeleteCharOrExit
+Set-PSReadLineKeyHandler -Chord 'Ctrl+i' -Function AcceptSuggestion
 
 ################################################################################
 

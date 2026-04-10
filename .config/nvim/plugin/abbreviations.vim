@@ -1,6 +1,7 @@
 abbreviate teh the
 abbreviate NOne None
 abbreviate slef self
+abbreviate slf self
 abbreviate udpate update
 abbreviate wnat want
 abbreviate wnats wants
