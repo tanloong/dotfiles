@@ -132,6 +132,7 @@ local plugin_specs = {
   -- tree-sitter
   {
     "nvim-treesitter/nvim-treesitter",
+    enabled = false,
     branch = "main",
     run = ":TSUpdate",
     config = function() require "plugin_config.nvim_treesitter" end,
@@ -143,14 +144,6 @@ local plugin_specs = {
     dependencies = "nvim-treesitter/nvim-treesitter",
     event = "VeryLazy",
     config = function() require "plugin_config.nvim_treesitter_textobjects" end,
-  },
-  -- wildfire.nvim
-  {
-    "https://github.com/SUSTech-data/wildfire.nvim",
-    enabled = false,
-    dependencies = "nvim-treesitter/nvim-treesitter",
-    event = "VeryLazy",
-    config = function() require "plugin_config.wildfire" end,
   },
   -- indent-blankline
   {
