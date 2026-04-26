@@ -96,6 +96,7 @@ stty -ixon
 export STANFORD_PARSER_HOME="/home/usr/.local/share/stanford-parser-full-2020-11-17"
 export STANFORD_TREGEX_HOME="/home/usr/.local/share/stanford-tregex-2020-11-17"
 export JAVA_HOME="/home/usr/.local/share/jdk8u372-b07"
+export PGDATA=$HOME/.local/share/pgdata
 export PATH=$PATH:"/home/usr/.local/share/jdk8u372-b07/bin"
 eval "$(zoxide init zsh)"
 export PATH="$HOME/.npm-global/bin:$PATH"

@@ -24,3 +24,4 @@ temp
 .config/nvim/lazy-lock.json
 .config/yazi/plugins
 windows/komorebi/logs
+.qwen
