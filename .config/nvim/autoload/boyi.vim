@@ -52,6 +52,19 @@ function! boyi#add_zhufu_ignore() abort
   call setreg("+", getline(1, '$'))
 endfunc
 
+function! boyi#add_wubo() abort
+  normal! ggVG"cy
+  enew
+  normal! "cp
+  v /\v^\d/ d
+  0 put='insert into 吴博概念题材选股 (证券代码, 日期) values'
+  2,$ s/\v^(\d+),.*/('\1', '__DATE__'),/
+  $ s/,$/;/
+  let s:yest_str = input("上一交易日:", boyi#get_yestraday())
+  %s/__DATE__/\=s:yest_str/g
+  call setreg("+", getline(1, '$'))
+endfunc
+
 " 产品名称标准化函数
 function! boyi#normsimhold(name) abort
     " 处理空值或无效输入

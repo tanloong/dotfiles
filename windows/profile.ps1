@@ -303,6 +303,38 @@ function cf {
 # diff (cf { ls C:\ }) (cf { ls D:\ })
 }
 
+#####################################软链接#####################################
+
+function Link-File {
+    param (
+        [string]$FROM,
+        [string]$TO
+    )
+
+    if (-not (Test-Path $FROM)) {
+        Write-Error "Source path '$FROM' does not exist."
+        return
+    }
+
+    $linkType = if ((Get-Item $FROM).PSIsContainer) { 'Directory' } else { 'SymbolicLink' }
+
+    $linkDir = Split-Path -Parent $TO
+    New-Item -ItemType Directory -Path $linkDir -Force | Out-Null
+
+    if (Test-Path $TO) {
+        Remove-Item $TO -Recurse -Force
+    }
+
+    # For directories, use Junctions (more compatible on Windows if not in Developer Mode)
+    if ($linkType -eq 'Directory') {
+        New-Item -ItemType Junction -Path $TO -Target $FROM | Out-Null
+    } else {
+        New-Item -ItemType SymbolicLink -Path $TO -Target $FROM | Out-Null
+    }
+
+    Write-Host "Linked '$TO' -> '$FROM'"
+}
+
 #################################### zoxide ####################################
 
 Set-Alias -Name 可 -Value __zoxide_z
