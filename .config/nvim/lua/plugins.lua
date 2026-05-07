@@ -487,7 +487,7 @@ local plugin_specs = {
     "saghen/blink.cmp",
     enabled = true,
     -- optional: provides snippets for the snippet source
-    dependencies = { "rafamadriz/friendly-snippets", "luozhiya/fittencode.nvim",
+    dependencies = { "luozhiya/fittencode.nvim",
       "Kaiser-Yang/blink-cmp-dictionary", },
 
     -- use a release tag to download pre-built binaries
@@ -549,6 +549,43 @@ local plugin_specs = {
     },
     opts_extend = { "sources.default" }
   },
+  {
+    "L3MON4D3/LuaSnip",
+    -- follow latest release.
+    version = "v2.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
+    -- install jsregexp (optional!).
+    build = "make install_jsregexp",
+    config = function()
+      local ls = require("luasnip")
+
+      vim.keymap.set({"i"}, "<C-o>", function() ls.expand() end, {silent = true})
+      vim.keymap.set({"i", "s"}, "<C-j>", function() ls.jump( 1) end, {silent = true})
+      vim.keymap.set({"i", "s"}, "<C-k>", function() ls.jump(-1) end, {silent = true})
+
+      vim.keymap.set({"i", "s"}, "<C-y>", function()
+        if ls.choice_active() then
+          ls.change_choice(1)
+        end
+      end, {silent = true})
+    end
+  },
+{
+  'stevearc/conform.nvim',
+config = function() 
+  local cf = require("conform")
+  cf.setup({
+  formatters_by_ft = {
+    lua = { "stylua" },
+    -- Conform will run multiple formatters sequentially
+    python = { "ruff_format" },
+    -- You can customize some of the format options for the filetype (:help conform.format)
+  }
+}
+) 
+
+  vim.keymap.set({"n", "v"}, "<leader>f", function() cf.format() end, {silent = true})
+end
+},
   {
     "https://github.com/tpope/vim-fugitive",
     -- see ../plugin/autocmds.lua for InGitRepo
