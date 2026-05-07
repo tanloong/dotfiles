@@ -1,5 +1,7 @@
 setl commentstring=--%s
-abbreviate sl SELECT
-abbreviate fm FROM
-abbreviate wh WHERE
-abbreviate ds DISTINCT
+abbreviate <buffer> sl SELECT
+abbreviate <buffer> fm FROM
+abbreviate <buffer> wh WHERE
+abbreviate <buffer> ds DISTINCT
+abbreviate <buffer> lmt LIMIT
+abbreviate <buffer> gb GROUP BY

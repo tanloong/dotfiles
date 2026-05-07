@@ -29,8 +29,8 @@ local plugin_specs = {
   },
   -- CoC
   {
-    -- "https://github.com/neoclide/coc.nvim.git",
-    "https://gitee.com/linuor/coc.nvim",
+    "https://github.com/neoclide/coc.nvim.git",
+    -- "https://gitee.com/linuor/coc.nvim",
     enabled = false,
     branch = "release",
     event = "VeryLazy",
@@ -133,26 +133,19 @@ local plugin_specs = {
   -- tree-sitter
   {
     "nvim-treesitter/nvim-treesitter",
-    enabled = false,
-    branch = "master",
+    enabled = true,
+    branch = "main",
     run = ":TSUpdate",
-    config = function() require "plugin_config.nvim_treesitter" end,
+    -- config = function() require "plugin_config.nvim_treesitter" end,
     event = "VeryLazy"
   },
   {
     "nvim-treesitter/nvim-treesitter-textobjects",
-    enabled = false,
+    enabled = true,
+    branch = "main",
     dependencies = "nvim-treesitter/nvim-treesitter",
     event = "VeryLazy",
-    config = function() require "plugin_config.nvim_treesitter_textobjects" end,
-  },
-  -- wildfire.nvim
-  {
-    "https://github.com/SUSTech-data/wildfire.nvim",
-    enabled = false,
-    dependencies = "nvim-treesitter/nvim-treesitter",
-    event = "VeryLazy",
-    config = function() require "plugin_config.wildfire" end,
+    -- config = function() require "plugin_config.nvim_treesitter_textobjects" end,
   },
   -- indent-blankline
   {
@@ -237,8 +230,8 @@ local plugin_specs = {
   {
     -- "https://gitee.com/tanloong/interlaced.nvim",
     -- enabled = false,
-    dir="/home/usr/projects/interlaced.nvim",
-    enabled =true,
+    [vim.uv.fs_stat("/home/usr/projects/interlaced.nvim") and "dir" or "url"] = vim.uv.fs_stat("/home/usr/projects/interlaced.nvim") and "/home/usr/projects/interlaced.nvim" or "https://github.com/tanloong/interlaced.nvim",
+    enabled = true,
     ft = "text",
     branch = "dev",
     cmd = "Interlaced",
@@ -672,33 +665,34 @@ frontmatter = {enabled = false,},
     event = "VeryLazy",
     config = function()
       require "fittencode".setup {
-        action = {
-          identify_programming_language = {
-            -- Identify programming language of the current buffer
-            -- * Unnamed buffer
-            -- * Buffer without file extension
-            -- * Buffer no filetype detected
-            identify_buffer = false,
-          },
-        },
-        source_completion = {
-          enable = false,
-          engine = "blink",
-        },
-        inline_completion = {
-          enable = false,
-          auto_triggering_completion = true,
-          disable_completion_within_the_line = false,
-        },
-        completion_mode = "source",
-        keymaps = {
-          inline = {
-            ["<Tab>"] = "accept_all_suggestions",
-            ["<c-Right>"] = "accept_word",
-            ["<s-Right>"] = "accept_line",
-            ["<A-\\>"] = "triggering_completion",
-          },
-        }, }
+        -- log = { level = vim.log.levels.TRACE },
+        -- action = {
+        --   identify_programming_language = {
+        --     -- Identify programming language of the current buffer
+        --     -- * Unnamed buffer
+        --     -- * Buffer without file extension
+        --     -- * Buffer no filetype detected
+        --     identify_buffer = false,
+        --   },
+        -- },
+        -- disable_specific_inline_completion = {
+        --   -- Disable auto-completion for some specific file suffixes by entering them below
+        --   -- For example, `suffixes = {'lua', 'cpp'}`
+        --   suffixes = {"markdown", "minifiles"},
+        -- },
+        -- inline_completion = {
+        --   enable = true,
+        --   auto_triggering_completion = true,
+        --   disable_completion_within_the_line = false,
+        -- },
+        -- keymaps = {
+        --   inline = {
+        --     ["<Tab>"] = "accept_all_suggestions",
+        --     ["<c-Right>"] = "accept_word",
+        --     ["<s-Right>"] = "accept_line",
+        --   },
+        -- }, 
+      }
       -- map({ "i", "n" }, "<s-tab>", function()
       --   require "fittencode".dismiss_suggestions()
       --   require "fittencode".enable_completions { enable = false }
@@ -739,6 +733,10 @@ frontmatter = {enabled = false,},
       require "term"
     end,
   },
+  {
+    url = "https://github.com/vim-scripts/dbext.vim",
+    enabled = false,
+},
   ----------------------------------- DISABLED -----------------------------------{{{
   {
     "folke/snacks.nvim",

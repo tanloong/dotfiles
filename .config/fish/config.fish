@@ -25,10 +25,12 @@ set --global --export ALIYUNPAN_CONFIG_DIR $HOME/.config/aliyunpan
 set --global --export CORENLP_HOME $HOME/software/stanford-corenlp-4.5.1/
 set --global --export STANFORD_PARSER_HOME "/home/usr/.local/share/stanford-parser-full-2020-11-17"
 set --global --export STANFORD_TREGEX_HOME "/home/usr/.local/share/stanford-tregex-2020-11-17"
-set --global --export JAVA_HOME "/home/usr/.local/share/jdk8u372-b07"
+set --global --export JAVA_HOME "/usr/lib/jvm/java-26-openjdk"
 set --global --export MANPAGER "nvim +Man!"
+set --global --export PGDATA $HOME/.local/share/pgdata
 
 fish_add_path --path \
+$HOME/.npm-global/bin \
 $HOME/.local/bin \
 $HOME/.local/bin/data-science-utils \
 $HOME/.local/bin/internship \

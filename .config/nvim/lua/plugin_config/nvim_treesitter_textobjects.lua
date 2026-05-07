@@ -1,6 +1,5 @@
 #!/usr/bin/env lua
-require "nvim-treesitter.configs".setup {
-  textobjects = {
+require "nvim-treesitter-textobjects".setup {
     select = {
       enable = true,
 
@@ -75,5 +74,4 @@ require "nvim-treesitter.configs".setup {
         ["[C"] = "@class.outer",
       },
     },
-  },
 }

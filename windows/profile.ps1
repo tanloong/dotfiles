@@ -1,8 +1,19 @@
+# 自动设置控制台编码为 UTF-8（解决中文乱码）
+try {
+    chcp 65001 | Out-Null  # | Out-Null 隐藏 chcp 命令的输出（只执行，不显示）
+} catch {
+    Write-Host "⚠️ 设置编码失败：$_" -ForegroundColor Red
+}
+
+# 可选：额外设置 PowerShell 自身的输出编码（双重保障）
+$OutputEncoding = [Console]::OutputEncoding = [Console]::InputEncoding = [System.Text.UTF8Encoding]::new()
+
 Set-PSReadLineOption -EditMode Vi
 if (-not $env:EDITOR)       { $env:EDITOR       = 'nvim' }
 if (-not $env:VISUAL)       { $env:VISUAL       = 'nvim' }
 Set-PSReadLineKeyHandler -Key "Ctrl+e" -Function ViEditVisually # CTRL-E enters current line buffer editor
 Set-PSReadLineKeyHandler -Chord Ctrl+w -Function BackwardDeleteWord
+Set-PSReadLineKeyHandler -Chord Ctrl+h -Function BackwardDeleteChar
 
 if (-not $env:PDFVIEWER)    { $env:PDFVIEWER    = 'SumatraPDF' }
 if (-not $env:FILE_MANAGER) { $env:FILE_MANAGER = 'lf' }
@@ -71,6 +82,7 @@ Set-PSReadLineOption -Colors @{
 
 Set-PSReadLineKeyHandler -Key Ctrl+W -Function BackwardDeleteWord
 Set-PSReadLineKeyHandler -Key Ctrl+D -Function DeleteCharOrExit
+Set-PSReadLineKeyHandler -Chord 'Ctrl+i' -Function AcceptSuggestion
 
 ################################################################################
 
@@ -289,6 +301,38 @@ function cf {
 # process substitution <() as in bash
 # Example usage (mimicking <(ls))
 # diff (cf { ls C:\ }) (cf { ls D:\ })
+}
+
+#####################################软链接#####################################
+
+function Link-File {
+    param (
+        [string]$FROM,
+        [string]$TO
+    )
+
+    if (-not (Test-Path $FROM)) {
+        Write-Error "Source path '$FROM' does not exist."
+        return
+    }
+
+    $linkType = if ((Get-Item $FROM).PSIsContainer) { 'Directory' } else { 'SymbolicLink' }
+
+    $linkDir = Split-Path -Parent $TO
+    New-Item -ItemType Directory -Path $linkDir -Force | Out-Null
+
+    if (Test-Path $TO) {
+        Remove-Item $TO -Recurse -Force
+    }
+
+    # For directories, use Junctions (more compatible on Windows if not in Developer Mode)
+    if ($linkType -eq 'Directory') {
+        New-Item -ItemType Junction -Path $TO -Target $FROM | Out-Null
+    } else {
+        New-Item -ItemType SymbolicLink -Path $TO -Target $FROM | Out-Null
+    }
+
+    Write-Host "Linked '$TO' -> '$FROM'"
 }
 
 #################################### zoxide ####################################
