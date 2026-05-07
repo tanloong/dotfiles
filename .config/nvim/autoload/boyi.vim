@@ -377,7 +377,7 @@ function! boyi#norm(name) abort
         elseif normalized =~# '六\|6'
             return '智选6号'
         elseif normalized =~# '八\|8'
-            return '智选8'
+            return '智选8号'
         elseif normalized =~# '九\|9'
             return '智选9号'
         endif

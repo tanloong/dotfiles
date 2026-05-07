@@ -132,18 +132,19 @@ local plugin_specs = {
   -- tree-sitter
   {
     "nvim-treesitter/nvim-treesitter",
-    enabled = false,
+    enabled = true,
     branch = "main",
     run = ":TSUpdate",
-    config = function() require "plugin_config.nvim_treesitter" end,
+    -- config = function() require "plugin_config.nvim_treesitter" end,
     event = "VeryLazy"
   },
   {
     "nvim-treesitter/nvim-treesitter-textobjects",
+    enabled = true,
     branch = "main",
     dependencies = "nvim-treesitter/nvim-treesitter",
     event = "VeryLazy",
-    config = function() require "plugin_config.nvim_treesitter_textobjects" end,
+    -- config = function() require "plugin_config.nvim_treesitter_textobjects" end,
   },
   -- indent-blankline
   {
@@ -663,32 +664,34 @@ frontmatter = {enabled = false,},
     event = "VeryLazy",
     config = function()
       require "fittencode".setup {
-        action = {
-          identify_programming_language = {
-            -- Identify programming language of the current buffer
-            -- * Unnamed buffer
-            -- * Buffer without file extension
-            -- * Buffer no filetype detected
-            identify_buffer = false,
-          },
-        },
-        disable_specific_inline_completion = {
-          -- Disable auto-completion for some specific file suffixes by entering them below
-          -- For example, `suffixes = {'lua', 'cpp'}`
-          suffixes = {"markdown", "minifiles"},
-        },
-        inline_completion = {
-          enable = true,
-          auto_triggering_completion = true,
-          disable_completion_within_the_line = false,
-        },
-        keymaps = {
-          inline = {
-            ["<Tab>"] = "accept_all_suggestions",
-            ["<c-Right>"] = "accept_word",
-            ["<s-Right>"] = "accept_line",
-          },
-        }, }
+        -- log = { level = vim.log.levels.TRACE },
+        -- action = {
+        --   identify_programming_language = {
+        --     -- Identify programming language of the current buffer
+        --     -- * Unnamed buffer
+        --     -- * Buffer without file extension
+        --     -- * Buffer no filetype detected
+        --     identify_buffer = false,
+        --   },
+        -- },
+        -- disable_specific_inline_completion = {
+        --   -- Disable auto-completion for some specific file suffixes by entering them below
+        --   -- For example, `suffixes = {'lua', 'cpp'}`
+        --   suffixes = {"markdown", "minifiles"},
+        -- },
+        -- inline_completion = {
+        --   enable = true,
+        --   auto_triggering_completion = true,
+        --   disable_completion_within_the_line = false,
+        -- },
+        -- keymaps = {
+        --   inline = {
+        --     ["<Tab>"] = "accept_all_suggestions",
+        --     ["<c-Right>"] = "accept_word",
+        --     ["<s-Right>"] = "accept_line",
+        --   },
+        -- }, 
+      }
       -- map({ "i", "n" }, "<s-tab>", function()
       --   require "fittencode".dismiss_suggestions()
       --   require "fittencode".enable_completions { enable = false }
