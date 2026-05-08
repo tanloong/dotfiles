@@ -589,11 +589,12 @@ local plugin_specs = {
 		build = "make install_jsregexp",
 		config = function()
 			local ls = require("luasnip")
+      ls.setup {enable_autosnippets = true}
 			local s = ls.snippet
       local t = ls.text_node
       local i = ls.insert_node
 
-      ls.add_snippets("markdown", {s(",b", {t({"___"}), i(0), t({"___"})} )})
+      ls.add_snippets("markdown", {s(",b", {t({"___"}), i(0), t({"___"})} )}, {type="autosnippets"})
 
 			vim.keymap.set({ "i" }, "<C-o>", function()
 				ls.expand()
