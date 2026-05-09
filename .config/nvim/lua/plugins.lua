@@ -531,7 +531,7 @@ local plugin_specs = {
 		---@module 'blink.cmp'
 		---@type blink.cmp.Config
 		opts = {
-      snippets = {preset = "luasnip"},
+			snippets = { preset = "luasnip" },
 			-- 'default' for mappings similar to built-in completion
 			-- 'super-tab' for mappings similar to vscode (tab to accept, arrow keys to navigate)
 			-- 'enter' for mappings similar to 'super-tab' but with 'enter' to accept
@@ -589,12 +589,12 @@ local plugin_specs = {
 		build = "make install_jsregexp",
 		config = function()
 			local ls = require("luasnip")
-      ls.setup {enable_autosnippets = true}
+			ls.setup({ enable_autosnippets = true })
 			local s = ls.snippet
-      local t = ls.text_node
-      local i = ls.insert_node
+			local t = ls.text_node
+			local i = ls.insert_node
 
-      ls.add_snippets("markdown", {s(",b", {t({"___"}), i(0), t({"___"})} )}, {type="autosnippets"})
+			ls.add_snippets("markdown", { s(",b", { t({ "___" }), i(0), t({ "___" }) }), s(",c", { t({ "`" }), i(0), t({ "`" }) }) }, { type = "autosnippets" })
 
 			vim.keymap.set({ "i" }, "<C-o>", function()
 				ls.expand()
