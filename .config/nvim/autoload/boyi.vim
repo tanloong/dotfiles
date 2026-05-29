@@ -57,6 +57,7 @@ function! boyi#add_wubo() abort
   enew
   normal! "cp
   v /\v^\d/ d
+  %s/\v^[0-9]+_//e
   0 put='insert into 吴博概念题材选股 (证券代码, 日期) values'
   2,$ s/\v^(\d+),.*/('\1', '__DATE__'),/
   $ s/,$/;/
@@ -164,6 +165,12 @@ function! boyi#normsimhold(name) abort
         elseif normalized =~# '九\|9'
             return '智选9'
         endif
+    endif
+
+    if normalized =~# '优选'
+      if normalized =~# '二\|2'
+        return '优选2'
+      endif
     endif
 
     " 未匹配到任何规则
@@ -274,6 +281,12 @@ function! boyi#normsimcurve(name) abort
         endif
     endif
 
+    if normalized =~# '优选'
+      if normalized =~# '二\|2'
+        return '优选2'
+      endif
+    endif
+
     " 未匹配到任何规则
     echohl WarningMsg
     echomsg '警告: 未能标准化产品名 - ' . a:name
@@ -381,6 +394,12 @@ function! boyi#norm(name) abort
         elseif normalized =~# '九\|9'
             return '智选9号'
         endif
+    endif
+
+    if normalized =~# '优选'
+      if normalized =~# '二\|2'
+        return '优选2号'
+      endif
     endif
 
     " 未匹配到任何规则
