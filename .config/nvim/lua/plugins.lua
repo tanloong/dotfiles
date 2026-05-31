@@ -539,6 +539,15 @@ local plugin_specs = {
 			keymap = {
 				preset = "default",
 				["<C-y>"] = { "accept", "fallback" },
+				["<C-1>"] = {function(cmp) return cmp.accept({index = 1}) end},
+				["<C-2>"] = {function(cmp) return cmp.accept({index = 2}) end},
+				["<C-3>"] = {function(cmp) return cmp.accept({index = 3}) end},
+				["<C-4>"] = {function(cmp) return cmp.accept({index = 4}) end},
+				["<C-5>"] = {function(cmp) return cmp.accept({index = 5}) end},
+				["<C-6>"] = {function(cmp) return cmp.accept({index = 6}) end},
+				["<C-7>"] = {function(cmp) return cmp.accept({index = 7}) end},
+				["<C-8>"] = {function(cmp) return cmp.accept({index = 8}) end},
+				["<C-9>"] = {function(cmp) return cmp.accept({index = 9}) end},
 			},
 			completion = {
 				list = {
@@ -549,9 +558,12 @@ local plugin_specs = {
 					},
 				},
 				menu = {
+          -- auto_show=false,
+          -- auto_show_delay_ms = 500,
 					draw = {
-						-- columns = { { "label" }, { "kind" } },
-						columns = { { "label" } },
+						columns = { {"number"}, { "label" }, { "kind" } },
+						-- columns = { { "label" } },
+            components = {number = {text = function(ctx) return ctx.idx == 0 and "" or tostring(ctx.idx) end , highlight = "Comment", width = {min = 2}}}
 					},
 				},
 			},
