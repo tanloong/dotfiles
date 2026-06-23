@@ -120,6 +120,7 @@ vim.g["coc_global_extensions"] = {
   -- "coc-sumneko-lua",
   "coc-json",
   "coc-dictionary",
+  "coc-rust-analyzer",
   -- "coc-pyright",
   "@yaegassy/coc-ruff",
   -- "@yaegassy/coc-ty",

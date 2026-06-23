@@ -29,6 +29,7 @@ Set-Alias -Name ga -Value lazygit
 Set-Alias -Name g -Value git
 Set-Alias -Name za -Value sumatrapdf
 Set-Alias -Name gg -Value gitui
+Set-Alias -Name co -Value cargo
 
 function TurnOff-Screen {
     (Add-Type '[DllImport("user32.dll")]public static extern int SendMessage(int hWnd, int hMsg, int wParam, int lParam);' -Name ScreenApi -Pas)::SendMessage(-1,0x0112,0xF170,2)
@@ -307,32 +308,59 @@ function cf {
 
 function Link-File {
     param (
+        [Parameter(Mandatory=$true)]
         [string]$FROM,
+        
+        [Parameter(Mandatory=$true)]
         [string]$TO
     )
 
-    if (-not (Test-Path $FROM)) {
-        Write-Error "Source path '$FROM' does not exist."
-        return
+    try {
+        # 检查源路径是否存在
+        if (-not (Test-Path -Path $FROM)) {
+            throw "Source path '$FROM' does not exist."
+        }
+
+        # 获取源路径的绝对路径（确保是字符串，不是对象）
+        try {
+            $FROM = (Resolve-Path -Path $FROM -ErrorAction Stop).Path
+        }
+        catch {
+            throw "Failed to resolve source path: $_"
+        }
+
+        # 获取目标目录
+        $linkDir = Split-Path -Parent $TO
+        if ($linkDir -and (-not (Test-Path -Path $linkDir))) {
+            New-Item -ItemType Directory -Path $linkDir -Force | Out-Null
+        }
+
+        # 如果目标已存在，删除它
+        if (Test-Path -Path $TO) {
+            Remove-Item -Path $TO -Recurse -Force
+        }
+
+        # 判断源是文件还是目录
+        $item = Get-Item -Path $FROM
+        $linkType = if ($item.PSIsContainer) { 'Directory' } else { 'File' }
+
+        # 创建链接
+        if ($linkType -eq 'Directory') {
+            # 目录使用 Junction
+            New-Item -ItemType Junction -Path $TO -Target $FROM -ErrorAction Stop | Out-Null
+            Write-Host "✅ Directory junction created: '$TO' -> '$FROM'" -ForegroundColor Green
+        } else {
+            # 文件使用 SymbolicLink
+            New-Item -ItemType SymbolicLink -Path $TO -Target $FROM -ErrorAction Stop | Out-Null
+            Write-Host "✅ File symbolic link created: '$TO' -> '$FROM'" -ForegroundColor Green
+        }
     }
-
-    $linkType = if ((Get-Item $FROM).PSIsContainer) { 'Directory' } else { 'SymbolicLink' }
-
-    $linkDir = Split-Path -Parent $TO
-    New-Item -ItemType Directory -Path $linkDir -Force | Out-Null
-
-    if (Test-Path $TO) {
-        Remove-Item $TO -Recurse -Force
+    catch {
+        Write-Error "Failed to create link: $_"
+        return $false
     }
-
-    # For directories, use Junctions (more compatible on Windows if not in Developer Mode)
-    if ($linkType -eq 'Directory') {
-        New-Item -ItemType Junction -Path $TO -Target $FROM | Out-Null
-    } else {
-        New-Item -ItemType SymbolicLink -Path $TO -Target $FROM | Out-Null
-    }
-
-    Write-Host "Linked '$TO' -> '$FROM'"
+    
+    return $true
 }
 
 #################################### zoxide ####################################
