@@ -148,6 +148,7 @@ alias g=git
 alias gg=gitui
 alias p='sudo pacman'
 alias pt=python
+alias co=cargo
 alias t=tldr
 alias q=exit
 alias L="less"

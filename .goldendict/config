@@ -10,6 +10,7 @@
   <path recursive="0">/home/usr/software</path>
   <path recursive="1">/home/usr/software/goldendict/LDOCE6</path>
   <path recursive="0">/home/usr/software/goldendict/en-fr</path>
+  <path recursive="0">/home/usr/software/goldendict/陆谷孙英汉大词典</path>
  </paths>
  <sounddirs/>
  <dictionaryOrder id="0" name="">
@@ -19,13 +20,14 @@
   <dictionary name="新世纪汉英大词典">4bbce109daa688431256ec4dd6f954f7</dictionary>
   <dictionary name="新世纪英汉大词典">f5fbde299f66b566d4b7408d00f18400</dictionary>
   <dictionary name="语言学与应用语言学百科全书词典">569de8929b6929a021cdffe16e748925</dictionary>
+  <dictionary name="英汉大词典（第2版）">1dc50af1c631a6e95dc52f16d9535395</dictionary>
   <mutedDictionaries/>
  </dictionaryOrder>
  <inactiveDictionaries id="0" name="">
   <dictionary name="English Wikipedia">ae6f89aac7151829681b85f035d54e48</dictionary>
   <mutedDictionaries/>
  </inactiveDictionaries>
- <groups nextId="1"/>
+ <groups/>
  <hunspell dictionariesPath=""/>
  <transliteration>
   <enableRussianTransliteration>0</enableRussianTransliteration>
@@ -40,7 +42,6 @@
   </chinese>
   <romaji>
    <enable>0</enable>
-   <enableHepburn>1</enableHepburn>
    <enableHiragana>1</enableHiragana>
    <enableKatakana>1</enableKatakana>
   </romaji>
@@ -71,20 +72,25 @@
   <mediawiki enabled="0" icon="" id="5d45232075d06e002dea72fe3e137da1" lang="" name="Greek Wiktionary" url="https://el.wiktionary.org/w"/>
  </mediawikis>
  <websites>
-  <website enabled="0" icon="" id="b88cb2898e634c6638df618528284c2d" inside_iframe="1" name="Google En-En (Oxford)" url="https://www.google.com/dictionary?aq=f&amp;langpair=en|en&amp;q=%GDWORD%&amp;hl=en"/>
-  <website enabled="0" icon="" id="f376365a0de651fd7505e7e5e683aa45" inside_iframe="1" name="Urban Dictionary" url="https://www.urbandictionary.com/define.php?term=%GDWORD%"/>
-  <website enabled="0" icon="" id="324ca0306187df7511b26d3847f4b07c" inside_iframe="1" name="Multitran (En)" url="https://multitran.ru/c/m.exe?CL=1&amp;l1=1&amp;s=%GD1251%"/>
-  <website enabled="0" icon="" id="924db471b105299c82892067c0f10787" inside_iframe="1" name="Lingvo (En-Ru)" url="http://lingvopro.abbyyonline.com/en/Search/en-ru/%GDWORD%"/>
-  <website enabled="0" icon="" id="087a6d65615fb047f4c80eef0a9465db" inside_iframe="1" name="Michaelis (Pt-En)" url="http://michaelis.uol.com.br/moderno/ingles/index.php?lingua=portugues-ingles&amp;palavra=%GDISO1%"/>
+  <website enabled="0" icon="" id="b88cb2898e634c6638df618528284c2d" name="Google En-En (Oxford)" script="" url="https://www.google.com/dictionary?aq=f&amp;langpair=en|en&amp;q=%GDWORD%&amp;hl=en"/>
+  <website enabled="0" icon="" id="f376365a0de651fd7505e7e5e683aa45" name="Urban Dictionary" script="" url="https://www.urbandictionary.com/define.php?term=%GDWORD%"/>
+  <website enabled="0" icon="" id="324ca0306187df7511b26d3847f4b07c" name="Multitran (En)" script="" url="https://multitran.ru/c/m.exe?CL=1&amp;l1=1&amp;s=%GD1251%"/>
+  <website enabled="0" icon="" id="924db471b105299c82892067c0f10787" name="Lingvo (En-Ru)" script="" url="http://lingvopro.abbyyonline.com/en/Search/en-ru/%GDWORD%"/>
+  <website enabled="0" icon="" id="087a6d65615fb047f4c80eef0a9465db" name="Michaelis (Pt-En)" script="" url="http://michaelis.uol.com.br/moderno/ingles/index.php?lingua=portugues-ingles&amp;palavra=%GDISO1%"/>
  </websites>
  <dictservers/>
  <programs/>
- <mutedDictionaries/>
+ <mutedDictionaries>
+  <mutedDictionary>f5fbde299f66b566d4b7408d00f18400</mutedDictionary>
+  <mutedDictionary>4bbce109daa688431256ec4dd6f954f7</mutedDictionary>
+ </mutedDictionaries>
  <popupMutedDictionaries/>
+ <dictionariesToReindex/>
  <preferences>
   <interfaceLanguage></interfaceLanguage>
   <interfaceFont></interfaceFont>
-  <interfaceFontSize>0</interfaceFontSize>
+  <interfaceFontSize_0>12</interfaceFontSize_0>
+  <enableInterfaceFont>0</enableInterfaceFont>
   <customFonts monospace="" sans-serif="" serif="" standard=""/>
   <displayStyle></displayStyle>
   <interfaceStyle></interfaceStyle>
@@ -93,6 +99,7 @@
   <hideSingleTab>0</hideSingleTab>
   <mruTabOrder>0</mruTabOrder>
   <hideMenubar>0</hideMenubar>
+  <panelsLocked>0</panelsLocked>
   <enableTrayIcon>1</enableTrayIcon>
   <startToTray>1</startToTray>
   <closeToTray>1</closeToTray>
@@ -128,7 +135,6 @@
   <audioPlaybackProgram>mpv</audioPlaybackProgram>
   <alwaysOnTop>0</alwaysOnTop>
   <searchInDock>0</searchInDock>
-  <historyStoreInterval>0</historyStoreInterval>
   <favoritesStoreInterval>0</favoritesStoreInterval>
   <confirmFavoritesDeletion>1</confirmFavoritesDeletion>
   <proxyserver enabled="0" useSystemProxy="0">
@@ -149,11 +155,11 @@
   </ankiConnectServer>
   <checkForNewReleases>1</checkForNewReleases>
   <disallowContentFromOtherSites>0</disallowContentFromOtherSites>
-  <hideGoldenDictHeader>0</hideGoldenDictHeader>
-  <maxNetworkCacheSize>50</maxNetworkCacheSize>
-  <clearNetworkCacheOnExit>1</clearNetworkCacheOnExit>
   <removeInvalidIndexOnExit>0</removeInvalidIndexOnExit>
   <enableApplicationLog>0</enableApplicationLog>
+  <openWebsiteInNewTab>0</openWebsiteInNewTab>
+  <suppressWebDialogs>0</suppressWebDialogs>
+  <enableJavaScriptClipboardAccess>0</enableJavaScriptClipboardAccess>
   <maxStringsInHistory>500</maxStringsInHistory>
   <storeHistory>1</storeHistory>
   <alwaysExpandOptionalParts>1</alwaysExpandOptionalParts>
@@ -185,7 +191,7 @@
  <mainWindowGeometry>AdnQywADAAAAAAAAAAAAAAAABMwAAAKjAAAAAAAAAAAAAATMAAACowAAAAAAAAAABM0AAAAAAAAAAAAABMwAAAKj</mainWindowGeometry>
  <dictInfoGeometry></dictInfoGeometry>
  <inspectorGeometry></inspectorGeometry>
- <dictionariesDialogGeometry>AdnQywADAAAAAAC4AAAAHwAABAAAAAIzAAAAuQAAACAAAAP/AAACMgAAAAAAAAAABM0AAAC5AAAAIAAAA/8AAAIy</dictionariesDialogGeometry>
+ <dictionariesDialogGeometry>AdnQywADAAAAAAC5AAAAIAAAA/8AAAI0AAAAugAAACEAAAP+AAACMwAAAAAAAAAABM0AAAC6AAAAIQAAA/4AAAIz</dictionariesDialogGeometry>
  <timeForNewReleaseCheck>2021-09-13T16:17:43</timeForNewReleaseCheck>
  <skippedRelease></skippedRelease>
  <showingDictBarNames>0</showingDictBarNames>
