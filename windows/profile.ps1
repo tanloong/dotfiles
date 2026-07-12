@@ -363,6 +363,9 @@ function Link-File {
     return $true
 }
 
+Set-PSReadLineOption -HistoryNoDuplicates
+Set-PSReadLineOption -MaximumHistoryCount 10000
+
 #################################### zoxide ####################################
 
 Set-Alias -Name 可 -Value __zoxide_z

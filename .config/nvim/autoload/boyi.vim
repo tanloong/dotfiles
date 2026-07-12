@@ -1,3 +1,45 @@
+function! boyi#futpos_yest(name) abort
+0put='insert into futpos_yest (期货账号, 交易所, 合约代码, 方向, 持仓手数) values'
+$put='ON CONFLICT (期货账号, 交易所, 合约代码, 方向) DO NOTHING ;'
+endfunction
+
+function! boyi#net_realtimeentry()
+"实时进场金额 覆盖到 netvalue.csv
+"buffer content:
+
+" >>> pt -m sqlite3 D:\usr\boyi\tasks\20251208-每日净值推送\net.db 'select 产品名称, 资产净值 from net where 日期 = (select max(日期) from net ) ; '
+"('博弈博涵13号私募证券投资基金', 114458147.81)
+"('博弈渭华翔昇16号私募证券投资基金', 59283989.67)
+"...
+"('博弈博涵三号私募证券投资基金', 139257180.14)
+
+  %s/\v博弈|专享|私享|私募证券投资基金|[(')]//g
+  %s/\v智选.*\zs号//
+  %s/\v渭\zs华翔昇\ze[0-9]//g
+  %s/\v博\zs涵\ze[0-9]//g
+  %s/\v[博渭][0-9]+\zs号//g
+  %s/稳健1号/稳健一号/g
+  %s/\v优选[0-9]+\zs号//g
+  %s/\v渭华翔\zs昇//g
+  0put='产品名称,资产净值'
+endfunction
+
+function! boyi#net_curve()
+%s/\v^\('\zs[^']+/\=boyi#norm(submatch(0))/g
+1,$-1 s/$/,
+0put='insert or replace into net (账号名称, 净值) values '
+$ s/$/;
+endfunction
+
+function! boyi#net_hold()
+global /稳健/d
+%s/\v^\('\zs[^']+/\=boyi#normsimhold(submatch(0))/g
+1,$-1 s/$/,
+0put='INSERT OR REPLACE INTO net (账户, 净值) VALUES'
+$ s/$/;
+endfunction
+
+
 function! boyi#get_yestraday(fmt = "%Y%m%d")
   " 返回早于今天的第一个工作日
   let l:cand = localtime() - 86400
