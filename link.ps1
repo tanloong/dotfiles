@@ -56,6 +56,8 @@ New-Item -ItemType Directory -Path (Split-Path -Parent $huma_hop) -Force | Out-N
 $gawk_script = Join-Path $currFolder "huma2hop.gawk"
 if ( (Test-Path $huma_char) -and ( (-not (Test-Path $huma_hop)) -or ((Get-Item $huma_char).LastWriteTime -gt (Get-Item $huma_hop).LastWriteTime))) { & gawk -f $gawk_script -- $huma_char | Out-File -FilePath $huma_hop -Encoding utf8 -Force }
 Link-File -FROM $huma_hop -TO (Join-Path $env:LOCALAPPDATA "nvim-data\lazy\hop.nvim\lua\hop\mappings\zh_huma.lua")
+# vim.pack location (after lazy.nvim -> vim.pack migration, hop.nvim lives here)
+Link-File -FROM $huma_hop -TO (Join-Path $env:LOCALAPPDATA "nvim-data\site\pack\core\opt\hop.nvim\lua\hop\mappings\zh_huma.lua")
 
 # komorebi
 Link-File -FROM (Join-Path $currFolder "windows" "komorebi" "komorebi.json") -TO "$env:USERPROFILE\komorebi.json"

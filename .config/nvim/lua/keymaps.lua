@@ -398,5 +398,8 @@ end, { desc = gx_desc })
 
 map("n", "<leader>s", vim.lsp.buf.hover)
 map("n", "<leader>f", function() vim.lsp.buf.format({async = true}) end)
+-- coc.nvim-style quickfix: apply the quickfix code action at the cursor (or
+-- pick from the filtered list when several match). Works in visual mode too.
+map({ "n", "v" }, "<leader>qf", function() vim.lsp.buf.code_action({ context = { only = { "quickfix" } }, apply = true }) end, { desc = "LSP quickfix (apply fix at cursor)" })
 map("n", "gcb", "<Cmd>e ++enc=gbk<CR>")
 map("n", "gcu", "<Cmd>e ++enc=utf-8<CR>")
