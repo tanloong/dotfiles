@@ -1,0 +1,272 @@
+{
+    "$help": "https://aka.ms/terminal-documentation",
+    "$schema": "https://aka.ms/terminal-profiles-schema",
+    "actions": 
+    [
+        {
+            "command": 
+            {
+                "action": "sendInput",
+                "input": "\u001b[49;5u"
+            },
+            "id": "User.sendInput.3CB662DF"
+        },
+        {
+            "command": 
+            {
+                "action": "globalSummon",
+                "desktop": "toCurrent",
+                "dropdownDuration": 0,
+                "monitor": "any",
+                "name": "_quake",
+                "toggleVisibility": true
+            },
+            "id": "User.globalSummon.4C8709E8"
+        },
+        {
+            "command": 
+            {
+                "action": "sendInput",
+                "input": "\u001b[50;5u"
+            },
+            "id": "User.sendInput.BB17DEC4"
+        },
+        {
+            "command": 
+            {
+                "action": "sendInput",
+                "input": "\u001b[51;5u"
+            },
+            "id": "User.sendInput.3F3A462B"
+        },
+        {
+            "command": 
+            {
+                "action": "sendInput",
+                "input": "\u001b[53;5u"
+            },
+            "id": "User.sendInput.AB1FA51D"
+        },
+        {
+            "command": 
+            {
+                "action": "sendInput",
+                "input": "\u001b[52;5u"
+            },
+            "id": "User.sendInput.24D4B027"
+        },
+        {
+            "command": 
+            {
+                "action": "sendInput",
+                "input": "\u001b[54;5u"
+            },
+            "id": "User.sendInput.B4F1BE4D"
+        },
+        {
+            "command": 
+            {
+                "action": "sendInput",
+                "input": "\u001b[55;5u"
+            },
+            "id": "User.sendInput.5B9AE677"
+        },
+        {
+            "command": 
+            {
+                "action": "sendInput",
+                "input": "\u001b[56;5u"
+            },
+            "id": "User.sendInput.BB62ACC6"
+        },
+        {
+            "command": 
+            {
+                "action": "sendInput",
+                "input": "\u001b[57;5u"
+            },
+            "id": "User.sendInput.4C186B96"
+        }
+    ],
+    "centerOnLaunch": false,
+    "copyFormatting": "none",
+    "copyOnSelect": true,
+    "defaultProfile": "{574e775e-4f2a-5b96-ac1e-a2962a402336}",
+    "disableAnimations": true,
+    "focusFollowMouse": true,
+    "initialPosition": ",",
+    "keybindings": 
+    [
+        {
+            "id": "User.sendInput.AB1FA51D",
+            "keys": "ctrl+5"
+        },
+        {
+            "id": "User.sendInput.3CB662DF",
+            "keys": "ctrl+1"
+        },
+        {
+            "id": "User.sendInput.BB62ACC6",
+            "keys": "ctrl+8"
+        },
+        {
+            "id": "User.sendInput.BB17DEC4",
+            "keys": "ctrl+2"
+        },
+        {
+            "id": "User.sendInput.24D4B027",
+            "keys": "ctrl+4"
+        },
+        {
+            "id": "User.sendInput.3F3A462B",
+            "keys": "ctrl+3"
+        },
+        {
+            "id": "User.sendInput.B4F1BE4D",
+            "keys": "ctrl+6"
+        },
+        {
+            "id": "User.sendInput.5B9AE677",
+            "keys": "ctrl+7"
+        },
+        {
+            "id": "User.sendInput.4C186B96",
+            "keys": "ctrl+9"
+        },
+        {
+            "id": "Terminal.DuplicatePaneAuto",
+            "keys": "alt+shift+d"
+        },
+        {
+            "id": "User.globalSummon.4C8709E8",
+            "keys": "alt+n"
+        },
+        {
+            "id": null,
+            "keys": "ctrl+numpad_plus"
+        },
+        {
+            "id": "Terminal.DecreaseFontSize",
+            "keys": "ctrl+shift+j"
+        },
+        {
+            "id": "Terminal.CopyToClipboard",
+            "keys": "ctrl+c"
+        },
+        {
+            "id": "Terminal.IncreaseFontSize",
+            "keys": "ctrl+shift+k"
+        },
+        {
+            "id": null,
+            "keys": "ctrl+numpad_minus"
+        }
+    ],
+    "launchMode": "default",
+    "newTabMenu": 
+    [
+        {
+            "type": "remainingProfiles"
+        }
+    ],
+    "profiles": 
+    {
+        "defaults": 
+        {
+            "colorScheme": "Campbell"
+        },
+        "list": 
+        [
+            {
+                "commandline": "%SystemRoot%\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+                "font": 
+                {
+                    "face": "'Cousine Nerd Font Mono', 'WenQuanYi Zen Hei'"
+                },
+                "guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
+                "hidden": false,
+                "name": "Windows PowerShell"
+            },
+            {
+                "commandline": "%SystemRoot%\\System32\\cmd.exe",
+                "font": 
+                {
+                    "face": "Cousine Nerd Font Mono, WenQuanYi Zen Hei"
+                },
+                "guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
+                "hidden": false,
+                "name": "\u547d\u4ee4\u63d0\u793a\u7b26"
+            },
+            {
+                "commandline": "\"C:\\Program Files\\PowerShell\\7\\pwsh.exe\" -NoLogo",
+                "cursorShape": "bar",
+                "experimental.repositionCursorWithMouse": true,
+                "font": 
+                {
+                    "face": "Cousine Nerd Font Mono, WenQuanYi Zen Hei"
+                },
+                "guid": "{574e775e-4f2a-5b96-ac1e-a2962a402336}",
+                "hidden": false,
+                "intenseTextStyle": "bold",
+                "name": "PowerShell",
+                "padding": "8",
+                "source": "Windows.Terminal.PowershellCore",
+                "startingDirectory": "D:\\usr\\boyi"
+            },
+            {
+                "altGrAliasing": true,
+                "antialiasingMode": "grayscale",
+                "closeOnExit": "automatic",
+                "colorScheme": "Campbell",
+                "commandline": "nu",
+                "cursorShape": "bar",
+                "font": 
+                {
+                    "face": "Cousine Nerd Font Mono",
+                    "size": 12
+                },
+                "guid": "{df72e6af-cefd-4a81-b148-45be1daa8166}",
+                "hidden": false,
+                "historySize": 9001,
+                "icon": "none",
+                "name": "nu",
+                "padding": "8, 8, 8, 8",
+                "snapOnInput": true,
+                "startingDirectory": "D:/user/boyi",
+                "useAcrylic": false
+            },
+            {
+                "font": 
+                {
+                    "face": "Cousine Nerd Font Mono"
+                },
+                "guid": "{e32501ba-0290-5df2-b0f5-f97829541a59}",
+                "hidden": false,
+                "name": "archlinux",
+                "source": "Microsoft.WSL"
+            },
+            {
+                "guid": "{b453ae62-4e3d-5e58-b989-0a998ec441b8}",
+                "hidden": false,
+                "name": "Azure Cloud Shell",
+                "source": "Windows.Terminal.Azure"
+            },
+            {
+                "guid": "{eb5ba48d-e0ae-5fd5-a158-40aab810ca7c}",
+                "hidden": false,
+                "name": "Developer Command Prompt for VS 2022",
+                "source": "Windows.Terminal.VisualStudio"
+            },
+            {
+                "guid": "{b43d6954-ff87-5c56-9858-544dee71bcef}",
+                "hidden": false,
+                "name": "Developer PowerShell for VS 2022",
+                "source": "Windows.Terminal.VisualStudio"
+            }
+        ]
+    },
+    "schemes": [],
+    "tabWidthMode": "equal",
+    "themes": [],
+    "windowingBehavior": "useNew"
+}
