@@ -33,6 +33,7 @@ fish_add_path --path \
 $HOME/.npm-global/bin \
 $HOME/.local/bin \
 $HOME/.local/bin/data-science-utils \
+$HOME/.cargo/bin \
 $HOME/.local/bin/internship \
 $HOME/software/rasp3os/scripts \
 $STANFORD_TREGEX_HOME \
