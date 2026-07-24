@@ -13,6 +13,8 @@ function! boyi#net_realtimeentry()
 "...
 "('博弈博涵三号私募证券投资基金', 139257180.14)
 
+"删除第三列，日期列
+%s/\v,\s*'[0-9]{4}-[0-9]{2}-[0-9]{2}'//
   %s/\v博弈|专享|私享|私募证券投资基金|[(')]//g
   %s/\v智选.*\zs号//
   %s/\v渭\zs华翔昇\ze[0-9]//g
@@ -26,7 +28,11 @@ endfunction
 
 function! boyi#net_curve()
 %s/\v^\('\zs[^']+/\=boyi#norm(submatch(0))/g
+"删除第三列，日期列
+%s/\v,\s*'[0-9]{4}-[0-9]{2}-[0-9]{2}'//
+global /\v^\s*$/d
 1,$-1 s/$/,
+0put='delete from net;'
 0put='insert or replace into net (账号名称, 净值) values '
 $ s/$/;
 endfunction
@@ -34,6 +40,9 @@ endfunction
 function! boyi#net_hold()
 global /稳健/d
 %s/\v^\('\zs[^']+/\=boyi#normsimhold(submatch(0))/g
+"删除第三列，日期列
+%s/\v,\s*'[0-9]{4}-[0-9]{2}-[0-9]{2}'//
+global /\v^\s*$/d
 1,$-1 s/$/,
 0put='INSERT OR REPLACE INTO net (账户, 净值) VALUES'
 $ s/$/;

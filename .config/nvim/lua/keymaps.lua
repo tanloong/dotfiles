@@ -123,7 +123,7 @@ local _search = function(_open)
 end
 
 map("n", "gs", function()
-  _search(function(text) vim.ui.open(("https://cn.bing.com/search?q=%s&form=QBLH"):format(vim.trim(text))) end)
+  _search(function(text) vim.ui.open(("https://cn.bing.com/search?q=%s&form=QBLH"):format(vim.trim(text)), {cmd =  {vim.fn.has("win32") and "msedge.exe" or "chromium"} }) end)
 end)
 
 map("n", "gz", function()

@@ -463,6 +463,7 @@ local plugins = {
 			map("n", "<SPACE><SPACE>", '/<<>><CR>:set nohlsearch<CR>"_c4<right>')
 		end,
 	},
+  {spec = gh("justinmk/guh.nvim"), when = "schedule", },
 	{
 		spec = gh("folke/lazydev.nvim"),
 		when = { ft = "lua" },
