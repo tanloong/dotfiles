@@ -24,6 +24,7 @@
   # 禁用跨平台换行符转换
 	autocrlf = input
 	eol = lf
+	symlinks = true
 [pull]
 	rebase = true
 [branch]

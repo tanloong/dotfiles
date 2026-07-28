@@ -198,7 +198,7 @@
                 "name": "\u547d\u4ee4\u63d0\u793a\u7b26"
             },
             {
-                "commandline": "\"C:\\Program Files\\PowerShell\\7\\pwsh.exe\" -NoLogo",
+                "commandline": "\"pwsh.exe\" -NoLogo",
                 "cursorShape": "bar",
                 "experimental.repositionCursorWithMouse": true,
                 "font": 

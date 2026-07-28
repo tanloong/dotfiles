@@ -108,8 +108,7 @@ local plugins = {
 		when = "schedule",
 		setup = function()
 			require("plugin_config.nvim_treesitter")
-		end,
-	},
+		end, },
 	{
 		spec = gh("mikavilpas/yazi.nvim"),
 		when = "schedule",
@@ -151,7 +150,7 @@ local plugins = {
 	-- Completion (LuaSnip + fittencode + dictionary feed blink.cmp)
 	------------------------------------------------------------------
 	{
-		spec = { src = gh("L3MON4D3/LuaSnip"), version = vim.version.range("2.x") },
+		spec = { src = gh("L3MON4D3/LuaSnip") },
 		when = "schedule",
 		setup = function()
       require("plugin_config.luasnip")
@@ -177,7 +176,7 @@ local plugins = {
 		when = "schedule",
 	},
 	{
-		spec = { src = gh("saghen/blink.cmp"), version = vim.version.range("*") },
+		spec = { src = gh("saghen/blink.cmp") },
 		when = "schedule",
 		setup = function()
 			local opts = {

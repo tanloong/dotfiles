@@ -30,6 +30,7 @@ Set-Alias -Name g -Value git
 Set-Alias -Name za -Value sumatrapdf
 Set-Alias -Name gg -Value gitui
 Set-Alias -Name co -Value cargo
+Set-Alias -Name so -Value scoop
 
 function TurnOff-Screen {
     (Add-Type '[DllImport("user32.dll")]public static extern int SendMessage(int hWnd, int hMsg, int wParam, int lParam);' -Name ScreenApi -Pas)::SendMessage(-1,0x0112,0xF170,2)
@@ -158,15 +159,6 @@ function fcd {param([Parameter(Mandatory = $false)][string]$Query = '')
 function fz {param([Parameter(Mandatory = $false)][string]$Query = '')
   Invoke-FzfWith $env:PDFVIEWER $Query}
 
-function mm {
-    param(
-        [Parameter(Mandatory = $false)]
-        [string]$Query = ''
-    )
-    Push-Location D:\docx\memorandum
-    Invoke-FzfWith $env:EDITOR $Query
-    Pop-Location
-}
 function vv {
     param(
         [Parameter(Mandatory = $false)]
@@ -375,3 +367,26 @@ $Env:GIT_EDITOR = "nvim"
 
 # zoxide
 Invoke-Expression (& { (zoxide init powershell | Out-String) })
+
+################################## cpython ##################################
+# 本地构建的 CPython 调用封装（对应 fish 里的 pd / pm / pu / ps 缩写）
+#
+# 逻辑（与 fish 版一致）：
+#   - 当当前目录位于 CPython 源码树下（即其父目录等于 $CPythonRoot）时，
+#     使用当前目录里刚构建好的 ./python（或 ./python.exe）
+#   - 否则使用树外已构建好的 $CPythonMain
+#
+# ⚠️ 在 Windows 上请把下面两个路径改成你本机的实际位置，
+#    并且 Windows 构建产物带 .exe 后缀（脚本已自动处理）。
+$CPythonRoot = 'C:/Users/tanloong/projects/cpython'                 # cpython 源码树根目录
+$CPythonMain = 'C:/Users/tanloong/projects/cpython/main/python'     # 树外构建的可执行文件
+
+function Get-CpythonBinary {
+    $parent = Split-Path -Parent (Get-Location).Path
+    $bin = if ($parent -eq $CPythonRoot) { './python' } else { $CPythonMain }
+    # Windows 上构建产物带 .exe 后缀
+    if ($IsWindows -and (Test-Path "$bin.exe")) { "$bin.exe" } else { $bin }
+}
+
+# pd -> 直接运行本地构建的 python
+function pd { & (Get-CpythonBinary) @args }

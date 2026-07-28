@@ -4,11 +4,11 @@ local config = {
   providers = {
     chatanywhere = {
       secret = os.getenv "CHATANYWHERE_API_KEY",
-      endpoint = os.getenv "CHATANYWHERE_API_BASE" .. "/chat/completions",
+      endpoint = (os.getenv "CHATANYWHERE_API_BASE" or "") .. "/chat/completions",
     },
     zhipu = {
       secret = os.getenv "ZHIPU_API_KEY",
-      endpoint = os.getenv "ZHIPU_API_BASE" .. "/chat/completions",
+      endpoint = (os.getenv "ZHIPU_API_BASE" or "") .. "/chat/completions",
     },
    ollama = {
       endpoint = "http://localhost:11434/v1/chat/completions",
