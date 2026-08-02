@@ -23,6 +23,7 @@
 	quotepath = false
 	autocrlf = input
 	eol = lf
+	symlinks = true
 [pull]
 	rebase = true
 [branch]

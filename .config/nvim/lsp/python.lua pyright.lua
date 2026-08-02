@@ -1,7 +1,8 @@
 return {
   cmd = { 'pyright-langserver', '--stdio' },
   filetypes = { 'python' },
-  root_markers = { '.gitignore', 'requirements.txt', 'pyproject.toml', 'Makefile', 'README.md' },
+  -- 广度优先, see :h lsp-root_markers
+  root_markers = { { 'README.md', 'pyproject.toml', "uv.lock", '.gitignore', 'requirements.txt', 'Makefile' } },
   settings = {
     python = {
       analysis = {

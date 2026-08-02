@@ -1,7 +1,7 @@
 return {
 	cmd = { "rust-analyzer" },
 	filetypes = { "rust" },
-	root_markers = { ".git", "Cargo.lock" },
+	root_markers = { {".git", "Cargo.lock", "README.md"} },
 	settings = {
 		["rust-analyzer"] = {
 			check = {
