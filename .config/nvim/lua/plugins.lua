@@ -109,15 +109,57 @@ local plugins = {
 		setup = function()
 			require("plugin_config.nvim_treesitter")
 		end, },
-	{
-		spec = gh("mikavilpas/yazi.nvim"),
-		when = "schedule",
-		setup = function()
-      map("n", "<C-t>", require("yazi").toggle)
-			require("yazi").setup()
-		end,
-	},
+	-- {
+	-- 	spec = gh("mikavilpas/yazi.nvim"),
+	-- 	when = "schedule",
+	-- 	setup = function()
+	--      map("n", "<C-t>", require("yazi").toggle)
+	-- 		require("yazi").setup()
+	-- 	end,
+	-- },
+  {
+spec = gh("nvim-mini/mini.files"),
+when = "schedule",
+setup = function()
+      local MiniFiles = require "mini.files"
+  MiniFiles.setup()
+  map("n", "<C-t>", function() MiniFiles.open(vim.api.nvim_buf_get_name(0)) end)
 
+  -- Set focused directory as current working directory
+  local set_cwd = function()
+    local path = (MiniFiles.get_fs_entry() or {}).path
+    if path == nil then return vim.notify('Cursor is not on valid entry') end
+    vim.fn.chdir(vim.fs.dirname(path))
+  end
+
+  -- Yank in register full path of entry under cursor
+  local yank_path = function()
+    local path = (MiniFiles.get_fs_entry() or {}).path
+    if path == nil then return vim.notify('Cursor is not on valid entry') end
+    vim.fn.setreg(vim.v.register, path)
+  end
+
+  local yank_dir = function()
+    local path = (MiniFiles.get_fs_entry() or {}).path
+    if path == nil then return vim.notify('Cursor is not on valid entry') end
+    vim.fn.setreg(vim.v.register, vim.fs.dirname(path))
+  end
+
+  -- Open path with system default handler (useful for non-text files)
+  local ui_open = function() vim.ui.open(MiniFiles.get_fs_entry().path) end
+
+  vim.api.nvim_create_autocmd('User', {
+    pattern = 'MiniFilesBufferCreate',
+    callback = function(args)
+      local b = args.data.buf_id
+      vim.keymap.set('n', '~', set_cwd,   { buffer = b, desc = 'Set cwd' })
+      vim.keymap.set('n', 'gx', ui_open,   { buffer = b, desc = 'OS open' })
+      vim.keymap.set('n', 'yp', yank_path, { buffer = b, desc = 'Yank path' })
+      vim.keymap.set('n', 'yd', yank_dir, { buffer = b, desc = 'Yank dir' })
+    end,
+  })
+end
+},
 	{
 		spec = gh("nvim-treesitter/nvim-treesitter-textobjects"),
 		when = "schedule",
