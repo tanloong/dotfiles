@@ -5,7 +5,7 @@ hop.setup({
     keys = 'asdghklqwertyuiopzxcvbnmfj;',
     match_mappings = {'zh', 'zh_huma'}
 })
-vim.keymap.set({ 'n', 'v', 'o' }, "g'", "<Cmd>HopChar1MW<CR>")
+vim.keymap.set({ 'n', 'v', 'o' }, "z,", "<Cmd>HopChar1MW<CR>")
 
 -- local directions = require('hop.hint').HintDirection
 -- vim.keymap.set({'n','v','o'}, 'f', function()

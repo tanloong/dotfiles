@@ -221,6 +221,14 @@ function! boyi#normsimhold(name) abort
     if normalized =~# '优选'
       if normalized =~# '二\|2'
         return '优选2'
+      elseif normalized =~# '三\|3'
+        return '优选3'
+      endif
+    endif
+
+    if normalized =~# '致远'
+      if normalized =~# '一\|1'
+        return '致远1'
       endif
     endif
 
@@ -335,6 +343,14 @@ function! boyi#normsimcurve(name) abort
     if normalized =~# '优选'
       if normalized =~# '二\|2'
         return '优选2'
+      elseif normalized =~# '三\|3'
+        return '优选3'
+      endif
+    endif
+
+    if normalized =~# '致远'
+      if normalized =~# '一\|1'
+        return '致远1'
       endif
     endif
 
@@ -449,7 +465,15 @@ function! boyi#norm(name) abort
 
     if normalized =~# '优选'
       if normalized =~# '二\|2'
-        return '优选2号'
+        return '优选2'
+      elseif normalized =~# '三\|3'
+        return '优选3'
+      endif
+    endif
+
+    if normalized =~# '致远'
+      if normalized =~# '一\|1'
+        return '致远1'
       endif
     endif
 
