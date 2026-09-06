@@ -48,8 +48,40 @@ local function check_git_repo()
     return true -- removes autocmd after lazy loading git related plugins
   end
 end
-vim.api.nvim_create_autocmd({ "VimEnter", "DirChanged" }, { callback = function() vim.schedule(check_git_repo) end }) -- }}}
+au({ "VimEnter", "DirChanged" }, { callback = function() vim.schedule(check_git_repo) end }) -- }}}
 
 -- au("BufEnter", { pattern = "term://*", command = 'startinsert' })
 -- Output is followed if cursor is on the last line.
 -- au("BufLeave", { pattern = "term://*", command = 'normal G' })
+
+-- lsp document highlight {{{
+-- :help vim.lsp.buf.document_highlight()
+
+au("LspAttach", {
+  group = group,
+  callback = function(event)
+    local bufnr = event.buf
+    local client = vim.lsp.get_client_by_id(event.data.client_id)
+
+    if not client then
+      return
+    end
+
+    if client:supports_method("textDocument/documentHighlight") then
+      au({ "CursorHold", "CursorHoldI" }, {
+        group = group,
+        buffer = bufnr,
+        callback = vim.lsp.buf.document_highlight,
+      })
+
+      au({"CursorMoved", "CursorMovedI"}, {
+        group = group,
+        buffer = bufnr,
+        callback = vim.lsp.buf.clear_references,
+      })
+    end
+  end,
+})
+
+-- }}}
+
