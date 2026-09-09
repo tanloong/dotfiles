@@ -40,6 +40,15 @@ keyset("n", "<space>fd", builtin.find_files, {})
 keyset("n", "<space>fl", builtin.live_grep, {})
 keyset("n", "<space>fw", builtin.grep_string, {})
 keyset("n", "<space>fh", builtin.help_tags, {})
+keyset("n", "<space>ff", function() builtin.find_files({
+  search_dirs = {
+  "D:\\usr\\boyi\\tasks\\20250728-profit-curve",
+  "D:\\usr\\boyi\\tasks\\20250728-profit-curve-han",
+  "D:\\usr\\boyi\\tasks\\byckend",
+  "D:\\usr\\boyi\\tasks\\byontend",
+  }
+}) end )
+
 keyset("n", "<space>/",
   function()
     builtin.current_buffer_fuzzy_find { skip_empty_lines = true }

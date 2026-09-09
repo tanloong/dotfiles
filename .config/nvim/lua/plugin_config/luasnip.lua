@@ -25,7 +25,7 @@ ls.add_snippets("python", {
 	s("f", { t({ "from " }), i(1), t({ " import " }), i(2) }, { condition = conds.line_begin }),
 	s("p", { t({ "print(" }), i(0), t({ ")" }) }, { condition = conds.line_begin }),
 	s("fp", { t({ 'print(f"' }), i(0), t({ '")' }) }, { condition = conds.line_begin }),
-	s("ifmain", { t('if __name__ == "__main__":') }, { condition = conds.line_begin }),
+	s("ifmain", { t('if __name__ == "__main__":'), t({ '', '    ' }), i(0) }, { condition = conds.line_begin }),
 }, { type = "snippets" })
 
 map({ "i" }, "<C-o>", function()

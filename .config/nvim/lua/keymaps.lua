@@ -188,8 +188,8 @@ map("t", "<c-v><c-k>", "<c-k>")
 map("t", "<c-^>", "<c-\\><c-N><c-^>")
 
 -- map({ "n" }, "<c-h>", "<c-\\><c-N><c-w>h")
--- map({ "n" }, "<c-j>", "<c-\\><c-N><c-w>j")
--- map({ "n" }, "<c-k>", "<c-\\><c-N><c-w>k")
+map({ "n" }, "<c-j>", "<c-\\><c-N><c-w>j")
+map({ "n" }, "<c-k>", "<c-\\><c-N><c-w>k")
 -- map({ "n" }, "<c-l>", "<c-\\><c-N><c-w>l")
 
 -- Resize terminals
